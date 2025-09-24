@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	color: #000;
+}
+
+.diary-container {
+	max-width: 1024px;
+	margin: 40px auto;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+/* 필드 그룹 */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #e0e0e0;
+}
+
+.form-label {
+	background: #f8f8f8;
+	padding: 10px 14px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #000;
+}
+
+.form-multi {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.form-multi span {
+	font-size: 16px;
+}
+
+.form-right {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	/* notice와 emoji 사이 여백 */
+}
+
+.form-value {
+	padding: 12px 14px;
+	font-size: 14px;
+	background: #fff;
+}
+
+.form-input {
+	padding: 12px 14px;
+	font-size: 20px;
+	border: none;
+	outline: none;
+	width: 100%;
+	height: 80px;
+	background: #fff;
+}
+
+.form-textarea {
+	padding: 12px 14px;
+	font-size: 16px;
+	border: none;
+	outline: none;
+	width: 100%;
+	min-height: 250px;
+	resize: none;
+	background: #fff;
+	height: 700px;
+}
+
+.notice {
+	font-size: 12px;
+	/* color: #488EF6; */
+	color: #9C9C9C;
+	margin-left: auto;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+.emoji {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	height: 35px;
+	margin-right: 15px;
+}
+
+.emoji label div {
+	font-size: 35px;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.happy-select {
+	background-color: #00c900;
+	border-radius: 100%;
+}
+
+.soso-select {
+	background-color: #FFFF00;
+	border-radius: 100%;
+}
+
+.sad-select {
+	background-color: #FF0000;
+	border-radius: 100%;
+}
+
+input[type=radio] {
+	display: none;
+}
+
+input[type=radio]+label {
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+}
+
+.diary-footer {
+	padding-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+/* 작성,취소 버튼 → 오른쪽 */
+.button-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
+.basic-small-btn {
+	border: 1px solid #9C9C9C;
+	right: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	position: relative;
+	border-radius: 100px;
+	width: 67px;
+	height: 26px;
+	font-size: 11px;
+	font-weight: 600;
+	color: #000;
+}
+
+.primary-small-btn {
+	right: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	position: relative;
+	background-color: #488EF6;
+	border-radius: 100px;
+	width: 67px;
+	height: 26px;
+	border: none;
+	font-size: 11px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.btn-link {
+	text-decoration: none;
+}
+
+.basic-small-btn:hover {
+	border: 2px solid #B7B7B7;
+}
+
+.primary-small-btn:hover {
+	background-color: #1565c0;
+}
+
+.btn {
+	display: flex;
+	margin-left: auto;
+	margin-bottom: 15px;
+	justify-content: right;
+	align-items: center;
+	text-align: center;
+}
+/* 목록 버튼 → 오른쪽 */
+.basic-big-btn {
+	border: 1.5px solid #B7B7B7;
+	right: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	position: relative;
+	background-color: #fff;
+	border-radius: 6px;
+	width: 104px;
+	height: 40px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #000;
+}
+
+.basic-big-btn:hover {
+	background-color: #B7B7B7;
+}
