@@ -634,5 +634,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	    <span>직장</span>
 	    <span>기타</span>
 	</div>
+	
 </body>
 </html>

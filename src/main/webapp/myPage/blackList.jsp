@@ -386,8 +386,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <!-- 업로드 날짜 -->
             <div class="text-wrapper-3">업로드 날짜</div>
         </div>
-    </div>  
+    </div>
+      
 </body>
 </html>
-
-건들지마
