@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* 페이지네이션 중앙 정렬 */
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin: 0 auto;
+	/* 중앙 정렬 */
+}
+
+.pagination button {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	font-size: 20px;
+	color: #333;
+}
+
+.pagination button.active {
+	background: #a6c8ff;
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+	color: #000;
+	font-weight: bold;
+}
