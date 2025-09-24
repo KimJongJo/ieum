@@ -626,7 +626,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     </div>
     </div>
-    
+
 </body>
 </html>
 

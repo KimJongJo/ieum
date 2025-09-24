@@ -1,0 +1,31 @@
+
+/* 네비 추가 메뉴 */
+.menu {
+    width: 195px;
+    height: 50px;
+    /* text-align: center; */
+    line-height: 40px;
+}
+
+.menu > .sub,
+.menu > .sub2 {
+    height: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: height ease-out 0.6s 0s;
+    margin: 0;
+    padding: 0;
+}
+
+.menu > .sub li,
+.menu > .sub2 li {
+    background-color: #ccd1df;
+    border-top: 1px white solid;
+    padding-left: 15px;
+}
+
+.menu > .sub li > a,
+.menu > .sub2 li > a {
+    text-decoration: none;
+    color: black;
+}
