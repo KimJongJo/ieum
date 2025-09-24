@@ -1,0 +1,399 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Sans KR", Helvetica;
+    color: #000000;
+}
+
+.container {
+    width: 1022px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 60px;
+    margin-top: 60px;
+}
+
+.rescom {
+    width: 1022px;
+    height: 1476px;
+    background-color: #F7FAFF;
+    border-radius: 15px;
+    padding: 80px 115px 130px 115px;
+    box-sizing: border-box;
+}
+
+.t1 {
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 50px;
+}
+
+.tq {
+    font-weight: 600;
+    color: #4356B3;
+    font-size: 19px;
+    padding-left: 10px;
+
+}
+
+.white-box {
+    width: 794px;
+    height: 1186px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 39px 58px 0 58px;
+    box-sizing: border-box;
+
+}
+
+.hos-date {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.hos-in {
+    display: flex;
+    align-items: center;
+}
+
+.t21 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.dday {
+    width: 58px;
+    height: 28px;
+    background-color: #4356B3;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.dd {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+.t71 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.w {
+    width: 95px;
+    height: 36px;
+    background-color: white;
+    border-radius: 50px;
+    border: 2px solid #d9d9d9;
+    margin-left: 5px;
+    font-weight: 500;
+    color: #3b3b3b;
+    font-size: 14px;
+}
+
+.line {
+    width: 682px;
+    height: 2px;
+    background-color: #D9D9D9;
+    margin-top: 30px;
+    margin-bottom: 40px;
+
+}
+
+
+.docbox {
+    width: 676px;
+    border: solid 2px #d9d9d9;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px;
+    box-sizing: border-box;
+    margin-bottom: 13px;
+    margin-bottom: 34px;
+}
+
+.docprof {
+    width: 137px;
+    height: 168px;
+    border-radius: 5px;
+    margin-right: 15px;
+    background-color: #e6e6e6;
+}
+
+.info {
+    width: 600px;
+    height: 167px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.doci {
+    display: flex;
+    flex-direction: column;
+}
+
+.dname {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 14px;
+}
+
+.intro {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.major {
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.painfo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.t2 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 26px;
+}
+
+.pname,
+.ptel {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 5px;
+
+}
+
+
+.counbox {
+    width: 678px;
+    height: 101px;
+    background-color: white;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.map {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.counbox1 {
+    width: 678px;
+    height: 160px;
+    background-color: #F3F3F3;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+
+
+.hh {
+    width: 1280px;
+    height: 103px;
+    display: flex;
+    padding-top: 26px;
+    padding-left: 78px;
+    padding-right: 78px;
+    box-sizing: border-box;
+    justify-content: space-between;
+
+}
+
+.hbt {
+    font-weight: 700;
+    font-size: 26px;
+    display: flex;
+    padding-top: 7px;
+}
+
+.share {
+    display: flex;
+}
+
+.bt1 {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: none;
+    margin-left: 15px;
+    margin-top: 14px;
+
+}
+
+.i {
+    color: rgb(175, 175, 175);
+    background: none;
+    border: none;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.fa-solid fa-share-nodes,
+.fa-regular fa-star {
+    width: 25px;
+    height: 25px;
+}
+
+.hos-box {
+    width: 1280px;
+    height: 448px;
+    display: flex;
+    padding-left: 69px;
+    padding-right: 69px;
+    box-sizing: border-box;
+
+}
+
+.hinfotable {
+    padding: 0;
+    margin: 0;
+    border-collapse: separate;
+    /* 기본은 separate */
+    border-spacing: 0;
+    /* 위아래 간격 10px */
+}
+
+.hinfoa {
+    display: flex;
+}
+
+.hinfo {
+    display: flex;
+
+}
+
+.file_no {
+    background-color: #eeeeee;
+    width: 569px;
+    height: 320px;
+    margin-right: 49px;
+    border-radius: 15px;
+}
+
+.hinfor {
+    display: flex;
+    flex-direction: column;
+}
+
+.hinfoh {
+    display: flex;
+    flex-direction: column;
+}
+
+.hos-cate {
+    font-weight: 500;
+    font-size: 11px;
+}
+
+.hos-na {
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 26px;
+}
+
+.detail-icon {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.etc {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.etc1 {
+    font-weight: 600;
+    font-size: 16px;
+
+}
+
+.etc2 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+.icon {
+    width: 23px;
+    height: 25px;
+    text-align: left;
+    color: #8b8b8b;
+}
+
+.icon2 {
+    width: 15px;
+    height: 15px;
+    text-align: left;
+    color: #8b8b8b;
+    margin-right: 5px;
+}
+
+.ex {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.hosinf {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hosd {
+    width: 169px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+
+.btn {
+    margin-top: 80px;
+    display: flex;
+
+}
+
+
+.white {
+    width: 96px;
+    height: 40px;
+    background-color: white;
+    border: #D9D9D9 solid 1.5px;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 6px;
+    margin-right: 15px;
+
+}

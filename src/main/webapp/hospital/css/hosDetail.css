@@ -1,0 +1,765 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Noto Sans KR", Helvetica;
+    color: #000000;
+}
+
+.container {
+    width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 병원정보 */
+.hh {
+    width: 1280px;
+    height: 103px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 26px;
+}
+
+.hbt {
+    font-weight: 700;
+    font-size: 26px;
+    display: flex;
+    margin-top: 7px;
+    margin-left: 78px;
+}
+
+.share {
+    display: flex;
+    margin-right: 78px;
+}
+
+.bt1 {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: none;
+    margin-left: 15px;
+    margin-top: 14px;
+
+}
+
+.i {
+    color: rgb(175, 175, 175);
+    background: none;
+    border: none;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hos-box {
+    width: 1280px;
+    height: 400px;
+    display: flex;
+}
+
+.hinfotable {
+    padding: 0;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.hinfoa {
+    display: flex;
+}
+
+.hinfo {
+    display: flex;
+
+}
+
+.file_no {
+    background-color: #eeeeee;
+    width: 569px;
+    height: 320px;
+    margin-right: 49px;
+    border-radius: 5px;
+    margin-left: 69px;
+}
+
+.hinfor {
+    display: flex;
+    flex-direction: column;
+}
+
+.hinfoh {
+    display: flex;
+    flex-direction: column;
+}
+
+.hos-cate {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.hos-na {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 26px;
+}
+
+.detail-icon {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.etc {
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+.icon {
+    width: 23px;
+    height: 34px;
+    text-align: left;
+    padding-right: 10px;
+}
+
+/* 탭구분 */
+
+.nav-box {
+    width: 1280px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-h3 {
+    width: 1139px;
+    height: 39px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.navl {
+    width: 570px;
+    height: 39px;
+    border-width: 2px 0 2px 2px;
+    border-radius: 5px 0 0 5px;
+    border-style: solid;
+    border-color: #D9D9D9;
+    background-color: #ffffff;
+    font-weight: 500;
+    display: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.navr {
+    width: 570px;
+    height: 39px;
+    border-width: 2px 2px 2px 0;
+    border-radius: 0 5px 5px 0;
+    border-style: solid;
+    border-color: #D9D9D9;
+    background-color: #ffffff;
+    font-weight: 500;
+    display: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.navl.active {
+    width: 570px;
+    height: 39px;
+    border-width: 2px 0 2px 2px;
+    border-radius: 5px 0 0 5px;
+    border-style: solid;
+    border-color: #334186;
+    background-color: #334186;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navr.active {
+    width: 570px;
+    height: 39px;
+    border-width: 2px 2px 2px 0;
+    border-radius: 0 5px 5px 0;
+    border-style: solid;
+    border-color: #334186;
+    background-color: #334186;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 병원소개 */
+.hosinft {
+    width: 1280px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hos-info {
+    width: 1280px;
+    height: 137px;
+    display: flex;
+    justify-content: center;
+}
+
+.inf {
+    width: 1139px;
+    height: 87px;
+    padding: 17px;
+    background-color: #F7FAFF;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.mtitle {
+    font-weight: 600;
+    font-size: 17px;
+    margin-left: 78px;
+}
+
+
+.p1 {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+}
+
+.p2 {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+
+/* 상담사 */
+.doctor-section {
+    width: 1280px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.doctor-box {
+    width: 1162px;
+    height: 312px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+}
+
+.dall {
+    border: 2px solid #D9D9D9;
+    width: 563px;
+    height: 252px;
+    display: flex;
+    padding: 18px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.doc-prof {
+    background-color: #eeeeee;
+    width: 147px;
+    height: 204px;
+    margin-right: 18px;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.d1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.introduction {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.major {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* 위치/교통 */
+.map {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.m1 {
+    display: flex;
+    align-items: center;
+    width: 1280px;
+    height: 64px;
+    margin-bottom: 10px;
+}
+
+.m2 {
+    display: flex;
+    justify-content: center;
+    width: 1280px;
+}
+
+.map-sec {
+    background-color: #D9D9D9;
+    width: 1139px;
+    height: 366px;
+    border-radius: 5px;
+}
+
+
+
+/* 하단버튼 */
+.btn {
+    width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+
+
+.white {
+    width: 96px;
+    height: 40px;
+    background-color: white;
+    border: #D9D9D9 solid 1.5px;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 6px;
+    margin-right: 15px;
+
+}
+
+.blue {
+    width: 216px;
+    height: 40px;
+    background-color: #488EF6;
+    border: none;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 6px;
+
+}
+
+.mheader {
+    width: 1169px;
+    height: 55px;
+    background-color: #F7FAFF;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 39px;
+}
+
+
+.select-date {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.date-header {
+    width: 584px;
+    height: 30px;
+}
+
+.calendar {
+    width: 584px;
+    height: 650px;
+}
+
+
+.time-table {
+    width: 585px;
+    height: 557px;
+    padding-left: 30px;
+    margin-top: 55px;
+    box-sizing: border-box;
+
+}
+
+.cnb {
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 17px;
+}
+
+.day {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.cont {
+    width: 1169px;
+    height: 255px;
+    background-color: #F7FAFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 21px 34px 34px 34px;
+    box-sizing: border-box;
+}
+
+.h {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.b {
+    width: 1100px;
+    height: 159px;
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 21px;
+}
+
+.tb1 {
+    width: 121px;
+    height: 41px;
+    border: 1.5px solid #D9D9D9;
+    background-color: white;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 12px;
+    transition: background-color 0.2s ease,
+        color 0.2s ease, border 0.2s ease;
+
+}
+
+.tb1:hover {
+    background-color: #D0E4FF;
+    border-color: #D0E4FF;
+}
+
+
+.tb1:disabled {
+    width: 121px;
+    height: 41px;
+    border: 1.5px solid #D9D9D9;
+    background-color: white;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 12px;
+
+
+}
+
+.tb1.active,
+.tb1:active,
+.tb1.active:hover {
+    width: 121px;
+    height: 41px;
+    border: 1.5px solid #488EF6;
+    background-color: #488EF6;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-weight: 500;
+    color: white;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+.tab1 {
+    display: none;
+}
+
+.tab1.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab2 {
+    display: none;
+}
+
+.tab2.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* calendar style */
+.fc {
+    height: 600px;
+}
+
+.fc table {
+    font-size: 14px;
+}
+
+.fc-header-toolbar fc-toolbar {
+    display: flex;
+    align-items: center;
+}
+
+.fc-toolbar-title {
+    font-size: 18px !important;
+    font-weight: 500;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* ========================================
+   FullCalendar 버튼 최종 CSS
+   ======================================== */
+
+/* 기본 버튼 스타일 */
+.fc .fc-button,
+.fc .fc-button-primary {
+    width: 40px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white !important;
+    border: none !important;
+    color: #D9D9D9 !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    /* 브라우저 기본 버튼 스타일 제거 */
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+
+    /* 모바일 터치 강조 제거 */
+    -webkit-tap-highlight-color: transparent !important;
+
+    /* 배경 고정 */
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+
+    /* 자연스러운 hover 전환 */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ========================================
+   비활성화 버튼
+   ======================================== */
+.fc .fc-button:disabled,
+.fc .fc-button-primary:disabled {
+    background-color: #D9D9D9 !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   hover 상태: 마우스를 올릴 때만 파란색
+   ======================================== */
+.fc .fc-button:hover,
+.fc .fc-button-primary:hover {
+    background-color: #488EF6 !important;
+    color: white !important;
+}
+
+/* ========================================
+   클릭 또는 활성 상태: 눌러진 동안 파란색 유지
+   ======================================== */
+.fc .fc-button:active,
+.fc .fc-button.fc-button-active,
+.fc .fc-button.fc-state-down,
+.fc .fc-button:focus,
+.fc .fc-button:focus-visible {
+    background-color: #488EF6 !important;
+    color: white !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* ========================================
+   기본 / 포커스 상태: 흰색
+   ======================================== */
+.fc .fc-button {
+    background-color: white !important;
+    border: none !important;
+    color: #D9D9D9 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+.fc-header-toolbar {
+    position: relative;
+}
+
+
+.fc-header-toolbar :nth-child(2) div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fc-header-toolbar :nth-child(3) div {
+    position: absolute;
+    align-items: end;
+}
+
+.fc-scrollgrid-sync-table:nth-child(6) {
+    display: hidden;
+}
+
+.fc-col-header-cell-cushion {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.fc-daygrid-day-top {
+    display: flex;
+    justify-content: center;
+
+}
+
+.fc-daygrid-day-number {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fc .fc-daygrid-day-frame {
+    height: 80px;
+    position: relative;
+}
+
+
+
+.fc .fc-day-disabled {
+    background-color: white !important;
+    color: #D9D9D9;
+    opacity: 1 !important;
+    pointer-events: none;
+}
+
+/* FullCalendar 표 테두리 제거 */
+.fc-theme-standard td,
+.fc-theme-standard th {
+    border: none !important;
+}
+
+/* grid 라인까지 완전히 제거하고 싶으면 */
+.fc .fc-daygrid-day,
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section>* {
+    border: none !important;
+}
+
+.fc .fc-day-today {
+    background-color: white !important;
+    /* 원하는 배경색 */
+    color: black !important;
+    /* 글자색 */
+    border-radius: 15px;
+}
+
+.fc-daygrid-day-events {
+    display: flex;
+    justify-content: center;
+}
+
+.fc .fc-today-label {
+    font-size: 12pt;
+    color: white;
+    pointer-events: none;
+    /* 클릭 방해 안함 */
+}
+
+.fc .fc-today-clicked {
+    background-color: #488EF6 !important;
+    color: white !important;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+/* 클릭 불가 날짜 (오늘 이전) */
+.fc .fc-day-disabled {
+    background-color: white !important;
+    color: #bbb !important;
+    pointer-events: none;
+}
+
+/* 클릭/선택 날짜 */
+.fc .fc-today-clicked {
+    background-color: #488EF6 !important;
+    color: white !important;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+}
+
+/* hover 효과 (선택되지 않은 날짜) */
+.fc .fc-daygrid-day:not(.fc-day-disabled):hover {
+    background-color: #d0e4ff;
+    /* 연한 파랑 */
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+.fc .fc-daygrid-day:not(.fc-day-disabled):not(.fc-day-other):hover {
+    background-color: #d0e4ff;
+    cursor: pointer;
+}
+
+/* 이번 달이 아닌 날짜 셀 */
+.fc-day-other {
+    pointer-events: none;
+    /* 마우스 이벤트 차단 */
+    color: white;
+
+}

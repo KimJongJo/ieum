@@ -4,9 +4,175 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./hosSearch.css" />
+    <title>hosSearch</title>
 </head>
 <body>
+<div class="container">
+        <div class="filter">
+            <div class="search-bar">
+                <div class="mt">검색</div>
+                <form class="search-box" action="" method="get">
+                    <input class="search-txt" name="" placeholder="병원명으로 검색">
+                    <button class="search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
 
+            <div class="line"></div>
+
+            <div class="category">
+                <div class="ct">
+                    <div class="mt2">유형</div>
+                    <button class="refresh" type="reset">
+                        <div class="reicon"><i class="fa-solid fa-rotate-right"></i></div>
+                        <span class="mt3">초기화</span>
+                    </button>
+                </div>
+
+                <form class="select" action="" method="get">
+                    <div class="hcs">
+                        <div class="hcs2">
+                            <div class="allhc">
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        종합병원</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        상급종합병원</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        정신요양시설</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        자살예방센터</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        정신재활시설</label></div>
+                            </div>
+
+                            <div class="allhc2">
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        국립</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        의원</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        공립</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        병원</label></div>
+                                <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                        보건소</label></div>
+                            </div>
+                        </div>
+
+                        <div class="allhc3">
+                            <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                    중독통합관리 지원센터</label></div>
+                            <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                    광역정신건강 복지센터</label></div>
+                            <div class="la"><label class="h_ca"><input type="checkbox" id="hc" name="hc" value="">
+                                    기초정신건강 복지센터</label></div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="line"></div>
+
+            <div class="location">
+                <div class="mt2">지역</div>
+                <form class="location" action="" method="get">
+                    <select name="city" class="ci">
+                        <option value="none" selected hidden>도·시</option>
+                        <option value="none">서울특별시</option>
+                        <option value="none">부산광역시</option>
+
+                    </select>
+                    <select name="gungu" class="sigun">
+                        <option value="none" selected hidden>시·군·구</option>
+                        <option value="none">서구</option>
+                        <option value="none">중구</option>
+                    </select>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="right-side">
+            <div class="s-header">
+                <table class="sea">
+                    <tr>
+                        <td class="st1">'서울'</td>
+                        <td class="st">검색결과,</td>
+                        <td class="st1">'1,192'</td>
+                        <td class="st">개</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="list-box">
+
+                <div class="right3">
+                    <img class="hosf" src="" />
+                    <div class="infodetail">
+                        <div class="hos-category">기초정신건강복지센터</div>
+                        <div class="hos-name">구로보건소</div>
+                        <div class="hos-loca">
+                            <div class="icon3"><i class="fa-solid fa-bus"></i></div>구로역 1번출구
+                        </div>
+                    </div>
+                </div>
+                <div class="fav"><i class="fa-regular fa-star"></i></div>
+
+            </div>
+
+            <div class="list-box">
+
+                <div class="right3">
+                    <img class="hosf" src="" />
+                    <div class="infodetail">
+                        <div class="hos-category">기초정신건강복지센터</div>
+                        <div class="hos-name">구로보건소</div>
+                        <div class="hos-loca">
+                            <div class="icon3"><i class="fa-solid fa-bus"></i></div>구로역 1번출구
+                        </div>
+                    </div>
+                </div>
+                <div class="fav"><i class="fa-regular fa-star"></i></div>
+
+            </div>
+
+            <div class="list-box">
+
+                <div class="right3">
+                    <img class="hosf" src="" />
+                    <div class="infodetail">
+                        <div class="hos-category">기초정신건강복지센터</div>
+                        <div class="hos-name">구로보건소</div>
+                        <div class="hos-loca">
+                            <div class="icon3"><i class="fa-solid fa-bus"></i></div>구로역 1번출구
+                        </div>
+                    </div>
+                </div>
+                <div class="fav"><i class="fa-regular fa-star"></i></div>
+
+            </div>
+
+            <div class="list-box">
+
+                <div class="right3">
+                    <img class="hosf" src="" />
+                    <div class="infodetail">
+                        <div class="hos-category">기초정신건강복지센터</div>
+                        <div class="hos-name">구로보건소</div>
+                        <div class="hos-loca">
+                            <div class="icon3"><i class="fa-solid fa-bus"></i></div>구로역 1번출구
+                        </div>
+                    </div>
+                </div>
+                <div class="fav"><i class="fa-regular fa-star"></i></div>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

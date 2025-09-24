@@ -1,0 +1,98 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Sans KR", Helvetica;
+    color: #000000;
+}
+
+.container {
+    width: 1022px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    margin-top: 60px;
+}
+
+.list2 {
+    width: 1022px;
+    height: 205px;
+    border: 2px solid #d9d9d9;
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.fav1 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+
+/* 병원 리스트 */
+
+.list-box {
+    display: flex;
+    justify-content: space-between;
+    width: 1022px;
+    height: 232px;
+    padding: 23px 15px;
+    box-sizing: border-box;
+    border: 2px solid #d9d9d9;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+}
+
+.hosf {
+    background-color: rgb(212, 212, 212);
+    width: 330px;
+    height: 186px;
+    border-radius: 5px;
+    margin-right: 15px;
+
+}
+
+.right3 {
+    display: flex;
+}
+
+.infodetail {
+    display: flex;
+    flex-direction: column;
+}
+
+.hos-category {
+    font-weight: 500;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.hos-name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.hos-loca {
+    font-weight: 500;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+.icon3 {
+    font-size: 15;
+    color: #9f9f9f;
+}
+
+.fav {
+    font-size: 25px;
+    color: #488EF6;
+}
