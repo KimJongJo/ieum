@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>건강이음 - 공지사항 상세</title>
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="css/noticeDetail.css">
+<!-- jquery -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/8d48045bdd.js"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="notice-container">

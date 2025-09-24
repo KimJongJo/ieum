@@ -34,58 +34,6 @@
       margin: 0 4px;
       color: #4287ef;
     }
-
-    /* 검색창 */
-    .notice-search {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      border: 1px solid #E7E7E7;
-      background: #f9fbff;
-      border-radius: 4px;
-      overflow: hidden;
-      width: 216px;
-      height: 38px;
-    }
-
-    .notice-search input {
-      border: none;
-      outline: none;
-      width: 160px;
-      padding: 0 8px;
-      font-size: 13px;
-      background-color: #f9fbff;
-    }
-
-    .notice-search button {
-      border: none;
-      background: #f9fbff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      font-size: 13px;
-      color: #555;
-    }
-
-    .search-icon {
-      width: 18px;
-      height: 18px;
-      margin-left: 4px;
-    }
-
-    /* 정렬 셀렉트 */
-    .notice-select {
-      background: #f9fbff;
-      border: 1px solid #E7E7E7;
-      border-radius: 4px;
-      width: 100px;
-      height: 38px;
-      margin-left: 16px;
-      font-size: 13px;
-      color: #333;
-      padding-left: 6px;
-    }
-
     .notice-list {
       display: flex;
       flex-direction: row;
@@ -159,32 +107,6 @@
 
       align-items: center;
       margin-top: 20px;
-    }
-
-    /* 페이지네이션 중앙 정렬 */
-    .pagination {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 auto;
-      /* 중앙 정렬 */
-    }
-
-    .pagination button {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .pagination button.active {
-      background: #a6c8ff;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      color: #000;
-      font-weight: bold;
     }
 
     .btn-link {

@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	color: #000;
+}
+
+.main {
+	min-width: 1600px;
+}
+
+.under-section {
+	padding-top: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	background-color: #f7faff;
+}
+
+.info {
+	width: 970px;
+	/* height: 815px; */
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 160px;
+}
+
+.notice-container {
+	max-width: 1024px;
+	margin-top: 10px;
+	border-radius: 4px;
+	overflow: hidden;
+	width: 950px;
+}
+
+/* 필드 그룹 */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.form-label {
+	background: #d9d9d9;
+	padding: 10px 14px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #000;
+}
+
+.form-value {
+	padding: 12px 14px;
+	font-size: 14px;
+	background: #fff;
+}
+
+.form-input {
+	padding: 12px 14px;
+	font-size: 14px;
+	border: none;
+	outline: none;
+	width: 100%;
+	background: #fff;
+}
+
+.form-textarea {
+	padding: 12px 14px;
+	font-size: 14px;
+	border: none;
+	outline: none;
+	width: 100%;
+	min-height: 250px;
+	resize: none;
+	background: #fff;
+	height: 700px;
+}
+
+.notice-footer {
+	padding-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+/* 첨부파일 버튼 -> 라벨 */
+.file {
+	display: flex;
+	gap: 30px;
+}
+
+.file-upload {
+	border-radius: 4px;
+	color: #000;
+	cursor: pointer;
+	display: flex;
+	width: 117px;
+	height: 27px;
+	background-color: #d9d9d9;
+	font-size: 13px;
+	align-items: center;
+	justify-content: center;
+}
+
+.upload-file-name, .file-input {
+	display: none;
+}
+
+/* 작성,취소 버튼 → 오른쪽 */
+.button-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
+.basic-small-btn {
+	border: 1px solid #9c9c9c;
+	right: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	position: relative;
+	border-radius: 100px;
+	width: 67px;
+	height: 26px;
+	font-size: 11px;
+	font-weight: 600;
+	color: #000;
+}
+
+.primary-small-btn {
+	right: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	position: relative;
+	background-color: #488ef6;
+	border-radius: 100px;
+	width: 67px;
+	height: 26px;
+	border: none;
+	font-size: 11px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.btn-link {
+	text-decoration: none;
+}
+
+.basic-small-btn:hover {
+	border: 2px solid #b7b7b7;
+}
+
+.primary-small-btn:hover {
+	background-color: #1565c0;
+}
