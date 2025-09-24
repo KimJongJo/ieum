@@ -634,5 +634,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	    <span>직장</span>
 	    <span>기타</span>
 	</div>
+<<<<<<< HEAD
+	
+=======
+>>>>>>> branch 'master' of https://github.com/devsolpark/kosta-ieum.git
 </body>
 </html>
