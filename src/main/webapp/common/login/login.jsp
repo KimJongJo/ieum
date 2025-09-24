@@ -5,14 +5,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-		<link rel="stylesheet" href="/css/login.css" />
+		<link rel="stylesheet" href="css/login.css" />
     </head>
     <body>
         <div class="main">
             <div class="main-div">
                 <div class="img-div">
                     <a href="">
-                        <img src="./image/건강이음누끼로고.png" alt="" width="200px" />
+                        <!-- <img src="..../img/건강이음누끼로고.png" alt="" width="200px" /> -->
                     </a>
                 </div>
                 <div class="hi-comment">
@@ -45,9 +45,9 @@
 
                 <div class="button-div">
                     <div class="social-login-btn-div">
-                        <a href=""><img src="./image/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
-                        <a href=""><img src="./image/btnG_아이콘원형.png" alt="" width="45px" class="Nimg" /></a>
-                        <a href=""><img src="./image/구글_로그인.png" alt="" width="45px" class="Gimg" /></a>
+                        <a href=""><img src="../../img/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
+                        <a href=""><img src="../../img/네이버로그인.png" alt="" width="45px" class="Nimg" /></a>
+                        <a href=""><img src="../../img/구글로그인.png" alt="" width="45px" class="Gimg" /></a>
                     </div>
                 </div>
             </div>
