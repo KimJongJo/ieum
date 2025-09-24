@@ -1,0 +1,93 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>건강이음</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+/* 사이드바 */
+.sidebar {
+    width: 195px;
+    height: 459px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.sidebar-header {
+    background-color: #4a64d6;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 114px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.6;
+}
+.welcome {
+    background-color: #e9ebf5;
+    text-align: left;
+    padding: 15px 15px;
+    border-bottom: 1px solid #ccc;
+}
+.welcome strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.welcome span {
+    font-size: 12px;
+    color: #555;
+}
+.sidebar-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-body ul li {
+    border-top: 1px solid #ccc;
+    text-align: left;
+    padding: 0px 16px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #fff;
+}
+.sidebar-body ul li:hover {
+    background-color: #f7f7f7;
+}
+
+
+</style>
+</head>
+<body>
+    <!-- Main -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="container-two">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    건강이음<br>마이페이지
+                </div>
+                <div class="welcome">
+                    <strong>*환영합니다*<br>최지성 회원님</strong>
+                    <span>심원의방</span>
+                </div>
+                <div class="sidebar-body">
+                    <ul>
+                        <li>나의 기본 정보</li>
+                        <li>예약 내역</li>
+                        <li>진단 이력</li>
+                        <li>커뮤니티</li>
+                        <li>차단 목록</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+    </script>
+    <style>
+        .pagination {
+            position: relative;
+            width: 440px;
+            height: 65px;
+        }
+
+        .pagination .rectangle {
+            position: absolute;
+            width: 7.50%;
+            margin-top: 16px;
+            margin-left: 9.32%;
+            height: 33px;
+            background-color: #91bdff;
+            border-radius: 50px;
+            aspect-ratio: 1;
+        }
+
+        .pagination .component {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #d9d9d94c;
+        }
+
+        .pagination .img {
+            position: absolute;
+            margin-top: 27px;
+            margin-left: 412px;
+            width: 12px;
+            height: 12px;
+        }
+
+        .pagination .img-2 {
+            margin-left: 16px;
+            position: absolute;
+            margin-top: 27px;
+            width: 12px;
+            height: 12px;
+        }
+
+        .pagination .navbar {
+            position: absolute;
+            width: 84.12%;
+            height: 24.62%;
+            margin-top: 38.46%;
+            margin-left: 10.23%;
+        }
+
+        .pagination .text-wrapper {
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .div {
+            margin-left: 9.71%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-2 {
+            margin-left: 19.45%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-3 {
+            margin-left: 29.19%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-4 {
+            margin-left: 38.92%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-5 {
+            margin-left: 48.66%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-6 {
+            margin-left: 58.40%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-7 {
+            margin-left: 68.14%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-8 {
+            margin-left: 77.88%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+
+        .pagination .text-wrapper-9 {
+            margin-left: 87.61%;
+            position: absolute;
+            width: 6.96%;
+            height: 100%;
+            -webkit-text-stroke: 0.1px #000000;
+            font-family: "Noto Sans-Medium", Helvetica;
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pagination" id="pagination">
+        <div class="rectangle"></div>
+        <div class="component">
+            <img class="img" src="img/image.png" />
+            <img class="img-2" src="img/image-2.png" />
+            <div class="navbar">
+                <div class="text-wrapper">1</div>
+                <div class="div">2</div>
+                <div class="text-wrapper-2">3</div>
+                <div class="text-wrapper-3">4</div>
+                <div class="text-wrapper-4">5</div>
+                <div class="text-wrapper-5">6</div>
+                <div class="text-wrapper-6">7</div>
+                <div class="text-wrapper-7">8</div>
+                <div class="text-wrapper-8">9</div>
+                <div class="text-wrapper-9">10</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        /* 1번째 버튼 */
+        #uploadBtn {
+            height: 32px;
+            font-size: 12px;
+            background-color: #488EF6;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #uploadBtn:hover {
+            filter: brightness(90%);
+        }
+
+        #uploadBtn:active {
+            transform: translateY(2px);
+            filter: brightness(80%);
+        }
+
+
+        /* 2번째 버튼 */
+        .sort-buttons {
+            display: flex;
+            justify-content: space-between;
+            /* 좌-우 분리 */
+            align-items: center;
+            margin: 0 0 15px 15px;
+            width: 100%;
+            max-width: 1020px;
+            /* 게시글 박스와 맞춤 */
+        }
+
+        .right-container {
+            flex: 1;
+            /* 카테고리 옆 공간을 전부 차지 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .left-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .right-button {
+            display: flex;
+        }
+
+        .sort-buttons button {
+            width: 80px;
+            height: 30px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+            background-color: #f9f9f9;
+            transition: 0.2s;
+        }
+
+        /* 마우스 올렸을 때 */
+        .sort-buttons button:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* 클릭 시 눌리는 효과 */
+        .sort-buttons button:active {
+            transform: translateY(2px);
+            filter: brightness(90%);
+        }
+
+        /* 마우스 올렸을 때 */
+        #latest:hover,
+        #empathy:hover,
+        #by-view:hover,
+        #write:hover {
+            background-color: #e6e6e6;
+        }
+
+
+
+
+
+
+
+
+
+        /* 3번쨰 */
+
+
+        /* 공통 버튼 디자인 */
+        #btn-event button {
+            padding: 6px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            /* 🔥 hover/active 부드러운 전환 */
+        }
+
+        /* 작성 취소 버튼 */
+        #btn-cancellation {
+            background-color: #E5E7ED;
+            color: black;
+            border: 1px solid #E5E7ED;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        #btn-cancellation:hover {
+            transform: translateY(-3px);
+            /* 위로 3px 이동 */
+            background-color: #E5E7ED;
+            /* 기존 색 변화 유지 */
+        }
+
+        #btn-cancellation:active {
+            transform: translateY(2px);
+            /* 아래로 2px 이동 */
+            background-color: #E5E7ED;
+            /* 기존 색 변화 유지 */
+        }
+
+        /* 작성 완료 버튼 */
+        #btn-complete {
+            background-color: #488EF6;
+            color: white;
+            border: 1px solid #488EF6;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            /* 흰색 글씨 */
+        }
+
+        #btn-complete:hover {
+            transform: translateY(-3px);
+            /* 위로 3px 이동 */
+            background-color: #488EF6;
+            /* 기존 색 변화 유지 */
+        }
+
+        #btn-complete:active {
+            transform: translateY(2px);
+            /* 아래로 2px 이동 */
+            background-color: #488EF6;
+            /* 기존 색 변화 유지 */
+        }
+
+        #btn-event {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* 버튼 사이 간격 */
+            margin: 20px 0 0 20px;
+
+        }
+
+
+
+        /* 4번째 버튼 */
+
+        #btn1 button {
+            transition: all 0.2s ease;
+            /* 움직임과 색 변화 부드럽게 */
+        }
+
+        #btn-update {
+            background-color: #E5E7ED;
+            color: black;
+            border: 1px solid #E5E7ED;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        #btn-delete {
+            background-color: #488EF6;
+            color: white;
+            border: 1px solid #488EF6;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        /* 마우스 올렸을 때 살짝 위로 이동 */
+        #btn-delete:hover {
+            transform: translateY(-3px);
+            /* 위로 3px 이동 */
+            background-color: #488EF6;
+            /* 기존 색 변화 유지 */
+        }
+
+        /* 클릭 시 눌린 듯 들어가게 */
+        #btn-delete:active {
+            transform: translateY(2px);
+            /* 아래로 2px 이동 */
+            background-color: #488EF6;
+            /* 기존 색 변화 유지 */
+        }
+
+        /* 마우스 올렸을 때 살짝 위로 이동 */
+        #btn-update:hover {
+            transform: translateY(-3px);
+            /* 위로 3px 이동 */
+            background-color: #E5E7ED;
+            /* 기존 색 변화 유지 */
+        }
+
+        /* 클릭 시 눌린 듯 들어가게 */
+        #btn-update:active {
+            transform: translateY(2px);
+            /* 아래로 2px 이동 */
+            background-color: #E5E7ED;
+            /* 기존 색 변화 유지 */
+        }
+
+
+        /* 5번째 버튼 */
+        .clickable {
+            display: inline-block;
+            /* 텍스트 크기에 맞춤 */
+            padding: 2px;
+            background-color: white;
+            color: black;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #change-box {
+            display: flex;
+            /* flex 컨테이너로 변경 */
+            height: 12px;
+            /* 부모 박스 높이 맞춤 */
+            width: 70px;
+            /* 부모 박스 너비 맞춤 */
+            padding: 10px;
+            /* 기존 padding 제거 */
+            background-color: white;
+            color: black;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid black;
+
+        }
+
+        .clickable:hover {
+            background-color: #366FC6;
+            /* 마우스 오버 시 살짝 어두워짐 */
+        }
+
+        .clickable:active {
+            transform: translateY(2px);
+            /* 클릭 시 눌리는 모션 */
+        }
+
+
+
+
+
+
+        /* 6번쨰 */
+
+        #edit {
+            margin-top: 30px;
+            text-align: center;
+            /* 추가 */
+        }
+
+        #edit button {
+            width: 100px;
+            height: 36px;
+            border-radius: 12px;
+            background-color: #92BEFF;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* 부드럽게 변화 */
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* 마우스 오버 시 스타일 */
+        #edit button:hover {
+            background-color: #6fa0ff;
+            /* 더 진한 색 */
+            transform: scale(1.05);
+            /* 약간 커지게 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* 그림자 효과 */
+        }
+
+
+
+        /* 7번쨰 버튼 */
+        /* 버튼 스타일 */
+        #btn {
+            padding: 6px 12px;
+            border: 1px solid red;
+            border-radius: 6px;
+            background-color: #F6F8FE;
+            color: red;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        #btn:hover {
+            background-color: #84A2FE;
+        }
+
+
+
+        /* 버튼 스타일 */
+            .button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn-link {
+      text-decoration: none;
+    }
+
+    .primary-big-btn {
+      right: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 25px;
+      position: relative;
+      background-color: #488ef6;
+      border-radius: 6px;
+      height: 40px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .primary-big-btn:hover {
+      background-color: #1565c0;
+    }
+
+    .basic-big-btn {
+      border: 1.5px solid #B7B7B7;
+      right: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 25px;
+      position: relative;
+      background-color: #fff;
+      border-radius: 6px;
+      width: 78px;
+      height: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .basic-big-btn:hover {
+      background-color: #B7B7B7;
+    }
+    </style>
+
+    <!-- <script>
+window.addEventListener('DOMContentLoaded', () => {
+    const uploadBtn = document.getElementById('uploadBtn');
+    const profileInput = document.getElementById('profileInput');
+
+    // 업로드 버튼 클릭 시 파일 선택 창 열기
+    uploadBtn.addEventListener('click', function() {
+        profileInput.click();
+    });
+
+    // 파일 선택 시 미리보기 적용
+    profileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.querySelector('#profile-preview img').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+
+        // 같은 파일도 다시 선택할 수 있도록 input 초기화
+        profileInput.value = '';
+    });
+
+    // 기존 '관리 메뉴' 숨기기 코드
+    const manageMenu = document.querySelector('.menu span:nth-child(5)');
+    if (manageMenu) manageMenu.style.display = 'none';
+});
+
+// 다음 우편번호 찾기
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = '';
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+            document.getElementById("address").value = addr;
+            document.getElementById("detailAddress").focus();
+        }
+    }).open();
+}
+</script> -->
+</head>
+
+<body>
+    <!-- 1번째 버튼 -->
+    <div class="form-row" style="align-items: center;">
+        <label>프로필 사진</label>
+        <div id="profile-upload-box">
+            <div id="profile-preview">
+                <img src="profile_default.png">
+            </div>
+            <input type="file" id="profileInput" accept="image/*" style="display:none;">
+            <button type="button" id="uploadBtn">이미지 선택</button>
+        </div>
+    </div>
+
+
+    <!-- 2번째 버튼 -->
+    <div class="sort-buttons">
+        <div class="left-buttons">
+            <button id="latest">최신순</button>
+            <button id="empathy">공감순</button>
+            <button id="by-view">조회순</button>
+        </div>
+        <div class="right-button">
+            <button id="write">작성하기</button>
+        </div>
+    </div>
+
+    <!-- 3번째 버튼 -->
+
+    <div id="btn-event">
+        <button id="btn-cancellation">작성 취소</button>
+        <button id="btn-complete">작성 완료</button>
+    </div>
+
+    <!-- 4번째 버튼 -->
+    <div id="btn1">
+        <button id="btn-update">수정</button>
+        <button id="btn-delete">삭제</button>
+    </div>
+
+
+    <!-- 5번째 버튼 (비밀번호만 보면 됩니다) -->
+    <div class="container-three">
+        <div class="content">
+
+            <span id="box8">
+                <!-- 비밀번호 변경 텍스트를 새 박스로 감싸기 -->
+                <span id="change-box" class="clickable">비밀번호 변경</span>
+            </span>
+
+        </div>
+    </div>
+
+    <button id="btn">차단 해제</button>
+
+    <!-- 6번째 -->
+    <div id="edit"><button>수정완료</button></div>
+
+    <hr>
+    <div class="button-wrapper">
+        <a class="btn-link" href="">
+            <div class="basic-big-btn">수정</div>
+        </a>
+        <a class="btn-link" href="">
+            <div class="basic-big-btn">삭제</div>
+        </a>
+        <a class="btn-link" href="">
+            <div class="primary-big-btn">진단이력 바로가기</div>
+        </a>
+    </div>
+
+</body>
+
+</html>
