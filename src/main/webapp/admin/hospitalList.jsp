@@ -13,11 +13,11 @@
         <div class="main">
             <div class="main-div">
                  <!-- 헤더 들어올 곳 -->
-                <jsp:include page="adminHeader.html"></jsp:include>
+                <jsp:include page="../common/header/adminHeader.html"></jsp:include>
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="adminNav.html"></jsp:include>
+                    <jsp:include page="../common/nav/adminNav.html"></jsp:include>
                     <div class="info">
                         <div class="search-name">
                             <span class="search-name-span">병원 목록 조회</span>
