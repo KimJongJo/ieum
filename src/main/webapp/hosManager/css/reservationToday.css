@@ -1,0 +1,157 @@
+.main {
+                min-width: 1600px;
+            }
+
+            .hos-name-div {
+                margin-left: 10px;
+            }
+
+            .hos-name {
+                font-size: 24px;
+            }
+
+            .select-div {
+                width: 850px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .search-div {
+                display: flex;
+                align-items: center;
+            }
+
+            .select-reservation {
+                margin-top: 40px;
+                margin-left: 10px;
+            }
+
+            .year,
+            .month,
+            .day {
+                height: 25px;
+                text-align: center;
+                border: 1px solid #a6a6a6;
+                border-radius: 5px;
+            }
+
+            .year {
+                width: 120px;
+            }
+
+            .month,
+            .day {
+                width: 50px;
+            }
+
+            .reservation-input {
+                height: 25px;
+                border: 1px solid #a6a6a6;
+                border-radius: 5px;
+            }
+
+            .reservation-btn {
+                margin-left: 10px;
+                height: 25px;
+                width: 45px;
+                border: none;
+                color: white;
+                background-color: #4356b3;
+                border-radius: 5px;
+            }
+
+			.reservation-table-div{
+				width:850px;
+				height:560px;
+			}
+
+            .reservation-table {
+                margin-top: 10px;
+                width: 850px;
+                border-collapse: collapse;
+            }
+
+            .tr:nth-child(odd) {
+                background-color: #f6f8ff;
+            }
+
+            .th {
+                text-align: center;
+                height: 40px;
+                font-size: 16px;
+                background-color: #4356b3;
+                color: white;
+            }
+
+            .td {
+                height: 40px;
+                text-align: center;
+                border-bottom: 1px solid #a6a6a6;
+            }
+
+            .status-btn {
+                border: none;
+                background-color: transparent;
+            }
+
+            .complete,
+            .cancle {
+                font-size: 13px;
+                width: 40px;
+                height: 25px;
+                border-radius: 5px;
+                transition-duration: 0.2s;
+                cursor: pointer;
+            }
+
+            .complete {
+                background-color: #4356b3;
+                color: white;
+            }
+            .complete:hover {
+                background-color: #2d3975;
+            }
+
+            .cancle {
+                border: 1px solid #4356b3;
+                background-color: white;
+                margin-left:10px;
+            }
+
+            .cancle:hover {
+                background-color: #ffa7a4;
+            }
+
+            .ell-btn {
+                transition-duration: 0.2s;
+                border: none;
+                margin-left: 20px;
+                background-color: transparent;
+                width: 22px;
+                height: 25px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .fa-ellipsis-vertical {
+                font-size: 20px;
+            }
+
+            .ell-btn:hover {
+                background-color: #a6a6a6;
+            }
+
+            .search-name {
+                width: 850px;
+                margin-bottom: 15px;
+            }
+
+            .search-bar2 {
+                width: 850px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .today-res {
+                font-size: 16px;
+            }
