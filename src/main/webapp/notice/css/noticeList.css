@@ -1,0 +1,215 @@
+@charset "UTF-8";
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      background-color: #fff;
+      color: #000000;
+    }
+
+    .notice-container {
+      max-width: 1128px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 헤더 부분 */
+    .notice-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .notice-cnt {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .notice-cnt span {
+      font-weight: 600;
+      margin: 0 4px;
+      color: #4287ef;
+    }
+
+    /* 검색창 */
+    .notice-search {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      border: 1px solid #E7E7E7;
+      background: #f9fbff;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 216px;
+      height: 38px;
+    }
+
+    .notice-search input {
+      border: none;
+      outline: none;
+      width: 160px;
+      padding: 0 8px;
+      font-size: 13px;
+      background-color: #f9fbff;
+    }
+
+    .notice-search button {
+      border: none;
+      background: #f9fbff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .search-icon {
+      width: 18px;
+      height: 18px;
+      margin-left: 4px;
+    }
+
+    /* 정렬 셀렉트 */
+    .notice-select {
+      background: #f9fbff;
+      border: 1px solid #E7E7E7;
+      border-radius: 4px;
+      width: 100px;
+      height: 38px;
+      margin-left: 16px;
+      font-size: 13px;
+      color: #333;
+      padding-left: 6px;
+    }
+
+    .notice-list {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 16px 10px;
+      border: 2px solid #D9D9D9;
+    }
+
+    .notice-img {
+      width: 136px;
+      height: 108px;
+      flex-shrink: 0;
+      border: 1px solid #f0f0f0;
+      background-color: #eaeaea;
+    }
+
+    .notice-item {
+      margin-left: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notice-item:hover {
+      text-decoration: underline;
+    }
+
+    .notice-title-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .notice-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .top-notice {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2px 8px;
+      margin-left: auto;
+      background-color: #488ef6;
+      border-radius: 3px;
+      font-weight: 600;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .notice-content {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .notice-content.date {
+      margin-top: auto;
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* 페이지네이션 & 작성하기 버튼 컨테이너 */
+    .notice-footer {
+      position: relative;
+      display: flex;
+      text-align: center;
+
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    /* 페이지네이션 중앙 정렬 */
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto;
+      /* 중앙 정렬 */
+    }
+
+    .pagination button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .pagination button.active {
+      background: #a6c8ff;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .btn-link {
+      text-decoration: none;
+    }
+
+    /* 작성하기 버튼 → 오른쪽 */
+    .primary-big-btn {
+      right: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 25px;
+      position: relative;
+      background-color: #488ef6;
+      border-radius: 6px;
+      width: 78px;
+      height: 40px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;    
+    }
+    .primary-big-btn:hover {
+      background-color: #1565c0;
+    }
