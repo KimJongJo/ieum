@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
+</script>
+<body>
+<footer id="site-footer">
+  <div class="footer-top">
+
+    <!-- footer-bottom 내용 footer-top 안으로 이동 -->
+    <div class="footer-brand">
+      	<a href="/" class="brand-link">
+        	<span class="brand-name">건강이음</span>
+      	</a>
+      	<p class="brand-desc">
+        	전국 보건소·병원 예약 간편하게 — 빠른 검색, 실시간 예약, 인증된 의료기관 정보 제공
+      	</p>
+      
+      	<p class="company-info">
+      		사업자등록번호: 123-456-7890 | 대표: 박은솔 | 주소: 서울특별시 금천구 가산디지털1로 70
+    	</p>
+    	<p class="copyright">
+      		&copy; <span id="year"></span> 건강이음. All rights reserved.
+    	</p>
+    </div>
+    <div class="footer-links">
+      <div class="link-group">
+        <h3>서비스</h3>
+        <ul>
+          <li><button>병원/보건소 찾기</button></li>
+          <li><button>진료과목</button></li>
+        </ul>
+      </div>
+      <div class="link-group">
+        <h3>회사</h3>
+        <ul>
+          <li><button>회사소개</button></li>
+          <li><button>의료기관 제휴</button></li>
+        </ul>
+      </div>
+      <div class="link-group">
+        <h3>고객지원</h3>
+        <ul>
+          <li><button>이메일문의</button></li>
+          <li><button>문의하기</button></li>
+        </ul>
+      </div>
+      <div class="link-group">
+        <h3>법적정보</h3>
+        <ul>
+          <li><button>이용약관</button></li>
+          <li><button>개인정보처리방침</button></li>
+          <li><button>사이트맵</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
