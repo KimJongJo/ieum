@@ -7,6 +7,17 @@
         <title>Document</title>
         <link rel="stylesheet" href="css/signUp4-1.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		  <script>
+		    $(function() {
+		      
+		    	$("#signUp-btn").click(function(){
+		    		
+		    	})
+		    	
+		    });
+		  </script>
+
     </head>
     <body>
         <div class="main">
@@ -75,7 +86,7 @@
                         <div class="info-box">
                             <div class="line-div">
                                 <div class="span-div">
-                                    <span class="info">성명</span>
+                                    <span class="info" id=input-name>성명</span>
                                 </div>
                                 <div class="input-div">
                                     <input type="text" class="input-div-input" />
@@ -83,7 +94,7 @@
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2">
-                                    <span class="info">닉네임</span>
+                                    <span class="info" id=input-nickname>닉네임</span>
                                 </div>
                                 <div class="input-div2 input">
                                     <input type="text" class="input-div-input" />
@@ -96,22 +107,22 @@
                                 </div>
                                 <div class="input-div2 input">
                                     <select name="" id="year" name="year" class="year date">
-                                        <option value="">년도</option>
+                                        <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>
                                     <select name="" id="month" name="month" class="month date">
-                                        <option value="">월</option>
+                                        <option value="none">월</option>
                                     </select>
                                     <span class="text">월</span>
                                     <select name="" id="day" name="day" class="day date">
-                                        <option value="">일</option>
+                                        <option value="none">일</option>
                                     </select>
                                     <span class="text">일</span>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2">
-                                    <span class="info">아이디</span>
+                                    <span class="info" id=input-id>아이디</span>
                                 </div>
                                 <div class="input-div2 input">
                                     <input type="text" class="login-input" />
@@ -120,7 +131,7 @@
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2">
-                                    <span class="info">비밀번호</span>
+                                    <span class="info" id=input-pw>비밀번호</span>
                                 </div>
                                 <div class="input-div2 input">
                                     <input type="password" class="login-input" id="pw" />
@@ -147,7 +158,7 @@
                                     <span class="info">성별</span>
                                 </div>
                                 <div class="input-div2 gender input">
-                                    <input type="radio" id="man" name="gender" /><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
+                                    <input type="radio" id="man" name="gender" checked/><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -157,9 +168,9 @@
                                 <div class="input-div2 input tel-div">
                                     <input type="tel" size="4" value="010" disabled class="tel" />
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel1/>
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel2/>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -178,19 +189,19 @@
                                 </div>
                                 <div class="input-div2-pw input">
                                     <div class="input-div2-pw-div">
-                                        <input type="password" class="login-input" id="pw2" />
-                                        <button class="signUp-btn" id="pwch2" type="button">주소 검색</button>
+                                        <input type="text" class="login-input" id="postcode" disabled/>
+                                        <button class="signUp-btn" onclick="searchAddr()" id="search-postcode" type="button">주소 검색</button>
                                     </div>
                                     <div class="address-div">
-                                        <input type="text" class="first-address addr" />
-                                        <input type="text" class="detail-address addr" placeholder="상세 주소를 입력해주세요." />
+                                        <input type="text" class="first-address addr" id="address-auto" disabled/>
+                                        <input type="text" class="detail-address addr" id="address-detail" placeholder="상세 주소를 입력해주세요." />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-div">
-                            <button class="sign-btn">가입하기</button>
-                            <button class="no-btn">취소</button>
+                            <button class="sign-btn" type=button id="signUp-btn">가입하기</button>
+                            <button class="no-btn" type=button>취소</button>
                         </div>
                     </form>
                 </div>
@@ -272,6 +283,34 @@
                     pwch2.textContent = "보기";
                 }
             });
+            
+            
         </script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+	        function searchAddr() {
+	        	
+	            new daum.Postcode({
+	                oncomplete: function(data) {
+	                	
+	                	var addr = ''; // 주소 변수
+	                	
+	                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                }
+	                    
+	                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                    document.getElementById("postcode").value = data.zonecode;
+	                    document.getElementById("address-auto").value = addr;
+	                    // 커서를 상세주소 필드로 이동한다.
+	                    document.getElementById("address-detail").focus();
+	                }
+	            }).open();
+	        }
+        </script>
+        
     </body>
 </html>
