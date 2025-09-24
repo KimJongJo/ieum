@@ -7,8 +7,7 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="css/profileInfo.css"></link>
-
+<link rel="stylesheet" href="css/passModify.css"></link>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     // '관리 메뉴' 요소 선택
@@ -22,16 +21,12 @@ window.addEventListener('DOMContentLoaded', () => {
 <body>
 
     <c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+    
 
-
-	    <!-- Section Title -->
+    <!-- Section Title -->
     <div id="section-title">
         <span>나의 기본 정보</span>
     </div>
-	
-	    
-     
-    
 
     <!-- Main -->
     <div class="main-container">
@@ -61,35 +56,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
         <!-- Main Content -->
         <div class="container-three">
-            <div class="content">
-                <span id="box1">회원명</span>
-                <span id="box2">최지성</span>
-                <span id="box3">닉네임</span>
-                <span id="box4">심원의방</span>
-                <span id="box5">아이디</span>
-                <span id="box6">projjang2000</span>
-                <span id="box7">비밀번호</span>
-                <span id="box8">
-                    <!-- 비밀번호 변경 텍스트를 새 박스로 감싸기 -->
-                    <span id="change-box" class="clickable">비밀번호 변경</span>
-                </span>
-                <span id="box9">주소</span>
-                <span id="box10">경기도 수원시</span>
-                <span id="box11">이메일</span>
-                <span id="box12">jisung0628jisung@gmail.com</span>
-                <span id="box13">생년월일</span>
-                <span id="box14">1999.06.28</span>
-                <span id="box15">성별</span>
-                <span id="box16">남</span>
-                <span id="box17">다이어리 공개 여부</span>
-                <span id="box18">예</span>
-            </div>
-        </div>
+	
+		    <!-- 텍스트 박스 영역 -->
+		    <div id="text-box">
+		        <h3>나의 정보 수정 이용 가능한 서비스</h3>
+		        <ul>
+			        <li>홈페이지 비밀번호(영문자, 숫자, 특수문자 9자리 이상)변경</li>
+			        <li>개인정보와 관련된 숫자, 연속된 숫자, 동일 반복된 숫자 등은 사용하지 마십시오</li>
+		    	</ul>
+		    </div>
+		    <div id="modipy">비밀번호 수정</div>
+		    <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
+		    
+		    <div id="passwordModipy">
+			    <div class="form-row">
+			        <label for="current-pass">기존 비밀번호 *</label>
+			        <input type="password" id="current-pass" placeholder="기존 비밀번호를 입력하세요.">
+			    </div>
+			    <div class="form-row">
+			        <label for="new-pass">신규 비밀번호 *</label>
+			        <input type="password" id="new-pass" placeholder="신규 비밀번호를 입력하세요.">
+			    </div>
+			    <div class="form-row">
+			        <label for="confirm-pass">비밀번호 확인 *</label>
+			        <input type="password" id="confirm-pass" placeholder="확인 비밀번호를 입력하세요.">
+			    </div>
+			</div>
+			<div id="edit"><button>수정완료</button></div>
+		</div>
     </div>
-    
-    <button id="btn-update">
-	        수정하기
-	</button>
 
 </body>
 </html>

@@ -1,1 +1,185 @@
-@charset "UTF-8";
+/* 전체 레이아웃 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+}
+
+
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+    .community-title {
+        width: 980px;
+        margin: 0 auto;
+        margin-top: 20px;
+        border: 2px solid #d9d9d9;
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between; /* 제목 왼쪽 / 카테고리 오른쪽 */
+        align-items: center;
+        background-color: #E5E7ED;
+    }
+    
+    .community-content {
+        width: 1000px;
+        height: 700px;
+        margin: 0 auto;
+        border: 2px solid #d9d9d9;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;   /* 🔥 세로 정렬 */
+        justify-content: flex-start; /* 🔥 위쪽부터 배치 */
+    }
+
+    #title-header {
+        font-weight: bold;
+        font-size: 18px;
+        border: none;        /* 테두리 제거 */
+    	outline: none;       /* 포커스 시 테두리 제거 */
+    	width:700px;
+    	
+    }
+
+    #title {
+        width: 100%;              /* 🔥 부모 div(.community-content)의 가로 크기와 동일 */
+        box-sizing: border-box;   /* 패딩/테두리 포함해서 100% 유지 */
+        border: 2px solid white;  /* 🔥 테두리 흰색 */
+        background-color: white;   /* 배경색(필요 시 조절) */
+        font-size: 18px;          /* 텍스트 크기 */
+        outline: none;            /* 클릭 시 기본 아웃라인 제거 */
+        height: 40px;
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    #content-header{
+        height: 30px;
+        width: 980px;
+        border: none;
+        background-color: #E5E7ED;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    #content-write {
+        font-size: 18px;
+        border: none;        /* 테두리 제거 */
+    	outline: none;       /* 포커스 시 테두리 제거 */
+    	width: 980px;
+        height: 590px;
+        padding: 10px;
+    }
+
+    .category-btn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: bold;
+    }
+
+    .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease; /* 회전 애니메이션 */
+    }
+
+    .arrow.rotate {
+        transform: rotate(180deg);
+    }
+
+    /* 카테고리 드롭다운 */
+    .category-box {
+        position: absolute;   /* ✅ JS에서 좌표를 직접 넣기 위해 absolute */
+        width: 250px;
+        border: 1px solid #999;
+        border-radius: 5px;
+        padding: 10px;
+        background: #fff;
+        display: none;        /* 기본 숨김 */
+        z-index: 1000;
+    }
+
+    .category-box p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: purple;
+    }
+
+    .category-box span {
+        display: inline-block;
+        margin: 5px 10px 0 0;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .category-box span:hover {
+        text-decoration: underline;
+    }
+    
+    /* 공통 버튼 디자인 */
+    #btn-event button {
+        padding: 6px 15px;
+        font-size: 12px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.25s ease;  /* 🔥 hover/active 부드러운 전환 */
+    }
+
+    /* 작성 취소 버튼 */
+    #btn-cancellation {
+        background-color: #E5E7ED;
+        color: black;
+        border: 1px solid #E5E7ED;
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;
+    }
+    #btn-cancellation:hover {
+        transform: translateY(-3px); /* 위로 3px 이동 */
+        background-color: #E5E7ED;       /* 기존 색 변화 유지 */
+    }
+    #btn-cancellation:active {
+        transform: translateY(2px);  /* 아래로 2px 이동 */
+        background-color: #E5E7ED;      /* 기존 색 변화 유지 */
+    }
+
+    /* 작성 완료 버튼 */
+    #btn-complete {
+        background-color: #488EF6;
+        color: white;
+        border: 1px solid #488EF6;
+        width: 100px;
+        height: 30px;
+        border-radius: 5px;               /* 흰색 글씨 */
+    }
+    #btn-complete:hover {
+        transform: translateY(-3px); /* 위로 3px 이동 */
+        background-color: #488EF6;       /* 기존 색 변화 유지 */
+    }
+    #btn-complete:active {
+        transform: translateY(2px);  /* 아래로 2px 이동 */
+        background-color: #488EF6;      /* 기존 색 변화 유지 */
+    }
+    #btn-event {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* 버튼 사이 간격 */
+        margin: 20px 0 0 20px;
+
+    }
