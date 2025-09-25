@@ -7,8 +7,10 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/manager.css" />
-        <link rel="stylesheet" href="managerHeader.css" />
-        <link rel="stylesheet" href="reservation.css" />
+        <link rel="stylesheet" href="css/managerHeader.css" />
+        <link rel="stylesheet" href="css/reservation.css" />
+        <link rel="stylesheet" href="css/patientInfo.css" />
+        <link rel="stylesheet" href="css/infoModal.css" />
         
     </head>
     <body>
@@ -50,94 +52,19 @@
 	                                <th style="width: 150px">담당 의사</th>
 	                                <th style="width: 200px">예약날짜 / 시간</th>
 	                                <th style="width: 150px">진단서</th>
+	                                <th>환자정보</th>
 	                            </tr>
 	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
+	                                <td class="reservation-table-td">R045</td>
+	                                <td class="reservation-table-td">김환자</td>
+	                                <td class="reservation-table-td">김의사</td>
+	                                <td class="reservation-table-td">
 	                                    <span>2025-08-31</span>
 	                                    /
 	                                    <span>10:00</span>
 	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td>미작성</td>
+	                                <td class="reservation-table-td">미작성</td>
+	                                <td><button type="button" class="show-btn" id="show-patient-info">보기</button></td>
 	                            </tr>
 	                            
 	                        </table>
@@ -157,119 +84,16 @@
                             ></a>
                         </div>
                     </div>
-                    <div class="modal-dia" id="modal-dia">
-                        <form action="" class="form-div">
-                            <div class="save-div">
-                                <div class="xmark-div"><i class="fa-solid fa-xmark"></i></div>
-                                <table class="user-dia-table">
-                                	<tr>
-                                		<td colspan="6" class="td-name">환자 정보</td>
-                                	</tr>
-                                    <tr>
-                                        <td class="u-td u-th up">환자ID</td>
-                                        <td class="u-td up">2241</td>
-                                        <td class="u-td u-th up">나이</td>
-                                        <td class="u-td up">26</td>
-                                        <td class="u-td u-th">연락처</td>
-                                        <td class="u-td add">010-1234-5678</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="u-td u-th up">이름</td>
-                                        <td class="u-td up">김종조</td>
-                                        <td class="u-td u-th up">성별</td>
-                                        <td class="u-td up">남</td>
-                                        <td class="u-td u-th ">주소</td>
-                                        <td class="u-td add">서울시 중랑구 어쩌구 저쩌구</td>
-                                    </tr>
-                                	<tr>
-                                		<td colspan="6" class="td-name">진료 정보</td>
-                                	</tr>
-                                    <tr>
-                                        <td class="u-td u-th up">진료ID</td>
-                                        <td class="u-td up">2241</td>
-                                        <td class="u-td u-th up">진료 일시</td>
-                                        <td class="u-td up">2025-08-31</td>
-                                        <td class="u-td u-th">진료 병원</td>
-                                        <td class="u-td add">중랑구보건소</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="u-td u-th">담당의사</td>
-                                        <td class="u-td">김종조</td>
-                                        <td class="u-td u-th">진료 유형</td>
-                                        <td class="u-td">외래/응급</td>
-                                        <td class="u-td u-th">병원 주소</td>
-                                        <td class="u-td add">중랑구 보건소 어쩌구 저쩌구</td>
-                                    </tr>
-                                    <tr>
-                                		<td colspan="6" class="td-name">진단/진료상세</td>
-                                	</tr>
-                                    <tr>
-                                        <td class="u-td u-th up">진단명</td>
-                                        <td class="u-td up">2241</td>
-                                        <td class="u-td u-th up">증상</td>
-                                        <td colspan="3" id="area1" class="u-td "><textarea name="" id="" class="area area1"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="u-td u-th" style="height: 185px">검사 내용 및 결과</td>
-                                        <td colspan="4" id="area2" class="u-td" colspan="2"><textarea name="" id="" class="area area2"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="u-td u-th">처치/수술내용</td>
-                                        <td colspan="4" id="area3" class="u-td" colspan="2"><textarea name="" id="" class="area area3"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="u-td u-th">처방전</td>
-                                        <td colspan="4" id="area4" class="u-td" colspan="2"><textarea name="" id="" class="area area4"></textarea></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="u-td u-th">의사의 말</td>
-                                        <td colspan="4" id="area5" class="u-td" colspan="2"><textarea name="" id="" class="area area5"></textarea></td>
-                                    </tr>
-                                </table>
-                                <div id="btn-event">
-                                    <button id="btn-cancellation">임시저장</button>
-                                    <button id="btn-complete">저장</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    
+                    <jsp:include page="diaWrite.jsp"></jsp:include>
+                    <jsp:include page="patientInfo.jsp"></jsp:include>
+                    
+                    
                 </div>
             </div>
         </div>
-        <script src="managerHeader.js"></script>
-        <script>
-            const modalProfile = document.getElementById("modal-dia");
-            const closeBtn = modalProfile.querySelector(".fa-xmark"); // 닫기 아이콘
-
-            // 모달 열기 함수
-            function openModal() {
-                modalProfile.style.display = "flex"; // 모달 보이기
-                document.body.style.overflow = "hidden"; // 스크롤 막기
-            }
-
-            // 모달 닫기 함수
-            function closeModal() {
-                modalProfile.style.display = "none"; // 모달 숨기기
-                document.body.style.overflow = ""; // 스크롤 허용
-            }
-
-            // 예: 테이블에서 클릭 시 모달 열기 (임의 예시)
-            document.querySelectorAll(".reservation-table td").forEach((td) => {
-                td.addEventListener("click", () => {
-                    openModal();
-                });
-            });
-
-            // 모달 배경 클릭 시 모달 닫기
-            modalProfile.addEventListener("click", (e) => {
-                // 모달 안쪽(.profile) 클릭은 무시
-                if (e.target === modalProfile) {
-                    closeModal();
-                }
-            });
-
-            // 닫기 버튼 클릭 시
-            closeBtn.addEventListener("click", closeModal);
-        </script>
+        <script src="js/managerHeader.js"></script>
+        <script src="js/modal1.js"></script>
+        <script src="js/modal3.js"></script>
     </body>
 </html>

@@ -7,8 +7,10 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/manager.css" />
-        <link rel="stylesheet" href="managerHeader.css" />
-        <link rel="stylesheet" href="reservationToday.css" />
+        <link rel="stylesheet" href="css/managerHeader.css" />
+        <link rel="stylesheet" href="css/reservationToday.css" />
+        <link rel="stylesheet" href="css/patientInfo.css" />
+        <link rel="stylesheet" href="css/infoModal.css" />
     </head>
     <body>
         <div class="main">
@@ -32,10 +34,10 @@
                             </div>
                         </form>
 						<div class="reservation-table-div">
-							<table class="table reservation-table">
+							<table class="table reservation-table2">
 	                            <tr>
 	                                <th>예약ID</th>
-	                                <th style="width: 150px">환자 이름</th>
+	                                <th style="width: 150px" colspan=2>환자 이름/프로필</th>
 	                                <th style="width: 150px">담당 의사</th>
 	                                <th style="width: 200px">예약날짜 / 시간</th>
 	                                <th>상태</th>
@@ -43,6 +45,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -54,6 +57,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -65,6 +69,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -76,6 +81,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -87,6 +93,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -98,6 +105,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -109,6 +117,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -120,6 +129,7 @@
 	                            <tr>
 	                                <td>R045</td>
 	                                <td>김환자</td>
+	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 	                                <td>김의사</td>
 	                                <td>
 	                                    <span>2025-08-31</span>
@@ -144,10 +154,16 @@
                                 ><button class="page" type="button"><i class="fa-solid fa-angle-right"></i></button
                             ></a>
                         </div>
+                        <jsp:include page="patientInfo.jsp"></jsp:include>
+                        
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="managerHeader.js"></script>
+        <script src="js/managerHeader.js"></script>
+        <script src="js/modal2.js"></script>
+        <script src="js/modal3.js"></script>
     </body>
 </html>
+
