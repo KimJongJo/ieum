@@ -9,81 +9,7 @@
 <link rel="stylesheet" href="../css/header.css"></link>
 <link rel="stylesheet" href="../css/header.css"></link>
 <link rel="stylesheet" href="css/allCommunityList.css"></link>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const latestBtn = document.getElementById('latest');
-    const empathyBtn = document.getElementById('empathy');
-    const byViewBtn = document.getElementById('by-view');
-    const rightContainer = document.querySelector('.right-container');
-
-    // 최신순
-    latestBtn.addEventListener('click', () => {
-        const boxes = Array.from(rightContainer.querySelectorAll('.boxes'));
-        boxes.sort((a, b) => {
-            const dateA = new Date(a.querySelector('.text-wrapper-3').textContent.trim());
-            const dateB = new Date(b.querySelector('.text-wrapper-3').textContent.trim());
-            return dateB - dateA; // 최신순 내림차순
-        });
-        boxes.forEach(box => rightContainer.appendChild(box));
-    });
-
-    // 공감순
-    empathyBtn.addEventListener('click', () => {
-        const boxes = Array.from(rightContainer.querySelectorAll('.boxes'));
-        boxes.sort((a, b) => {
-            const countA = parseInt(a.querySelector('.actions .action-item:nth-child(1) .action-count').textContent);
-            const countB = parseInt(b.querySelector('.actions .action-item:nth-child(1) .action-count').textContent);
-            return countB - countA; // 공감수 내림차순
-        });
-        boxes.forEach(box => rightContainer.appendChild(box));
-    });
-
-    // 조회순
-    byViewBtn.addEventListener('click', () => {
-        const boxes = Array.from(rightContainer.querySelectorAll('.boxes'));
-        boxes.sort((a, b) => {
-            const countA = parseInt(a.querySelector('.actions .action-item:nth-child(3) .action-count').textContent);
-            const countB = parseInt(b.querySelector('.actions .action-item:nth-child(3) .action-count').textContent);
-            return countB - countA; // 조회수 내림차순
-        });
-        boxes.forEach(box => rightContainer.appendChild(box));
-    });
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const categoryRadios = document.querySelectorAll('.category-list input[type="radio"]');
-    const boxes = document.querySelectorAll('.right-container .boxes');
-
-    categoryRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            const selectedCategory = radio.nextElementSibling.textContent.trim(); // 라벨 텍스트
-            boxes.forEach(box => {
-                const boxCategory = box.querySelector('.text-wrapper-2').textContent.trim();
-                if (selectedCategory === "모든 사연") {
-                    box.style.display = "flex"; // 전체 보여주기
-                } else if (boxCategory === selectedCategory) {
-                    box.style.display = "flex"; // 선택한 카테고리만 보여주기
-                } else {
-                    box.style.display = "none"; // 나머지 숨기기
-                }
-            });
-        });
-    });
-});
-</script>
-
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    // '관리 메뉴' 요소 선택
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) {
-        manageMenu.style.display = 'none'; // 메뉴 숨기기
-    }
-});
-</script>
+<script src="js/allCommunityList.js"></script>
 </head>
 <body>
 
@@ -205,6 +131,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		    </div>
 	    </div>
     </div>
- <c:import url="../common/footer/header.html" charEncoding="UTF-8"/>
+ <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

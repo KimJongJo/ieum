@@ -28,10 +28,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <div id="section-title">
         <span>나의 기본 정보</span>
     </div>
-	
-	    
-     
-    
 
     <!-- Main -->
     <div class="main-container">
