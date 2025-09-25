@@ -7,6 +7,7 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/myCommunityList.css"></link>
 <style>
 
@@ -187,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
+    
+    <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
 

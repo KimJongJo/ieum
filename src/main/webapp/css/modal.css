@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-        <style>
-            .modal-main-div {
+    .modal-main-div {
                 display: flex;
                 /* display: none; */
 
@@ -111,27 +103,3 @@
                 background-color: #ededee;
                 border-radius: 5px;
             }
-        </style>
-    </head>
-    <body>
-        <div class="modal-main-div">
-            <div class="modal-div-over">
-                <div class="modal-header-div">
-                    <span class="modal-header-div-span">Header</span>
-                    <button type="button" class="x-button">
-                        <i class="fa-solid fa-x x-btn"></i>
-                    </button>
-                </div>
-                <div class="modal-content-div">
-                    <span class="modal-content-div-span">For simple modals with header, short-from content and footer</span>
-                </div>
-                <div class="modal-div-under">
-                    <div class="modal-btn-div">
-                        <button class="modal-btn-left modal-btn">Label</button>
-                        <button class="modal-btn-right modal-btn">Label</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
