@@ -7,63 +7,10 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/profileInfoModify.css"></link>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    const uploadBtn = document.getElementById('uploadBtn');
-    const profileInput = document.getElementById('profileInput');
 
-    // 업로드 버튼 클릭 시 파일 선택 창 열기
-    uploadBtn.addEventListener('click', function() {
-        profileInput.click();
-    });
-
-    // 파일 선택 시 미리보기 적용
-    profileInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.querySelector('#profile-preview img').src = e.target.result;
-        }
-        reader.readAsDataURL(file);
-
-        // 같은 파일도 다시 선택할 수 있도록 input 초기화
-        profileInput.value = '';
-    });
-
-    // 기존 '관리 메뉴' 숨기기 코드
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) manageMenu.style.display = 'none';
-});
-
-// 다음 우편번호 찾기
-function execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var addr = '';
-            if (data.userSelectedType === 'R') {
-                addr = data.roadAddress;
-            } else {
-                addr = data.jibunAddress;
-            }
-            document.getElementById("address").value = addr;
-            document.getElementById("detailAddress").focus();
-        }
-    }).open();
-}
-</script>
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    // '관리 메뉴' 요소 선택
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) {
-        manageMenu.style.display = 'none'; // 메뉴 숨기기
-    }
-});
-</script>
+<script src="js/profileInfoModify.js"></script>
 <!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -231,5 +178,6 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
+    <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

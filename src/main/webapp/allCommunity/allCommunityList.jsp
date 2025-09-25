@@ -8,6 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/allCommunityList.css"></link>
 <script src="js/allCommunityList.js"></script>
 </head>
@@ -131,6 +132,6 @@
 		    </div>
 	    </div>
     </div>
- <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
+ 	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

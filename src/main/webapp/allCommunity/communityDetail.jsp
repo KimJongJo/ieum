@@ -1,67 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>건강이음</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
 <link rel="stylesheet" href="../css/modal.css"></link>
 <link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/communityDetail.css"></link>
 <script src="js/communityDetail.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".comment-box").forEach(box => {
-        const btn  = box.querySelector(".menu-button");
-        const menu = box.querySelector(".userMenu");
-
-        btn.addEventListener("click", e => {
-            e.stopPropagation();
-            // 모든 메뉴 닫기
-            document.querySelectorAll(".userMenu").forEach(m => m.style.display = "none");
-            // 현재 댓글 메뉴만 열기
-            menu.style.display = "flex";
-        });
-    });
-
-    // 바깥 클릭 시 모든 메뉴 닫기
-    document.addEventListener("click", () => {
-        document.querySelectorAll(".userMenu").forEach(m => m.style.display = "none");
-    });
-});
-</script>
-
-
-<script>
-
-//완료 모달
-document.addEventListener("DOMContentLoaded", () => {
-
- // 작성 완료 모달
-    document.getElementById("btn-delete").addEventListener("click", () => {//btn-delete에 적용하고 싶은 버튼 id, class를 넣으시오
-        document.getElementById("completeModal").style.display = "flex";
-    });
-    ["modalCloseComplete", "modalCancelComplete", "modalOkComplete"].forEach(id => {
-        document.getElementById(id).addEventListener("click", () => {
-            document.getElementById("completeModal").style.display = "none";
-        });
-    });
-
-});
-</script>
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    // '관리 메뉴' 요소 선택
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) {
-        manageMenu.style.display = 'none'; // 메뉴 숨기기
-    }
-});
-</script>
 
 </head>
 <body>
@@ -150,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	        </div>
 	    </div>
 	</div>
-
+<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
 

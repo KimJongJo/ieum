@@ -7,8 +7,10 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/blackList.css"></link>
-<script>
+<script src="js/blackList.js"></script>
+<!-- <script>
 window.addEventListener('DOMContentLoaded', () => {
     // '관리 메뉴' 요소 선택
     const manageMenu = document.querySelector('.menu span:nth-child(5)');
@@ -26,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.classList.add("active");
         });
     });
-</script>
+</script> -->
 </head>
 <body>
 
@@ -83,8 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
 
     </div>
-      
-   
-
+    <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

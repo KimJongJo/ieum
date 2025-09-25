@@ -7,17 +7,9 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="../css/header.css"></link>
+<link rel="stylesheet" href="../css/footer.css"></link>
 <link rel="stylesheet" href="css/profileInfo.css"></link>
-
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    // '관리 메뉴' 요소 선택
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) {
-        manageMenu.style.display = 'none'; // 메뉴 숨기기
-    }
-});
-</script>
+<script src="js/passModify.js"></script>
 </head>
 <body>
 
@@ -86,6 +78,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <button id="btn-update">
 	        수정하기
 	</button>
-
+<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
