@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./hosDetail.css">
+    <link rel="stylesheet" href="./css/hosDetail.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>hosDe/res</title>
