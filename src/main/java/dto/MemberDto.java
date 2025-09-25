@@ -10,17 +10,29 @@ public class MemberDto {
 	Date birthDate;	// 생년월일
 	String password;	// 비밀번호
 	String gender;	//성별
+	String uTel; //전화번호
 	String email;	//이메일
-	Integer state;	//상태코드
-	Integer fileNo;	//파일번호(프로필사진)
 	Date createdAt;	// 가입일
 	String userType;	// 회원분류
+	String major; //전공
+	String introduction; //자기소개
+	Integer roleId; //역할번호
+	String nickName; //닉네임
+	String uAddress; //주소
+	Boolean diaryPrivate; //다이어리 공개여부
+	Integer warningCount; //경고수
+	String social; //소셜로그인
+	Integer hNo; //소속 병원 번호
+	Integer stateCode;	//상태코드
 	
 	
-	public MemberDto() {}
-	
+	public MemberDto() {
+		super();
+	}
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
-			String email, Integer state, Integer fileNo, Date createdAt, String userType) {
+			String uTel, String email, Date createdAt, String userType, String major, String introduction,
+			Integer roleId, String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
+			Integer hNo, Integer stateCode) {
 		super();
 		this.uNo = uNo;
 		this.id = id;
@@ -28,21 +40,30 @@ public class MemberDto {
 		this.birthDate = birthDate;
 		this.password = password;
 		this.gender = gender;
+		this.uTel = uTel;
 		this.email = email;
-		this.state = state;
-		this.fileNo = fileNo;
 		this.createdAt = createdAt;
 		this.userType = userType;
+		this.major = major;
+		this.introduction = introduction;
+		this.roleId = roleId;
+		this.nickName = nickName;
+		this.uAddress = uAddress;
+		this.diaryPrivate = diaryPrivate;
+		this.warningCount = warningCount;
+		this.social = social;
+		this.hNo = hNo;
+		this.stateCode = stateCode;
 	}
-	
 	@Override
 	public String toString() {
-		return "memberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
-				+ ", password=" + password + ", gender=" + gender + ", email=" + email + ", state=" + state
-				+ ", fileNo=" + fileNo + ", createdAt=" + createdAt + ", userType=" + userType + "]";
+		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
+				+ ", password=" + password + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email
+				+ ", createdAt=" + createdAt + ", userType=" + userType + ", major=" + major + ", introduction="
+				+ introduction + ", roleId=" + roleId + ", nickName=" + nickName + ", uAddress=" + uAddress
+				+ ", diaryPrivate=" + diaryPrivate + ", warningCount=" + warningCount + ", social=" + social + ", hNo="
+				+ hNo + ", stateCode=" + stateCode + "]";
 	}
-
-
 	public Integer getuNo() {
 		return uNo;
 	}
@@ -79,23 +100,17 @@ public class MemberDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	public String getuTel() {
+		return uTel;
+	}
+	public void setuTel(String uTel) {
+		this.uTel = uTel;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public Integer getState() {
-		return state;
-	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
-	public Integer getFileNo() {
-		return fileNo;
-	}
-	public void setFileNo(Integer fileNo) {
-		this.fileNo = fileNo;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -109,7 +124,71 @@ public class MemberDto {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public String getuAddress() {
+		return uAddress;
+	}
+	public void setuAddress(String uAddress) {
+		this.uAddress = uAddress;
+	}
+	public Boolean getDiaryPrivate() {
+		return diaryPrivate;
+	}
+	public void setDiaryPrivate(Boolean diaryPrivate) {
+		this.diaryPrivate = diaryPrivate;
+	}
+	public Integer getWarningCount() {
+		return warningCount;
+	}
+	public void setWarningCount(Integer warningCount) {
+		this.warningCount = warningCount;
+	}
+	public String getSocial() {
+		return social;
+	}
+	public void setSocial(String social) {
+		this.social = social;
+	}
+	public Integer gethNo() {
+		return hNo;
+	}
+	public void sethNo(Integer hNo) {
+		this.hNo = hNo;
+	}
+	public Integer getStateCode() {
+		return stateCode;
+	}
+	public void setStateCode(Integer stateCode) {
+		this.stateCode = stateCode;
+	}
 	
+	
+	
+	
+
 	
 	
 

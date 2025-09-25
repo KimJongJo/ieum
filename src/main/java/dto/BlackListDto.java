@@ -1,4 +1,4 @@
-package dto;
+ package dto;
 
 import java.sql.Date;
 
@@ -8,24 +8,22 @@ public class BlackListDto {
 	Integer blockerNo;	// 차단한 회원
 	Integer blockedNo;	// 차단당한 회원
 	Date blackCreated;	// 차단 날짜
-	boolean isActive;	// 차단 여부
 	
 	public BlackListDto() {}
 	
-	public BlackListDto(Integer blackNo, Integer blockerNo, Integer blockedNo, Date blackCreated, boolean isActive) {
+	public BlackListDto(Integer blackNo, Integer blockerNo, Integer blockedNo, Date blackCreated) {
 		super();
 		this.blackNo = blackNo;
 		this.blockerNo = blockerNo;
 		this.blockedNo = blockedNo;
 		this.blackCreated = blackCreated;
-		this.isActive = isActive;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "blackList [blackNo=" + blackNo + ", blockerNo=" + blockerNo + ", blockedNo=" + blockedNo
-				+ ", blackCreated=" + blackCreated + ", isActive=" + isActive + "]";
+				+ ", blackCreated=" + blackCreated + ", isActive=" + "]";
 	}
 
 
@@ -53,13 +51,4 @@ public class BlackListDto {
 	public void setBlackCreated(Date blackCreated) {
 		this.blackCreated = blackCreated;
 	}
-	public boolean isActive() {
-		return isActive;
-	}
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-	
-	
-
 }
