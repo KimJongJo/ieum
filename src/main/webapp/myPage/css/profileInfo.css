@@ -14,6 +14,22 @@ body {
     font-weight: 700;
     background-color: #fff;
     display: flex;
+    justify-content: flex-start;
+}
+
+#section-title > button{
+	margin-left:15px;
+}
+
+#section2-title{
+	width:216px;
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
     justify-content: space-between;
 }
 
