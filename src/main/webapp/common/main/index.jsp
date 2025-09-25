@@ -21,7 +21,7 @@
 			<input class="search-input"
 				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다.">
 			<button class="search-btn" type="submit">
-				<img src="/img/search.png">
+				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</div>
 		<div class="button-wrapper">
@@ -35,11 +35,15 @@
 	<div class="main-container">
 		<div class="hospital-login-group">
 			<!-- 병원추천 -->
+<!-- 					todo 하단 스크롤 미노출 & 하나씩 넘어가게 설정 -->
 			<section class="hospital-section">
 				<span class="secton-title">이런 병원은 어떠세요?</span>
 				<div class="hospital-btn-left">
-					<img class="lt" src="/img/lt.png">
+					<div class="lt">
+						<i class="fa-solid fa-less-than"></i>
+					</div>
 				</div>
+		
 				<div class="hospital-list">
 					<div class="hospital-item">
 						<img class="hospital-img" src=""> <span
@@ -69,9 +73,15 @@
 						<img class="hospital-img" src=""> <span
 							class="hospital-name">병원명</span> <span>병원위치</span>
 					</div>
+					<!-- 					<div class="hospital-item"> -->
+					<!-- 						<img class="hospital-img" src=""> <span -->
+					<!-- 							class="hospital-name">병원명</span> <span>병원위치</span> -->
+					<!-- 					</div> -->
 				</div>
 				<div class="hospital-btn-right">
-					<img class="gt" src="/img/gt.png">
+					<div class="gt">
+						<i class="fa-solid fa-greater-than"></i>
+					</div>
 				</div>
 			</section>
 			<!-- 로그인 카드 -->
@@ -83,8 +93,8 @@
 				<div class="login-body">
 					<span class="login-title"> 자가진단 </span>
 					<div class="plusBtn">
-						<span>더보기</span> <a href=""> <img class="plusIcon"
-							src="/img/plus.png">
+						<span>더보기</span> <a href="">
+						<div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
 						</a>
 
 					</div>
@@ -191,8 +201,7 @@
 		<section class="community-secton">
 			<span class="section-title">마음톡
 				<div class="plusBtn">
-					<span>더보기</span> <a href=""> <img class="plusIcon"
-						src="/img/plus.png">
+					<span>더보기</span> <a href=""> <div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
 					</a>
 
 				</div>
@@ -219,8 +228,7 @@
 		<section class="notice-secton">
 			<span class="section-title">공지사항
 				<div class="plusBtn">
-					<span>더보기</span> <a href=""> <img class="plusIcon"
-						src="/img/plus.png">
+					<span>더보기</span> <a href=""><div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
 					</a>
 				</div>
 			</span>
