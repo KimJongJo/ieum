@@ -24,6 +24,12 @@
 				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
 				<div class="info">
 					<div class="notice-container">
+						<div class="form-group">
+							<div class="form-label multi">
+								<span>상단공지여부</span><input type="checkbox" class="form-check"
+									name="pinnded" placeholder="상단공지여부" checked />
+							</div>
+						</div>
 						<!-- 제목 -->
 						<div class="form-group">
 							<div class="form-label">제목</div>
