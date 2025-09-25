@@ -7,7 +7,7 @@
 <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=heart_plus" />
-    <link rel="stylesheet" href="./resSummary.css" />
+    <link rel="stylesheet" href="./css/resSummary.css" />
     <title>resSummary</title>
 </head>
 <body>

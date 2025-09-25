@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=heart_minus" />
-    <link rel="stylesheet" href="./resCancel.css" />
+    <link rel="stylesheet" href="./css/resCancel.css" />
     <title>resCancel</title>
 </head>
 <body>
