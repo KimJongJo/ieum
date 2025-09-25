@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,600,0,0&icon_names=local_hospital" />
-    <link rel="stylesheet" href="./hosFavorite.css" />
+    <link rel="stylesheet" href="./css/hosFavorite.css" />
     <title>hosFav</title>
 </head>
 <body>

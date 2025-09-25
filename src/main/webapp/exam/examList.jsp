@@ -230,7 +230,7 @@
 
             </div>
         </div>
-
     </div>
+    <script src="./js/examList.js"></script>
 </body>
 </html>

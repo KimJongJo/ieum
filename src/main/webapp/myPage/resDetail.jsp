@@ -150,5 +150,6 @@
             <button type="button" class="white" onclick="history.back();">확인</button>
         </div>
     </div>
+    <script src="./js/resDetail.js"></script>
 </body>
 </html>

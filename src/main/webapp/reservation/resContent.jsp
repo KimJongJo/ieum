@@ -78,5 +78,6 @@
         <button type="button" class="white" onclick="history.back();">이전으로</button>
         <button type="button" class="blue" onclick="location.href='resContent.html'">다음단계</button>
     </div>
+    <script src="./js/resContent.jsp"></script>
 </body>
 </html>

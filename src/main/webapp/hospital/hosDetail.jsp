@@ -159,6 +159,12 @@
                     <div class="map-sec"></div>
                 </div>
             </div>
+            
+            <div class="btn">
+            <button type="button" class="white" onclick="history.back();">이전으로</button>
+            <button type="button" class="blue" onclick="location.href='resContent.html'">예약하기</button>
+        	</div>
+        
         </div>
 
         <div class="tab2" id="tab2">
@@ -241,17 +247,13 @@
                 </div>
 
             </div>
+            
+            <div class="btn">
+            <button type="button" class="white" onclick="history.back();">그만두기</button>
+            <button type="button" class="blue" onclick="location.href='resContent.html'">다음으로</button>
+        	</div>
         </div>
-
     </div>
-
-    <div class="btn">
-            <button type="button" class="white" onclick="history.back();">이전으로</button>
-            <button type="button" class="blue" onclick="location.href='resContent.html'">예약하기</button>
-        </div>
-
-
-    <script src="./hosDetail.js"></script>
-
+    <script src="./js/hosDetail.js"></script>
 </body>
 </html>
