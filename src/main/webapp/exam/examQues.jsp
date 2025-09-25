@@ -13,71 +13,7 @@
 <body>
 <div class="container">
         <div class="left">
-            <div class="sb">
-                <span class="sbcon">질환별 자가검진</span>
-            </div>
-            <div class="sb2">
-                <table class="nav">
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-
-                </table>
-            </div>
+        <jsp:include page="examnav.html"></jsp:include>
         </div>
 
         <div class="right">

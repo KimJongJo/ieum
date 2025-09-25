@@ -13,73 +13,8 @@
 <body>
 <div class="container">
         <div class="left">
-            <div class="sb">
-                <span class="sbcon">질환별 자가검진</span>
-            </div>
-            <div class="sb2">
-                <table class="nav">
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                     <tr>
-                        <td class="en">강박장애</td>
-                    </tr>
-                    
-                </table>
-            </div>
-        </div>
-
+        <jsp:include page="examnav.html"></jsp:include>
+        </div>           
         <div class="right">
             <div class="header">
                 <div class="icon">
@@ -100,51 +35,25 @@
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">강박장애</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">게임 생활습관</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">공황장애</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">노인 우울장애</span>
                             </div>
                         </td>
                     </tr>
@@ -152,51 +61,25 @@
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">범 불안장애</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">스마트폰 생활습관</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">아동용 ADHD</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">알코올 중독</span>
                             </div>
                         </td>
                     </tr>
@@ -204,25 +87,71 @@
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">양극성장애</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">외상후 스트레스</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">우울증</span>
                             </div>
                         </td>
                         <td>
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">병명</span>
+                                <span class="e1">인지장애(보호자)</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">인지장애(치매)</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">인터넷 생활습관</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">자살</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">정신장애</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">조기정신증</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">청소년자해</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sum">
+                                <img class="ci" src="" />
+                                <span class="e1">청소년조울병(보호자)</span>
                             </div>
                         </td>
                     </tr>

@@ -349,7 +349,7 @@ body {
     width: 1280px;
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     margin-top: 150px;
     margin-bottom: 100px;
 }
