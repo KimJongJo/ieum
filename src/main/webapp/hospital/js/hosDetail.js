@@ -4,7 +4,7 @@ let calendar;
 const navl = $(".navl");
 const navr = $(".navr");
 
-const tab1 = $("#tabl");
+const tab1 = $("#tab1");
 const tab2 = $("#tab2");
 
 // 초기 상태 설정
@@ -13,12 +13,11 @@ $(document).ready(() => {
 	$("#tab1").addClass("active");
 	$("#tab2").removeClass("active");
 
-
 	// 왼쪽 버튼 클릭
 	navl.click(function() {
 		navl.addClass("active");
 		navr.removeClass("active");
-		$('html, body').animate({scrollTop: 0}, 'slow');
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 		tab1.addClass("active");
 		tab2.removeClass("active");
 	});
@@ -27,10 +26,9 @@ $(document).ready(() => {
 	navr.click(function() {
 		navr.addClass("active");
 		navl.removeClass("active");
-		$('html, body').animate({scrollTop: 0}, 'slow');
-		
-		tab1.removeClass("active");
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 		tab2.addClass("active");
+		tab1.removeClass("active");
 
 		//calender
 		const today = new Date();
@@ -159,6 +157,10 @@ $(document).ready(() => {
 		} else {
 			calendar.updateSize(); // 이미 렌더링 됐으면 크기 재계산
 		}
+	});
+
+	$('.blue').click(function() {
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
 	});
 
 });
