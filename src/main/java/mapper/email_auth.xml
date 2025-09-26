@@ -7,8 +7,13 @@
 		select * from email_auth where email = #{email}
 	</select>
 	
+	<insert id="insertEmail" parameterType="emailAuth">
+		insert into email_auth (email, code, expired_at) values(#{email}, #{code}, DATE_ADD(NOW(), INTERVAL 5 MINUTE))
+	</insert>
 	
-	
+	<update id="updateEmail" parameterType="emailAuth">
+		update email_auth set code = #{code} where email = #{email}
+	</update>
 	
 	
 </mapper>	

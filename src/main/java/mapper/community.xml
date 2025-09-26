@@ -17,7 +17,7 @@
 
 
 
-	<insert id="insertCommunity" parameterType="ommunity">
+	<insert id="insertCommunity" parameterType="community">
 		insert into community (u_no, commu_title, commu_content, commu_views, empathy, commu_created, commu_declaration, category_no, commu_comment)
 		values (#{uNo},#{commuTitle},#{commuContent},0,0,now(),0,#{categoryNo},0)
 	</insert>
