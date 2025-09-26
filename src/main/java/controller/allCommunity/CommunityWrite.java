@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.CommunityDto;
+import service.allCommunity.CategoryService;
+import service.allCommunity.CategoryServiceImpl;
 import service.allCommunity.CommunityService;
 import service.allCommunity.CommunityServiceImpl;
 
@@ -19,6 +21,7 @@ public class CommunityWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private CommunityService communityService = new CommunityServiceImpl();
+	private CategoryService categoryService = new CategoryServiceImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,7 +36,7 @@ public class CommunityWrite extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			request.setAttribute("categoryList", new service.allCommunity.CategoryServiceImpl().selectAll());
+			request.setAttribute("categoryList", categoryService.selectAll());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

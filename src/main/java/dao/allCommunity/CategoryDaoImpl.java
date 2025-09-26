@@ -19,7 +19,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	@Override
 	public List<CommuCategoryDto> selectAllCategory() throws Exception {
 		
-		return session.selectList("mapper.commu_category.selectselectAll");
+		return session.selectList("mapper.commu_category.selectAll");
 	}
 
 }
