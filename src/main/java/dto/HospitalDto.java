@@ -15,12 +15,14 @@ public class HospitalDto {
 	String transferInfo;	// 근거리 교통 정보
 	String holidayInfo;	// 휴무 정보
 	String hTel;	// 전화번호
-	String link;	// 홈페이지 링크
+	String hLink;	// 홈페이지 링크
 	String introcudeNote;	// 소개글
 	Integer fileNo;	// 병원 썸네일 파일
 	Date hCreated;	// 등록일
 	Date hUpdated;	// 수정일
 	String status;	// 활동 상태
+	Integer hFavNo; //즐겨찾기번호
+	String hCode; //병원코드
 	
 	
 	public HospitalDto() {
@@ -28,9 +30,11 @@ public class HospitalDto {
 	}
 
 
+
 	public HospitalDto(Integer hNo, String hNm, String category, String info1, String info2, String hAddress,
-			String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel, String link,
-			String introcudeNote, Integer fileNo, Date hCreated, Date hUpdated, String status) {
+			String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink,
+			String introcudeNote, Integer fileNo, Date hCreated, Date hUpdated, String status, Integer hFavNo,
+			String hCode) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -43,23 +47,27 @@ public class HospitalDto {
 		this.transferInfo = transferInfo;
 		this.holidayInfo = holidayInfo;
 		this.hTel = hTel;
-		this.link = link;
+		this.hLink = hLink;
 		this.introcudeNote = introcudeNote;
 		this.fileNo = fileNo;
 		this.hCreated = hCreated;
 		this.hUpdated = hUpdated;
 		this.status = status;
+		this.hFavNo = hFavNo;
+		this.hCode = hCode;
 	}
+
 
 
 	@Override
 	public String toString() {
-		return "hospitalDto [hNo=" + hNo + ", hNm=" + hNm + ", category=" + category + ", info1=" + info1 + ", info2="
+		return "HospitalDto [hNo=" + hNo + ", hNm=" + hNm + ", category=" + category + ", info1=" + info1 + ", info2="
 				+ info2 + ", hAddress=" + hAddress + ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX
-				+ ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", link="
-				+ link + ", introcudeNote=" + introcudeNote + ", fileNo=" + fileNo + ", hCreated=" + hCreated
-				+ ", hUpdated=" + hUpdated + ", status=" + status + "]";
+				+ ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink="
+				+ hLink + ", introcudeNote=" + introcudeNote + ", fileNo=" + fileNo + ", hCreated=" + hCreated
+				+ ", hUpdated=" + hUpdated + ", status=" + status + ", hFavNo=" + hFavNo + ", hCode=" + hCode + "]";
 	}
+
 
 
 	public Integer gethNo() {
@@ -67,9 +75,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethNo(Integer hNo) {
 		this.hNo = hNo;
 	}
+
 
 
 	public String gethNm() {
@@ -77,9 +87,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethNm(String hNm) {
 		this.hNm = hNm;
 	}
+
 
 
 	public String getCategory() {
@@ -87,9 +99,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 
 
 	public String getInfo1() {
@@ -97,9 +111,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setInfo1(String info1) {
 		this.info1 = info1;
 	}
+
 
 
 	public String getInfo2() {
@@ -107,9 +123,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setInfo2(String info2) {
 		this.info2 = info2;
 	}
+
 
 
 	public String gethAddress() {
@@ -117,9 +135,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethAddress(String hAddress) {
 		this.hAddress = hAddress;
 	}
+
 
 
 	public String gethLocationY() {
@@ -127,9 +147,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethLocationY(String hLocationY) {
 		this.hLocationY = hLocationY;
 	}
+
 
 
 	public String gethLocationX() {
@@ -137,9 +159,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethLocationX(String hLocationX) {
 		this.hLocationX = hLocationX;
 	}
+
 
 
 	public String getTransferInfo() {
@@ -147,9 +171,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setTransferInfo(String transferInfo) {
 		this.transferInfo = transferInfo;
 	}
+
 
 
 	public String getHolidayInfo() {
@@ -157,9 +183,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setHolidayInfo(String holidayInfo) {
 		this.holidayInfo = holidayInfo;
 	}
+
 
 
 	public String gethTel() {
@@ -167,19 +195,23 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethTel(String hTel) {
 		this.hTel = hTel;
 	}
 
 
-	public String getLink() {
-		return link;
+
+	public String gethLink() {
+		return hLink;
 	}
 
 
-	public void setLink(String link) {
-		this.link = link;
+
+	public void sethLink(String hLink) {
+		this.hLink = hLink;
 	}
+
 
 
 	public String getIntrocudeNote() {
@@ -187,9 +219,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setIntrocudeNote(String introcudeNote) {
 		this.introcudeNote = introcudeNote;
 	}
+
 
 
 	public Integer getFileNo() {
@@ -197,9 +231,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void setFileNo(Integer fileNo) {
 		this.fileNo = fileNo;
 	}
+
 
 
 	public Date gethCreated() {
@@ -207,9 +243,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethCreated(Date hCreated) {
 		this.hCreated = hCreated;
 	}
+
 
 
 	public Date gethUpdated() {
@@ -217,9 +255,11 @@ public class HospitalDto {
 	}
 
 
+
 	public void sethUpdated(Date hUpdated) {
 		this.hUpdated = hUpdated;
 	}
+
 
 
 	public String getStatus() {
@@ -227,13 +267,35 @@ public class HospitalDto {
 	}
 
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
-	
+
+
+
+	public Integer gethFavNo() {
+		return hFavNo;
+	}
+
+
+
+	public void sethFavNo(Integer hFavNo) {
+		this.hFavNo = hFavNo;
+	}
+
+
+
+	public String gethCode() {
+		return hCode;
+	}
+
+
+
+	public void sethCode(String hCode) {
+		this.hCode = hCode;
+	}
+
 	
 	
 	
