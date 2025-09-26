@@ -5,7 +5,27 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="dto.Member" alias="Member" />
+		<typeAlias type="dto.MemberDto" alias="member" />
+		<typeAlias type="dto.BlackListDto" alias="blackList" />
+		<typeAlias type="dto.CommeLikeDto" alias="commeLike" />
+		<typeAlias type="dto.CommentDto" alias="comment" />
+		<typeAlias type="dto.CommuCategoryDto" alias="commucategory" />
+		<typeAlias type="dto.CommuLikeDto" alias="commuLike" />
+		<typeAlias type="dto.CommunityDto" alias="community" />
+		<typeAlias type="dto.DiagnosisHistoryDto" alias="diagnosisHistory" />
+		<typeAlias type="dto.DiaryDto" alias="diary" />
+		<typeAlias type="dto.EmailAuthDto" alias="emailAuth" />
+		<typeAlias type="dto.ExamDto" alias="exam" />
+		<typeAlias type="dto.ExamItemDto" alias="examItem" />
+		<typeAlias type="dto.ExamResultDto" alias="examResult" />
+		<typeAlias type="dto.FavoriteDto" alias="favorite" />
+		<typeAlias type="dto.FileDto" alias="file" />
+		<typeAlias type="dto.HospitalDto" alias="hospital" />
+		<typeAlias type="dto.NoticeDto" alias="notice" />
+		<typeAlias type="dto.ReservationDto" alias="reservation" />
+		<typeAlias type="dto.UserStateDto" alias="userState" />
+		
+		
 	</typeAliases>
 
 	<environments default="development">
