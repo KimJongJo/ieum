@@ -8,6 +8,36 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join3.css" />
 
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+        	$(function(){
+        		$("#emailSend").click(function() {
+        			
+        			
+        			$("#emailSend").prop("disabled", true);
+        			$.ajax({
+        				url: "/ieum/auth/sendEmailCode",
+        				type:"POST",
+        				data:{email: $("#inputEmail").val()},
+        				dataType: "json",
+        				success:function(response){
+        					console.log("성공 " + response);
+        					// 버튼 활성화
+                			$("#emailSend").prop("disabled", false);
+        					alert("이메일이 전송되었습니다!");
+        				},
+        				error:function(error){
+        					console.log("에러 " + error);
+        					// 버튼 활성화
+                			$("#emailSend").prop("disabled", false);
+        					alert("이메일 전송 실패했습니다.. 잠시 후 다시 요청해주세요");
+        				}
+        			})
+        		})
+        		
+        	})
+        </script>
+        
     </head>
     <body>
         <div class="main">
@@ -104,13 +134,13 @@
                                     <table>
                                         <tr>
                                             <td><span class="text-span">이메일</span></td>
-                                            <td><input type="text" class="input" /></td>
-                                            <td><button class="send-btn">전송</button></td>
+                                            <td><input type="text" class="input" id="inputEmail"/></td>
+                                            <td><button class="send-btn" id="emailSend">전송</button></td>
                                         </tr>
                                         <tr>
                                             <td><span class="text-span">인증코드</span></td>
                                             <td><input type="text" class="input" /></td>
-                                            <td><button class="send-btn">인증</button></td>
+                                            <td><button class="send-btn" id="emailAuthCheck">인증</button></td>
                                         </tr>
                                         <tr>
                                             <td></td>

@@ -9,7 +9,7 @@
 		<typeAlias type="dto.BlackListDto" alias="blackList" />
 		<typeAlias type="dto.CommeLikeDto" alias="commeLike" />
 		<typeAlias type="dto.CommentDto" alias="comment" />
-		<typeAlias type="dto.CommuCategoryDto" alias="commucategory" />
+		<typeAlias type="dto.CommuCategoryDto" alias="commuCategory" />
 		<typeAlias type="dto.CommuLikeDto" alias="commuLike" />
 		<typeAlias type="dto.CommunityDto" alias="community" />
 		<typeAlias type="dto.DiagnosisHistoryDto" alias="diagnosisHistory" />

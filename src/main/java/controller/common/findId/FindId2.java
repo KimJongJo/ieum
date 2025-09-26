@@ -1,4 +1,4 @@
-package controller.common;
+package controller.common.findId;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class FindId1
+ * Servlet implementation class FindId2
  */
-@WebServlet("/findId1")
-public class FindId1 extends HttpServlet {
+@WebServlet("/findId2")
+public class FindId2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindId1() {
+    public FindId2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +27,13 @@ public class FindId1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/common/findId/findId1.jsp").forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		String userType =  request.getParameter("userType");
+		session.setAttribute("userType", userType);
+		
+		request.getRequestDispatcher("/common/findId/findId2.jsp").forward(request, response);;
 	}
 
 	/**
