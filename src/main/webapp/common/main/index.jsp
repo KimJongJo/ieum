@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/common/main/css/main.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <title>건강이음 - 메인</title>
-<script src="js/main.js"></script>
+<script src="${contextPath}/common/main/js/main.js"></script>
 </head>
 <body>
 	<!-- 배너 -->
@@ -26,9 +28,9 @@
 			</button>
 		</div>
 		<div class="button-wrapper">
-			<a class="btn-link" href="">
+			<a class="btn-link" href="${contextPath}/hospital/search">
 				<div class="basic-btn">상담 예약 바로 가기 &gt;</div>
-			</a> <a class="btn-link" href="">
+			</a> <a class="btn-link" href="${contextPath}/exam">
 				<div class="primary-btn">자가 진단 바로 가기&gt;</div>
 			</a>
 		</div>
@@ -36,7 +38,7 @@
 	<div class="main-container">
 		<div class="hospital-login-group">
 			<!-- 병원추천 -->
-<!-- 					todo 하단 스크롤 미노출 & 하나씩 넘어가게 설정 -->
+			<!-- 					todo 하단 스크롤 미노출 & 하나씩 넘어가게 설정 -->
 			<section class="hospital-section">
 				<span class="secton-title">이런 병원은 어떠세요?</span>
 				<div class="hospital-btn-left">
@@ -44,9 +46,10 @@
 						<i class="fa-solid fa-less-than"></i>
 					</div>
 				</div>
-		
+
 				<div class="hospital-list">
-					<div class="hospital-item">
+					<div class="hospital-item"
+						onclick="location.href=`${contextPath}/hospital/detail`">
 						<img class="hospital-img" src=""> <span
 							class="hospital-name">병원명</span> <span>병원위치</span>
 					</div>
@@ -89,18 +92,22 @@
 			<!-- 로그인 전 -->
 			<section class="login-secton">
 				<div class="login-header">
-					<a href="" class="btn-link">로그인 / 회원가입</a>
+					<a href="${contextPath}/login" class="btn-link">로그인 / 회원가입</a>
 				</div>
 				<div class="login-body">
 					<span class="login-title"> 자가진단 </span>
 					<div class="plusBtn">
-						<span>더보기</span> <a href="">
-						<div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
-						</a>
+					 <a href="${contextPath}/exam">
+						<span>더보기</span>
+							<div class="plusIcon">
+								<i class="fa-solid fa-plus"></i>
+							</div>
+						
 
-					</div>
+					</div></a>
 					<div class="login-content">
-						<div class="login-item">
+						<div class="login-item"
+							onclick="location.href=`${contextPath}/exam/examques`">
 							<div class="rectangle"></div>
 							<span>강박 장애</span>
 						</div>
@@ -164,28 +171,35 @@
 			</p>
 			<div class="service-content">
 				<div class="service-box">
-					<a href="" class="btn-link">
+					<a href="${contextPath}/hospital/search" class="btn-link">
 						<div class="service item">
 							<div class="rectangle hospital">
 								<i class="fa-duotone fa-solid fa-hospital"></i>
 							</div>
 							<span>병원조회 / 예약</span>
 						</div>
-					</a> <a href="" class="btn-link">
+					</a> <a href="${contextPath}/hosSignUp" class="btn-link">
+						<div class="service item">
+							<div class="rectangle hospital">
+								<i class="fa-duotone fa-solid fa-hospital"></i>
+							</div>
+							<span>병원등록</span>
+						</div>
+					</a> <a href="${contextPath}/exam/examques" class="btn-link">
 						<div class="service item">
 							<div class="rectangle diagnosis">
 								<i class="fa-duotone fa-solid fa-user-check"></i>
 							</div>
 							<span>자가진단</span>
 						</div>
-					</a> <a href="" class="btn-link">
+					</a> <a href="${contextPath}/allCommunityList" class="btn-link">
 						<div class="service item">
 							<div class="rectangle commu">
 								<i class="fa-duotone fa-solid fa-comments"></i>
 							</div>
 							<span>커뮤니티</span>
 						</div>
-					</a> <a href="" class="btn-link">
+					</a> <a href="${contextPath}/notice" class="btn-link">
 						<div class="service item">
 							<div class="rectangle notice">
 								<i class="fa-duotone fa-solid fa-bullhorn"></i>
@@ -200,17 +214,23 @@
 		</section>
 		<!-- 마음톡 -->
 		<section class="community-secton">
-			<span class="section-title">마음톡
-				<div class="plusBtn">
-					<span>더보기</span> <a href=""> <div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
-					</a>
+			<span class="section-title">마음톡 <a
+				href="${contextPath}/allCommunityList">
+					<div class="plusBtn">
+						<span>더보기</span>
+						<div class="plusIcon">
+							<i class="fa-solid fa-plus"></i>
+						</div>
 
-				</div>
+
+					</div>
+			</a>
 			</span>
 
 			<div class="section-content commu-content">
 
-				<div class="commu-item">
+				<div class="commu-item"
+					onclick="location.href=`${contextPath}/comDetail`">
 					<span class="commu-cate">커뮤니티 카테고리</span> <span class="commu-title">마음톡
 						제목</span> <span class="commu-content">마음톡 내용 마음톡 내용 마음톡 내용 마음톡
 						내용마음톡 내용 마음톡 내용 마음톡 내용 마음톡 내용마음톡</span>
@@ -229,8 +249,9 @@
 		<section class="notice-secton">
 			<span class="section-title">공지사항
 				<div class="plusBtn">
-					<span>더보기</span> <a href=""><div class="plusIcon"><i class="fa-solid fa-plus"></i></div>
-					</a>
+					<span>더보기</span> <a href=""><div class="plusIcon">
+							<i class="fa-solid fa-plus"></i>
+						</div> </a>
 				</div>
 			</span>
 			<div class="notice-content">

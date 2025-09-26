@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Diary
+ * Servlet implementation class DiaryWrite
  */
-@WebServlet("/myPage/diary")
-public class Diary extends HttpServlet {
+@WebServlet("/myPage/diary/update")
+public class DiaryUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Diary() {
+    public DiaryUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,22 +26,26 @@ public class Diary extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dNo = request.getParameter("dNo");
+		request.setCharacterEncoding("utf-8");
 		try {
-			if (dNo != null) request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
-			else request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
-		} catch(Exception e) {
-			
-		}
+			request.getRequestDispatcher("/myPage/diaryUpdate.jsp").forward(request, response);;
+		} catch (Exception e) {
 
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		try {
+			request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
+			// TODO response.sendRedirect("/myPage/diary");
+		} catch (Exception e) {
+
+		}
 	}
 
 }
