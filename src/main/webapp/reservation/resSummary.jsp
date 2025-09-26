@@ -68,8 +68,8 @@
     </div>
 
     <div class="btn">
-        <a href="${contextPath }/common/main/index.jsp"><button type="button" class="white">홈으로</button></a>
-        <a href="${contextPath }/resList"><button type="button" class="blue">예약확인</button></a>
+        <a href="${contextPath }/index"><button type="button" class="white">홈으로</button></a>
+        <a href="${contextPath }/myPage/reservation/list"><button type="button" class="blue">예약확인</button></a>
     </div>
 </body>
 </html>

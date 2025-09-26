@@ -77,8 +77,8 @@
     </div>
 
     <div class="btn">
-        <a href="${contextPath }/hosDetail"><button type="button" class="white">이전으로</button></a>
-        <a href="${contextPath }/resSummary"><button type="button" class="blue">다음단계</button></a>
+        <a href="${contextPath }/hospital/detail"><button type="button" class="white">이전으로</button></a>
+        <a href="${contextPath }/reservation/summary"><button type="button" class="blue">다음단계</button></a>
     </div>
     <script src="${contextPath }/reservation/js/resContent.jsp"></script>
 </body>
