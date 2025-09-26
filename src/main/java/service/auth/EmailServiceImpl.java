@@ -31,7 +31,7 @@ public class EmailServiceImpl implements EmailService {
 	public void sendEmail(String email) throws Exception{
 		// 1️⃣ Gmail 계정 정보
         final String username = "desk1614@gmail.com"; // 보내는 사람
-        final String password = "";          // Gmail 앱 비밀번호
+        final String password = "dievyqoxsozoklch";          // Gmail 앱 비밀번호
 
         // 2️⃣ SMTP 서버 설정
         Properties props = new Properties();
