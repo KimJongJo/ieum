@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.email_auth">
+
+	<select id="checkEmail" parameterType="emailAuth" resultType="emailAuth">
+		select * from email_auth where email = #{email}
+	</select>
+	
+	
+	
+	
 	
 </mapper>	

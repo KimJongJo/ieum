@@ -13,6 +13,17 @@ public class EmailAuthDto {
 		super();
 	}
 	
+	
+	
+
+	public EmailAuthDto(String email, String code) {
+		super();
+		this.email = email;
+		this.code = code;
+	}
+
+
+
 
 	public EmailAuthDto(Integer authNo, String email, String code, Date expiredAt) {
 		super();

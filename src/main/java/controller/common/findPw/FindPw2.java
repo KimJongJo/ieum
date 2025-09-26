@@ -1,4 +1,4 @@
-package controller.common;
+package controller.common.findPw;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SignUp4_1
+ * Servlet implementation class FindPw2
  */
-@WebServlet("/join4_1")
-public class Join4_1 extends HttpServlet {
+@WebServlet("/findPw2")
+public class FindPw2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Join4_1() {
+    public FindPw2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class Join4_1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/common/join/join4-1.jsp").forward(request, response);
+		request.getRequestDispatcher("/common/findPw/findPw2.jsp").forward(request, response);
 	}
 
 	/**

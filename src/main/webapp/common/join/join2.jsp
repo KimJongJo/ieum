@@ -13,6 +13,7 @@
     <body>
         <div class="main">
             <div class="main-div">
+            	<form action="/ieum/join3" method="get">
                 <div class="chap-div">
                     <div class="chapter">
                         <div class="chapter-in">
@@ -161,13 +162,14 @@
                         </div>
                     </div>
                     <div class="radio_div">
-                        <input type="radio" name="agree3" id="yes3" /> <label for="yes3">동의함</label> <input type="radio" name="agree3" id="no3" /><label for="no3">동의안함</label>
+                        <input type="radio" name="agree3" id="yes3" value="yes"/> <label for="yes3">동의함</label> <input type="radio" name="agree3" id="no3" value="no"/><label for="no3">동의안함</label>
                     </div>
                 </div>
                 <div class="button-btn">
                     <button id="agree-btn" class="agree-btn">동의합니다</button>
                     <button class="no-btn">취소</button>
                 </div>
+                </form>
             </div>
         </div>
         <script>
