@@ -47,7 +47,8 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 		write: {
 			text: "작성",
 			click: function() {
-				alert("일정 등록 하세요!");
+				const contextPath = document.location.pathname.split('/');
+				location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write`;
 			},
 		},
 	},
