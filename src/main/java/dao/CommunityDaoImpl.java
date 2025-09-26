@@ -1,4 +1,4 @@
-package dao.allCommunity;
+package dao;
 
 import org.apache.ibatis.session.SqlSession;
 
