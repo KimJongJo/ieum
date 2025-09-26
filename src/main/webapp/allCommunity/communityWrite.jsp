@@ -17,6 +17,9 @@
 
 	<c:import url="../common/header/header.html" charEncoding="UTF-8"/>
 	<!-- ✅ 중헤더 바로 밑에 텍스트 -->
+	
+	<form id="writeForm" action="${pageContext.request.contextPath}/write" method="post">
+	
 	<div id="section-title">
 		<div>
 			<span>커뮤니티 작성</span>
@@ -45,9 +48,12 @@
 	</div>
 
     <div id="btn-event">
-        <button id="btn-cancellation">작성 취소</button>
-        <button id="btn-complete">작성 완료</button>
+        <button type="button" id="btn-cancellation">작성 취소</button>
+        <button type="button" id="btn-complete">작성 완료</button>
     </div>
+    
+    <input type="hidden" id="categoryNo" name="categoryNo" value="${not empty categoryList ? categoryList[0].categoryNo : 1}" />
+  
 	
 	<!-- 작성 완료 모달 -->
 	<div class="modal-main-div" id="completeModal" style="display:none;">
@@ -61,7 +67,7 @@
 	        </div>
 	        <div class="modal-div-under">
 	            <div class="modal-btn-div">
-	                <button class="modal-btn-left modal-btn" id="modalCancelComplete">취소</button>
+	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelComplete">취소</button>
 	                <button class="modal-btn-right modal-btn" id="modalOkComplete">완료</button>
 	            </div>
 	        </div>
@@ -80,7 +86,7 @@
 	        </div>
 	        <div class="modal-div-under">
 	            <div class="modal-btn-div">
-	                <button class="modal-btn-left modal-btn" id="modalCancelCancel">취소</button>
+	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelCancel">취소</button>
 	                <button class="modal-btn-right modal-btn" id="modalOkCancel">확인</button>
 	            </div>
 	        </div>
@@ -89,24 +95,12 @@
 	
 	<div class="category-box" id="categoryBox">
 	    <p>사연 종류</p>
-	    <span>육아/출산</span>
-	    <span>금전/사업</span>
-	    <span>LGBT</span>
-	    <span>자아/성격</span>
-	    <span>이별/이혼</span>
-	    <span>성범죄</span>
-	    <span>펫로스</span>
-	    <span>학업/고시</span>
-	    <span>성생활</span>
-	    <span>대인관계/따돌림</span>
-	    <span>외모</span>
-	    <span>신체건강</span>
-	    <span>정신건강</span>
-	    <span>취업/진로</span>
-	    <span>부부관계</span>
-	    <span>직장</span>
-	    <span>기타</span>
+	    <c:forEach var="cat" items="${categoryList}">
+	    	<span data-no="${cat.categoryNo}">${cat.categoryName}</span>
+	    </c:forEach>
 	</div>
+	
+	</form>  
 	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
