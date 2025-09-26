@@ -2,8 +2,8 @@ package service.allCommunity;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dao.CommunityDao;
-import dao.CommunityDaoImpl;
+import dao.allCommunity.CommunityDao;
+import dao.allCommunity.CommunityDaoImpl;
 import dto.CommunityDto;
 import util.MybatisSqlSessionFactory;
 
