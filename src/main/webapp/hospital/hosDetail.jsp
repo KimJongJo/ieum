@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/hosDetail.css">
+    <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>hosDe/res</title>
@@ -161,8 +163,8 @@
             </div>
             
             <div class="btn">
-            <button type="button" class="white" onclick="history.back();">이전으로</button>
-            <button type="button" class="blue" onclick="location.href='resContent.html'">예약하기</button>
+            <a href="${contextPath }/hosSearch"><button type="button" class="white">이전으로</button></a>
+            <button type="button" class="blue">예약하기</button>
         	</div>
         
         </div>
@@ -249,11 +251,11 @@
             </div>
             
             <div class="btn">
-            <button type="button" class="white" onclick="history.back();">그만두기</button>
-            <button type="button" class="blue" onclick="location.href='resContent.html'">다음으로</button>
+            <a href="${contextPath }/hosDetail"><button type="button" class="white">그만두기</button></a>
+            <a href="${contextPath }/resContent"><button type="button" class="blue">다음으로</button></a>
         	</div>
         </div>
     </div>
-    <script src="./js/hosDetail.js"></script>
+    <script src="${contextPath}/hospital/js/hosDetail.js"></script>
 </body>
 </html>

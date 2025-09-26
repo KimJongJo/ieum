@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
-    <link rel="stylesheet" href="./css/resContent.css" />
+    <link rel="stylesheet" href="${contextPath }/reservation/css/resContent.css" />
     <title>resContent</title>
 </head>
 <body>
@@ -32,7 +34,7 @@
                     <span class="uname">임지혜</span>
                     <span class="utel">010-1234-1234</span>
                 </div>
-                <button type="button" class="ubt1">변경</button>
+                <a href="${classPath }/profileInfo"></a><button type="button" class="ubt1">변경</button>
             </div>
             <div class="line"></div>
         </div>
@@ -75,9 +77,9 @@
     </div>
 
     <div class="btn">
-        <button type="button" class="white" onclick="history.back();">이전으로</button>
-        <button type="button" class="blue" onclick="location.href='resContent.html'">다음단계</button>
+        <a href="${contextPath }/hosDetail"><button type="button" class="white">이전으로</button></a>
+        <a href="${contextPath }/resSummary"><button type="button" class="blue">다음단계</button></a>
     </div>
-    <script src="./js/resContent.jsp"></script>
+    <script src="${contextPath }/reservation/js/resContent.jsp"></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=checklist" />
-    <link rel="stylesheet" href="./css/examList.css" />
+    <link rel="stylesheet" href="${contextPath}/exam/css/examList.css" />
     <title>examlist</title>
 </head>
 <body>
@@ -32,127 +34,165 @@
             <div class="listg">
                 <table class="elc">
                     <tr>
-                        <td>
+                    <td>
+                     <a href="${contextPath}/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">강박장애</span>
-                            </div>
+                            </div>                      
+                     		</a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">게임 생활습관</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">공황장애</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">노인 우울장애</span>
                             </div>
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">범 불안장애</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">스마트폰 생활습관</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">아동용 ADHD</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">알코올 중독</span>
                             </div>
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">양극성장애</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">외상후 스트레스</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">우울증</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인지장애(보호자)</span>
                             </div>
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인지장애(치매)</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인터넷 생활습관</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">자살</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">정신장애</span>
                             </div>
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">조기정신증</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">청소년자해</span>
                             </div>
+                            </a>
                         </td>
                         <td>
+                        <a href="${contextPath }/examQues">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">청소년조울병(보호자)</span>
                             </div>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -160,6 +200,6 @@
             </div>
         </div>
     </div>
-    <script src="./js/examList.js"></script>
+    <script src="${contextPath }/exam/js/examList.js"></script>
 </body>
 </html>

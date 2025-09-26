@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/hosSearch.css" />
+    <link rel="stylesheet" href="${contextPath}/hospital/css/hosSearch.css" />
     <title>hosSearch</title>
 </head>
 <body>
@@ -109,8 +111,9 @@
                     </tr>
                 </table>
             </div>
+            <a href="${contextPath}/hosDetail">
             <div class="list-box">
-
+				
                 <div class="right3">
                     <img class="hosf" src="" />
                     <div class="infodetail">
@@ -124,6 +127,7 @@
                 <div class="fav"><i class="fa-regular fa-star"></i></div>
 
             </div>
+            </a>
 
             <div class="list-box">
 

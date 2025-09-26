@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
 <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=heart_plus" />
-    <link rel="stylesheet" href="./css/resSummary.css" />
+    <link rel="stylesheet" href="${contextPath}/reservation/css/resSummary.css" />
     <title>resSummary</title>
 </head>
 <body>
@@ -66,8 +68,8 @@
     </div>
 
     <div class="btn">
-        <button type="button" class="white" onclick="history.back();">홈으로</button>
-        <button type="button" class="blue" onclick="location.href='resContent.html'">예약확인</button>
+        <a href="${contextPath }/common/main/index.jsp"><button type="button" class="white">홈으로</button></a>
+        <a href="${contextPath }/resList"><button type="button" class="blue">예약확인</button></a>
     </div>
 </body>
 </html>

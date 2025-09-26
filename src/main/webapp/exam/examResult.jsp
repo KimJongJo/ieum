@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=diagnosis" />
-    <link rel="stylesheet" href="./css/examResult.css" />
+    <link rel="stylesheet" href="${contextPath }/exam/css/examResult.css" />
     <title>examResult</title>
 </head>
 <body>
@@ -34,9 +36,9 @@
         </div>
 
         <div class="btn">
-            <button type="button" class="white" onclick="history.back();">목록으로</button>
+            <a href="${contextPath }/examList"><button type="button" class="white">목록으로</button></a>
             <button type="button" class="white" onclick="history.back();">다시하기</button>
-            <button type="button" class="blue" onclick="location.href='resContent.html'">다음단계</button>
+            <a href=""><button type="button" class="blue" onclick="location.href='resContent.html'">다음단계</button></a>
         </div>
     </div>
 </body>

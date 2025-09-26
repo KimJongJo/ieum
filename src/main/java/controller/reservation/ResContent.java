@@ -1,4 +1,4 @@
-package controller.hospital;
+package controller.reservation;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityWrite
+ * Servlet implementation class ResContent
  */
-@WebServlet("/write4")
-public class CommunityWrite extends HttpServlet {
+@WebServlet("/resContent")
+public class ResContent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityWrite() {
+    public ResContent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,18 +26,15 @@ public class CommunityWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/reservation/resContent.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String categoryNostr = request.getParameter("categoryNo");
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
 }
