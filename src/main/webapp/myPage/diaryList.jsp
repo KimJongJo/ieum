@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +59,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<a href="${contextPath}/myPage/diary">
 				<tr class="diary-item">
 					<td class="diary-title-row"><span class="diary-title">7월2일의
 							기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록</span></td>
@@ -72,7 +69,6 @@
 						class="fa-regular fa-face-smile"></i></td>
 
 				</tr>
-				</a>
 				<tr class="diary-item">
 					<td class="diary-title-row"><span class="diary-title">7월2일의
 							기록</span></td>

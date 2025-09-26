@@ -1,4 +1,4 @@
-package controller.notice;
+package controller.common;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Notice
+ * Servlet implementation class Index
  */
-@WebServlet("/notice")
-public class Notice extends HttpServlet {
+@WebServlet("/index")
+public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Notice() {
+    public Index() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +26,7 @@ public class Notice extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		String nNo = request.getParameter("nNo");
-		try {
-			if (nNo != null) request.getRequestDispatcher("notice/noticeDetail.jsp").forward(request, response);
-			else request.getRequestDispatcher("notice/noticeList.jsp").forward(request, response);
-		} catch(Exception e) {
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("common/main/index.jsp").forward(request, response);
 	}
 
 	/**
