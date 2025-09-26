@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CommunityWrite
  */
-@WebServlet("/write")
+@WebServlet("/write6")
 public class CommunityWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
