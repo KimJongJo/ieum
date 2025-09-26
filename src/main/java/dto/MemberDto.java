@@ -16,7 +16,6 @@ public class MemberDto {
 	String userType;	// 회원분류
 	String major; //전공
 	String introduction; //자기소개
-	Integer roleId; //역할번호
 	String nickName; //닉네임
 	String uAddress; //주소
 	Boolean diaryPrivate; //다이어리 공개여부
@@ -31,7 +30,7 @@ public class MemberDto {
 	}
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
-			Integer roleId, String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
+			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
 			Integer hNo, Integer stateCode) {
 		super();
 		this.uNo = uNo;
@@ -46,7 +45,6 @@ public class MemberDto {
 		this.userType = userType;
 		this.major = major;
 		this.introduction = introduction;
-		this.roleId = roleId;
 		this.nickName = nickName;
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
@@ -60,7 +58,7 @@ public class MemberDto {
 		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
 				+ ", password=" + password + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email
 				+ ", createdAt=" + createdAt + ", userType=" + userType + ", major=" + major + ", introduction="
-				+ introduction + ", roleId=" + roleId + ", nickName=" + nickName + ", uAddress=" + uAddress
+				+ introduction + ", nickName=" + nickName + ", uAddress=" + uAddress
 				+ ", diaryPrivate=" + diaryPrivate + ", warningCount=" + warningCount + ", social=" + social + ", hNo="
 				+ hNo + ", stateCode=" + stateCode + "]";
 	}
@@ -135,12 +133,6 @@ public class MemberDto {
 	}
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
-	}
-	public Integer getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
 	}
 	public String getNickName() {
 		return nickName;
