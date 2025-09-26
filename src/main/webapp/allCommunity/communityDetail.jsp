@@ -23,7 +23,7 @@
         <div class="Title">
             <div id="title">지금 너무 힘들어오 진짜 쉬고 싶어요 씻으라고 계속 컴필 들어와서 ㅋㅋㅋ ㄴㄷㅇㅁㄴㅇㄹL</div>
             <div id="btn1">
-                <button id="btn-update">수정</button>
+                <button onclick="location.href='/ieum/write'" id="btn-update">수정</button>
                 <button id="btn-delete">삭제</button>
             </div>
         </div>

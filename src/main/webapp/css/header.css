@@ -45,9 +45,8 @@
     gap: 100px;       /* 메뉴 간격 */
     align-items: center;
     margin-left:100px;
-}
-.menu .optional {
     display: none; /* 자리를 없애고, 오른쪽 메뉴가 한 칸씩 당겨짐 */
+    cursor:pointer;
 }
 
 

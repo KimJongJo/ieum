@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="${contextPath }/myPage/css/resDetail.css" />
+    <link rel="stylesheet" href="./css/resDetail.css" />
     <title>resDetail</title>
 </head>
 <body>
@@ -47,7 +45,7 @@
 
                     <div class="right">
                         <button class="w" type="button">예약취소</button>
-                        <a href="${contextPath }/hosDetail"><button class="w" type="button">예약변경</button></a>
+                        <button class="w" type="button">예약변경</button>
                     </div>
                 </div>
 
@@ -138,9 +136,9 @@
                         </div>
                     </div>
                     <div class="right1">
-                        <a href="${contextPath }/hosDetail"><button class="hosd" type="button">
+                        <button class="hosd" type="button">
                             <div class="icon2"><i class="fa-solid fa-square-h"></i></div>병원상세
-                        </button></a>
+                        </button>
                     </div>
 
                 </div>
@@ -152,6 +150,6 @@
             <button type="button" class="white" onclick="history.back();">확인</button>
         </div>
     </div>
-    <script src="${contextPath }/myPage/js/resDetail.js"></script>
+    <script src="./js/resDetail.js"></script>
 </body>
 </html>
