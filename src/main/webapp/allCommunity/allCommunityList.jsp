@@ -58,11 +58,13 @@
 	                <button id="empathy">공감순</button>
 	                <button id="by-view">조회순</button>
 	            </div>
+	            
 	            <div class="right-button">
-	                <button id="write">작성하기</button>
+	                <a href="write"><button id="write">작성하기</button></a>
 	            </div>
 	        </div>
-	
+			
+			<form method="post" action="${pageContext.request.contextPath}/allCommunityList">
 	        <!-- ✅ box를 버튼 아래로 -->
 		    <div class="boxes">
 		        <div class="box">
@@ -85,7 +87,9 @@
 				        🔗 <span class="action-count">90</span>
 				    </span>
 				</div>
+				<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 		    </div>
+		    </form>
 		    <div class="boxes">
 		        <div class="box">
 		            <div class="text-wrapper-1">닉네임</div>

@@ -36,9 +36,9 @@
         </div>
 
         <div class="btn">
-            <a href="${contextPath }/examList"><button type="button" class="white">목록으로</button></a>
+            <a href="${contextPath }/exam"><button type="button" class="white">목록으로</button></a>
             <button type="button" class="white" onclick="history.back();">다시하기</button>
-            <a href=""><button type="button" class="blue" onclick="location.href='resContent.html'">다음단계</button></a>
+            <a href="${contextPath }/hospital/search"><button type="button" class="blue" onclick="location.href='resContent.html'">예약하기</button></a>
         </div>
     </div>
 </body>

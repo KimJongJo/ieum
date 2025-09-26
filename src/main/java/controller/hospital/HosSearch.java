@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HosSearch
  */
-@WebServlet("/hosSearch")
+@WebServlet("/hospital/search")
 public class HosSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

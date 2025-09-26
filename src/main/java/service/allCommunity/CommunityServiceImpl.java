@@ -2,8 +2,8 @@ package service.allCommunity;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dao.CommunityDao;
-import dao.CommunityDaoImpl;
+import dao.allCommunity.CommunityDao;
+import dao.allCommunity.CommunityDaoImpl;
 import dto.CommunityDto;
 import util.MybatisSqlSessionFactory;
 
@@ -20,5 +20,10 @@ public class CommunityServiceImpl implements CommunityService{
 	public Integer insertCommunity(CommunityDto community) throws Exception {
 		communityDao.insert(community);
 		return community.getCommuNO();
+	}
+
+	@Override
+	public CommunityDto selectByNo(Integer commuNo) throws Exception {
+		return session.selectOne("mapper.community.selectByNo", commuNo);
 	} 
 }

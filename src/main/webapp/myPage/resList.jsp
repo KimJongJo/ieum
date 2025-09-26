@@ -63,15 +63,15 @@
                         </table>
                     </div>
                     <div class="right">
-                        <a href="${contextPath }/resDetail"><button class="lbtb" type="button">
+                        <a href="${contextPath }/myPage/reservation/detail"><button class="lbtb" type="button">
                             <span class="lbt3">예약확인</span>
                             <div class="lbt4"><i class="fa-solid fa-list"></i></div>
                         </button></a>
-                        <a href="${contextPath }/hosDetail"><button class="lbt" type="button">
+                        <a href="${contextPath }/hospital/detail"><button class="lbt" type="button">
                             <span class="lbt1">예약변경</span>
                             <div class="lbt2"><i class="fa-solid fa-pen-to-square"></i></div>
                         </button></a>
-                        <a href="${contextPath }/resCancel"><button class="lbt" type="button">
+                        <a href="${contextPath }/myPage/reservation/cancel"><button class="lbt" type="button">
                             <span class="lbt1">예약취소</span>
                             <div class="lbt2"><i class="fa-solid fa-rectangle-xmark"></i></div>
                         </button></a>
@@ -124,9 +124,9 @@
                     <table class="t">
                         <tr>
                             <td class="hi">
-                            <td class="hi"><span class="material-symbols-outlined">
+                            <span class="material-symbols-outlined">
                                     local_hospital
-                                </span></td>
+                                </span>
                             </td>
                             <td class="hname">구로구 보건소</td>
                         </tr>
@@ -140,8 +140,8 @@
                     </table>
                 </div>
                 <div class="right2">
-                    <a href="${contextPath }/hosDetail"><button class="rbt" type="button">다시예약</button></a>
-                    <a href="${contextPath }/resDetail"><button class="rbt" type="button">예약확인</button></a>
+                    <a href="${contextPath }/hospital/detail"><button class="rbt" type="button">다시예약</button></a>
+                    <a href="${contextPath }/myPage/reservation/detail"><button class="rbt" type="button">예약확인</button></a>
                 </div>
             </div>
 
