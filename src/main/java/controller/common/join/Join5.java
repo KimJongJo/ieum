@@ -1,4 +1,4 @@
-package controller.common;
+package controller.common.join;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SignUp4_2
+ * Servlet implementation class SignUp5
  */
-@WebServlet("/join4_2")
-public class Join4_2 extends HttpServlet {
+@WebServlet("/join5")
+public class Join5 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Join4_2() {
+    public Join5() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +26,19 @@ public class Join4_2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/common/join/join4-2.jsp").forward(request, response);
+		request.getRequestDispatcher("/common/join/join5.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+//		회원가입 요청 처리 코드 추가해야함
+		
+		response.sendRedirect(request.getContextPath() + "/join5");
+		
 	}
 
 }

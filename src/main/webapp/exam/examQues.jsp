@@ -54,8 +54,8 @@
             </div>
 
             <div class="btn">
-                <a href="${contextPath }/examList"><button type="button" class="white">그만두기</button></a>
-                <a href="${contextPath }/examResult"><button type="button" class="blue">결과확인</button></a>
+                <a href="${contextPath }/exam"><button type="button" class="white">그만두기</button></a>
+                <a href="${contextPath }/exam/result"><button type="button" class="blue">결과확인</button></a>
             </div>
         </div>
 

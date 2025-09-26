@@ -7,10 +7,15 @@ body {
     color: #000000;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .container {
     width: 1280px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 /* 필터 공통 */

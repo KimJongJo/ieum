@@ -33,7 +33,7 @@ public class Notice extends HttpServlet {
 			if (nNo != null) request.getRequestDispatcher("notice/noticeDetail.jsp").forward(request, response);
 			else request.getRequestDispatcher("notice/noticeList.jsp").forward(request, response);
 		} catch(Exception e) {
-			
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 

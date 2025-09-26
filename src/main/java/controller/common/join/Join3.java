@@ -1,4 +1,4 @@
-package controller.common;
+package controller.common.join;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class FindId2
+ * Servlet implementation class SignUp3
  */
-@WebServlet("/findId2")
-public class FindId2 extends HttpServlet {
+@WebServlet("/join3")
+public class Join3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindId2() {
+    public Join3() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,13 +27,13 @@ public class FindId2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
-		
+		String diaryPrivate = request.getParameter("agree3");
 		HttpSession session = request.getSession();
-		String userType =  request.getParameter("userType");
-		session.setAttribute("userType", userType);
+		session.setAttribute("diaryPrivate", diaryPrivate);
 		
-		request.getRequestDispatcher("/common/findId/findId2.jsp").forward(request, response);;
+		request.getRequestDispatcher("/common/join/join3.jsp").forward(request, response);
 	}
 
 	/**

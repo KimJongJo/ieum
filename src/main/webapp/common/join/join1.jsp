@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join1.css" />
     </head>
     <body>
+    	<%@ include file="../header/userHeader.html" %>
         <div class="main">
             <div class="main-div">
                 <div class="chap-div">

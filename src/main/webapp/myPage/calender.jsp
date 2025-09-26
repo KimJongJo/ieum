@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/footer.css"></link>
-<link rel="stylesheet" href="css/calender.css"></link>
-<script src="js/calender.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
+<script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script>
 <style>
 </style>
 
@@ -37,14 +37,14 @@
                 </div>
                 <div class="sidebar-body">
                      <ul>
-				        <li><button type="button">나의 기본 정보</button></li>
-				        <li><button type="button">예약 내역</button></li>
-				        <li><button type="button">진단 이력</button></li>
-				        <li><button type="button">나의 커뮤니티</button></li>
-				        <li><button type="button">차단 목록</button></li>
-				        <li><button type="button">다이어리</button></li>
-				        <li><button type="button">즐겨찾는 병원</button></li>
-				    </ul>
+					    <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
+					    <li><button type="button">예약 내역</button></li>
+					    <li><button type="button">진단 이력</button></li>
+					    <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
+					    <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
+					    <li><button type="button">다이어리</button></li>
+					    <li><button type="button">즐겨찾는 병원</button></li>
+					</ul>
                 </div>
             </div>
         </div>
