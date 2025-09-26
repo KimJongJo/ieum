@@ -1,4 +1,5 @@
-.main {
+			.main {
+				min-width:1150px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -155,6 +156,7 @@
             .email-check {
                 margin-bottom: 15px;
             }
+            
 
             .auth-icon {
                 display: none;

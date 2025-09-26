@@ -53,7 +53,7 @@
                                             <td></td>
                                             <td>
                                                 <div style="height: 60px">
-                                                    <img src="./image/인증확인아이콘.png" alt="" style="width: 50px" class="auth-icon" />
+                                                    <img src="${pageContext.request.contextPath}/img/인증확인아이콘.png" alt="" style="width: 50px" class="auth-icon" />
                                                 </div>
                                             </td>
                                             <td></td>
@@ -62,7 +62,9 @@
                                 </div>
                                 <div>
                                     <div class="right-under-div">
-                                        <div><span class="email-check">이메일을 인증해주세요</span></div>
+                                        <div>
+                                        	<span class="email-check">이메일을 인증해주세요</span>
+                                        </div>
 
                                         <button onclick="location.href='/ieum/findId3'" class="next-btn">다음으로</button>
                                     </div>

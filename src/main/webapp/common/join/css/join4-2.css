@@ -1,4 +1,5 @@
-.main {
+			.main {
+				min-width:1150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -337,7 +338,6 @@
                 color: white;
                 border-radius: 5px;
                 border: none;
-                margin-right: 5px;
                 transition-duration: 0.2s;
                 cursor: pointer;
             }
