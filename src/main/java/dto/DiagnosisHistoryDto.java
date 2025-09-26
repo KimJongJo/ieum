@@ -17,6 +17,11 @@ public class DiagnosisHistoryDto {
 	String doctorComment;
 	String patientComment;
 	String stats;
+	
+	public DiagnosisHistoryDto() {
+		super();
+	}
+	
 	public DiagnosisHistoryDto(Integer diagnosisNo, Integer patientId, Integer doctorId, Integer hospitalId,
 			String diagnosisName, String sympotoms, String testSummary, String treatment, String prescription,
 			Date visitDatetime, String visitType, String doctorComment, String patientComment, String stats) {
@@ -36,9 +41,7 @@ public class DiagnosisHistoryDto {
 		this.patientComment = patientComment;
 		this.stats = stats;
 	}
-	public DiagnosisHistoryDto() {
-		super();
-	}
+	
 	@Override
 	public String toString() {
 		return "diagnosisHistory [diagnosisNo=" + diagnosisNo + ", patientId=" + patientId + ", doctorId=" + doctorId

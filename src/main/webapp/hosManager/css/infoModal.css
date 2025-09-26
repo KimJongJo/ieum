@@ -101,6 +101,8 @@
 			    overflow: auto;   /* 내용이 화면보다 크면 스크롤 가능 */
 			    padding: 20px;    /* 안쪽 여백 */
 			    box-sizing: border-box;
+			    justify-content:center;
+			    align-items:center;
 			}
 			
 			/* 모달 안의 내용 중앙 정렬 */

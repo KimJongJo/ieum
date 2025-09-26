@@ -3,21 +3,21 @@ package dto;
 import java.sql.Date;
 
 public class NoticeDto {
-	Integer nNo;
-	Date nCreated;
-	Date nUpdated;
-	Integer uNo;
-	String title;
-	String content;
-	Boolean isPinned;
-	Integer fileId;
+	Integer nNo; // 공지사항 번호
+	Date nCreated; // 작성일
+	Date nUpdated; // 수정일
+	Integer uNo; // 작성자 번호
+	String title; // 제목
+	String content; // 내용
+	Boolean isPinned; // 상단고정여부
+	Integer fileNo; // 파일 번호
 	
 	
 	public NoticeDto() {}
 	
 	
 	public NoticeDto(Integer nNo, Date nCreated, Date nUpdated, Integer uNo, String title, String content,
-			Boolean isPinned, Integer fileId) {
+			Boolean isPinned, Integer fileNo) {
 		super();
 		this.nNo = nNo;
 		this.nCreated = nCreated;
@@ -26,13 +26,13 @@ public class NoticeDto {
 		this.title = title;
 		this.content = content;
 		this.isPinned = isPinned;
-		this.fileId = fileId;
+		this.fileNo = fileNo;
 	}
 	
 	@Override
 	public String toString() {
 		return "notice [nNo=" + nNo + ", nCreated=" + nCreated + ", nUpdated=" + nUpdated + ", uNo=" + uNo + ", title="
-				+ title + ", content=" + content + ", isPinned=" + isPinned + ", fileId=" + fileId + "]";
+				+ title + ", content=" + content + ", isPinned=" + isPinned + ", fileNo=" + fileNo + "]";
 	}
 
 
@@ -107,12 +107,12 @@ public class NoticeDto {
 
 
 	public Integer getFileId() {
-		return fileId;
+		return fileNo;
 	}
 
 
-	public void setFileId(Integer fileId) {
-		this.fileId = fileId;
+	public void setFileId(Integer fileNo) {
+		this.fileNo = fileNo;
 	}
 	
 }
