@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>건강이음 - 공지사항 목록</title>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/noticeList.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/notice/css/noticeList.css">
 <link rel="stylesheet" type="text/css"
-	href="../common/pagination/page.css">
+	href="${contextPath}/common/pagination/page.css">
 <link rel="stylesheet" type="text/css"
-	href="../common/searchBox/search.css">
+	href="${contextPath}/common/searchBox/search.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -33,18 +35,21 @@
 		</div>
 
 		<div class="list-section">
-			<div class="notice-list">
-				<img class="notice-img" src="">
-				<div class="notice-item">
-					<div class="notice-title-row">
-						<span class="notice-title">구로 보건소 9월 22일부터 휴진 실시</span>
-						<div class="top-notice">공지</div>
+			<a href="${contextPath}/notice?nNo=1">
+				<div class="notice-list">
+					<img class="notice-img" src="">
+					<div class="notice-item">
+						<div class="notice-title-row">
+							<span class="notice-title">구로 보건소 9월 22일부터 휴진 실시</span>
+							<div class="top-notice">공지</div>
+						</div>
+						<span class="notice-content cate">보건이슈</span> <span
+							class="notice-content content">비급여 가격을</span> <span
+							class="notice-content date">게시일 2025-09-03</span>
 					</div>
-					<span class="notice-content cate">보건이슈</span> <span
-						class="notice-content content">비급여 가격을</span> <span
-						class="notice-content date">게시일 2025-09-03</span>
 				</div>
-			</div>
+			</a>
+
 			<!-- 동일 항목 반복 -->
 			<div class="notice-list">
 				<img class="notice-img" src="">
@@ -158,12 +163,6 @@
 			<div class="notice-footer">
 				<!-- 페이지네이션 -->
 				<jsp:include page="../common/pagination/page.html"></jsp:include>
-				<!-- 작성하기 버튼 - 관리자만 노출 설정 -->
-				<div class="button-wrapper">
-					<a class="btn-link" href="">
-						<div class="primary-big-btn">작성</div>
-					</a>
-				</div>
 			</div>
 		</div>
 	</div>

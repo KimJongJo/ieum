@@ -120,6 +120,10 @@
 	color: #b5b7c0;
 }
 
+.notice-item{
+	cursor: pointer;
+}
+
 .n-t-td {
 	text-align: center;
 }

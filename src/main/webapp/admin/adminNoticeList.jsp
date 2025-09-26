@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/noticeList.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/admin/css/noticeList.css">
 <link rel="stylesheet" type="text/css"
-	href="../common/header/adminHeader.css">
+	href="${contextPath}/css/adminHeader.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<script src="${contextPath}/admin/js/notice.js"></script>
 <title>건강이음 - 공지사항관리 목록</title>
 </head>
 <body>
@@ -46,7 +49,7 @@
 							<td class="n-t-th">최근수정일</td>
 							<td class="n-t-th">관리</td>
 						</tr>
-						<tr>
+						<tr class="notice-item">
 							<td class="checkinput"><input type="checkbox" /></td>
 							<td class="n-t-td">93</td>
 							<td class="n-t-td">구로구 병원 휴진일 공고</td>
@@ -55,7 +58,7 @@
 							<td class="n-t-td">2025-09-06</td>
 							<td class="n-t-td"><button class="n-update">수정</button>
 								<button class="n-delete">삭제</button></td>
-						</tr>
+						</tr>					
 						<tr>
 							<td class="checkinput"><input type="checkbox" /></td>
 							<td class="n-t-td">93</td>
@@ -127,12 +130,19 @@
 								<button class="n-delete">삭제</button></td>
 						</tr>
 					</table>
-					<div class="page-nav">
-						<a href="#"><i class="fa-solid fa-chevron-left"></i></a> <a
-							href="#" class="cur-page">1</a> <a href="#">2</a> <a href="#">3</a>
-						<a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a>
-						<a href="#">8</a> <a href="#">9</a> <a href="#">10</a> <a href="#"><i
-							class="fa-solid fa-chevron-right"></i></a>
+					<div class="notice-footer">
+						<div class="page-nav">
+							<a href="#"><i class="fa-solid fa-chevron-left"></i></a> <a
+								href="#" class="cur-page">1</a> <a href="#">2</a> <a href="#">3</a>
+							<a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a>
+							<a href="#">8</a> <a href="#">9</a> <a href="#">10</a> <a
+								href="#"><i class="fa-solid fa-chevron-right"></i></a>
+						</div>
+						<div class="button-wrapper">
+							<a class="btn-link" href="${contextPath}/admin/notice/write">
+								<div class="primary-big-btn">작성</div>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

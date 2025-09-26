@@ -4,14 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/noticeDetail.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" type="text/css"
-	href="../common/header/adminHeader.css">
+	href="${contextPath}/admin/css/noticeDetail.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/css/adminHeader.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<script src="${contextPath}/admin/js/notice.js"></script>
 <title>건강이음 - 공지사항관리 상세</title>
 </head>
 <body>
@@ -20,7 +24,8 @@
 		<div class="main-div">
 			<div class="under-section">
 				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
-				<div class="notice-container">
+				<form method="get">
+					<div class="notice-container">
 					<!-- 제목 -->
 					<div class="notice-header">
 						<div class="tag">공지</div>
@@ -71,17 +76,15 @@
 					<!-- 버튼 -->
 					<div class="notice-footer">
 						<div class="button-wrapper">
-							<a class="btn-link" href="">
+							<a class="btn-link" href="${contextPath}/admin/notice">
 								<div class="basic-big-btn">목록</div>
-							</a> <a class="btn-link" href="">
-								<div class="primary-big-btn">수정</div>
-							</a> <a class="btn-link" href="">
-								<div class="primary-big-btn">삭제</div>
 							</a>
+							<button formaction="${contextPath}/admin/notice/write" type="submit" class="primary-big-btn" id="updateBtn">수정</button>
+							<button formaction="${contextPath}/admin/notice" type="submit" class="primary-big-btn" id="delBtn">삭제</button>
 						</div>
 					</div>
 				</div>
-
+				</form>
 			</div>
 		</div>
 	</div>
