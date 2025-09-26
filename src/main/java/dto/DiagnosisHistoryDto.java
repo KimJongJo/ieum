@@ -3,20 +3,20 @@ package dto;
 import java.sql.Date;
 
 public class DiagnosisHistoryDto {
-	Integer diagnosisNo;
-	Integer patientId;
-	Integer doctorId;
-	Integer hospitalId;
-	String diagnosisName;
-	String sympotoms;
-	String testSummary;
-	String treatment;
-	String prescription;
-	Date visitDatetime;
-	String visitType;
-	String doctorComment;
-	String patientComment;
-	String stats;
+	Integer diagnosisNo; //진단 번호
+	Integer patientId; // 환자 id
+	Integer doctorId; // 의사 id
+	Integer hospitalId; // 병원 id
+	String diagnosisName; // 진단명
+	String sympotoms; // 증상
+	String testSummary; // 검사결과요약
+	String treatment; // 처치수술내용
+	String prescription; // 처방전
+	Date visitDatetime; // 진료일시
+	String visitType; // 진료유형
+	String doctorComment; // 의사의 말
+	String patientComment; // 환자 메모
+	String stats; // 진단서 작성상태
 	
 	public DiagnosisHistoryDto() {
 		super();

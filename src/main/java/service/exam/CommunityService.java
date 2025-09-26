@@ -1,4 +1,4 @@
-package service;
+package service.exam;
 
 import dto.CommunityDto;
 

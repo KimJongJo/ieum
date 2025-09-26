@@ -1,4 +1,4 @@
-package service;
+package service.allCommunity;
 
 import org.apache.ibatis.session.SqlSession;
 
