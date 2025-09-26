@@ -116,7 +116,6 @@
 
         <div class="tab1 active" id="tab1">
             <div class="hosinft">
-                <!-- <div class="mtitle">병원소개</div> -->
                 <div class="mtitle">
                     <span class="mtitle-span">병원소개</span>
                 </div>
@@ -163,7 +162,7 @@
             </div>
             
             <div class="btn">
-            <a href="${contextPath }/hosSearch"><button type="button" class="white">이전으로</button></a>
+            <a href="${contextPath }/hospital/search"><button type="button" class="white">이전으로</button></a>
             <button type="button" class="blue">예약하기</button>
         	</div>
         
@@ -251,8 +250,8 @@
             </div>
             
             <div class="btn">
-            <a href="${contextPath }/hosDetail"><button type="button" class="white">그만두기</button></a>
-            <a href="${contextPath }/resContent"><button type="button" class="blue">다음으로</button></a>
+            <a href="${contextPath }/hospital/detail"><button type="button" class="white">그만두기</button></a>
+            <a href="${contextPath }/reservation/content"><button type="button" class="blue">다음으로</button></a>
         	</div>
         </div>
     </div>

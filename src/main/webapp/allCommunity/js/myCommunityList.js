@@ -51,6 +51,5 @@ $(document).ready(function() {
         $frame.show();     // 좋아요 누른 게시판도 게시판처럼
         $comment.hide();
     });
-
 });
 

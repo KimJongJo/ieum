@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ResList
  */
-@WebServlet("/resList")
+@WebServlet("/myPage/reservation/list")
 public class ResList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

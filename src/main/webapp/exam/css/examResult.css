@@ -6,6 +6,11 @@ body {
     color: #000000;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .container {
     margin-top: 110px;
     width: 1280px;

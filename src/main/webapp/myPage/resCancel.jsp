@@ -21,8 +21,8 @@
         </div>
 
         <div class="btn">
-            <a href="${contextPath }/resList"><button type="button" class="white">확인</button></a>
-            <a href="${contextPath }/hosSearch"><button type="button" class="blue">예약하기</button></a>
+            <a href="${contextPath }/myPage/reservation/list"><button type="button" class="white">확인</button></a>
+            <a href="${contextPath }/hospital/search"><button type="button" class="blue">예약하기</button></a>
 
         </div>
     </div>
