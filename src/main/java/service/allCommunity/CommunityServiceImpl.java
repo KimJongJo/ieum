@@ -20,5 +20,10 @@ public class CommunityServiceImpl implements CommunityService{
 	public Integer insertCommunity(CommunityDto community) throws Exception {
 		communityDao.insert(community);
 		return community.getCommuNO();
+	}
+
+	@Override
+	public CommunityDto selectByNo(Integer commuNo) throws Exception {
+		return session.selectOne("mapper.community.selectByNo", commuNo);
 	} 
 }
