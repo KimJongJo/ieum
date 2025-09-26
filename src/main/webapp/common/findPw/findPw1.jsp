@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/findPw1.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/findPw/css/findPw1.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="btn-div">
-                            <button class="sign-btn">변경하기</button>
+                            <button onclick="location.href='/ieum/findPw2'" class="sign-btn">변경하기</button>
                             <button class="no-btn">취소</button>
                         </div>
                     </div>

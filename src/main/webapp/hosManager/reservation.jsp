@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/manager.css" />
-        <link rel="stylesheet" href="css/managerHeader.css" />
-        <link rel="stylesheet" href="css/reservation.css" />
-        <link rel="stylesheet" href="css/patientInfo.css" />
-        <link rel="stylesheet" href="css/infoModal.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservation.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
         
     </head>
     <body>
@@ -92,8 +92,8 @@
                 </div>
             </div>
         </div>
-        <script src="js/managerHeader.js"></script>
-        <script src="js/modal1.js"></script>
-        <script src="js/modal3.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/modal1.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/modal3.js"></script>
     </body>
 </html>

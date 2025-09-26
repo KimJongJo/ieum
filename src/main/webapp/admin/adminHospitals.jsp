@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./css/admin.css" />
-        <link rel="stylesheet" href="adminNav.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
     </head>
     <body>
         <div class="main">

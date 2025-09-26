@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class CommunityWrite
+ * Servlet implementation class NextPage
  */
-@WebServlet("/write1")
-public class CommunityWrite extends HttpServlet {
+@WebServlet("/nextPage")
+public class NextPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityWrite() {
+    public NextPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,18 +27,14 @@ public class CommunityWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		String userType = (String)session.getAttribute("userType");
 		
+		if(userType.equals("USER")) {
+			response.sendRedirect(request.getContextPath() + "/join4_1");
+		}else {
+			response.sendRedirect(request.getContextPath() + "/join4_2");
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String categoryNostr = request.getParameter("categoryNo");
-		
-	}
 }

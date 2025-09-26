@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/signUp1.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join1.css" />
     </head>
     <body>
         <div class="main">
@@ -73,30 +73,31 @@
 
                 <div class="signup-type">
                     <span class="type-span">회원가입유형</span>
-                    <div class="under-div">
+                    <form action="/ieum/join2" method="get" class="under-div">
+                    	<input type="hidden" name="userType" id="usertypeInput">
                         <div class="select-type-div">
                             <div class="type-div">
                                 <span class="type-name">일반 회원</span>
-                                <img src="./image/일반회원.png" alt="" class="type-img" />
+                                <img src="${pageContext.request.contextPath}/img/일반회원.png" alt="" class="type-img" />
                                 <div class="span-div">
                                     <span>편리하게 병원 진료를 예약하고 기록을 확인할 수 있습니다.</span>
                                     <span>서비스 이용을 위해 간단한 회원가입을 진행해주세요.</span>
                                 </div>
-                                <button class="select-btn">선택하기</button>
+                                <button class="select-btn" onclick="submitForm('USER')">선택하기</button>
                             </div>
                         </div>
                         <div class="select-type-div">
                             <div class="type-div">
-                                <span class="type-name">일반 회원</span>
-                                <img src="./image/병원관리자.png" alt="" class="type-img" />
+                                <span class="type-name">병원 관리자</span>
+                                <img src="${pageContext.request.contextPath}/img/병원관리자.png" alt="" class="type-img" />
                                 <div class="span-div">
                                     <span>편리하게 병원 진료를 예약하고 기록을 확인할 수 있습니다.</span>
                                     <span>서비스 이용을 위해 간단한 회원가입을 진행해주세요.</span>
                                 </div>
-                                <button class="select-btn">선택하기</button>
+                                <button class="select-btn" onclick="submitForm('HOSMANAGER')">선택하기</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div>
                     <span class="type-span">가입 안내</span>
@@ -126,5 +127,13 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+	        function submitForm(usertype) {
+	            document.getElementById('usertypeInput').value = usertype;
+	            
+	            console.log(usertype);
+	        }
+        </script>
     </body>
 </html>

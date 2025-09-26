@@ -1,4 +1,4 @@
-package controller.myPage;
+package controller.common;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityWrite
+ * Servlet implementation class SignUp3
  */
-@WebServlet("/write6")
-public class CommunityWrite extends HttpServlet {
+@WebServlet("/join3")
+public class Join3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityWrite() {
+    public Join3() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,18 +26,15 @@ public class CommunityWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/common/join/join3.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String categoryNostr = request.getParameter("categoryNo");
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
 }

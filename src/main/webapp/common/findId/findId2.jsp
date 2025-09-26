@@ -6,7 +6,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/findId2.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/findId/css/findId2.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -24,7 +24,7 @@
                         <div class="type-div">
                             <span class="email-text">이메일</span>
                             <div class="email-div">
-                                <img src="./image/이메일아이콘.png" alt="" width="40px" height="40px" />
+                                <img src="${pageContext.request.contextPath}/img/이메일아이콘.png" alt="" width="40px" height="40px" />
                             </div>
 
                             <div class="email-span">
@@ -64,7 +64,7 @@
                                     <div class="right-under-div">
                                         <div><span class="email-check">이메일을 인증해주세요</span></div>
 
-                                        <button class="next-btn">다음으로</button>
+                                        <button onclick="location.href='/ieum/findId3'" class="next-btn">다음으로</button>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                 <div class="find-pw-nav">
                     <span>비밀번호를 잊으셨나요? <i class="fa-solid fa-arrow-right"></i></span>
 
-                    <a href="">비밀번호 찾기</a>
+                    <a href="/ieum/findPw1">비밀번호 찾기</a>
                 </div>
             </div>
         </div>

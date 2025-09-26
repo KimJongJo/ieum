@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="css/signUp2.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join2.css" />
 
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -171,17 +171,19 @@
             </div>
         </div>
         <script>
-            $(function () {
-                $("#agree-btn").click(function () {
-                    let selected = $('input[name="agree"]:checked').val();
-                    let selected2 = $('input[name="agree2"]:checked').val();
-                    if (selected === "yes" && selected2 === "yes") {
-                        console.log("동의함");
-                    } else {
-                        console.log("이벤트 막음");
-                    }
-                });
-            });
+	        $(function () {
+	            $("#agree-btn").click(function () {
+	                let selected = $('input[name="agree"]:checked').val();
+	                let selected2 = $('input[name="agree2"]:checked').val();
+	                let selected3 = $('input[name="agree3"]:checked').val(); // 새로 추가
+	
+	                if (selected === "yes" && selected2 === "yes" && selected3) {
+	                	 window.location.href = "/ieum/join3";
+	                } else {
+	                    console.log("이벤트 막음");
+	                }
+	            });
+	        });
         </script>
     </body>
 </html>

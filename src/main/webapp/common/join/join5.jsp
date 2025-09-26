@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="css/signUp5.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join5.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -24,7 +24,7 @@
                     <span class="type">회원정보 변경은 로그인 후 <회원정보수정> 에서 하실 수 있습니다.</span>
                 </div>
                 <div class="btn-div">
-                    <button class="log-btn">로그인</button>
+                    <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
                     <button class="home-btn">홈화면</button>
                 </div>
             </div>

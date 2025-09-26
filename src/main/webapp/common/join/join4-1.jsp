@@ -5,21 +5,19 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="css/signUp4-2.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join4-1.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript"></script>
-        <script>
-            $(function () {
-                $("#major-select").on("change", function () {
-                    if ($(this).val() === "doctor") {
-                        $("#doctor-major").prop("disabled", false);
-                    } else {
-                        $("#doctor-major").prop("disabled", true);
-                    }
-                });
-            });
-        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		  <script>
+		    $(function() {
+		      
+		    	$("#signUp-btn").click(function(){
+		    		
+		    	})
+		    	
+		    });
+		  </script>
+
     </head>
     <body>
         <div class="main">
@@ -84,14 +82,23 @@
                     </div>
                 </div>
                 <div>
-                    <form action="">
+                    <form action="/ieum/join5" method="post">
                         <div class="info-box">
                             <div class="line-div">
                                 <div class="span-div">
-                                    <span class="info">성명</span>
+                                    <span class="info" id=input-name>성명</span>
                                 </div>
                                 <div class="input-div">
                                     <input type="text" class="input-div-input" />
+                                </div>
+                            </div>
+                            <div class="line-div2">
+                                <div class="span-div2">
+                                    <span class="info" id=input-nickname>닉네임</span>
+                                </div>
+                                <div class="input-div2 input">
+                                    <input type="text" class="input-div-input" />
+                                    <span class="nick-content">닉네임은 회원정보수정에서 변경할 수 있습니다.</span>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -100,22 +107,22 @@
                                 </div>
                                 <div class="input-div2 input">
                                     <select name="" id="year" name="year" class="year date">
-                                        <option value="">년도</option>
+                                        <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>
                                     <select name="" id="month" name="month" class="month date">
-                                        <option value="">월</option>
+                                        <option value="none">월</option>
                                     </select>
                                     <span class="text">월</span>
                                     <select name="" id="day" name="day" class="day date">
-                                        <option value="">일</option>
+                                        <option value="none">일</option>
                                     </select>
                                     <span class="text">일</span>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2">
-                                    <span class="info">아이디</span>
+                                    <span class="info" id=input-id>아이디</span>
                                 </div>
                                 <div class="input-div2 input">
                                     <input type="text" class="login-input" />
@@ -124,7 +131,7 @@
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2">
-                                    <span class="info">비밀번호</span>
+                                    <span class="info" id=input-pw>비밀번호</span>
                                 </div>
                                 <div class="input-div2 input">
                                     <input type="password" class="login-input" id="pw" />
@@ -151,7 +158,7 @@
                                     <span class="info">성별</span>
                                 </div>
                                 <div class="input-div2 gender input">
-                                    <input type="radio" id="man" name="gender" /><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
+                                    <input type="radio" id="man" name="gender" checked/><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -161,9 +168,9 @@
                                 <div class="input-div2 input tel-div">
                                     <input type="tel" size="4" value="010" disabled class="tel" />
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel1/>
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel2/>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -176,38 +183,24 @@
                                     <input type="email" class="input-div-email" disabled />
                                 </div>
                             </div>
-                            <div class="check-pw2">
-                                <div class="span-div2-pw2">
-                                    <span class="info">소속병원 및 병원코드</span>
+                            <div class="check-pw">
+                                <div class="span-div2-pw">
+                                    <span class="info">주소</span>
                                 </div>
-                                <div class="input-div2-pw2 input">
-                                    <div class="input-div2-addr">
-                                        <input type="text" class="login-input" />
-                                        <button class="signUp-btn" type="button">병원검색</button>
+                                <div class="input-div2-pw input">
+                                    <div class="input-div2-pw-div">
+                                        <input type="text" class="login-input" id="postcode" disabled/>
+                                        <button class="signUp-btn" onclick="searchAddr()" id="search-postcode" type="button">주소 검색</button>
                                     </div>
-                                    <div class="input-div2-addr">
-                                        <input type="tel" placeholder="병원코드입력" class="login-input" />
-                                        <button class="signUp-btn" type="button">인증</button>
-                                    </div>
-                                    <div class="major-div">
-                                        <select class="major-select" id="major-select">
-                                            <option value="doctor">의사</option>
-                                            <option value="normal">병원관리자</option>
-                                        </select>
-                                        <select class="major-select" id="doctor-major">
-                                            <option>정신건강의학과</option>
-                                            <option>소아청소년 정신과</option>
-                                            <option>노인정신과</option>
-                                            <option>중독,재활 정신과</option>
-                                            <option>심리치료/상담</option>
-                                        </select>
+                                    <div class="address-div">
+                                        <input type="text" class="first-address addr" id="address-auto" disabled/>
+                                        <input type="text" class="detail-address addr" id="address-detail" placeholder="상세 주소를 입력해주세요." />
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-div">
-                            <button class="sign-btn">가입하기</button>
-                            <button class="no-btn">취소</button>
+                            <button class="sign-btn" id="signUp-btn">가입하기</button>
                         </div>
                     </form>
                 </div>
@@ -289,6 +282,34 @@
                     pwch2.textContent = "보기";
                 }
             });
+            
+            
         </script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+	        function searchAddr() {
+	        	
+	            new daum.Postcode({
+	                oncomplete: function(data) {
+	                	
+	                	var addr = ''; // 주소 변수
+	                	
+	                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                }
+	                    
+	                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                    document.getElementById("postcode").value = data.zonecode;
+	                    document.getElementById("address-auto").value = addr;
+	                    // 커서를 상세주소 필드로 이동한다.
+	                    document.getElementById("address-detail").focus();
+	                }
+	            }).open();
+	        }
+        </script>
+        
     </body>
 </html>

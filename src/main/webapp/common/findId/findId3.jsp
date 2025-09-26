@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/findId3.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/common/findId/css/findId3.css" />
     </head>
     <body>
         <div class="main">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="btn-div">
-                    <button class="log-btn">로그인</button>
+                    <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
                     <button class="home-btn">홈화면</button>
                 </div>
             </div>

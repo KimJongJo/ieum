@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/common/login/css/login.css" />
     </head>
     <body>
         <div class="main">
@@ -37,17 +37,17 @@
                 </form>
                 <div class="nav-div">
                     <div class="navigation">
-                        <a href=""><span class="nav">회원가입</span></a>
-                        <a href=""><span class="nav">아이디 찾기</span></a>
-                        <a href=""><span class="nav">비밀번호 찾기</span></a>
+                        <a href="/ieum/join1"><span class="nav">회원가입</span></a>
+                        <a href="/ieum/findId1"><span class="nav">아이디 찾기</span></a>
+                        <a href="/ieum/findPw1"><span class="nav">비밀번호 찾기</span></a>
                     </div>
                 </div>
 
                 <div class="button-div">
                     <div class="social-login-btn-div">
-                        <a href=""><img src="../../img/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
-                        <a href=""><img src="../../img/네이버로그인.png" alt="" width="45px" class="Nimg" /></a>
-                        <a href=""><img src="../../img/구글로그인.png" alt="" width="45px" class="Gimg" /></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/img/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/img/네이버로그인.png" alt="" width="45px" class="Nimg" /></a>
+                        <a href=""><img src="${pageContext.request.contextPath}/img/구글로그인.png" alt="" width="45px" class="Gimg" /></a>
                     </div>
                 </div>
             </div>

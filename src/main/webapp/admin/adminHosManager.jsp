@@ -7,8 +7,8 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="./css/admin.css" />
-        <link rel="stylesheet" href="adminNav.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
     </head>
     <body>
         <div class="main">
@@ -201,7 +201,7 @@
                 </div>
             </div>
         </div>
-        <script src="adminNav.js"></script>
-        <script src="./adminModal.js"></script>
+        <script src="${pageContext.request.contextPath}/admin/js/adminNav.js"></script>
+        <script src="${pageContext.request.contextPath}/admin/js/adminModal.js"></script>
     </body>
 </html>
