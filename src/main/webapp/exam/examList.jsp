@@ -35,7 +35,7 @@
                 <table class="elc">
                     <tr>
                     <td>
-                     <a href="${contextPath}/examQues">
+                     <a href="${contextPath}/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">강박장애</span>
@@ -43,7 +43,7 @@
                      		</a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">게임 생활습관</span>
@@ -51,7 +51,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">공황장애</span>
@@ -59,7 +59,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">노인 우울장애</span>
@@ -69,7 +69,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">범 불안장애</span>
@@ -77,7 +77,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">스마트폰 생활습관</span>
@@ -85,7 +85,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">아동용 ADHD</span>
@@ -93,7 +93,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">알코올 중독</span>
@@ -103,7 +103,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">양극성장애</span>
@@ -111,7 +111,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">외상후 스트레스</span>
@@ -119,7 +119,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">우울증</span>
@@ -127,7 +127,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인지장애(보호자)</span>
@@ -137,7 +137,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인지장애(치매)</span>
@@ -145,7 +145,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">인터넷 생활습관</span>
@@ -153,7 +153,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">자살</span>
@@ -161,7 +161,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">정신장애</span>
@@ -171,7 +171,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">조기정신증</span>
@@ -179,7 +179,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">청소년자해</span>
@@ -187,7 +187,7 @@
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/examQues">
+                        <a href="${contextPath }/exam/examques">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">청소년조울병(보호자)</span>

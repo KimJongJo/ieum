@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ResCancel
  */
-@WebServlet("/resCancel")
+@WebServlet("/myPage/reservation/cancel")
 public class ResCancel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

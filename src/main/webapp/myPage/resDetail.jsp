@@ -46,8 +46,8 @@
                     </div>
 
                     <div class="right">
-                        <button class="w" type="button">예약취소</button>
-                        <a href="${contextPath }/hosDetail"><button class="w" type="button">예약변경</button></a>
+                        <a><button class="w" type="button">예약취소</button></a>
+                        <a href="${contextPath }/hospital/detail"><button class="w" type="button">예약변경</button></a>
                     </div>
                 </div>
 
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="right1">
-                        <a href="${contextPath }/hosDetail"><button class="hosd" type="button">
+                        <a href="${contextPath }/hospital/detail"><button class="hosd" type="button">
                             <div class="icon2"><i class="fa-solid fa-square-h"></i></div>병원상세
                         </button></a>
                     </div>
