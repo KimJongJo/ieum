@@ -1,18 +1,18 @@
 package dto;
 
-public class CategoryDto {
+public class CommuCategoryDto {
 	Integer categoryNo;
 	String categoryName;
 	
 	
 	
-	public CategoryDto() {
+	public CommuCategoryDto() {
 		super();
 	}
 
 
 
-	public CategoryDto(Integer categoryNo, String categoryName) {
+	public CommuCategoryDto(Integer categoryNo, String categoryName) {
 		super();
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;

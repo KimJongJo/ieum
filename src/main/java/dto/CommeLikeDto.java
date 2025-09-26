@@ -1,13 +1,13 @@
 package dto;
 
-public class commeLikeDto {
+public class CommeLikeDto {
 	Integer commmeLikeOn;
 	Integer uNo;
 	Integer commeNo;
-	public commeLikeDto() {
+	public CommeLikeDto() {
 		super();
 	}
-	public commeLikeDto(Integer commmeLikeOn, Integer uNo, Integer commeNo) {
+	public CommeLikeDto(Integer commmeLikeOn, Integer uNo, Integer commeNo) {
 		super();
 		this.commmeLikeOn = commmeLikeOn;
 		this.uNo = uNo;
