@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.commu_category">
-	<resultMap id="CategoryResult" type="dto.CategoryDto">
+	<resultMap id="CategoryResult" type="dto.CommuCategoryDto">
         <id property="categoryNo" column="category_no"/>
         <result property="categoryName" column="category_name"/>
     </resultMap>
     
     <select id="selectAll" resultMap="CategoryResult">
-    	select category_no, category_name from category order by category_no
+    	select category_no, category_name from commu_category order by category_no
     </select>
 </mapper>	
