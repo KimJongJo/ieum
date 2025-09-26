@@ -3,39 +3,39 @@ package dto;
 import java.sql.Date;
 
 public class CommentDto {
-	Integer commentNo;
+	Integer commeNo;
 	Integer commuNo;
 	Integer uNo;
-	String comComtent;
+	String comContent;
 	Integer comEmpathy;
 	Date comCreated;
 	Integer comDeclaration; //신고수
 	public CommentDto() {
 		super();
 	}
-	public CommentDto(Integer commentNo, Integer commuNo, Integer uNo, String comComtent, Integer comEmpathy,
+	public CommentDto(Integer commeNo, Integer commuNo, Integer uNo, String comContent, Integer comEmpathy,
 			Date comCreated, Integer comDeclaration) {
 		super();
-		this.commentNo = commentNo;
+		this.commeNo = commeNo;
 		this.commuNo = commuNo;
 		this.uNo = uNo;
-		this.comComtent = comComtent;
+		this.comContent = comContent;
 		this.comEmpathy = comEmpathy;
 		this.comCreated = comCreated;
 		this.comDeclaration = comDeclaration;
 	}
 	@Override
 	public String toString() {
-		return "comment [commentNo=" + commentNo + ", commuNo=" + commuNo + ", uNo=" + uNo + ", comComtent="
-				+ comComtent + ", comEmpathy=" + comEmpathy + ", comCreated=" + comCreated + ", comDeclaration="
+		return "comment [commentNo=" + commeNo + ", commuNo=" + commuNo + ", uNo=" + uNo + ", comComtent="
+				+ comContent + ", comEmpathy=" + comEmpathy + ", comCreated=" + comCreated + ", comDeclaration="
 				+ comDeclaration + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
 	public Integer getCommentNo() {
-		return commentNo;
+		return commeNo;
 	}
 	public void setCommentNo(Integer commentNo) {
-		this.commentNo = commentNo;
+		this.commeNo = commentNo;
 	}
 	public Integer getCommuNo() {
 		return commuNo;
@@ -49,11 +49,11 @@ public class CommentDto {
 	public void setuNo(Integer uNo) {
 		this.uNo = uNo;
 	}
-	public String getComComtent() {
-		return comComtent;
+	public String getConComtent() {
+		return comContent;
 	}
-	public void setComComtent(String comComtent) {
-		this.comComtent = comComtent;
+	public void setConComtent(String comComtent) {
+		this.comContent = comComtent;
 	}
 	public Integer getComEmpathy() {
 		return comEmpathy;
