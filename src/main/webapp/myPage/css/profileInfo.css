@@ -35,7 +35,7 @@ body {
 
 /* 버튼: 내가 직접 위치 지정 가능 */
 #btn-update {
-    padding: 6px 14px;
+    padding: 5px 14px;
     background-color: #366FC6;
     color: #fff;
     border: none;

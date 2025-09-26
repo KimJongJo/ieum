@@ -6,29 +6,10 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/footer.css"></link>
-<link rel="stylesheet" href="css/blackList.css"></link>
-<script src="js/blackList.js"></script>
-<!-- <script>
-window.addEventListener('DOMContentLoaded', () => {
-    // '관리 메뉴' 요소 선택
-    const manageMenu = document.querySelector('.menu span:nth-child(5)');
-    if (manageMenu) {
-        manageMenu.style.display = 'none'; // 메뉴 숨기기
-    }
-});
-</script>
-<script>
-    // 탭 클릭 시 active 바꾸기
-    // 탭 클릭 시 active 바꾸기
-    document.querySelectorAll(".tab").forEach(tab => {
-        tab.addEventListener("click", function() {
-            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-            this.classList.add("active");
-        });
-    });
-</script> -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/blackList.css" />
+<script src="${pageContext.request.contextPath}/myPage/css/blackList.js"></script>
 </head>
 <body>
 
@@ -55,11 +36,11 @@ window.addEventListener('DOMContentLoaded', () => {
 	                </div>
 	                <div class="sidebar-body">
 	                     <ul>
-					        <li><button type="button">나의 기본 정보</button></li>
+					        <a href="/test/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
 					        <li><button type="button">예약 내역</button></li>
 					        <li><button type="button">진단 이력</button></li>
-					        <li><button type="button">나의 커뮤니티</button></li>
-					        <li><button type="button">차단 목록</button></li>
+					        <a href="/test/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
+					        <a href="/test/black"><li><button type="button">차단 목록</button></li></a>
 					        <li><button type="button">다이어리</button></li>
 					        <li><button type="button">즐겨찾는 병원</button></li>
 					    </ul>

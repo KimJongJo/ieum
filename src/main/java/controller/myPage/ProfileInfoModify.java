@@ -1,4 +1,4 @@
-package controller.allCommunity;
+package controller.myPage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommunityDetail
+ * Servlet implementation class ProfileInfoModify
  */
-@WebServlet("/comDetail")
-public class CommunityDetail extends HttpServlet {
+@WebServlet("/pUpdate")
+public class ProfileInfoModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityDetail() {
+    public ProfileInfoModify() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,14 +26,13 @@ public class CommunityDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("allCommunity/communityDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

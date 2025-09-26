@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/footer.css"></link>
-<link rel="stylesheet" href="css/passModify.css"></link>
-<script src="js/passModify.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/passModify.css" />
+<script src="${pageContext.request.contextPath}/myPage/css/passModify.js"></script>
 </head>
 <body>
 
@@ -75,7 +75,7 @@
 			        <input type="password" id="confirm-pass" placeholder="확인 비밀번호를 입력하세요.">
 			    </div>
 			</div>
-			<div id="edit"><button>수정완료</button></div>
+			<div id="edit"><button onclick="location.href='/test/pInfo'">수정완료</button></div>
 		</div>
     </div>
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>

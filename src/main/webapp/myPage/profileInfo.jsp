@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/footer.css"></link>
-<link rel="stylesheet" href="css/profileInfo.css"></link>
-<script src="js/passModify.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfo.css" />
+<script src="${pageContext.request.contextPath}/myPage/css/profileInfo.js"></script>
 </head>
 <body>
 
@@ -19,7 +19,9 @@
 	    <!-- Section Title -->
     <div id="section-title">
         <span>나의 기본 정보</span>
-        <button id="btn-update">수정하기</button>
+        
+        <button onclick="location.href='/test/pUpdate'" id="btn-update">수정하기</button>
+   
     </div>
 
     <!-- Main -->
@@ -36,13 +38,13 @@
                 </div>
                 <div class="sidebar-body">
                      <ul>
-				        <li><button type="button">나의 기본 정보</button></li>
-				        <li><button type="button">예약 내역</button></li>
-				        <li><button type="button">진단 이력</button></li>
-				        <li><button type="button">나의 커뮤니티</button></li>
-				        <li><button type="button">차단 목록</button></li>
-				        <li><button type="button">다이어리</button></li>
-				        <li><button type="button">즐겨찾는 병원</button></li>
+				        <a href="/test/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
+					    <li><button type="button">예약 내역</button></li>
+					    <li><button type="button">진단 이력</button></li>
+					    <a href="/test/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
+					    <a href="/test/black"><li><button type="button">차단 목록</button></li></a>
+					    <li><button type="button">다이어리</button></li>
+					    <li><button type="button">즐겨찾는 병원</button></li>
 				    </ul>
                 </div>
             </div>
@@ -62,7 +64,7 @@
 		                <span id="box7">비밀번호</span>
 		                <span id="box8">
 		                    <!-- 비밀번호 변경 텍스트를 새 박스로 감싸기 -->
-		                    <span id="change-box" class="clickable">비밀번호 변경</span>
+		                    <span onclick="location.href='/test/pModify'" id="change-box" class="clickable">비밀번호 변경</span>
 		                </span>
 		                <span id="box9">주소</span>
 		                <span id="box10">경기도 수원시</span>

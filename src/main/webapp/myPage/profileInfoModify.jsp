@@ -6,11 +6,10 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="../css/header.css"></link>
-<link rel="stylesheet" href="../css/footer.css"></link>
-<link rel="stylesheet" href="css/profileInfoModify.css"></link>
-
-<script src="js/profileInfoModify.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfoModify.css" />
+<script src="${pageContext.request.contextPath}/myPage/css/profileInfoModify.js"></script>
 <!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -136,7 +135,7 @@
                 </div>
                 <div class="form-row">
                     <label>비밀번호 *</label>
-                    <button id="btn1">비밀번호 변경</button>
+                    <button onclick="location.href='/test/pModify'" id="btn1">비밀번호 변경</button>
                 </div>
                 <div class="form-row">
                     <label>전화번호 *</label>
@@ -174,7 +173,7 @@
                 </div>
             </div>
             <div id="edit">
-                <button id="btn2">수정완료</button>
+                <button onclick="location.href='/test/pInfo'" id="btn2">수정완료</button>
             </div>
         </div>
     </div>

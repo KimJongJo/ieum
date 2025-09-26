@@ -33,8 +33,11 @@ public class MyCommunityList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String commuNo = request.getParameter("commu_no"); // 글 번호 받아오기
+	    request.setAttribute("commu_no", commuNo); // comDetail에서 사용할 수 있도록
+
+		
+		response.sendRedirect("comDetail");
 	}
 
 }
