@@ -1,6 +1,6 @@
 package dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DiaryDto {
 	Integer diaryNo;
@@ -9,7 +9,7 @@ public class DiaryDto {
 	Date dUpdated;
 	String title;
 	String content;
-	Integer mood;
+	String mood;
 	
 	
 	public DiaryDto() {
@@ -18,7 +18,7 @@ public class DiaryDto {
 	
 	
 	public DiaryDto(Integer diaryNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content,
-			Integer mood) {
+			String mood) {
 		super();
 		this.diaryNo = diaryNo;
 		this.uNo = uNo;
@@ -28,8 +28,26 @@ public class DiaryDto {
 		this.content = content;
 		this.mood = mood;
 	}
-
 	
+
+	public DiaryDto(Integer uNo, String title, String content, String mood) {
+		super();
+		this.uNo = uNo;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+	}
+
+
+	public DiaryDto(Integer uNo, Date dCreated, String title, String content, String mood) {
+		super();
+		this.uNo = uNo;
+		this.dCreated = dCreated;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+	}
+
 
 	@Override
 	public String toString() {
@@ -98,12 +116,12 @@ public class DiaryDto {
 	}
 
 
-	public Integer getMood() {
+	public String getMood() {
 		return mood;
 	}
 
 
-	public void setMood(Integer mood) {
+	public void setMood(String mood) {
 		this.mood = mood;
 	}
 	

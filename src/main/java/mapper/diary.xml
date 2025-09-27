@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.diary">
-	
+	<insert id="insert" parameterType="diary">
+		INSERT INTO diary
+		(d_created, title, content, mood, u_no)
+		VALUES (#{dCreated}, #{title}, #{content}, #{mood}, #{uNo})
+	</insert>
+	<select id="selectDetail"></select>
+	<select id="selectList"></select>
+	<update id="update"></update>
+	<delete id="delete"></delete>
 </mapper>	
