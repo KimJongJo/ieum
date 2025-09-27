@@ -36,6 +36,8 @@ public class CommunityWrite extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
+			
+			System.out.println(categoryService.selectAll());
 			request.setAttribute("categoryList", categoryService.selectAll());
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -49,34 +51,29 @@ public class CommunityWrite extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String categoryNostr = request.getParameter("categoryNo");
-		// 간단한 유효성 체크
-		if(title == null || title.isBlank() || content == null || content.isBlank()) {
-			response.sendRedirect("write"); // null 이거나  블랙크 즉,  비어있으면 다시 작성 페이지로 이동
-			return;
-		}
-		
-		response.sendRedirect("comDetail");
-		
-		
-		CommunityDto communityDto = new CommunityDto();
-		communityDto.setCommuTitle(title);
-		communityDto.setCommuContent(content);
-		communityDto.setCategoryNo(Integer.parseInt(categoryNostr));
-		
-		
-		try {
-			Integer commuNO = communityService.insertCommunity(communityDto);
-			
-			//작성쇤 글의 상세보기로 이동(쿼리 파라미터로 글 번호 전달)
-			response.sendRedirect("comDatial?no=" + commuNO);
-			
-		}catch (Exception e){
-			e.printStackTrace();
-			
-			response.sendRedirect("write");
-		}
+
+        int uNo = 1; // 로그인된 사용자 번호
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+
+        String categoryNoStr = request.getParameter("categoryNo");
+        if (categoryNoStr == null || categoryNoStr.isEmpty()) {
+            request.setAttribute("err", "카테고리를 선택해주세요.");
+            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+            return;
+        }
+
+        int categoryNo = Integer.parseInt(categoryNoStr);
+        System.out.println(categoryNo);
+        CommunityDto communityDto = new CommunityDto(uNo, title, content, categoryNo);
+
+        try {
+            int commuNo = communityService.insertCommunity(communityDto);
+            response.sendRedirect(request.getContextPath()+ "/comDetail?no=" + commuNo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("err", "게시글 작성시 오류가 발생했습니다.");
+            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+        }
 	}
 }

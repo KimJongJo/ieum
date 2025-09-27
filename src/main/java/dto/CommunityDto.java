@@ -18,6 +18,17 @@ public class CommunityDto {
 		super();
 	}
 	
+	
+	public CommunityDto(Integer uNo, String commuTitle, String commuContent, Integer categoryNo) {
+	      super();
+	      this.uNo = uNo;
+	      this.commuTitle = commuTitle;
+	      this.commuContent = commuContent;
+	      this.categoryNo = categoryNo;
+	   }
+
+	
+	
 	public CommunityDto(Integer commuNO, Integer uNo, String commuTitle, String commuContent, Integer commuViews,
 			Integer empathy, Date commuCreated, Integer commuDeclaration, Integer categoryNo, Integer commuComment) {
 		super();
