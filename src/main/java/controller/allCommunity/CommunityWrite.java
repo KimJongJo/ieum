@@ -1,13 +1,18 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.CommuCategoryDto;
 import dto.CommunityDto;
+import service.allCommunity.CategoryService;
+import service.allCommunity.CategoryServiceImpl;
 import service.allCommunity.CommunityService;
 import service.allCommunity.CommunityServiceImpl;
 
@@ -19,6 +24,7 @@ public class CommunityWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private CommunityService communityService = new CommunityServiceImpl();
+	private CategoryService categoryService = new CategoryServiceImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,9 +37,15 @@ public class CommunityWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("들어옴");
 		
 		try {
-			request.setAttribute("categoryList", new service.allCommunity.CategoryServiceImpl().selectAll());
+			System.out.println("카테고리 목록 조회 전");
+			List<CommuCategoryDto> list = categoryService.selectAll();
+			System.out.println("카테고리 목록 조회 후");
+			System.out.println(list);
+			
+			request.setAttribute("categoryList", categoryService.selectAll());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

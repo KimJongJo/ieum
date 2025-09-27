@@ -1,10 +1,12 @@
 package service.auth;
 
 import java.security.SecureRandom;
+import java.sql.Timestamp;
 import java.util.Properties;
 
 import dao.auth.EmailDao;
 import dao.auth.EmailDaoImpl;
+import dto.EmailAuthDto;
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -99,5 +101,31 @@ public class EmailServiceImpl implements EmailService {
 
         return sb.toString();
     }
+
+
+	@Override
+	public int checkEmail(EmailAuthDto emailDto) {
+		
+		EmailAuthDto check = emailDao.checkEmailCode(emailDto);
+		
+		
+	    if(check == null) {
+	    	System.out.println("일치하지 않음");
+	        return 0; // 이메일과 코드가 일치하지 않음
+	    }
+	    
+	    Timestamp expiryTime = check.getExpiredAt(); // 만료 시간
+
+	    long nowMillis = System.currentTimeMillis(); // 현재 시간
+	    
+//	    System.out.println("현재시간" + nowMillis);
+//	    System.out.println("만료시간" + expiryTime.getTime());
+
+	    if(expiryTime.getTime() < nowMillis) {
+	        return 1; // 만료된 코드
+	    } else {
+	        return 2; // 인증 성공
+	    }
+	}
 
 }

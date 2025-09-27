@@ -1,12 +1,12 @@
 package dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class EmailAuthDto {
 	Integer authNo;
 	String email;	// 이메일
 	String code;	// 인증코드
-	Date expiredAt;	// 만료시간
+	Timestamp expiredAt;	// 만료시간
 	
 	
 	public EmailAuthDto() {
@@ -25,7 +25,7 @@ public class EmailAuthDto {
 
 
 
-	public EmailAuthDto(Integer authNo, String email, String code, Date expiredAt) {
+	public EmailAuthDto(Integer authNo, String email, String code, Timestamp expiredAt) {
 		super();
 		this.authNo = authNo;
 		this.email = email;
@@ -67,11 +67,11 @@ public class EmailAuthDto {
 		this.code = code;
 	}
 
-	public Date getExpiredAt() {
+	public Timestamp getExpiredAt() {
 		return expiredAt;
 	}
 
-	public void setExpiredAt(Date expiredAt) {
+	public void setExpiredAt(Timestamp expiredAt) {
 		this.expiredAt = expiredAt;
 	}
 	

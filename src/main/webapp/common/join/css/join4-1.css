@@ -105,7 +105,7 @@
 
             .input-div-input {
                 height: 34px;
-                width: 375px;
+                width: 275px;
                 margin-left: 20px;
                 border: 2px solid #d4d4d4;
                 border-radius: 5px;
@@ -340,4 +340,21 @@
 
             #women {
                 margin-left: 15px;
+            }
+            
+            .info-check-div{
+	            display	:flex;
+	            justify-content:space-between;
+            }
+            
+            .i-span{
+            	margin-right:20px;
+            }
+            
+            .span-x{
+            	color:red;
+            }
+            
+            .span-check{
+            	color:green;
             }

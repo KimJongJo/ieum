@@ -29,4 +29,10 @@ public class EmailDaoImpl implements EmailDao {
 		
 	}
 
+	@Override
+	public EmailAuthDto checkEmailCode(EmailAuthDto emailDto) {
+		
+		return session.selectOne("checkEmailCode", emailDto);
+	}
+
 }
