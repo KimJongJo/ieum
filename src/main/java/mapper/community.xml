@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.community">
-	<resultMap id="CommunityResult" type="dto.CommunityDto">
+	<!-- <resultMap id="CommunityResult" type="dto.CommunityDto">
 	    <id property="commuNO" column="commu_no"/>
 	    <result property="uNo" column="u_no"/>
 	    <result property="commuTitle" column="commu_title"/>
@@ -13,17 +13,38 @@
 	    <result property="commuDeclaration" column="commu_declaration"/>
 	    <result property="categoryNo" column="category_no"/>
 	    <result property="commuComment" column="commu_comment"/>
-	</resultMap>
+	</resultMap> -->
 	
-	<insert id="insertCommunity" parameterType="dto.CommunityDto" useGeneratedKeys="true" keyProperty="commuNO">
+	<insert id="insertCommunity" parameterType="dto.CommunityDto" useGeneratedKeys="true" keyProperty="commuNo">
 	    insert into community (u_no, commu_title, commu_content, commu_views, empathy, commu_created, commu_declaration, category_no, commu_comment)
 	    values (#{uNo}, #{commuTitle}, #{commuContent}, 0, 0, now(), 0, #{categoryNo}, 0)
 	</insert>
 	
 	
-	<select id="selectByNo" parameterType="int">
-		select commu_no, u_no, commu_title, commu_content,commu_views, empathy, commu_created,commu_declaration, category_no, commu_comment
-		from community
-		where commu_no = #{commuNo};
+	<select id="selectByNo" parameterType="int" resultType="community">
+	    SELECT
+	        commu_no     AS commuNo,
+	        u_no         AS uNo,
+	        commu_title  AS commuTitle,
+	        commu_content AS commuContent,
+	        commu_views  AS commuViews,
+	        empathy,
+	        commu_created AS commuCreated,
+	        commu_declaration AS commuDeclaration,
+	        category_no  AS categoryNo,
+	        commu_comment AS commuComment
+	    FROM community
+	    WHERE commu_no = #{commuNo}
 	</select>
+
+
+	<select id="selectMyCommunityList" parameterType="int" resultType="myCommunity">
+        SELECT
+            c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+        FROM community c
+        INNER JOIN commu_category cg ON c.category_no = cg.category_no
+        INNER JOIN member m ON c.u_no = m.u_no
+        WHERE c.u_no = #{uNo}
+        ORDER BY c.commu_created DESC
+    </select>
 </mapper>	

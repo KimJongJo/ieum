@@ -11,6 +11,7 @@
 
 	<typeAliases>
 		<typeAlias type="dto.MemberDto" alias="member" />
+		<typeAlias type="dto.MyCommunityDto" alias="myCommunity" />
 		<typeAlias type="dto.BlackListDto" alias="blackList" />
 		<typeAlias type="dto.CommeLikeDto" alias="commeLike" />
 		<typeAlias type="dto.CommentDto" alias="comment" />

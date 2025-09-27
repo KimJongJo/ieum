@@ -20,7 +20,7 @@ public class CommunityServiceImpl implements CommunityService{
 	public Integer insertCommunity(CommunityDto community) throws Exception {
 		communityDao.insert(community);
 		session.commit();
-		return community.getCommuNO();
+		return community.getCommuNo();
 	}
 
 	@Override

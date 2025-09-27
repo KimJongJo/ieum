@@ -61,7 +61,7 @@ public class CommunityWrite extends HttpServlet {
         String categoryNoStr = request.getParameter("categoryNo");
         if (categoryNoStr == null || categoryNoStr.isEmpty()) {
             request.setAttribute("err", "카테고리를 선택해주세요.");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
             return;
         }
 
@@ -75,6 +75,7 @@ public class CommunityWrite extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("err", "게시글 작성시 오류가 발생했습니다.");
+            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
         }
 	}
 }

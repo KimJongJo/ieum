@@ -2,5 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.member">
-	
+	<select id="selectByNickName" parameterType="int" resultType="member">
+		select nickname, u_no from member where u_no = #{u_no}
+	</select>
 </mapper>	

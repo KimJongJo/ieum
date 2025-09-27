@@ -20,7 +20,7 @@
     <div id="section-title">
         <span>나의 기본 정보</span>
         
-        <button onclick="location.href='/test/pUpdate'" id="btn-update">수정하기</button>
+        <button onclick="location.href='/ieum/pUpdate'" id="btn-update">수정하기</button>
    
     </div>
 
@@ -38,11 +38,11 @@
                 </div>
                 <div class="sidebar-body">
                      <ul>
-				        <a href="/test/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
+				        <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
 					    <li><button type="button">예약 내역</button></li>
 					    <li><button type="button">진단 이력</button></li>
-					    <a href="/test/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
-					    <a href="/test/black"><li><button type="button">차단 목록</button></li></a>
+					    <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
+					    <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
 					    <li><button type="button">다이어리</button></li>
 					    <li><button type="button">즐겨찾는 병원</button></li>
 				    </ul>

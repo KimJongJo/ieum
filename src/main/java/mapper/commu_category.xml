@@ -6,5 +6,11 @@
         <id property="categoryNo" column="category_no"/>
         <result property="categoryName" column="category_name"/>
     </resultMap>  -->
-<select id="selectAll" resultType="commuCategory"> select category_no, category_name from commu_category </select>
+	<select id="selectAll" resultType="commuCategory"> 
+		select category_no, category_name from commu_category 
+	</select>
+	
+	<select id="selectByNo" resultType='commuCategory'> <!-- 어떤 타입인지 받아온다 -->
+		select category_no, category_name from commu_category where category_no = #{categoryNo}
+	</select>
 </mapper>
