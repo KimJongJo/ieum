@@ -176,12 +176,5 @@ public class MemberDto {
 	public void setStateCode(Integer stateCode) {
 		this.stateCode = stateCode;
 	}
-	
-	
-	
-	
-
-	
-	
 
 }

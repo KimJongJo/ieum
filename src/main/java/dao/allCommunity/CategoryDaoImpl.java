@@ -13,12 +13,8 @@ public class CategoryDaoImpl implements CategoryDao{
 	public CategoryDaoImpl() {
 		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
 	}
-	
-	
-
 	@Override
 	public List<CommuCategoryDto> selectAllCategory() throws Exception {
-		
 		return session.selectList("mapper.commu_category.selectAll");
 	}
 

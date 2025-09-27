@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +19,14 @@
 
     <div class="community">
         <div class="post-header">
-            <h2>진로/취업</h2>
+            <h2>
+            	<c:out value="${categortyName}" default="카테고리"/>
+            </h2>
         </div>
         <div class="Title">
-            <div id="title">지금 너무 힘들어오 진짜 쉬고 싶어요 씻으라고 계속 컴필 들어와서 ㅋㅋㅋ ㄴㄷㅇㅁㄴㅇㄹL</div>
+            <div id="title">
+            	<c:out value="${community.commuTitle}"/>
+            </div>
             <div id="btn1">
                 <button onclick="location.href='/ieum/write'" id="btn-update">수정</button>
                 <button id="btn-delete">삭제</button>
@@ -29,50 +34,57 @@
         </div>
         <div id="san"></div>
         <div id="nickANDdate">
-            <div id="nickName">닉네임</div>
-            <div id="data">2025-09-07</div>
+            <div id="nickName">
+            	<c:out value="${member.nickName}" default="익명"/>
+            </div>
+            <div id="data">
+            	<fmt:formatDate value="${community.commuCreated}" pattern="yyy-MM-dd"/>
+            </div>
         </div>
         <div id="content">
-            작성자가 입력한 내용 (줄바꿈, 문단 유지)
+            <c:out value="${community.commuContent}" escapeXml="false"/>
         </div>
         <div class="actions">
 				    <button class="action-item">
-				        ❤️ <span class="action-count">15</span>
+				        ❤️ <span class="action-count"><c:out value="${community.empathy}" /></span>
 				    </button>
 				    <span class="action-item">
-				        💬 <span class="action-count">0</span>
+				        💬 <span class="action-count"><c:out value="${community.commuComment}" /></span>
 				    </span>
 				    <span class="action-item">
-				        🔗 <span class="action-count">100</span>
+				        🔗 <span class="action-count"><c:out value="${community.commuViews}" /></span>
 				    </span>
 				</div>
         <div id="san"></div>
-        <div class="comment-box">
-		    <div class="comment-row">
-		        <div id="row1">
-		            <div id="number">1</div>
-		            <div id="comNick">무명의 더쿠</div>
-		            <div id="date">2025-09-18</div>
-		            <!-- 점 3개 버튼 -->
-		            <div class="menu-button">⋯</div>
-		        </div>
-		        <div id="comment">
-		            작성자가 입력한 내용 (줄바꿈, 문단 유지)
-		        </div>
-		        <button class="comment-action-item">
-				        ❤️ <span class="comment-action-count">15</span>
-				</button>
-		    </div>
-		
-		    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
-		    <div class="userMenu">
-		        <div class="menu-item">신고하기</div>
-		        <div class="menu-item">차단하기</div>
-		    </div>
-		</div>
+        <c:forEach var="comment" items="${commentList}">
+	        <div class="comment-box">
+			    <div class="comment-row">
+			        <div id="row1">
+			            <div id="number"><c:out value="${comment.commeNo}"/></div>
+			            <div id="comNick"><c:out value="${member.nickName}"/></div>
+			            <div id="date">
+			            	<fmt:formatDate value="${comment.comCreated}" pattern="yyy-MM-dd"/>
+			            </div>
+			            <!-- 점 3개 버튼 -->
+			            <div class="menu-button">⋯</div>
+			        </div>
+			        <div id="comment">
+			            <c:out value="${comment.comContent}" escapeXml="false"/>
+			        </div>
+			        <button class="comment-action-item">
+					        ❤️ <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+					</button>
+			    </div>
 			
+			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
+			    <div class="userMenu">
+			        <div class="menu-item">신고하기</div>
+			        <div class="menu-item">차단하기</div>
+			    </div>
+			</div>
+		</c:forEach>	
         <div id="comment-write-box">
-            <div id="comment-name">닉네임</div>
+            <div id="comment-name"><c:out value="${member.nickName}" default="익명"/></div>
             <textarea id="comment-write"></textarea>
             <div id="btn2">
                 <button id="btn2-registration">등록</button>

@@ -14,11 +14,16 @@
 	    <result property="categoryNo" column="category_no"/>
 	    <result property="commuComment" column="commu_comment"/>
 	</resultMap>
-
-
-
-	<insert id="insertCommunity" parameterType="community">
-		insert into community (u_no, commu_title, commu_content, commu_views, empathy, commu_created, commu_declaration, category_no, commu_comment)
-		values (#{uNo},#{commuTitle},#{commuContent},0,0,now(),0,#{categoryNo},0)
+	
+	<insert id="insertCommunity" parameterType="dto.CommunityDto" useGeneratedKeys="true" keyProperty="commuNO">
+	    insert into community (u_no, commu_title, commu_content, commu_views, empathy, commu_created, commu_declaration, category_no, commu_comment)
+	    values (#{uNo}, #{commuTitle}, #{commuContent}, 0, 0, now(), 0, #{categoryNo}, 0)
 	</insert>
+	
+	
+	<select id="selectByNo" parameterType="int">
+		select commu_no, u_no, commu_title, commu_content,commu_views, empathy, commu_created,commu_declaration, category_no, commu_comment
+		from community
+		where commu_no = #{commuNo};
+	</select>
 </mapper>	

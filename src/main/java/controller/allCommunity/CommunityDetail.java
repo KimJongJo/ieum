@@ -17,7 +17,7 @@ import service.allCommunity.CommunityServiceImpl;
 @WebServlet("/comDetail")
 public class CommunityDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CommunityService communityService = new CommunityServiceImpl();   
+	   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,14 +30,17 @@ public class CommunityDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		String no = request.getParameter("no");
+		
+		int uNo = Integer.parseInt(request.getParameter("uNO"));
+		CommunityService communityService = new CommunityServiceImpl();
+		
 		try {
-            CommunityDto communityDto = communityService.selectByNo(Integer.parseInt(no));
-            request.setAttribute("community", communityDto);
-            request.getRequestDispatcher("allCommunity/communityDetail.jsp").forward(request, response);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+			CommunityDto communityDto = communityService.selectByNo(uNo);
+			request.setAttribute("community", communityDto);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getRequestDispatcher("allCommunity/communityDetail.jsp").forward(request, response);
 	}
 
 	/**
