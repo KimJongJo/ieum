@@ -169,7 +169,7 @@
                 </div>
                 </c:if>
                 <div class="button-btn">
-                    <button type="button" id="agree-btn" class="agree-btn">동의합니다</button>
+                    <button id="agree-btn" class="agree-btn">동의합니다</button>
                     <button  type="button" class="no-btn">취소</button>
                 </div>
                 
@@ -178,22 +178,30 @@
         </div>
         <script>
 	        $(function () {
-	            $("#agree-btn").click(function () {
+	            $("#agree-btn").click(function (e) {
 	                let selected = $('input[name="agree"]:checked').val();
 	                let selected2 = $('input[name="agree2"]:checked').val();
 	                let selected3 = $('input[name="agree3"]:checked').val(); // 새로 추가
 	
 	                if(${sessionScope.userType == 'USER'}){
-	                	if (selected === "yes" && selected2 === "yes" && selected3) {
-		                	 window.location.href = "/ieum/join3";
+	                	if (selected === "yes" && selected2 === "yes") {
+	                		if(selected3){
+	                			 window.location.href = "/ieum/join3";
+	                		}else{
+	                			alert("모든 이용 약관을 체크해주세요");
+			                    e.preventDefault();
+	                		}
+		                	
 		                } else {
-		                    console.log("이벤트 막음");
+		                	alert("필수 이용약관에 동의해주세요");
+		                    e.preventDefault();
 		                }
 	                }else{
 	                	if (selected === "yes" && selected2 === "yes") {
 		                	 window.location.href = "/ieum/join3";
 		                } else {
-		                    console.log("이벤트 막음");
+		                	alert("필수 이용약관에 동의해주세요");
+		                	e.preventDefault();
 		                }
 	                }
 	                

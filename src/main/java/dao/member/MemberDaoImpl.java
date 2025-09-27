@@ -1,5 +1,7 @@
 package dao.member;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.MemberDto;
@@ -24,6 +26,25 @@ public class MemberDaoImpl implements MemberDao {
 		session.insert("normalJoin", member);
 		session.commit();
 		
+	}
+
+	@Override
+	public Map<String, Object> findId(String email) {
+		
+		return session.selectOne("findId", email);
+	}
+
+	@Override
+	public void changePw(Map<String, Object> userMap) {
+		
+		session.update("changePw", userMap);
+		session.commit();
+	}
+
+	@Override
+	public String beforePw(String userId) {
+		
+		return session.selectOne("beforePw", userId);
 	}
 
 }

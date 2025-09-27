@@ -8,15 +8,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join4-1.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		  <script>
-		    $(function() {
-		      
-		    	$("#signUp-btn").click(function(){
-		    		
-		    	})
-		    	
-		    });
-		  </script>
 
     </head>
     <body>

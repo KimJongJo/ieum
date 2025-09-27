@@ -2,11 +2,14 @@ package service.auth;
 
 import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import dao.auth.EmailDao;
 import dao.auth.EmailDaoImpl;
 import dto.EmailAuthDto;
+import dto.MemberDto;
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -110,7 +113,6 @@ public class EmailServiceImpl implements EmailService {
 		
 		
 	    if(check == null) {
-	    	System.out.println("일치하지 않음");
 	        return 0; // 이메일과 코드가 일치하지 않음
 	    }
 	    
@@ -126,6 +128,44 @@ public class EmailServiceImpl implements EmailService {
 	    } else {
 	        return 2; // 인증 성공
 	    }
+	}
+
+
+	@Override
+	public boolean useEmail(String email) {
+		
+		MemberDto check = emailDao.useEmail(email);
+		
+		if(check == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+
+	@Override
+	public boolean pwToEmail(String userId, String email) {
+		
+		Map<String, Object> pwMail = new HashMap<String, Object>();
+		pwMail.put("userId", userId);
+		pwMail.put("email", email);
+		
+		Map<String, Object> check = emailDao.CheckIdAndEmail(pwMail);
+		
+		if(check == null) { // 존재하지 않은 정보
+			return false;
+		}else { // 이메일 전송하기
+			try {
+				sendEmail(email);
+				return true;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+			
+		}
+		
 	}
 
 }

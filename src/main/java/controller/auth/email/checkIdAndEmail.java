@@ -1,9 +1,6 @@
 package controller.auth.email;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,22 +10,22 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import dto.EmailAuthDto;
+import dto.ExamResultDto;
 import dto.otherDto.ResponseDto;
 import service.auth.EmailService;
 import service.auth.EmailServiceImpl;
 
 /**
- * Servlet implementation class CheckEmailCode
+ * Servlet implementation class FindPwToSendEamil
  */
-@WebServlet("/auth/checkEmailCode")
-public class CheckEmailCode extends HttpServlet {
+@WebServlet("/auth/checkIdAndEmail")
+public class checkIdAndEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckEmailCode() {
+    public checkIdAndEmail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,36 +34,29 @@ public class CheckEmailCode extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		
+		String userId = request.getParameter("userId");
 		String email = request.getParameter("email");
-		String code = request.getParameter("code");
-		EmailAuthDto emailDto = new EmailAuthDto(email, code);
 		
 		EmailService service = new EmailServiceImpl();
 		
-		
-		// 0 인증 실패, 1 만료된 코드 2 인증성공
-		int checkCode = service.checkEmail(emailDto);
-		
-		if(request.getParameter("type").equals("signUp")) { // 회원가입이라면
-			if(checkCode == 2) {
-				String[] emailAdd = email.split("@");
-				session.setAttribute("email", emailAdd);
-			}
-		}
-		
-		String message;
-		message = checkCode == 0 ? "인증 실패" : checkCode == 1 ? "만료된 코드" : "인증 성공";
-		
-		ResponseDto resDto = new ResponseDto(checkCode == 2 ? true : false, message);
-		
 		Gson gson = new Gson();
-		String result = gson.toJson(resDto);
+		ResponseDto resDto;
+		String result;
+		
+		
+		boolean send = service.pwToEmail(userId, email);
+		if(!send) { // 정보가 없음
+			resDto = new ResponseDto(false, "아이디와 이메일이 일치하지 않습니다.");
+		}else {
+			resDto = new ResponseDto(true, "이메일이 전송되었습니다.");
+		}
+		result = gson.toJson(resDto);
 		
 		response.getWriter().write(result);
+		
 	}
 
 }

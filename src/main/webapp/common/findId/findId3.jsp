@@ -16,9 +16,9 @@
                 <div class="sub-div">
                     <span>고객님 소유의 아이디는 아래와 같습니다.</span>
                     <div>
-                        <span class="type">일반회원</span>
+                        <span class="type">${userMap.userType}</span>
                         <span>으로 가입된 아이디는</span>
-                        <span class="type">desk1614(성명 : 김종조)</span>
+                        <span class="type">${userMap.userId} (성명 : ${userMap.userName})</span>
                         <span>입니다.</span>
                     </div>
                 </div>

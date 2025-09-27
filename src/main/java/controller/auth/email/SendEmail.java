@@ -20,21 +20,33 @@ import service.auth.EmailServiceImpl;
 @WebServlet("/auth/sendEmailCode")
 public class SendEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
+	EmailService service;
+    
     public SendEmail() {
-        super();
-        // TODO Auto-generated constructor stub
+    	service = new EmailServiceImpl();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		request.setCharacterEncoding("utf-8");
+		String email = request.getParameter("email");
+		boolean useEmail = service.useEmail(email);
+		
+		Gson gson = new Gson();
+		String result;
+		
+		if(useEmail) { // 이미 누가 사용중인 이메일
+			result = gson.toJson(new ResponseDto(false, "이미 사용중인 이메일 입니다."));
+		}else { // 사용 가능한 이메일
+			result = gson.toJson(new ResponseDto(true, "사용 가능한 이메일"));
+		}
+		response.getWriter().write(result);
+		
+		
 	}
 
 	/**
@@ -46,7 +58,6 @@ public class SendEmail extends HttpServlet {
 		String email = request.getParameter("email");
 		Gson gson = new Gson();
 		String result;
-		EmailService service = new EmailServiceImpl();
 		try {
 			service.sendEmail(email);
 			result = gson.toJson(new ResponseDto(true, "이메일 전송 완료"));

@@ -248,3 +248,24 @@
             .change-pw {
                 display: none;
             }
+            
+            .info-check-div{
+	            display	:flex;
+	            justify-content:space-between;
+            }
+            
+            .i-span{
+            	margin-right:20px;
+            }
+            
+            .span-x{
+            	color:red;
+            }
+            
+            .span-check{
+            	color:green;
+            }
+            
+            .i-span{
+            	display:none;
+            }

@@ -48,7 +48,7 @@ public class SignUp extends HttpServlet {
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
 		String[] emailArr = (String[])session.getAttribute("email");
-		String email = emailArr[0] + emailArr[1];
+		String email = emailArr[0] + "@" + emailArr[1];
 		String address = request.getParameter("address");
 		String addressDetail = request.getParameter("addressDetail");
 		
@@ -87,6 +87,10 @@ public class SignUp extends HttpServlet {
 		MemberService memberService = new MemberServiceImpl();
 		
 		memberService.normalJoin(member);
+		
+		session.removeAttribute("email");
+		session.removeAttribute("userType");
+		session.removeAttribute("diaryPrivate");
 		
 		response.sendRedirect("join5");
 		

@@ -28,12 +28,11 @@ public class NextPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String email = request.getParameter("email");
+		
 		HttpSession session = request.getSession();
 		String userType = (String)session.getAttribute("userType");
 		
-		String[] emailAdd = email.split("@");
-		session.setAttribute("email", emailAdd);
+		
 		
 		if(userType.equals("USER")) {
 			response.sendRedirect(request.getContextPath() + "/join4_1");
