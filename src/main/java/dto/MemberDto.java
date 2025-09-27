@@ -16,7 +16,7 @@ public class MemberDto {
 	String userType;	// 회원분류
 	String major; //전공
 	String introduction; //자기소개
-	String nickName; //닉네임
+	String nickname; //닉네임
 	String uAddress; //주소
 	Boolean diaryPrivate; //다이어리 공개여부
 	Integer warningCount; //경고수
@@ -28,6 +28,27 @@ public class MemberDto {
 	public MemberDto() {
 		super();
 	}
+	
+	
+	public MemberDto(String id, String username, Date birthDate, String password, String gender, String uTel,
+			String email, String nickName, String uAddress, Boolean diaryPrivate) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.birthDate = birthDate;
+		this.password = password;
+		this.gender = gender;
+		this.uTel = uTel;
+		this.email = email;
+		this.nickname = nickName;
+		this.uAddress = uAddress;
+		this.diaryPrivate = diaryPrivate;
+	}
+
+
+
+
+
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
 			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
@@ -45,7 +66,7 @@ public class MemberDto {
 		this.userType = userType;
 		this.major = major;
 		this.introduction = introduction;
-		this.nickName = nickName;
+		this.nickname = nickName;
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
 		this.warningCount = warningCount;
@@ -58,7 +79,7 @@ public class MemberDto {
 		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
 				+ ", password=" + password + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email
 				+ ", createdAt=" + createdAt + ", userType=" + userType + ", major=" + major + ", introduction="
-				+ introduction + ", nickName=" + nickName + ", uAddress=" + uAddress
+				+ introduction + ", nickName=" + nickname + ", uAddress=" + uAddress
 				+ ", diaryPrivate=" + diaryPrivate + ", warningCount=" + warningCount + ", social=" + social + ", hNo="
 				+ hNo + ", stateCode=" + stateCode + "]";
 	}
@@ -135,10 +156,10 @@ public class MemberDto {
 		this.introduction = introduction;
 	}
 	public String getNickName() {
-		return nickName;
+		return nickname;
 	}
 	public void setNickName(String nickName) {
-		this.nickName = nickName;
+		this.nickname = nickName;
 	}
 	public String getuAddress() {
 		return uAddress;

@@ -8,6 +8,6 @@
     </resultMap> -->
     
     <select id="selectAll" resultType="commuCategory">
-    	select categorty_no as categoryNo, categorty_name as categoryName from commu_category
+    	select category_no, category_name from commu_category
     </select>
 </mapper>	

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dto.EmailAuthDto;
-import dto.otherDto.responseDto;
+import dto.otherDto.ResponseDto;
 import service.auth.EmailService;
 import service.auth.EmailServiceImpl;
 
@@ -53,7 +53,7 @@ public class CheckEmailCode extends HttpServlet {
 		String message;
 		message = checkCode == 0 ? "인증 실패" : checkCode == 1 ? "만료된 코드" : "인증 성공";
 		
-		responseDto resDto = new responseDto(checkCode == 2 ? true : false, message);
+		ResponseDto resDto = new ResponseDto(checkCode == 2 ? true : false, message);
 		
 		Gson gson = new Gson();
 		String result = gson.toJson(resDto);

@@ -29,7 +29,6 @@ public class Join2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String userType = request.getParameter("userType");
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("userType", userType);
 		

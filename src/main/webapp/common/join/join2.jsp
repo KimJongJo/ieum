@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -144,6 +145,7 @@
                         >
                     </div>
                 </div>
+                <c:if test="${sessionScope.userType == 'USER'}">
                 <div class="check_list_title3">
                     <span class="check_list_title_div">개인정보 처리방침 추가 조항</span>
                     <span class="check_fix">(선택사항)</span>
@@ -165,10 +167,12 @@
                         <input type="radio" name="agree3" id="yes3" value="yes"/> <label for="yes3">동의함</label> <input type="radio" name="agree3" id="no3" value="no"/><label for="no3">동의안함</label>
                     </div>
                 </div>
+                </c:if>
                 <div class="button-btn">
-                    <button id="agree-btn" class="agree-btn">동의합니다</button>
-                    <button class="no-btn">취소</button>
+                    <button type="button" id="agree-btn" class="agree-btn">동의합니다</button>
+                    <button  type="button" class="no-btn">취소</button>
                 </div>
+                
                 </form>
             </div>
         </div>
@@ -179,11 +183,20 @@
 	                let selected2 = $('input[name="agree2"]:checked').val();
 	                let selected3 = $('input[name="agree3"]:checked').val(); // 새로 추가
 	
-	                if (selected === "yes" && selected2 === "yes" && selected3) {
-	                	 window.location.href = "/ieum/join3";
-	                } else {
-	                    console.log("이벤트 막음");
+	                if(${sessionScope.userType == 'USER'}){
+	                	if (selected === "yes" && selected2 === "yes" && selected3) {
+		                	 window.location.href = "/ieum/join3";
+		                } else {
+		                    console.log("이벤트 막음");
+		                }
+	                }else{
+	                	if (selected === "yes" && selected2 === "yes") {
+		                	 window.location.href = "/ieum/join3";
+		                } else {
+		                    console.log("이벤트 막음");
+		                }
 	                }
+	                
 	            });
 	        });
         </script>

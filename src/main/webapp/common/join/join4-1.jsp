@@ -82,68 +82,76 @@
                     </div>
                 </div>
                 <div>
-                    <form action="/ieum/join5" method="post">
+                    <form action="/ieum/signUp1" method="post">
                         <div class="info-box">
                             <div class="line-div">
                                 <div class="span-div  info-check-div">
                                     <span class="info" id=input-name>성명</span>
                                     <!-- <span class="i-span"><i class="fa-solid fa-xmark span-x"></i></span> -->
-                                    <span class="i-span"><i class="fa-solid fa-check span-check"></i></span>
+                                    <span class="i-span" id=username-span><i class="fa-solid fa-check span-check" id="username-i"></i></span>
                                     <!-- fa-xmark ,  fa-check -->
                                 </div>
                                 <div class="input-div">
-                                    <input type="text" class="input-div-input" id="userName"/>
+                                    <input type="text" class="input-div-input" id="userName" name="userName"/>
+                                    <span class="nick-content">한글 2 ~ 5자</span>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2  info-check-div">
-                                    <span class="info" id=input-nickname>닉네임</span>
+                                    <span class="info" id="input-nickName">닉네임</span>
+                                    <span class="i-span" id="nickName-span"><i class="fa-solid fa-check span-check" id="nickName-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <input type="text" class="input-div-input" id="nickName" />
-                                    <span class="nick-content">닉네임은 회원정보수정에서 변경할 수 있습니다.</span>
+                                    <input type="text" class="input-div-input" id="nickName" name="nickName" />
+                                    <span class="nick-content">최소 2자 ~ 최대 12자</span>
+                                    <span class="nick-content">닉네임은 마이페이지 회원정보 수정에서 변경할 수 있습니다.</span>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2  info-check-div">
                                     <span class="info">생년월일</span>
+                                    <span class="i-span" id=birth-span><i class="fa-solid fa-check span-check" id="birth-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <select name="" id="year" name="year" class="year date">
+                                    <select name="year" id="year" name="year" class="year date">
                                         <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>
-                                    <select name="" id="month" name="month" class="month date">
+                                    <select name="month" id="month" name="month" class="month date">
                                         <option value="none">월</option>
                                     </select>
                                     <span class="text">월</span>
-                                    <select name="" id="day" name="day" class="day date">
+                                    <select name="day" id="day" name="day" class="day date">
                                         <option value="none">일</option>
                                     </select>
                                     <span class="text">일</span>
                                 </div>
                             </div>
                             <div class="line-div2">
-                                <div class="span-div2"  info-check-div>
+                                <div class="span-div2 info-check-div" >
                                     <span class="info" id=input-id>아이디</span>
+                                    <span class="i-span" id=userId-span><i class="fa-solid fa-check span-check" id="userId-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <input type="text" class="login-input" id="userId" />
-                                    <button class="signUp-btn" type="button">중복확인</button>
+                                    <input type="text" class="login-input" id="userId" name="userId"/>
+                                    <button id="check-id-btn" class="signUp-btn" type="button">중복확인</button>
+                                    <span class="nick-content">4~16자 영문 소문자, 숫자 조합</span>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2  info-check-div">
                                     <span class="info" id=input-pw>비밀번호</span>
+                                    <span class="i-span" id=pw-span><i class="fa-solid fa-check span-check" id="pw-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <input type="password" class="login-input" id="pw" />
+                                    <input type="password" class="login-input" id="pw" name="userPw"/>
                                     <button class="signUp-btn" id="pwch" type="button">보기</button>
                                 </div>
                             </div>
                             <div class="check-pw">
                                 <div class="span-div2-pw  info-check-div">
                                     <span class="info">비밀번호 확인</span>
+                                    <span class="i-span" id=pw2-span><i class="fa-solid fa-check span-check" id="pw2-i"></i></span>
                                 </div>
                                 <div class="input-div2-pw input">
                                     <div class="input-div2-pw-div">
@@ -161,19 +169,20 @@
                                     <span class="info">성별</span>
                                 </div>
                                 <div class="input-div2 gender input">
-                                    <input type="radio" id="man" name="gender" checked/><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
+                                    <input type="radio" id="man" name="gender" value="M" checked/><label for="man">남</label><input type="radio" id="women" value="F" name="gender" /><label for="women">여</label>
                                 </div>
                             </div>
                             <div class="line-div2">
                                 <div class="span-div2 info-check-div">
                                     <span class="info">전화번호</span>
+                                    <span class="i-span" id=tel-span><i class="fa-solid fa-check span-check" id="tel-i"></i></span>
                                 </div>
                                 <div class="input-div2 input tel-div">
                                     <input type="tel" size="4" value="010" disabled class="tel" />
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel1/>
+                                    <input type="tel" size="4" maxlength="4" class="tel" id="inputTel1" name="tel1"/>
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" id=input-tel2/>
+                                    <input type="tel" size="4" maxlength="4" class="tel" id="inputTel2" name="tel2"/>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -189,6 +198,7 @@
                             <div class="check-pw">
                                 <div class="span-div2-pw info-check-div">
                                     <span class="info">주소</span>
+                                    <span class="i-span" id=address-span><i class="fa-solid fa-check span-check" id="address-i"></i></span>
                                 </div>
                                 <div class="input-div2-pw input">
                                     <div class="input-div2-pw-div">
@@ -196,8 +206,8 @@
                                         <button class="signUp-btn" onclick="searchAddr()" id="search-postcode" type="button">주소 검색</button>
                                     </div>
                                     <div class="address-div">
-                                        <input type="text" class="first-address addr" id="address-auto" disabled/>
-                                        <input type="text" class="detail-address addr" id="address-detail" placeholder="상세 주소를 입력해주세요." />
+                                        <input type="text" class="first-address addr" id="address-auto" name="address" readonly/>
+                                        <input type="text" class="detail-address addr" id="address-detail" name="addressDetail" placeholder="상세 주소를 입력해주세요." />
                                     </div>
                                 </div>
                             </div>

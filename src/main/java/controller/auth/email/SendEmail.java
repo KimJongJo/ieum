@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dto.otherDto.responseDto;
+import dto.otherDto.ResponseDto;
 import jakarta.mail.MessagingException;
 import service.auth.EmailService;
 import service.auth.EmailServiceImpl;
@@ -49,12 +49,12 @@ public class SendEmail extends HttpServlet {
 		EmailService service = new EmailServiceImpl();
 		try {
 			service.sendEmail(email);
-			result = gson.toJson(new responseDto(true, "이메일 전송 완료"));
+			result = gson.toJson(new ResponseDto(true, "이메일 전송 완료"));
 			response.getWriter().write(result);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-			result = gson.toJson(new responseDto(false, "이메일 전송 실패"));
+			result = gson.toJson(new ResponseDto(false, "이메일 전송 실패"));
 			response.getWriter().write(result);
 		}
 			
