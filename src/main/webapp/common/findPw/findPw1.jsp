@@ -93,8 +93,8 @@
                             </div>
                         </div>
                         <div class="btn-div">
-                            <button id="changePwBtn" class="sign-btn">변경하기</button>
                             <button tyle="button" class="no-btn">취소</button>
+                            <button id="changePwBtn" class="sign-btn">변경하기</button>
                         </div>
                     </div>
                 </div>

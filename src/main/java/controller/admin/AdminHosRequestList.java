@@ -1,4 +1,4 @@
-package controller.hosSignUp;
+package controller.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HosSignUp
+ * Servlet implementation class AdminHosSignUpList
  */
-@WebServlet("/hosSignUp")
-public class HosSignUp extends HttpServlet {
+@WebServlet("/admin/hosRequestList")
+public class AdminHosRequestList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HosSignUp() {
+    public AdminHosRequestList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class HosSignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hosSignUp/hosSignUp.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/adminRequestList.jsp").forward(request, response);
 	}
 
 	/**

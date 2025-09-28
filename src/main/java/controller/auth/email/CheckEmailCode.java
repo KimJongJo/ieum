@@ -43,13 +43,10 @@ public class CheckEmailCode extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
-		EmailAuthDto emailDto = new EmailAuthDto(email, code);
-		
 		EmailService service = new EmailServiceImpl();
 		
-		
 		// 0 인증 실패, 1 만료된 코드 2 인증성공
-		int checkCode = service.checkEmail(emailDto);
+		int checkCode = service.checkEmail(email, code);
 		
 		String type = request.getParameter("type");		
 		
@@ -59,7 +56,7 @@ public class CheckEmailCode extends HttpServlet {
 					String[] emailAdd = email.split("@");
 					session.setAttribute("email", emailAdd);
 				}
-			}else if(type.equals("findId")) {
+			}else if(type.equals("findId") || type.equals("requestHos")) {
 				session.setAttribute("email", email);
 			}
 			

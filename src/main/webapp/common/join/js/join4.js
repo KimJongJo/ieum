@@ -74,7 +74,7 @@ pwch2.addEventListener("click", () => {
 });
             
             
-            // 성명
+ // 성명
 $(function() {
     $("#userName").on("change", function() {  // 입력 감지
         var value = $(this).val();

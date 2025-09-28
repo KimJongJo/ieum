@@ -19,8 +19,8 @@
                     <span>비밀번호를 정기적으로 변경하시고, 다른 사이트와 동일한 비밀번호 사용은 피해 주시면 계정을 더욱 안전하게 보호하실 수 있습니다.</span>
                 </div>
                 <div class="btn-div">
-                    <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
                     <button onclick="location.href='/ieum/index'" class="home-btn">홈화면</button>
+                    <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
                 </div>
             </div>
         </div>

@@ -33,9 +33,9 @@ public class EmailDaoImpl implements EmailDao {
 	}
 
 	@Override
-	public EmailAuthDto checkEmailCode(EmailAuthDto emailDto) {
+	public EmailAuthDto checkEmailCode(String email) {
 		
-		return session.selectOne("checkEmailCode", emailDto);
+		return session.selectOne("checkEmailCode", email);
 	}
 
 	@Override

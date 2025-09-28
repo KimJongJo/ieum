@@ -169,8 +169,8 @@
                 </div>
                 </c:if>
                 <div class="button-btn">
-                    <button id="agree-btn" class="agree-btn">동의합니다</button>
                     <button  type="button" class="no-btn">취소</button>
+                    <button id="agree-btn" class="agree-btn">동의합니다</button>
                 </div>
                 
                 </form>

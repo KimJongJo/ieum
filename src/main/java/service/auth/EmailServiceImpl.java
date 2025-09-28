@@ -107,12 +107,12 @@ public class EmailServiceImpl implements EmailService {
 
 
 	@Override
-	public int checkEmail(EmailAuthDto emailDto) {
+	public int checkEmail(String email, String code) {
 		
-		EmailAuthDto check = emailDao.checkEmailCode(emailDto);
+		EmailAuthDto check = emailDao.checkEmailCode(email);
 		
 		
-	    if(check == null) {
+	    if(check == null || check.getCode().equals(code)) {
 	        return 0; // 이메일과 코드가 일치하지 않음
 	    }
 	    
@@ -167,5 +167,6 @@ public class EmailServiceImpl implements EmailService {
 		}
 		
 	}
+
 
 }

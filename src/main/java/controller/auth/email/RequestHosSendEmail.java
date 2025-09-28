@@ -6,26 +6,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import dto.ExamResultDto;
 import dto.otherDto.ResponseDto;
 import service.auth.EmailService;
 import service.auth.EmailServiceImpl;
 
 /**
- * Servlet implementation class FindPwToSendEamil
+ * Servlet implementation class RequestHosSendEmail
  */
-@WebServlet("/auth/checkIdAndEmail")
-public class checkIdAndEmail extends HttpServlet {
+@WebServlet("/auth/requestHosEmail")
+public class RequestHosSendEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public checkIdAndEmail() {
+    public RequestHosSendEmail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +32,21 @@ public class checkIdAndEmail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		String userId = request.getParameter("userId");
 		String email = request.getParameter("email");
-		
 		EmailService service = new EmailServiceImpl();
 		
 		Gson gson = new Gson();
 		ResponseDto resDto;
 		String result;
 		
-		
-		boolean send = service.pwToEmail(userId, email);
-		if(!send) { // 정보가 없음
-			resDto = new ResponseDto(false, "아이디와 이메일이 일치하지 않습니다.");
-		}else {
+		try {
+			service.sendEmail(email);
 			resDto = new ResponseDto(true, "이메일이 전송되었습니다.");
+		}catch(Exception e) {
+			resDto = new ResponseDto(false, "이메일 전송중 에러 발생");
 		}
 		result = gson.toJson(resDto);
 		

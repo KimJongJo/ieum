@@ -78,9 +78,7 @@
                             <div class="line-div">
                                 <div class="span-div  info-check-div">
                                     <span class="info" id=input-name>성명</span>
-                                    <!-- <span class="i-span"><i class="fa-solid fa-xmark span-x"></i></span> -->
                                     <span class="i-span" id=username-span><i class="fa-solid fa-check span-check" id="username-i"></i></span>
-                                    <!-- fa-xmark ,  fa-check -->
                                 </div>
                                 <div class="input-div">
                                     <input type="text" class="input-div-input" id="userName" name="userName"/>

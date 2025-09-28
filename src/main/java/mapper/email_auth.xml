@@ -16,7 +16,7 @@
 	</update>
 	
 	<select id="checkEmailCode" resultType="emailAuth">
-		select email, code, expired_at from email_auth where email = #{email} and code = #{code}
+		select email, code, expired_at from email_auth where email = #{email}
 	</select>
 	
 	

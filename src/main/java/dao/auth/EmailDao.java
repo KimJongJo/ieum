@@ -9,7 +9,7 @@ public interface EmailDao {
 
 	void saveEmailCode(String email, String code);
 
-	EmailAuthDto checkEmailCode(EmailAuthDto emailDto);
+	EmailAuthDto checkEmailCode(String email);
 
 	MemberDto useEmail(String email);
 
