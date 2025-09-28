@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.MemberDto;
+import service.myPage.ProfileInfoService;
+import service.myPage.ProfileInfoServiceImpl;
+
 /**
  * Servlet implementation class ProfileInfo
  */
@@ -26,6 +30,16 @@ public class ProfileInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		int uNo = 1;
+		ProfileInfoService service = new ProfileInfoServiceImpl();
+		try {
+			MemberDto memberDto = service.selectProfileView(uNo);
+			request.setAttribute("member", memberDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("myPage/profileInfo.jsp").forward(request, response);
 	}
 

@@ -10,6 +10,8 @@
 
 
 	<typeAliases>
+	
+		<typeAlias type="dto.MemberProfileDto" alias="memberProfile" />
 		<typeAlias type="dto.MemberDto" alias="member" />
 		<typeAlias type="dto.MyCommunityDto" alias="myCommunity" />
 		<typeAlias type="dto.BlackListDto" alias="blackList" />

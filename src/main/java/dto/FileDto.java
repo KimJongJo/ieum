@@ -6,25 +6,37 @@ public class FileDto {
 	String filePath;
 	String fileSize;
 	String filePart;
-	String filecategory;
+	String fileCategory;
+	Integer uNo;
 	
 	public FileDto() {}
 	
 	public FileDto(Integer fileNo, String fileName, String filePath, String fileSize, String filePart,
-			String filecategory) {
+			String fileCategory, Integer uNo) {
 		super();
 		this.fileNo = fileNo;
 		this.fileName = fileName;
 		this.filePath = filePath;
 		this.fileSize = fileSize;
 		this.filePart = filePart;
-		this.filecategory = filecategory;
+		this.fileCategory = fileCategory;
+		this.uNo = uNo;
 	}	
 
 	@Override
 	public String toString() {
 		return "file [fileNo=" + fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", fileSize=" + fileSize
-				+ ", filePart=" + filePart + ", filecategory=" + filecategory + "]";
+				+ ", filePart=" + filePart + ", filecategory=" + fileCategory + "]";
+	}
+	
+	
+
+	public Integer getuNo() {
+		return uNo;
+	}
+
+	public void setuNo(Integer uNo) {
+		this.uNo = uNo;
 	}
 
 	public Integer getFileNo() {
@@ -67,11 +79,11 @@ public class FileDto {
 		this.filePart = filePart;
 	}
 
-	public String getFilecategory() {
-		return filecategory;
+	public String getFileCategory() {
+		return fileCategory;
 	}
 
-	public void setFilecategory(String filecategory) {
-		this.filecategory = filecategory;
+	public void setFileCategory(String fileCategory) {
+		this.fileCategory = fileCategory;
 	}
 }

@@ -2,7 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.member">
+	<!-- 뭐였지? -->
 	<select id="selectByNickName" parameterType="int" resultType="member">
 		select nickname, u_no from member where u_no = #{u_no}
+	</select>
+	
+	<!-- 정보 가져오기 -->
+	<select id="selectProfileInfo" parameterType="int" resultType="member">
+		select username, nickname, id, u_address, email, birth_date, gender, diary_private, u_tel
+		from member
+		where u_no = #{uNo}
+	</select>
+	
+	<!-- 회원 정보 수정하기 전에 정보 가져오기 -->
+	<select id="selectMemberWithProfile" parameterType="int" resultType="memberProfile">
+		SELECT m.u_no, m.id, m.username, m.nickname, m.u_address, m.email, m.u_tel, m.gender, m.diary_private,
+        	   f.file_name AS profileFileName, f.file_path AS profileFilePath, f.file_size AS profileFileSize
+    	FROM member m
+    	LEFT JOIN file f
+        ON m.u_no = f.filePart_user_no
+        AND f.file_part = 'profile'
+        WHERE m.u_no = #{uNo}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateProfile" parameterType="member">
+		update member set 
+			nickname = #{nickName}, email = #{email}, id = #{id}, u_tel = #{uTel}, u_address = #{uAddress},
+			id = #{id}, gender = #{gender}, diary_private = #{diaryPrivate}
+		where u_no = #{uNo}
+	</update>	
+	
+	<!-- 비번 업데이트 -->
+	<update id="updatePass" parameterType="member">
+		update member set
+			password = #{password}
+		where u_no = #{uNo}
+	</update>
+	<!-- 아이디 찾기 -->
+	<select id="selectId" parameterType="int" resultType="member">
+		select id from member where u_no = #{uNo}
 	</select>
 </mapper>	

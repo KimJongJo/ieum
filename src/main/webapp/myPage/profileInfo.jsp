@@ -56,26 +56,38 @@
 	        	<c:when test="${sessionScope.user.type == 'user'}"> --%>
 		            <div class="content">
 		                <span id="box1">회원명</span>
-		                <span id="box2">최지성</span>
+		                <span id="box2"><c:out value="${member.username}"/></span>
 		                <span id="box3">닉네임</span>
-		                <span id="box4">심원의방</span>
+		                <span id="box4"><c:out value="${member.nickName}"/></span>
 		                <span id="box5">아이디</span>
-		                <span id="box6">projjang2000</span>
+		                <span id="box6"><c:out value="${member.id}"/></span>
 		                <span id="box7">비밀번호</span>
 		                <span id="box8">
 		                    <!-- 비밀번호 변경 텍스트를 새 박스로 감싸기 -->
-		                    <span onclick="location.href='/test/pModify'" id="change-box" class="clickable">비밀번호 변경</span>
+		                    <span onclick="location.href='/ieum/pModify'" id="change-box" class="clickable">비밀번호 변경</span>
 		                </span>
 		                <span id="box9">주소</span>
-		                <span id="box10">경기도 수원시</span>
+		                <span id="box10"><c:out value="${member.uAddress}"/></span>
 		                <span id="box11">이메일</span>
-		                <span id="box12">jisung0628jisung@gmail.com</span>
-		                <span id="box13">생년월일</span>
-		                <span id="box14">1999.06.28</span>
-		                <span id="box15">성별</span>
-		                <span id="box16">남</span>
-		                <span id="box17">다이어리 공개 여부</span>
-		                <span id="box18">예</span>
+		                <span id="box12"><c:out value="${member.email}"/></span>
+		                <span id="box13">전화번호</span>
+		                <span id="box14"><c:out value="${member.uTel}"/></span>
+		                <span id="box15">생년월일</span>
+		                <span id="box16"><c:out value="${member.birthDate}"/></span>
+		                <span id="box17">성별</span>
+		                <span id="box18">
+		                	<c:choose>
+					        <c:when test="${member.gender eq 'MALE'}">남자</c:when>
+					        <c:otherwise>여자</c:otherwise>
+					    </c:choose>
+		                </span>
+		                <span id="box19">다이어리 공개 여부</span>
+		                <span id="box20">
+							<c:choose>
+						        <c:when test="${member.diaryPrivate eq '1'}">예</c:when>
+						        <c:otherwise>아니오</c:otherwise>
+						    </c:choose>
+						</span>
 		            </div>
 	            <%-- </c:when>
 	            <c:otherwise>

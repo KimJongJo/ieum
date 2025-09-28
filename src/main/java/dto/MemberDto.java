@@ -28,6 +28,19 @@ public class MemberDto {
 	public MemberDto() {
 		super();
 	}
+	
+	
+	
+	
+	public MemberDto(Integer uNo, String password) {
+		super();
+		this.uNo = uNo;
+		this.password = password;
+	}
+
+
+
+
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
 			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
@@ -53,6 +66,10 @@ public class MemberDto {
 		this.hNo = hNo;
 		this.stateCode = stateCode;
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
