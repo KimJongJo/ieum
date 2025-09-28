@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dto.DiaryDto;
+import service.myPage.DiaryService;
+import service.myPage.DiaryServiceImpl;
 
 /**
  * Servlet implementation class DiaryWrite
@@ -23,28 +28,36 @@ public class DiaryUpdate extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		try {
-			request.getRequestDispatcher("/myPage/diaryUpdate.jsp").forward(request, response);;
-		} catch (Exception e) {
-
-		}
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		DiaryService service = new DiaryServiceImpl();
+		HttpSession session = request.getSession();
+//	    Integer uNo = Integer.parseInt((String)session.getAttribute("uNo"));
+		Integer uNo = 123;
+		String title = request.getParameter("title");
+		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
 		try {
-			request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
-			// TODO response.sendRedirect("/myPage/diary");
+			if (title == null) {				
+				DiaryDto diary = service.getDetail(dNo);
+				request.setAttribute("diary", diary);
+				Boolean hisYn = service.getHisYn(uNo);
+				request.setAttribute("recentHistory", hisYn);
+				request.getRequestDispatcher("/myPage/diaryUpdate.jsp").forward(request, response);
+			} else {
+				String content = request.getParameter("content");
+				String emoji = request.getParameter("emoji");
+				DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), title, content, emoji);
+				service.update(diary);
+				session.setAttribute("dNo", dNo);
+				request.setAttribute("msg", "수정되었습니다.");
+				request.getRequestDispatcher("/myPage/diarySucc.jsp").forward(request, response);
+			}
+			
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 

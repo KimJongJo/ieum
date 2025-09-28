@@ -40,24 +40,32 @@ public class Diary extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String dNo = request.getParameter("dNo");
+		HttpSession session = request.getSession();
+		Integer sessionDNo = (Integer) session.getAttribute("dNo");
 		DiaryService service = new DiaryServiceImpl();
+		// 세션에서 로그인 uNo 가져오기
+//	    Integer uNo = Integer.parseInt((String)session.getAttribute("uNo"));	
+		Integer uNo = 123;
 		try {
+			// 수정 -> 상세
+			 if (sessionDNo != null) {
+//					System.out.println("수정-상세");
+					DiaryDto diary = service.getDetail(sessionDNo);
+					request.setAttribute("diary", diary);
+					Boolean hisYn = service.getHisYn(uNo);
+					request.setAttribute("recentHistory", hisYn);
+					request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
+				}
 			// 목록
-			if (dNo == null || dNo.trim().equals("")) {
-				// 세션에서 로그인 uNo 가져오기
-				HttpSession session = request.getSession();
-//			    Integer uNo = Integer.parseInt((String)session.getAttribute("uNo"));	
-				Integer uNo = 123;
+			 if (dNo == null || dNo.trim().equals("")) {
 				// 페이지
+//				System.out.println("리스트");
 				Integer curPage = Integer.parseInt(request.getParameter("page"));
 				PageInfo pageInfo = new PageInfo(curPage);
 				List<DiaryDto> diaryList = service.getList(uNo, pageInfo);
 				request.setAttribute("diaryList", diaryList);
 				request.setAttribute("pageInfo", pageInfo);
 				request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
-			} else {
-				request.setAttribute("dNo", dNo);
-				request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,11 +82,15 @@ public class Diary extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();
+		HttpSession session = request.getSession();
+//	    Integer uNo = Integer.parseInt((String)session.getAttribute("uNo"));	
+		Integer uNo = 123;
+		Integer dNo;
 		try {
-			Integer dNo = Integer.parseInt(request.getParameter("dNo"));
+			dNo = Integer.parseInt(request.getParameter("dNo"));
 			DiaryDto diary = service.getDetail(dNo);
 			request.setAttribute("diary", diary);
-			Boolean hisYn = service.getHisYn(123);
+			Boolean hisYn = service.getHisYn(uNo);
 			request.setAttribute("recentHistory", hisYn);
 			request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
 		} catch (Exception e) {

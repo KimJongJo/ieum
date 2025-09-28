@@ -60,20 +60,18 @@ public class DiaryWrite extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+//		String uNo = (String)session.getAttribute("uNo");
+		String uNo = "123";
 		DiaryService service = new DiaryServiceImpl();
 		try {
-			HttpSession session = request.getSession();
-//			String uNo = (String)session.getAttribute("uNo");
-			String uNo = "123";
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String emoji = request.getParameter("emoji");
 			DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), title, content, emoji);
-//			System.out.println(diary.toString());
 			service.write(diary);
-//			request.setAttribute("page", 1);
-//			request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath() + "/myPage/diary?page=1");
+			request.setAttribute("msg", "작성되었습니다.");
+			request.getRequestDispatcher("/myPage/diarySucc.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

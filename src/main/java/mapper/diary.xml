@@ -17,7 +17,9 @@
 		SELECT COUNT(*) FROM diary;
 	</select>
 	<update id="update" parameterType="diary">
-		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, 
+		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, d_updated=now() WHERE d_no=#{dNo}
 	</update>
-	<delete id="delete"></delete>
+	<delete id="delete">
+		DELETE FROM WHERE d_no=#{dNo} 
+	</delete>
 </mapper>	

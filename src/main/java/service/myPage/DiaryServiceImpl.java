@@ -43,14 +43,14 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public DiaryDto update(DiaryDto diary) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return diaryDao.update(diary);
 	}
 
 	@Override
 	public boolean delete(Integer dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		DiaryDto diary = diaryDao.select(dNo);
+		if(diary == null) return false;
+		diaryDao.delete(dNo); return true;
 	}
 
 	@Override

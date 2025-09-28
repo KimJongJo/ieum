@@ -40,14 +40,15 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public DiaryDto update(DiaryDto diary) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		session.update("update", diary);
+		session.commit();
+		return diary;
 	}
 
 	@Override
 	public void delete(Integer dNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		session.delete("delete", dNo);
+		session.commit();		
 	}
 
 }
