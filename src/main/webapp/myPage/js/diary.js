@@ -34,8 +34,6 @@ $(document).ready(function() {
 			'top': y + 'px'
 		});
 	});
-
-
 	// 닫기 버튼 클릭 이벤트 리스너 추가
 	closeButton.on('click', function() {
 		// 팝업 숨기기
@@ -60,4 +58,11 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 	},
 	initialView: 'dayGridMonth'
 });
+function goDetail(no) {
+	$("#dNoInput").val(no);
+	$("#hiddenForm").submit();
+}
+function goUpdate(){
+	$("#hiddenForm").submit();
+}
 calendar.render();

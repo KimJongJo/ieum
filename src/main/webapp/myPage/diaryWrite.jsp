@@ -31,17 +31,17 @@
 					<div class="form-right">
 						<span class="notice">오늘의 기분을 선택해주세요</span>
 						<div class="emoji">
-							<input type="radio" id="happy" value="HAPPY" name="emoji"><label
+							<input type="radio" id="happy" value="smile" name="emoji"><label
 								for="happy">
 								<div class="happy-icon">
 									<i class="fa-regular fa-face-smile"></i>
 								</div>
-							</label> <input type="radio" id="soso" value="SOSO" name="emoji"><label
+							</label> <input type="radio" id="soso" value="meh" name="emoji"><label
 								for="soso">
 								<div class="soso-icon">
 									<i class="fa-regular fa-face-meh"></i>
 								</div>
-							</label> <input type="radio" id="sad" value="SAD" name="emoji"><label
+							</label> <input type="radio" id="sad" value="frown" name="emoji"><label
 								for="sad">
 								<div class="sad-icon">
 									<i class="fa-regular fa-face-frown"></i>
@@ -64,7 +64,7 @@
 			<div class="diary-footer">
 				<!-- 버튼 -->
 				<div class="button-wrapper">
-					<a class="btn-link" href="${contextPath}/myPage/diary">
+					<a class="btn-link" href="${contextPath}/myPage/diary?page=1">
 						<div class="basic-small-btn">취소</div>
 					</a>
 					<button type="submit" formaction="${contextPath}/myPage/diary/write"

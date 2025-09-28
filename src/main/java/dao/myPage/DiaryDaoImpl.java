@@ -1,6 +1,8 @@
 package dao.myPage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -20,20 +22,20 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public DiaryDto select(Integer dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("selectDetail", dNo);
 	}
 
 	@Override
 	public Integer cnt() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("selectCnt");
 	}
 
 	@Override
-	public List<DiaryDto> selectDiaryList(Integer row) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DiaryDto> selectDiaryList(Integer uNo, Integer row) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+        params.put("uNo", uNo);
+        params.put("row", row);
+		return session.selectList("selectList", params);
 	}
 
 	@Override

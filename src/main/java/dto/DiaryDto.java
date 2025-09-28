@@ -3,7 +3,7 @@ package dto;
 import java.util.Date;
 
 public class DiaryDto {
-	Integer diaryNo;
+	Integer dNo;
 	Integer uNo;
 	Date dCreated;
 	Date dUpdated;
@@ -17,10 +17,10 @@ public class DiaryDto {
 	}
 	
 	
-	public DiaryDto(Integer diaryNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content,
+	public DiaryDto(Integer dNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content,
 			String mood) {
 		super();
-		this.diaryNo = diaryNo;
+		this.dNo = dNo;
 		this.uNo = uNo;
 		this.dCreated = dCreated;
 		this.dUpdated = dUpdated;
@@ -51,18 +51,17 @@ public class DiaryDto {
 
 	@Override
 	public String toString() {
-		return "diary [diaryNo=" + diaryNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
+		return "diary [diaryNo=" + dNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
 				+ ", title=" + title + ", content=" + content + ", mood=" + mood + "]";
 	}
 
-
-	public Integer getDiaryNo() {
-		return diaryNo;
+	public Integer getdNo() {
+		return dNo;
 	}
 
 
-	public void setDiaryNo(Integer diaryNo) {
-		this.diaryNo = diaryNo;
+	public void setdNo(Integer dNo) {
+		this.dNo = dNo;
 	}
 
 

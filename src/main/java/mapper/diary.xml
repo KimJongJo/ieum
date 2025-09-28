@@ -5,10 +5,19 @@
 	<insert id="insert" parameterType="diary">
 		INSERT INTO diary
 		(d_created, title, content, mood, u_no)
-		VALUES (#{dCreated}, #{title}, #{content}, #{mood}, #{uNo})
+		VALUES (now(), #{title}, #{content}, #{mood}, #{uNo})
 	</insert>
-	<select id="selectDetail"></select>
-	<select id="selectList"></select>
-	<update id="update"></update>
+	<select id="selectDetail" parameterType="Integer" resultType="diary">
+		SELECT * FROM diary WHERE d_no=#{dNo}
+	</select>
+	<select id="selectList" parameterType="map" resultType="diary">
+		SELECT * FROM diary WHERE u_no=#{uNo} ORDER BY d_no DESC LIMIT #{row}, 10
+	</select>
+	<select id="selectCnt" resultType="Integer">
+		SELECT COUNT(*) FROM diary;
+	</select>
+	<update id="update" parameterType="diary">
+		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, 
+	</update>
 	<delete id="delete"></delete>
 </mapper>	

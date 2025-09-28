@@ -62,21 +62,18 @@ public class DiaryWrite extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();
 		try {
-			// 한국 시간대의 현재 시각을 ZonedDateTime 객체로 가져옵니다.
-			ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
-			Instant instant = now.toInstant();
-			// Instant를 java.util.Date 객체로 변환합니다.
-			Date utilDate = Date.from(instant);
 			HttpSession session = request.getSession();
 //			String uNo = (String)session.getAttribute("uNo");
 			String uNo = "123";
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String emoji = request.getParameter("emoji");
-			DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), utilDate, title, content, emoji);
+			DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), title, content, emoji);
 //			System.out.println(diary.toString());
 			service.write(diary);
-			request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
+//			request.setAttribute("page", 1);
+//			request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/myPage/diary?page=1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
