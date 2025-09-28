@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/common/main/css/main.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->

@@ -25,7 +25,7 @@
                 </div>
                 <div class="btn-div">
                     <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
-                    <button class="home-btn">홈화면</button>
+                    <button onclick="location.href='/ieum/index'" class="home-btn">홈화면</button>
                 </div>
             </div>
         </div>

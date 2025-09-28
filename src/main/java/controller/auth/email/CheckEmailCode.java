@@ -51,12 +51,21 @@ public class CheckEmailCode extends HttpServlet {
 		// 0 인증 실패, 1 만료된 코드 2 인증성공
 		int checkCode = service.checkEmail(emailDto);
 		
-		if(request.getParameter("type").equals("signUp")) { // 회원가입이라면
-			if(checkCode == 2) {
-				String[] emailAdd = email.split("@");
-				session.setAttribute("email", emailAdd);
+		String type = request.getParameter("type");		
+		
+		if(type != null) {
+			if(type.equals("signUp")) { // 회원가입이라면
+				if(checkCode == 2) {
+					String[] emailAdd = email.split("@");
+					session.setAttribute("email", emailAdd);
+				}
+			}else if(type.equals("findId")) {
+				session.setAttribute("email", email);
 			}
+			
+			
 		}
+		
 		
 		String message;
 		message = checkCode == 0 ? "인증 실패" : checkCode == 1 ? "만료된 코드" : "인증 성공";

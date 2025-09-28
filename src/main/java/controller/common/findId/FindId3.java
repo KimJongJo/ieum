@@ -35,8 +35,7 @@ public class FindId3 extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberService service = new MemberServiceImpl();
-		String[] emailArr = (String[]) session.getAttribute("email");
-		String email = emailArr[0] + "@" + emailArr[1];
+		String email = (String)session.getAttribute("email");
 		Map<String, Object> userMap = service.findId(email);
 		request.setAttribute("userMap", userMap);
 		

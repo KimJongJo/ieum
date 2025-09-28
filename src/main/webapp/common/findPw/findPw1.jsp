@@ -60,7 +60,7 @@
                     <div class="find-pw-nav">
                         <span>아이디를 잊으셨나요? <i class="fa-solid fa-arrow-right"></i></span>
 
-                        <a href="">아이디 찾기</a>
+                        <a href="/ieum/findId1">아이디 찾기</a>
                     </div>
                     <div class="change-pw" id="change-pw">
                         <div class="title-div">
@@ -325,7 +325,7 @@
 		            url: "/ieum/auth/changePw",
 		            type: "POST",
 		            data: { userId : $("#userId").val(),
-		            	password : $("#password").val()},
+		            	password : $("#pw").val()},
 		            dataType: "json",
 		            success: function(response) {
 		                if(response.success) {
@@ -341,6 +341,5 @@
 		    });
 	        
         </script>
-<!-- 입력하신 아이디 또는 이메일이 일치하지 않습니다 -->
     </body>
 </html>

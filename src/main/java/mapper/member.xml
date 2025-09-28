@@ -34,4 +34,9 @@
 		select * from member where email = #{email}
 	</select>
 	
+	<select id="existId" parameterType="String" resultType="Map">
+		select u_no as userNo, password from member where id = #{userId}
+	</select>
+	
+	
 </mapper>	

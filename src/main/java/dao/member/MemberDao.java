@@ -16,4 +16,6 @@ public interface MemberDao {
 
 	String beforePw(String userId);
 
+	Map<String, Object> existIdtoPw(String userId);
+
 }

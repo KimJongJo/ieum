@@ -36,17 +36,18 @@ public class ChangePassword extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		
 		MemberService service = new MemberServiceImpl();
-		boolean change = service.changePw(userId, password);
+		int changeCode = service.changePw(userId, password);
 		Gson gson = new Gson();
 		ResponseDto resDto;
 		String result;
 		
-		if(change) { // 비밀번호 변경함
+		if(changeCode == 0) { // 비밀번호 변경함
 			resDto = new ResponseDto(true, "비밀번호가 변경되었습니다.");
-		}else { // 기존 사용 한 비밀번호
+		}else if(changeCode == 1) { // 기존 사용 한 비밀번호
 			resDto = new ResponseDto(false, "현재 사용중인 비밀번호입니다.");
+		}else {
+			resDto = new ResponseDto(false, "비밀번호 변경중 오류 발생..");
 		}
 		result = gson.toJson(resDto);
 		

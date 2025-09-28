@@ -47,7 +47,8 @@
         				url:"/ieum/auth/checkEmailCode",
         				type:"POST",
         				data:{email: $("#inputEmail").val(),
-        					code : $("#inputAuthCode").val()},
+        					code : $("#inputAuthCode").val(),
+        					type:"findId"},
         				dataType: "json",
         				success:function(response){
         					

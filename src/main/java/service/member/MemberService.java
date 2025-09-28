@@ -12,6 +12,8 @@ public interface MemberService {
 
 	Map<String, Object> findId(String email);
 
-	boolean changePw(String userId, String password);
+	int changePw(String userId, String password);
+
+	int login(String userId, String password);
 
 }

@@ -53,14 +53,21 @@ public class MemberServiceImpl implements MemberService {
 		return userMap;
 	}
 
+	// 비밀번호 변경
 	@Override
-	public boolean changePw(String userId, String password) {
+	public int changePw(String userId, String password) {
 		Map<String, Object> userMap = new HashMap<String, Object>();
 		
 		// 현재 사용중인 비밀번호와 비교
 		String beforePw = memberDao.beforePw(userId);
+		
+		// 값이 안들어왔을때
+		if(userId == null || password == null) {
+			return 2;
+		}
+		
 		if(BCrypt.checkpw(password, beforePw)) {
-			return false;
+			return 1;
 		}else {
 			// 비밀번호 암호화
 			String securityPw = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -69,11 +76,27 @@ public class MemberServiceImpl implements MemberService {
 			userMap.put("password", securityPw);
 			memberDao.changePw(userMap);
 			
-			return true;
+			return 0;
 		}
 		
 		
 		
+	}
+
+	// 로그인
+	@Override
+	public int login(String userId, String password) {
+		
+		Map<String, Object> userNoAndPw = memberDao.existIdtoPw(userId);
+		if(userNoAndPw == null) return 0; // 아이디가 존재하지 않을때
+		
+		String hashedPw = userNoAndPw.get("password").toString().trim();
+		
+		if (hashedPw == null || !BCrypt.checkpw(password, hashedPw)) {
+		    return -1; // 비밀번호가 틀렸을때
+		}else { // 로그인 성공했을때
+			return (Integer)userNoAndPw.get("userNo");
+		}
 	}
 
 }
