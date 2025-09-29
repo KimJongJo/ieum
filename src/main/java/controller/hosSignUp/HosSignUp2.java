@@ -1,6 +1,9 @@
 package controller.hosSignUp;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import dto.HospitalDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 
@@ -49,28 +53,57 @@ public class HosSignUp2 extends HttpServlet {
 		String hosCategory = request.getParameter("hosCategory");
 		String add = request.getParameter("address");
 		String addressDetail = request.getParameter("addressDetail");
+		String address = add + " " + addressDetail;
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
 		String tel3 = request.getParameter("tel3");
 		String tel = tel1 + "-" + tel2 + "-" + tel3;
 		String[] weekDay = request.getParameterValues("weekday");
-		String[] services = request.getParameterValues("services");
+		String[] services = request.getParameterValues("services"); // 편의 서비스
 		String service = request.getParameter("service"); // 실손24 서비스
 		String requestNo1 = request.getParameter("requestNo1");
 		String requestNo2 = request.getParameter("requestNo2");
 		String requestNo3 = request.getParameter("requestNo3");
 		String requestNo = requestNo1 + "-" + requestNo2 + "-" + requestNo3;
+		String hos_y = request.getParameter("hos_y");
+		String hos_x = request.getParameter("hos_x");
+		
+		List<String> holidays = new ArrayList<>();
+		for(String day : weekDay) {
+		    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
+		        holidays.add(day);
+		    }
+		}
+
+		String holiday = String.join(",", holidays);
+		
+		
+		List<String> hosServices = new ArrayList<>();
+		for(String day : services) {
+		    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
+		    	hosServices.add(day);
+		    }
+		}
+
+		String hosService = String.join(",", hosServices);
+		boolean silson = service.equals("yes") ? true : false;
+		
+		System.out.println(hosService);
+		System.out.println(silson);
+		
 		
 		// 병원사진하고 사업자 등록증만 받으면 됨
-//		Part hosImg = request.getPart("hosImgFile");
-//        Part hosReFile = request.getPart("hosFile");
-//        
-//        String hosImgFileName = hosImg.getSubmittedFileName();
-//        String hosReFileName = hosReFile.getSubmittedFileName();
-//		
-//		FileService fileService = new FileServiceImpl();
-//		Integer hosImgNo = fileService.uploadFile(hosImgFileName, "hosImg");
-//		Integer hosReFileNo = fileService.uploadFile(hosReFileName, "hosReImg");
+		Part hosImg = request.getPart("hosImgFile");
+        Part hosReFile = request.getPart("hosFile");
+        
+
+		
+		FileService fileService = new FileServiceImpl();
+		Integer hosImgNo = fileService.uploadFile(hosImg, "hosImg");
+		Integer hosReFileNo = fileService.uploadFile(hosReFile, "hosRe");
+		
+		System.out.println(hosImgNo);
+		System.out.println(hosReFileNo);
 		
 		String[] addArr = add.split(" ");
 		
@@ -78,18 +111,20 @@ public class HosSignUp2 extends HttpServlet {
 		String siDo = addArr[0];
 		
 		// 시/군/구
-		StringBuilder sb = new StringBuilder();
+		StringBuilder addrSb = new StringBuilder();
 		for(int i = 1; i < addArr.length - 2; i++ ){
-			sb.append(addArr[i]).append(" ");
+			addrSb.append(addArr[i]).append(" ");
 		}
-		String siGunGu = sb.toString();
+		String siGunGu = addrSb.toString();
 		
 		// 도로명 주소
 		String loadNameAdd = addArr[addArr.length - 2] + " " + addArr[addArr.length - 1];
 		
-		System.out.println("시/도 " + siDo);
-		System.out.println("시/군/구 " + siGunGu);
-		System.out.println("도로명주소 " + loadNameAdd);
+		HospitalDto hosDto = new HospitalDto(hosName, hosCategory, address, hos_y, hos_x,
+				holiday, tel, hosImgNo, hosReFileNo, requestNo, siDo, siGunGu, hosService, silson);
+		
+		System.out.println(hosDto);
+		
 		
 		
 	}

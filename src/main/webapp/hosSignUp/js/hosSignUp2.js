@@ -9,41 +9,59 @@ var hosInf = {
 }
 
 function searchAddr() {
-	
     new daum.Postcode({
         oncomplete: function(data) {
-        	
-        	var addr = ''; // 주소 변수
-        	
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            var addr = '';
+
+            if (data.userSelectedType === 'R') {
                 addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            } else {
                 addr = data.jibunAddress;
             }
-            
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+
             document.getElementById("postcode").value = data.zonecode;
             document.getElementById("address-auto").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
             document.getElementById("address-detail").focus();
-            
+
             var addauto = document.getElementById("address-auto");
-			var adddetail = document.getElementById("address-detail");
-			var addSpan = document.getElementById("address-span");
-			var addi = document.getElementById("address-i");
-			
-			// 값이 비어있는지 확인
-			if (addauto.value === "" || adddetail.value === "") {
-			    addSpan.style.display = "none"; // display none
-			    hosInf.hosAddr = false;
-			} else {
-			    addSpan.style.display = "block"; // display block
-			    addi.classList.remove("fa-xmark", "span-x"); // 기존 클래스 제거
-			    addi.classList.add("fa-check", "span-check"); // 새 클래스 추가
-			    hosInf.hosAddr = true;
-			}
-            
+            var adddetail = document.getElementById("address-detail");
+            var addSpan = document.getElementById("address-span");
+            var addi = document.getElementById("address-i");
+
+            if (addauto.value === "" || adddetail.value === "") {
+                addSpan.style.display = "none";
+                hosInf.hosAddr = false; // hosInf 선언 필요
+            } else {
+                addSpan.style.display = "block";
+                addi.classList.remove("fa-xmark", "span-x");
+                addi.classList.add("fa-check", "span-check");
+                hosInf.hosAddr = true; // hosInf 선언 필요
+            }
+
+            // 주소 → 좌표 변환
+            var geocoder = new kakao.maps.services.Geocoder();
+            var address = addauto.value; // 괄호 제거
+
+            geocoder.addressSearch(address, function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    var lat = result[0].y;
+                    var lng = result[0].x;
+                    console.log("위도:", lat, "경도:", lng);
+                    
+                    document.getElementById("hos_y").value = lat;
+                    document.getElementById("hos_x").value = lng;
+
+                    // map 객체가 이미 생성되어 있어야 함
+                    if (typeof map !== "undefined") {
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: new kakao.maps.LatLng(lat, lng)
+                        });
+                    }
+                } else {
+                    console.log("좌표 변환 실패");
+                }
+            });
         }
     }).open();
 }
@@ -268,6 +286,5 @@ $("#signUp-btn").click(function(e) {
         alert("정보입력을 다시 확인해주세요\n누락된 항목: " + firstFalseItem);
     }
 });
-
 
 
