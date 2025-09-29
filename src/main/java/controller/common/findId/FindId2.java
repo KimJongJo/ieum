@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class FindId2
  */
-@WebServlet("/findId2")
+@WebServlet("/findId1")
 public class FindId2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

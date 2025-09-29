@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -144,6 +145,7 @@
                         >
                     </div>
                 </div>
+                <c:if test="${sessionScope.userType == 'USER'}">
                 <div class="check_list_title3">
                     <span class="check_list_title_div">개인정보 처리방침 추가 조항</span>
                     <span class="check_fix">(선택사항)</span>
@@ -165,25 +167,44 @@
                         <input type="radio" name="agree3" id="yes3" value="yes"/> <label for="yes3">동의함</label> <input type="radio" name="agree3" id="no3" value="no"/><label for="no3">동의안함</label>
                     </div>
                 </div>
+                </c:if>
                 <div class="button-btn">
+                    <button  type="button" class="no-btn">취소</button>
                     <button id="agree-btn" class="agree-btn">동의합니다</button>
-                    <button class="no-btn">취소</button>
                 </div>
+                
                 </form>
             </div>
         </div>
         <script>
 	        $(function () {
-	            $("#agree-btn").click(function () {
+	            $("#agree-btn").click(function (e) {
 	                let selected = $('input[name="agree"]:checked').val();
 	                let selected2 = $('input[name="agree2"]:checked').val();
 	                let selected3 = $('input[name="agree3"]:checked').val(); // 새로 추가
 	
-	                if (selected === "yes" && selected2 === "yes" && selected3) {
-	                	 window.location.href = "/ieum/join3";
-	                } else {
-	                    console.log("이벤트 막음");
+	                if(${sessionScope.userType == 'USER'}){
+	                	if (selected === "yes" && selected2 === "yes") {
+	                		if(selected3){
+	                			 window.location.href = "/ieum/join3";
+	                		}else{
+	                			alert("모든 이용 약관을 체크해주세요");
+			                    e.preventDefault();
+	                		}
+		                	
+		                } else {
+		                	alert("필수 이용약관에 동의해주세요");
+		                    e.preventDefault();
+		                }
+	                }else{
+	                	if (selected === "yes" && selected2 === "yes") {
+		                	 window.location.href = "/ieum/join3";
+		                } else {
+		                	alert("필수 이용약관에 동의해주세요");
+		                	e.preventDefault();
+		                }
 	                }
+	                
 	            });
 	        });
         </script>

@@ -27,21 +27,21 @@
 		<form method="post">
 			<div class="form-group">
 				<div class="form-label form-multi">
-					<span>2020.09.22 일기</span>
+					<span>${todayDt} 일기</span>
 					<div class="form-right">
 						<span class="notice">오늘의 기분을 선택해주세요</span>
 						<div class="emoji">
-							<input type="radio" id="happy" name="emoji"><label
+							<input type="radio" id="happy" value="smile" name="emoji"><label
 								for="happy">
 								<div class="happy-icon">
 									<i class="fa-regular fa-face-smile"></i>
 								</div>
-							</label> <input type="radio" id="soso" name="emoji"><label
+							</label> <input type="radio" id="soso" value="meh" name="emoji"><label
 								for="soso">
 								<div class="soso-icon">
 									<i class="fa-regular fa-face-meh"></i>
 								</div>
-							</label> <input type="radio" id="sad" name="emoji"><label
+							</label> <input type="radio" id="sad" value="frown" name="emoji"><label
 								for="sad">
 								<div class="sad-icon">
 									<i class="fa-regular fa-face-frown"></i>
@@ -54,17 +54,17 @@
 			</div>
 			<!-- 제목 -->
 			<div class="form-group">
-				<input type="text" class="form-input" placeholder="제목을 입력하세요">
+				<input type="text" name="title" class="form-input" placeholder="제목을 입력하세요">
 			</div>
 			<!-- 내용 -->
 			<div class="form-group">
-				<textarea class="form-textarea" placeholder="내용을 입력하세요"></textarea>
+				<textarea class="form-textarea" name="content" placeholder="내용을 입력하세요"></textarea>
 			</div>
 
 			<div class="diary-footer">
 				<!-- 버튼 -->
 				<div class="button-wrapper">
-					<a class="btn-link" href="${contextPath}/myPage/diary">
+					<a class="btn-link" href="${contextPath}/myPage/diary?page=1">
 						<div class="basic-small-btn">취소</div>
 					</a>
 					<button type="submit" formaction="${contextPath}/myPage/diary/write"

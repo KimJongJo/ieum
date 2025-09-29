@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$(document).on("change", function() {
+	$("input:radio[name=emoji]").on("change", function() {
 		$('.happy-icon').removeClass('happy-select');
 		$('.soso-icon').removeClass('soso-select');
 		$('.sad-icon').removeClass('sad-select');

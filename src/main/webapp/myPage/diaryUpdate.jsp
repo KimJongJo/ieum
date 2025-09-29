@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -18,63 +19,67 @@
 </head>
 <body>
 	<div class="diary-container">
-		<div class="btn">
-			<a class="btn-link" href="${contextPath}/myPage/diagnosisHistory">
-				<div class="basic-big-btn">최근 상담이력</div>
-			</a>
-		</div>
+		<c:if test="${recentHistory}">
+			<div class="btn">
+				<a class="btn-link" href="">
+					<div class="basic-big-btn">최근 상담이력</div>
+				</a>
+			</div>
+		</c:if>
 		<!-- 날짜 -->
-		<form action="post">
+		<form method="post" action="${contextPath}/myPage/diary/update">
+			<input type="hidden" name="dNo" value="${diary.dNo}">
 			<div class="form-group">
 				<div class="form-label form-multi">
-					<span>2020.09.22 일기</span>
+					<span><fmt:formatDate value="${diary.dCreated}"
+						pattern="yyyy-MM-dd" /> 일기</span>
 					<div class="form-right">
 						<span class="notice">오늘의 기분을 선택해주세요</span>
 						<div class="emoji">
-							<input type="radio" id="happy" name="emoji"><label
-								for="happy">
-								<div class="happy-icon happy-select">
-									<i class="fa-regular fa-face-smile"></i>
-								</div>
-							</label> <input type="radio" id="soso" name="emoji"><label
-								for="soso">
-								<div class="soso-icon">
-									<i class="fa-regular fa-face-meh"></i>
-								</div>
-							</label> <input type="radio" id="sad" name="emoji"><label
-								for="sad">
-								<div class="sad-icon">
-									<i class="fa-regular fa-face-frown"></i>
-								</div>
-							</label>
-						</div>
+						<input type="radio" disabled id="happy" name="emoji" value="smile"> <label
+							for="happy">
+							<div class="happy-icon ${diary.mood eq 'smile' ? 'happy-select' : ''}">
+								<i class="fa-regular fa-face-smile"></i>
+							</div>
+						</label> <input type="radio" disabled id="soso" name="emoji" value="meh"> <label
+							for="soso">
+							<div class="soso-icon ${diary.mood eq 'meh' ? 'soso-select' : ''}">
+								<i class="fa-regular fa-face-meh"></i>
+							</div>
+						</label> <input type="radio" disabled id="sad" name="emoji" value="frown"> <label
+							for="sad">
+							<div class="sad-icon ${diary.mood eq 'frown' ? 'sad-select' : ''}">
+								<i class="fa-regular fa-face-frown"></i>
+							</div>
+						</label>
+					</div>
 					</div>
 
 				</div>
 			</div>
-		</form>
+		
 
 		<!-- 제목 -->
 		<div class="form-group">
-			<input type="text" class="form-input" placeholder="제목을 입력하세요"
-				value="9월 6일 기록">
+			<input type="text" name="title" class="form-input" placeholder="제목을 입력하세요"
+				value="${diary.title}">
 		</div>
 		<!-- 내용 -->
 		<div class="form-group">
-			<textarea class="form-textarea" placeholder="내용을 입력하세요">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째 상담이라 그런지 지난번보다 편안했다</textarea>
+			<textarea class="form-textarea" name="content" placeholder="내용을 입력하세요">${diary.content}</textarea>
 		</div>
 
 		<div class="diary-footer">
 			<!-- 버튼 -->
 			<div class="button-wrapper">
-				<a class="btn-link" href="${contextPath}/myPage/diary">
+				<a class="btn-link" href="${contextPath}/myPage/diary?page=1">
 					<div class="basic-small-btn">취소</div>
 				</a>
 				<button type="submit"
-					formaction="${contextPath}/myPage/diary/update"
 					class="primary-small-btn">수정</button>
 
 			</div>
 		</div>
+		</form>
 </body>
 </html>
