@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
-	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+   <settings>
+      <setting name="mapUnderscoreToCamelCase" value="true"/>
+   </settings>
+   <typeAliases>
+   
+      <typeAlias type="dto.MemberProfileDto" alias="memberProfile" />
+      <typeAlias type="dto.MemberDto" alias="member" />
+      <typeAlias type="dto.MyCommunityDto" alias="myCommunity" />
+      <typeAlias type="dto.BlackListDto" alias="blackList" />
+      <typeAlias type="dto.CommeLikeDto" alias="commeLike" />
+      <typeAlias type="dto.CommentDto" alias="comment" />
+      <typeAlias type="dto.CommuCategoryDto" alias="commuCategory" />
+      <typeAlias type="dto.CommuLikeDto" alias="commuLike" />
+      <typeAlias type="dto.CommunityDto" alias="community" />
+      <typeAlias type="dto.DiagnosisHistoryDto" alias="diagnosisHistory" />
+      <typeAlias type="dto.DiaryDto" alias="diary" />
+      <typeAlias type="dto.EmailAuthDto" alias="emailAuth" />
+      <typeAlias type="dto.ExamDto" alias="exam" />
+      <typeAlias type="dto.ExamItemDto" alias="examItem" />
+      <typeAlias type="dto.ExamResultDto" alias="examResult" />
+      <typeAlias type="dto.FavoriteDto" alias="favorite" />
+      <typeAlias type="dto.FileDto" alias="file" />
+      <typeAlias type="dto.HospitalDto" alias="hospital" />
+      <typeAlias type="dto.NoticeDto" alias="notice" />
+      <typeAlias type="dto.ReservationDto" alias="reservation" />
+      <typeAlias type="dto.UserStateDto" alias="userState" />
+      
+      
+   </typeAliases>
 
-	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
+   <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC" />
+         <dataSource type="POOLED">
+            <property name="driver" value="org.mariadb.jdbc.Driver" />
+            <property name="url"
+               value="jdbc:mariadb://localhost:3306/ieum" />
+            <property name="username" value="root" />
+            <property name="password" value="7564" />
+            <property name="poolMaximumActiveConnections" value="500" />
+            <property name="poolMaximumIdleConnections" value="500" />
+         </dataSource>
+      </environment>
+   </environments>
 
-	<typeAliases>
-		<typeAlias type="dto.MemberDto" alias="member" />
-		<typeAlias type="dto.BlackListDto" alias="blackList" />
-		<typeAlias type="dto.CommeLikeDto" alias="commeLike" />
-		<typeAlias type="dto.CommentDto" alias="comment" />
-		<typeAlias type="dto.CommuCategoryDto" alias="commuCategory" />
-		<typeAlias type="dto.CommuLikeDto" alias="commuLike" />
-		<typeAlias type="dto.CommunityDto" alias="community" />
-		<typeAlias type="dto.DiagnosisHistoryDto" alias="diagnosisHistory" />
-		<typeAlias type="dto.DiaryDto" alias="diary" />
-		<typeAlias type="dto.EmailAuthDto" alias="emailAuth" />
-		<typeAlias type="dto.ExamDto" alias="exam" />
-		<typeAlias type="dto.ExamItemDto" alias="examItem" />
-		<typeAlias type="dto.ExamResultDto" alias="examResult" />
-		<typeAlias type="dto.FavoriteDto" alias="favorite" />
-		<typeAlias type="dto.FileDto" alias="file" />
-		<typeAlias type="dto.HospitalDto" alias="hospital" />
-		<typeAlias type="dto.NoticeDto" alias="notice" />
-		<typeAlias type="dto.ReservationDto" alias="reservation" />
-		<typeAlias type="dto.UserStateDto" alias="userState" />
-		
-		
-	</typeAliases>
+   <mappers>
+      <mapper resource="mapper/blacklist.xml" />
+      <mapper resource="mapper/comme_like.xml" />
+      <mapper resource="mapper/comment.xml" />
+      <mapper resource="mapper/commu_category.xml" />
+      <mapper resource="mapper/commu_like.xml" />
+      <mapper resource="mapper/community.xml" />
+      <mapper resource="mapper/diagnosis_history.xml" />
+      <mapper resource="mapper/diary.xml" />
+      <mapper resource="mapper/email_auth.xml" />
+      <mapper resource="mapper/exam_ques.xml" />
+      <mapper resource="mapper/exam_result.xml" />
+      <mapper resource="mapper/exam.xml" />
+      <mapper resource="mapper/favorite.xml" />
+      <mapper resource="mapper/file.xml" />
+      <mapper resource="mapper/hospital.xml" />
+      <mapper resource="mapper/member.xml" />
+      <mapper resource="mapper/notice.xml" />
+      <mapper resource="mapper/reservation.xml" />
+      <mapper resource="mapper/user_state.xml" />
 
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="POOLED">
-				<property name="driver" value="org.mariadb.jdbc.Driver" />
-				<property name="url" value="jdbc:mariadb://localhost:3306/ieum"/>
-				<property name="username" value="root" />
-				<property name="password" value="7564" />
-				<property name="poolMaximumActiveConnections" value="500" />
-				<property name="poolMaximumIdleConnections" value="500" />
-			</dataSource>
-		</environment>
-	</environments>
-
-	<mappers>
-		<mapper resource="mapper/blacklist.xml" />
-		<mapper resource="mapper/comme_like.xml" />
-		<mapper resource="mapper/comment.xml" />
-		<mapper resource="mapper/commu_category.xml" />
-		<mapper resource="mapper/commu_like.xml" />
-		<mapper resource="mapper/community.xml" />
-		<mapper resource="mapper/diagnosis_history.xml" />
-		<mapper resource="mapper/diary.xml" />
-		<mapper resource="mapper/email_auth.xml" />
-		<mapper resource="mapper/exam_ques.xml" />
-		<mapper resource="mapper/exam_result.xml" />
-		<mapper resource="mapper/exam.xml" />
-		<mapper resource="mapper/favorite.xml" />
-		<mapper resource="mapper/file.xml" />
-		<mapper resource="mapper/hospital.xml" />
-		<mapper resource="mapper/member.xml" />
-		<mapper resource="mapper/notice.xml" />
-		<mapper resource="mapper/reservation.xml" />
-		<mapper resource="mapper/user_state.xml" />
-
-	</mappers>
-</configuration>	
-	
+   </mappers>
+</configuration>   
+   

@@ -55,4 +55,93 @@
 
     });
   });
+  
+ let offset = 0;
+const limit = 8;
+let loading = false;
+let endReached = false;
 
+function loadHospitals(reset=false) {
+    if (loading || endReached) return;
+    loading = true;
+
+    if (reset) {
+        offset = 0;
+        endReached = false;
+        $("#hospitalList").empty();
+    }
+
+    const keyword = $("#keyword").val();
+    const city = $("#city").val();
+    const gungu = $("#gungu").val();
+    const categoryName = $("input[name='categoryName']:checked")
+        .map(function(){ return this.value; }).get();
+
+    $.ajax({
+        url: "${pageContext.request.contextPath}/hospital/search",
+        method: "GET",
+        dataType: 'json',
+        data: {
+            keyword: keyword,
+            city: city,
+            gungu: gungu,
+            categoryName: categoryName,
+            offset: offset,
+            limit: limit
+        },
+        success: function(data) {
+			console.log("ssssssssssssssssssssss")
+            if (data.length === 0) {
+                endReached = true;
+                return;
+            }
+
+            data.forEach(h => {
+                $("#hospitalList").append(`
+                    <div class="list-box">
+					<div class="right3">
+						<img class="hosf" src="" />
+						<div class="infodetail">
+							<div class="hos-category">${h.categoryName }</div>
+							<div class="hos-name">${h.hNm }</div>
+							<div class="hos-loca">
+								<div class="icon3">
+									<i class="fa-solid fa-bus"></i>
+								</div>
+								${h.transferInfo }
+							</div>
+						</div>
+					</div>
+					<div class="fav">
+						<i class="fa-regular fa-star"></i>
+					</div>
+				</div>
+                `);
+            });
+
+            offset += data.length;
+            loading = false;
+        },
+        error: function(err) {
+            console.log(err);
+            loading = false;
+        }
+    });
+}
+
+// 초기 로드
+loadHospitals();
+
+// 필터 변경 이벤트
+$("#keyword, #city, #gungu, input[name='categoryName']").on("change keyup", function(){
+    loadHospitals(true);
+});
+
+// loadMore 버튼 이벤트
+$("#loadMore").on("click", function(){
+    loadHospitals();
+});
+
+  
+  
+  

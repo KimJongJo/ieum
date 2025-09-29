@@ -7,14 +7,18 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
+import dto.FileDto;
 import dto.MemberDto;
-
+import service.file.FileService;
+import service.file.FileServiceImpl;
 public class MemberServiceImpl implements MemberService {
 
 	MemberDao memberDao;
+	FileService fileService;
 	
 	public MemberServiceImpl() {
 		memberDao = new MemberDaoImpl();
+		fileService = new FileServiceImpl();
 	}
 	
 	// 사용 가능한 아이디인지 확인
@@ -34,6 +38,10 @@ public class MemberServiceImpl implements MemberService {
 	// 일반 유저 회원가입 
 	@Override
 	public void normalJoin(MemberDto member) {
+		String filePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img";
+		FileDto file = new FileDto("회원이미지.jpg",filePath,"userProfile");
+		Integer fileNo = fileService.normalImg(file);
+		member.setFileNo(fileNo);
 		memberDao.normalJoin(member);
 		
 	}
@@ -97,6 +105,11 @@ public class MemberServiceImpl implements MemberService {
 		}else { // 로그인 성공했을때
 			return (Integer)userNoAndPw.get("userNo");
 		}
+	}
+	
+	@Override
+	public MemberDto selectByNickName(Integer uNo) throws Exception {
+		return memberDao.selectByNickName(uNo);
 	}
 
 }

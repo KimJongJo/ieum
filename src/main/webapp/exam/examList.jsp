@@ -15,7 +15,7 @@
 <body>
 <div class="container">
         <div class="left">
-        <jsp:include page="examnav.html"></jsp:include>
+        <jsp:include page="examnav.jsp"></jsp:include>
         </div>           
         <div class="right">
             <div class="header">
