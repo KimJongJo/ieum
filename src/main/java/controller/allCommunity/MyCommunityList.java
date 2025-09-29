@@ -50,10 +50,7 @@ public class MyCommunityList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String commuNo = request.getParameter("commu_no"); // 글 번호 받아오기
-	    request.setAttribute("commu_no", commuNo); // comDetail에서 사용할 수 있도록
-
-		
-		response.sendRedirect("comDetail");
+		response.sendRedirect("comDetail?no=" + commuNo); // ✅ 파라미터로 넘겨야 함
 	}
 
 }

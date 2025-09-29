@@ -45,7 +45,8 @@ public class AllCommunityList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("comDetail");
+		String commuNo = request.getParameter("commu_no"); // 글 번호 받아오기
+		response.sendRedirect("comDetail?no=" + commuNo); // ✅ 파라미터로 넘겨야 함
 	}
 
 }

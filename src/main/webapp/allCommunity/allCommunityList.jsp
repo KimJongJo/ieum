@@ -244,7 +244,7 @@ body {
 	    grid-template-columns: repeat(2, 1fr); /* 2열 */
 	    gap: 20px 30px; /* 행 간격 / 열 간격 */
 	    max-width: 1020px;  /* 버튼 영역과 맞춤 */
-	    margin: 0;
+	    margin-left: 20px;
 	}
 
     .box {
@@ -460,7 +460,8 @@ body {
     	<div class="community-grid">
 			<c:forEach var="allComList" items="${allComList}" varStatus="status">
 		        <!-- ✅ box를 버튼 아래로 -->
-			    <div class="boxes">
+			    <div class="boxes"
+			    	onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myComList.commuNo}'">
 			        <div class="box">
 			            <div class="text-wrapper-1">
 			            	<c:out value="${allComList.nickName}" default="익명"/>

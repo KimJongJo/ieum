@@ -57,9 +57,11 @@
                 <button class="tab-heart">좋아요 누른 게시판</button>
             </div>
 			<c:forEach var="myComList" items="${myComList}" varStatus="status">
+
 			    <input type="hidden" name="commu_no" class="commu_no" value="${myComList.commuNo}" />
 			    
-			    <div class="frame" data-commu-no="${myComList.commuNo}">
+			    <div class="frame" data-commu-no="${myComList.commuNo}"
+			    	onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myComList.commuNo}'">
 			    <button type="submit" class="hidden-submit" style="display:none;"></button>
 			        <!-- 상단: 닉네임 + 카테고리 -->
 			        <div class="frame-top">
