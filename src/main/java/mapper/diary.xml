@@ -2,5 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.diary">
-	
+	<insert id="insert" parameterType="diary">
+		INSERT INTO diary
+		(d_created, title, content, mood, u_no)
+		VALUES (now(), #{title}, #{content}, #{mood}, #{uNo})
+	</insert>
+	<select id="selectDetail" parameterType="Integer" resultType="diary">
+		SELECT * FROM diary WHERE d_no=#{dNo}
+	</select>
+	<select id="selectList" parameterType="map" resultType="diary">
+		SELECT * FROM diary WHERE u_no=#{uNo} ORDER BY d_no DESC LIMIT #{row}, 10
+	</select>
+	<select id="selectCnt" resultType="Integer">
+		SELECT COUNT(*) FROM diary;
+	</select>
+	<update id="update" parameterType="diary">
+		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, d_updated=now() WHERE d_no=#{dNo}
+	</update>
+	<delete id="delete">
+		DELETE FROM WHERE d_no=#{dNo} 
+	</delete>
 </mapper>	

@@ -1,15 +1,15 @@
 package dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DiaryDto {
-	Integer diaryNo;
+	Integer dNo;
 	Integer uNo;
 	Date dCreated;
 	Date dUpdated;
 	String title;
 	String content;
-	Integer mood;
+	String mood;
 	
 	
 	public DiaryDto() {
@@ -17,10 +17,10 @@ public class DiaryDto {
 	}
 	
 	
-	public DiaryDto(Integer diaryNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content,
-			Integer mood) {
+	public DiaryDto(Integer dNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content,
+			String mood) {
 		super();
-		this.diaryNo = diaryNo;
+		this.dNo = dNo;
 		this.uNo = uNo;
 		this.dCreated = dCreated;
 		this.dUpdated = dUpdated;
@@ -28,23 +28,40 @@ public class DiaryDto {
 		this.content = content;
 		this.mood = mood;
 	}
-
 	
+
+	public DiaryDto(Integer uNo, String title, String content, String mood) {
+		super();
+		this.uNo = uNo;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+	}
+
+
+	public DiaryDto(Integer uNo, Date dCreated, String title, String content, String mood) {
+		super();
+		this.uNo = uNo;
+		this.dCreated = dCreated;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+	}
+
 
 	@Override
 	public String toString() {
-		return "diary [diaryNo=" + diaryNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
+		return "diary [diaryNo=" + dNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
 				+ ", title=" + title + ", content=" + content + ", mood=" + mood + "]";
 	}
 
-
-	public Integer getDiaryNo() {
-		return diaryNo;
+	public Integer getdNo() {
+		return dNo;
 	}
 
 
-	public void setDiaryNo(Integer diaryNo) {
-		this.diaryNo = diaryNo;
+	public void setdNo(Integer dNo) {
+		this.dNo = dNo;
 	}
 
 
@@ -98,12 +115,12 @@ public class DiaryDto {
 	}
 
 
-	public Integer getMood() {
+	public String getMood() {
 		return mood;
 	}
 
 
-	public void setMood(Integer mood) {
+	public void setMood(String mood) {
 		this.mood = mood;
 	}
 	
