@@ -5,11 +5,11 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.MemberDto;
+
 import util.MybatisSqlSessionFactory;
 
-public class MemberDaoImpl implements MemberDao {
-
-	SqlSession session;
+public class MemberDaoImpl implements MemberDao{		
+	private SqlSession session;
 	
 	public MemberDaoImpl() {
 		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
@@ -36,8 +36,21 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void changePw(Map<String, Object> userMap) {
-		
 		session.update("changePw", userMap);
+  }
+  @Override
+	public MemberDto selectByNickName(Integer uNo) throws Exception {
+		return session.selectOne("mapper.member.selectByNickName", uNo);
+	}
+
+	@Override
+	public MemberDto selectProfileInfo(Integer uNo) throws Exception {
+		return session.selectOne("mapper.member.selectProfileInfo", uNo);
+	}
+
+	@Override
+	public void updateProfile(MemberDto memberDto) throws Exception {
+		session.update("mapper.member.updateProfile", memberDto);
 		session.commit();
 	}
 
@@ -53,5 +66,14 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectOne("existId", userId);
 	}
+	public MemberDto selectFindById(Integer uNo) throws Exception {
+		return session.selectOne("mapper.member.selectId", uNo);
+	}
 
+	@Override
+	public void updatePassword(MemberDto memberDto) throws Exception {
+		session.update("mapper.member.updatePass", memberDto);
+		session.commit();
+		
+	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
 	rel="stylesheet">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/diaryList.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/myPage/css/diaryList.css">
 	
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -39,7 +41,7 @@
 				<option selected disabled value="none">정렬</option>
 				<option>최신순</option>
 				<option>제목순</option>
-			</select> <a class="btn-link" href="">
+			</select> <a class="btn-link" href="${contextPath}/myPage/diary/write">
 				<div class="basic-big-btn">작성</div>
 			</a>
 		</div>
@@ -59,7 +61,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="diary-item">
+				<tr class="diary-item" onclick="location.href=`${contextPath}/myPage/diary?dNo=1`">
 					<td class="diary-title-row"><span class="diary-title">7월2일의
 							기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록</span></td>
 					<td><span class="diary-txt">9월 6일 오전 10시경 상담을 받았다6일 오전
@@ -154,11 +156,11 @@
 				</div>
 			</div>
 			<div class="button-wrapper">
-				<a class="btn-link" href="">
+				<a class="btn-link" href="${contextPath}/myPage/diary/update">
 					<div class="basic-big-btn">수정</div>
-				</a> <a class="btn-link" href="">
-					<div class="basic-big-btn">삭제</div>
-				</a> <a class="btn-link" href="">
+				</a> 
+					<div class="basic-big-btn" id="delBtn">삭제</div>
+				 <a class="btn-link" href="">
 					<div class="primary-big-btn">진단이력 바로가기</div>
 				</a>
 			</div>

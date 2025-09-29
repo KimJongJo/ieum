@@ -1,5 +1,4 @@
 package service.member;
-
 import java.util.Map;
 
 import dto.MemberDto;
@@ -15,5 +14,8 @@ public interface MemberService {
 	int changePw(String userId, String password);
 
 	int login(String userId, String password);
+import dto.MemberDto;
 
+public interface MemberService {
+	MemberDto selectByNickName(Integer uNo) throws Exception;
 }

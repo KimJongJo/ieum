@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +63,7 @@
 		<div class="diary-footer">
 			<!-- 버튼 -->
 			<div class="button-wrapper">
-				<a class="btn-link" href="">
+				<a class="btn-link" href="${contextPath}/myPage/diary">
 					<div class="basic-big-btn">목록</div>
 				</a>
 			</div>

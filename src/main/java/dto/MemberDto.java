@@ -45,9 +45,13 @@ public class MemberDto {
 		this.diaryPrivate = diaryPrivate;
 	}
 
-
-
-
+	
+	
+	public MemberDto(Integer uNo, String password) {
+		super();
+		this.uNo = uNo;
+		this.password = password;
+	}
 
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
@@ -74,6 +78,10 @@ public class MemberDto {
 		this.hNo = hNo;
 		this.stateCode = stateCode;
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
@@ -197,12 +205,5 @@ public class MemberDto {
 	public void setStateCode(Integer stateCode) {
 		this.stateCode = stateCode;
 	}
-	
-	
-	
-	
-
-	
-	
 
 }

@@ -1,11 +1,17 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dto.MyCommunityDto;
+import service.allCommunity.MyCommunityService;
+import service.allCommunity.MyCommunityServiceImpl;
 
 /**
  * Servlet implementation class MyCommunityList
@@ -26,6 +32,16 @@ public class MyCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int uNo = 1; // 🔹 현재 로그인 유저 번호(세션에서 꺼내는게 좋음)
+		MyCommunityService service = new MyCommunityServiceImpl();
+		try {
+			List<MyCommunityDto> myComList = service.getMyCommunityList(uNo);
+			request.setAttribute("myComList", myComList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
 	}
 

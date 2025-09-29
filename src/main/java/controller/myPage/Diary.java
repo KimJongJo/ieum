@@ -26,10 +26,10 @@ public class Diary extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dNo = request.getParameter("diary_no");
+		String dNo = request.getParameter("dNo");
 		try {
-			if (dNo != null) request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
-			else request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
+			if (dNo != null) request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
+			else request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
 		} catch(Exception e) {
 			
 		}
