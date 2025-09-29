@@ -72,9 +72,9 @@
 						<table class="diary-list">
 							<colgroup>
 								<col style="width: 20%;">
-								<col style="width: 65%;">
-								<col style="width: 10%;">
-								<col style="width: 5%;">
+								<col style="width: 55%;">
+								<col style="width: 19%;">
+								<col style="width: 6%;">
 							</colgroup>
 
 							<thead>
@@ -115,7 +115,7 @@
 
 				<!-- 상세 팝업 -->
 				<div class="detail-popup" style="display: none;">
-					<button id="close-btn" class="close-btn">
+					<button type="button" id="close-btn" class="close-btn">
 						<i class="fa-solid fa-x"></i>
 					</button>
 
@@ -142,20 +142,20 @@
 						</div>
 					</div>
 
-					<div class="button-wrapper">
+<!-- 					<div class="button-wrapper"> -->
 
-						<input type="hidden" name="dNo" id="dNoInput"> <a
-							class="btn-link" href="${contextPath}/myPage/diary/update">
-							<div class="basic-big-btn">수정</div>
-						</a>
-						<button type="submit" class="basic-big-btn"
-							formaction="${contextPath}/myPage/diary/delete" id="delBtn">
-							삭제</button>
-						<a class="btn-link" href="${contextPath}/myPage/diagnosis">
-							<div class="primary-big-btn">진단이력 바로가기</div>
-						</a>
+<!-- 						<input type="hidden" name="dNo" id="dNoInput"> <a -->
+<%-- 							class="btn-link" href="${contextPath}/myPage/diary/update"> --%>
+<!-- 							<div class="basic-big-btn">수정</div> -->
+<!-- 						</a> -->
+<!-- 						<button type="submit" class="basic-big-btn" -->
+<%-- 							formaction="${contextPath}/myPage/diary/delete" id="delBtn"> --%>
+<!-- 							삭제</button> -->
+<%-- 						<a class="btn-link" href="${contextPath}/myPage/diagnosis"> --%>
+<!-- 							<div class="primary-big-btn">진단이력 바로가기</div> -->
+<!-- 						</a> -->
 
-					</div>
+<!-- 					</div> -->
 				</div>
 			</form>
 
@@ -173,7 +173,25 @@
 			</c:if>
 		</div>
 	</div>
-
 	<footer></footer>
+	<div class="modal-main-div" id="writeConfrimModal" style="display: none">
+		<div class="modal-div-over">
+			<div class="modal-header-div">
+				<span class="modal-header-div-span">알림</span>
+				<button type="button" class="x-button" onclick="cancelDel()">
+					<i class="fa-solid fa-x x-btn"></i>
+				</button>
+			</div>
+			<div class="modal-content-div">
+				<span class="modal-content-div-span">다이어리를 삭제하시겠습니까?</span>
+			</div>
+			<div class="modal-div-under">
+				<div class="modal-btn-div">
+					<button type="button" class="modal-btn-left modal-btn" onclick="cancelDel()">취소</button>
+					<button class="modal-btn-right modal-btn" onclick="confirmDel()">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

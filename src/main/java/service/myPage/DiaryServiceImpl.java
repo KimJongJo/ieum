@@ -62,4 +62,9 @@ public class DiaryServiceImpl implements DiaryService {
 	    }
 	}
 
+	@Override
+	public DiaryDto getDate(Integer uNo, String date) throws Exception {
+		return diaryDao.selectDate(uNo, date);
+	}
+
 }

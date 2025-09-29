@@ -19,4 +19,6 @@ public interface DiaryDao {
 	public void delete(Integer dNo) throws Exception;
 
 	public List<DiagnosisHistoryDto> selectHisList(Integer uNo) throws Exception;
+	
+	public DiaryDto selectDate (Integer uNo, String date) throws Exception;
 }

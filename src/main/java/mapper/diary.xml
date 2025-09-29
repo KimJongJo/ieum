@@ -25,4 +25,7 @@
 	<select id="selectHisList" parameterType="Integer" resultType="diagnosisHistory">
 		SELECT * FROM diagnosis_history WHERE patient_id = #{uNo}
 	</select>
+	<select id="selectDate" parameterType="map" resultType="diary">
+		SELECT * FROM diary WHERE u_no=#{uNo} AND SUBSTR(d_created, 1, 10) = #{dCreated};
+	</select>
 </mapper>	

@@ -275,7 +275,7 @@ body {
 .diary-list th, .diary-item td {
 	padding: 12px;
 	text-align: left;
-	border-bottom: 1px solid #eee;
+	border: 1px solid #eee;
 }
 
 .diary-list th {

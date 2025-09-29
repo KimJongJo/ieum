@@ -102,7 +102,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-main-div" id="confirmModal" style="display: none">
+	<div class="modal-main-div" id="delConfirmModal" style="display: none">
 		<div class="modal-div-over">
 			<div class="modal-header-div">
 				<span class="modal-header-div-span">알림</span>
