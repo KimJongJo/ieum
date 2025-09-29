@@ -233,7 +233,7 @@
 								<span class="i-span" id=fileInput-span><i class="fa-solid fa-check span-check" id="fileInput-i"></i></span>
 							</div>
 							<div class="input-div2 input">
-							  <input name="hosFile" type="file" class="file-input" id="fileInput" />
+							  <input name="hosFile" type="file" class="file-input" id="fileInput" accept="application/pdf,.pdf"/>
 							  <button class="select-file-btn marL20" id="selectFileBtn" type="button">📂 파일 선택</button>
 							  <span class="file-name" id="fileName">선택된 파일 없음</span>
 							</div>

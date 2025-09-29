@@ -166,26 +166,44 @@ $(function() {
     $imgInput.on('change', function() {
         const file = this.files[0];
 
-        // 파일 이름 표시
         if (file) {
+            // ✅ 허용 확장자 검사
+            const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+            const fileName = file.name.toLowerCase();
+            const isValid = allowedExtensions.some(ext => fileName.endsWith(ext));
+
+            if (!isValid) {
+                alert("이미지 파일만 업로드 가능합니다!");
+                // 선택 취소 처리
+                $imgInput.val(""); 
+                $imgFileName.text("선택된 파일 없음");
+                $preview.attr('src', '').hide();
+                hosInf.hosImg = false;
+
+                $statusSpan.css("display", "block");
+                $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
+                return; // 여기서 함수 종료
+            }
+
+            // ✅ 정상 이미지 처리
             $imgFileName.text(file.name);
             $preview.attr('src', URL.createObjectURL(file)).show();
             hosInf.hosImg = true;
 
-            // 체크 아이콘 표시
             $statusSpan.css("display", "block");
             $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
         } else {
+            // 파일 없을 때 처리
             $imgFileName.text("선택된 파일 없음");
             $preview.attr('src', '').hide();
             hosInf.hosImg = false;
 
-            // 엑스 아이콘 표시
             $statusSpan.css("display", "block");
             $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
         }
     });
 });
+
 
 
 
@@ -207,21 +225,35 @@ $(function() {
     // 파일 선택 시 처리
     $fileInput.on('change', function() {
         const files = this.files;
+        const file = files.length > 0 ? files[0] : null;
 
         // 파일 이름 표시
-        $fileName.text(files.length > 0 ? files[0].name : "선택된 파일 없음");
+        $fileName.text(file ? file.name : "선택된 파일 없음");
 
         // 상태 표시 (체크/엑스 아이콘)
         $statusSpan.css("display", "block");
-        if (files && files.length > 0) {
-            $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
-            hosInf.hosReFile = true;
+
+        if (file) {
+            const fileName = file.name.toLowerCase();
+            const isPdf = fileName.endsWith(".pdf");
+
+            if (isPdf) {
+                $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
+                hosInf.hosReFile = true;
+            } else {
+                $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
+                hosInf.hosReFile = false;
+                alert("PDF 파일만 업로드 가능합니다.");
+                $fileInput.val(""); // 잘못된 파일 선택 시 input 초기화
+                $fileName.text("선택된 파일 없음");
+            }
         } else {
             $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
             hosInf.hosReFile = false;
         }
     });
 });
+
 
 
 // 병원 주소
