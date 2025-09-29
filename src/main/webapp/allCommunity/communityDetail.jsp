@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -290,6 +291,63 @@ body {
 		background-color: white;	
 	}
 </style>
+<script>
+$(function () {
+    /* 댓글 메뉴 토글 */
+    $(document).on('click', '.comment-box .menu-button', function (e) {
+        e.stopPropagation();
+        $('.userMenu').hide();
+        $(this).closest('.comment-box').find('.userMenu').css('display', 'flex');
+    });
+    $(document).on('click', function (e) {
+        if ($(e.target).closest('.userMenu, .menu-button').length === 0) {
+            $('.userMenu').hide();
+        }
+    });
+
+    /* 삭제 버튼 클릭 → 모달 표시 */
+    $(document).on('click', '#btn-delete', function(e) {
+        e.preventDefault();
+        const commuNo = $(this).data('communo');  // 클릭한 게시글 번호 저장
+        $('#completeModal').data('communo', commuNo).show();
+    });
+
+    /* 모달 삭제 버튼 클릭 → AJAX 요청 */
+    $('#modalOkComplete').click(function() {
+        const commuNo = $('#completeModal').data('communo');
+        $.ajax({
+            url: '${pageContext.request.contextPath}/delComDetail',
+            type: 'POST',
+            data: { commuNo: commuNo },
+            success: function() {
+                alert("삭제되었습니다.");
+                window.location.href = '${pageContext.request.contextPath}/allComList';
+            },
+            error: function() {
+                alert("삭제 중 오류가 발생했습니다.");
+            }
+        });
+        $('#completeModal').hide();
+    });
+
+    /* 모달 닫기 */
+    $('#modalCloseComplete, #modalCancelComplete').click(function() {
+        $('#completeModal').hide();
+    });
+
+    /* 차단 모달 */
+    $(document).on('click', '.userMenu .menu-item:contains("차단하기")', function (e) {
+        e.preventDefault();
+        $('#blockModal').show();
+    });
+    $('#modalCloseBlock, #modalCancelBlock, #modalOkBlock').click(function() {
+        $('#blockModal').hide();
+    });
+
+    /* 관리 메뉴 숨기기 */
+    $('.menu span:nth-child(5)').hide();
+});
+</script>
 </head>
 <body>
 	<c:import url="../common/header/header.html" charEncoding="UTF-8"/>
@@ -305,9 +363,9 @@ body {
             	<c:out value="${community.commuTitle}"/>
             </div>
             <div id="btn1">
-                <button onclick="location.href='/ieum/write'" id="btn-update">수정</button>
-                <button id="btn-delete">삭제</button>
-            </div>
+	            <button onclick="location.href='/ieum/write'" id="btn-update">수정</button>
+	            <button type="button" id="btn-delete" data-communo="${community.commuNo}">삭제</button>
+	        </div>
         </div>
         <div id="san"></div>
 		<!-- 본인 작성한곳 -->       
@@ -380,7 +438,7 @@ body {
     </div>
     
     
-    <!-- ✅ 모달 추가 (처음에는 숨김) -->
+    <!-- ✅ 삭제 모달 추가 (처음에는 숨김) -->
 	<div class="modal-main-div" id="completeModal" style="display:none;">
 	    <div class="modal-div-over">
 	        <div class="modal-header-div">
@@ -398,6 +456,27 @@ body {
 	        </div>
 	    </div>
 	</div>
+	
+	
+	<!-- ✅ 차단 모달 추가 -->
+	<div class="modal-main-div" id="blockModal" style="display:none;">
+	    <div class="modal-div-over">
+	        <div class="modal-header-div">
+	            <span class="modal-header-div-span">알림</span>
+	            <button type="button" class="x-button" id="modalCloseBlock">✖</button>
+	        </div>
+	        <div class="modal-content-div">
+	            <span class="modal-content-div-span">차단 하시겠습니까?</span>
+	        </div>
+	        <div class="modal-div-under">
+	            <div class="modal-btn-div">
+	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelBlock">취소</button>
+	                <button type="button" class="modal-btn-right modal-btn" id="modalOkBlock">차단</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

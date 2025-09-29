@@ -57,4 +57,10 @@
         ORDER BY c.commu_created DESC  		
     
     </select>
+	       
+	<!-- 게시글 삭제 -->
+	<delete id="deleteCommunity" parameterType="int">
+        delete from community WHERE commu_no = #{commuNo}
+    </delete>
+    
 </mapper>	

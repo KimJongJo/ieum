@@ -23,4 +23,14 @@
 		insert into comment (comme_no, u_no, commu_no, com_content, com_empathy, com_created, com_declaration)
 		values (#{commeNo}, #{uNo}, #{commuNo}, #{comContent}, 0, now(), 0)
 	</insert>
+	
+	<!-- 해당 게시글 댓글 삭제 -->
+    <delete id="deleteCommentsByCommuNo" parameterType="int">
+        delete from comment where commu_no = #{commuNo}
+    </delete>
+	<!-- 댓글 조회 (특정 커뮤니티) -->
+    <select id="selectCommentsByCommuNo" parameterType="int" resultType="comment">
+        select * from comment where commu_no = #{commuNo} order by com_created ASC
+    </select>
+	
 </mapper>

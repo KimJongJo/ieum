@@ -24,11 +24,19 @@ $(function () {
     $(document).on('click', '#modalCloseComplete, #modalCancelComplete, #modalOkComplete', function () {
         $('#completeModal').hide();
     });
+    
+    /* ✅ 차단 모달 */
+    $(document).on('click', '.userMenu .menu-item:contains("차단하기")', function (e) {
+        e.preventDefault();
+        $('#blockModal').css('display', 'flex');
+    });
+    $(document).on('click', '#modalCloseBlock, #modalCancelBlock, #modalOkBlock', function () {
+        $('#blockModal').hide();
+    });
 
 
     /* 3) '관리 메뉴' 숨기기 */
     // nth-child(5)가 의도한 요소인지 확인하세요 (index는 1부터)
     $('.menu span:nth-child(5)').hide();
-
-});
-
+    
+    });

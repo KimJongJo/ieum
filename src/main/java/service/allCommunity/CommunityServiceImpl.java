@@ -2,18 +2,23 @@ package service.allCommunity;
 
 import org.apache.ibatis.session.SqlSession;
 
+import dao.allCommunity.CommentDao;
+import dao.allCommunity.CommentDaoImpl;
 import dao.allCommunity.CommunityDao;
 import dao.allCommunity.CommunityDaoImpl;
+
 import dto.CommunityDto;
 import util.MybatisSqlSessionFactory;
 
 public class CommunityServiceImpl implements CommunityService{
 	private CommunityDao communityDao;
+	private CommentDao commentDao;
 	private SqlSession session;
 	
 	public CommunityServiceImpl() {
 		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
 		communityDao = new CommunityDaoImpl();
+		commentDao = new CommentDaoImpl();
 	}
 
 	@Override
@@ -27,4 +32,16 @@ public class CommunityServiceImpl implements CommunityService{
 	public CommunityDto selectByNo(Integer commuNo) throws Exception {
 		return session.selectOne("mapper.community.selectByNo", commuNo);
 	} 
+	
+	
+	@Override
+	public void deleteCommunityWithComments(int commuNo) throws Exception {
+		// 1. 댓글 삭제
+        commentDao.deleteCommentsByCommuNo(commuNo);
+        // 2. 게시글 삭제
+        communityDao.deleteCommunity(commuNo);
+        session.commit();
+		
+	}
+
 }

@@ -16,5 +16,19 @@ public class CommunityDaoImpl implements CommunityDao{
 			session.insert("mapper.community.insertCommunity", community);
 			session.commit();
 	}
+	
+	// 게시글 삭제
+	@Override
+	public int deleteCommunity(int commuNo) throws Exception {
+		int result = session.delete("mapper.community.deleteCommunity", commuNo);
+		session.commit();
+		return result;
+		
+	}
+	 // 게시글 조회
+	@Override
+	public CommunityDto selectByNo(int commuNo) throws Exception {
+		return session.selectOne("mapper.community.selectByNo", commuNo);
+	}
 
 }

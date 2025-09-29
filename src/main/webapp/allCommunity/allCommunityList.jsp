@@ -12,7 +12,398 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/allCommunityList.css" />
-<script src="${pageContext.request.contextPath}/allCommunity/js/allCommunityList.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/allCommunity/js/allCommunityList.js"></script> --%>
+<script type="text/javascript">
+
+$(function () {
+	const $grid = $('.community-grid'); // 공통으로 선언
+
+    // 최신순
+    $('#latest').on('click', function () {
+        const $boxes = $grid.children('.boxes').get();
+        $boxes.sort(function (a, b) {
+            const dateA = new Date($(a).find('.text-wrapper-3').text().trim());
+            const dateB = new Date($(b).find('.text-wrapper-3').text().trim());
+            return dateB - dateA;
+        });
+        $.each($boxes, function (_, box) {
+            $grid.append(box);
+        });
+    });
+
+    // 공감순
+    $('#empathy').on('click', function () {
+        const $boxes = $grid.children('.boxes').get();
+        $boxes.sort(function (a, b) {
+            const countA = parseInt($(a).find('.actions .action-item:nth-child(1) .action-count').text(), 10);
+            const countB = parseInt($(b).find('.actions .action-item:nth-child(1) .action-count').text(), 10);
+            return countB - countA;
+        });
+        $.each($boxes, function (_, box) {
+            $grid.append(box);
+        });
+    });
+
+    // 조회순
+    $('#by-view').on('click', function () {
+        const $boxes = $grid.children('.boxes').get();
+        $boxes.sort(function (a, b) {
+            const countA = parseInt($(a).find('.actions .action-item:nth-child(3) .action-count').text(), 10);
+            const countB = parseInt($(b).find('.actions .action-item:nth-child(3) .action-count').text(), 10);
+            return countB - countA;
+        });
+        $.each($boxes, function (_, box) {
+            $grid.append(box);
+        });
+    });
+
+    // ✅ 카테고리 필터
+    $('.category-list input[type="radio"]').on('change', function () {
+        const selectedCategory = $(this).next().text().trim();
+        $('.right-container .boxes').each(function () {
+            const boxCategory = $(this).find('.text-wrapper-2').text().trim();
+            if (selectedCategory === "모든 사연" || boxCategory === selectedCategory) {
+                $(this).css('display', 'flex');
+            } else {
+                $(this).css('display', 'none');
+            }
+        });
+    });
+
+    // ✅ '관리 메뉴' 숨기기
+    $('.menu span:nth-child(5)').hide();
+});
+
+
+</script>
+
+<style >
+/* 전체 레이아웃 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+}
+
+
+/* ✅ 메인 영역 - 1280px 중앙 고정 */
+.main-container {
+    width: 1280px;
+    margin: 20px auto 0 auto; 
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* 높이 정렬 */
+}
+
+/* 사이드바 */
+.sidebar {
+    width: 195px;
+    height: 550px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.sidebar-header {
+    background-color: #4356B3;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 114px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.6;
+}
+.welcome {
+    background-color: #e9ebf5;
+    text-align: left;
+    padding: 15px 15px;
+    border-bottom: 1px solid #ccc;
+}
+.welcome strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.welcome span {
+    font-size: 12px;
+    color: #555;
+}
+.sidebar-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-body ul li {
+    padding: 0; /* li 자체 여백 제거 */
+    border-top: 1px solid #ccc;
+}
+
+.sidebar-body ul li button {
+    width: 100%; /* li 전체 넓이 차지 */
+    height: 48px; /* 기존 li 높이와 동일 */
+    line-height: 48px;
+    text-align: left;
+    font-size: 14px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0 16px; /* 기존 li 좌우 여백 유지 */
+}
+
+.sidebar-body ul li button:hover {
+    background-color: #f7f7f7;
+}
+
+/* 클릭 시 살짝 눌리는 효과 */
+.sidebar-body ul li button:active {
+    transform: translateY(2px);
+    filter: brightness(90%);
+}
+
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+    
+    /* category-box 왼쪽 끝 정렬 */
+    .community-box {
+        width: 497px;          /* 2열 배치 */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .category-title {
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .community-list {
+        width: 1020px;        /* 2열 기준 */
+        display: flex;
+        flex-wrap: wrap;       /* 여러 줄로 배치 */
+        gap: 20px;
+        margin: 20px auto;
+    }
+
+    .community-box .meta {
+        font-size: 12px;
+        color: #555;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .community-box .content {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .category-list li {
+        margin: 5px 0;
+        display: flex;
+        align-items: center;
+    }
+    .category-list label {
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    .boxes {
+	    position: relative;
+	    background-color: #ffffff;
+	    border-radius: 15px;
+	    border: 2px solid #d9d9d9;
+	    padding: 15px;
+	    box-sizing: border-box;
+	    min-height: 150px; /* 높이 통일(선택) */
+	    display: flex;
+	    flex-direction: column;
+	    gap: 10px;
+	}
+	
+	/* ✅ 게시글 2열 그리드 */
+	.community-grid {
+	    display: grid;
+	    grid-template-columns: repeat(2, 1fr); /* 2열 */
+	    gap: 20px 30px; /* 행 간격 / 열 간격 */
+	    max-width: 1020px;  /* 버튼 영역과 맞춤 */
+	    margin: 0;
+	}
+
+    .box {
+        display: flex;
+        align-items: center;/* 좌-우 분리 */
+        justify-content: space-between;
+        gap: 10px; /* 닉네임과 카테고리 사이 간격 */
+    }
+
+        /* 상단: 닉네임 + 카테고리 */
+    .community-box {
+        display: flex;
+        justify-content: space-between; /* 좌우 분리 */
+        align-items: center;
+    }
+
+    /* 닉네임 */
+    .text-wrapper-1 {
+        font-family: "Inter-Regular", Helvetica;
+        font-size: 12px;
+        color: #000;
+    }
+
+    /* 카테고리 */
+    .text-wrapper-2 {
+        font-family: "Inter-Regular", Helvetica;
+        font-size: 14px;
+        color: #000;
+        font-weight: bold;
+        margin-left: 0;
+    }
+    /* 제목 및 본문 */
+    .overlap-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .div {
+        font-family: "Noto Sans-Medium", Helvetica;
+        font-weight: 500;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .p {
+        font-family: "Inter-Regular", Helvetica;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        display: -webkit-box;       /* flex-like box */
+	    -webkit-line-clamp: 2;      /* 최대 2줄 */
+	    -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        max-width: 100ch; /* 약 20글자 */
+        width: 450px;
+    }
+
+
+    /* 업로드 날짜 */
+        .text-wrapper-3 {
+        font-family: "Inter-Regular", Helvetica;
+        font-size: 12px;
+        color: #000;
+        }
+
+    .actions {
+	    /* position: absolute;
+	    bottom: 10px;
+	    right: 15px;
+	    display: flex;
+	    gap: 10px;
+	    font-size: 14px; */
+	    display: flex;
+    gap: 10px;        /* 아이템 간격 */
+    font-size: 14px;
+    position: static; /* 기존 absolute 제거 */
+	}
+	
+	/* ✅ 날짜 + 액션 한 줄 배치 */
+.bottom-info {
+    display: flex;
+    justify-content: space-between;  /* 좌(날짜) ↔ 우(액션) */
+    align-items: center;             /* 세로 가운데 정렬 */
+    margin-top: auto;                /* 위쪽 여백(선택) */
+}
+	
+	.action-item {
+	    display: flex;
+	    align-items: center;
+	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
+	    width: 50px;        /* 3자리 기준 고정 */
+	}
+	
+	.action-item span.action-count {
+	    display: inline-block;
+	    min-width: 20px;   /* 숫자 자리 고정 */
+	    text-align: left;  /* 숫자 왼쪽 정렬 */
+	}
+
+
+    .sort-buttons {
+        display: flex;
+        justify-content: space-between; /* 좌-우 분리 */
+        align-items: center;
+        margin: 0 0 15px 20px;
+        width: 100%;
+        max-width: 1020px; /* 게시글 박스와 맞춤 */
+    }
+
+    .right-container {
+        flex: 1; /* 카테고리 옆 공간을 전부 차지 */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .left-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .right-button {
+        display: flex;
+    }
+
+    .sort-buttons button {
+        width: 80px;
+        height: 30px;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 5px;
+        background-color: #f9f9f9;
+        transition: 0.2s;
+    }
+    
+    /* 마우스 올렸을 때 */
+	.sort-buttons button:hover {
+	    background-color: #e6e6e6;
+	}
+	
+	/* 클릭 시 눌리는 효과 */
+	.sort-buttons button:active {
+	    transform: translateY(2px);
+	    filter: brightness(90%);
+	}
+
+    /* 마우스 올렸을 때 */
+    #latest:hover, #empathy:hover, #by-view:hover, #write:hover {
+        background-color: #e6e6e6;
+    }
+
+</style>
 </head>
 <body>
 
@@ -65,6 +456,8 @@
 	                <a href="write"><button id="write">작성하기</button></a>
 	            </div>
 	        </div>
+	            <!-- ✅ 게시글 2열 컨테이너 추가 -->
+    	<div class="community-grid">
 			<c:forEach var="allComList" items="${allComList}" varStatus="status">
 		        <!-- ✅ box를 버튼 아래로 -->
 			    <div class="boxes">
@@ -82,23 +475,27 @@
 			            	<c:out value="${allComList.commuContent}" escapeXml="false"/>
 			            </p>
 			        </div>
-			        <div class="text-wrapper-3">
-			        	<fmt:formatDate value="${allComList.commuCreated}" pattern="yyyy-MM-dd"/>
-			        </div>
-			        <div class="actions">
-			            <span class="action-item">
-			                ❤️ <span class="action-count"><c:out value="${allComList.empathy}" /></span>
-			            </span>
-			            <span class="action-item">
-			                💬 <span class="action-count"><c:out value="${allComList.commuComment}" /></span>
-			            </span>
-			            <span class="action-item">
-			                🔗 <span class="action-count"><c:out value="${allComList.commuViews}" /></span>
-			            </span>
-			        </div>
+					<!-- ✅ 날짜 + 액션 묶음 -->
+					<div class="bottom-info">
+					    <div class="text-wrapper-3">
+					        <fmt:formatDate value="${allComList.commuCreated}" pattern="yyyy-MM-dd"/>
+					    </div>
+					    <div class="actions">
+					        <span class="action-item">
+					            ❤️ <span class="action-count"><c:out value="${allComList.empathy}" /></span>
+					        </span>
+					        <span class="action-item">
+					            💬 <span class="action-count"><c:out value="${allComList.commuComment}" /></span>
+					        </span>
+					        <span class="action-item">
+					            🔗 <span class="action-count"><c:out value="${allComList.commuViews}" /></span>
+					        </span>
+					    </div>
+					</div>
 					<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 			    </div>
 		    </c:forEach>
+		    </div>
 	    </div>
     </div>
  	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
