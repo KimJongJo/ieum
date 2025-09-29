@@ -6,33 +6,103 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join3.css" />
+        
 
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
+        
+        	let nextPageLoad = false; // 다음 페이지를 이동해도 되는지
+        
         	$(function(){
         		$("#emailSend").click(function() {
+        		    $("#emailSend").prop("disabled", true); // 클릭 시 먼저 비활성화
+
+        		    $.ajax({
+        		        url: "/ieum/auth/sendEmailCode",
+        		        type: "GET",
+        		        data: { email: $("#inputEmail").val() },
+        		        dataType: "json",
+        		        success: function(response) {
+        		            if (response.success) {
+        		                // 이메일 사용 가능 -> 코드 전송 요청
+        		                $.ajax({
+        		                    url: "/ieum/auth/sendEmailCode",
+        		                    type: "POST",
+        		                    data: { email: $("#inputEmail").val()},
+        		                    dataType: "json",
+        		                    success: function(response) {
+        		                        if (response.success) {
+        		                            alert("이메일이 전송되었습니다!");
+        		                        } else {
+        		                            alert("이메일 전송 실패했습니다.. 잠시 후 다시 요청해주세요");
+        		                        }
+        		                        $("#emailSend").prop("disabled", false); // 전송 끝나면 버튼 풀기
+        		                    },
+        		                    error: function(error) {
+        		                        console.log("에러 " + error);
+        		                        $("#emailSend").prop("disabled", false); // 에러 시 버튼 풀기
+        		                    }
+        		                });
+        		            } else {
+        		                alert("이미 사용중인 이메일 입니다.");
+        		                $("#emailSend").prop("disabled", false); // 여기서 풀어줌
+        		            }
+        		        },
+        		        error: function(error) {
+        		            console.log("에러 " + error);
+        		            $("#emailSend").prop("disabled", false); // 에러 시 버튼 풀기
+        		        }
+        		    });
+        		});
+
+        		
+        		$("#emailAuthCheck").click(function () { // 이메일 인증 코드 비교하는거
         			
-        			
-        			$("#emailSend").prop("disabled", true);
         			$.ajax({
-        				url: "/ieum/auth/sendEmailCode",
+        				
+        				url:"/ieum/auth/checkEmailCode",
         				type:"POST",
-        				data:{email: $("#inputEmail").val()},
+        				data:{email: $("#inputEmail").val(),
+        					code : $("#inputAuthCode").val(),
+        					type:"signUp" 	
+        				},
+        					
         				dataType: "json",
         				success:function(response){
-        					console.log("성공 " + response);
-        					// 버튼 활성화
-                			$("#emailSend").prop("disabled", false);
-        					alert("이메일이 전송되었습니다!");
+        					
+        					
+        					if(response.success){
+        						$(".auth-icon").css("display", "block");
+        						$("#email-check-comment").text("인증이 완료되었습니다")
+        						alert(response.message);
+        						nextPageLoad = true; // 인증되었으니 다음 페이지로 가는걸 허락
+        					}else{
+        						alert(response.message);
+        						nextPageLoad = false; // 인증안됨 허락 못함
+        					}
+        					
         				},
         				error:function(error){
-        					console.log("에러 " + error);
-        					// 버튼 활성화
-                			$("#emailSend").prop("disabled", false);
-        					alert("이메일 전송 실패했습니다.. 잠시 후 다시 요청해주세요");
+        					console.log("에러" + error);
+        					nextPageLoad = false;
         				}
+        				
+        				
         			})
+        		})
+        		
+        		$("#inputEmail").on("input", function () { // 인증이 된 상태인데 이메일을 다시 입력하려고 할때 기본 값으로 되돌림
+        			nextPageLoad = false;
+        			$(".auth-icon").css("display", "none");
+					$("#email-check-comment").text("이메일을 인증해주세요")
+        		})
+        		
+        		$("#nextPageBtn").click(function(e) { // 이메일 인증도 안하고 다음 페이지로 넘어가려고 할 때
+        			if(!nextPageLoad){
+        				e.preventDefault();
+        				alert("본인확인을 위한 이메일 인증을 해주세요");
+        			}
         		})
         		
         	})
@@ -129,23 +199,23 @@
                     </div>
                     <div class="select-type-div">
                         <div class="type-div">
-                            <div class="right-div">
+                            <form action="/ieum/nextPage" method="POST" class="right-div">
                                 <div class="right-high-div">
                                     <table>
                                         <tr>
                                             <td><span class="text-span">이메일</span></td>
-                                            <td><input type="text" class="input" id="inputEmail"/></td>
-                                            <td><button class="send-btn" id="emailSend">전송</button></td>
+                                            <td><input name="email" type="email" class="input" id="inputEmail"/></td>
+                                            <td><button type="button" class="send-btn" id="emailSend">전송</button></td>
                                         </tr>
                                         <tr>
                                             <td><span class="text-span">인증코드</span></td>
-                                            <td><input type="text" class="input" /></td>
-                                            <td><button class="send-btn" id="emailAuthCheck">인증</button></td>
+                                            <td><input type="text" class="input" id="inputAuthCode"/></td>
+                                            <td><button type="button" class="send-btn" id="emailAuthCheck">인증</button></td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>
-                                                <div style="height: 60px">
+                                                <div class="success-code-div" style="height: 60px">
                                                     <img src="${pageContext.request.contextPath}/img/인증확인아이콘.png" alt="" style="width: 50px" class="auth-icon" />
                                                 </div>
                                             </td>
@@ -155,12 +225,12 @@
                                 </div>
                                 <div>
                                     <div class="right-under-div">
-                                        <div><span class="email-check">이메일을 인증해주세요</span></div>
+                                        <div><span class="email-check" id="email-check-comment">이메일을 인증해주세요</span></div>
 
-                                        <button onclick="location.href='/ieum/nextPage'" class="next-btn">다음으로</button>
+                                        <button id="nextPageBtn" class="next-btn">다음으로</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

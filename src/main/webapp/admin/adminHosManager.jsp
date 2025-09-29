@@ -79,7 +79,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="hos-state"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -88,7 +88,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="leave">휴직</div></td>
+                                <td class="hos-state"><div class="leave">휴직</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -97,7 +97,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="retired">퇴직</div></td>
+                                <td class="hos-state"><div class="retired">퇴직</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -106,7 +106,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="hos-state"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -115,7 +115,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="leave">휴직</div></td>
+                                <td class="hos-state"><div class="leave">휴직</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -124,7 +124,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="retired">퇴직</div></td>
+                                <td class="hos-state"><div class="retired">퇴직</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -133,7 +133,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="hos-state"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -142,7 +142,7 @@
                                 <td>중랑구보건소</td>
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
-                                <td><div class="leave">휴직</div></td>
+                                <td class="hos-state"><div class="leave">휴직</div></td>
                             </tr>
                         </table>
                         <div class="page-div">

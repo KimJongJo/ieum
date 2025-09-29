@@ -92,8 +92,6 @@ $(document).ready(function () {
 
 
 </script>
-
-
 </head>
 <body>
 
@@ -128,6 +126,7 @@ $(document).ready(function () {
 
     <!-- 선택 카테고리 값 전달용 hidden -->
     <input type="hidden" id="categoryNo" name="categoryNo"/>
+
 
     <!-- 작성 완료 모달 -->
     <div class="modal-main-div" id="completeModal" style="display:none;">

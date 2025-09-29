@@ -7,7 +7,7 @@ const closeBtn1 = modalProfile.querySelector(".fa-xmark");
 const closeBtn2 = modalProfile2.querySelector(".fa-xmark");
 
 // td 클릭 시 modalProfile 열기
-document.querySelectorAll(".reservation-table-td").forEach(td => {
+document.querySelectorAll(".write-btn").forEach(td => {
     td.addEventListener("click", (e) => {
         // td 안에 show-btn 클릭시 modal2가 열리는 것을 방지
         if(e.target.classList.contains("show-btn")) return;

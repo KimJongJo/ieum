@@ -1,14 +1,14 @@
 package dto.otherDto;
 
-public class responseDto {
+public class ResponseDto {
 	private boolean success; // 성공 여부
     private String message;  // 성공/실패 메시지
     
-	public responseDto() {
+	public ResponseDto() {
 		super();
 	}
 
-	public responseDto(boolean success, String message) {
+	public ResponseDto(boolean success, String message) {
 		super();
 		this.success = success;
 		this.message = message;

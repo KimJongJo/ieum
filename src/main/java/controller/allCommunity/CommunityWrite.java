@@ -37,9 +37,8 @@ public class CommunityWrite extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		try {
-		
 			request.setAttribute("categoryList", categoryService.selectAll());
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +52,6 @@ public class CommunityWrite extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-
         int uNo = 1; // 로그인된 사용자 번호
         String title = request.getParameter("title");
         String content = request.getParameter("content");

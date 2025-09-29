@@ -1,4 +1,5 @@
-.main {
+			.main {
+				min-width:1150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -104,7 +105,7 @@
 
             .input-div-input {
                 height: 34px;
-                width: 375px;
+                width: 275px;
                 margin-left: 20px;
                 border: 2px solid #d4d4d4;
                 border-radius: 5px;
@@ -337,17 +338,6 @@
                 color: white;
                 border-radius: 5px;
                 border: none;
-                margin-right: 5px;
-                transition-duration: 0.2s;
-                cursor: pointer;
-            }
-
-            .no-btn {
-                height: 40px;
-                width: 100px;
-                background-color: white;
-                border-radius: 5px;
-                border: 2px solid #b8b8b8;
                 transition-duration: 0.2s;
                 cursor: pointer;
             }
@@ -355,11 +345,7 @@
             .sign-btn:hover {
                 background-color: #2c5ace;
             }
-
-            .no-btn:hover {
-                background-color: #b5b7c0;
-            }
-
+            
             #women {
                 margin-left: 15px;
             }
@@ -380,4 +366,25 @@
                 height: 40px;
                 border: 2px solid #d4d4d4;
                 border-radius: 5px;
+            }
+            
+            .info-check-div{
+	            display	:flex;
+	            justify-content:space-between;
+            }
+            
+            .i-span{
+            	margin-right:20px;
+            }
+            
+            .span-x{
+            	color:red;
+            }
+            
+            .span-check{
+            	color:green;
+            }
+            
+            .i-span{
+            	display:none;
             }
