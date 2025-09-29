@@ -20,6 +20,9 @@
 		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, d_updated=now() WHERE d_no=#{dNo}
 	</update>
 	<delete id="delete">
-		DELETE FROM WHERE d_no=#{dNo} 
+		DELETE FROM diary WHERE d_no=#{dNo} 
 	</delete>
+	<select id="selectHisList" parameterType="Integer" resultType="diagnosisHistory">
+		SELECT * FROM diagnosis_history WHERE patient_id = #{uNo}
+	</select>
 </mapper>	

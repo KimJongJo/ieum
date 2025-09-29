@@ -2,10 +2,9 @@ package service.myPage;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import dao.myPage.DiaryDao;
 import dao.myPage.DiaryDaoImpl;
+import dto.DiagnosisHistoryDto;
 import dto.DiaryDto;
 import util.PageInfo;
 
@@ -55,8 +54,12 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public boolean getHisYn(Integer uNo) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		 List<DiagnosisHistoryDto> list = diaryDao.selectHisList(uNo);
+		if (list == null || list.isEmpty()) {
+	        return false;
+	    } else {
+	        return true;
+	    }
 	}
 
 }

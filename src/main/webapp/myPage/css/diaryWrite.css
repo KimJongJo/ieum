@@ -12,11 +12,21 @@ body {
 	color: #000;
 }
 
-.diary-container {
-	max-width: 1024px;
+.main-container {
+	max-width: 1280px;
 	margin: 40px auto;
 	border-radius: 4px;
 	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+}
+
+.diary-container {
+	width: 1024px;
+	margin: 40px auto;
+	margin-top: 0px; border-radius : 4px;
+	overflow: hidden;
+	border-radius: 4px;
 }
 
 /* 필드 그룹 */
@@ -183,6 +193,12 @@ input[type=radio]+label {
 	text-decoration: none;
 }
 
+.btn-right {
+	display: flex;
+	justify-content: right;
+	margin-bottom: 10px;
+}
+
 .basic-small-btn:hover {
 	border: 2px solid #B7B7B7;
 }
@@ -198,24 +214,6 @@ input[type=radio]+label {
 	justify-content: right;
 	align-items: center;
 	text-align: center;
-}
-/* 목록 버튼 → 오른쪽 */
-.basic-big-btn {
-	border: 1.5px solid #B7B7B7;
-	right: 0;
-	cursor: pointer;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 20px;
-	position: relative;
-	background-color: #fff;
-	border-radius: 6px;
-	width: 104px;
-	height: 40px;
-	font-size: 13px;
-	font-weight: 600;
-	color: #000;
 }
 
 .basic-big-btn:hover {
