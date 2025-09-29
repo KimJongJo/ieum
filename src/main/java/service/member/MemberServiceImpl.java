@@ -96,6 +96,8 @@ public class MemberServiceImpl implements MemberService {
 		}else { // 로그인 성공했을때
 			return (Integer)userNoAndPw.get("userNo");
 		}
+	}
+	
 	@Override
 	public MemberDto selectByNickName(Integer uNo) throws Exception {
 		return memberDao.selectByNickName(uNo);
