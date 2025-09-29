@@ -108,7 +108,7 @@
             </div>
             <div id="modipy">나의 정보 수정</div>
             <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
-            <form action="${pageContext.request.contextPath}/pUpdate" method="post">
+            <form action="${pageContext.request.contextPath}/pUpdate" method="post" enctype="multipart/form-data">
             <div id="passwordModipy">
             	<!-- 기존 성명 아래에 추가 -->
 				<div class="form-row" style="align-items: center;">
@@ -120,7 +120,7 @@
 							        <img src="${pageContext.request.contextPath}/${file.filePath}/${file.fileName}" alt="프로필">
 							    </c:when>
 							    <c:otherwise>
-							        <img src="${pageContext.request.contextPath}/img/계획대로야.jpg" alt="기본 프로필">
+							        <img src="${pageContext.request.contextPath}/img/회원기본이미지.jpg" alt="기본 프로필">
 							    </c:otherwise>
 							</c:choose>
 						</div>
@@ -162,11 +162,11 @@
 				        <!-- 두 번째 줄: 주소 + 상세주소 -->
 				        <div style="display: flex;">
 				            <input type="text" id="address" name="uAddress" value="<c:out value='${member.uAddress}'/>" placeholder="주소" readonly style="width: 250px;">
-				            <input type="text" id="detailAddress" placeholder="상세주소" style="width: 200px;">
+				            <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 200px;">
 				        </div>
 				    </div>
 				</div>
-                <div class="form-row1">
+<%--                 <div class="form-row1">
                     <label>성별 *</label>
                     <div class="checkbox-group">
                         <label><input type="radio" name="gender" value="male"
@@ -174,7 +174,7 @@
                         <label><input type="radio" name="gender" value="female"
                         	${member.gender eq 'FEMALE' ? 'checked' : ''} > 여자</label>
                     </div>
-                </div>
+                </div> --%>
                 
                 <div class="form-row1">
                     <label>다이어리 공개 여부 *</label>
@@ -188,7 +188,7 @@
             </div>
             
             <div id="edit">
-                <button id="btn2">수정완료</button>
+                <button id="btn2" type="submit">수정완료</button>
             </div>
             </form>
         </div>

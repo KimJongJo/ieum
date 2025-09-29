@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,12 +122,17 @@ body {
     #data {
         font-size: 14px;    
     }
+    
     #content {
-    	width:985px;
-        margin: 0;
-        padding: 10px;
-        height: 450px;
-    }
+	    width: 985px;
+	    margin: 0;
+	    padding: 10px;
+	    min-height: 450px;        /* 최소 높이 유지 */
+	    height: auto;             /* 내용에 따라 자동으로 늘어나도록 */
+	    white-space: pre-wrap;    /* 줄바꿈과 공백 유지 */
+	    overflow: hidden;         /* 내부 내용 넘침 방지 */
+	    box-sizing: border-box;   /* padding 포함 너비 계산 */
+	}
 
     .comment-box {
     	position: relative;   /* ✅ 메뉴 위치 기준 */
@@ -228,7 +234,8 @@ body {
     #comment-write {
         width: 700px;
         height: 120px;
-        resize: none;
+        max-height: 300px;   /* 최대 높이 */
+        resize: vertical;    /* 세로 방향으로만 크기 조절 가능 */
         padding: 10px;
         box-sizing: border-box;
     }

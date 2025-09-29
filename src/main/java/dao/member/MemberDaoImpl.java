@@ -5,14 +5,14 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.MemberDto;
-
+import dto.MemberProfileDto;
 import util.MybatisSqlSessionFactory;
 
 public class MemberDaoImpl implements MemberDao{		
 	private SqlSession session;
 	
 	public MemberDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
+		session = MybatisSqlSessionFactory.getSessionFactory().openSession(true);
 	}
 	
 	@Override
@@ -48,6 +48,12 @@ public class MemberDaoImpl implements MemberDao{
 	public MemberDto selectProfileInfo(Integer uNo) throws Exception {
 		return session.selectOne("mapper.member.selectProfileInfo", uNo);
 	}
+	
+	@Override
+    public MemberProfileDto selectMemberWithProfile(int uNo) throws Exception {
+        return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
+    }
+	
 
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {

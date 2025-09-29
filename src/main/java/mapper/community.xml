@@ -47,4 +47,14 @@
         WHERE c.u_no = #{uNo}
         ORDER BY c.commu_created DESC
     </select>
+    
+    <select id="selectAllCommunityList" resultType="allCommunity">
+    	SELECT
+            c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+        FROM community c
+        INNER JOIN commu_category cg ON c.category_no = cg.category_no
+        INNER JOIN member m ON c.u_no = m.u_no
+        ORDER BY c.commu_created DESC  		
+    
+    </select>
 </mapper>	

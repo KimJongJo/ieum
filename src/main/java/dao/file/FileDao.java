@@ -3,8 +3,8 @@ package dao.file;
 import dto.FileDto;
 
 public interface FileDao {
-	FileDto selectFileByUserId(Integer fileNo) throws Exception;
-	int insertFile(FileDto fileDto) throws Exception;
-	int updateFile(FileDto fileDto) throws Exception;
+	FileDto selectFileByFileNo(Integer fileNo) throws Exception;
+	void insertFile(FileDto fileDto) throws Exception;
+	void updateFile(FileDto fileDto) throws Exception;
 	Integer normalImg(FileDto file);
 }

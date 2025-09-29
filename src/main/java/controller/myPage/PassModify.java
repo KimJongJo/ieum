@@ -42,7 +42,7 @@ public class PassModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        int uNo = 1; // 실제로는 세션에서 가져오는 것이 안전
+        int uNo = 4; // 실제로는 세션에서 가져오는 것이 안전
         String currentId = request.getParameter("current-pass");
         String newPass = request.getParameter("new-pass");
         String confirmPass = request.getParameter("confirm-pass");

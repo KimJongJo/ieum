@@ -3,6 +3,7 @@ package dao.member;
 import java.util.Map;
 
 import dto.MemberDto;
+import dto.MemberProfileDto;
 
 public interface MemberDao {
 	
@@ -27,4 +28,6 @@ public interface MemberDao {
 	MemberDto selectFindById(Integer uNo) throws Exception;
 	
 	void updatePassword(MemberDto memberDto) throws Exception;
+
+	MemberProfileDto selectMemberWithProfile(int uNo) throws Exception;
 }

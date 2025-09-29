@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,77 +65,40 @@
 	                <a href="write"><button id="write">작성하기</button></a>
 	            </div>
 	        </div>
-			
-			<form method="post" action="${pageContext.request.contextPath}/allCommunityList">
-	        <!-- ✅ box를 버튼 아래로 -->
-		    <div class="boxes">
-		        <div class="box">
-		            <div class="text-wrapper-1">닉네임</div>
-		            <div class="text-wrapper-2">취업/진로</div>
-		        </div>
-		        <div class="overlap-group">
-		            <div class="div">요즘 너무 힘듭니다</div>
-		            <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구...</p>
-		        </div>
-		        <div class="text-wrapper-3">2025-09-22</div>
-		        <div class="actions">
-				    <span class="action-item">
-				        ❤️ <span class="action-count">50</span>
-				    </span>
-				    <span class="action-item">
-				        💬 <span class="action-count">0</span>
-				    </span>
-				    <span class="action-item">
-				        🔗 <span class="action-count">90</span>
-				    </span>
-				</div>
-				<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
-		    </div>
-		    </form>
-		    <div class="boxes">
-		        <div class="box">
-		            <div class="text-wrapper-1">닉네임</div>
-		            <div class="text-wrapper-2">학업/고시</div>
-		        </div>
-		        <div class="overlap-group">
-		            <div class="div">요즘 너무 힘듭니다</div>
-		            <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구...</p>
-		        </div>
-		        <div class="text-wrapper-3">2026-09-22</div>
-		        <div class="actions">
-				    <span class="action-item">
-				        ❤️ <span class="action-count">20</span>
-				    </span>
-				    <span class="action-item">
-				        💬 <span class="action-count">0</span>
-				    </span>
-				    <span class="action-item">
-				        🔗 <span class="action-count">15</span>
-				    </span>
-				</div>
-		    </div>
-		    <div class="boxes">
-		        <div class="box">
-		            <div class="text-wrapper-1">닉네임</div>
-		            <div class="text-wrapper-2">부부관계</div>
-		        </div>
-		        <div class="overlap-group">
-		            <div class="div">요즘 너무 힘듭니다</div>
-		            <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구...</p>
-		        </div>
-		        <div class="text-wrapper-3">2027-09-22</div>
-		        <div class="actions">
-				    <span class="action-item">
-				        ❤️ <span class="action-count">15</span>
-				    </span>
-				    <span class="action-item">
-				        💬 <span class="action-count">0</span>
-				    </span>
-				    <span class="action-item">
-				        🔗 <span class="action-count">100</span>
-				    </span>
-				</div>
-		    </div>
+			<c:forEach var="allComList" items="${allComList}" varStatus="status">
+		        <!-- ✅ box를 버튼 아래로 -->
+			    <div class="boxes">
+			        <div class="box">
+			            <div class="text-wrapper-1">
+			            	<c:out value="${allComList.nickName}" default="익명"/>
+			            </div>
+			            <div class="text-wrapper-2">
+			            	<c:out value="${allComList.categoryName}" default="카테고리"/>
+			            </div>
+			        </div>
+			        <div class="overlap-group">
+			            <div class="div"></div>
+			            <p class="p">
+			            	<c:out value="${allComList.commuContent}" escapeXml="false"/>
+			            </p>
+			        </div>
+			        <div class="text-wrapper-3">
+			        	<fmt:formatDate value="${allComList.commuCreated}" pattern="yyyy-MM-dd"/>
+			        </div>
+			        <div class="actions">
+			            <span class="action-item">
+			                ❤️ <span class="action-count"><c:out value="${allComList.empathy}" /></span>
+			            </span>
+			            <span class="action-item">
+			                💬 <span class="action-count"><c:out value="${allComList.commuComment}" /></span>
+			            </span>
+			            <span class="action-item">
+			                🔗 <span class="action-count"><c:out value="${allComList.commuViews}" /></span>
+			            </span>
+			        </div>
+					<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
+			    </div>
+		    </c:forEach>
 	    </div>
     </div>
  	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
