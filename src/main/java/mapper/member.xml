@@ -2,5 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.member">
+
+	<select id="checkId" parameterType="String" resultType="member">
+		select * from member where id = #{userId};
+	</select>
+	
+	<insert id="normalJoin" parameterType="member">
+		insert into member 
+		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code)
+		 values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW() , 'USER'
+		 , #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1)
+	</insert>
+	
+	<select id="findId" parameterType="String" resultType="Map">
+		select id as userId, username as userName, user_type as userType from member where email = #{email}
+	</select>
+	
+	<select id="CheckIdAndEmail" parameterType="Map" resultType="Map">
+		select * from member where id = #{userId} and email = #{email}
+	</select>
+	
+	<update id="changePw" parameterType="Map">
+		update member set password = #{password} where id = #{userId}
+	</update>
+	
+	<select id="beforePw" parameterType="String" resultType="String">
+		select password from member where id = #{userId}
+	</select>
+	
+	<select id="useEmail" parameterType="String" resultType="member">
+		select * from member where email = #{email}
+	</select>
+	
+	<select id="existId" parameterType="String" resultType="Map">
+		select u_no as userNo, password from member where id = #{userId}
+	</select>
+	
 	
 </mapper>	

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityWrite.css" />
-<script src="${pageContext.request.contextPath}/allCommunity/js/communityWrite.js"></script>
 
 </head>
 <body>

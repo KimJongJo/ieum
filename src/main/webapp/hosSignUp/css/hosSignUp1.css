@@ -91,6 +91,15 @@ a {
 	margin-bottom: 1px;
 }
 
+.image-upload-in{
+	margin-left:20px;
+	
+}
+
+.input-file-img{
+	margin-top:5px;
+}
+
 .span-div {
 	width: 222px;
 	height: 55px;
@@ -101,8 +110,8 @@ a {
 }
 
 .input-div {
-	display: flex;
-	align-items: center;
+	display:flex;
+	align-items:center;
 	width: 888px;
 	height: 55px;
 	border-top: 1.142px solid #b8b8b8;
@@ -244,6 +253,11 @@ select {
 	margin-left: 20px;
 }
 
+.left-div{
+	margin-left:20px;
+	margin-top:10px;
+}
+
 .info {
 	margin-left: 20px;
 	font-size: 17px;
@@ -273,21 +287,6 @@ input.tel:nth-child(1) {
 	align-items: center;
 }
 
-.input-div-email {
-	border: 2px solid #b8b8b8;
-	border-radius: 5px;
-	height: 34px;
-	width: 170px;
-	margin-left: 20px;
-}
-
-.input-div-email2 {
-	border: 2px solid #b8b8b8;
-	border-radius: 5px;
-	height: 34px;
-	width: 170px;
-	margin-right: 10px;
-}
 
 .email input:first-of-type {
 	margin-left: 20px;
@@ -307,12 +306,6 @@ input.tel:nth-child(1) {
 	margin-right: 10px;
 }
 
-.addr {
-	width: 375px;
-	height: 34px;
-	border: 2px solid #b8b8b8;
-	border-radius: 5px;
-}
 
 .btn-div {
 	margin-top: 35px;
@@ -327,7 +320,7 @@ input.tel:nth-child(1) {
 	color: white;
 	border-radius: 5px;
 	border: none;
-	margin-right: 5px;
+	margin-left: 5px;
 	cursor: pointer;
 	transition-duration: 0.2s;
 }
@@ -405,4 +398,141 @@ table {
 .warning {
 	font-size: 15px;
 	color: #b8b8b8;
+}
+
+.email-div-new{
+	width:888px;
+	border-bottom:1px solid #b8b8b8;
+}
+
+.leftMar{
+	margin-left: 20px;
+}
+
+.marL20{
+	margin-left:20px;
+}
+
+/* 파일 input 숨기기 */
+.file-input {
+  display: none;
+}
+
+/* 커스텀 파일 선택 버튼 */
+.select-file-btn {
+  padding: 8px 14px;
+  background-color: #565f7c;  /* 기본 초록색 */
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.select-file-btn:hover {
+  background-color: #162f6f; /* hover 시 색상 조금 어둡게 */
+}
+
+/* 선택된 파일명 스타일 */
+.file-name {
+  margin-left: 12px;
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 파일명이 길면 ... 처리 */
+  max-width: 250px; /* 필요시 조정 가능 */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-span {
+    font-size: 24px;
+}
+
+.sub-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-div span {
+    font-size: 15px;
+}
+
+.type {
+    color: #06b3b0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.btn-div {
+    margin-top: 60px;
+}
+
+
+.home-btn {
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 2px solid #b5b7c0;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.home-btn:hover {
+    background-color: #b5b7c0;
+}
+
+.result-div{
+	margin-top:30px;
+    width: 1110px;
+    height: 350px;
+    border-radius: 15px;
+    background-color: #f7faff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-div {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-div i {
+    padding: 10px;
+    font-size: 50px;
+}
+
+.main-span-h{
+	margin-top:10px;
+	margin-bottom:30px;
+}
+
+.info-check-div{
+	 display:flex;
+	 justify-content:space-between;
+}
+
+.i-span{
+	margin-right:20px;
+	display:none;
+}
+
+.span-x{
+	color:red;
+}
+
+.span-check{
+	color:green;
 }

@@ -1,12 +1,15 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.CommuCategoryDto;
 import dto.CommunityDto;
 import service.allCommunity.CategoryService;
 import service.allCommunity.CategoryServiceImpl;
@@ -34,8 +37,17 @@ public class CommunityWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("들어옴");
 		
 		try {
+<<<<<<< HEAD
+=======
+			System.out.println("카테고리 목록 조회 전");
+			List<CommuCategoryDto> list = categoryService.selectAll();
+			System.out.println("카테고리 목록 조회 후");
+			System.out.println(list);
+			
+>>>>>>> branch 'kjj' of https://github.com/devsolpark/kosta-ieum.git
 			request.setAttribute("categoryList", categoryService.selectAll());
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -52,31 +64,35 @@ public class CommunityWrite extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String categoryNostr = request.getParameter("categoryNo");
+		
+		System.out.println(title);
+		System.out.println(content);
+		System.out.println(categoryNostr);
 		// 간단한 유효성 체크
-		if(title == null || title.isBlank() || content == null || content.isBlank()) {
-			response.sendRedirect("write"); // null 이거나  블랙크 즉,  비어있으면 다시 작성 페이지로 이동
-			return;
-		}
-		
-		response.sendRedirect("comDetail");
-		
-		
-		CommunityDto communityDto = new CommunityDto();
-		communityDto.setCommuTitle(title);
-		communityDto.setCommuContent(content);
-		communityDto.setCategoryNo(Integer.parseInt(categoryNostr));
-		
-		
-		try {
-			Integer commuNO = communityService.insertCommunity(communityDto);
-			
-			//작성쇤 글의 상세보기로 이동(쿼리 파라미터로 글 번호 전달)
-			response.sendRedirect("comDatial?no=" + commuNO);
-			
-		}catch (Exception e){
-			e.printStackTrace();
-			
-			response.sendRedirect("write");
-		}
+//		if(title == null || title.isBlank() || content == null || content.isBlank()) {
+//			response.sendRedirect("write"); // null 이거나  블랙크 즉,  비어있으면 다시 작성 페이지로 이동
+//			return;
+//		}
+//		
+//		response.sendRedirect("comDetail");
+//		
+//		
+//		CommunityDto communityDto = new CommunityDto();
+//		communityDto.setCommuTitle(title);
+//		communityDto.setCommuContent(content);
+//		communityDto.setCategoryNo(Integer.parseInt(categoryNostr));
+//		
+//		
+//		try {
+//			Integer commuNO = communityService.insertCommunity(communityDto);
+//			
+//			//작성쇤 글의 상세보기로 이동(쿼리 파라미터로 글 번호 전달)
+//			response.sendRedirect("comDatial?no=" + commuNO);
+//			
+//		}catch (Exception e){
+//			e.printStackTrace();
+//			
+//			response.sendRedirect("write");
+//		}
 	}
 }

@@ -1,8 +1,11 @@
 package dao.auth;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.EmailAuthDto;
+import dto.MemberDto;
 import util.MybatisSqlSessionFactory;
 
 public class EmailDaoImpl implements EmailDao {
@@ -27,6 +30,23 @@ public class EmailDaoImpl implements EmailDao {
 		
 		session.commit();
 		
+	}
+
+	@Override
+	public EmailAuthDto checkEmailCode(String email) {
+		
+		return session.selectOne("checkEmailCode", email);
+	}
+
+	@Override
+	public MemberDto useEmail(String email) {
+		return session.selectOne("useEmail", email);
+	}
+
+	@Override
+	public Map<String, Object> CheckIdAndEmail(Map<String, Object> pwMail) {
+		
+		return session.selectOne("CheckIdAndEmail", pwMail);
 	}
 
 }

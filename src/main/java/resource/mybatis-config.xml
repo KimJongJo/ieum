@@ -4,6 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
 	<typeAliases>
 		<typeAlias type="dto.MemberDto" alias="member" />
 		<typeAlias type="dto.BlackListDto" alias="blackList" />
@@ -33,8 +38,7 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="org.mariadb.jdbc.Driver" />
-				<property name="url"
-					value="jdbc:mariadb://localhost:3306/ieum"/>
+				<property name="url" value="jdbc:mariadb://localhost:3306/ieum"/>
 				<property name="username" value="root" />
 				<property name="password" value="7564" />
 				<property name="poolMaximumActiveConnections" value="500" />

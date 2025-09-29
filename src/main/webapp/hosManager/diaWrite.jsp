@@ -48,12 +48,12 @@
         	</tr>
             <tr>
                 <td class="u-td u-th up">진단명</td>
-                <td class="u-td up">2241</td>
+                <td class="u-td up"  style="width:100px;"><textarea name="" id="" class="area area0"></textarea></td>
                 <td class="u-td u-th up">증상</td>
                 <td colspan="3" id="area1" class="u-td "><textarea name="" id="" class="area area1"></textarea></td>
             </tr>
             <tr>
-                <td colspan="2" class="u-td u-th" style="height: 185px">검사 내용 및 결과</td>
+                <td colspan="2" class="u-td u-th">검사 내용 및 결과</td>
                     <td colspan="4" id="area2" class="u-td" colspan="2"><textarea name="" id="" class="area area2"></textarea></td>
                 </tr>
                 <tr>

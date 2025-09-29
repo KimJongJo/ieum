@@ -61,6 +61,7 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="table-div">
                         <table class="table">
                             <tr>
                                 <th style="width: 100px">회원번호</th>
@@ -76,7 +77,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="some-empty"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -84,7 +85,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="stop">활동정지</div></td>
+                                <td class="some-empty"><div class="stop">활동정지</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -92,7 +93,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="hide">비활성화</div></td>
+                                <td class="some-empty"><div class="hide">비활성화</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -100,7 +101,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="some-empty"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -108,7 +109,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="stop">활동정지</div></td>
+                                <td class="some-empty"><div class="stop">활동정지</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -116,7 +117,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="hide">비활성화</div></td>
+                                <td class="some-empty"><div class="hide">비활성화</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -124,7 +125,7 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="active">정상</div></td>
+                                <td class="some-empty"><div class="active">정상</div></td>
                             </tr>
                             <tr>
                                 <td>10203</td>
@@ -132,9 +133,10 @@
                                 <td>desk1614@gmail.com</td>
                                 <td>2025-08-31</td>
                                 <td>0</td>
-                                <td><div class="stop">활동정지</div></td>
+                                <td class="some-empty"><div class="stop">활동정지</div></td>
                             </tr>
                         </table>
+                        </div>
                         <div class="page-div">
                             <a href="#"
                                 ><button class="page" type="button"><i class="fa-solid fa-angle-left"></i></button
@@ -157,7 +159,7 @@
                             </div>
                             <div class="profile-name-div"><span class="profile-name"> 김종조 </span></div>
                             <div class="profile-img-div">
-                                <img src="../image/회원이미지.jpg" class="profile-img" alt="" />
+                                <img src="${pageContext.request.contextPath}/img/회원이미지.jpg" class="profile-img" alt="" />
                             </div>
                             <table class="profile-table">
                                 <tr>
@@ -177,18 +179,47 @@
                                 </tr>
                                 <tr>
                                     <th>정지상태</th>
-                                    <td class="profile-info"><div class="active" style="display: inline-block">정상</div></td>
-                                    <td class="empty"></td>
+                                    <td rowspan=2 class="profile-info">
+                                    	<div class="select-state">
+										    <div class="user-ch-state">
+										        <div class="active">정상</div>
+										        <input type="radio" name="state" value="active"/>
+										    </div>
+										    <div class="user-ch-state">
+										        <div class="hide">비활성화</div>
+										        <input type="radio" name="state" value="hide"/>
+										    </div>
+										    <div class="user-ch-state">
+										        <div class="stop">활동정지</div>
+										        <input type="radio" name="state" value="stop"/>
+										    </div>
+										</div>
+                                    </td>
                                 </tr>
                             </table>
-                            <button type="button" class="warning">경고주기</button>
+                            <button type="button" class="warning">저장</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 	
-		<script src="adminNav.js"></script>
-        <script src="adminModal.js"></script>
+		<script src="${pageContext.request.contextPath}/admin/js/adminNav.js"></script>
+        <script src="${pageContext.request.contextPath}/admin/js/adminModal.js"></script>
+        <script>
+			// 클릭하면 선택 표시 적용
+			const states = document.querySelectorAll('.user-ch-state');
+			
+			states.forEach(state => {
+			    state.addEventListener('click', () => {
+			        // 이전 선택 해제
+			        states.forEach(s => s.classList.remove('selected'));
+			        // 현재 선택
+			        state.classList.add('selected');
+			        // 라디오 버튼 체크
+			        state.querySelector('input[type="radio"]').checked = true;
+			    });
+			});
+		</script>
     </body>
 </html>
