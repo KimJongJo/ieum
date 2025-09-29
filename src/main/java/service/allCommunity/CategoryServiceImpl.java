@@ -20,4 +20,9 @@ public class CategoryServiceImpl implements CategoryService{
 
 		return categoryDao.selectAllCategory();
 	}
+
+	@Override
+	public CommuCategoryDto selectByNo(Integer categoryNo) throws Exception {
+		return categoryDao.selectByNo(categoryNo);
+	}
 }

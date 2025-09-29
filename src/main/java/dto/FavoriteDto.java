@@ -35,7 +35,6 @@ public class FavoriteDto {
 		this.hFavNo = hFavNo;
 	}
 
-
 	public Integer getHosNo() {
 		return hosNo;
 	}

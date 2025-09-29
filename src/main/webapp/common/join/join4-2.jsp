@@ -87,53 +87,62 @@
                     <form action="/ieum/join5" method="post">
                         <div class="info-box">
                             <div class="line-div">
-                                <div class="span-div">
-                                    <span class="info">성명</span>
+                                <div class="span-div  info-check-div">
+                                    <span class="info" id=input-name>성명</span>
+                                    <!-- <span class="i-span"><i class="fa-solid fa-xmark span-x"></i></span> -->
+                                    <span class="i-span" id=username-span><i class="fa-solid fa-check span-check" id="username-i"></i></span>
+                                    <!-- fa-xmark ,  fa-check -->
                                 </div>
                                 <div class="input-div">
-                                    <input type="text" class="input-div-input" />
+                                    <input type="text" class="input-div-input" id="userName" name="userName"/>
+                                    <span class="nick-content">한글 2 ~ 5자</span>
                                 </div>
                             </div>
                             <div class="line-div2">
-                                <div class="span-div2">
+                                 <div class="span-div2  info-check-div">
                                     <span class="info">생년월일</span>
+                                    <span class="i-span" id=birth-span><i class="fa-solid fa-check span-check" id="birth-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <select name="" id="year" name="year" class="year date">
-                                        <option value="">년도</option>
+                                    <select name="year" id="year" name="year" class="year date">
+                                        <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>
-                                    <select name="" id="month" name="month" class="month date">
-                                        <option value="">월</option>
+                                    <select name="month" id="month" name="month" class="month date">
+                                        <option value="none">월</option>
                                     </select>
                                     <span class="text">월</span>
-                                    <select name="" id="day" name="day" class="day date">
-                                        <option value="">일</option>
+                                    <select name="day" id="day" name="day" class="day date">
+                                        <option value="none">일</option>
                                     </select>
                                     <span class="text">일</span>
                                 </div>
                             </div>
                             <div class="line-div2">
-                                <div class="span-div2">
-                                    <span class="info">아이디</span>
+                                <div class="span-div2 info-check-div" >
+                                    <span class="info" id=input-id>아이디</span>
+                                    <span class="i-span" id=userId-span><i class="fa-solid fa-check span-check" id="userId-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <input type="text" class="login-input" />
-                                    <button class="signUp-btn" type="button">중복확인</button>
+                                    <input type="text" class="login-input" id="userId" name="userId"/>
+                                    <button id="check-id-btn" class="signUp-btn" type="button">중복확인</button>
+                                    <span class="nick-content">4~16자 영문 소문자, 숫자 조합</span>
                                 </div>
                             </div>
                             <div class="line-div2">
-                                <div class="span-div2">
-                                    <span class="info">비밀번호</span>
+                                <div class="span-div2  info-check-div">
+                                    <span class="info" id=input-pw>비밀번호</span>
+                                    <span class="i-span" id=pw-span><i class="fa-solid fa-check span-check" id="pw-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <input type="password" class="login-input" id="pw" />
+                                    <input type="password" class="login-input" id="pw" name="userPw"/>
                                     <button class="signUp-btn" id="pwch" type="button">보기</button>
                                 </div>
                             </div>
                             <div class="check-pw">
-                                <div class="span-div2-pw">
+                                <div class="span-div2-pw  info-check-div">
                                     <span class="info">비밀번호 확인</span>
+                                    <span class="i-span" id=pw2-span><i class="fa-solid fa-check span-check" id="pw2-i"></i></span>
                                 </div>
                                 <div class="input-div2-pw input">
                                     <div class="input-div2-pw-div">
@@ -151,19 +160,20 @@
                                     <span class="info">성별</span>
                                 </div>
                                 <div class="input-div2 gender input">
-                                    <input type="radio" id="man" name="gender" /><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
+                                    <input type="radio" id="man" name="gender" checked /><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
                                 </div>
                             </div>
                             <div class="line-div2">
-                                <div class="span-div2">
+                                <div class="span-div2 info-check-div">
                                     <span class="info">전화번호</span>
+                                    <span class="i-span" id=tel-span><i class="fa-solid fa-check span-check" id="tel-i"></i></span>
                                 </div>
                                 <div class="input-div2 input tel-div">
                                     <input type="tel" size="4" value="010" disabled class="tel" />
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id="inputTel1" name="tel1"/>
                                     <span class="telspace">―</span>
-                                    <input type="tel" size="4" maxlength="4" class="tel" />
+                                    <input type="tel" size="4" maxlength="4" class="tel" id="inputTel2" name="tel2"/>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -171,14 +181,15 @@
                                     <span class="info">이메일</span>
                                 </div>
                                 <div class="input-div2 input email">
-                                    <input type="email" class="input-div-email" disabled />
+                                    <input type="email" class="input-div-email" value="${sessionScope.email[0]}" disabled />
                                     <i class="fa-solid fa-at"></i>
-                                    <input type="email" class="input-div-email" disabled />
+                                    <input type="email" class="input-div-email" value="${sessionScope.email[1]}"  disabled />
                                 </div>
                             </div>
                             <div class="check-pw2">
                                 <div class="span-div2-pw2">
                                     <span class="info">소속병원 및 병원코드</span>
+                                    <span class="i-span" id=hos-span><i class="fa-solid fa-check span-check" id="hos-i"></i></span>
                                 </div>
                                 <div class="input-div2-pw2 input">
                                     <div class="input-div2-addr">
@@ -213,81 +224,7 @@
             </div>
         </div>
 
-        <script>
-            const yearSelect = document.getElementById("year");
-            const monthSelect = document.getElementById("month");
-            const daySelect = document.getElementById("day");
-
-            const currentYear = new Date().getFullYear();
-
-            // 연도 채우기 (현재 연도부터 1900년까지 내림차순)
-            for (let y = currentYear; y >= 1900; y--) {
-                const option = document.createElement("option");
-                option.value = y;
-                option.textContent = y + "년";
-                yearSelect.appendChild(option);
-            }
-
-            // 월 채우기
-            for (let m = 1; m <= 12; m++) {
-                const option = document.createElement("option");
-                option.value = m;
-                option.textContent = m + "월";
-                monthSelect.appendChild(option);
-            }
-
-            // 일 채우는 함수
-            function updateDays() {
-                const year = parseInt(yearSelect.value);
-                const month = parseInt(monthSelect.value);
-
-                if (!year || !month) return;
-
-                let daysInMonth;
-                if (month === 2) {
-                    daysInMonth = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
-                } else if ([4, 6, 9, 11].includes(month)) {
-                    daysInMonth = 30;
-                } else {
-                    daysInMonth = 31;
-                }
-
-                daySelect.innerHTML = '<option value="">일</option>';
-                for (let d = 1; d <= daysInMonth; d++) {
-                    const option = document.createElement("option");
-                    option.value = d;
-                    option.textContent = d;
-                    daySelect.appendChild(option);
-                }
-            }
-
-            yearSelect.addEventListener("change", updateDays);
-            monthSelect.addEventListener("change", updateDays);
-
-            const pw = document.getElementById("pw");
-            const pw2 = document.getElementById("pw2");
-            const pwch = document.getElementById("pwch");
-            const pwch2 = document.getElementById("pwch2");
-
-            pwch.addEventListener("click", () => {
-                if (pw.type === "password") {
-                    pw.type = "text";
-                    pwch.textContent = "숨기기";
-                } else {
-                    pw.type = "password";
-                    pwch.textContent = "보기";
-                }
-            });
-
-            pwch2.addEventListener("click", () => {
-                if (pw2.type === "password") {
-                    pw2.type = "text";
-                    pwch2.textContent = "숨기기";
-                } else {
-                    pw2.type = "password";
-                    pwch2.textContent = "보기";
-                }
-            });
-        </script>
+        <script src="${pageContext.request.contextPath}/common/join/js/join4.js"></script>
+        <script src="${pageContext.request.contextPath}/common/join/js/join4-2.js"></script>
     </body>
 </html>

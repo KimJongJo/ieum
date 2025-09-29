@@ -12,8 +12,12 @@
 	</insert>
 	
 	<update id="updateEmail" parameterType="emailAuth">
-		update email_auth set code = #{code} where email = #{email}
+		update email_auth set code = #{code}, expired_at = DATE_ADD(NOW(), INTERVAL 5 MINUTE) where email = #{email}
 	</update>
+	
+	<select id="checkEmailCode" resultType="emailAuth">
+		select email, code, expired_at from email_auth where email = #{email}
+	</select>
 	
 	
 </mapper>	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +36,11 @@
                 </div>
                 <div class="sidebar-body">
                      <ul>
-				        <a href="/test/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
+				        <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
 				        <li><button type="button">예약 내역</button></li>
 				        <li><button type="button">진단 이력</button></li>
-				        <a href="/test/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
-				        <a href="/test/black"><li><button type="button">차단 목록</button></li></a>
+				        <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
+				        <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
 				        <li><button type="button">다이어리</button></li>
 				        <li><button type="button">즐겨찾는 병원</button></li>
 				    </ul>
@@ -55,64 +56,77 @@
                 <button class="tab-comment">작성한 댓글</button>
                 <button class="tab-heart">좋아요 누른 게시판</button>
             </div>
-			
-			<form method="post" action="${pageContext.request.contextPath}/myCom" class="frame-form">
-			    <input type="hidden" name="commu_no" class="commu_no" value="101" />
+			<c:forEach var="myComList" items="${myComList}" varStatus="status">
+			    <input type="hidden" name="commu_no" class="commu_no" value="${myComList.commuNo}" />
 			    
-			    <div class="frame" data-commu-no="101">
+			    <div class="frame" data-commu-no="${myComList.commuNo}">
 			    <button type="submit" class="hidden-submit" style="display:none;"></button>
 			        <!-- 상단: 닉네임 + 카테고리 -->
 			        <div class="frame-top">
-			            <div class="text-wrapper-1">닉네임</div>
-			            <div class="text-wrapper-2">진로/취업</div>
+			            <div class="text-wrapper-1">
+			            	<c:out value="${myComList.nickName}" default="익명"/>
+			            </div>
+			            <div class="text-wrapper-2">
+			            	<c:out value="${myComList.categoryName}" default="카테고리"/>
+			            </div>
 			        </div>
 			
 			        <!-- 제목 및 본문 -->
 			        <div class="overlap-group">
-			            <div class="title">요즘 너무 힘듭니다</div>
-			            <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구 그러니까 전 아니라니까요 그게 뭐냐니까요?</p>
+			            <div class="title"><c:out value="${myComList.commuTitle}"/></div>
+			            <p class="p">
+			            	<c:out value="${myComList.commuContent}" escapeXml="false"/>
+			            </p>
 			        </div>
 			
 			        <!-- 업로드 날짜 -->
-			        <div class="text-wrapper-3">업로드 날짜</div>
+			        <div class="text-wrapper-3">
+			        	<fmt:formatDate value="${myComList.commuCreated}" pattern="yyyy-MM-dd"/>
+			        </div>
 			
 			        <!-- 액션 아이콘 (오른쪽 아래) -->
 			        <div class="actions">
 			            <span class="action-item">
-			                ❤️ <span class="action-count">15</span>
+			                ❤️ <span class="action-count"><c:out value="${myComList.empathy}" /></span>
 			            </span>
 			            <span class="action-item">
-			                💬 <span class="action-count">0</span>
+			                💬 <span class="action-count"><c:out value="${myComList.commuComment}" /></span>
 			            </span>
 			            <span class="action-item">
-			                🔗 <span class="action-count">100</span>
+			                🔗 <span class="action-count"><c:out value="${myComList.commuViews}" /></span>
 			            </span>
 			        </div>
 			                <!-- 숨겨진 버튼: 전체 frame 클릭 시 제출 -->
         			<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 			    </div>
-			</form>
+			</c:forEach>
             
             
             <!-- 옵션 밑 새로운 영역 -->
             <div class="comment">
                 <!-- 상단: 닉네임 + 카테고리 -->
                 <div class="comment-top">
-                    <div class="nickName">닉네임</div>
+                    <div class="nickName">
+                    	<c:out value="${member.nickName}" default="익명"/>
+                    </div>
                 </div>
 
                 <!-- 제목 및 본문 -->
                 <div class="overlap-group">
-                    <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구 그러니까 전 아니라니까요 그게 뭐냐니까요?</p>
+                    <p class="p">
+                    	<c:out value="${comment.comContent}" escapeXml="false"/>
+                    </p>
                 </div>
 
                 <!-- 업로드 날짜 -->
-                <div class="text-wrapper-3">업로드 날짜</div>
+                <div class="text-wrapper-3">
+                	<fmt:formatDate value="${comment.comCreated}" pattern="yyyy-MM-dd"/>
+                </div>
 
                 <!-- 액션 아이콘 (오른쪽 아래) -->
                 <div id="actions">
                     <span class="action-item">
-				        ❤️ <span class="action-count">15</span>
+				        ❤️ <span class="action-count"><c:out value="${comment.comEmpathy}"/></span>
 				    </span>
                 </div>
             </div>

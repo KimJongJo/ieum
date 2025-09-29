@@ -3,7 +3,7 @@ package dto;
 import java.sql.Date;
 
 public class CommunityDto {
-	Integer commuNO;
+	Integer commuNo;
 	Integer uNo;
 	String commuTitle;
 	String commuContent;
@@ -18,21 +18,22 @@ public class CommunityDto {
 		super();
 	}
 	
-	
-	public CommunityDto(Integer uNo, String commuTitle, String commuContent, Integer categoryNo) {
-	      super();
-	      this.uNo = uNo;
-	      this.commuTitle = commuTitle;
-	      this.commuContent = commuContent;
-	      this.categoryNo = categoryNo;
-	   }
 
 	
-	
-	public CommunityDto(Integer commuNO, Integer uNo, String commuTitle, String commuContent, Integer commuViews,
+	public CommunityDto(Integer uNo, String commuTitle, String commuContent, Integer categoryNo) {
+		super();
+		this.uNo = uNo;
+		this.commuTitle = commuTitle;
+		this.commuContent = commuContent;
+		this.categoryNo = categoryNo;
+	}
+
+
+
+	public CommunityDto(Integer commuNo, Integer uNo, String commuTitle, String commuContent, Integer commuViews,
 			Integer empathy, Date commuCreated, Integer commuDeclaration, Integer categoryNo, Integer commuComment) {
 		super();
-		this.commuNO = commuNO;
+		this.commuNo = commuNo;
 		this.uNo = uNo;
 		this.commuTitle = commuTitle;
 		this.commuContent = commuContent;
@@ -44,13 +45,11 @@ public class CommunityDto {
 		this.commuComment = commuComment;
 	}
 
-	public Integer getCommuNO() {
-		return commuNO;
+	public Integer getCommuNo() { 
+		return commuNo; 
 	}
 
-	public void setCommuNO(Integer commuNO) {
-		this.commuNO = commuNO;
-	}
+	public void setCommuNo(Integer commuNO) { this.commuNo = commuNO; }
 
 	public Integer getuNo() {
 		return uNo;
@@ -123,7 +122,4 @@ public class CommunityDto {
 	public void setCommuComment(Integer commuComment) {
 		this.commuComment = commuComment;
 	}
-	
-	
-	
 }

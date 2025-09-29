@@ -4,27 +4,32 @@ public class FileDto {
 	Integer fileNo;
 	String fileName;
 	String filePath;
-	String fileSize;
-	String filePart;
-	String filecategory;
+
+	String fileCategory;
+
 	
 	public FileDto() {}
-	
-	public FileDto(Integer fileNo, String fileName, String filePath, String fileSize, String filePart,
-			String filecategory) {
+
+	public FileDto(Integer fileNo, String fileName, String filePath, String fileCategory) {
 		super();
-		this.fileNo = fileNo;
-		this.fileName = fileName;
-		this.filePath = filePath;
-		this.fileSize = fileSize;
-		this.filePart = filePart;
-		this.filecategory = filecategory;
+		this.fileNo = fileNo; //저장번호
+		this.fileName = fileName; //지성.jpg
+		this.filePath = filePath; //어디로 저장되는지? webapp -> img -> 이안에 지성.jpg
+		this.fileCategory = fileCategory; //null로 주세요
 	}	
 
+	public FileDto(String fileName, String filePath, String fileCategory) {
+		super();
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.fileCategory = fileCategory;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "file [fileNo=" + fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", fileSize=" + fileSize
-				+ ", filePart=" + filePart + ", filecategory=" + filecategory + "]";
+		return "file [fileNo=" + fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", fileSize=" + ", filecategory=" + fileCategory + "]";
+
 	}
 
 	public Integer getFileNo() {
@@ -51,27 +56,14 @@ public class FileDto {
 		this.filePath = filePath;
 	}
 
-	public String getFileSize() {
-		return fileSize;
+	public String getFileCategory() {
+		return fileCategory;
 	}
 
-	public void setFileSize(String fileSize) {
-		this.fileSize = fileSize;
+	public void setFileCategory(String fileCategory) {
+		this.fileCategory = fileCategory;
 	}
-
-	public String getFilePart() {
-		return filePart;
-	}
-
-	public void setFilePart(String filePart) {
-		this.filePart = filePart;
-	}
-
-	public String getFilecategory() {
-		return filecategory;
-	}
-
-	public void setFilecategory(String filecategory) {
-		this.filecategory = filecategory;
-	}
+	
+	
+	
 }

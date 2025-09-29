@@ -96,15 +96,14 @@
 				</div>
 				<div class="login-body">
 					<span class="login-title"> 자가진단 </span>
+					<a href="${contextPath}/exam">
 					<div class="plusBtn">
-					 <a href="${contextPath}/exam">
-						<span>더보기</span>
+						 <span>더보기</span>
 							<div class="plusIcon">
 								<i class="fa-solid fa-plus"></i>
 							</div>
-						
-
-					</div></a>
+					</div>
+					</a>
 					<div class="login-content">
 						<div class="login-item"
 							onclick="location.href=`${contextPath}/exam/examques`">
@@ -248,18 +247,20 @@
 		<!-- 공지사항 -->
 		<section class="notice-secton">
 			<span class="section-title">공지사항
+				<a href="${contextPath}/notice">
 				<div class="plusBtn">
-					<span>더보기</span> <a href=""><div class="plusIcon">
+					<span>더보기</span> <div class="plusIcon">
 							<i class="fa-solid fa-plus"></i>
-						</div> </a>
+						</div> 
 				</div>
+				</a>
 			</span>
 			<div class="notice-content">
-				<a class="btn-link" href="">
+				<a class="btn-link" href="${contextPath}/notice">
 					<div class="top-notice">
 						<span class="notice title">고정 공지사항</span>
 						<div class="notice-box">
-							<div class="notice-item">
+							<div class="notice-item" onclick="location.href=`${contextPath}/notice?nNo=1`">
 								<div class="badge">고정</div>
 								<div>파크 병원 휴진 공고</div>
 								<div class="date">2025-09-08</div>
@@ -277,11 +278,12 @@
 						</div>
 
 					</div>
-				</a> <a class="btn-link" href="">
+				</a> 
+				<a class="btn-link" href="${contextPath}/notice">
 					<div class="basic-notice">
 						<span class="notice title">일반 공지사항</span>
 						<div class="notice-box">
-							<div class="notice-item">
+							<div class="notice-item" onclick="location.href=`${contextPath}/notice?nNo=1`">
 								<div>파크 병원 휴진 공고</div>
 								<div class="date">2025-09-08</div>
 							</div>

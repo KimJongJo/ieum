@@ -1,7 +1,6 @@
 // 페이지네이션 클릭 이벤트
 $(".pagination button").on("click", function() {
 	const pageNum = $(this).text();
-
 	if ($.isNumeric(pageNum)) { // 숫자 버튼 클릭 시
 		$(".pagination button").removeClass("active");
 		$(this).addClass("active");
@@ -34,8 +33,6 @@ $(document).ready(function() {
 			'top': y + 'px'
 		});
 	});
-
-
 	// 닫기 버튼 클릭 이벤트 리스너 추가
 	closeButton.on('click', function() {
 		// 팝업 숨기기
@@ -60,4 +57,11 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 	},
 	initialView: 'dayGridMonth'
 });
+function goDetail(no) {
+	$("#dNoInput").val(no);
+	$("#hiddenForm").submit();
+}
+function goUpdate(){
+	$("#hiddenForm").submit();
+}
 calendar.render();

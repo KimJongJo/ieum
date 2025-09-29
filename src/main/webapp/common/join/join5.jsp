@@ -24,8 +24,8 @@
                     <span class="type">회원정보 변경은 로그인 후 <회원정보수정> 에서 하실 수 있습니다.</span>
                 </div>
                 <div class="btn-div">
+                    <button onclick="location.href='/ieum/index'" class="home-btn">홈화면</button>
                     <button onclick="location.href='/ieum/login'" class="log-btn">로그인</button>
-                    <button class="home-btn">홈화면</button>
                 </div>
             </div>
         </div>

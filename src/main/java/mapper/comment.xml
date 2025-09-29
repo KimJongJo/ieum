@@ -2,5 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.comment">
+	<!-- 1. 댓글 목록 조회 (작성자 닉네임 포함) -->
+    <select id="selectCommentWithNick" parameterType="int" resultType="comment">
+       	select 
+            c.comme_no AS commeNo,
+            c.commu_no AS commuNo,
+            c.u_no AS uNo,
+            c.com_content AS comContent,
+            c.com_empathy AS comEmpathy,
+            c.com_created AS comCreated,
+            c.com_declaration AS comDeclaration,
+            m.nickname AS nickName
+        from comment c
+        join member m ON c.u_no = m.u_no
+        where c.commu_no = #{commuNo}
+        order by c.com_created ASC
+    </select>
 	
-</mapper>	
+	<insert id="insertComment" parameterType="comment">
+		insert into comment (comme_no, u_no, commu_no, com_content, com_empathy, com_created, com_declaration)
+		values (#{commeNo}, #{uNo}, #{commuNo}, #{comContent}, 0, now(), 0)
+	</insert>
+</mapper>

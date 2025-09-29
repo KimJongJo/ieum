@@ -3,4 +3,44 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.hospital">
 	
+	<select id="select" parameterType="Integer" resultType="hospital">
+	select  *
+	from hospital  
+	where h_no=#{hNo}
+	</select>
+	
+	<select id="selectCount" resultType="Integer">
+	select count(*) from hospital 
+	</select>
+	
+	<!-- 정렬: 예약 많은 순 -->
+	<select id="selectListRes" parameterType="dto.otherDto.HosSearchDto" resultType="hospital">
+	select h.h_nm,h.file_no,h.transfer_info,hc.category_name, count(r.r_no) as resCount
+	from hospital h
+	left join reservation r 
+	using (h_no)
+	left join hos_category hc 
+	using (category_no)
+	<where>
+	<if test="keyword !=null and keyword !=''">
+	and h.h_nm like concat('%', #{keyword}, '%')
+	</if>
+	<if test="categoryName != null and categoryName.size >0">
+	and hc.category_name in
+	<foreach collection="categoryName" open="(" separator="," close=")">
+	#{c}
+	</foreach>
+	</if>
+	<if test="city != null and city !=''">
+	and h.city = #{city}
+	</if>
+	<if test="gungu !=null and gungu !=''">
+	and h.gungu = #{gungu}
+	</if>
+	</where>
+	group by h.h_no, h.h_nm, h.file_no, h.transfer_info, hc.category_name
+	order by resCount desc
+	limit #{offset}, #{limit};
+	</select>
+	
 </mapper>	

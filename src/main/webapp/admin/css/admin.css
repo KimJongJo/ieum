@@ -1,4 +1,5 @@
 .main-bar {
+	min-width:1250px;
 	height: 115px;
 	background-color: #4356b3;
 	display: flex;
@@ -54,6 +55,7 @@
 }
 
 .under-section {
+	min-width:1250px;
 	padding-top: 35px;
 	background-color: #f7faff;
 	display: flex;
@@ -236,6 +238,7 @@
 	padding-bottom: 18px;
 	font-size: 14px;
 	border-bottom: 1px solid #eeeeee;
+	vertical-align:middle;
 }
 
 .info-btn {
@@ -252,6 +255,7 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
+	cursor:pointer;
 }
 
 .active {
@@ -375,7 +379,7 @@
 
 .profile-info {
 	text-align: center;
-	width: 180px;
+	width: 275px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-align: center;
@@ -652,4 +656,29 @@
 	border-radius: 5px;
 	border: 1px solid #b7b7b7;
 	cursor: pointer;
+}
+
+.select-state{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.user-ch-state{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+.some-empty{
+	padding-left:35px;
+}
+
+.hos-state{
+	padding-left:10px;
+}
+
+.table-div{
+	height:635px;
 }
