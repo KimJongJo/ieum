@@ -1,8 +1,6 @@
 package controller.hosSignUp;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dto.ApplicantDto;
 
 /**
  * Servlet implementation class HosSignUp
@@ -46,12 +46,7 @@ public class HosSignUp1 extends HttpServlet {
 		String email = (String)session.getAttribute("email");
 		session.removeAttribute("email");
 		
-		Map<String, String> requestInfo = new HashMap<String, String>();
-		requestInfo.put("name", name);
-		requestInfo.put("tel", tel);
-		requestInfo.put("email", email);
-		
-		session.setAttribute("requestInfo", requestInfo);
+		session.setAttribute("appInfoDto", new ApplicantDto(name, email, tel));
 		
 		response.sendRedirect("hosSignUp2");
 		

@@ -25,6 +25,13 @@ public class HospitalDaoImpl implements HospitalDao {
 	public List<HospitalDto> selectList(HosSearchDto hosSearch) throws Exception {
 		return sqlsession.selectList("mapper.hospital.selectListRes",hosSearch);
 	}
+	@Override
+	public Integer addHospital(HospitalDto hosDto) {
+		sqlsession.insert("addHospital", hosDto);
+		sqlsession.commit();
+		
+		return hosDto.gethNo();
+	}
 
 
 }

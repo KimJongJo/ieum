@@ -41,7 +41,7 @@ public class checkIdAndEmail extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String email = request.getParameter("email");
 		
-		EmailService service = new EmailServiceImpl();
+		EmailService service = new EmailServiceImpl(request.getServletContext());
 		
 		Gson gson = new Gson();
 		ResponseDto resDto;

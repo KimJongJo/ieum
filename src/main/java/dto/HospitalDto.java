@@ -6,7 +6,7 @@ public class HospitalDto {
 	
 	Integer hNo;	// 병원 번호
 	String hNm;	// 병원 이름
-	String categoryNo;	// 카테고리
+	Integer categoryNo;	// 카테고리
 	String info1;	// 기타병원정보1
 	String info2;	// 기타병원정보2
 	String hAddress;	// 병원 주소
@@ -40,7 +40,7 @@ public class HospitalDto {
 
 
 
-	public HospitalDto(String hNm, String categoryNo, String hAddress, String hLocationY, String hLocationX,
+	public HospitalDto(String hNm, Integer categoryNo, String hAddress, String hLocationY, String hLocationX,
 			String holidayInfo, String hTel, Integer fileNo, Integer reNoFileNo, String reNo, String city, String gungu,
 			String hosService, boolean silson) {
 		super();
@@ -64,7 +64,7 @@ public class HospitalDto {
 
 
 
-	public HospitalDto(Integer hNo, String hNm, String categoryNo, String info1, String info2, String hAddress,
+	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String info1, String info2, String hAddress,
 			String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink,
 			String introcudeNote, Integer fileNo, Integer reNoFileNo, String reNo, Date hCreated, Date hUpdated,
 			String status, String hCode, String city, String gungu, String hosService, boolean silson) {
@@ -171,12 +171,12 @@ public class HospitalDto {
 	}
 
 
-	public String getCategoryNo() {
+	public Integer getCategoryNo() {
 		return categoryNo;
 	}
 
 
-	public void setCategoryNo(String categoryNo) {
+	public void setCategoryNo(Integer categoryNo) {
 		this.categoryNo = categoryNo;
 	}
 

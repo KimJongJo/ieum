@@ -30,6 +30,7 @@
       <typeAlias type="dto.NoticeDto" alias="notice" />
       <typeAlias type="dto.ReservationDto" alias="reservation" />
       <typeAlias type="dto.UserStateDto" alias="userState" />
+      <typeAlias type="dto.ApplicantDto" alias="applicant" />
       
       
    </typeAliases>
@@ -50,6 +51,7 @@
    </environments>
 
    <mappers>
+   	  <mapper resource="mapper/applicant.xml" />
       <mapper resource="mapper/blacklist.xml" />
       <mapper resource="mapper/comme_like.xml" />
       <mapper resource="mapper/comment.xml" />

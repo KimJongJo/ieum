@@ -23,7 +23,7 @@ public class SendEmail extends HttpServlet {
 	EmailService service;
     
     public SendEmail() {
-    	service = new EmailServiceImpl();
+    	service = new EmailServiceImpl(getServletContext());
     }
 
 	/**

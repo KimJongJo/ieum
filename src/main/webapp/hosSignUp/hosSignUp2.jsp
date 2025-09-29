@@ -257,7 +257,7 @@
 
 
 	<script type="text/javascript" 
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a8e9c8ec6eda7a6cf171e53b388989a&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

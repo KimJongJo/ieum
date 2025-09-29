@@ -1,8 +1,12 @@
 package controller.hosSignUp;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,11 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import dto.ApplicantDto;
 import dto.HospitalDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
 
 /**
  * Servlet implementation class HosSignUp
@@ -40,6 +48,17 @@ public class HosSignUp2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Servlet
+		Properties prop = new Properties();
+		try(InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
+		    prop.load(is);
+		    String kakaoKey = prop.getProperty("kakao.api.key");
+		    request.setAttribute("kakaoKey", kakaoKey);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
 		request.getRequestDispatcher("/hosSignUp/hosSignUp2.jsp").forward(request, response);
 	}
 
@@ -49,8 +68,10 @@ public class HosSignUp2 extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		String hosName = request.getParameter("hosName");
 		String hosCategory = request.getParameter("hosCategory");
+		Integer categoryNo = Integer.parseInt(hosCategory);
 		String add = request.getParameter("address");
 		String addressDetail = request.getParameter("addressDetail");
 		String address = add + " " + addressDetail;
@@ -118,12 +139,30 @@ public class HosSignUp2 extends HttpServlet {
 		String siGunGu = addrSb.toString();
 		
 		// 도로명 주소
-		String loadNameAdd = addArr[addArr.length - 2] + " " + addArr[addArr.length - 1];
+//		String loadNameAdd = addArr[addArr.length - 2] + " " + addArr[addArr.length - 1];
 		
-		HospitalDto hosDto = new HospitalDto(hosName, hosCategory, address, hos_y, hos_x,
+		HospitalDto hosDto = new HospitalDto(hosName, categoryNo, address, hos_y, hos_x,
 				holiday, tel, hosImgNo, hosReFileNo, requestNo, siDo, siGunGu, hosService, silson);
 		
-		System.out.println(hosDto);
+		// 병원 신청 페이지1 에서 저장한 세션에서 신청자 정보 가져오기
+		
+		ApplicantDto appDto = (ApplicantDto)session.getAttribute("appInfoDto");
+		
+		Map<String, Object> requestMap = new HashMap<String, Object>();
+		requestMap.put("hosDto", hosDto);
+		requestMap.put("appDto", appDto);
+		
+		
+		HospitalService hospitalService = new HospitalServiceImpl();
+		hospitalService.addHospital(requestMap);
+		
+		// 세션 비워주기
+		session.removeAttribute("name");
+		session.removeAttribute("email");
+		session.removeAttribute("tel");
+		
+		response.sendRedirect("hosSignUp3");
+		
 		
 		
 		
