@@ -5,7 +5,10 @@
 <!--  	<resultMap id="CategoryResult" type="dto.CommuCategoryDto">
         <id property="categoryNo" column="category_no"/>
         <result property="categoryName" column="category_name"/>
-    </resultMap>  -->
+
+    </resultMap> -->
+
+
 	<select id="selectAll" resultType="commuCategory"> 
 		select category_no, category_name from commu_category 
 	</select>
@@ -14,3 +17,4 @@
 		select category_no, category_name from commu_category where category_no = #{categoryNo}
 	</select>
 </mapper>
+
