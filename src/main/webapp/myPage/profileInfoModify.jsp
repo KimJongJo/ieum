@@ -117,14 +117,14 @@
 				        <div id="profile-preview">
 						    <c:choose>
 						        <c:when test="${not empty file and not empty file.fileName}">
-						            <img src="${pageContext.request.contextPath}/${file.filePath}/${file.fileName}" alt="프로필">
+						            <img src="${pageContext.request.contextPath}/${file.fileName}" alt="프로필">
 						        </c:when>
 						        <c:otherwise>
 						            <img src="${pageContext.request.contextPath}/img/계획대로야.jpg" alt="기본 프로필">
 						        </c:otherwise>
 						    </c:choose>
 						</div>
-				        <input type="file" id="profileInput" accept="image/*" style="display:none;">
+				        <input type="file" id="profileInput" name="profileFile" accept="image/*" style="display:none;">
 				        <button type="button" id="uploadBtn">이미지 선택</button>
 				    </div>
 				</div>
