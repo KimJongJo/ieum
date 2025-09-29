@@ -266,8 +266,6 @@ body {
 }
 
 .diary-list .diary-title-row {
-	display: flex;
-	align-items: center;
 	height: 63px;
 }
 

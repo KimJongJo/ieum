@@ -182,8 +182,8 @@ body {
 /* 각 모서리 둥글게 */
 #box1 { border-top-left-radius: 8px; }
 #box2 { border-top-right-radius: 8px; }
-#box17 { border-bottom-left-radius: 8px; }
-#box18 { border-bottom-right-radius: 8px; }
+#box19 { border-bottom-left-radius: 8px; }
+#box20 { border-bottom-right-radius: 8px; }
 
 /* 클릭 가능 박스 스타일 */
 .clickable {

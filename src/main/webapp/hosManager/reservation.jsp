@@ -51,7 +51,7 @@
 	                                <th style="width: 150px">환자 이름</th>
 	                                <th style="width: 150px">담당 의사</th>
 	                                <th style="width: 200px">예약날짜 / 시간</th>
-	                                <th style="width: 150px">진단서</th>
+	                                <th colspan=2 style="width: 150px">진단서</th>
 	                                <th>환자정보</th>
 	                            </tr>
 	                            <tr>
@@ -64,6 +64,7 @@
 	                                    <span>10:00</span>
 	                                </td>
 	                                <td class="reservation-table-td">미작성</td>
+	                                <td><button type="button" class="write-btn">작성</button></td>
 	                                <td><button type="button" class="show-btn" id="show-patient-info">보기</button></td>
 	                            </tr>
 	                            

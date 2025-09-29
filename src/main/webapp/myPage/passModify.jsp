@@ -60,22 +60,29 @@
 		    </div>
 		    <div id="modipy">비밀번호 수정</div>
 		    <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
-		    
+		    <form action="${pageContext.request.contextPath}/pModify" method="post">
 		    <div id="passwordModipy">
 			    <div class="form-row">
-			        <label for="current-pass">기존 비밀번호 *</label>
-			        <input type="password" id="current-pass" placeholder="기존 비밀번호를 입력하세요.">
+			        <label for="current-pass">아이디 *</label>
+			        <input type="password" id="current-pass" name="current-pass" placeholder="아이디를 입력하세요.">
 			    </div>
 			    <div class="form-row">
 			        <label for="new-pass">신규 비밀번호 *</label>
-			        <input type="password" id="new-pass" placeholder="신규 비밀번호를 입력하세요.">
+			        <input type="password" id="new-pass" name="new-pass" placeholder="신규 비밀번호를 입력하세요.">
 			    </div>
 			    <div class="form-row">
 			        <label for="confirm-pass">비밀번호 확인 *</label>
-			        <input type="password" id="confirm-pass" placeholder="확인 비밀번호를 입력하세요.">
+			        <input type="password" id="confirm-pass" name="confirm-pass" placeholder="확인 비밀번호를 입력하세요.">
 			    </div>
 			</div>
-			<div id="edit"><button onclick="location.href='/test/pInfo'">수정완료</button></div>
+			<div id="edit"><button type="submit">수정완료</button></div>
+			</form>
+			
+			<c:if test="${not empty message}">
+			    <div style="color:red; font-weight:bold; margin-top:10px;">
+			        ${message}
+			    </div>
+			</c:if>
 		</div>
     </div>
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>

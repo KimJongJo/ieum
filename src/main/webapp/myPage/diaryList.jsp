@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,9 @@
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
 	rel="stylesheet">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${contextPath}/myPage/css/diaryList.css">
-	
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/myPage/css/diaryList.css">
+
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- FullCalendar 스크립트 (Global build) -->
@@ -21,6 +23,7 @@
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<script src="${contextPath}/myPage/js/diary.js"></script>
 <title>건강이음 - 다이어리 메인</title>
 </head>
 <body>
@@ -61,72 +64,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="diary-item" onclick="location.href=`${contextPath}/myPage/diary?dNo=1`">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록7월2일의 기록</span></td>
-					<td><span class="diary-txt">9월 6일 오전 10시경 상담을 받았다6일 오전
-							10시경 상담을 받았다6일 오전 10시경 상담을 받았다</span></td>
-					<td><span class="diary-content date">2022.07.02</span></td>
-					<td class="happy-icon emoji"><i
-						class="fa-regular fa-face-smile"></i></td>
-
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="soso-icon emoji"><i class="fa-regular fa-face-meh"></i>
-					</td>
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록\</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="sad-icon emoji"><i class="fa-regular fa-face-frown"></i>
-					</td>
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="sad-icon emoji"><i class="fa-regular fa-face-frown"></i>
-					</td>
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="sad-icon emoji"><i class="fa-regular fa-face-frown"></i>
-					</td>
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록 오늘의 기분 밝음</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="sad-icon emoji"><i class="fa-regular fa-face-frown"></i>
-					</td>
-				</tr>
-				<tr class="diary-item">
-					<td class="diary-title-row"><span class="diary-title">7월2일의
-							기록 오늘의 기분 밝음</span></td>
-					<td class="diary-content">9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째
-						상담이라 그런지 지난번보다 편안했다</td>
-					<td class="diary-content date">2022.07.02</td>
-					<td class="sad-icon emoji"><i class="fa-regular fa-face-frown"></i>
-					</td>
-				</tr>
-
-
+				<c:forEach items="${diaryList}" var="diary">
+					<form id="hiddenForm" action="${contextPath}/myPage/diary"
+						method="post">
+						<input type="hidden" name="dNo" id="dNoInput">
+					</form>
+					<tr class="diary-item" onclick="goDetail(${diary.dNo})">
+						<td class="diary-title-row"><span class="diary-title">${diary.title}</span></td>
+						<td><span class="diary-txt">${diary.content}</span></td>
+						<td><span class="diary-content date"><fmt:formatDate
+									value="${diary.dCreated}" pattern="yyyy-MM-dd" /></span></td>
+						<td class="emoji"><i class="fa-regular fa-face-${diary.mood}"></i></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 팝업 -->
@@ -158,9 +108,9 @@
 			<div class="button-wrapper">
 				<a class="btn-link" href="${contextPath}/myPage/diary/update">
 					<div class="basic-big-btn">수정</div>
-				</a> 
-					<div class="basic-big-btn" id="delBtn">삭제</div>
-				 <a class="btn-link" href="">
+				</a>
+				<div class="basic-big-btn" id="delBtn">삭제</div>
+				<a class="btn-link" href="">
 					<div class="primary-big-btn">진단이력 바로가기</div>
 				</a>
 			</div>
@@ -185,8 +135,8 @@
 		</div>
 	</div>
 	<footer>
-<%-- 		<jsp:include page="footer1.jsp"></jsp:include> --%>
-<%-- 		<jsp:include page="footer2.jsp"></jsp:include> --%>
+		<%-- 		<jsp:include page="footer1.jsp"></jsp:include> --%>
+		<%-- 		<jsp:include page="footer2.jsp"></jsp:include> --%>
 	</footer>
 	<script src="js/diaryList.js"></script>
 </body>

@@ -13,13 +13,8 @@ public class CommunityDaoImpl implements CommunityDao{
 	
 	@Override
 	public void insert(CommunityDto community) throws Exception {
-		
-		try {
 			session.insert("mapper.community.insertCommunity", community);
 			session.commit();
-		}finally {
-			session.close();
-		}
 	}
 
 }

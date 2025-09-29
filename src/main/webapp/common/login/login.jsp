@@ -6,6 +6,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/common/login/css/login.css" />
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script>
+			$(function() {
+				$("#loginForm").on("submit", function(e) {
+				    e.preventDefault(); // form 태그의 기본인 전송을 막는다
+				    var userId = $("input[name='userId']").val().trim();
+				    var userPw = $("input[name='userPw']").val().trim();
+
+				    if(userId === "" || userPw === ""){
+				        alert("아이디와 비밀번호를 입력해주세요");
+				        return;
+				    }
+
+				    $.ajax({
+				        url: '/ieum/login',
+				        type: 'POST',
+				        data: $(this).serialize(), // form 안의 값 자동 직렬화
+				        dataType: 'json',
+				        success: function(res){
+				            if(res.success){
+				                window.location.href = "/ieum/index";
+				            } else {
+				                alert(res.message);
+				            }
+				        },
+				        error: function(){
+				            alert("서버 오류가 발생했습니다.");
+				        }
+				    });
+				});
+			})
+		</script>
     </head>
     <body>
         <div class="main">
@@ -25,15 +57,15 @@
                 <div class="span-div">
                     <span class="comment">회원 서비스를 이용하시려면 로그인이 필요합니다.</span>
                 </div>
-                <form action="" class="form">
+                <form id="loginForm" class="form">
                     <div class="login-div">
-                        <input class="input-info" type="text" placeholder="아이디" />
-                        <input class="input-info" type="password" placeholder="비밀번호" />
+                        <input value="${cookie.rememberId != null ? cookie.rememberId.value : ''}" name="userId" class="input-info" type="text" placeholder="아이디" />
+                        <input name="userPw" class="input-info" type="password" placeholder="비밀번호" />
                         <div class="autologin">
-                            <input type="checkbox" id="autoLogin" /> <label for="autoLogin"><span class="autoLogin-span">아이디 저장</span></label>
+                            <input ${cookie.rememberId != null ? 'checked="checked"' : ''} name="rememberId" value="Y" type="checkbox" id="autoLogin" /> <label for="autoLogin"><span class="autoLogin-span">아이디 저장</span></label>
                         </div>
                     </div>
-                    <button class="login-btn">로그인</button>
+                    <button id="loginBtn" class="login-btn">로그인</button>
                 </form>
                 <div class="nav-div">
                     <div class="navigation">

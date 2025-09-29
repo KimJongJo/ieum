@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfoModify.css" />
-<script src="${pageContext.request.contextPath}/myPage/css/profileInfoModify.js"></script>
+<script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify.js"></script>
 <!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-
+		
         <!-- Main Content -->
         <div class="container-three">
             <div id="text-box">
@@ -108,38 +108,48 @@
             </div>
             <div id="modipy">나의 정보 수정</div>
             <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
-            
+            <form action="${pageContext.request.contextPath}/pUpdate" method="post">
             <div id="passwordModipy">
             	<!-- 기존 성명 아래에 추가 -->
 				<div class="form-row" style="align-items: center;">
 				    <label>프로필 사진</label>
 				    <div id="profile-upload-box">
 				        <div id="profile-preview">
-				            <img src="profile_default.png">
-				        </div>
+						    <c:choose>
+						        <c:when test="${not empty file and not empty file.fileName}">
+						            <img src="${pageContext.request.contextPath}/${file.filePath}/${file.fileName}" alt="프로필">
+						        </c:when>
+						        <c:otherwise>
+						            <img src="${pageContext.request.contextPath}/img/계획대로야.jpg" alt="기본 프로필">
+						        </c:otherwise>
+						    </c:choose>
+						</div>
 				        <input type="file" id="profileInput" accept="image/*" style="display:none;">
 				        <button type="button" id="uploadBtn">이미지 선택</button>
 				    </div>
 				</div>
                 <div class="form-row">
                     <label>성명</label>
-                    <span id="name">최지성</span>
+                    <span id="name">
+                    	<c:out value="${member.username}"/>
+                    </span>
                 </div>
+                <input type="hidden" name="id" value="<c:out value='${member.id}'/>">
                 <div class="form-row">
-                    <label>닉네임</label>
-                    <input type="text" id="nickName" placeholder="닉네임">
+                    <label>닉네임 *</label>
+                    <input type="text" id="nickName" name="nickName" value="<c:out value='${member.nickName}'/>" placeholder="닉네임">
                 </div>
                 <div class="form-row">
                     <label>이메일 *</label>
-                    <input type="email" id="email" placeholder="이메일">
+                    <input type="email" id="email" name="email" value="<c:out value='${member.email}'/>" placeholder="이메일">
                 </div>
                 <div class="form-row">
-                    <label>비밀번호 *</label>
-                    <button onclick="location.href='/test/pModify'" id="btn1">비밀번호 변경</button>
+                    <label>비밀번호</label>
+                    <button type="button" onclick="location.href='/ieum/pModify'" id="btn1">비밀번호 변경</button>
                 </div>
                 <div class="form-row">
                     <label>전화번호 *</label>
-                    <input type="tel" id="tel" placeholder="전화번호">
+                    <input type="tel" id="tel" name="uTel" value="<c:out value='${member.uTel}'/>" placeholder="전화번호">
                 </div>
                 <div class="form-row" style="align-items: flex-start;">
 				    <label>주소</label>
@@ -151,32 +161,39 @@
 				        </div>
 				        <!-- 두 번째 줄: 주소 + 상세주소 -->
 				        <div style="display: flex;">
-				            <input type="text" id="address" placeholder="주소" readonly style="width: 250px;">
+				            <input type="text" id="address" name="uAddress" value="<c:out value='${member.uAddress}'/>" placeholder="주소" readonly style="width: 250px;">
 				            <input type="text" id="detailAddress" placeholder="상세주소" style="width: 200px;">
 				        </div>
 				    </div>
 				</div>
                 <div class="form-row1">
-                    <label>성별</label>
+                    <label>성별 *</label>
                     <div class="checkbox-group">
-                        <label><input type="radio" name="gender" value="male"> 남</label>
-                        <label><input type="radio" name="gender" value="female"> 여</label>
+                        <label><input type="radio" name="gender" value="male"
+                        	${member.gender eq 'MALE' ? 'checked' : ''} > 남자</label>
+                        <label><input type="radio" name="gender" value="female"
+                        	${member.gender eq 'FEMALE' ? 'checked' : ''} > 여자</label>
                     </div>
                 </div>
                 
                 <div class="form-row1">
-                    <label>다이어리 공개 여부</label>
+                    <label>다이어리 공개 여부 *</label>
                     <div class="checkbox-group">
-                        <label><input type="radio" name="diary-public" value="yes"> 네</label>
-                        <label><input type="radio" name="diary-public" value="no"> 아니오</label>
+                        <label><input type="radio" name="diaryPrivate" value="yes"
+                        	${member.diaryPrivate eq '1' ? 'checked' : ''} > 네</label>
+                        <label><input type="radio" name="diaryPrivate" value="no"
+                        	${!member.diaryPrivate eq '0' ? 'checked' : ''} > 아니오</label>
                     </div>
                 </div>
             </div>
+            
             <div id="edit">
-                <button onclick="location.href='/test/pInfo'" id="btn2">수정완료</button>
+                <button id="btn2">수정완료</button>
             </div>
+            </form>
         </div>
     </div>
+    
     <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
