@@ -84,7 +84,7 @@
 		                <span id="box19">다이어리 공개 여부</span>
 		                <span id="box20">
 							<c:choose>
-						        <c:when test="${member.diaryPrivate eq '1'}">예</c:when>
+						        <c:when test="${member.diaryPrivate}">예</c:when>
 						        <c:otherwise>아니오</c:otherwise>
 						    </c:choose>
 						</span>

@@ -111,9 +111,9 @@ public class EmailServiceImpl implements EmailService {
 		
 		EmailAuthDto check = emailDao.checkEmailCode(email);
 		
-		
-	    if(check == null || check.getCode().equals(code)) {
+	    if(check == null || !check.getCode().equals(code)) {
 	        return 0; // 이메일과 코드가 일치하지 않음
+	        
 	    }
 	    
 	    Timestamp expiryTime = check.getExpiredAt(); // 만료 시간

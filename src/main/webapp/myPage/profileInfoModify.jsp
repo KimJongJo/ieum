@@ -116,13 +116,13 @@
 				    <div id="profile-upload-box">
 				        <div id="profile-preview">
 						    <c:choose>
-						        <c:when test="${not empty file and not empty file.fileName}">
-						            <img src="${pageContext.request.contextPath}/${file.fileName}" alt="프로필">
-						        </c:when>
-						        <c:otherwise>
-						            <img src="${pageContext.request.contextPath}/img/계획대로야.jpg" alt="기본 프로필">
-						        </c:otherwise>
-						    </c:choose>
+							    <c:when test="${not empty file and not empty file.fileName}">
+							        <img src="${pageContext.request.contextPath}/${file.filePath}/${file.fileName}" alt="프로필">
+							    </c:when>
+							    <c:otherwise>
+							        <img src="${pageContext.request.contextPath}/img/계획대로야.jpg" alt="기본 프로필">
+							    </c:otherwise>
+							</c:choose>
 						</div>
 				        <input type="file" id="profileInput" name="profileFile" accept="image/*" style="display:none;">
 				        <button type="button" id="uploadBtn">이미지 선택</button>
@@ -180,9 +180,9 @@
                     <label>다이어리 공개 여부 *</label>
                     <div class="checkbox-group">
                         <label><input type="radio" name="diaryPrivate" value="yes"
-                        	${member.diaryPrivate eq '1' ? 'checked' : ''} > 네</label>
+                        	${member.diaryPrivate ? 'checked' : ''} > 네</label>
                         <label><input type="radio" name="diaryPrivate" value="no"
-                        	${!member.diaryPrivate eq '0' ? 'checked' : ''} > 아니오</label>
+                        	${!member.diaryPrivate ? 'checked' : ''} > 아니오</label>
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@ public class FileDaoImpl implements FileDao{
 	
 
 	@Override
-	public FileDto selectFileByUserId(Integer uNo) throws Exception {	
-		return session.selectOne("mapper.file.selectFileByuNo", uNo);
+	public FileDto selectFileByUserId(Integer fileNo) throws Exception {	
+		return session.selectOne("mapper.file.selectFileByuNo", fileNo);
 	}
 
 	@Override
@@ -28,6 +28,15 @@ public class FileDaoImpl implements FileDao{
 	public int updateFile(FileDto fileDto) throws Exception {
 		
 		return session.update("mapper.file.updateFile", fileDto);
+	}
+
+
+	@Override
+	public Integer normalImg(FileDto file) {
+		Integer fileNo = session.insert("normalImg", file);
+		session.commit();
+		
+		return fileNo; 
 	}
 
 }

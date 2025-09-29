@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dto.otherDto.ResponseDto;
-import jakarta.mail.MessagingException;
 import service.auth.EmailService;
 import service.auth.EmailServiceImpl;
 
