@@ -21,7 +21,7 @@
 	<div class="sb2">
 		<table class="nav">
 			<tr>
-				<td class="en">강박장애</td>
+				<a href="${contextPath }/exam/examques"><td class="en">강박장애</td></a>
 			</tr>
 			<tr>
 				<td class="en">게임 생활습관</td>

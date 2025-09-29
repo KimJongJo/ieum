@@ -15,7 +15,7 @@
 <body>
 <div class="container">
         <div class="left">
-        <jsp:include page="examnav.html"></jsp:include>
+        <jsp:include page="examnav.jsp"></jsp:include>
         </div>
 
         <div class="right">
@@ -36,19 +36,19 @@
                 <span class="question">Q1. 게임을 자주 하지 않을때에도 게임에 대한 생각이 자꾸 떠오른다.</span>
                 <table class="ques">
                     <tr class="radio">
-                        <td class="score"><input type="radio" name="score" value="5"><spna class="s1">매우그렇다</spna></td>
+                        <td class="score"><input class="scores" type="radio" name="score" value="5"><spna class="s1">매우그렇다</spna></td>
                     </tr>
                     <tr class="radio">
-                        <td class="score"><input type="radio" name="score" value="4"><spna class="s1">그렇다</spna></td>
+                        <td class="score"><input class="scores" type="radio" name="score" value="4"><spna class="s1">그렇다</spna></td>
                     </tr>
                     <tr class="radio">
-                        <td class="score"><input type="radio" name="score" value="3"><spna class="s1">보통이다</spna></td>
+                        <td class="score"><input class="scores" type="radio" name="score" value="3"><spna class="s1">보통이다</spna></td>
                     </tr>
                     <tr class="radio">
-                        <td class="score"><input type="radio" name="score" value="2"><spna class="s1">그렇지 않다</spna></td>
+                        <td class="score"><input class="scores" type="radio" name="score" value="2"><spna class="s1">그렇지 않다</spna></td>
                     </tr>
                     <tr class="radio">
-                        <td class="score"><input type="radio" name="score" value="1"><spna class="s1">매우 그렇지 않다</spna></td>
+                        <td class="score"><input class="scores" type="radio" name="score" value="1"><spna class="s1">매우 그렇지 않다</spna></td>
                     </tr>
                 </table>
             </div>
