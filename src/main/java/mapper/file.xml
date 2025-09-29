@@ -24,4 +24,8 @@
             file_category = #{fileCategory}
         where file_no = #{fileNo}
 	</update>
+	
+	<insert id="normalImg" parameterType="file" useGeneratedKeys="true" keyProperty="fileNo">
+		insert into file (file_name, file_path, file_category) values (#{fileName}, #{filePath}, #{fileCategory})
+	</insert>
 </mapper>	
