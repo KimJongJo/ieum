@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dto.HospitalDto2;
+import dto.HospitalDto;
 import dto.otherDto.HosSearchDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
@@ -33,10 +33,13 @@ public class HosSearch extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.getRequestDispatcher("/hospital/hosSearch.jsp").forward(request, response);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
 		String keyword = request.getParameter("keyword");
@@ -65,7 +68,7 @@ public class HosSearch extends HttpServlet {
 		try {
 			
 			HospitalService hService = new HospitalServiceImpl();
-			List<HospitalDto2> hoslist = hService.listByFilter(hsd);
+			List<HospitalDto> hoslist = hService.listByFilter(hsd);
 			
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(hoslist);
@@ -74,6 +77,8 @@ public class HosSearch extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().write(jsonStr);
 			
+//			request.setAttribute("hoslist", hoslist);
+//			request.getRequestDispatcher("/hospital/hosSearch.jsp").forward(request, response);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
