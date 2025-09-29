@@ -37,6 +37,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void changePw(Map<String, Object> userMap) {
 		session.update("changePw", userMap);
+		session.commit();
   }
   @Override
 	public MemberDto selectByNickName(Integer uNo) throws Exception {

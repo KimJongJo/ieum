@@ -49,6 +49,9 @@ public class MemberDto {
 
 	
 	
+
+
+
 	public MemberDto(Integer uNo, String password) {
 		super();
 		this.uNo = uNo;
@@ -207,6 +210,7 @@ public class MemberDto {
 	public String getNickName() {
 		return nickname;
 	}
+
 	public void setNickName(String nickName) {
 		this.nickname = nickName;
 	}
@@ -220,7 +224,6 @@ public class MemberDto {
 	public void setFileNo(Integer fileNo) {
 		this.fileNo = fileNo;
 	}
-	
-	
+
 
 }

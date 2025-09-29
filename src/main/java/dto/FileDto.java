@@ -4,12 +4,13 @@ public class FileDto {
 	Integer fileNo;
 	String fileName;
 	String filePath;
-	String fileCategory; 
+
+	String fileCategory;
+
 	
 	public FileDto() {}
-	
-	public FileDto(Integer fileNo, String fileName, String filePath,
-			String fileCategory) {
+
+	public FileDto(Integer fileNo, String fileName, String filePath, String fileCategory) {
 		super();
 		this.fileNo = fileNo; //저장번호
 		this.fileName = fileName; //지성.jpg
@@ -17,9 +18,18 @@ public class FileDto {
 		this.fileCategory = fileCategory; //null로 주세요
 	}	
 
+	public FileDto(String fileName, String filePath, String fileCategory) {
+		super();
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.fileCategory = fileCategory;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "file [fileNo=" + fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", fileSize=" + ", filecategory=" + fileCategory + "]";
+
 	}
 
 	public Integer getFileNo() {
@@ -53,4 +63,7 @@ public class FileDto {
 	public void setFileCategory(String fileCategory) {
 		this.fileCategory = fileCategory;
 	}
+	
+	
+	
 }

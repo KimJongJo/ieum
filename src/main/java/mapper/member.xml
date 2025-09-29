@@ -9,9 +9,9 @@
 	
 	<insert id="normalJoin" parameterType="member">
 		insert into member 
-		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code)
+		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code, file_no)
 		 values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW() , 'USER'
-		 , #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1)
+		 , #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
 	</insert>
 	
 	<select id="findId" parameterType="String" resultType="Map">

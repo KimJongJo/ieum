@@ -49,6 +49,7 @@ public class CheckEmailCode extends HttpServlet {
 		int checkCode = service.checkEmail(email, code);
 		
 		String type = request.getParameter("type");		
+		System.out.println(code);
 		
 		if(type != null) {
 			if(type.equals("signUp")) { // 회원가입이라면
