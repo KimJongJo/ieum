@@ -6,5 +6,5 @@ public interface FileDao {
 	FileDto selectFileByUserId(Integer fileNo) throws Exception;
 	int insertFile(FileDto fileDto) throws Exception;
 	int updateFile(FileDto fileDto) throws Exception;
-	Integer normalImg(FileDto file);
+	Integer uploadFile(FileDto fileDto);
 }

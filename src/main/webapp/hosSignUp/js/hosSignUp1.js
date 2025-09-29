@@ -135,8 +135,8 @@ $("#codeCheckBtn").click(function () {
             	
             	// 이메일 인증 성공했을때 모든 정보를 비활성화
             	$("#firstEmail, #directInput, #requestName, #inputTel1, #inputTel2").prop("readonly", true);
-            	$("#code-input").val("다음 절차를 진행해주세요");
-            	$("#select, #code-input, #codeCheckBtn, #mailSendBtn").prop("disabled", true);
+            	$("#authCode").val("다음 절차를 진행해주세요");
+            	$("#select, #authCode, #codeCheckBtn, #mailSendBtn").prop("disabled", true);
             	
                 alert(response.message);
 	            $("#email-span").css("display", "block");
@@ -171,4 +171,5 @@ $("#nextBtn").click(function(e) { // 클릭 시 확인
         e.preventDefault();
         alert("정보입력을 다시 확인해주세요");
     }
+    
 });
