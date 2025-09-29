@@ -14,8 +14,8 @@ public class FileDaoImpl implements FileDao{
 	
 
 	@Override
-	public FileDto selectFileByUserId(Integer uNo) throws Exception {	
-		return session.selectOne("mapper.file.selectFileByuNo", uNo);
+	public FileDto selectFileByUserId(Integer fileNo) throws Exception {	
+		return session.selectOne("mapper.file.selectFileByuNo", fileNo);
 	}
 
 	@Override

@@ -12,8 +12,8 @@ public class FileServiceImpl implements FileService{
 	}
 	
 	@Override
-	public FileDto getFileByUserId(int uNo) throws Exception {
-		return fileDao.selectFileByUserId(uNo);
+	public FileDto getFileByFileNo(int fileNo) throws Exception {
+		return fileDao.selectFileByUserId(fileNo);
 	}
 
 }

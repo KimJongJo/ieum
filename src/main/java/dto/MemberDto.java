@@ -13,7 +13,7 @@ public class MemberDto {
 	String uTel; //전화번호
 	String email;	//이메일
 	Date createdAt;	// 가입일
-	String userType;	// 회원분류
+	String userType;	// 회원분류 -> 
 	String major; //전공
 	String introduction; //자기소개
 	String nickname; //닉네임
@@ -23,6 +23,7 @@ public class MemberDto {
 	String social; //소셜로그인
 	Integer hNo; //소속 병원 번호
 	Integer stateCode;	//상태코드
+	Integer fileNo;
 	
 	
 	public MemberDto() {
@@ -43,6 +44,7 @@ public class MemberDto {
 		this.nickname = nickName;
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
+
 	}
 
 	
@@ -56,7 +58,7 @@ public class MemberDto {
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
 			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
-			Integer hNo, Integer stateCode) {
+			Integer hNo, Integer stateCode, Integer fileNo) {
 		super();
 		this.uNo = uNo;
 		this.id = id;
@@ -77,6 +79,7 @@ public class MemberDto {
 		this.social = social;
 		this.hNo = hNo;
 		this.stateCode = stateCode;
+		this.fileNo = fileNo;
 	}
 	
 	
@@ -163,12 +166,7 @@ public class MemberDto {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
-	public String getNickName() {
-		return nickname;
-	}
-	public void setNickName(String nickName) {
-		this.nickname = nickName;
-	}
+	
 	public String getuAddress() {
 		return uAddress;
 	}
@@ -204,6 +202,25 @@ public class MemberDto {
 	}
 	public void setStateCode(Integer stateCode) {
 		this.stateCode = stateCode;
+	}	
+	
+	public String getNickName() {
+		return nickname;
 	}
+	public void setNickName(String nickName) {
+		this.nickname = nickName;
+	}
+
+
+	public Integer getFileNo() {
+		return fileNo;
+	}
+
+
+	public void setFileNo(Integer fileNo) {
+		this.fileNo = fileNo;
+	}
+	
+	
 
 }

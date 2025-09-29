@@ -2,25 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.file">
-	<select id="selectFileByuNo" parameterType="int" resultType="dto.FileDto">
-        select file_no, file_name, file_path, file_part, file_size, file_category, u_no
+	<select id="selectFileByuNo" parameterType="int" resultType="file">
+        select file_no, file_name, file_path, file_category
         from file
-        where u_no = #{uNo}
+        where file_no = #{fileNo} 
     </select>
 
 
 
 	<insert id ="insertFile" parameterType="file" useGeneratedKeys="true" keyProperty="fileNo">
-		INSERT INTO file (file_no, file_name, file_path, file_size, file_part, file_category, u_no)
-        VALUES(#{fileNo}, #{fileName}, #{filePath}, #{fileSize}, #{filePart}, #{fileCategory}, #{uNo})
+		INSERT INTO file (file_no, file_name, file_path, file_category)
+        VALUES(#{fileNo}, #{fileName}, #{filePath},#{fileCategory})
 	</insert>
 	
 	<update id="updateFile" parameterType="file">
 		update file set 
 			file_name = #{fileName},
             file_path = #{filePath},
-            file_size = #{fileSize},
-            file_part = #{filePart},
             file_category = #{fileCategory}
         where file_no = #{fileNo}
 	</update>

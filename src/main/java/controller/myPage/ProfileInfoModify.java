@@ -35,29 +35,38 @@ public class ProfileInfoModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int uNo = 1; // 실제로는 세션에서 가져오는 것이 좋음
 
-        FileService fileService = new FileServiceImpl();
-        ProfileInfoService profileInfoService = new ProfileInfoServiceImpl();
-        try {
-            // 파일 정보 가져오기
-            FileDto file = fileService.getFileByUserId(uNo);
-            // 파일이 없으면 기본 이미지로 세팅
-            if (file == null || file.getFileName() == null || file.getFileName().isEmpty()) {
-                file = new FileDto();
-                file.setFilePath("img");                  // 기본 이미지 폴더
-                file.setFileName("계획대로야.jpg");    // 기본 이미지 전체 파일명
-            }
-            request.setAttribute("file", file);
-            
-            MemberDto memberDto = profileInfoService.selectProfileView(uNo);
-            request.setAttribute("member", memberDto);
+	    FileService fileService = new FileServiceImpl();
+	    ProfileInfoService profileInfoService = new ProfileInfoServiceImpl();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("err", "회원 정보를 불러오는 중 오류 발생");
-            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
-        }
-        
-        request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
+	    try {
+	        // 먼저 회원 정보 가져오기
+	        MemberDto memberDto = profileInfoService.selectProfileView(uNo);
+	        request.setAttribute("member", memberDto);
+
+	        FileDto file = null;
+
+	        // 회원에 fileNo가 있는 경우에만 파일 조회
+	        if (memberDto.getFileNo() != null) {
+	            file = fileService.getFileByFileNo(memberDto.getFileNo());
+	        }
+
+	        // 파일이 없으면 기본 이미지로 세팅
+	        if (file == null || file.getFileName() == null || file.getFileName().isEmpty()) {
+	            file = new FileDto();
+	            file.setFilePath("img");                  // 기본 이미지 폴더
+	            file.setFileName("계획대로야.jpg");       // 기본 이미지 전체 파일명
+	        }
+
+	        request.setAttribute("file", file);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        request.setAttribute("err", "회원 정보를 불러오는 중 오류 발생");
+	        request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+	        return; // 예외 발생 시 forward 후 추가 처리 방지
+	    }
+
+	    request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
 	}
 
 	/**
