@@ -132,7 +132,15 @@ a {
 .score {
     font-weight: 400;
     font-size: 18px;
+    justify-content:center;
 }
+
+.scores {
+	width:18px;
+	height:18px;
+	margin:0;
+}
+
 
 .s1 {
     margin-left: 10px;
