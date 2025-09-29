@@ -35,28 +35,30 @@
 
   $(document).ready(function() {
     // 1. 시/도 옵션 채우기
-    $.each(regionData, function(city) {
+    $.each(regionData, function(city,gungu) {
       $("#city").append(`<option value="${city}">${city}</option>`);
     });
     
     
     // 2. 시/도 선택 시 시군구 옵션 갱신
     $("#city").change(function() {
-      const city = $(this).val();
+      const city = $(this).val().trim();
       const $gungu = $("#gungu");
 
       $gungu.empty().append("<option value=''>시군구를 선택하세요</option>");
       
-      if (regionData[city]) {
-        $.each(regionData[city], function(index, gungu) {
+      const gungus = regionData[city];
+      if (gungus && gungus.length > 0) {
+        $.each(gungus, function(index, gungu) {
           $gungu.append(`<option value="${gungu}">${gungu}</option>`);
         });
       }
-
+      console.log("선택 city:", city, "gungu list:", gungus);
     });
+    
   });
   
- let offset = 0;
+let offset = 0;
 const limit = 8;
 let loading = false;
 let endReached = false;
@@ -74,12 +76,13 @@ function loadHospitals(reset=false) {
     const keyword = $("#keyword").val();
     const city = $("#city").val();
     const gungu = $("#gungu").val();
-    const categoryName = $("input[name='categoryName']:checked")
+    const categoryName = $("input[name='hc']:checked")
         .map(function(){ return this.value; }).get();
 
     $.ajax({
-        url: "${pageContext.request.contextPath}/hospital/search",
-        method: "GET",
+        url: "/ieum/hospital/search",
+        async: true,
+        method: "POST",
         dataType: 'json',
         data: {
             keyword: keyword,
@@ -89,22 +92,22 @@ function loadHospitals(reset=false) {
             offset: offset,
             limit: limit
         },
+        
         success: function(data) {
-			console.log("ssssssssssssssssssssss")
+			console.log( data)
             if (data.length === 0) {
                 endReached = true;
-                return;
-            }
-
+				return;
+			}
             data.forEach(h => {
                 $("#hospitalList").append(`
                     <div class="list-box">
 					<div class="right3">
 						<img class="hosf" src="" />
 						<div class="infodetail">
-							<div class="hos-category">${h.categoryName }</div>
+							<div class="hos-category">${hc.categoryName }</div>
 							<div class="hos-name">${h.hNm }</div>
-							<div class="hos-loca">
+							<div class="hos-loca">s
 								<div class="icon3">
 									<i class="fa-solid fa-bus"></i>
 								</div>
@@ -131,6 +134,7 @@ function loadHospitals(reset=false) {
 
 // 초기 로드
 loadHospitals();
+console.log("${pageContext.request.contextPath}/hospital/search")
 
 // 필터 변경 이벤트
 $("#keyword, #city, #gungu, input[name='categoryName']").on("change keyup", function(){
