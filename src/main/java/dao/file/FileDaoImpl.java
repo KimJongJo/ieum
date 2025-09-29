@@ -30,10 +30,9 @@ public class FileDaoImpl implements FileDao{
 		return session.update("mapper.file.updateFile", fileDto);
 	}
 
-
 	@Override
-	public Integer normalImg(FileDto file) {
-		Integer fileNo = session.insert("normalImg", file);
+	public Integer uploadFile(FileDto fileDto) {
+		Integer fileNo = session.insert("uploadFile", fileDto);
 		session.commit();
 		
 		return fileNo; 
