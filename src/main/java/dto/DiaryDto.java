@@ -37,6 +37,17 @@ public class DiaryDto {
 		this.content = content;
 		this.mood = mood;
 	}
+	
+	
+
+
+	public DiaryDto(String title, String content, String mood, Integer dNo) {
+		super();
+		this.dNo = dNo;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+	}
 
 
 	public DiaryDto(Integer uNo, Date dCreated, String title, String content, String mood) {
