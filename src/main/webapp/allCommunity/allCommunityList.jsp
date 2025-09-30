@@ -459,9 +459,10 @@ body {
 	            <!-- ✅ 게시글 2열 컨테이너 추가 -->
     	<div class="community-grid">
 			<c:forEach var="allComList" items="${allComList}" varStatus="status">
+			
 		        <!-- ✅ box를 버튼 아래로 -->
 			    <div class="boxes"
-			    	onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myComList.commuNo}'">
+			    onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${allComList.commuNo}'">
 			        <div class="box">
 			            <div class="text-wrapper-1">
 			            	<c:out value="${allComList.nickName}" default="익명"/>
@@ -495,6 +496,7 @@ body {
 					</div>
 					<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 			    </div>
+			    </form>
 		    </c:forEach>
 		    </div>
 	    </div>
