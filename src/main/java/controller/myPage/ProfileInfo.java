@@ -32,7 +32,7 @@ public class ProfileInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 1;
+		int uNo = 4;
 		ProfileInfoService service = new ProfileInfoServiceImpl();
 		try {
 			MemberDto memberDto = service.selectProfileView(uNo);

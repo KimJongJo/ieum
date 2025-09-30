@@ -68,6 +68,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
         int categoryNo = Integer.parseInt(categoryNoStr);
         System.out.println(categoryNo);
+        System.out.println(title);
+        System.out.println(content);
         CommunityDto communityDto = new CommunityDto(uNo, title, content, categoryNo);
 
         try {

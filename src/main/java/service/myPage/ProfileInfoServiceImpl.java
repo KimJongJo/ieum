@@ -3,6 +3,7 @@ package service.myPage;
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dto.MemberDto;
+import dto.MemberProfileDto;
 
 public class ProfileInfoServiceImpl implements ProfileInfoService{
 	private MemberDao memberDao;
@@ -19,6 +20,11 @@ public class ProfileInfoServiceImpl implements ProfileInfoService{
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {
 		memberDao.updateProfile(memberDto);
+	}
+
+	@Override
+	public MemberProfileDto selectMemberWithProfile(Integer uNo) throws Exception {
+		return memberDao.selectMemberWithProfile(uNo);
 	}	
 
 }
