@@ -14,7 +14,7 @@
 	</select>
 	
 	<!-- 정렬: 예약 많은 순 -->
-	<select id="selectListRes" parameterType="dto.otherDto.HosSearchDto" resultType="hospital">
+	<select id="selectListRes" parameterType="hosfilter" resultType="hosfilterlist">
 	select h.h_nm,h.file_no,h.transfer_info,hc.category_name, count(r.r_no) as resCount
 	from hospital h
 	left join reservation r 
@@ -26,8 +26,8 @@
 	and h.h_nm like concat('%', #{keyword}, '%')
 	</if>
 	<if test="categoryName != null and categoryName.size >0">
-	and hc.category_name in
-	<foreach collection="categoryName" open="(" separator="," close=")">
+	and hc.category_no in
+	<foreach collection="categoryName" item="c" open="(" separator="," close=")">
 	#{c}
 	</foreach>
 	</if>
@@ -38,9 +38,9 @@
 	and h.gungu = #{gungu}
 	</if>
 	</where>
-	group by h.h_no, h.h_nm, h.file_no, h.transfer_info, hc.category_name
+	group by h.h_no, h.h_nm, h.file_no, h.transfer_info
 	order by resCount desc
-	limit #{offset}, #{limit};
+	limit #{offset}, #{limit}
 	</select>
 	
 	<insert id="addHospital" parameterType="hospital" useGeneratedKeys="true" keyProperty="hNo">
@@ -50,4 +50,30 @@
 		#{reNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo})
 	</insert>
 	
+	<!-- 정렬: 예약 많은 순 -->
+	<select id="selectListResCnt" parameterType="hosfilter" resultType="Integer">
+	select count(*)
+	from hospital h
+	left join reservation r 
+	using (h_no)
+	left join hos_category hc 
+	using (category_no)
+	<where>
+	<if test="keyword !=null and keyword !=''">
+	and h.h_nm like concat('%', #{keyword}, '%')
+	</if>
+	<if test="categoryName != null and categoryName.size >0">
+	and hc.category_no in
+	<foreach collection="categoryName" item="c" open="(" separator="," close=")">
+	#{c}
+	</foreach>
+	</if>
+	<if test="city != null and city !=''">
+	and h.city = #{city}
+	</if>
+	<if test="gungu !=null and gungu !=''">
+	and h.gungu = #{gungu}
+	</if>
+	</where>
+	</select>	
 </mapper>	

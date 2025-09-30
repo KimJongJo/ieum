@@ -72,6 +72,12 @@ public class HosSearchDto {
 	public void setLimit(int limit) {
 		this.limit = limit;
 	}
+
+	@Override
+	public String toString() {
+		return "HosSearchDto [keyword=" + keyword + ", categoryName=" + categoryName + ", city=" + city + ", gungu="
+				+ gungu + ", offset=" + offset + ", limit=" + limit + "]";
+	}
 	
 	
 

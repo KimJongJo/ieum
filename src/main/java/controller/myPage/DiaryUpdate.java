@@ -35,7 +35,7 @@ public class DiaryUpdate extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();
 		HttpSession session = request.getSession();
-//	    Integer uNo = Integer.parseInt((String)session.getAttribute("uNo"));
+//	    Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer uNo = 123;
 		String title = request.getParameter("title");
 		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
@@ -49,10 +49,10 @@ public class DiaryUpdate extends HttpServlet {
 			} else {
 				String content = request.getParameter("content");
 				String emoji = request.getParameter("emoji");
-				DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), title, content, emoji);
+				DiaryDto diary = new DiaryDto(title, content, emoji, dNo);
 				service.update(diary);
 				session.setAttribute("dNo", dNo);
-				request.setAttribute("msg", "수정되었습니다.");
+				request.setAttribute("msg", "수정");
 				request.getRequestDispatcher("/myPage/diarySucc.jsp").forward(request, response);
 			}
 			

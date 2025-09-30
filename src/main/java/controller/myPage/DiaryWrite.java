@@ -42,10 +42,16 @@ public class DiaryWrite extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+//	    Integer uNo = (Integer)session.getAttribute("uNo");
+		Integer uNo = 123;
+		DiaryService service = new DiaryServiceImpl();
 		try {
 			LocalDateTime now = LocalDateTime.now();
 			String formattedNow = now.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
 			request.setAttribute("todayDt", formattedNow);
+			 Boolean hisYn = service.getHisYn(uNo);
+			 request.setAttribute("recentHistory", hisYn);
 			request.getRequestDispatcher("/myPage/diaryWrite.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,16 +67,17 @@ public class DiaryWrite extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-//		String uNo = (String)session.getAttribute("uNo");
-		String uNo = "123";
+//	    Integer uNo = (Integer)session.getAttribute("uNo");
+		Integer uNo = 123;
 		DiaryService service = new DiaryServiceImpl();
 		try {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String emoji = request.getParameter("emoji");
-			DiaryDto diary = new DiaryDto(Integer.valueOf(uNo), title, content, emoji);
+			DiaryDto diary = new DiaryDto(uNo, title, content, emoji);
 			service.write(diary);
-			request.setAttribute("msg", "작성되었습니다.");
+			request.setAttribute("msg", "작성");
+			session.removeAttribute("dNo");
 			request.getRequestDispatcher("/myPage/diarySucc.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

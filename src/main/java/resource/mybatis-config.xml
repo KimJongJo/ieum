@@ -8,7 +8,7 @@
       <setting name="mapUnderscoreToCamelCase" value="true"/>
    </settings>
    <typeAliases>
-   
+   		<typeAlias type="dto.AllCommunityDto" alias="allCommunity" />
       <typeAlias type="dto.MemberProfileDto" alias="memberProfile" />
       <typeAlias type="dto.MemberDto" alias="member" />
       <typeAlias type="dto.MyCommunityDto" alias="myCommunity" />
@@ -31,7 +31,8 @@
       <typeAlias type="dto.ReservationDto" alias="reservation" />
       <typeAlias type="dto.UserStateDto" alias="userState" />
       <typeAlias type="dto.ApplicantDto" alias="applicant" />
-      
+      <typeAlias type="dto.otherDto.HosSearchDto" alias="hosfilter" />
+      <typeAlias type="dto.otherDto.HosSearchListDto" alias="hosfilterlist" />
       
    </typeAliases>
 

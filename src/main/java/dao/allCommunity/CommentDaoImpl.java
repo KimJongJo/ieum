@@ -24,4 +24,17 @@ public class CommentDaoImpl implements CommentDao{
 	public List<CommentDto> selectCommentWithNick(int commuNo) throws Exception {
 		return session.selectList("mapper.comment.selectCommentWithNick", commuNo);
 	}
+	 // 해당 게시글 댓글 삭제
+	@Override
+	public int deleteCommentsByCommuNo(Integer commuNo) throws Exception {
+		int result = session.delete("mapper.comment.deleteCommentsByCommuNo", commuNo);
+	    session.commit();
+	    return result;
+	}
+
+	// 댓글 조회 (참고)
+	@Override
+	public List<CommentDto> getCommentsByCommuNo(int commuNo) throws Exception {
+		return session.selectList("mapper.comment.selectCommentsByCommuNo", commuNo);
+	}
 }

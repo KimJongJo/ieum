@@ -14,20 +14,20 @@ public class FileDaoImpl implements FileDao{
 	
 
 	@Override
-	public FileDto selectFileByUserId(Integer fileNo) throws Exception {	
-		return session.selectOne("mapper.file.selectFileByuNo", fileNo);
+	public FileDto selectFileByFileNo(Integer fileNo) throws Exception {	
+		return session.selectOne("mapper.file.selectFileByFileNo", fileNo);
 	}
 
 	@Override
-	public int insertFile(FileDto fileDto) throws Exception {
-
-		return session.insert("mapper.file.insertFile", fileDto);
+	public void insertFile(FileDto fileDto) throws Exception {
+		session.insert("mapper.file.insertFile", fileDto);
+		session.commit();
 	}
 
 	@Override
-	public int updateFile(FileDto fileDto) throws Exception {
-		
-		return session.update("mapper.file.updateFile", fileDto);
+	public void updateFile(FileDto fileDto) throws Exception {
+		session.update("mapper.file.updateFile", fileDto);
+		session.commit();
 	}
 
 	@Override
