@@ -6,7 +6,7 @@ public class HospitalDto {
 	
 	Integer hNo;	// 병원 번호
 	String hNm;	// 병원 이름
-	String categoryNo;	// 카테고리
+	Integer categoryNo;	// 카테고리
 	String info1;	// 기타병원정보1
 	String info2;	// 기타병원정보2
 	String hAddress;	// 병원 주소
@@ -18,23 +18,56 @@ public class HospitalDto {
 	String hLink;	// 홈페이지 링크
 	String introcudeNote;	// 소개글
 	Integer fileNo;	// 병원 썸네일 파일
+	Integer reNoFileNo; // 사업자등록증 파일 번호
+	String reNo; // 사업자등록증 파일 번호
 	Date hCreated;	// 등록일
 	Date hUpdated;	// 수정일
 	String status;	// 활동 상태
 	String hCode; //병원코드
 	String city; //시도
 	String gungu; //시군구
+	String hosService; // 제공하는 편의 시설
+	boolean silson; // 실손 24 서비스 제공 여부
 	
 	
 	public HospitalDto() {
 		super();
 	}
+	
+	
 
 
-	public HospitalDto(Integer hNo, String hNm, String categoryNo, String info1, String info2, String hAddress,
+
+
+
+	public HospitalDto(String hNm, Integer categoryNo, String hAddress, String hLocationY, String hLocationX,
+			String holidayInfo, String hTel, Integer fileNo, Integer reNoFileNo, String reNo, String city, String gungu,
+			String hosService, boolean silson) {
+		super();
+		this.hNm = hNm;
+		this.categoryNo = categoryNo;
+		this.hAddress = hAddress;
+		this.hLocationY = hLocationY;
+		this.hLocationX = hLocationX;
+		this.holidayInfo = holidayInfo;
+		this.hTel = hTel;
+		this.fileNo = fileNo;
+		this.reNoFileNo = reNoFileNo;
+		this.reNo = reNo;
+		this.city = city;
+		this.gungu = gungu;
+		this.hosService = hosService;
+		this.silson = silson;
+	}
+
+
+
+
+
+	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String info1, String info2, String hAddress,
 			String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink,
-			String introcudeNote, Integer fileNo, Date hCreated, Date hUpdated, String status, String hCode,
-			String city, String gungu) {
+			String introcudeNote, Integer fileNo, Integer reNoFileNo, String reNo, Date hCreated, Date hUpdated,
+			String status, String hCode, String city, String gungu, String hosService, boolean silson) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -50,13 +83,22 @@ public class HospitalDto {
 		this.hLink = hLink;
 		this.introcudeNote = introcudeNote;
 		this.fileNo = fileNo;
+		this.reNoFileNo = reNoFileNo;
+		this.reNo = reNo;
 		this.hCreated = hCreated;
 		this.hUpdated = hUpdated;
 		this.status = status;
 		this.hCode = hCode;
 		this.city = city;
 		this.gungu = gungu;
+		this.hosService = hosService;
+		this.silson = silson;
 	}
+
+
+
+
+
 
 
 	@Override
@@ -64,10 +106,49 @@ public class HospitalDto {
 		return "HospitalDto [hNo=" + hNo + ", hNm=" + hNm + ", categoryNo=" + categoryNo + ", info1=" + info1
 				+ ", info2=" + info2 + ", hAddress=" + hAddress + ", hLocationY=" + hLocationY + ", hLocationX="
 				+ hLocationX + ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel
-				+ ", hLink=" + hLink + ", introcudeNote=" + introcudeNote + ", fileNo=" + fileNo + ", hCreated="
-				+ hCreated + ", hUpdated=" + hUpdated + ", status=" + status + ", hCode=" + hCode + ", city=" + city
-				+ ", gungu=" + gungu + "]";
+				+ ", hLink=" + hLink + ", introcudeNote=" + introcudeNote + ", fileNo=" + fileNo + ", reNoFileNo="
+				+ reNoFileNo + ", reNo=" + reNo + ", hCreated=" + hCreated + ", hUpdated=" + hUpdated + ", status="
+				+ status + ", hCode=" + hCode + ", city=" + city + ", gungu=" + gungu + ", hosService=" + hosService
+				+ ", silson=" + silson + "]";
 	}
+
+	public Integer getReNoFileNo() {
+		return reNoFileNo;
+	}
+
+
+	public void setReNoFileNo(Integer reNoFileNo) {
+		this.reNoFileNo = reNoFileNo;
+	}
+
+
+	public String getHosService() {
+		return hosService;
+	}
+
+	public void setHosService(String hosService) {
+		this.hosService = hosService;
+	}
+
+	public boolean isSilson() {
+		return silson;
+	}
+
+
+	public void setSilson(boolean silson) {
+		this.silson = silson;
+	}
+
+
+	public String getReNo() {
+		return reNo;
+	}
+
+
+	public void setReNo(String reNo) {
+		this.reNo = reNo;
+	}
+
 
 
 	public Integer gethNo() {
@@ -90,12 +171,12 @@ public class HospitalDto {
 	}
 
 
-	public String getCategoryNo() {
+	public Integer getCategoryNo() {
 		return categoryNo;
 	}
 
 
-	public void setCategoryNo(String categoryNo) {
+	public void setCategoryNo(Integer categoryNo) {
 		this.categoryNo = categoryNo;
 	}
 

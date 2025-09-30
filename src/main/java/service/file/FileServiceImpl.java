@@ -1,6 +1,10 @@
 package service.file;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
+
+import javax.servlet.http.Part;
 
 import dao.file.FileDao;
 import dao.file.FileDaoImpl;
@@ -23,18 +27,29 @@ public class FileServiceImpl implements FileService {
 
 	// 병원 파일 업로드
 	@Override
-	public Integer uploadFile(String hosImgFileName, String type) {
-		// 파일 이름이 똑같으면 안되니까 UUID를 추가한 파일명으로 개명
-		String newFileName = hosImgFileName + UUID.randomUUID().toString();
-		String filePath;
-		if(type.equals("hosImg")) { // 병원 이미지 파일이면
-			filePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosImg";
-		}else { // 사업자등록증파일이면 
-			filePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hogReImg";
-		}
-		FileDto fileDto = new FileDto(newFileName, filePath, "hosProfile");
+	public Integer uploadFile(Part file, String type) throws IOException {
 		
-		return fileDao.uploadFile(fileDto);
+        String fileName = file.getSubmittedFileName();
+		
+		String filePath;
+		FileDto fileDto;
+		String realFilePath;
+		if(type.equals("hosImg")) { // 병원 이미지 파일이면
+			realFilePath = "C:\\testImg";
+			filePath = "img\\hosImg\\";
+			fileDto = new FileDto(fileName, filePath, "hosProfile");
+		}else { // 사업자등록증파일이면
+			realFilePath = "C:\\testImg";
+			filePath = "img\\hosRe\\";
+			fileDto = new FileDto(fileName, filePath, "hosRequestFile");
+		}
+	    // 파일을 서버에 실제로 저장 (write)
+	    
+		file.write(realFilePath + File.separator + fileName);
+
+		Integer no = fileDao.uploadFile(fileDto);
+		System.out.println(no);
+		return no;
 	}
 	
 	

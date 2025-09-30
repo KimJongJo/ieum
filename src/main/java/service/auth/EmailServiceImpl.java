@@ -1,10 +1,15 @@
 package service.auth;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import javax.servlet.ServletContext;
 
 import dao.auth.EmailDao;
 import dao.auth.EmailDaoImpl;
@@ -26,37 +31,53 @@ public class EmailServiceImpl implements EmailService {
 	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
 	private EmailDao emailDao;
+	private String smtpUser;
+    private String smtpPassword;
+    private String smtpHost;
+    private int smtpPort;
 	
-	public EmailServiceImpl() {
-		emailDao = new EmailDaoImpl();
-	}
+    public EmailServiceImpl (ServletContext context) {
+        emailDao = new EmailDaoImpl();
+
+        Properties prop = new Properties();
+        try (InputStream is = context.getResourceAsStream("/WEB-INF/config.properties")) {
+            if (is != null) {
+                prop.load(is);
+                smtpUser = prop.getProperty("mail.smtp.user");
+                smtpPassword = prop.getProperty("mail.smtp.password");
+                smtpHost = prop.getProperty("mail.smtp.host");
+                smtpPort = Integer.parseInt(prop.getProperty("mail.smtp.port"));
+            } else {
+                throw new RuntimeException("config.properties를 찾을 수 없습니다.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 	
 
 	@Override
 	public void sendEmail(String email) throws Exception{
-		// 1️⃣ Gmail 계정 정보
-        final String username = "desk1614@gmail.com"; // 보내는 사람
-        final String password = "dievyqoxsozoklch";          // Gmail 앱 비밀번호
-
-        // 2️⃣ SMTP 서버 설정
+        // 1 SMTP 서버 설정
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true"); // TLS 사용
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.port", smtpPort);
 
-        // 3️⃣ 세션 생성
+        // 2 세션 생성
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(smtpUser, smtpPassword);
             }
         });
 
         try {
         	String code = generateCode();
         	Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(smtpUser));
             message.setRecipients(
                     Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject("건강이음 이메일 인증 코드");
@@ -89,7 +110,7 @@ public class EmailServiceImpl implements EmailService {
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            throw new Exception();
+            throw new Exception("메일 전송 실패");
         }
 		
 	}

@@ -93,13 +93,19 @@
 									name="hosCategory" class="auth-div-input auth-div-email marL20"
 									id="hosCate">
 									<option value="none">선택</option>
-									<option value="psychiatric_hospital">정신건강의학과 병원</option>
-								    <option value="psychiatric_clinic">정신건강의학과 의원</option>
-								    <option value="mental_rehabilitation_center">정신재활시설/센터</option>
-								    <option value="youth_mental_center">청소년 정신건강센터</option>
-								    <option value="elderly_mental_center">노인 정신건강센터</option>
-								    <option value="emergency_mental_center">응급 정신의료센터</option>
-								    <option value="public_health_center">정신건강 관련 보건소</option>
+									<option value="1">종합병원</option>
+									<option value="2">상급종합병원</option>
+									<option value="3">정신요양시설</option>
+									<option value="4">자살예방센터</option>
+									<option value="5">정신재활시설</option>
+									<option value="6">국립</option>
+									<option value="7">의원</option>
+									<option value="8">공립</option>
+									<option value="9">병원</option>
+									<option value="10">보건소</option>
+									<option value="11">중독통합관리 지원센터</option>
+									<option value="12">광역정신건강 복지센터</option>
+									<option value="13">기초정신건강 복지센터</option>
 								</select>
 							</div>
 						</div>
@@ -227,11 +233,14 @@
 								<span class="i-span" id=fileInput-span><i class="fa-solid fa-check span-check" id="fileInput-i"></i></span>
 							</div>
 							<div class="input-div2 input">
-							  <input name="hosFile" type="file" class="file-input" id="fileInput" />
+							  <input name="hosFile" type="file" class="file-input" id="fileInput" accept="application/pdf,.pdf"/>
 							  <button class="select-file-btn marL20" id="selectFileBtn" type="button">📂 파일 선택</button>
 							  <span class="file-name" id="fileName">선택된 파일 없음</span>
 							</div>
 						</div>
+						
+						<input name="hos_y" type="hidden" id="hos_y">
+						<input name="hos_x" type="hidden" id="hos_x">
 
 					</div>
 			</div>
@@ -245,6 +254,10 @@
 	</div>
 	</div>
 	</div>
+
+
+	<script type="text/javascript" 
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

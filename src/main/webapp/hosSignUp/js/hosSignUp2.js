@@ -9,41 +9,59 @@ var hosInf = {
 }
 
 function searchAddr() {
-	
     new daum.Postcode({
         oncomplete: function(data) {
-        	
-        	var addr = ''; // 주소 변수
-        	
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+            var addr = '';
+
+            if (data.userSelectedType === 'R') {
                 addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+            } else {
                 addr = data.jibunAddress;
             }
-            
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+
             document.getElementById("postcode").value = data.zonecode;
             document.getElementById("address-auto").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
             document.getElementById("address-detail").focus();
-            
+
             var addauto = document.getElementById("address-auto");
-			var adddetail = document.getElementById("address-detail");
-			var addSpan = document.getElementById("address-span");
-			var addi = document.getElementById("address-i");
-			
-			// 값이 비어있는지 확인
-			if (addauto.value === "" || adddetail.value === "") {
-			    addSpan.style.display = "none"; // display none
-			    hosInf.hosAddr = false;
-			} else {
-			    addSpan.style.display = "block"; // display block
-			    addi.classList.remove("fa-xmark", "span-x"); // 기존 클래스 제거
-			    addi.classList.add("fa-check", "span-check"); // 새 클래스 추가
-			    hosInf.hosAddr = true;
-			}
-            
+            var adddetail = document.getElementById("address-detail");
+            var addSpan = document.getElementById("address-span");
+            var addi = document.getElementById("address-i");
+
+            if (addauto.value === "" || adddetail.value === "") {
+                addSpan.style.display = "none";
+                hosInf.hosAddr = false; // hosInf 선언 필요
+            } else {
+                addSpan.style.display = "block";
+                addi.classList.remove("fa-xmark", "span-x");
+                addi.classList.add("fa-check", "span-check");
+                hosInf.hosAddr = true; // hosInf 선언 필요
+            }
+
+            // 주소 → 좌표 변환
+            var geocoder = new kakao.maps.services.Geocoder();
+            var address = addauto.value; // 괄호 제거
+
+            geocoder.addressSearch(address, function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    var lat = result[0].y;
+                    var lng = result[0].x;
+                    console.log("위도:", lat, "경도:", lng);
+                    
+                    document.getElementById("hos_y").value = lat;
+                    document.getElementById("hos_x").value = lng;
+
+                    // map 객체가 이미 생성되어 있어야 함
+                    if (typeof map !== "undefined") {
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: new kakao.maps.LatLng(lat, lng)
+                        });
+                    }
+                } else {
+                    console.log("좌표 변환 실패");
+                }
+            });
         }
     }).open();
 }
@@ -148,26 +166,44 @@ $(function() {
     $imgInput.on('change', function() {
         const file = this.files[0];
 
-        // 파일 이름 표시
         if (file) {
+            // ✅ 허용 확장자 검사
+            const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+            const fileName = file.name.toLowerCase();
+            const isValid = allowedExtensions.some(ext => fileName.endsWith(ext));
+
+            if (!isValid) {
+                alert("이미지 파일만 업로드 가능합니다!");
+                // 선택 취소 처리
+                $imgInput.val(""); 
+                $imgFileName.text("선택된 파일 없음");
+                $preview.attr('src', '').hide();
+                hosInf.hosImg = false;
+
+                $statusSpan.css("display", "block");
+                $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
+                return; // 여기서 함수 종료
+            }
+
+            // ✅ 정상 이미지 처리
             $imgFileName.text(file.name);
             $preview.attr('src', URL.createObjectURL(file)).show();
             hosInf.hosImg = true;
 
-            // 체크 아이콘 표시
             $statusSpan.css("display", "block");
             $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
         } else {
+            // 파일 없을 때 처리
             $imgFileName.text("선택된 파일 없음");
             $preview.attr('src', '').hide();
             hosInf.hosImg = false;
 
-            // 엑스 아이콘 표시
             $statusSpan.css("display", "block");
             $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
         }
     });
 });
+
 
 
 
@@ -189,21 +225,35 @@ $(function() {
     // 파일 선택 시 처리
     $fileInput.on('change', function() {
         const files = this.files;
+        const file = files.length > 0 ? files[0] : null;
 
         // 파일 이름 표시
-        $fileName.text(files.length > 0 ? files[0].name : "선택된 파일 없음");
+        $fileName.text(file ? file.name : "선택된 파일 없음");
 
         // 상태 표시 (체크/엑스 아이콘)
         $statusSpan.css("display", "block");
-        if (files && files.length > 0) {
-            $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
-            hosInf.hosReFile = true;
+
+        if (file) {
+            const fileName = file.name.toLowerCase();
+            const isPdf = fileName.endsWith(".pdf");
+
+            if (isPdf) {
+                $statusIcon.removeClass("fa-xmark span-x").addClass("fa-check span-check");
+                hosInf.hosReFile = true;
+            } else {
+                $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
+                hosInf.hosReFile = false;
+                alert("PDF 파일만 업로드 가능합니다.");
+                $fileInput.val(""); // 잘못된 파일 선택 시 input 초기화
+                $fileName.text("선택된 파일 없음");
+            }
         } else {
             $statusIcon.removeClass("fa-check span-check").addClass("fa-xmark span-x");
             hosInf.hosReFile = false;
         }
     });
 });
+
 
 
 // 병원 주소
@@ -268,6 +318,5 @@ $("#signUp-btn").click(function(e) {
         alert("정보입력을 다시 확인해주세요\n누락된 항목: " + firstFalseItem);
     }
 });
-
 
 

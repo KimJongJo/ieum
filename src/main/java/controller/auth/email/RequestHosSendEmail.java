@@ -36,7 +36,7 @@ public class RequestHosSendEmail extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		String email = request.getParameter("email");
-		EmailService service = new EmailServiceImpl();
+		EmailService service = new EmailServiceImpl(request.getServletContext());
 		
 		Gson gson = new Gson();
 		ResponseDto resDto;
@@ -46,6 +46,7 @@ public class RequestHosSendEmail extends HttpServlet {
 			service.sendEmail(email);
 			resDto = new ResponseDto(true, "이메일이 전송되었습니다.");
 		}catch(Exception e) {
+			e.printStackTrace();
 			resDto = new ResponseDto(false, "이메일 전송중 에러 발생");
 		}
 		result = gson.toJson(resDto);

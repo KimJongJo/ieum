@@ -43,7 +43,7 @@ public class CheckEmailCode extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
-		EmailService service = new EmailServiceImpl();
+		EmailService service = new EmailServiceImpl(request.getServletContext());
 		
 		
 		// 0 인증 실패, 1 만료된 코드 2 인증성공

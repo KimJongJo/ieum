@@ -32,10 +32,10 @@ public class FileDaoImpl implements FileDao{
 
 	@Override
 	public Integer uploadFile(FileDto fileDto) {
-		Integer fileNo = session.insert("uploadFile", fileDto);
-		session.commit();
-		
-		return fileNo; 
+	    session.insert("uploadFile", fileDto);
+	    session.commit();
+
+	    return fileDto.getFileNo();
 	}
 
 }

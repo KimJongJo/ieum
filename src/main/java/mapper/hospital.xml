@@ -43,6 +43,12 @@
 	limit #{offset}, #{limit}
 	</select>
 	
+	<insert id="addHospital" parameterType="hospital" useGeneratedKeys="true" keyProperty="hNo">
+		insert into hospital (h_nm, h_address, h_location_y, h_location_x, holiday_info, h_tel, hosImgFile_no, hosReFile_no,
+		hosReNo, h_created, status, city, gungu, category_no) 
+		values (#{hNm}, #{hAddress}, #{hLocationY}, #{hLocationX}, #{holidayInfo}, #{hTel}, #{fileNo}, #{reNoFileNo},
+		#{reNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo})
+	</insert>
 	
 	<!-- 정렬: 예약 많은 순 -->
 	<select id="selectListResCnt" parameterType="hosfilter" resultType="Integer">

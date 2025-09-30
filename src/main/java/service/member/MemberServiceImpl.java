@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 	// 일반 유저 회원가입 
 	@Override
 	public void normalJoin(MemberDto member) {
-		String filePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img";
+		String filePath = "img";
 		FileDto file = new FileDto("회원이미지.jpg",filePath,"userProfile");
 		Integer fileNo = fileService.normalImg(file);
 		member.setFileNo(fileNo);
