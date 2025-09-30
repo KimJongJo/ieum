@@ -54,6 +54,8 @@ public class Diary extends HttpServlet {
 				List<DiaryDto> diaryList = service.getList(uNo, pageInfo);
 				request.setAttribute("diaryList", diaryList);
 				request.setAttribute("pageInfo", pageInfo);
+				Boolean hisYn = service.getHisYn(uNo);
+				request.setAttribute("recentHistory", hisYn);
 				request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
 			// 수정 -> 상세
 			} else {
@@ -74,7 +76,7 @@ public class Diary extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();

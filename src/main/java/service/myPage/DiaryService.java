@@ -13,4 +13,5 @@ public interface DiaryService {
 	public boolean delete(Integer dNo) throws Exception;
 	public boolean getHisYn(Integer uNo) throws Exception;
 	public DiaryDto getDate(Integer uNo, String date) throws Exception;
+	public List<DiaryDto> getCalList(Integer uNo, String sDate, String eDate) throws Exception;
 }

@@ -6,23 +6,22 @@ $(".pagination button").on("click", function() {
 		$(this).addClass("active");
 	}
 });
-$(document).ready(function() {
-	// 삭제 버튼 클릭
-	$("#delBtn").click(function() {
-		$("#delConfirmModal").show();
-	})
-})
 //// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
 	let todayDt = new Date();
-	let todayYear  = todayDt.getFullYear();
+	let todayYear = todayDt.getFullYear();
 	let todayMonth = String(todayDt.getMonth() + 1).padStart(2, "0");
-	let todayDay = String(todayDt.getDate()+1).padStart(2, "0");
+	let todayDay = String(todayDt.getDate() + 1).padStart(2, "0");
 	let todayFormatDt = `${todayYear}-${todayMonth}-${todayDay}`;
 	// 상세팝업
 	const popup = $('.detail-popup');
 	const writeConfirmModal = $("#writeConfirmModal");
 	const closeButton = $('#close-btn');
+	// 삭제 버튼 클릭
+	$("#delBtn").click(function() {
+		popup.hide();
+		$("#delConfirmModal").show();
+	})
 	// 캘린더
 	var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 		customButtons: {
@@ -45,19 +44,30 @@ $(document).ready(function() {
 		validRange: {
 			end: todayFormatDt   // 유효한 범위의 끝 날짜
 		},
-		// diary 데이터 가져오기
-		events: {
-			url: '/ieum/myPage/diary',
-			method: 'GET',
-			failure: function() {
-				console.log('diary 데이터를 불러오지 못했습니다.');
-			}
+		// 다이어리 데이터 가져오기
+		events: function(fetchInfo, successCallback, failureCallback) {
+			// fetchInfo.start, fetchInfo.end -> FullCalendar가 보내는 시작/끝 날짜
+			const start = fetchInfo.startStr; // "2025-09-01"
+			const end = fetchInfo.endStr;     // "2025-09-30"
+
+			$.ajax({
+				url: '/ieum/myPage/diary/event',
+				type: 'GET',
+				data: { start: start, end: end }, 
+				success: function(res) {
+					console.log("res", res);
+					successCallback(res);
+				},
+				error: function(e) {
+					console.log("캘린더 조회 오류", e);
+				}
+			});
 		},
 		dateClick: function(info) {
 			popup.hide();
 			writeConfirmModal.hide();
-//			console.log('Clicked on: ' + info.dateStr);
-			info.dayEl.style.backgroundColor = '#F7FAFF';
+			//			console.log('Clicked on: ' + info.dateStr);
+			info.dayEl.style.backgroundColor = '#fff';
 			const clickedDate = info.dateStr;
 			// 클릭한 날짜 데이터 존재 유무 확인
 			$.ajax({
@@ -76,6 +86,7 @@ $(document).ready(function() {
 						$("#popupDt").text(clickedDate.split("-").join("."));
 						$('#popupTitle').text(res.diary.title);
 						$('#popupContent').text(res.diary.content);
+						$("#popupDNo").val(res.diary.dNo);
 					} else {
 						writeConfirmModal.show();
 						$("#clickedDt").val(clickedDate);

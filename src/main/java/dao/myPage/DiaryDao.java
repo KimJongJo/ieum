@@ -21,4 +21,6 @@ public interface DiaryDao {
 	public List<DiagnosisHistoryDto> selectHisList(Integer uNo) throws Exception;
 	
 	public DiaryDto selectDate (Integer uNo, String date) throws Exception;
+	
+	public List<DiaryDto> selectCalList(Integer uNo, String sDate, String eDate) throws Exception;
 }

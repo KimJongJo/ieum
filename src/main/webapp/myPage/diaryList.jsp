@@ -35,7 +35,6 @@
 
 <!-- Custom JS -->
 <script src="${contextPath}/myPage/js/diary.js"></script>
-<script src="${contextPath}/myPage/js/diaryList.js"></script>
 </head>
 
 <body>
@@ -72,6 +71,7 @@
 				action="${contextPath}/myPage/diary">
 				<input type="hidden" name="dNo" id="dNoInput" value="123">
 				<c:choose>
+
 					<c:when test="${not empty diaryList}">
 						<!-- 다이어리 리스트 -->
 						<table class="diary-list">
@@ -117,8 +117,11 @@
 							</div>
 					</c:otherwise>
 				</c:choose>
+			</form>
 
-				<!-- 상세 팝업 -->
+			<!-- 상세 팝업 -->
+			<form id="hiddenForm" method="post" action="${contextPath}/myPage/diary/delete">
+				<input type="hidden" id="popupDNo" name="dNo">
 				<div class="detail-popup" style="display: none;">
 					<button type="button" id="close-btn" class="close-btn">
 						<i class="fa-solid fa-x"></i>
@@ -145,9 +148,11 @@
 						<button class="btn-cir-b" id="updateBtn"
 							formaction="${contextPath}/myPage/diary/update">수정</button>
 						<button type="button" class="btn-cir-b" id="delBtn">삭제</button>
-						<a class="btn-link" href="${contextPath}/myPage/diary?page=1">
-							<button type="button" class="btn-cir-w">목록</button>
+						<c:if test="${recentHistory}">
+						<a class="btn-link" href="${contextPath}/myPage/diagnosisHistory">
+							<button type="button" class="btn-cir-w">상담이력 바로가기</button>
 						</a>
+						</c:if>
 					</div>
 				</div>
 				<!-- 작성확인 팝업 -->
@@ -199,6 +204,7 @@
 					</div>
 				</div>
 			</form>
+
 
 			<!-- 페이지네이션 -->
 			<c:if test="${not empty diaryList}">

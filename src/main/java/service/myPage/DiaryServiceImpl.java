@@ -67,4 +67,9 @@ public class DiaryServiceImpl implements DiaryService {
 		return diaryDao.selectDate(uNo, date);
 	}
 
+	@Override
+	public List<DiaryDto> getCalList(Integer uNo, String sDate, String eDate) throws Exception {
+		return diaryDao.selectCalList(uNo, sDate, eDate);
+	}
+
 }
