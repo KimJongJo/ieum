@@ -2,18 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.community">
-	<!-- <resultMap id="CommunityResult" type="dto.CommunityDto">
-	    <id property="commuNO" column="commu_no"/>
-	    <result property="uNo" column="u_no"/>
-	    <result property="commuTitle" column="commu_title"/>
-	    <result property="commuContent" column="commu_content"/>
-	    <result property="commuViews" column="commu_views"/>
-	    <result property="empathy" column="empathy"/>
-	    <result property="commuCreated" column="commu_created"/>
-	    <result property="commuDeclaration" column="commu_declaration"/>
-	    <result property="categoryNo" column="category_no"/>
-	    <result property="commuComment" column="commu_comment"/>
-	</resultMap> -->
 	
 	<insert id="insertCommunity" parameterType="dto.CommunityDto" useGeneratedKeys="true" keyProperty="commuNo">
 	    insert into community (u_no, commu_title, commu_content, commu_views, empathy, commu_created, commu_declaration, category_no, commu_comment)

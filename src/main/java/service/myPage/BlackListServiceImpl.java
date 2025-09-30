@@ -7,6 +7,9 @@ import java.util.Map;
 import dao.myPage.BlackListDao;
 import dao.myPage.BlackListDaoImpl;
 import dto.BlackListDto;
+import dto.BlackWithMemberDto;
+import dto.CommentDto;
+import dto.CommunityDto;
 
 public class BlackListServiceImpl implements BlackListService{
 	private BlackListDao blackListDao;
@@ -29,4 +32,14 @@ public class BlackListServiceImpl implements BlackListService{
         params.put("commuNo", commuNo);
         return blackListDao.getBlockedComments(params);
     }
+
+
+	@Override
+	public List<BlackWithMemberDto> getBlackWithMember() throws Exception {
+		
+		return blackListDao.selectselectBlackWithMember();
+	}
+    
+    
+    
 }

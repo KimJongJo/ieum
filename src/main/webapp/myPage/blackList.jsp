@@ -52,17 +52,25 @@
 
             <!-- 오른쪽 박스 컨테이너 -->
         <div class="boxes">
+        <c:forEach var="allComList" items="${blackMember}" varStatus="status">
             <!-- 닉네임 -->
-            <div class="text-wrapper-1">닉네임</div>
+            <div class="text-wrapper-1">
+            	<c:out value="${blackMember.username}" default="성명"/>
+            </div>
 
             <!-- 이메일 + 버튼 같은 줄 -->
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="text-wrapper-2">jisung0628jisung@gmail.com</div>
+                <div class="text-wrapper-2">
+                	<c:out value="${blackMember.email}" default="이메일"/>
+                </div>
                 <button id="btn">차단 해제</button>
             </div>
 
             <!-- 업로드 날짜 -->
-            <div class="text-wrapper-3">업로드 날짜</div>
+            <div class="text-wrapper-3">
+            	<c:out value="${blackMember.blackCreated}" default="차단닐찌"/>
+            </div>
+        </c:forEach>
         </div>
 
     </div>

@@ -1,11 +1,15 @@
 package dao.myPage;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import dto.BlackListDto;
+import dto.BlackWithMemberDto;
+import dto.CommentDto;
+import dto.CommunityDto;
 import util.MybatisSqlSessionFactory;
 
 public class BlackListDaoImpl implements BlackListDao{
@@ -26,4 +30,12 @@ public class BlackListDaoImpl implements BlackListDao{
     public List<Integer> getBlockedComments(Map<String, Object> params) throws Exception{
         return session.selectList("mapper.blacklist.getBlockedComments", params);
     }
+
+	@Override
+	public List<BlackWithMemberDto> selectselectBlackWithMember() throws Exception {
+		return session.selectList("mapper.blacklist.selectBlackWithMember");
+	}
+    
+    
+
 }
