@@ -1,6 +1,7 @@
 package dao.hospital;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -37,5 +38,26 @@ public class HospitalDaoImpl implements HospitalDao {
 
 	public Integer selectListResCnt(HosSearchDto hosSearchDto) throws Exception {
 		return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
+	}
+	
+	// 병원 신청 대기중인 병원 수
+	@Override
+	public int hosWaitCount() {
+		return sqlsession.selectOne("hosWaitcount");
+	}
+	
+	// 병원 신청 대기중 페이징 처리
+	@Override
+	public List<HospitalDto> selectWaitHos(Map<String, Integer> page) {
+		
+		return sqlsession.selectList("selectWaithos", page);
+	}
+	@Override
+	public void approve(Integer hNo) {
+		
+		sqlsession.update("approve", hNo);
+		sqlsession.commit();
+		
+		
 	}
 }

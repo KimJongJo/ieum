@@ -35,11 +35,11 @@ public class FileServiceImpl implements FileService {
 		FileDto fileDto;
 		String realFilePath;
 		if(type.equals("hosImg")) { // 병원 이미지 파일이면
-			realFilePath = "C:\\testImg";
+			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosImg";
 			filePath = "img\\hosImg\\";
 			fileDto = new FileDto(fileName, filePath, "hosProfile");
 		}else { // 사업자등록증파일이면
-			realFilePath = "C:\\testImg";
+			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosRe";
 			filePath = "img\\hosRe\\";
 			fileDto = new FileDto(fileName, filePath, "hosRequestFile");
 		}
@@ -48,7 +48,6 @@ public class FileServiceImpl implements FileService {
 		file.write(realFilePath + File.separator + fileName);
 
 		Integer no = fileDao.uploadFile(fileDto);
-		System.out.println(no);
 		return no;
 	}
 	

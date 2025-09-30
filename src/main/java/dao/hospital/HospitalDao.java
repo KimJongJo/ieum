@@ -1,6 +1,7 @@
 package dao.hospital;
 
 import java.util.List;
+import java.util.Map;
 
 import dto.HospitalDto;
 import dto.otherDto.HosSearchDto;
@@ -12,4 +13,7 @@ public interface HospitalDao {
 	public Integer addHospital(HospitalDto hosDto);
 	public List<HosSearchListDto> selectList (HosSearchDto hosSearch) throws Exception;
 	Integer selectListResCnt(HosSearchDto hosSearchDto) throws Exception;
+	public int hosWaitCount();
+	public List<HospitalDto> selectWaitHos(Map<String, Integer> page);
+	public void approve(Integer hNo);
 }
