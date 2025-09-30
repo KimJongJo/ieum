@@ -1,6 +1,7 @@
 package service.allCommunity;
 
 import dto.CommunityDto;
+import dto.MyCommunityDto;
 
 public interface CommunityService {
 	Integer insertCommunity(CommunityDto community) throws Exception;
@@ -8,4 +9,6 @@ public interface CommunityService {
     CommunityDto selectByNo(Integer commuNo) throws Exception;
     
     void deleteCommunityWithComments(int commuNo) throws Exception;
+    
+    void updateCommunity(MyCommunityDto myCommunity) throws Exception;
 }

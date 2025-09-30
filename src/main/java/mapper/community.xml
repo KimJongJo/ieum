@@ -62,5 +62,11 @@
 	<delete id="deleteCommunity" parameterType="int">
         delete from community WHERE commu_no = #{commuNo}
     </delete>
+  
+    <update id="updateCommunity" parameterType="myCommunity">
+    	update community set
+    		commu_title = #{commuTitle}, commu_content = #{commuContent},category_no = #{categoryNo}
+    	where commu_no = #{commuNo} 
+    </update>
     
 </mapper>	

@@ -20,5 +20,7 @@ private SqlSession session;
 		List<AllCommunityDto> list = session.selectList("mapper.community.selectAllCommunityList");
 		return list;
 	}
+	
+	
 
 }

@@ -2,5 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.blacklist">
-	
-</mapper>	
+<!-- 댓글 차단 기록 삽입 -->
+    <insert id="insertBlackList" parameterType="blackList" useGeneratedKeys="true" keyProperty="blackNo">
+        INSERT INTO black_list (u_no, commu_no, comme_no, blocker_no, black_created)
+        VALUES (#{uNo}, #{commuNo}, #{commeNo}, #{blockedNo}, NOW())
+    </insert>
+
+    <!-- 특정 게시글에서 현재 사용자가 차단한 댓글 조회 (필터용) -->
+    <select id="getBlockedComments" parameterType="map" resultType="Integer">
+        SELECT comme_no
+        FROM black_list
+        WHERE u_no = #{uNo} AND commu_no = #{commuNo}
+    </select>
+</mapper> 		
+
+
+
+

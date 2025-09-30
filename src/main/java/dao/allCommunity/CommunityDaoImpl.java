@@ -3,6 +3,7 @@ package dao.allCommunity;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.CommunityDto;
+import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;
 
 public class CommunityDaoImpl implements CommunityDao{
@@ -29,6 +30,12 @@ public class CommunityDaoImpl implements CommunityDao{
 	@Override
 	public CommunityDto selectByNo(int commuNo) throws Exception {
 		return session.selectOne("mapper.community.selectByNo", commuNo);
+	}
+
+	@Override
+	public void updateCommu(MyCommunityDto myCommunityDto) throws Exception {
+		session.update("mapper.community.updateCommunity", myCommunityDto);
+		session.commit();
 	}
 
 }

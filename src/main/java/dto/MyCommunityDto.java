@@ -12,10 +12,20 @@ public class MyCommunityDto {
     int commuViews;
     String categoryName;
     String nickName;
+    Integer categoryNo;
     
 	public MyCommunityDto() {
 		super();
 	}
+	
+	public MyCommunityDto(Integer commuNo, String commuTitle, String commuContent, Integer categoryNo) {
+		super();
+		this.commuNo = commuNo;
+		this.commuTitle = commuTitle;
+		this.commuContent = commuContent;
+		this.categoryNo = categoryNo;
+	}
+
 
 	public MyCommunityDto(int commuNo, String commuTitle, String commuContent, Date commuCreated, int empathy,
 			int commuComment, int commuViews, String categoryName, String nickName) {

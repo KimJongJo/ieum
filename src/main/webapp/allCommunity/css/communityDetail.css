@@ -155,12 +155,30 @@ body {
 	    z-index: 1000;
 	}
 
-    .userMenu .menu-item {
+    .userMenu .menu-item1{
         padding: 8px 10px;
         cursor: pointer;
         font-size: 14px;
     }
-    .userMenu .menu-item:hover {
+    
+    .userMenu .menu-item2{
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    .userMenu .menu-item3{
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .userMenu .menu-item1:hover {
+        background-color: #f0f0f0;
+    }
+    .userMenu .menu-item2:hover {
+        background-color: #f0f0f0;
+    }
+    .userMenu .menu-item3:hover {
         background-color: #f0f0f0;
     }
 

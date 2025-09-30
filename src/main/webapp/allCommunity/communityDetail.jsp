@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityDetail.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script>
-<style>
 
+<style>
 /* 전체 레이아웃 */
 body {
     margin: 0;
@@ -173,12 +173,30 @@ body {
 	    z-index: 1000;
 	}
 
-    .userMenu .menu-item {
+    .userMenu .menu-item1{
         padding: 8px 10px;
         cursor: pointer;
         font-size: 14px;
     }
-    .userMenu .menu-item:hover {
+    
+    .userMenu .menu-item2{
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+    .userMenu .menu-item3{
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .userMenu .menu-item1:hover {
+        background-color: #f0f0f0;
+    }
+    .userMenu .menu-item2:hover {
+        background-color: #f0f0f0;
+    }
+    .userMenu .menu-item3:hover {
         background-color: #f0f0f0;
     }
 
@@ -291,6 +309,7 @@ body {
 		background-color: white;	
 	}
 </style>
+
 <script>
 $(function () {
     /* 댓글 메뉴 토글 */
@@ -312,40 +331,73 @@ $(function () {
         $('#completeModal').data('communo', commuNo).show();
     });
 
-    /* 모달 삭제 버튼 클릭 → AJAX 요청 */
-    $('#modalOkComplete').click(function() {
-        const commuNo = $('#completeModal').data('communo');
-        $.ajax({
-            url: '${pageContext.request.contextPath}/delComDetail',
-            type: 'POST',
-            data: { commuNo: commuNo },
-            success: function() {
-                alert("삭제되었습니다.");
-                window.location.href = '${pageContext.request.contextPath}/allComList';
-            },
-            error: function() {
-                alert("삭제 중 오류가 발생했습니다.");
-            }
-        });
-        $('#completeModal').hide();
-    });
 
     /* 모달 닫기 */
     $('#modalCloseComplete, #modalCancelComplete').click(function() {
         $('#completeModal').hide();
     });
+    
+    
+    /* 신고 모달 */
+    $(document).on('click', '.userMenu .menu-item1:contains("신고하기")', function (e) {
+        e.preventDefault();
+        $('#blockReportModal').show();
+    });
+    $('#modalClosereportBlock, #modalCancelreportBlock, #modalOkreportBlock').click(function() {
+        $('#blockReportModal').hide();
+    });
+	
 
     /* 차단 모달 */
-    $(document).on('click', '.userMenu .menu-item:contains("차단하기")', function (e) {
+   /*  $(document).on('click', '.userMenu .menu-item2:contains("차단하기")', function (e) {
         e.preventDefault();
         $('#blockModal').show();
     });
     $('#modalCloseBlock, #modalCancelBlock, #modalOkBlock').click(function() {
         $('#blockModal').hide();
+    }); */
+	
+    
+    /* 댓글 차단 모달 */
+    $(document).on('click', '.userMenu .menu-item2:contains("댓글차단")', function (e) {
+        e.preventDefault();
+        $('#blockModal').show();
+
+        // 클릭한 댓글 정보 가져오기
+        var commentBox = $(this).closest('.comment-box');
+        var commuNo = "${community.commuNo}";
+        var commeNo = commentBox.find('#row1 #number').text(); // 상태값 또는 hidden 사용 가능
+        var blockedNo = commentBox.find('#comNick span').data('no');
+
+        // form hidden에 세팅
+        $('#blockCommuNo').val(commuNo);
+        $('#blockCommeNo').val(commeNo);
+        $('#blockBlockedNo').val(blockedNo);
     });
 
+    /* 모달 닫기 */
+    $('#modalCloseBlock, #modalCancelBlock').click(function() {
+        $('#blockModal').hide();
+    });
+    
+    
+    
+    /* 유저 차단 모달 */
+    $(document).on('click', '.userMenu .menu-item3:contains("유저차단")', function (e) {
+        e.preventDefault();
+        $('#blockUserModal').show();
+    });
+    $('#modalCloseUserBlock, #modalCancelUserBlock, #modalOkUserBlock').click(function() {
+        $('#blockUserModal').hide();
+    });
+    
+    
+    
+    
+    
     /* 관리 메뉴 숨기기 */
-    $('.menu span:nth-child(5)').hide();
+    $('.hide-if-user').hide();
+
 });
 </script>
 </head>
@@ -363,8 +415,10 @@ $(function () {
             	<c:out value="${community.commuTitle}"/>
             </div>
             <div id="btn1">
-	            <button onclick="location.href='/ieum/write'" id="btn-update">수정</button>
+            <%-- <c:if test="${member.uNo==community.uNo}"> --%>
+	            <button onclick="location.href='/ieum/comDetailMo?no=${community.commuNo}'" id="btn-update">수정</button>
 	            <button type="button" id="btn-delete" data-communo="${community.commuNo}">삭제</button>
+	        <%-- </c:if> --%>
 	        </div>
         </div>
         <div id="san"></div>
@@ -392,9 +446,10 @@ $(function () {
 				    </span>
 				</div>
         <div id="san"></div>
-        <!-- 다른 사람이 작성한곳 -->
-        
+
+		<!-- 댓글 달리는 장소 -->        
         <c:forEach var="comment" items="${comments}" varStatus="status">
+         <c:if test="${blockedList == null or not blockedList.contains(comment.commeNo)}">
 	        <div class="comment-box">
 			    <div class="comment-row">
 			        <div id="row1">
@@ -420,10 +475,13 @@ $(function () {
 			
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
-			        <div class="menu-item">신고하기</div>
-			        <div class="menu-item">차단하기</div>
+			        <div class="menu-item1">신고하기</div>
+				    <div class="menu-item2">댓글차단</div>
+				    <div class="menu-item3">유저차단</div>
 			    </div>
-			</div>		
+			</div>	
+		</c:if>
+	
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
@@ -436,14 +494,14 @@ $(function () {
         </form>   
         </div>
     </div>
-    
+    	<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
     
     <!-- ✅ 삭제 모달 추가 (처음에는 숨김) -->
 	<div class="modal-main-div" id="completeModal" style="display:none;">
 	    <div class="modal-div-over">
 	        <div class="modal-header-div">
 	            <span class="modal-header-div-span">알림</span>
-	            <button type="button" class="x-button" id="modalCloseComplete">✖</button>
+	            <button type="button" class="x-button" id="modalCloseBlock">✖</button>
 	        </div>
 	        <div class="modal-content-div">
 	            <span class="modal-content-div-span">삭제 하시겠습니까?</span>
@@ -456,7 +514,25 @@ $(function () {
 	        </div>
 	    </div>
 	</div>
-	
+
+	<!-- ✅ 차단 모달 추가 -->
+	<div class="modal-main-div" id="blockReportModal" style="display:none;">
+	    <div class="modal-div-over">
+	        <div class="modal-header-div">
+	            <span class="modal-header-div-span">알림</span>
+	            <button type="button" class="x-button" id="modalClosereportBlock">✖</button>
+	        </div>
+	        <div class="modal-content-div">
+	            <span class="modal-content-div-span">신고 하시겠습니까?</span>
+	        </div>
+	        <div class="modal-div-under">
+	            <div class="modal-btn-div">
+	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelreportBlock">취소</button>
+	                <button type="button" class="modal-btn-right modal-btn" id="modalOkreportBlock">신고</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 	
 	<!-- ✅ 차단 모달 추가 -->
 	<div class="modal-main-div" id="blockModal" style="display:none;">
@@ -466,12 +542,37 @@ $(function () {
 	            <button type="button" class="x-button" id="modalCloseBlock">✖</button>
 	        </div>
 	        <div class="modal-content-div">
-	            <span class="modal-content-div-span">차단 하시겠습니까?</span>
+	            <span class="modal-content-div-span">댓글을 차단 하시겠습니까?</span>
 	        </div>
 	        <div class="modal-div-under">
 	            <div class="modal-btn-div">
 	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelBlock">취소</button>
-	                <button type="button" class="modal-btn-right modal-btn" id="modalOkBlock">차단</button>
+	                <!-- form으로 POST 전송 -->
+                <form id="blockCommentForm" action="${pageContext.request.contextPath}/blackCom" method="post" style="display:inline;">
+                    <input type="hidden" name="commuNo" id="blockCommuNo" />
+                    <input type="hidden" name="commeNo" id="blockCommeNo" />
+                    <input type="hidden" name="blockedNo" id="blockBlockedNo" />
+                    <button type="submit" class="modal-btn-right modal-btn" id="modalOkBlock">차단</button>
+                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<!-- ✅ 유저차단 모달 추가 -->
+	<div class="modal-main-div" id="blockUserModal" style="display:none;">
+	    <div class="modal-div-over">
+	        <div class="modal-header-div">
+	            <span class="modal-header-div-span">알림</span>
+	            <button type="button" class="x-button" id="modalCloseUserBlock">✖</button>
+	        </div>
+	        <div class="modal-content-div">
+	            <span class="modal-content-div-span">해당 유저를 차단 하시겠습니까?</span>
+	        </div>
+	        <div class="modal-div-under">
+	            <div class="modal-btn-div">
+	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelUserBlock">취소</button>
+	                <button type="button" class="modal-btn-right modal-btn" id="modalOkUserBlock">차단</button>
 	            </div>
 	        </div>
 	    </div>
