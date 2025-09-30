@@ -34,13 +34,14 @@ public class AdminHosRequestList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// 병원 검색해서 들어온 경우, 또는 정렬이 있는 경우
 		int curPage = 1;
-		
+		String filter = "none";
 		// 기본적으로 보여줄 화면
 		
 		HospitalService service = new HospitalServiceImpl();
-		HospitalPageResponseDto pageDto = service.hosWaitList(curPage);
+		HospitalPageResponseDto pageDto = service.hosWaitList(curPage, filter);
 		request.setAttribute("listDto", pageDto);
 		
 		

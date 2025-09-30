@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import dto.HospitalDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDateFormatDto;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -48,16 +49,39 @@ public class HospitalDaoImpl implements HospitalDao {
 	
 	// 병원 신청 대기중 페이징 처리
 	@Override
-	public List<HospitalDto> selectWaitHos(Map<String, Integer> page) {
+	public List<HospitalDto> selectWaitHos(Map<String, Object> page) {
 		
 		return sqlsession.selectList("selectWaithos", page);
 	}
+	
+	// 병원 승인
 	@Override
 	public void approve(Integer hNo) {
 		
 		sqlsession.update("approve", hNo);
 		sqlsession.commit();
 		
+	}
+	// 병원 거부
+	@Override
+	public void reject(Integer hNo) {
+		
+		sqlsession.update("reject", hNo);
+		sqlsession.commit();
 		
 	}
+	
+	
+	// 검색한 병원의 개수 반환
+	@Override
+	public int hosWaitCountByKeyword(String keyword) {
+		
+		return sqlsession.selectOne("hosWaitCountByKeyword", keyword);
+	}
+	@Override
+	public List<HospitalDto> selectWaitHosByKeyword(Map<String, Object> page) {
+		
+		return sqlsession.selectList("selectWaitHosByKeyword", page);
+	}
+
 }

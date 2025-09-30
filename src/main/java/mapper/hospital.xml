@@ -47,7 +47,7 @@
 		insert into hospital (h_nm, h_address, h_location_y, h_location_x, holiday_info, h_tel, hos_img_file_no, hos_re_file_no,
 		hos_re_no, h_created, status, city, gungu, category_no, services, silson) 
 		values (#{hNm}, #{hAddress}, #{hLocationY}, #{hLocationX}, #{holidayInfo}, #{hTel}, #{hosImgFileNo}, #{hosReFileNo},
-		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{hosService}, #{silson})
+		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{services}, #{silson})
 	</insert>
 	
 	<!-- 정렬: 예약 많은 순 -->
@@ -83,7 +83,7 @@
 	
 	<select id="selectWaithos" parameterType="Map" resultType="hospital">
 		select * from hospital where status = 'WAITING'
-		order by h_no
+		order by ${sortValue} ${sort}
     	LIMIT #{pageSize} OFFSET #{offset}
 	</select>
 	
@@ -91,6 +91,26 @@
 		update hospital set status = 'ACTIVE' where h_no = #{hNo}
 	</update>
 	
+	<update id="reject" parameterType="Integer">
+		update hospital set status = 'REJECTED' where h_no = #{hNo}
+	</update>
 	
+	<select id="hosWaitCountByKeyword" parameterType="String" resultType="Integer">
+		select count(*) from hospital
+		where status = 'WAITING'
+		and (h_nm like concat ('%', #{keyword}, '%')
+			or h_address like concat ('%', #{keyword}, '%')
+			or h_tel like concat ('%', #{keyword}, '%'))
+	</select>
 	
+	<select id="selectWaitHosByKeyword" parameterType="Map" resultType="hospital">
+		select * from hospital
+	    where status = 'WAITING'
+	    and (h_nm like concat('%', #{keyword}, '%')
+	         or h_address like concat('%', #{keyword}, '%')
+	         or h_tel like concat('%', #{keyword}, '%'))
+	    order by ${sortValue} ${sort}
+	    limit #{pageSize} offset #{offset}
+	</select>
+
 </mapper>	

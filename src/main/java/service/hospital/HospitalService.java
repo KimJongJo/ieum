@@ -15,7 +15,11 @@ public interface HospitalService {
 
 	void addHospital(Map<String, Object> requestMap);
 
-	HospitalPageResponseDto hosWaitList(int curPage);
+	HospitalPageResponseDto hosWaitList(int curPage, String filter);
 
 	void approve(Integer hNo);
+
+	HospitalPageResponseDto hosWaitListByKeyword(int requestPage, String keyword, String filter);
+
+	void reject(Integer hNo);
 }

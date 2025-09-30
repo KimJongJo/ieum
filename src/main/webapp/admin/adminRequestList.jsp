@@ -16,6 +16,10 @@
 <script>
     // HTML 페이지에서 선언, JSP에서 EL 치환됨
     const contextPath = "${pageContext.request.contextPath}";
+    let curPage = ${listDto.curPage};
+    let allPage = ${listDto.allPage};
+    let curKeyword = ""; // 현재 검색어
+    let filter = "none"; // 정렬 기준 초기값
 </script>
 <script src="./js/hosDetailModal.js"></script>
 
@@ -36,15 +40,16 @@
 						<span class="search-name-span">병원 신청 목록</span>
 					</div>
 					<form class="search-bar">
-						<input type="text" placeholder="검색" class="search-bar-input" />
-						<button class="search-bar-icon" type="button">
+						<input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
+						<button class="search-bar-icon" type="button" id="searchBtn">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 
-						<select name="" id="" class="search-select">
-							<option value="">정렬</option>
-							<option value="">병원명</option>
-							<option value="">신청일</option>
+						<select name="selectFilter" id="selectFilter" class="search-select">
+							<option value="none">정렬</option>
+							<option value="h_nm">병원명</option>
+							<option value="created_young">신청일(최신순)</option>
+							<option value="created_old">신청일(오래된순)</option>
 						</select>
 					</form>
 					<div class="table-div">
@@ -62,7 +67,9 @@
 							<tbody>
 							<c:choose>
 								<c:when test="${empty listDto.list}">
-									<td colspan="6">현재 신청등록된 병원이 존재하지 않습니다.</td>
+									<tr>
+										<td colspan="6">현재 신청등록된 병원이 존재하지 않습니다.</td>
+									</tr>
 								</c:when>
 							<c:otherwise>
 								<c:forEach var="hos" items="${listDto.list}">
@@ -85,11 +92,10 @@
 					</div>
 					<c:if test="${not empty listDto.list}">
 						<div class="page-div">
-							<button class="page" type="button">
+							<button class="page previous" type="button">
 								<i class="fa-solid fa-angle-left"></i>
 							</button>
 							<!-- 페이지 번호 반복 -->
-							
 							    <c:forEach var="i" begin="${listDto.startPage}" end="${listDto.endPage}">
 							        <c:choose>
 							            <c:when test="${i == listDto.curPage}">
@@ -101,7 +107,7 @@
 							        </c:choose>
 							    </c:forEach>
 						  
-							<button class="page" type="button">
+							<button class="page next-page" type="button">
 								<i class="fa-solid fa-angle-right"></i>
 							</button>
 						</div>
@@ -149,7 +155,7 @@
 							</div>
 
 							<div class="hospital-btn-div">
-								<button class="hospital-btn-delete " id="delHos">취소</button>
+								<button class="hospital-btn-delete " id="delHos">거부</button>
 								<button class="hospital-btn-update" id="addHos">승인</button>
 							</div>
 						</div>
@@ -162,5 +168,6 @@
 
 	<!-- 		<script src="adminNav.js"></script>
         <script src="adminModal.js"></script> -->
+        
 </body>
 </html>
