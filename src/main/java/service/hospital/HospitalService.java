@@ -10,4 +10,6 @@ import util.PageInfo;
 public interface HospitalService {
   
 	List<HosSearchListDto> listByFilter (HosSearchDto hosSearch, PageInfo pageInfo) throws Exception;
+
+	void addHospital(Map<String, Object> requestMap);
 }
