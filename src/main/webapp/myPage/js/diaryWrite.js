@@ -15,7 +15,25 @@ $(document).ready(function() {
 		}
 	})
 	function validateDiaryForm() {
+		const targetDt = $("#targetDt").text();
 		let validYn = true;
+		// 현재 날짜 데이터 존재 유무 확인
+		$.ajax({
+			url: '/ieum/myPage/diary/check',
+			type: 'post',
+			async: false,
+			data: { date: targetDt },
+			success: function(res) {
+				if (res.exists) {
+					alert("오늘 이미 작성된 다이어리가 있습니다.");
+					validYn = false;
+					return false;
+				}
+			}, error: function() {
+				alert("서버 통신 중 오류가 발생했습니다.");
+				validYn = false;
+			}
+		})
 		// 감정 선택 체크 (라디오 버튼)
 		if ($('input[name="emoji"]:checked').length === 0) {
 			alert('오늘의 기분을 선택해주세요.');
@@ -31,8 +49,8 @@ $(document).ready(function() {
 				return false;
 			}
 		});
-		if (validYn) return true;
-		return false;
+		if (!validYn) return false;
+		return true;
 	}
 
 	// 작성 버튼

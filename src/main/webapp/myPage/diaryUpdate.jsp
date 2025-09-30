@@ -28,22 +28,26 @@
 	<div class="main-container">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="diary-container">
-			<c:if test="${recentHistory}">
-				<div class="btn-right">
+			<div class="btn-right">
+				<span class="target-date">[ <fmt:formatDate
+						value="${diary.targetDt}" pattern="yyyy-MM-dd" /> 일기 ]
+				</span> <input type="hidden" name="targetDt" value="${ targetDt }">
+				<c:if test="${recentHistory}">
 					<button class="btn-rec-w"
 						onclick="location.href=`${contextPath}/myPage/diagnosisHistory`">최근
 						상담이력</button>
-				</div>
-			</c:if>
+				</c:if>
+			</div>
 			<!-- 날짜 -->
 			<form method="post" action="${contextPath}/myPage/diary/update">
 				<input type="hidden" name="dNo" value="${diary.dNo}">
 				<div class="form-group">
 					<div class="form-label form-multi">
-						<span><fmt:formatDate value="${diary.dCreated}"
-								pattern="yyyy-MM-dd" /> 일기</span>
+						<span>(작성일: <fmt:formatDate value="${diary.dCreated}"
+								pattern="yyyy-MM-dd" />)
+						</span>
 						<div class="form-right">
-							<span class="notice">오늘의 기분을 선택해주세요</span>
+							<span class="notice">기분을 선택해주세요</span>
 							<div class="emoji">
 								<input type="radio" id="happy" value="smile" name="emoji"
 									${diary.mood eq 'smile' ? 'checked' : ''}><label

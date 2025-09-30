@@ -4,8 +4,8 @@
 <mapper namespace="mapper.diary">
 	<insert id="insert" parameterType="diary">
 		INSERT INTO diary
-		(d_created, title, content, mood, u_no)
-		VALUES (now(), #{title}, #{content}, #{mood}, #{uNo})
+		(d_created, title, content, mood, u_no, target_dt)
+		VALUES (now(), #{title}, #{content}, #{mood}, #{uNo}, #{targetDt})
 	</insert>
 	<select id="selectDetail" parameterType="Integer" resultType="diary">
 		SELECT * FROM diary WHERE d_no=#{dNo}
@@ -26,6 +26,6 @@
 		SELECT * FROM diagnosis_history WHERE patient_id = #{uNo}
 	</select>
 	<select id="selectDate" parameterType="map" resultType="diary">
-		SELECT * FROM diary WHERE u_no=#{uNo} AND SUBSTR(d_created, 1, 10) = #{dCreated};
+		SELECT * FROM diary WHERE u_no=#{uNo} AND DATE(target_dt)=#{date};
 	</select>
 </mapper>	

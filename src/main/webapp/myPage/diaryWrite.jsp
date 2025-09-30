@@ -24,24 +24,27 @@
 	<header>
 		<jsp:include page="/common/header/header.html" />
 	</header>
+
 	<div class="main-container">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="diary-container">
-
-			<c:if test="${recentHistory}">
-				<div class="btn-right">
-					<button class="btn-rec-w"
-						onclick="location.href=`${contextPath}/myPage/diagnosisHistory`">최근
-						상담이력</button>
-				</div>
-			</c:if>
-			<!-- 날짜 -->
 			<form method="post">
+				<div class="btn-right">
+					<span class="target-date">[<span id="targetDt">${ targetDt }</span>일기
+						]</span>
+						<input type="hidden" name="targetDt" value="${ targetDt }">
+					<c:if test="${recentHistory}">
+						<button class="btn-rec-w"
+							onclick="location.href=`${contextPath}/myPage/diagnosisHistory`">최근
+							상담이력</button>
+					</c:if>
+				</div>
+				<!-- 날짜 -->
 				<div class="form-group">
 					<div class="form-label form-multi">
-						<span>${todayDt} 일기</span>
+						<span>(작성일: ${ nowDt })</span>
 						<div class="form-right">
-							<span class="notice">오늘의 기분을 선택해주세요</span>
+							<span class="notice">기분을 선택해주세요</span>
 							<div class="emoji">
 								<input type="radio" id="happy" value="smile" name="emoji"><label
 									for="happy">
@@ -86,6 +89,8 @@
 				</div>
 			</form>
 		</div>
+
 	</div>
+
 </body>
 </html>
