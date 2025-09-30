@@ -5,6 +5,7 @@ public class PageInfo {
 	private Integer allPage;
 	private Integer startPage;
 	private Integer endPage;
+	private Integer allCnt;
 	public PageInfo() {}
 	public PageInfo(Integer curPage) {
 		super();
@@ -41,6 +42,13 @@ public class PageInfo {
 	}
 	public void setEndPage(Integer endPage) {
 		this.endPage = endPage;
+	}
+	
+	public Integer getAllCnt() {
+		return allCnt;
+	}
+	public void setAllCnt(Integer allCnt) {
+		this.allCnt = allCnt;
 	}
 	@Override
 	public String toString() {
