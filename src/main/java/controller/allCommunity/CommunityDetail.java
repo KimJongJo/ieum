@@ -80,7 +80,7 @@ public class CommunityDetail extends HttpServlet {
             List<CommentDto> commentList = commentService.getCommentsByCommuNo(commuNo);
             request.setAttribute("comments", commentList);
          // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
-            int uNo = 4; // 테스트용, 실제 로그인 세션 값으로 교체 필요
+            int uNo = 5; // 테스트용, 실제 로그인 세션 값으로 교체 필요
             BlackListService blackListService = new BlackListServiceImpl();
             List<Integer> blockedList = null;
             try {
@@ -104,9 +104,11 @@ public class CommunityDetail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//댓글 등록
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 4; //로그인된 사용자 번호
+		int uNo = 5; //로그인된 사용자 번호
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");

@@ -36,7 +36,7 @@ public class BlackComment extends HttpServlet {
         HttpSession session = request.getSession();
 
         // 임의 로그인 유저 번호 (테스트용)
-        Integer uNo = 4;
+        Integer uNo = 5;
 
         // 차단할 댓글 정보
         Integer commuNo = Integer.parseInt(request.getParameter("commuNo"));
