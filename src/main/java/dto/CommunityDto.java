@@ -18,7 +18,7 @@ public class CommunityDto {
 		super();
 	}
 	
-	
+
 	
 	public CommunityDto(Integer uNo, String commuTitle, String commuContent, Integer categoryNo) {
 		super();

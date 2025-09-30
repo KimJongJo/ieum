@@ -7,4 +7,5 @@ public interface FileDao {
 	void insertFile(FileDto fileDto) throws Exception;
 	void updateFile(FileDto fileDto) throws Exception;
 	Integer normalImg(FileDto file);
+	Integer uploadFile(FileDto fileDto);
 }

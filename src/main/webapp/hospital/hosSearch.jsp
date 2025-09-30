@@ -22,8 +22,8 @@
 		<div class="filter">
 			<div class="search-bar">
 				<div class="mt">검색</div>
-				<form class="search-box" name="keyword" action="/hospital/search" method="post">
-					<input class="search-txt" name="" placeholder="병원명으로 검색">
+				<form class="search-box" name="keyword" method="post">
+					<input id="keyword" class="search-txt" name="" placeholder="병원명으로 검색">
 					<button class="search-btn" type="submit">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
@@ -32,11 +32,11 @@
 
 			<div class="line"></div>
 
-			<form class="select" name="hosfilter" action="/hospital/search" method="get">
+			<form class="select" name="hosfilter" action="" method="post">
 			<div class="category">
 				<div class="ct">
 					<div class="mt2">유형</div>
-					<button class="refresh">
+					<button type="reset" class="refresh" id="refresh">
 						<div class="reicon">
 							<i class="fa-solid fa-rotate-right"></i>
 						</div>
@@ -48,63 +48,63 @@
 						<div class="hcs2">
 							<div class="allhc">
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="1"> 종합병원</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+									 	value="1"> 종합병원</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="2"> 상급종합병원</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="2"> 상급종합병원</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="3"> 정신요양시설</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="3"> 정신요양시설</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="4"> 자살예방센터</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="4"> 자살예방센터</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="5"> 정신재활시설</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="5"> 정신재활시설</label>
 								</div>
 							</div>
 
 							<div class="allhc2">
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="6"> 국립</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="6"> 국립</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="7"> 의원</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="7"> 의원</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="8"> 공립</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="8"> 공립</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="9"> 병원</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="9"> 병원</label>
 								</div>
 								<div class="la">
-									<label class="h_ca"><input type="checkbox" id="hc"
-										name="hc" value="10"> 보건소</label>
+									<label class="h_ca"><input type="checkbox" name="hc"
+										 value="10"> 보건소</label>
 								</div>
 							</div>
 						</div>
 
 						<div class="allhc3">
 							<div class="la">
-								<label class="h_ca"><input type="checkbox" id="hc"
-									name="hc" value="11"> 중독통합관리 지원센터</label>
+								<label class="h_ca"><input type="checkbox" name="hc"
+									 value="11"> 중독통합관리 지원센터</label>
 							</div>
 							<div class="la">
-								<label class="h_ca"><input type="checkbox" id="hc"
-									name="hc" value="12"> 광역정신건강 복지센터</label>
+								<label class="h_ca"><input type="checkbox" name="hc"
+									 value="12"> 광역정신건강 복지센터</label>
 							</div>
 							<div class="la">
-								<label class="h_ca"><input type="checkbox" id="hc"
-									name="hc" value="13"> 기초정신건강 복지센터</label>
+								<label class="h_ca"><input type="checkbox" name="hc"
+									 value="13"> 기초정신건강 복지센터</label>
 							</div>
 						</div>
 
@@ -116,13 +116,26 @@
 			<div class="line"></div>
 
 			<div class="location">
-				<div class="mt2">지역</div>
-				<form class="location" action="" method="post">
-					<label for="city"></label><select id="city" class="ci">
+				<div class="ct">
+					<div class="mt2">지역</div>
+					<button type="button" class="refresh" id="refresh">
+						<div class="reicon">
+							<i class="fa-solid fa-rotate-right"></i>
+						</div>
+						<span class="mt3">초기화</span>
+					</button>
+				</div>
+				<form class="locations" action="" method="post">
+					<label for="city">
+					<select name="city" id="city" class="ci">
 						<option value="" >시·도</option>
-					</select> <label for="gungu"></label><select id="gungu" class="sigun">
+					</select>
+					</label>
+					<label for="gungu">
+					<select name="gungu" id="gungu" class="sigun">
 						<option value="" >시·군·구</option>
 					</select>
+					</label>
 				</form>
 			</div>
 
@@ -135,11 +148,11 @@
 						<td class="st1">'서울'</td>
 						<td class="st">검색결과,</td>
 						<td class="st1">'1,192'</td>
-						<td class="st">개</td>
+						<td class="st"><span id="allCnt"></span>개</td>
 					</tr>
 				</table>
 			</div>
-			
+			<div id="hospitalList"></div>
 <!--  			<a href="${contextPath}/hospital/detail">
 				<div class="list-box">
 					<div class="right3">
@@ -163,9 +176,10 @@
 -->
 			
 	</div>
+	</div>
 	<footer>
 
 	</footer>
-	<script src="${contextPath }/hospital/js/hosSearch.js"></script>
+<script src="${contextPath }/hospital/js/hosSearch.js"></script> 
 </body>
 </html>
