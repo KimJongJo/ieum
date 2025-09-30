@@ -24,7 +24,8 @@ body {
 .diary-container {
 	width: 1024px;
 	margin: 40px auto;
-	margin-top: 0px; border-radius : 4px;
+	margin-top: 0px;
+	border-radius: 4px;
 	overflow: hidden;
 	border-radius: 4px;
 }
@@ -53,6 +54,7 @@ body {
 
 .form-multi span {
 	font-size: 16px;
+	color: #9C9C9C;
 }
 
 .form-right {
@@ -197,6 +199,14 @@ input[type=radio]+label {
 	display: flex;
 	justify-content: right;
 	margin-bottom: 10px;
+	gap: 300px;
+}
+
+.btn-right .target-date {
+	display: flex;
+	align-items: center;
+	font-size: 25px;
+	font-weight: 500;
 }
 
 .basic-small-btn:hover {

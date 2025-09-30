@@ -9,13 +9,19 @@ $(".pagination button").on("click", function() {
 $(document).ready(function() {
 	// 삭제 버튼 클릭
 	$("#delBtn").click(function() {
-		$("#confirmModal").show();
+		$("#delConfirmModal").show();
 	})
 })
 //// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
+	let todayDt = new Date();
+	let todayYear  = todayDt.getFullYear();
+	let todayMonth = String(todayDt.getMonth() + 1).padStart(2, "0");
+	let todayDay = String(todayDt.getDate()+1).padStart(2, "0");
+	let todayFormatDt = `${todayYear}-${todayMonth}-${todayDay}`;
 	// 상세팝업
 	const popup = $('.detail-popup');
+	const writeConfirmModal = $("#writeConfirmModal");
 	const closeButton = $('#close-btn');
 	// 캘린더
 	var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
@@ -36,6 +42,9 @@ $(document).ready(function() {
 			right: 'write'
 		},
 		initialView: 'dayGridMonth',
+		validRange: {
+			end: todayFormatDt   // 유효한 범위의 끝 날짜
+		},
 		// diary 데이터 가져오기
 		events: {
 			url: '/ieum/myPage/diary',
@@ -45,7 +54,9 @@ $(document).ready(function() {
 			}
 		},
 		dateClick: function(info) {
-			console.log('Clicked on: ' + info.dateStr);
+			popup.hide();
+			writeConfirmModal.hide();
+//			console.log('Clicked on: ' + info.dateStr);
 			info.dayEl.style.backgroundColor = '#F7FAFF';
 			const clickedDate = info.dateStr;
 			// 클릭한 날짜 데이터 존재 유무 확인
@@ -54,19 +65,20 @@ $(document).ready(function() {
 				type: 'post',
 				data: { date: clickedDate },
 				success: function(res) {
-					console.log("res", res);
+					// 상세 팝업 노출
 					if (res.exists) {
 						popup.css({
 							'display': 'flex',
 							'left': info.jsEvent.pageX + 'px',
 							'top': info.jsEvent.pageY + 'px'
 						});
+						$("#popupMood").html(`<i class="fa-regular fa-face-${res.diary.mood}"></i>`)
+						$("#popupDt").text(clickedDate.split("-").join("."));
 						$('#popupTitle').text(res.diary.title);
 						$('#popupContent').text(res.diary.content);
 					} else {
-						// 작성 페이지 이동
-						const contextPath = document.location.pathname.split('/');
-						location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write?date=${clickedDate}`;
+						writeConfirmModal.show();
+						$("#clickedDt").val(clickedDate);
 					}
 				}
 			})
@@ -93,5 +105,15 @@ function cancelDel() {
 function confirmDel() {
 	$("#delConfirmModal").hide();
 	$("#hiddenForm").submit();
+}
+
+function cancelWrite() {
+	$("#writeConfirmModal").hide();
+}
+function confirmWrite() {
+	$("#writeConfirmModal").hide();
+	const date = $("#clickedDt").val();
+	// 작성 페이지 이동
+	location.href = `/ieum/myPage/diary/write?date=${date}`;
 }
 

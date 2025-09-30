@@ -71,7 +71,6 @@ public class DiaryDaoImpl implements DiaryDao {
 	@Override
 	public DiaryDto selectDate(Integer uNo, String date) throws Exception {
 		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()){
-			DiaryDto diary = session.selectOne("selectDate", date);
 			Map<String, Object> params = new HashMap<>();
             params.put("uNo", uNo);
             params.put("date", date);

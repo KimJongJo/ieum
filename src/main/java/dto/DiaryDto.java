@@ -10,6 +10,7 @@ public class DiaryDto {
 	String title;
 	String content;
 	String mood;
+	Date targetDt;
 	
 	
 	public DiaryDto() {
@@ -38,7 +39,14 @@ public class DiaryDto {
 		this.mood = mood;
 	}
 	
-	
+	public DiaryDto(Integer uNo, String title, String content, String mood, Date targetDt) {
+		super();
+		this.uNo = uNo;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+		this.targetDt = targetDt;
+	}
 
 
 	public DiaryDto(String title, String content, String mood, Integer dNo) {
@@ -59,12 +67,26 @@ public class DiaryDto {
 		this.mood = mood;
 	}
 
+	public DiaryDto(Integer dNo, Integer uNo, Date dCreated, Date dUpdated, String title, String content, String mood,
+			Date targetDt) {
+		super();
+		this.dNo = dNo;
+		this.uNo = uNo;
+		this.dCreated = dCreated;
+		this.dUpdated = dUpdated;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+		this.targetDt = targetDt;
+	}
+
 
 	@Override
 	public String toString() {
-		return "diary [diaryNo=" + dNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
-				+ ", title=" + title + ", content=" + content + ", mood=" + mood + "]";
+		return "DiaryDto [dNo=" + dNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
+				+ ", title=" + title + ", content=" + content + ", mood=" + mood + ", targetDt=" + targetDt + "]";
 	}
+
 
 	public Integer getdNo() {
 		return dNo;
@@ -133,6 +155,16 @@ public class DiaryDto {
 
 	public void setMood(String mood) {
 		this.mood = mood;
+	}
+
+
+	public Date getTargetDt() {
+		return targetDt;
+	}
+
+
+	public void setTargetDt(Date targetDt) {
+		this.targetDt = targetDt;
 	}
 	
 	

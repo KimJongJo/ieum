@@ -18,7 +18,10 @@
 <!-- CSS -->
 <link rel="stylesheet" href="${contextPath}/myPage/css/diaryList.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css">
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/modal.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/common/button/button.css" />
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -61,11 +64,13 @@
 					<option selected disabled value="none">정렬</option>
 					<option>최신순</option>
 					<option>제목순</option>
-				</select> <a class="btn-link" href="${contextPath}/myPage/diary/write">
-					<div class="basic-big-btn">작성</div>
-				</a>
+				</select>
+				<button class="btn-rec-w"
+					onclick="location.href=`${contextPath}/myPage/diary/write`">작성</button>
 			</div>
-			<form id="diaryForm" method="post" action="${contextPath}/myPage/diary">
+			<form id="diaryForm" method="post"
+				action="${contextPath}/myPage/diary">
+				<input type="hidden" name="dNo" id="dNoInput" value="123">
 				<c:choose>
 					<c:when test="${not empty diaryList}">
 						<!-- 다이어리 리스트 -->
@@ -120,42 +125,78 @@
 					</button>
 
 					<div class="title">
-						<span>9월 6일 기록</span>
-						<div class="emoji happy-icon">
+						<span id="popupTitle">9월 6일 기록</span>
+						<div class="emoji happy-icon" id="popupMood">
 							<i class="fa-regular fa-face-smile"></i>
-						</div>
-						<div class="emoji soso-icon" style="display: none;">
-							<i class="fa-regular fa-face-meh"></i>
-						</div>
-						<div class="emoji sad-icon" style="display: none;">
-							<i class="fa-regular fa-face-frown"></i>
 						</div>
 					</div>
 
 					<div class="content">
 						<div class="sub-title">
-							일시 <span>2025.09.06</span>
+							일시 <span id="popupDt">2025.09.06</span>
 						</div>
 						<div class="sub-title">
-							내용 <span>9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째 상담이라 그런지 지난번보다
-								편안했다.</span>
+							내용 <span id="popupContent">9월 6일 오전 10시경 상담을 받았다. 이번 상담은
+								두번째 상담이라 그런지 지난번보다 편안했다.</span>
 						</div>
 					</div>
 
-<!-- 					<div class="button-wrapper"> -->
-
-<!-- 						<input type="hidden" name="dNo" id="dNoInput"> <a -->
-<%-- 							class="btn-link" href="${contextPath}/myPage/diary/update"> --%>
-<!-- 							<div class="basic-big-btn">수정</div> -->
-<!-- 						</a> -->
-<!-- 						<button type="submit" class="basic-big-btn" -->
-<%-- 							formaction="${contextPath}/myPage/diary/delete" id="delBtn"> --%>
-<!-- 							삭제</button> -->
-<%-- 						<a class="btn-link" href="${contextPath}/myPage/diagnosis"> --%>
-<!-- 							<div class="primary-big-btn">진단이력 바로가기</div> -->
-<!-- 						</a> -->
-
-<!-- 					</div> -->
+					<div class="button-wrapper">
+						<button class="btn-cir-b" id="updateBtn"
+							formaction="${contextPath}/myPage/diary/update">수정</button>
+						<button type="button" class="btn-cir-b" id="delBtn">삭제</button>
+						<a class="btn-link" href="${contextPath}/myPage/diary?page=1">
+							<button type="button" class="btn-cir-w">목록</button>
+						</a>
+					</div>
+				</div>
+				<!-- 작성확인 팝업 -->
+				<input type="hidden" id="clickedDt">
+				<div class="modal-main-div" id="writeConfirmModal"
+					style="display: none">
+					<div class="modal-div-over">
+						<div class="modal-header-div">
+							<span class="modal-header-div-span">알림</span>
+							<button type="button" class="x-button" onclick="cancelWrite()">
+								<i class="fa-solid fa-x x-btn"></i>
+							</button>
+						</div>
+						<div class="modal-content-div">
+							<span class="modal-content-div-span">선택한 날짜에 다이어리가 존재하지
+								않습니다.<br>다이어리를 작성하시겠습니까?
+							</span>
+						</div>
+						<div class="modal-div-under">
+							<div class="modal-btn-div">
+								<button type="button" class="modal-btn-left modal-btn"
+									onclick="cancelWrite()">취소</button>
+								<button type="button" class="modal-btn-right modal-btn"
+									onclick="confirmWrite()">확인</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 삭제 확인 팝업 -->
+				<div class="modal-main-div" id="delConfirmModal"
+					style="display: none">
+					<div class="modal-div-over">
+						<div class="modal-header-div">
+							<span class="modal-header-div-span">알림</span>
+							<button type="button" class="x-button" onclick="cancelDel()">
+								<i class="fa-solid fa-x x-btn"></i>
+							</button>
+						</div>
+						<div class="modal-content-div">
+							<span class="modal-content-div-span">다이어리를 삭제하시겠습니까?</span>
+						</div>
+						<div class="modal-div-under">
+							<div class="modal-btn-div">
+								<button type="button" class="modal-btn-left modal-btn"
+									onclick="cancelDel()">취소</button>
+								<button class="modal-btn-right modal-btn" onclick="confirmDel()">확인</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</form>
 
@@ -174,24 +215,5 @@
 		</div>
 	</div>
 	<footer></footer>
-	<div class="modal-main-div" id="writeConfrimModal" style="display: none">
-		<div class="modal-div-over">
-			<div class="modal-header-div">
-				<span class="modal-header-div-span">알림</span>
-				<button type="button" class="x-button" onclick="cancelDel()">
-					<i class="fa-solid fa-x x-btn"></i>
-				</button>
-			</div>
-			<div class="modal-content-div">
-				<span class="modal-content-div-span">다이어리를 삭제하시겠습니까?</span>
-			</div>
-			<div class="modal-div-under">
-				<div class="modal-btn-div">
-					<button type="button" class="modal-btn-left modal-btn" onclick="cancelDel()">취소</button>
-					<button class="modal-btn-right modal-btn" onclick="confirmDel()">확인</button>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>
