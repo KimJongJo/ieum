@@ -45,11 +45,12 @@ public class CheckEmailCode extends HttpServlet {
 		String code = request.getParameter("code");
 		EmailService service = new EmailServiceImpl();
 		
+		
 		// 0 인증 실패, 1 만료된 코드 2 인증성공
 		int checkCode = service.checkEmail(email, code);
 		
 		String type = request.getParameter("type");		
-		System.out.println(code);
+		
 		
 		if(type != null) {
 			if(type.equals("signUp")) { // 회원가입이라면

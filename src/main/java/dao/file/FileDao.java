@@ -8,4 +8,5 @@ public interface FileDao {
 	void updateFile(FileDto fileDto) throws Exception;
 	
 	Integer normalImg(FileDto file);
+	Integer uploadFile(FileDto fileDto);
 }

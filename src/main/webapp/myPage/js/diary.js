@@ -6,62 +6,92 @@ $(".pagination button").on("click", function() {
 		$(this).addClass("active");
 	}
 });
-// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
+	// 삭제 버튼 클릭
+	$("#delBtn").click(function() {
+		$("#confirmModal").show();
+	})
+})
+//// 마우스 클릭 이벤트 리스너 추가
+$(document).ready(function() {
+	// 상세팝업
 	const popup = $('.detail-popup');
-	const fc = $('.fc');
 	const closeButton = $('#close-btn');
-	$(document).on('click', function(event) {
-		const header = $(event.target).closest('.fc-header-toolbar').length > 0;
-		// console.log($(event.target).closest('.fc-header-toolbar').length);
-		// 팝업 내부를 클릭했거나 닫기 버튼을 클릭했을 때는 팝업을 띄우지 않음
-		if (popup.has(event.target).length > 0
-			|| $(event.target).is(closeButton)
-			|| fc.has(event.target).length == 0 || header) {
-			popup.css("display", "none");
-			return;
+	// 캘린더
+	var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+		customButtons: {
+			write: {
+				text: "작성",
+				click: function() {
+					const contextPath = document.location.pathname.split('/');
+					location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write`;
+				},
+			},
+		},
+		selectable: true,
+		headerToolbar:
+		{
+			left: 'today',
+			center: 'prev,title,next',
+			right: 'write'
+		},
+		initialView: 'dayGridMonth',
+		// diary 데이터 가져오기
+		events: {
+			url: '/ieum/myPage/diary',
+			method: 'GET',
+			failure: function() {
+				console.log('diary 데이터를 불러오지 못했습니다.');
+			}
+		},
+		dateClick: function(info) {
+			console.log('Clicked on: ' + info.dateStr);
+			info.dayEl.style.backgroundColor = '#F7FAFF';
+			const clickedDate = info.dateStr;
+			// 클릭한 날짜 데이터 존재 유무 확인
+			$.ajax({
+				url: '/ieum/myPage/diary/check',
+				type: 'post',
+				data: { date: clickedDate },
+				success: function(res) {
+					console.log("res", res);
+					if (res.exists) {
+						popup.css({
+							'display': 'flex',
+							'left': info.jsEvent.pageX + 'px',
+							'top': info.jsEvent.pageY + 'px'
+						});
+						$('#popupTitle').text(res.diary.title);
+						$('#popupContent').text(res.diary.content);
+					} else {
+						// 작성 페이지 이동
+						const contextPath = document.location.pathname.split('/');
+						location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write?date=${clickedDate}`;
+					}
+				}
+			})
 		}
-
-		// 커서 위치 가져오기
-		const x = event.clientX;
-		const y = event.clientY;
-
-		// 팝업의 위치 설정 및 보이기
-		popup.css({
-			'display': 'flex',
-			'left': x + 'px',
-			'top': y + 'px'
-		});
 	});
+	calendar.render();
 	// 닫기 버튼 클릭 이벤트 리스너 추가
 	closeButton.on('click', function() {
 		// 팝업 숨기기
 		popup.css("display", "none");
 	});
-});
-var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-	customButtons: {
-		write: {
-			text: "작성",
-			click: function() {
-				const contextPath = document.location.pathname.split('/');
-				location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write`;
-			},
-		},
-	},
-	headerToolbar:
-	{
-		left: 'today',
-		center: 'prev,title,next',
-		right: 'write'
-	},
-	initialView: 'dayGridMonth'
-});
+})
 function goDetail(no) {
 	$("#dNoInput").val(no);
+	$("#diaryForm").submit();
+}
+function goUpdate() {
 	$("#hiddenForm").submit();
 }
-function goUpdate(){
+
+function cancelDel() {
+	$("#delConfirmModal").hide();
+}
+function confirmDel() {
+	$("#delConfirmModal").hide();
 	$("#hiddenForm").submit();
 }
-calendar.render();
+

@@ -12,11 +12,21 @@ body {
 	color: #000000;
 }
 
-.diary-container {
-	max-width: 1128px;
-	margin: 0 auto;
-	padding: 20px;
+.main-container {
+	max-width: 1280px;
+	margin: 40px auto;
+	border-radius: 4px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
 }
+
+.diary-container {
+	width: 1128px;
+	margin: 0 auto;
+	margin-left: 30px;
+}
+
 
 /* 캘린더 헤더 */
 .fc-toolbar-chunk div {
@@ -242,12 +252,30 @@ body {
 	max-width: 1128px;
 	border-collapse: collapse;
 	margin-bottom: 20px;
+	border: 1px solid #eee;
+}
+.no-data{
+	height: 360px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: 1px solid #eee;
+	font-size: 25px;
+	font-weight: 500;
+}
+.no-data .icon{
+	width: 40px;
+	height: 40px;
+	font-size: 40px;
 }
 
 .diary-list th, .diary-item td {
 	padding: 12px;
 	text-align: left;
-	border-bottom: 1px solid #eee;
+	border: 1px solid #eee;
 }
 
 .diary-list th {

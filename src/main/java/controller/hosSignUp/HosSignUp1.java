@@ -53,7 +53,7 @@ public class HosSignUp1 extends HttpServlet {
 		
 		session.setAttribute("requestInfo", requestInfo);
 		
-		request.getRequestDispatcher("hosSignUp2").forward(request, response);
+		response.sendRedirect("hosSignUp2");
 		
 	}
 

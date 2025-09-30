@@ -105,7 +105,7 @@
 										</tr>
 	
 										<tr>
-											<td><input id="code-input" type="text" placeholder="인증코드 입력"
+											<td><input id="authCode" type="text" placeholder="인증코드 입력"
 												class="auth-div-input input-id" /></td>
 											<td><button type="button" class="btn" id="codeCheckBtn">인증</button></td>
 											<td><span class="warning">*추후 등록된 이메일로 승인 등록코드 발송</span></td>

@@ -2,15 +2,25 @@ package controller.hosSignUp;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import service.file.FileService;
+import service.file.FileServiceImpl;
 
 /**
  * Servlet implementation class HosSignUp
  */
 @WebServlet("/hosSignUp2")
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 1, // 1MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10MB
+	    maxRequestSize = 1024 * 1024 * 100   // 100MB
+	)
 public class HosSignUp2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,6 +42,7 @@ public class HosSignUp2 extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String hosName = request.getParameter("hosName");
@@ -51,29 +62,34 @@ public class HosSignUp2 extends HttpServlet {
 		String requestNo = requestNo1 + "-" + requestNo2 + "-" + requestNo3;
 		
 		// 병원사진하고 사업자 등록증만 받으면 됨
+//		Part hosImg = request.getPart("hosImgFile");
+//        Part hosReFile = request.getPart("hosFile");
+//        
+//        String hosImgFileName = hosImg.getSubmittedFileName();
+//        String hosReFileName = hosReFile.getSubmittedFileName();
+//		
+//		FileService fileService = new FileServiceImpl();
+//		Integer hosImgNo = fileService.uploadFile(hosImgFileName, "hosImg");
+//		Integer hosReFileNo = fileService.uploadFile(hosReFileName, "hosReImg");
 		
-		System.out.println(hosName);
-		System.out.println(hosCategory);
-		System.out.println(add);
-		System.out.println(addressDetail);
-		System.out.println(tel);
-		System.out.println(service);
-		System.out.println(requestNo);
-		if (weekDay != null) {
-		    for(String value : weekDay) {
-		        System.out.print(value + " ");
-		    }
-		} else {
-		    System.out.println("선택된 휴무일이 없습니다.");
-		}
+		String[] addArr = add.split(" ");
 		
-		if (services != null) {
-		    for(String value : services) {
-		        System.out.print(value + " ");
-		    }
-		} else {
-		    System.out.println("선택된 서비스가 없습니다.");
+		// 시/도 
+		String siDo = addArr[0];
+		
+		// 시/군/구
+		StringBuilder sb = new StringBuilder();
+		for(int i = 1; i < addArr.length - 2; i++ ){
+			sb.append(addArr[i]).append(" ");
 		}
+		String siGunGu = sb.toString();
+		
+		// 도로명 주소
+		String loadNameAdd = addArr[addArr.length - 2] + " " + addArr[addArr.length - 1];
+		
+		System.out.println("시/도 " + siDo);
+		System.out.println("시/군/구 " + siGunGu);
+		System.out.println("도로명주소 " + loadNameAdd);
 		
 		
 	}
