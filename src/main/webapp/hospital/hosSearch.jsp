@@ -22,8 +22,8 @@
 		<div class="filter">
 			<div class="search-bar">
 				<div class="mt">검색</div>
-				<form class="search-box" name="keyword" action="" method="post">
-					<input class="search-txt" name="" placeholder="병원명으로 검색">
+				<form class="search-box" name="keyword" method="post">
+					<input id="keyword" class="search-txt" name="" placeholder="병원명으로 검색">
 					<button class="search-btn" type="submit">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
@@ -36,7 +36,7 @@
 			<div class="category">
 				<div class="ct">
 					<div class="mt2">유형</div>
-					<button class="refresh">
+					<button type="reset" class="refresh" id="refresh">
 						<div class="reicon">
 							<i class="fa-solid fa-rotate-right"></i>
 						</div>
@@ -116,7 +116,15 @@
 			<div class="line"></div>
 
 			<div class="location">
-				<div class="mt2">지역</div>
+				<div class="ct">
+					<div class="mt2">지역</div>
+					<button type="button" class="refresh" id="refresh">
+						<div class="reicon">
+							<i class="fa-solid fa-rotate-right"></i>
+						</div>
+						<span class="mt3">초기화</span>
+					</button>
+				</div>
 				<form class="locations" action="" method="post">
 					<label for="city">
 					<select name="city" id="city" class="ci">
@@ -140,7 +148,7 @@
 						<td class="st1">'서울'</td>
 						<td class="st">검색결과,</td>
 						<td class="st1">'1,192'</td>
-						<td class="st">개</td>
+						<td class="st"><span id="allCnt"></span>개</td>
 					</tr>
 				</table>
 			</div>

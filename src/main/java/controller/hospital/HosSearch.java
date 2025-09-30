@@ -2,7 +2,6 @@ package controller.hospital;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,12 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.google.gson.Gson;
 
-import dto.HospitalDto;
 import dto.otherDto.HosSearchDto;
+import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalListDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class HosSearch
@@ -41,51 +46,54 @@ public class HosSearch extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
-		String keyword = request.getParameter("keyword");
-		String[] categoryArr = request.getParameterValues("categoryName");
-		List<String> categoryName = categoryArr !=null? Arrays.asList(categoryArr): new ArrayList<>();
-		String city = request.getParameter("city");
-		String gungu = request.getParameter("gungu");
-		int offset = 0;
-		int limit = 8;
-		try {
-			offset = Integer.parseInt(request.getParameter("offset"));
-		}catch (Exception e) {}
+		String jsonParam = request.getParameter("param");
 		
 		try {
-			limit = Integer.parseInt(request.getParameter("limit"));
-		}catch (Exception e) {}
-		
-		HosSearchDto hsd = new HosSearchDto();
-		hsd.setKeyword(keyword);
-		hsd.setCategoryName(categoryName);
-		hsd.setCity(city);
-		hsd.setGungu(gungu);
-		hsd.setOffset(offset);
-		hsd.setLimit(limit);
-		
-		try {
+			System.out.println(jsonParam);
+			JSONParser parser = new JSONParser();
+			JSONObject jobj = (JSONObject)parser.parse(jsonParam);
+			String keyword = (String)jobj.get("keyword");
+			String city = (String)jobj.get("city");
+			String gungu = (String)jobj.get("gungu");
+			Long page = (Long)jobj.get("page");
+
+			JSONArray categoryNameObj = (JSONArray) jobj.get("categoryName");
+			List<String> categoryNo = new ArrayList<>();
+			for(int i=0; i<categoryNameObj.size(); i++) {
+				categoryNo.add((String)categoryNameObj.get(i));
+			}
+
+			System.out.println("==== Request Parameters ====");
+			System.out.println("keyword: " + keyword);
+			System.out.println("categoryName: " + categoryNo);
+			System.out.println("city: " + city);
+			System.out.println("gungu: " + gungu);
 			
+			HosSearchDto hsd = new HosSearchDto();
+			hsd.setKeyword(keyword);
+			hsd.setCategoryName(categoryNo);
+			hsd.setCity(city);
+			hsd.setGungu(gungu);			
+			PageInfo pageInfo = new PageInfo((int)page.longValue());
 			HospitalService hService = new HospitalServiceImpl();
-			List<HospitalDto> hoslist = hService.listByFilter(hsd);
+			List<HosSearchListDto> hoslist = hService.listByFilter(hsd,pageInfo);
+			
+			HospitalListDto hospitalListDto = new HospitalListDto();
+			hospitalListDto.setPageInfo(pageInfo);
+			hospitalListDto.setHosSearchDto(hoslist);
+			
+			
+			System.out.println("hoslist.size(): " + hoslist.size());
 			
 			Gson gson = new Gson();
-			String jsonStr = gson.toJson(hoslist);
+			String jsonStr = gson.toJson(hospitalListDto);
 			
 			response.setContentType("application/json; charset=UTF-8");
 			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(jsonStr);
-			
-//			request.setAttribute("hoslist", hoslist);
-//			request.getRequestDispatcher("/hospital/hosSearch.jsp").forward(request, response);
-			
+			response.getWriter().write(jsonStr);			
 		}catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("eeeeee");
 		}
-		
-		
 		
 	}
 
