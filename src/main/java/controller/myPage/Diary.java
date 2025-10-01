@@ -41,6 +41,7 @@ public class Diary extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 //		String dNo = request.getParameter("dNo");
 		// 세션에서 로그인 uNo 가져오기
 		HttpSession session = request.getSession();
@@ -62,8 +63,6 @@ public class Diary extends HttpServlet {
                     Gson gson = new Gson();
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("diaryList", diaryList);
-                    resultMap.put("pageInfo", pageInfo);
-
                     String result = gson.toJson(resultMap);
                     response.getWriter().write(result);
                     return;

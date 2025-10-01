@@ -256,7 +256,7 @@ body {
 }
 .no-data{
 	height: 360px;
-	display: none;
+	display: flex;
 	flex-direction: column;
 	gap: 20px;
 	justify-content: center;
