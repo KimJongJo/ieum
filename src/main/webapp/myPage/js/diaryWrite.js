@@ -36,7 +36,7 @@ $(document).ready(function() {
 		})
 		// 감정 선택 체크 (라디오 버튼)
 		if ($('input[name="emoji"]:checked').length === 0) {
-			alert('오늘의 기분을 선택해주세요.');
+			alert('기분을 선택해주세요.');
 			validYn = false;
 			return false;
 		}

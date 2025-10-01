@@ -4,28 +4,50 @@
 <mapper namespace="mapper.diary">
 	<insert id="insert" parameterType="diary">
 		INSERT INTO diary
-		(d_created, title, content, mood, u_no, target_dt)
-		VALUES (now(), #{title}, #{content}, #{mood}, #{uNo}, #{targetDt})
+		(d_created,
+		title, content, mood, u_no, target_dt)
+		VALUES (now(), #{title},
+		#{content}, #{mood}, #{uNo}, #{targetDt})
 	</insert>
-	<select id="selectDetail" parameterType="Integer" resultType="diary">
+	<select id="selectDetail" parameterType="Integer"
+		resultType="diary">
 		SELECT * FROM diary WHERE d_no=#{dNo}
 	</select>
 	<select id="selectList" parameterType="map" resultType="diary">
-		SELECT * FROM diary WHERE u_no=#{uNo} ORDER BY d_no DESC LIMIT #{row}, 10
+		SELECT *
+		FROM diary WHERE u_no=#{uNo} 
+		<if test="keyword != null and keyword != ''">
+		AND (title LIKE CONCAT('%', #{keyword}, '%')
+        OR content LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+		ORDER BY #{sort} DESC LIMIT #{row}, 10
 	</select>
 	<select id="selectCnt" resultType="Integer">
 		SELECT COUNT(*) FROM diary;
 	</select>
 	<update id="update" parameterType="diary">
-		UPDATE diary SET title=#{title}, content=#{content}, mood=#{mood}, d_updated=now() WHERE d_no=#{dNo}
+		UPDATE diary SET
+		title=#{title}, content=#{content}, mood=#{mood}, d_updated=now()
+		WHERE d_no=#{dNo}
 	</update>
 	<delete id="delete">
-		DELETE FROM diary WHERE d_no=#{dNo} 
+		DELETE FROM diary WHERE d_no=#{dNo}
 	</delete>
-	<select id="selectHisList" parameterType="Integer" resultType="diagnosisHistory">
+	<select id="selectHisList" parameterType="Integer"
+		resultType="diagnosisHistory">
 		SELECT * FROM diagnosis_history WHERE patient_id = #{uNo}
 	</select>
 	<select id="selectDate" parameterType="map" resultType="diary">
-		SELECT * FROM diary WHERE u_no=#{uNo} AND DATE(target_dt)=#{date};
+		SELECT *
+		FROM diary WHERE u_no=#{uNo} AND DATE(target_dt)=#{date}
+	</select>
+	<select id="selectCalList" parameterType="map"
+		resultType="diary">
+		SELECT *
+		FROM diary
+		WHERE u_no = #{uNo}
+		AND target_dt &gt;= #{sDate}
+		AND target_dt &lt;= #{eDate}
+		ORDER BY target_dt ASC
 	</select>
 </mapper>	

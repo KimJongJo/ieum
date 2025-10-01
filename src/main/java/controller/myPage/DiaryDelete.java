@@ -47,6 +47,7 @@ public class DiaryDelete extends HttpServlet {
 		String dNo = request.getParameter("dNo");
 		try {
 			boolean delYn = service.delete(Integer.parseInt(dNo));
+			System.out.println("diaryDelete" + delYn);
 			if (delYn) {
 				request.setAttribute("msg", "삭제");
 				if(session.getAttribute("dNo") != null) session.removeAttribute("dNo");
