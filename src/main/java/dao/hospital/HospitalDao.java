@@ -12,6 +12,7 @@ import dto.otherDto.HospitalDateFormatDto;
 public interface HospitalDao {
 	public HospitalDto select (Integer hNo) throws Exception;
 	public HosDetailDto selectHosDetail(Integer hNo) throws Exception;
+	public HosDetailDto selectDocDetail(Integer hNo) throws Exception;
 	public Integer selectCount() throws Exception;
 	public Integer addHospital(HospitalDto hosDto);
 	public List<HosSearchListDto> selectList (HosSearchDto hosSearch) throws Exception;
