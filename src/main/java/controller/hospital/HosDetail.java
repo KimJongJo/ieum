@@ -32,9 +32,19 @@ public class HosDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		Integer hNo = (Integer) session.getAttribute("hNo");
+		HospitalService hosService = new HospitalServiceImpl();
+		
+		try {
+			HosDetailDto hosd = hosService.getDetail(hNo);
+			request.setAttribute("hosd", hosd);
+			
+			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -44,17 +54,16 @@ public class HosDetail extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		HospitalService hosService = new HospitalServiceImpl();
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
 		
-		try {
-			HosDetailDto hosdd = hosService.getDetail(hNo);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		//세션에 저장
+		session.setAttribute("uNo", uNo);
+		session.setAttribute("hNo", hNo);
+		
+		//같은 컨트롤러의 get으로 이동
+		response.sendRedirect(request.getContextPath()+"/hospital/detail");
 		
 	}
 
