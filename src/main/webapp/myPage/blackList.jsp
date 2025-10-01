@@ -51,8 +51,9 @@
         
 
             <!-- 오른쪽 박스 컨테이너 -->
+        <c:forEach var="blackMember" items="${blackMember}" varStatus="status">
         <div class="boxes">
-        <c:forEach var="allComList" items="${blackMember}" varStatus="status">
+        
             <!-- 닉네임 -->
             <div class="text-wrapper-1">
             	<c:out value="${blackMember.username}" default="성명"/>
@@ -70,9 +71,9 @@
             <div class="text-wrapper-3">
             	<c:out value="${blackMember.blackCreated}" default="차단닐찌"/>
             </div>
-        </c:forEach>
+        
         </div>
-
+		</c:forEach>
     </div>
     <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>

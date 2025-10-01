@@ -32,10 +32,11 @@ public class BlackList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer uNo = 5;
 		BlackListService service = new BlackListServiceImpl();
 		
 		try {
-			List<BlackWithMemberDto> blackMember = service.getBlackWithMember();
+			List<BlackWithMemberDto> blackMember = service.getBlackWithMember(uNo);
 			request.setAttribute("blackMember", blackMember);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

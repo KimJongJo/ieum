@@ -32,8 +32,8 @@ public class BlackListDaoImpl implements BlackListDao{
     }
 
 	@Override
-	public List<BlackWithMemberDto> selectselectBlackWithMember() throws Exception {
-		return session.selectList("mapper.blacklist.selectBlackWithMember");
+	public List<BlackWithMemberDto> selectselectBlackWithMember(Integer uNo) throws Exception {
+		return session.selectList("mapper.blacklist.selectBlackWithMember", uNo);
 	}
     
     

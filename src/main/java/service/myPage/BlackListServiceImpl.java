@@ -35,9 +35,9 @@ public class BlackListServiceImpl implements BlackListService{
 
 
 	@Override
-	public List<BlackWithMemberDto> getBlackWithMember() throws Exception {
+	public List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception {
 		
-		return blackListDao.selectselectBlackWithMember();
+		return blackListDao.selectselectBlackWithMember(uNo);
 	}
     
     

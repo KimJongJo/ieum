@@ -13,5 +13,5 @@ public interface BlackListService {
 	List<Integer> getBlockedComments(int uNo, int commuNo) throws Exception;
 	
 	
-	List<BlackWithMemberDto> getBlackWithMember() throws Exception;
+	List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception;
 }

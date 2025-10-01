@@ -18,11 +18,11 @@
 	
 	<!-- blckList.jsp 쓰일 쿼리 -->
 	<select id="selectBlackWithMember" parameterType="int" resultType="blackMember">
-	    SELECT m.username, m.email, b.black_created
-	    FROM member m
-	    JOIN black_list b
-	      ON m.u_no = b.blocked_no
-	    WHERE b.blocked_no = #{uNo};
+	    select m.username, m.email, b.black_created
+		from black_list b
+		join member m
+   			on b.blocked_no = m.u_no
+		where b.u_no = #{uNo}
 	</select>
 </mapper> 		
 
