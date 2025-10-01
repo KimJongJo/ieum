@@ -44,10 +44,6 @@ public class HosDetail extends HttpServlet {
 			HosDetailDto docd = hosService.getDocDetail(hNo);
 			request.setAttribute("docd", docd);
 			
-			System.out.println(hNo);
-			System.out.println(hosd);
-			System.out.println(docd);
-			
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 		}catch (Exception e) {
 			e.printStackTrace();
