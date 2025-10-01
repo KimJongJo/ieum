@@ -8,4 +8,8 @@
 		values (#{hNo}, #{applicantName}, #{applicantEmail}, #{applicantTel}, NOW())
 	</insert>
 	
+	<select id="selectRequestInfo" parameterType="Integer" resultType="applicant">
+		select * from applicant where h_no = #{hNo}
+	</select>
+	
 </mapper>	

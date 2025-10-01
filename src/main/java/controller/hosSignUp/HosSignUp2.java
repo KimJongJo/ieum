@@ -90,27 +90,33 @@ public class HosSignUp2 extends HttpServlet {
 		String hos_x = request.getParameter("hos_x");
 		
 		List<String> holidays = new ArrayList<>();
-		for(String day : weekDay) {
-		    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
-		        holidays.add(day);
-		    }
+		String holiday;
+		if(weekDay != null) {
+			for(String day : weekDay) {
+			    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
+			        holidays.add(day);
+			    }
+			}
+			
+			holiday = String.join(",", holidays);
+		}else {
+			holiday = "무휴 진료";
 		}
-
-		String holiday = String.join(",", holidays);
 		
-		
-		List<String> hosServices = new ArrayList<>();
-		for(String day : services) {
-		    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
-		    	hosServices.add(day);
-		    }
+		String hosService;
+		if(services != null) {
+			List<String> hosServices = new ArrayList<>();
+			for(String day : services) {
+			    if(!day.equals("0") && !day.isEmpty()) { // 0 또는 빈 문자열 제외
+			    	hosServices.add(day);
+			    }
+			}
+			hosService = String.join(",", hosServices);
+		}else {
+			hosService = "편의시설 없음";
 		}
-
-		String hosService = String.join(",", hosServices);
+		
 		boolean silson = service.equals("yes") ? true : false;
-		
-		System.out.println(hosService);
-		System.out.println(silson);
 		
 		
 		// 병원사진하고 사업자 등록증만 받으면 됨
@@ -122,9 +128,6 @@ public class HosSignUp2 extends HttpServlet {
 		FileService fileService = new FileServiceImpl();
 		Integer hosImgNo = fileService.uploadFile(hosImg, "hosImg");
 		Integer hosReFileNo = fileService.uploadFile(hosReFile, "hosRe");
-		
-		System.out.println(hosImgNo);
-		System.out.println(hosReFileNo);
 		
 		String[] addArr = add.split(" ");
 		

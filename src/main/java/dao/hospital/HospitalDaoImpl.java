@@ -1,6 +1,7 @@
 package dao.hospital;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -8,6 +9,7 @@ import dto.HospitalDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDateFormatDto;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -49,5 +51,47 @@ public class HospitalDaoImpl implements HospitalDao {
 		}
 //		return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
 	}
+	// 병원 신청 대기중인 병원 수
+	@Override
+	public int hosWaitCount() {
+		return sqlsession.selectOne("hosWaitcount");
+	}
 	
+	// 병원 신청 대기중 페이징 처리
+	@Override
+	public List<HospitalDto> selectWaitHos(Map<String, Object> page) {
+		
+		return sqlsession.selectList("selectWaithos", page);
+	}
+	
+	// 병원 승인
+	@Override
+	public void approve(Integer hNo) {
+		
+		sqlsession.update("approve", hNo);
+		sqlsession.commit();
+		
+	}
+	// 병원 거부
+	@Override
+	public void reject(Integer hNo) {
+		
+		sqlsession.update("reject", hNo);
+		sqlsession.commit();
+		
+	}
+	
+	
+	// 검색한 병원의 개수 반환
+	@Override
+	public int hosWaitCountByKeyword(String keyword) {
+		
+		return sqlsession.selectOne("hosWaitCountByKeyword", keyword);
+	}
+	@Override
+	public List<HospitalDto> selectWaitHosByKeyword(Map<String, Object> page) {
+		
+		return sqlsession.selectList("selectWaitHosByKeyword", page);
+	}
+
 }

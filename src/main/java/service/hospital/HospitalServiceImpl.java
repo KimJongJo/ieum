@@ -1,5 +1,6 @@
 package service.hospital;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import dto.HospitalDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalPageResponseDto;
 import util.PageInfo;
 
 public class HospitalServiceImpl implements HospitalService {
@@ -54,12 +56,118 @@ public class HospitalServiceImpl implements HospitalService {
 		
 	}
 
+
+	// 병원 등록 신청중인 병원 리스트 조회
+	@Override
+	public HospitalPageResponseDto hosWaitList(int curPage, String filter) {
+		
+		String sort;
+		// 신청일(최신순)일 경우
+		if("created_young".equals(filter)) {
+			sort = "DESC";
+		}else {
+			sort = "ASC";
+		}
+		
+		// 정렬 조건이 없을경우
+		String sortValue;
+		
+		if(filter.equals("created_young") || filter.equals("created_old")) {  
+			sortValue = "h_created";
+		}else if(filter.equals("none")) {
+			sortValue = "h_no";
+		}else {
+			sortValue = "h_nm";
+		}
+		
+		
+	    int pageSize = 8; // 한 페이지당 데이터 수
+	    int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
+
+	    int hosCount = hosDao.hosWaitCount(); // 전체 데이터 수
+	    int allPage = (int) Math.ceil((double) hosCount / pageSize); // 전체 페이지 수
+
+	    int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+	    int endPage = Math.min(startPage + blockSize - 1, allPage);   // 끝 페이지
+
+	    int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+
+	    Map<String, Object> page = new HashMap<>();
+	    page.put("offset", offset);
+	    page.put("pageSize", pageSize);
+	    page.put("sort", sort);
+	    page.put("sortValue", sortValue);
+	    
+	    List<HospitalDto> list = hosDao.selectWaitHos(page);
+	    // 데이터 + 페이지 정보 같이 반환
+	    return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+	}
+
+	// 병원 승인
+	@Override
+	public void approve(Integer hNo) {
+		
+		hosDao.approve(hNo);
+		
+	}
+	// 병원 거부
+	@Override
+	public void reject(Integer hNo) {
+		
+		hosDao.reject(hNo);
+	}
+
+	// 검색해서 가져오는 병원 등록 리스트
+	@Override
+	public HospitalPageResponseDto hosWaitListByKeyword(int curPage, String keyword, String filter) {
+		
+		String sort;
+		// 신청일(최신순)일 경우
+		if("created_young".equals(filter)) {
+			sort = "DESC";
+		}else {
+			sort = "ASC";
+		}
+		
+		// 정렬 조건이 없을경우
+		String sortValue;
+		
+		if(filter.equals("created_young") || filter.equals("created_old")) {  
+			sortValue = "h_created";
+		}else if(filter.equals("none")) {
+			sortValue = "h_no";
+		}else {
+			sortValue = "h_nm";
+		}
+		
+	    int pageSize = 8;
+	    int blockSize = 5;
+
+	    int hosCount = hosDao.hosWaitCountByKeyword(keyword); // 검색어 기준 총 개수
+	    int allPage = (int) Math.ceil((double) hosCount / pageSize);
+
+	    int startPage = ((curPage - 1) / blockSize) * blockSize + 1;
+	    int endPage = Math.min(startPage + blockSize - 1, allPage);
+
+	    int offset = (curPage - 1) * pageSize;
+
+	    Map<String, Object> page = new HashMap<>();
+	    page.put("offset", offset);
+	    page.put("pageSize", pageSize);
+	    page.put("keyword", keyword); // 검색어 전달
+	    page.put("sort", sort);
+	    page.put("sortValue", sortValue);
+
+	    List<HospitalDto> list = hosDao.selectWaitHosByKeyword(page);
+
+	    return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+	}
+
 	@Override
 	public HosDetailDto getDetail(Integer hNm) throws Exception {
 		
 		// 병원 디테일정보 가져오기
 		return hosDao.selectHosDetail(hNm);
 	}
-
 
 }

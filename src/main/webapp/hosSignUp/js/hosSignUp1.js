@@ -89,6 +89,7 @@ $("#mailSendBtn").click(function () {
         emailAdd = directVal; // 직접 입력
     }
 
+	alert("인증 코드가 이메일로 전송되었습니다.");
     var email = emailId + "@" + emailAdd;
 
     
@@ -100,9 +101,7 @@ $("#mailSendBtn").click(function () {
         data: { email ,type:"requestHos"},
         dataType: "json",
         success: function(response) {
-                if(response.success) {
-                    alert("인증 코드가 이메일로 전송되었습니다.");
-                } else {
+                if(!response.success) {
                     alert(response.message);
                 }
                 $("#mailSendBtn").prop("disabled", false);

@@ -3,7 +3,6 @@ package dto;
 import java.sql.Date;
 
 public class HospitalDto {
-
 	Integer hNo; // 병원 번호
 	String hNm; // 병원 이름
 	Integer categoryNo; // 카테고리
@@ -30,7 +29,6 @@ public class HospitalDto {
 	public HospitalDto() {
 		super();
 	}
-
 	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
 			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, String introduceNote,
 			Integer hosImgFileNo, Integer hosReFileNo, String hosReNo, Date hCreated, Date hUpdated, String status,
@@ -59,7 +57,6 @@ public class HospitalDto {
 		this.services = services;
 		this.silson = silson;
 	}
-
 	@Override
 	public String toString() {
 		return "HospitalDto [hNo=" + hNo + ", hNm=" + hNm + ", categoryNo=" + categoryNo + ", hAddress=" + hAddress
@@ -68,6 +65,65 @@ public class HospitalDto {
 				+ introduceNote + ", hosImgFileNo=" + hosImgFileNo + ", hosReFileNo=" + hosReFileNo + ", hosReNo="
 				+ hosReNo + ", hCreated=" + hCreated + ", hUpdated=" + hUpdated + ", status=" + status + ", hCode="
 				+ hCode + ", city=" + city + ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + "]";
+	}
+
+
+
+	public String getIntroduceNote() {
+		return introduceNote;
+	}
+
+	public void setIntroduceNote(String introduceNote) {
+		this.introduceNote = introduceNote;
+	}
+
+
+	public String getServices() {
+		return services;
+	}
+
+
+	public void setServices(String services) {
+		this.services = services;
+	}
+
+
+
+	public Integer getHosImgFileNo() {
+		return hosImgFileNo;
+	}
+
+
+	public void setHosImgFileNo(Integer hosImgFileNo) {
+		this.hosImgFileNo = hosImgFileNo;
+	}
+
+
+	public Integer getHosReFileNo() {
+		return hosReFileNo;
+	}
+
+
+
+	public void setHosReFileNo(Integer hosReFileNo) {
+		this.hosReFileNo = hosReFileNo;
+	}
+
+	public String getHosReNo() {
+		return hosReNo;
+	}
+
+	public void setHosReNo(String hosReNo) {
+		this.hosReNo = hosReNo;
+	}
+
+	public boolean isSilson() {
+		return silson;
+	}
+
+
+	public void setSilson(boolean silson) {
+		this.silson = silson;
 	}
 
 	public Integer gethNo() {
@@ -161,6 +217,7 @@ public class HospitalDto {
 	public Integer getHosImgFileNo() {
 		return hosImgFileNo;
 	}
+
 
 	public void setHosImgFileNo(Integer hosImgFileNo) {
 		this.hosImgFileNo = hosImgFileNo;

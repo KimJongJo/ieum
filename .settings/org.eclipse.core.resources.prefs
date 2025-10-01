@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/config.properties=UTF-8
 encoding//src/main/webapp/common/join/join1.jsp=UTF-8
 encoding//src/main/webapp/hosManager/diaWrite.jsp=UTF-8
 encoding//src/main/webapp/hosManager/patientInfo.jsp=UTF-8

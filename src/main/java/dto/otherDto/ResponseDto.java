@@ -3,6 +3,7 @@ package dto.otherDto;
 public class ResponseDto {
 	private boolean success; // 성공 여부
     private String message;  // 성공/실패 메시지
+    private Object object;
     
 	public ResponseDto() {
 		super();
@@ -12,6 +13,13 @@ public class ResponseDto {
 		super();
 		this.success = success;
 		this.message = message;
+	}
+	
+	public ResponseDto(boolean success, String message, Object object) {
+		super();
+		this.success = success;
+		this.message = message;
+		this.object = object;
 	}
 
 	public boolean isSuccess() {
@@ -29,6 +37,15 @@ public class ResponseDto {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public Object getObject() {
+		return object;
+	}
+
+	public void setObject(Object object) {
+		this.object = object;
+	}
+	
 	
     
     
