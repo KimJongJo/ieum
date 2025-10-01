@@ -9,6 +9,7 @@ import dao.hospital.HospitalDao;
 import dao.hospital.HospitalDaoImpl;
 import dto.ApplicantDto;
 import dto.HospitalDto;
+import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
 import util.PageInfo;
@@ -23,7 +24,9 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public List<HosSearchListDto> listByFilter(HosSearchDto hosSearch, PageInfo pageInfo) throws Exception {	
+	public List<HosSearchListDto> listByFilter(HosSearchDto hosSearch, PageInfo pageInfo) throws Exception {
+		
+		//병원목록 필터 조회
 		Integer hosCnt = hosDao.selectListResCnt(hosSearch);
 		pageInfo.setAllCnt(hosCnt);
 		Integer allPage = (int)Math.ceil((double)hosCnt/8); 
@@ -49,6 +52,13 @@ public class HospitalServiceImpl implements HospitalService {
 		appDto.sethNo(hosNo);
 		appDao.addApplicant(appDto);
 		
+	}
+
+	@Override
+	public HosDetailDto getDetail(Integer hNm) throws Exception {
+		
+		// 병원 디테일정보 가져오기
+		return hosDao.selectHosDetail(hNm);
 	}
 
 

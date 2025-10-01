@@ -33,42 +33,20 @@ const regionData = {
 	"제주특별자치도": ["제주시", "서귀포시"]
 };
 
-$(document).ready(function() {
-	// 1. 시/도 옵션 채우기
-	$.each(regionData, function(city, gungu) {
-		$("#city").append(`<option value="${city}">${city}</option>`);
-	});
 
-
-	// 2. 시/도 선택 시 시군구 옵션 갱신
-	$("#city").change(function() {
-		const city = $(this).val().trim();
-		const $gungu = $("#gungu");
-
-		$gungu.empty().append("<option value=''>시군구를 선택하세요</option>");
-
-		const gungus = regionData[city];
-		if (gungus && gungus.length > 0) {
-			$.each(gungus, function(index, gungu) {
-				$gungu.append(`<option value="${gungu}">${gungu}</option>`);
-			});
-		}
-		console.log("선택 city:", city, "gungu list:", gungus);
-	});
-
-	
-
-});
-
-const limit = 8;
 let loading = false;
 let endReached = false;
 let curPge = 1;
 let allPage = 1;
 
-function loadHospitals(page) {
+function loadHospitals(page, appendMode = false) {
+	if (loading) return;
 	loading = true;
-	$("#hospitalList").empty();
+
+	// appendMode가 false면 초기화
+	if (!appendMode) {
+		$("#hospitalList").empty();
+	}
 
 	const keyword = $("#keyword").val();
 	const city = $("#city").val();
@@ -78,34 +56,46 @@ function loadHospitals(page) {
 		.each(function() {
 			categoryNo.push($(this).val());
 		});
-	console.log(categoryNo)
+		
+		
 	$.ajax({
 		url: "/ieum/hospital/search",
 		async: true,
 		method: "POST",
 		dataType: 'json',
-		data: { param : JSON.stringify({
-			keyword: keyword,
-			city: city,
-			gungu: gungu,
-			categoryNo: categoryNo,
-			page:page})
+		data: {
+			param: JSON.stringify({
+				keyword: keyword,
+				city: city,
+				gungu: gungu,
+				categoryNo: categoryNo,
+				page: page
+			})
 		},
 
 		success: function(data) {
-			console.log(data)
+			allCnt = data.pageInfo.allCnt;
+			curPge = data.pageInfo.curPage;
+			allPage = data.pageInfo.allPage;
+			$('#allCnt').text(allCnt);
+			$("#keywordTxt").text(keyword || '전체');
 
-			allCnt=data.pageInfo.allCnt;
-			curPge=data.pageInfo.curPage;
-			allPage=data.pageInfo.allPage;
-			$('#allCnt').text(allCnt)
-			data.hosSearchDto.forEach(h => {
+
+			if (allCnt === 0 && !appendMode) {
 				$("#hospitalList").append(`
+					<div class="list-box2">
+            <div class="icon2"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <span class="t1">검색결과가 없습니다.</span>
+        </div>
+					`);
+			} else {
+				data.hosSearchDto.forEach(h => {
+					$("#hospitalList").append(`
                     <div class="list-box">
 					<div class="right3">
 						<img class="hosf" src="" />
 						<div class="infodetail">
-							<div class="hos-category">${h.categoryNo}</div>
+							<div class="hos-category">${h.categoryName}</div>
 							<div class="hos-name">${h.hNm}</div>
 							<div class="hos-loca">
 								<div class="icon3">
@@ -120,9 +110,23 @@ function loadHospitals(page) {
 					</div>
 				</div>
                 `);
-			});
+				});
+				
+				 $("#loadMore").empty();
+				 $("#goTop").empty();
+				
+				if (curPge < allPage) {
+				$("#loadMore").append(`
+					<div class="loadmore"><button class="btn-cir-w">
+           				 더보기<i class="fa-solid fa-chevron-down"></i></button></div>`)
+				}else {
+					$("#goTop").append(`
+					<div class="loadmore"><button class="btn-cir-w">
+           				 맨위로<i class="fa-solid fa-angle-up"></i></button></div>
+					`)
+				}
+			}
 
-			offset += data.length;
 			loading = false;
 		},
 		error: function(err) {
@@ -132,28 +136,91 @@ function loadHospitals(page) {
 	});
 }
 
+
 // 초기 로드
 loadHospitals(1);
 
+//키워드 클릭시 창 지움
+$("#keyword").on("focus", function() {
+	$(this).val("");
+});
 
 // 키워드 입력 시 엔터 막기 & 검색
 $("#keyword").closest("form").on("submit", function(e) {
 	e.preventDefault();
+	loadHospitals(1);
+	// 입력창 포커스 해제
+	$("#keyword").blur();
 });
 
-$("#refresh").on("click", function(e) {
-	
+// 카테고리 체크박스 리셋
+$("#refresh1").on("click", function(e) {
+	$("input[name='hc']").prop("checked", false);
+	loadHospitals(1);
+});
+
+// 시/도 옵션 채우기
+$.each(regionData, function(city, gungu) {
+	$("#city").append(`<option value="${city}">${city}</option>`);
+});
+
+
+// 시/도 선택 시 시군구 옵션 갱신
+$("#city").change(function() {
+	const city = $(this).val().trim();
+	const $gungu = $("#gungu");
+
+	$gungu.empty().append("<option value=''>시·군·구</option>");
+
+	const gungus = regionData[city];
+	if (gungus && gungus.length > 0) {
+		$.each(gungus, function(index, gungu) {
+			$gungu.append(`<option value="${gungu}">${gungu}</option>`);
+		});
+	}
+});
+
+//지역선택 리셋
+$("#refresh2").on("click", function(e) {
+	$("#city").val("");
+	$("#gungu").val("");
+	loadHospitals(1);
 });
 
 // 필터 변경 이벤트
-$("#keyword, #city, #gungu, input[name='hc']").on("change keyup", function() {
+$("#city, #gungu, input[name='hc']").on("change keyup", function() {
 	loadHospitals(1);
 });
 
 
-// loadMore 버튼 이벤트
+// 더보기 버튼 이벤트
 $("#loadMore").on("click", function() {
-	loadHospitals(curPge+1);
+	if (curPge < allPage) {
+        loadHospitals(curPge + 1, true); // appendMode=true
+    }
+});
+
+//맨위로 버튼
+$("#goTop").on("click", function(){
+	$('html, container').animate({ scrollTop: 0 }, 'slow');
+});
+
+//리스트에서 특정 병원 클릭
+$(".list-box").on("click", function() {
+    const hNo = $(this).data("hno"); // 리스트에 출력된 병원 번호
+    
+    $.ajax({
+        url: "/hospital/setDetail",   // hNo 저장만 하는 컨트롤러
+        type: "POST",
+        data: { hNo: hNo },
+        success: function() {
+            // 저장이 끝나면 이동 (URL에 hNo 안 붙음)
+            window.location.href = "/hospital/detail";
+        },
+        error: function(err) {
+            console.log("저장 실패:", err);
+        }
+    });
 });
 
 

@@ -49,7 +49,6 @@ public class HosSearch extends HttpServlet {
 		String jsonParam = request.getParameter("param");
 		
 		try {
-			System.out.println(jsonParam);
 			JSONParser parser = new JSONParser();
 			JSONObject jobj = (JSONObject)parser.parse(jsonParam);
 			String keyword = (String)jobj.get("keyword");
@@ -57,18 +56,12 @@ public class HosSearch extends HttpServlet {
 			String gungu = (String)jobj.get("gungu");
 			Long page = (Long)jobj.get("page");
 
-			JSONArray categoryNameObj = (JSONArray) jobj.get("categoryName");
+			JSONArray categoryNoObj = (JSONArray) jobj.get("categoryNo");
 			List<String> categoryNo = new ArrayList<>();
-			for(int i=0; i<categoryNameObj.size(); i++) {
-				categoryNo.add((String)categoryNameObj.get(i));
+			for(int i=0; i<categoryNoObj.size(); i++) {
+				categoryNo.add((String)categoryNoObj.get(i));
 			}
-
-			System.out.println("==== Request Parameters ====");
-			System.out.println("keyword: " + keyword);
-			System.out.println("categoryName: " + categoryNo);
-			System.out.println("city: " + city);
-			System.out.println("gungu: " + gungu);
-			
+		
 			HosSearchDto hsd = new HosSearchDto();
 			hsd.setKeyword(keyword);
 			hsd.setCategoryName(categoryNo);
@@ -81,9 +74,6 @@ public class HosSearch extends HttpServlet {
 			HospitalListDto hospitalListDto = new HospitalListDto();
 			hospitalListDto.setPageInfo(pageInfo);
 			hospitalListDto.setHosSearchDto(hoslist);
-			
-			
-			System.out.println("hoslist.size(): " + hoslist.size());
 			
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(hospitalListDto);
