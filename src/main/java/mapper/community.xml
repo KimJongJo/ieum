@@ -58,4 +58,8 @@
     	where commu_no = #{commuNo} 
     </update>
     
+    
+    
+    <!-- 댓글수 가져오기 -->
+    
 </mapper>	
