@@ -11,17 +11,27 @@
 	
 	<select id="selectCount" resultType="Integer">
 	select count(*) from hospital 
+	where status = 'ACTIVE'
 	</select>
 	
-	<!-- 병원페이지: 병원정보&의사정보 -->
+	<!-- 병원페이지: 병원정보 -->
 	<select id="selectHosDetail" resultType="hosDetail">
-	select h.h_no, h.h_nm, h.category_no, h.h_address, h.transfer_info, 
+	select h.h_no, h.h_nm, c.category_name, h.h_address, h.transfer_info, 
 	h.holiday_info, h.h_tel, h.h_link, h.news_title,h.news_content, h.hos_img_file_no,
-	h.services, h.silson, m.username, m.major, m.introduction, m.file_no
+	h.services, h.silson
+	from hospital h
+	join hos_category c
+	using (category_no)
+	where h_no=#{hNo} and status = 'ACTIVE'
+	</select>
+	
+	<!-- 병원: 의사정보 -->
+	<select id="selectHosDetailDoc" resultType="hosDetail">
+	select h.h_no,m.username, m.major, m.introduction, m.file_no
 	from hospital h
 	join member m
 	using (h_no)
-	where h_no=#{hNo}
+	where h_no=#{hNo} and status = 'ACTIVE'
 	</select>
 	
 	<!-- 필터 정렬: 예약 많은 순 -->
@@ -48,6 +58,7 @@
 	<if test="gungu !=null and gungu !=''">
 	and h.gungu = #{gungu}
 	</if>
+	and status = 'ACTIVE'
 	</where>
 	group by h.h_no, h.h_nm, h.hos_img_file_no, h.transfer_info
 	order by resCount desc
@@ -61,7 +72,7 @@
 		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{services}, #{silson})
 	</insert>
 	
-	<!-- 필터 정렬: 예약 많은 순 -->
+	<!-- 필터 정렬: 갯수 -->
 	<select id="selectListResCnt" parameterType="hosfilter" resultType="Integer">
 	select count(*)
 	from hospital h
@@ -85,6 +96,7 @@
 	<if test="gungu !=null and gungu !=''">
 	and h.gungu = #{gungu}
 	</if>
+	and status = 'ACTIVE'
 	</where>
 	</select>	
 	
