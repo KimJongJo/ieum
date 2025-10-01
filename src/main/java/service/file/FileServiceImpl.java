@@ -24,6 +24,15 @@ public class FileServiceImpl implements FileService {
 		
 		return fileDao.uploadFile(file);
 	}
+	
+	// 관리자 회원 회원가입 기본 회원 이미지 넣기
+	@Override
+	public Integer managerJoin(FileDto file) {
+		
+		return fileDao.uploadFile(file);
+	}
+
+	
 	// 병원 파일 업로드
 	@Override
 	public Integer uploadFile(Part file, String type) throws IOException {
@@ -34,13 +43,13 @@ public class FileServiceImpl implements FileService {
 		FileDto fileDto;
 		String realFilePath;
 		if(type.equals("hosImg")) { // 병원 이미지 파일이면
-			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosImg";
-//			realFilePath="C:\\testImg";
+//			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosImg";
+			realFilePath="C:\\testImg";
 			filePath = "img\\hosImg\\";
 			fileDto = new FileDto(fileName, filePath, "hosProfile");
-		}else { // 사업자등록증파일이면
-			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosRe";
-//			realFilePath="C:\\testImg";
+		}else{ // 사업자등록증파일이면
+//			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosRe";
+			realFilePath="C:\\testImg";
 			filePath = "img\\hosRe\\";
 			fileDto = new FileDto(fileName, filePath, "hosRequestFile");
 		}
@@ -51,4 +60,5 @@ public class FileServiceImpl implements FileService {
 		Integer no = fileDao.uploadFile(fileDto);
 		return no;
 	}
+	
 }

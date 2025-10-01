@@ -26,4 +26,6 @@ public interface HospitalService {
 	void reject(Integer hNo);
 
 	List<HospitalDto> joinSearchHosName(String keyword);
+
+	boolean checkHosAuthCode(Integer hNo, String hosAuthCode);
 }

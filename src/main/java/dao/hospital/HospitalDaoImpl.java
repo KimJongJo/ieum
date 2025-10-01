@@ -99,5 +99,12 @@ public class HospitalDaoImpl implements HospitalDao {
 		
 		return sqlsession.selectList("joinSearchHosName", keyword);
 	}
+	
+	// 병원 인증
+	@Override
+	public HospitalDto checkHosAuthCode(Map<String, Object> hosMap) {
+		
+		return sqlsession.selectOne("checkHosAuthCode", hosMap);
+	}
 
 }

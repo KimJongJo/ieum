@@ -129,7 +129,11 @@
 	</update>
 	
 	<select id="joinSearchHosName" parameterType="String" resultType="hospital">
-		select * from hospital where h_nm like ()
+		select * from hospital where h_nm like concat('%', #{keyword}, '%') and status = 'ACTIVE'
+	</select>
+	
+	<select id="checkHosAuthCode" parameterType="Map" resultType="hospital">
+		select * from hospital where h_no = #{hNo} and h_code = #{hosAuthCode}
 	</select>
 
 </mapper>	

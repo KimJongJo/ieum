@@ -174,7 +174,7 @@
             .hos-info-div{
             	margin-top:10px;
             	height:165px;
-            	width:236px;
+            	width:326px;
             	border:2px solid #d4d4d4;
             	border-radius: 5px;
             	overflow: auto;
@@ -490,7 +490,7 @@
             }
             
             .search-bar-hos{
-            
+            	width:260px;
             	height:32px;
             	border: 2px solid #d4d4d4;
             	border-radius: 5px;
@@ -527,7 +527,7 @@
             }
             
             .search-dox{
-            	width:240px;
+            	width:330px;
             	height:250px;
             }
             

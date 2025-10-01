@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div>
-                    <form action="/ieum/join5" method="post">
+                    <form action="/ieum/signUp2" method="post">
                         <div class="info-box">
                             <div class="line-div">
                                 <div class="span-div  info-check-div">
@@ -161,7 +161,7 @@
                                     <span class="info">성별</span>
                                 </div>
                                 <div class="input-div2 gender input">
-                                    <input type="radio" id="man" name="gender" checked /><label for="man">남</label><input type="radio" id="women" name="gender" /><label for="women">여</label>
+                                    <input type="radio" id="man" name="gender" value="M" checked /><label for="man">남</label><input type="radio" id="women" name="gender" value="F" /><label for="women">여</label>
                                 </div>
                             </div>
                             <div class="line-div2">
@@ -188,31 +188,32 @@
                                 </div>
                             </div>
                             <div class="check-pw2">
-                                <div class="span-div2-pw2">
+                                <div class="span-div2-pw2 info-check-div">
                                     <span class="info">소속병원 및 병원코드</span>
-                                    <span class="i-span" id=hos-span><i class="fa-solid fa-check span-check" id="hos-i"></i></span>
+                                    <span class="i-span" id=hosAuth-span><i class="fa-solid fa-check span-check" id="hosAuth-i"></i></span>
                                 </div>
                                 <div class="input hos-info-write-div">
                                 	<div class="input-div2-pw2 ">
 	                                    <div class="input-div2-addr">
-	                                        <input type="text" class="login-input" readonly/>
+	                                        <input id="hosNameInput" type="text" class="login-input" readonly/>
+	                                        <input id="hNo" type="hidden" name="hNo">
 	                                        <button id="open-modal" class="signUp-btn" type="button">병원검색</button>
 	                                    </div>
 	                                    <div class="input-div2-addr">
-	                                        <input type="tel" placeholder="병원코드입력" class="login-input" />
-	                                        <button class="signUp-btn" type="button">인증</button>
+	                                        <input id="hosAuthCode" type="password" placeholder="병원코드입력(10자리)" class="login-input" />
+	                                        <button id="hosAuth" class="signUp-btn" type="button">인증</button>
 	                                    </div>
 	                                    <div class="major-div">
-	                                        <select class="major-select" id="major-select">
-	                                            <option value="doctor">의사</option>
-	                                            <option value="normal">병원관리자</option>
+	                                        <select class="major-select" id="major-select" name="userType">
+	                                            <option value="DOCTOR">의사</option>
+	                                            <option value="MANAGER">병원관리자</option>
 	                                        </select>
-	                                        <select class="major-select" id="doctor-major">
-	                                            <option>정신건강의학과</option>
-	                                            <option>소아청소년 정신과</option>
-	                                            <option>노인정신과</option>
-	                                            <option>중독,재활 정신과</option>
-	                                            <option>심리치료/상담</option>
+	                                        <select class="major-select" id="doctor-major" name="major">
+	                                            <option value="정신건강의학과">정신건강의학과</option>
+	                                            <option value="소아청소년 정신과">소아청소년 정신과</option>
+	                                            <option value="노인정신과">노인정신과</option>
+	                                            <option value="중독,재활 정신과">중독,재활 정신과</option>
+	                                            <option value="심리치료/상담">심리치료/상담</option>
 	                                        </select>
 	                                    </div>
                                     </div>
@@ -220,7 +221,7 @@
                             </div>
                         </div>
                         <div class="btn-div">
-                            <button class="sign-btn">가입하기</button>
+                            <button id="signUp-btn" class="sign-btn">가입하기</button>
                         </div>
                     </form>
                 </div>
@@ -239,8 +240,7 @@
 		            		<input id="hosName" class="search-bar-hos" type="text" placeholder="병원 이름을 입력해주세요" />
 		            		<button id="hosName-search-btn" class="search-hos-btn">검색</button>
 		            	</div>
-		                <div class="hos-info-div">
-		                	<div class="hosName">인천광역시계양구중앙보건의료센터</div>
+		                <div id="hosList" class="hos-info-div">
 		                </div>
 		                <div class="hos-select-div">
 		                	<button class="select-btn">선택</button>
