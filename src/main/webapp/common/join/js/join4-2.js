@@ -55,13 +55,19 @@ $("#hosName-search-btn").click(function () {
 		dataType:"json",
 		success:function(res){
 			if(res.success){
-				let rows = "";
-				// 성공
-				res.object.forEach(item => {
-					rows += `
-						<div value="${item.hNo}" class="hosName">${item.hNm} (${item.city} ${item.gungu})</div>
-					`
-				})
+				
+				if(res.object.length > 0){
+					let rows = "";
+					// 성공
+					res.object.forEach(item => {
+						rows += `
+							<div value="${item.hNo}" class="hosName">${item.hNm} (${item.city} ${item.gungu})</div>
+						`
+					})
+						
+				}else{
+					rows = `<div class="no-search-hos"><span>검색 결과에 맞는 병원이 존재하지않습니다.</span></div>`
+				}
 				$("#hosList").html(rows);
 			}else{
 				// 실패

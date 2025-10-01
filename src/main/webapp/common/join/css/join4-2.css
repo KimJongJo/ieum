@@ -562,3 +562,16 @@
             	font-weight:bold;
             }
             
+            .no-search-hos{
+            	display:flex;
+            	justify-content:center;
+            	align-items:center;
+            	width:100%;
+            	height:100%;
+            	
+            }
+            
+            .no-search-hos > span{
+            	font-size:13px;
+            	color:#b8b8b8;
+            }
