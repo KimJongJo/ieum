@@ -11,6 +11,300 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/myCommunityList.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/myCommunityList.js"></script>
+<style type="text/css">
+/* 전체 레이아웃 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+}
+
+
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ✅ 메인 영역 - 1280px 중앙 고정 */
+.main-container {
+    width: 1280px;
+    margin: 20px auto 0 auto; /* 위 60px 띄우고 가운데 정렬 */
+    display: flex;
+    gap: 40px; /* 사이 간격 */
+}
+
+/* 사이드바 */
+.sidebar {
+    width: 195px;
+    height: 550px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.sidebar-header {
+    background-color: #4a64d6;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 114px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.6;
+}
+.welcome {
+    background-color: #e9ebf5;
+    text-align: left;
+    padding: 15px 15px;
+    border-bottom: 1px solid #ccc;
+}
+.welcome strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.welcome span {
+    font-size: 12px;
+    color: #555;
+}
+.sidebar-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-body ul li {
+    padding: 0; /* li 자체 여백 제거 */
+    border-top: 1px solid #ccc;
+}
+
+.sidebar-body ul li button {
+    width: 100%; /* li 전체 넓이 차지 */
+    height: 48px; /* 기존 li 높이와 동일 */
+    line-height: 48px;
+    text-align: left;
+    font-size: 14px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0 16px; /* 기존 li 좌우 여백 유지 */
+}
+
+.sidebar-body ul li button:hover {
+    background-color: #f7f7f7;
+}
+
+/* 클릭 시 살짝 눌리는 효과 */
+.sidebar-body ul li button:active {
+    transform: translateY(2px);
+    filter: brightness(90%);
+}
+
+
+
+/* 옵션 컨테이너 */
+.option-containerList {
+    flex: 1;       /* 남은 공간 차지 */
+    display: flex;
+    align-items: flex-start; /* 사이드바와 상단 맞춤 */
+}
+
+#option-container {
+    width: 998px;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* 공통 탭 스타일 */
+.tab-commu, .tab-comment, .tab-heart {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+/* 클릭 시 활성화 */
+.tab-commu.active, .tab-comment.active, .tab-heart.active {
+    background-color: #4356B3;
+    color: #fff;
+    font-weight: bold;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 1003px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #d9d9d9;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 상단: 닉네임 + 카테고리 */
+.frame-top {
+  display: flex;
+  justify-content: space-between; /* 좌우 분리 */
+  align-items: center;
+}
+
+/* 닉네임 */
+.text-wrapper-1 {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  color: #000;
+}
+
+/* 카테고리 */
+.text-wrapper-2 {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 14px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 제목 및 본문 */
+.overlap-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  font-family: "Noto Sans-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+
+.p {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50ch; /* 약 20글자 */
+}
+
+/* 업로드 날짜 */
+.text-wrapper-3 {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  color: #000;
+}
+
+.actions {
+       position: absolute;
+       bottom: 10px;
+       right: 15px;
+       display: flex;
+       gap: 10px;
+       font-size: 14px;
+   }
+   
+   .action-item {
+       display: flex;
+       align-items: center;
+       gap: 2px;          /* 아이콘과 숫자 사이 간격 */
+       width: 50px;        /* 3자리 기준 고정 */
+   }
+   
+   .action-item span.action-count {
+       display: inline-block;
+       min-width: 20px;   /* 숫자 자리 고정 */
+       text-align: left;  /* 숫자 왼쪽 정렬 */
+   }
+
+
+/* 댓글 스타일 */
+.comment {
+  position: relative;
+  width: 100%;
+  max-width: 1003px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #d9d9d9;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 상단: 닉네임 + 카테고리 */
+.comment-top {
+  display: flex;
+  justify-content: space-between; /* 좌우 분리 */
+  align-items: center;
+}
+
+/* 닉네임 */
+.nickName {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  color: #000;
+}
+
+
+/* 제목 및 본문 */
+.overlap-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.div {
+  font-family: "Noto Sans-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+
+.p {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50ch; /* 약 20글자 */
+}
+
+/* 업로드 날짜 */
+.text-wrapper-3 {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  color: #000;
+}
+
+/* 액션 아이콘 오른쪽 아래 고정 */
+#actions {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+}
+</style>
 </head>
 <body>
 
