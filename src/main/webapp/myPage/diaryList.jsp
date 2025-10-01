@@ -53,16 +53,17 @@
 			<!-- 검색 및 작성 버튼 -->
 			<div class="button-wrapper">
 				<div class="notice-search">
-					<input type="text" placeholder="검색어를 입력하세요">
-					<button type="button">
+					<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
+					<button type="button" onclick="searchDiary()">
 						검색 <i class="fa-solid fa-magnifying-glass"></i>
 					</button>
 				</div>
 
-				<select class="notice-select">
+				<select class="notice-select" onchange="sortDiary(this)">
 					<option selected disabled value="none">정렬</option>
-					<option>최신순</option>
-					<option>제목순</option>
+					<option value="d_created">최신순</option>
+					<option value="target_dt">날짜순</option>
+					<option value="title">제목순</option>
 				</select>
 				<button class="btn-rec-w"
 					onclick="location.href=`${contextPath}/myPage/diary/write`">작성</button>
@@ -70,11 +71,10 @@
 			<form id="diaryForm" method="post"
 				action="${contextPath}/myPage/diary">
 				<input type="hidden" name="dNo" id="dNoInput" value="123">
-				<c:choose>
-
-					<c:when test="${not empty diaryList}">
-						<!-- 다이어리 리스트 -->
-						<table class="diary-list">
+				<!-- 다이어리 리스트 -->
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${not empty diaryList}"> --%>
+						<table class="diary-list" id="diaryList">
 							<colgroup>
 								<col style="width: 20%;">
 								<col style="width: 55%;">
@@ -90,7 +90,7 @@
 									<th>기분</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="diaryListBody">
 								<c:forEach var="diary" items="${diaryList}">
 									<tr class="diary-item" onclick="goDetail(${diary.dNo})">
 										<td class="diary-title-row"><span class="diary-title">${diary.title}</span>
@@ -105,22 +105,27 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</c:when>
-					<c:otherwise>
-						<div class="no-data">
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+						<div class="no-data" id="noDataList">
 							<div class="icon">
 								<i class="fa-solid fa-circle-exclamation"></i>
 							</div>
-							<div>
-								작성된 다이어리가 없습니다.
-								</td>
-							</div>
-					</c:otherwise>
-				</c:choose>
+							<div>작성된 다이어리가 없습니다.</div>
+						</div>
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+<!-- 				<div class="no-data" id="noSearchList"> -->
+<!-- 					<div class="icon"> -->
+<!-- 						<i class="fa-solid fa-circle-exclamation"></i> -->
+<!-- 					</div> -->
+<!-- 					<div>검색결과가 없습니다.</div> -->
+<!-- 				</div> -->
 			</form>
 
 			<!-- 상세 팝업 -->
-			<form id="hiddenForm" method="post" action="${contextPath}/myPage/diary/delete">
+			<form id="hiddenForm" method="post"
+				action="${contextPath}/myPage/diary/delete">
 				<input type="hidden" id="popupDNo" name="dNo">
 				<div class="detail-popup" style="display: none;">
 					<button type="button" id="close-btn" class="close-btn">
@@ -149,9 +154,9 @@
 							formaction="${contextPath}/myPage/diary/update">수정</button>
 						<button type="button" class="btn-cir-b" id="delBtn">삭제</button>
 						<c:if test="${recentHistory}">
-						<a class="btn-link" href="${contextPath}/myPage/diagnosisHistory">
-							<button type="button" class="btn-cir-w">상담이력 바로가기</button>
-						</a>
+							<a class="btn-link" href="${contextPath}/myPage/diagnosisHistory">
+								<button type="button" class="btn-cir-w">상담이력 바로가기</button>
+							</a>
 						</c:if>
 					</div>
 				</div>
@@ -207,17 +212,33 @@
 
 
 			<!-- 페이지네이션 -->
-			<c:if test="${not empty diaryList}">
-				<div class="diary-footer">
-					<div class="pagination" id="pagination">
-						<button>&lt;</button>
-						<c:forEach begin="1" end="10" var="pageNum">
-							<button class="${pageNum == 1 ? 'active' : ''}">${pageNum}</button>
-						</c:forEach>
-						<button>&gt;</button>
-					</div>
+			<div class="diary-footer">
+				<div class="pagination" id="pagination">
+					<!-- 이전 버튼 -->
+					<button
+						<c:if test="${pageInfo.curPage > 1}">
+                    onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage-1}'"
+                </c:if>>
+						&lt;</button>
+
+					<!-- 페이지 번호 반복 -->
+					<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}"
+						step="1" var="pageNum">
+						<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
+							onclick="location.href='${contextPath}/myPage/diary?page=${pageNum}'">
+							${pageNum}</button>
+					</c:forEach>
+
+					<!-- 다음 버튼 -->
+					<button
+						<c:if test="${pageInfo.curPage < pageInfo.allPage}">
+                    onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage+1}'"
+                </c:if>>
+						&gt;</button>
+
+
 				</div>
-			</c:if>
+			</div>
 		</div>
 	</div>
 	<footer></footer>

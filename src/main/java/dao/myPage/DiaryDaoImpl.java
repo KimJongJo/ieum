@@ -35,11 +35,13 @@ public class DiaryDaoImpl implements DiaryDao {
 	}
 
 	@Override
-	public List<DiaryDto> selectDiaryList(Integer uNo, Integer row) throws Exception {
+	public List<DiaryDto> selectDiaryList(Integer uNo, String keyword, String sort, Integer row) throws Exception {
 		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("uNo", uNo);
 			params.put("row", row);
+			params.put("keyword", keyword);
+			params.put("sort", sort);
 			return session.selectList("selectList", params);
 		}
 	}

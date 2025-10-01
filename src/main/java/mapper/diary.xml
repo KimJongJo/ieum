@@ -15,7 +15,12 @@
 	</select>
 	<select id="selectList" parameterType="map" resultType="diary">
 		SELECT *
-		FROM diary WHERE u_no=#{uNo} ORDER BY d_no DESC LIMIT #{row}, 10
+		FROM diary WHERE u_no=#{uNo} 
+		<if test="keyword != null and keyword != ''">
+		AND (title LIKE CONCAT('%', #{keyword}, '%')
+        OR content LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+		ORDER BY #{sort} DESC LIMIT #{row}, 10
 	</select>
 	<select id="selectCnt" resultType="Integer">
 		SELECT COUNT(*) FROM diary;

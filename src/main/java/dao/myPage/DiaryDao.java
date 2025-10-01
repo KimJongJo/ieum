@@ -12,7 +12,7 @@ public interface DiaryDao {
 
 	public Integer cnt() throws Exception;
 
-	public List<DiaryDto> selectDiaryList(Integer uNo, Integer row) throws Exception;
+	public List<DiaryDto> selectDiaryList(Integer uNo, String keyword, String sort, Integer row) throws Exception;
 
 	public DiaryDto update(DiaryDto diary) throws Exception;
 

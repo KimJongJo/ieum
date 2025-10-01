@@ -6,6 +6,107 @@ $(".pagination button").on("click", function() {
 		$(this).addClass("active");
 	}
 });
+function goDetail(dNo) {
+	console.log("dNo", dNo);
+	const form = document.createElement("form");
+	form.method = "POST";
+	form.action = "/ieum/myPage/diary";
+
+	const input = document.createElement("input");
+	input.type = "hidden";
+	input.name = "dNo";
+	input.value = dNo;
+
+	form.appendChild(input);
+	document.body.appendChild(form);
+	form.submit();
+}
+function goUpdate() {
+	$("#hiddenForm").submit();
+}
+
+function cancelDel() {
+	$("#delConfirmModal").hide();
+}
+function confirmDel() {
+	$("#delConfirmModal").hide();
+	$("#hiddenForm").submit();
+}
+
+function cancelWrite() {
+	$("#writeConfirmModal").hide();
+}
+function confirmWrite() {
+	$("#writeConfirmModal").hide();
+	const date = $("#clickedDt").val();
+	// 작성 페이지 이동
+	location.href = `/ieum/myPage/diary/write?date=${date}`;
+}
+function renderList() {
+	const sort = $('.notice-select').val();
+	const keyword = $("#searchInput").val().trim()
+	const urlParams = new URLSearchParams(window.location.search);
+	const page = urlParams.get('page') || 1; // 없으면 기본값 1
+	$.ajax({
+		url: "/ieum/myPage/diary",
+		type: "GET",
+		async: false,
+		data: { keyword: keyword, page: page, sort: sort },
+		dataType: "json",
+		headers: { 'X-Requested-With': 'XMLHttpRequest' },
+		success: function(data) {
+			const tbody = $("#diaryListBody");
+			const noDataDiv = $("#noDataList");
+			const diaryTable = $("#diaryList");
+			const pagination   = $("#pagination");
+			 tbody.empty(); // 기존 목록 제거
+
+			if (data.diaryList.length === 0) {
+				diaryTable.hide();
+				noDataDiv.css('display', 'flex');
+				pagination.css('display', 'none');
+			} else {
+				diaryTable.show();
+				noDataDiv.hide();
+				pagination.show();
+				data.diaryList.forEach(function(diary) {
+					let createdDate = '';
+					if (diary.dCreated) {
+						const dateObj = new Date(diary.dCreated);
+						const year = dateObj.getFullYear();
+						const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
+						const day = String(dateObj.getDate()).padStart(2, '0');
+						createdDate = `${year}-${month}-${day}`;
+					}
+					const html = `
+                    <tr class="diary-item" onclick="goDetail(${diary.dNo})">
+                        <td class="diary-title-row">
+                            <span class="diary-title">${diary.title}</span>
+                        </td>
+                        <td><span class="diary-txt">${diary.content}</span></td>
+                        <td><span class="diary-date">${createdDate}</span></td>
+                        <td class="emoji"><i class="fa-regular fa-face-${diary.mood}"></i></td>
+                    </tr>
+                `;
+					tbody.append(html);
+				});
+			}
+		},
+		error: function(xhr, status, error) {
+			console.error("검색 실패:", error);
+			alert("검색 중 오류가 발생했습니다.");
+		}
+	});
+}
+function searchDiary() {
+	renderList();
+}
+
+
+function sortDiary(selectElement) {
+	renderList();
+}
+
 //// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
 	let todayDt = new Date();
@@ -22,6 +123,13 @@ $(document).ready(function() {
 		popup.hide();
 		$("#delConfirmModal").show();
 	})
+	// enter검색
+	$("#searchInput").on("keypress", function(e) {
+		if (e.which === 13) {
+			e.preventDefault();
+			searchDiary();
+		}
+	});
 	// 캘린더
 	var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
 		customButtons: {
@@ -53,9 +161,8 @@ $(document).ready(function() {
 			$.ajax({
 				url: '/ieum/myPage/diary/event',
 				type: 'GET',
-				data: { start: start, end: end }, 
+				data: { start: start, end: end },
 				success: function(res) {
-					console.log("res", res);
 					successCallback(res);
 				},
 				error: function(e) {
@@ -102,29 +209,3 @@ $(document).ready(function() {
 		popup.css("display", "none");
 	});
 })
-function goDetail(no) {
-	$("#dNoInput").val(no);
-	$("#diaryForm").submit();
-}
-function goUpdate() {
-	$("#hiddenForm").submit();
-}
-
-function cancelDel() {
-	$("#delConfirmModal").hide();
-}
-function confirmDel() {
-	$("#delConfirmModal").hide();
-	$("#hiddenForm").submit();
-}
-
-function cancelWrite() {
-	$("#writeConfirmModal").hide();
-}
-function confirmWrite() {
-	$("#writeConfirmModal").hide();
-	const date = $("#clickedDt").val();
-	// 작성 페이지 이동
-	location.href = `/ieum/myPage/diary/write?date=${date}`;
-}
-
