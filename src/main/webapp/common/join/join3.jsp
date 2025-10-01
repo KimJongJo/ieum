@@ -24,6 +24,8 @@
         		        data: { email: $("#inputEmail").val() },
         		        dataType: "json",
         		        success: function(response) {
+        		        	
+        		        	alert("인증 코드가 이메일로 전송되었습니다.");
         		            if (response.success) {
         		                // 이메일 사용 가능 -> 코드 전송 요청
         		                $.ajax({
@@ -33,11 +35,9 @@
         		                    dataType: "json",
         		                    success: function(response) {
         		                        if (response.success) {
-        		                            alert("이메일이 전송되었습니다!");
-        		                        } else {
-        		                            alert("이메일 전송 실패했습니다.. 잠시 후 다시 요청해주세요");
-        		                        }
         		                        $("#emailSend").prop("disabled", false); // 전송 끝나면 버튼 풀기
+        		                        }
+        		                           
         		                    },
         		                    error: function(error) {
         		                        console.log("에러 " + error);

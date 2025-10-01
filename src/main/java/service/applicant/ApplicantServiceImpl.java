@@ -30,7 +30,6 @@ public class ApplicantServiceImpl implements ApplicantService {
 		ApplicantDto appDto = appDao.select(hNo);
 		FileDto fileDto = fileDao.selectFileByFileNo(hosDto.getHosReFileNo());
 		String filePath = "img/hosRe/" + fileDto.getFileName();
-		
 		return  new RequestInfoDto(appDto.getApplicantNo(),  hNo, hosDto.gethNm(), appDto.getApplicantName(),
 				appDto.getApplicantTel(), appDto.getApplicantEmail(), hosDto.gethAddress(), hosDto.getHosReNo(), filePath);
 	}
