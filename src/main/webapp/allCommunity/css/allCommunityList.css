@@ -164,7 +164,7 @@ body {
 	    grid-template-columns: repeat(2, 1fr); /* 2열 */
 	    gap: 20px 30px; /* 행 간격 / 열 간격 */
 	    max-width: 1020px;  /* 버튼 영역과 맞춤 */
-	    margin: 0;
+	    margin-left: 20px;
 	}
 
     .box {

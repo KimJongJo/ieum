@@ -14,8 +14,7 @@ $(document).ready(function() {
         $p.text($p.text().slice(0, maxChars) + '...');
     }
 
-    // 3. 헤더 숨기는 기능
-    $('.menu span:nth-child(5)').hide();
+   
 
     // 4. 클릭 이벤트 (탭에 따라 게시판/댓글 영역 전환)
     const $tabCommu = $('.tab-commu');
@@ -52,4 +51,6 @@ $(document).ready(function() {
         $comment.hide();
     });
 });
-
+ $(document).ready(function() {
+	    $('.hide-if-user').hide();
+	});

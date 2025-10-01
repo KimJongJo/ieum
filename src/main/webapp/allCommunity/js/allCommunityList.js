@@ -1,3 +1,4 @@
+
 $(function () {
 	const $grid = $('.community-grid'); // 공통으로 선언
 

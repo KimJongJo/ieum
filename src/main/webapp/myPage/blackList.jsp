@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
     <!-- Section Title -->
     <div id="section-title">
         <span>차단 목록</span>
@@ -56,7 +56,7 @@
         
             <!-- 닉네임 -->
             <div class="text-wrapper-1">
-            	<c:out value="${blackMember.username}" default="성명"/>
+            	<c:out value="${blackMember.nickname}" default="성명"/>
             </div>
 
             <!-- 이메일 + 버튼 같은 줄 -->

@@ -34,16 +34,6 @@ $(function () {
         $('#blockReportModal').hide();
     });
 	
-
-    /* 차단 모달 */
-   /*  $(document).on('click', '.userMenu .menu-item2:contains("차단하기")', function (e) {
-        e.preventDefault();
-        $('#blockModal').show();
-    });
-    $('#modalCloseBlock, #modalCancelBlock, #modalOkBlock').click(function() {
-        $('#blockModal').hide();
-    }); */
-	
     
     /* 댓글 차단 모달 */
     $(document).on('click', '.userMenu .menu-item2:contains("댓글차단")', function (e) {
@@ -64,24 +54,6 @@ $(function () {
     $('#modalCloseBlock, #modalCancelBlock').click(function() {
         $('#blockModal').hide();
     });
-    
-    
-  /*   // 유저 차단
-    $(document).on('click', '.userMenu .menu-item3:contains("유저차단")', function (e) {
-        e.preventDefault();
-        var blockedNo = $(this).closest('.comment-box').find('.comNick span').data('no');
-        $('#blockedNo').val(blockedNo);
-        
-        // 게시글 번호 넣기 (community.commuNo)
-        var commuNo = "${community.commuNo}";
-        $('#blockUserModal input[name="commuNo"]').val(commuNo);
-        
-        $('#blockUserModal').show();
-    }); */
-	    
-    
-    
-    
     
     /* 관리 메뉴 숨기기 */
     $('.hide-if-user').hide();
