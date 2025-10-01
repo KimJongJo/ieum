@@ -408,6 +408,24 @@ $(function () {
     $('.hide-if-user').hide();
 
 });
+
+
+$(function(){ 
+    // DOM이 모두 로드되면 실행
+    $('.actions form').on('submit', function(e){ 
+        // 게시글 공감(form) 제출 이벤트 감지
+
+        var heartSpan = $(this).find('.heart'); 
+        // 현재 클릭한 form 안에 있는 하트 요소 찾음
+
+        heartSpan.text(heartSpan.text() === "🤍" ? "❤️" : "🤍"); 
+        // 하트가 흰색이면 빨간색으로, 빨간색이면 흰색으로 토글
+
+        // e.preventDefault();  // ❌ 이 줄 제거하면 form이 그대로 서버로 POST됨
+    });
+});
+
+
 </script>
 
 </head>
@@ -448,7 +466,8 @@ $(function () {
         			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
 					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
 					    <button type="submit" class="action-item">
-					        ❤️ <span class="action-count"><c:out value="${community.empathy}" /></span>
+					        <span class="heart">🤍</span>
+					         <span class="action-count"><c:out value="${community.empathy}" /></span>
 					    </button>
 				    </form>
 				    <span class="action-item">
@@ -482,10 +501,10 @@ $(function () {
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
 			        <button class="comment-action-item">
-					        ❤️ <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+					        🤍 <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
 					</button>
 			    </div>
-			
+			<!-- ❤️ -->
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>

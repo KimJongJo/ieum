@@ -38,4 +38,11 @@ public class CommunityDaoImpl implements CommunityDao{
 		session.commit();
 	}
 
+	@Override
+	public void updateViewsCount(int commuNo) throws Exception {
+		session.update("mapper.community.updateViews", commuNo);
+		session.commit();
+		
+	}
+
 }

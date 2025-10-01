@@ -12,5 +12,5 @@ public interface CommunityDao {
 	
 	void updateCommu(MyCommunityDto myCommunityDto) throws Exception;
 	
-	
+	void updateViewsCount(int commuNo)throws Exception;
 }

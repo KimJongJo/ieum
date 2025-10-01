@@ -52,4 +52,10 @@ public class CommunityServiceImpl implements CommunityService{
 		
 	}
 
+	@Override
+	public CommunityDto updateViews(int commuNo) throws Exception {
+		communityDao.updateViewsCount(commuNo);
+		return communityDao.selectByNo(commuNo);
+	}
+
 }

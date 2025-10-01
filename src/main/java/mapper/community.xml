@@ -51,14 +51,18 @@
 	<delete id="deleteCommunity" parameterType="int">
         delete from community WHERE commu_no = #{commuNo}
     </delete>
-  
+	  
     <update id="updateCommunity" parameterType="myCommunity">
     	update community set
     		commu_title = #{commuTitle}, commu_content = #{commuContent},category_no = #{categoryNo}
     	where commu_no = #{commuNo} 
     </update>
     
-    
-    
+    <!-- 조회수 증가 쿼리 -->
+    <update id="updateViews" parameterType="int">
+        update community
+        set commu_views = commu_views + 1
+        where commu_no = #{commuNo}
+    </update>
 
 </mapper>	

@@ -1,13 +1,16 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.allCommunity.CommentDao;
 import dto.CommentDto;
@@ -43,6 +46,7 @@ public class CommunityDetail extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
         String noStr = request.getParameter("no");
@@ -50,7 +54,7 @@ public class CommunityDetail extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 전달되지 않았습니다.");
             return;
         }
-
+        int uNo = 4; // 테스트용, 실제 로그인 세션 값으로 교체 필요
         int commuNo = 0;
         try {
             commuNo = Integer.parseInt(noStr);
@@ -64,6 +68,33 @@ public class CommunityDetail extends HttpServlet {
         MemberService memberService = new MemberServiceImpl();
         CommentService commentService = new CommentServiceImpl();
         try {
+        	
+//        	HttpSession session = request.getSession();
+//        	Object obj = session.getAttribute("viewedPosts");
+//
+//        	Set<Integer> viewed;
+//        	if (obj == null) {
+//        	    viewed = new HashSet<>();
+//        	} else if (obj instanceof Set) {
+//        	    viewed = (Set<Integer>) obj;
+//        	} else if (obj instanceof List) {
+//        	    viewed = new HashSet<>((List<Integer>) obj); // ArrayList → HashSet 변환
+//        	} else {
+//        	    viewed = new HashSet<>();
+//        	}
+//
+//        	// 조회수 증가 처리
+//        	if (!viewed.contains(commuNo)) {
+//        		communityService.updateViews(commuNo);
+//        	    viewed.add(commuNo);
+//        	    session.setAttribute("viewedPosts", viewed);
+//        	}
+//        	
+//        	
+        	
+        	
+        	// 조회수 증가
+        	communityService.updateViews(commuNo);
         	//1. 커뮤글 조회
             CommunityDto communityDto = communityService.selectByNo(commuNo);
             request.setAttribute("community", communityDto);
@@ -80,7 +111,7 @@ public class CommunityDetail extends HttpServlet {
             List<CommentDto> commentList = commentService.getCommentsByCommuNo(commuNo);
             request.setAttribute("comments", commentList);
          // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
-            int uNo = 5; // 테스트용, 실제 로그인 세션 값으로 교체 필요
+            
             BlackListService blackListService = new BlackListServiceImpl();
             List<Integer> blockedList = null;
             try {

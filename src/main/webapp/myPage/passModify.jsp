@@ -18,7 +18,7 @@
 
     <!-- Section Title -->
     <div id="section-title">
-        <span>나의 기본 정보</span>
+        <span>비밀번호 변경</span>
     </div>
 
     <!-- Main -->
