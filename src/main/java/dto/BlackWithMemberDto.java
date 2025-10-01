@@ -6,6 +6,12 @@ public class BlackWithMemberDto {
 	String username;
 	String email;
 	Date blackCreated;
+	
+	
+	
+	public BlackWithMemberDto() {
+		super();
+	}
 	public BlackWithMemberDto(String username, String email, Date blackCreated) {
 		super();
 		this.username = username;
