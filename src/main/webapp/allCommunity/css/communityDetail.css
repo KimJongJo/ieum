@@ -124,12 +124,21 @@ body {
     }
 
     /* row1: 가로 정렬 */
-    #row1 {
+    .row1 {
 	    display: flex;
 	    align-items: center;
 	    gap: 10px;
 	    position: relative; /* userMenu 위치 기준 */
 	}
+	.row1 #date {
+	    margin-left: auto;   /* 👉 date를 오른쪽 끝으로 */
+	    margin-right: 10px;  /* 버튼과 간격 */
+	}
+	
+	.row1 .menu-button {
+	    margin-left: 0;      /* date 옆에 바로 붙도록 */
+	}
+	
 	
 	/* 점 3개 버튼 */
 	.menu-button {
