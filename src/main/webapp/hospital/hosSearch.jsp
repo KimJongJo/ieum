@@ -15,9 +15,8 @@
 <title>hosSearch</title>
 </head>
 <body>
-	<header>
-		<jsp:include page="/common/header/header.html" />
-	</header>
+
+	<jsp:include page="/common/header/header.html" />
 
 	<div class="container">
 		<div class="filter">

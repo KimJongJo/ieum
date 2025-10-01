@@ -36,7 +36,7 @@ public class HospitalServiceImpl implements HospitalService {
 		Integer offset = (pageInfo.getCurPage() - 1) * 8;
 		hosSearch.setOffset(offset);
 		hosSearch.setLimit(8);
-		System.out.println(hosSearch);
+//		System.out.println(hosSearch);
 		return hosDao.selectList(hosSearch);
 	}
 
