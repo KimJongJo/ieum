@@ -63,8 +63,6 @@ public class Diary extends HttpServlet {
                     Gson gson = new Gson();
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("diaryList", diaryList);
-                    resultMap.put("pageInfo", pageInfo);
-
                     String result = gson.toJson(resultMap);
                     response.getWriter().write(result);
                     return;

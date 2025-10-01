@@ -43,15 +43,16 @@ function confirmWrite() {
 	location.href = `/ieum/myPage/diary/write?date=${date}`;
 }
 function renderList() {
+	const url = new URL(window.location.href);
+	url.searchParams.set('page', 1);
+	window.history.replaceState({}, '', url);
 	const sort = $('.notice-select').val();
-	const keyword = $("#searchInput").val().trim()
-	const urlParams = new URLSearchParams(window.location.search);
-	const page = urlParams.get('page') || 1; // 없으면 기본값 1
+	const keyword = $("#searchInput").val().trim();
 	$.ajax({
 		url: "/ieum/myPage/diary",
 		type: "GET",
 		async: false,
-		data: { keyword: keyword, page: page, sort: sort },
+		data: { keyword: keyword, page: 1, sort: sort },
 		dataType: "json",
 		headers: { 'X-Requested-With': 'XMLHttpRequest' },
 		success: function(data) {
