@@ -5,7 +5,7 @@
 
 
 	<!-- 공감 상태 확인-->
-    <select id="selectEmpathy" parameterType="map" resultType="int">
+    <select id="selectEmpathy" parameterType="int" resultType="int">
     	select count(*)
     	from commu_like
     	where u_no = #{uNo} and commu_no = #{commuNo}
