@@ -89,6 +89,7 @@ function loadHospitals(page, appendMode = false) {
         </div>
 					`);
 			} else {
+				console.log(data)
 				data.hosSearchDto.forEach(h => {
 					$("#hospitalList").append(`
                     <div class="list-box">
@@ -103,6 +104,7 @@ function loadHospitals(page, appendMode = false) {
 								</div>
 								${h.transferInfo}
 							</div>
+							<div>${h.hNo}</div>
 						</div>
 					</div>
 					<div class="fav">
