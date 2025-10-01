@@ -31,44 +31,48 @@
 	<div class="main-container">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="diary-container">
-			<c:if test="${recentHistory}">
-				<div class="btn-right">
+			<div class="btn-right">
+				<span class="target-date">[ <fmt:formatDate value="${diary.targetDt}"
+						pattern="yyyy-MM-dd" /> 일기 ]
+				</span>
+				<c:if test="${recentHistory}">
 					<button class="btn-rec-w"
 						onclick="location.href=`${contextPath}/myPage/diagnosisHistory`">최근
 						상담이력</button>
-				</div>
-			</c:if>
+				</c:if>
+			</div>
+
 			<!-- 날짜 -->
 			<div class="form-group">
 				<div class="form-label form-multi">
-					<span><fmt:formatDate value="${diary.dCreated}"
-							pattern="yyyy-MM-dd" /> 일기</span>
+					<span>(작성일: <fmt:formatDate value="${diary.dCreated}"
+						pattern="yyyy-MM-dd" />)</span>
 					<div class="form-right">
-						<span class="notice">오늘의 기분</span>
+						<span class="notice">기분</span>
 						<div class="emoji">
-								<input type="radio" disabled id="happy" value="smile" name="emoji"
-									${diary.mood eq 'smile' ? 'checked' : ''}><label
-									for="happy">
-									<div
-										class="happy-icon ${diary.mood eq 'smile' ? 'happy-select' : ''}">
-										<i class="fa-regular fa-face-smile"></i>
-									</div>
-								</label> <input type="radio" disabled id="soso" value="meh" name="emoji"
-									${diary.mood eq 'meh' ? 'checked' : ''}><label
-									for="soso">
-									<div
-										class="soso-icon ${diary.mood eq 'meh' ? 'soso-select' : ''}">
-										<i class="fa-regular fa-face-meh"></i>
-									</div>
-								</label> <input type="radio" disabled id="sad" value="frown" name="emoji"
-									${diary.mood eq 'frown' ? 'checked' : ''}><label
-									for="sad">
-									<div
-										class="sad-icon ${diary.mood eq 'frown' ? 'sad-select' : ''}">
-										<i class="fa-regular fa-face-frown"></i>
-									</div>
-								</label>
-							</div>
+							<input type="radio" disabled id="happy" value="smile"
+								name="emoji" ${diary.mood eq 'smile' ? 'checked' : ''}><label
+								for="happy">
+								<div
+									class="happy-icon ${diary.mood eq 'smile' ? 'happy-select' : ''}">
+									<i class="fa-regular fa-face-smile"></i>
+								</div>
+							</label> <input type="radio" disabled id="soso" value="meh" name="emoji"
+								${diary.mood eq 'meh' ? 'checked' : ''}><label
+								for="soso">
+								<div
+									class="soso-icon ${diary.mood eq 'meh' ? 'soso-select' : ''}">
+									<i class="fa-regular fa-face-meh"></i>
+								</div>
+							</label> <input type="radio" disabled id="sad" value="frown" name="emoji"
+								${diary.mood eq 'frown' ? 'checked' : ''}><label
+								for="sad">
+								<div
+									class="sad-icon ${diary.mood eq 'frown' ? 'sad-select' : ''}">
+									<i class="fa-regular fa-face-frown"></i>
+								</div>
+							</label>
+						</div>
 					</div>
 
 				</div>
@@ -84,7 +88,8 @@
 			</div>
 
 			<div class="diary-footer">
-				<form id="hiddenForm" method="post" action="${contextPath}/myPage/diary/delete">
+				<form id="hiddenForm" method="post"
+					action="${contextPath}/myPage/diary/delete">
 					<input type="hidden" name="dNo" id="dNoInput" value="${diary.dNo}">
 					<!-- 버튼 -->
 					<div>
@@ -92,10 +97,9 @@
 							<button type="button" class="btn-cir-w">목록</button>
 						</a>
 						<c:if test="${diary.uNo == 123}">
-						<button class="btn-cir-b" id="updateBtn"
-							formaction="${contextPath}/myPage/diary/update">수정</button>
-						<button type="button" class="btn-cir-b" id="delBtn"
-							>삭제</button>
+							<button class="btn-cir-b" id="updateBtn"
+								formaction="${contextPath}/myPage/diary/update">수정</button>
+							<button type="button" class="btn-cir-b" id="delBtn">삭제</button>
 						</c:if>
 					</div>
 				</form>
@@ -115,7 +119,8 @@
 			</div>
 			<div class="modal-div-under">
 				<div class="modal-btn-div">
-					<button type="button" class="modal-btn-left modal-btn" onclick="cancelDel()">취소</button>
+					<button type="button" class="modal-btn-left modal-btn"
+						onclick="cancelDel()">취소</button>
 					<button class="modal-btn-right modal-btn" onclick="confirmDel()">확인</button>
 				</div>
 			</div>

@@ -1,12 +1,9 @@
 package controller.myPage;
 
 import java.io.IOException;
-import java.time.Instant;
+import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,11 +44,16 @@ public class DiaryWrite extends HttpServlet {
 		Integer uNo = 123;
 		DiaryService service = new DiaryServiceImpl();
 		try {
+			String selectedDt = request.getParameter("date");
 			LocalDateTime now = LocalDateTime.now();
-			String formattedNow = now.format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
-			request.setAttribute("todayDt", formattedNow);
-			 Boolean hisYn = service.getHisYn(uNo);
-			 request.setAttribute("recentHistory", hisYn);
+			String formattedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			if (selectedDt != null)
+				request.setAttribute("targetDt", selectedDt);
+			else
+				request.setAttribute("targetDt", formattedNow);
+			request.setAttribute("nowDt", formattedNow);
+			Boolean hisYn = service.getHisYn(uNo);
+			request.setAttribute("recentHistory", hisYn);
 			request.getRequestDispatcher("/myPage/diaryWrite.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +76,9 @@ public class DiaryWrite extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String emoji = request.getParameter("emoji");
-			DiaryDto diary = new DiaryDto(uNo, title, content, emoji);
+			String targetDtString = request.getParameter("targetDt");
+			Date targetDt = Date.valueOf(targetDtString);
+			DiaryDto diary = new DiaryDto(uNo, title, content, emoji, targetDt);
 			service.write(diary);
 			request.setAttribute("msg", "작성");
 			session.removeAttribute("dNo");

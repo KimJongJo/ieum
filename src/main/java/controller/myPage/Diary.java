@@ -81,9 +81,8 @@ public class Diary extends HttpServlet {
 		HttpSession session = request.getSession();
 //	    Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer uNo = 123;
-		Integer dNo;
+		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
 		try {
-			dNo = Integer.parseInt(request.getParameter("dNo"));
 			session.setAttribute("dNo", dNo);
 			DiaryDto diary = service.getDetail(dNo);
 			request.setAttribute("diary", diary);

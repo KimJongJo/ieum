@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.HospitalDto;
+import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalDateFormatDto;
@@ -20,10 +21,17 @@ public class HospitalDaoImpl implements HospitalDao {
 	public HospitalDto select(Integer hNo) throws Exception {
 		return sqlsession.selectOne("mapper.hospital.select", hNo);
 	}
+	
+	@Override
+	public HosDetailDto selectHosDetail(Integer hNo) throws Exception {
+		return sqlsession.selectOne("mapper.hospital.selectHosDetail", hNo);
+	}
+	
 	@Override
 	public Integer selectCount() throws Exception {
 		return sqlsession.selectOne("mapper.hospital.selectCount");
 	}
+	
 	@Override
 	public List<HosSearchListDto> selectList(HosSearchDto hosSearch) throws Exception {
 		return sqlsession.selectList("mapper.hospital.selectListRes",hosSearch);
@@ -38,9 +46,11 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 
 	public Integer selectListResCnt(HosSearchDto hosSearchDto) throws Exception {
-		return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
+		try(SqlSession sqlsession = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
+		}
+//		return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
 	}
-	
 	// 병원 신청 대기중인 병원 수
 	@Override
 	public int hosWaitCount() {

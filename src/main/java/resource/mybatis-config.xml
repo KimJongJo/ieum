@@ -33,6 +33,7 @@
       <typeAlias type="dto.ApplicantDto" alias="applicant" />
       <typeAlias type="dto.otherDto.HosSearchDto" alias="hosfilter" />
       <typeAlias type="dto.otherDto.HosSearchListDto" alias="hosfilterlist" />
+      <typeAlias type="dto.otherDto.HosDetailDto" alias="hosDetail" />
       
    </typeAliases>
 

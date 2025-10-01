@@ -24,7 +24,6 @@ public class FileServiceImpl implements FileService {
 		
 		return fileDao.uploadFile(file);
 	}
-
 	// 병원 파일 업로드
 	@Override
 	public Integer uploadFile(Part file, String type) throws IOException {
@@ -52,7 +51,4 @@ public class FileServiceImpl implements FileService {
 		Integer no = fileDao.uploadFile(fileDto);
 		return no;
 	}
-	
-	
-
 }
