@@ -162,10 +162,17 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HosDetailDto getDetail(Integer hNm) throws Exception {
+	public HosDetailDto getDetail(Integer hNo) throws Exception {
 		
 		// 병원 디테일정보 가져오기
-		return hosDao.selectHosDetail(hNm);
+		return hosDao.selectHosDetail(hNo);
+	}
+
+	@Override
+	public HosDetailDto getDocDetail(Integer hNo) throws Exception {
+		
+		// 의사 디테일 가져오기
+		return hosDao.selectDocDetail(hNo);
 	}
 
 }
