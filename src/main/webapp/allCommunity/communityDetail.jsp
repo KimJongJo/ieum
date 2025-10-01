@@ -284,12 +284,24 @@ body {
 	    font-size: 14px;
 	    margin-bottom: 10px;
 	}
-	
+	.heart {
+	    display: flex;           /* flex 컨테이너로 설정 */
+	    justify-content: center; /* 가로 중앙 정렬 */
+	    align-items: center;     /* 세로 중앙 정렬 */
+	    height: 20px;            /* 필요에 따라 높이 조정 */
+	}
+	.heart img {
+	    display: block;          /* 이미지 주변 여백 제거 */
+	    max-width: 100%;         /* 영역 넘치지 않게 */
+	    max-height: 100%;        /* 영역 넘치지 않게 */
+	}
+		
 	.action-item {
 	    display: flex;
 	    align-items: center;
 	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
 	    width: 50px;        /* 3자리 기준 고정 */
+	  flex-direction: row;     /* 아이콘-숫자 한 줄로 */
 	}
 	
 	.action-item span.action-count {
@@ -330,22 +342,27 @@ $(function () {
         }
     });
     
-    
     $(function() {
         $('.actions form').submit(function(e){
-            e.preventDefault(); // 페이지 새로고침 막기
+            e.preventDefault(); // 새로고침 막기
             let form = $(this);
             let commuNo = form.find('input[name="commuNo"]').val();
             let countSpan = form.find('.action-count');
+            let heartSpan = form.find('.heart'); // ❤️ 담는 곳
 
             $.post(form.attr('action'), {commuNo: commuNo}, function(data){
-                // data로 서버에서 최신 count를 보내준다고 가정
+                // 공감 수 갱신
                 countSpan.text(data.newCount);
-            });
+
+                // 하트 이미지 갱신
+                if (data.liked) {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                } else {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                }
+            }, "json"); // JSON으로 받기
         });
     });
-    
-    
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -409,6 +426,9 @@ $(function () {
 
 });
 
+
+
+
 </script>
 
 </head>
@@ -451,8 +471,12 @@ $(function () {
 					    <button type="submit" class="action-item">
 					        <span class="heart">
 							    <c:choose>
-							        <c:when test="">❤️</c:when>
-							        <c:otherwise>🤍</c:otherwise>
+							        <c:when test="community.likedByUser">
+							        	 <img id="Heart" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:when>
+							        <c:otherwise>
+							        	<img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:otherwise>
 							    </c:choose>
 							</span>
 					         <span class="action-count"><c:out value="${community.empathy}" /></span>
@@ -489,7 +513,7 @@ $(function () {
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
 			        <button class="comment-action-item">
-					        🤍 <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+					        <img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
 					</button>
 			    </div>
 			<!-- ❤️ -->
