@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+<c:import url="/common/header/header.html" charEncoding="UTF-8"/>
 
     <!-- ✅ 중헤더 바로 밑에 텍스트 -->
 	<div id="section-title">

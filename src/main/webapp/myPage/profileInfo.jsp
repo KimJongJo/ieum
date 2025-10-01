@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
 
 
 	    <!-- Section Title -->

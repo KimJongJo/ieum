@@ -1,294 +1,107 @@
-/* 전체 레이아웃 */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-}
-
-
-/* 섹션 타이틀 */
-#section-title {
-    width: 800px;
-    font-size: 20px;
-    color: #333;
-    margin: 20px auto 0 auto;
-    font-weight: 700;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* ✅ 메인 영역 - 1280px 중앙 고정 */
-.main-container {
+.container {
     width: 1280px;
-    margin: 20px auto 0 auto; /* 위 60px 띄우고 가운데 정렬 */
-    display: flex;
-    gap: 40px; /* 사이 간격 */
+    margin: 0 auto; /* 화면 가운데 정렬 */
 }
 
-/* 사이드바 */
-.sidebar {
-    width: 195px;
-    height: 550px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.sidebar-header {
-    background-color: #4a64d6;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    height: 114px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 1.6;
-}
-.welcome {
-    background-color: #e9ebf5;
-    text-align: left;
-    padding: 15px 15px;
-    border-bottom: 1px solid #ccc;
-}
-.welcome strong {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 6px;
-}
-.welcome span {
-    font-size: 12px;
-    color: #555;
-}
-.sidebar-body ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.sidebar-body ul li {
-    padding: 0; /* li 자체 여백 제거 */
-    border-top: 1px solid #ccc;
+
+/* 헤더 위쪽 검정색 줄 (화면 전체 폭) */
+#header-line-top {
+    position: absolute; 
+    top: 31px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: black;
 }
 
-.sidebar-body ul li button {
-    width: 100%; /* li 전체 넓이 차지 */
-    height: 48px; /* 기존 li 높이와 동일 */
-    line-height: 48px;
-    text-align: left;
-    font-size: 14px;
-    border: none;
+/* 헤더 */
+.header {
+    height: 120px;
+    display: flex;
+    align-items: center;
     background-color: #fff;
-    cursor: pointer;
-    padding: 0 16px; /* 기존 li 좌우 여백 유지 */
+    padding: 0 20px;
 }
 
-.sidebar-body ul li button:hover {
-    background-color: #f7f7f7;
-}
-
-/* 클릭 시 살짝 눌리는 효과 */
-.sidebar-body ul li button:active {
-    transform: translateY(2px);
-    filter: brightness(90%);
-}
-
-
-
-/* 옵션 컨테이너 */
-.option-containerList {
-    flex: 1;       /* 남은 공간 차지 */
+.header-inner {
     display: flex;
-    align-items: flex-start; /* 사이드바와 상단 맞춤 */
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 15px auto 0 auto;
 }
-
-#option-container {
-    width: 998px;
-    display: flex;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-/* 공통 탭 스타일 */
-.tab-commu, .tab-comment, .tab-heart {
-    flex: 1;
-    text-align: center;
-    padding: 10px 0;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-
-
-/* 클릭 시 활성화 */
-.tab-commu.active, .tab-comment.active, .tab-heart.active {
-    background-color: #4356B3;
-    color: #fff;
+.header .logo {
+    font-size: 27.5px;
     font-weight: bold;
+    color: #0044cc;
+}
+
+.header .menu {
+    display: flex;   /* 한 줄로 가로 정렬 */
+    gap: 100px;       /* 메뉴 간격 */
+    align-items: center;
+    margin-left:100px;
+    /* display: none; 자리를 없애고, 오른쪽 메뉴가 한 칸씩 당겨짐 */
+    cursor:pointer;
 }
 
 
+/* 중 헤더 (화면 전체 폭) */
+.middle-header {
+    width: 100%;
+    height: 90px;
+    position: relative;
+    margin-top: 20px;
 
-.frame {
-  position: relative;
-  width: 100%;
-  max-width: 1003px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 2px solid #d9d9d9;
-  padding: 15px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
-/* 상단: 닉네임 + 카테고리 */
-.frame-top {
-  display: flex;
-  justify-content: space-between; /* 좌우 분리 */
-  align-items: center;
+.middle-header .full-rect {
+    width: 100%;
+    height: 120px;
+    background-color: #EBF3FF;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
 }
 
-/* 닉네임 */
-.text-wrapper-1 {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 12px;
-  color: #000;
+.middle-header .group {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
-/* 카테고리 */
-.text-wrapper-2 {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 14px;
-  color: #000;
-  font-weight: bold;
+/* 원/사각형 디자인 */
+.middle-header .outer-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -36px;
 }
-
-/* 제목 및 본문 */
-.overlap-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.middle-header .inner-circle {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
 }
-
-.title {
-  font-family: "Noto Sans-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 18px;
-  color: #000;
+.middle-header .rectangle {
+    height: 120px;
+    position: relative; 
+    z-index: 1; 
 }
-
-.p {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 50ch; /* 약 20글자 */
-}
-
-/* 업로드 날짜 */
-.text-wrapper-3 {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 12px;
-  color: #000;
-}
-
-.actions {
-	    position: absolute;
-	    bottom: 10px;
-	    right: 15px;
-	    display: flex;
-	    gap: 10px;
-	    font-size: 14px;
-	}
-	
-	.action-item {
-	    display: flex;
-	    align-items: center;
-	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
-	    width: 50px;        /* 3자리 기준 고정 */
-	}
-	
-	.action-item span.action-count {
-	    display: inline-block;
-	    min-width: 20px;   /* 숫자 자리 고정 */
-	    text-align: left;  /* 숫자 왼쪽 정렬 */
-	}
-
-
-/* 댓글 스타일 */
-.comment {
-  position: relative;
-  width: 100%;
-  max-width: 1003px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  border: 2px solid #d9d9d9;
-  padding: 15px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* 상단: 닉네임 + 카테고리 */
-.comment-top {
-  display: flex;
-  justify-content: space-between; /* 좌우 분리 */
-  align-items: center;
-}
-
-/* 닉네임 */
-.nickName {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 12px;
-  color: #000;
-}
-
-
-/* 제목 및 본문 */
-.overlap-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.div {
-  font-family: "Noto Sans-Medium", Helvetica;
-  font-weight: 500;
-  font-size: 18px;
-  color: #000;
-}
-
-.p {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 50ch; /* 약 20글자 */
-}
-
-/* 업로드 날짜 */
-.text-wrapper-3 {
-  font-family: "Inter-Regular", Helvetica;
-  font-size: 12px;
-  color: #000;
-}
-
-/* 액션 아이콘 오른쪽 아래 고정 */
-#actions {
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  display: flex;
-  gap: 10px;
-  font-size: 14px;
-}
+.middle-header .xlarge-rect { width: 600px; background-color: #D4E5FF; }
+.middle-header .large-rect  { width: 400px; background-color: #92BEFF; }
+.middle-header .small-rect  { width: 200px; background-color: #488EF6; }
+.middle-header .small { z-index: 4; }
+.middle-header .large { z-index: 3; }
+.middle-header .xlarge { z-index: 2; }
+.middle-header .xlarge-circle { background-color: #D4E5FF; }
+.middle-header .large-circle  { background-color: #92BEFF; }
+.middle-header .small-circle  { background-color: #488EF6; }
+.middle-header .xlarge-inner { background-color: #EBF3FF; }
+.middle-header .large-inner  { background-color: #D4E5FF; }
+.middle-header .small-inner  { background-color: #92BEFF; }

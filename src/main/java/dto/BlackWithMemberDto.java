@@ -3,7 +3,7 @@ package dto;
 import java.sql.Date;
 
 public class BlackWithMemberDto {
-	String username;
+	String nickname;
 	String email;
 	Date blackCreated;
 	
@@ -12,17 +12,18 @@ public class BlackWithMemberDto {
 	public BlackWithMemberDto() {
 		super();
 	}
-	public BlackWithMemberDto(String username, String email, Date blackCreated) {
+	public BlackWithMemberDto(String nickname, String email, Date blackCreated) {
 		super();
-		this.username = username;
+		this.nickname = nickname;
 		this.email = email;
 		this.blackCreated = blackCreated;
 	}
-	public String getUsername() {
-		return username;
+	
+	public String getNickname() {
+		return nickname;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getEmail() {
 		return email;
@@ -38,7 +39,7 @@ public class BlackWithMemberDto {
 	}
 	@Override
 	public String toString() {
-		return "BlackWithMemberDto [username=" + username + ", email=" + email + ", blackCreated=" + blackCreated + "]";
+		return "BlackWithMemberDto [username=" + nickname + ", email=" + email + ", blackCreated=" + blackCreated + "]";
 	}
 	
 }

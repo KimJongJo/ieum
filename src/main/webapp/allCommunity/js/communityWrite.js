@@ -71,4 +71,5 @@ $(document).ready(function () {
         $(".category-btn .category-text").text("카테고리");
         $("#categoryNo").val("");
     });
+
 });

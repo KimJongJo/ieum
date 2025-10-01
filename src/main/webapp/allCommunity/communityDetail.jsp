@@ -14,9 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityDetail.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script>
-
 <style>
-/* 전체 레이아웃 */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -318,7 +316,6 @@ body {
 		background-color: white;	
 	}
 </style>
-
 <script>
 $(function () {
     /* 댓글 메뉴 토글 */
@@ -332,6 +329,23 @@ $(function () {
             $('.userMenu').hide();
         }
     });
+    
+    
+    $(function() {
+        $('.actions form').submit(function(e){
+            e.preventDefault(); // 페이지 새로고침 막기
+            let form = $(this);
+            let commuNo = form.find('input[name="commuNo"]').val();
+            let countSpan = form.find('.action-count');
+
+            $.post(form.attr('action'), {commuNo: commuNo}, function(data){
+                // data로 서버에서 최신 count를 보내준다고 가정
+                countSpan.text(data.newCount);
+            });
+        });
+    });
+    
+    
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -356,16 +370,6 @@ $(function () {
         $('#blockReportModal').hide();
     });
 	
-
-    /* 차단 모달 */
-   /*  $(document).on('click', '.userMenu .menu-item2:contains("차단하기")', function (e) {
-        e.preventDefault();
-        $('#blockModal').show();
-    });
-    $('#modalCloseBlock, #modalCancelBlock, #modalOkBlock').click(function() {
-        $('#blockModal').hide();
-    }); */
-	
     
     /* 댓글 차단 모달 */
     $(document).on('click', '.userMenu .menu-item2:contains("댓글차단")', function (e) {
@@ -386,24 +390,6 @@ $(function () {
     $('#modalCloseBlock, #modalCancelBlock').click(function() {
         $('#blockModal').hide();
     });
-    
-    
-  /*   // 유저 차단
-    $(document).on('click', '.userMenu .menu-item3:contains("유저차단")', function (e) {
-        e.preventDefault();
-        var blockedNo = $(this).closest('.comment-box').find('.comNick span').data('no');
-        $('#blockedNo').val(blockedNo);
-        
-        // 게시글 번호 넣기 (community.commuNo)
-        var commuNo = "${community.commuNo}";
-        $('#blockUserModal input[name="commuNo"]').val(commuNo);
-        
-        $('#blockUserModal').show();
-    }); */
-	    
-    
-    
-    
     
     /* 관리 메뉴 숨기기 */
     $('.hide-if-user').hide();
@@ -446,9 +432,12 @@ $(function () {
             <c:out value="${community.commuContent}" escapeXml="false"/>
         </div>
         <div class="actions">
-				    <button class="action-item">
-				        ❤️ <span class="action-count"><c:out value="${community.empathy}" /></span>
-				    </button>
+        			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
+					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
+					    <button type="submit" class="action-item">
+					        ❤️ <span class="action-count"><c:out value="${community.empathy}" /></span>
+					    </button>
+				    </form>
 				    <span class="action-item">
 				        💬 <span class="action-count"><c:out value="${community.commuComment}" /></span>
 				    </span>

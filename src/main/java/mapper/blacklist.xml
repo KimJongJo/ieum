@@ -18,7 +18,7 @@
 	
 	<!-- blckList.jsp 쓰일 쿼리 -->
 	<select id="selectBlackWithMember" parameterType="int" resultType="blackMember">
-	    select m.username, m.email, b.black_created
+	    select m.nickname, m.email, b.black_created
 		from black_list b
 		join member m
    			on b.blocked_no = m.u_no

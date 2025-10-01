@@ -31,9 +31,9 @@
     margin: 15px auto 0 auto;
 }
 /* 숨기고 싶은 메뉴 */
-.header .menu span.hidden {
-    visibility: hidden; /* 안 보이지만 자리 유지 */
-}
+/* .header .menu span.hidden {
+    visibility: hidden; 안 보이지만 자리 유지
+} */
 .header .logo {
     font-size: 27.5px;
     font-weight: bold;
@@ -45,7 +45,7 @@
     gap: 100px;       /* 메뉴 간격 */
     align-items: center;
     margin-left:100px;
-    display: none; /* 자리를 없애고, 오른쪽 메뉴가 한 칸씩 당겨짐 */
+    /* display: none; 자리를 없애고, 오른쪽 메뉴가 한 칸씩 당겨짐 */
     cursor:pointer;
 }
 
