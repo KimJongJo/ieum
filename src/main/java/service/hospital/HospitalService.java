@@ -24,4 +24,6 @@ public interface HospitalService {
 	HospitalPageResponseDto hosWaitListByKeyword(int requestPage, String keyword, String filter);
 
 	void reject(Integer hNo);
+
+	List<HospitalDto> joinSearchHosName(String keyword);
 }

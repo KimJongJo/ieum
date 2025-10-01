@@ -168,4 +168,11 @@ public class HospitalServiceImpl implements HospitalService {
 		return hosDao.selectHosDetail(hNm);
 	}
 
+	// 관리자 회원가입 시 병원 이름 가져오기
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
+		
+		return hosDao.joinSearchHosName(keyword);
+	}
+
 }

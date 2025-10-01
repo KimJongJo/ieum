@@ -22,4 +22,5 @@ public interface HospitalDao {
 	public int hosWaitCountByKeyword(String keyword);
 	public List<HospitalDto> selectWaitHosByKeyword(Map<String, Object> page);
 	public void reject(Integer hNo);
+	public List<HospitalDto> joinSearchHosName(String keyword);
 }

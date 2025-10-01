@@ -93,5 +93,11 @@ public class HospitalDaoImpl implements HospitalDao {
 		
 		return sqlsession.selectList("selectWaitHosByKeyword", page);
 	}
+	// 회원가입 시 병원 검색
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
+		
+		return sqlsession.selectList("joinSearchHosName", keyword);
+	}
 
 }
