@@ -56,7 +56,7 @@ function renderList() {
 		headers: { 'X-Requested-With': 'XMLHttpRequest' },
 		success: function(data) {
 			const tbody = $("#diaryListBody");
-			const noDataDiv = $("#noDataList");
+			const noDataDiv = $("#noSearchList");
 			const diaryTable = $("#diaryList");
 			const pagination   = $("#pagination");
 			 tbody.empty(); // 기존 목록 제거
