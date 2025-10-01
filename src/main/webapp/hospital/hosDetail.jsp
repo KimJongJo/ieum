@@ -173,11 +173,14 @@
 					<img src="" class="doc-prof" />
 					<div class="d1">
 						<div class="username">
-						<c:out value="${docd.mUsername }"/>
+						<c:out value="${docd.username }"/>
 						</div>
-						<p class="introduction">(한마디?)잠시쉬었다 가는 것도 괜찮아요 지금 여기에서 진심으로 함께
-							있겠습니다.</p>
-						<p class="major">가정의학과 전문의</p>
+						<p class="introduction">
+							<c:out value="${docd.introduction }"/>
+						</p>
+						<p class="major">
+						<c:out value="${docd.major }"/>
+						</p>
 					</div>
 				</div>
 

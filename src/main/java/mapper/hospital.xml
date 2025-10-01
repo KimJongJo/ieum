@@ -25,7 +25,7 @@
 	where h_no=#{hNo} and status = 'ACTIVE'
 	</select>
 	
-	<!-- 병원페이지: 의사정보 -->
+	<!-- 병원: 의사정보 -->
 	<select id="selectHosDetailDoc" resultType="hosDetail">
 	select h.h_no,m.username, m.major, m.introduction, m.file_no
 	from hospital h
