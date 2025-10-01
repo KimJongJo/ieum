@@ -16,16 +16,15 @@ public class EmailDaoImpl implements EmailDao {
 	}
 	
 	@Override
-	public void saveEmailCode(String email, String code) {
+	public void saveEmailCode(EmailAuthDto emailAuthDto) {
 		
+		String email = emailAuthDto.getEmail();
 		EmailAuthDto emailDto = session.selectOne("checkEmail", email);
 		
-		EmailAuthDto inputEmailDto = new EmailAuthDto(email, code);
-		
 		if(emailDto == null) { // 처음 인증 받는 회원일 때
-			session.insert("insertEmail", inputEmailDto);
+			session.insert("insertEmail", emailAuthDto);
 		}else { // 이전에 인증 받았던 회원일 때
-			session.update("updateEmail", inputEmailDto);
+			session.update("updateEmail", emailAuthDto);
 		}
 		
 		session.commit();
@@ -47,6 +46,14 @@ public class EmailDaoImpl implements EmailDao {
 	public Map<String, Object> CheckIdAndEmail(Map<String, Object> pwMail) {
 		
 		return session.selectOne("CheckIdAndEmail", pwMail);
+	}
+
+
+	@Override
+	public void saveHosCode(Map<String, Object> hosMap) {
+		session.update("saveHosCode", hosMap);
+		session.commit();
+		
 	}
 
 }

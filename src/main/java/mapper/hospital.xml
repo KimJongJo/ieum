@@ -124,4 +124,8 @@
 	    limit #{pageSize} offset #{offset}
 	</select>
 
+	<update id="saveHosCode" parameterType="Map">
+		update hospital set h_code = #{hCode} where h_no = #{hNo}
+	</update>
+
 </mapper>	

@@ -49,8 +49,6 @@ public class HospitalServiceImpl implements HospitalService {
 		
 		Integer hosNo = hosDao.addHospital(hosDto);
 		
-		System.out.println(hosNo);
-		
 		appDto.sethNo(hosNo);
 		appDao.addApplicant(appDto);
 		

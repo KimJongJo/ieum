@@ -31,6 +31,30 @@ public class HospitalDto {
 		super();
 	}
 
+	
+	
+	public HospitalDto(String hNm, Integer categoryNo, String hAddress, String hLocationY, String hLocationX,
+			String holidayInfo, String hTel, Integer hosImgFileNo, Integer hosReFileNo, String hosReNo, String city,
+			String gungu, String services, boolean silson) {
+		super();
+		this.hNm = hNm;
+		this.categoryNo = categoryNo;
+		this.hAddress = hAddress;
+		this.hLocationY = hLocationY;
+		this.hLocationX = hLocationX;
+		this.holidayInfo = holidayInfo;
+		this.hTel = hTel;
+		this.hosImgFileNo = hosImgFileNo;
+		this.hosReFileNo = hosReFileNo;
+		this.hosReNo = hosReNo;
+		this.city = city;
+		this.gungu = gungu;
+		this.services = services;
+		this.silson = silson;
+	}
+
+
+
 	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
 			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, Integer hosImgFileNo,
 			Integer hosReFileNo, String hosReNo, Date hCreated, Date hUpdated, String status, String hCode, String city,
@@ -256,6 +280,9 @@ public class HospitalDto {
 	public void setNewsContent(String newsContent) {
 		this.newsContent = newsContent;
 	}
+
+	
+	
 	
 	
 
