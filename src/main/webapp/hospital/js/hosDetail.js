@@ -17,7 +17,6 @@ $(document).ready(() => {
 	navl.click(function() {
 		navl.addClass("active");
 		navr.removeClass("active");
-		$('html, body').animate({ scrollTop: 0 }, 'slow');
 		tab1.addClass("active");
 		tab2.removeClass("active");
 	});
@@ -26,7 +25,7 @@ $(document).ready(() => {
 	navr.click(function() {
 		navr.addClass("active");
 		navl.removeClass("active");
-		$('html, body').animate({ scrollTop: 0 }, 'slow');
+		$('html, nav-box').animate({ scrollTop: 0 }, 'slow');
 		tab2.addClass("active");
 		tab1.removeClass("active");
 

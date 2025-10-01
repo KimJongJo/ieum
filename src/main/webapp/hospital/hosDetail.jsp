@@ -75,13 +75,7 @@
                                         <tr>
                                             <td class="icon"></td>
                                             <td>
-                                                <p class="etc">실손24 서비스</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="icon"></td>
-                                            <td>
-                                                <a href="#" class="etc">
+                                            <a href="#" class="etc">
                                                     http://www.guro.go.kr/health/NR_index.do
                                                 </a>
                                             </td>
@@ -89,7 +83,13 @@
                                         <tr>
                                             <td class="icon"></td>
                                             <td>
-                                                <p class="etc">예약, 주차, 남/녀 화장실 구분</p>
+                                            <p class="etc">예약, 주차, 남/녀 화장실 구분</p>    
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"></td>
+                                            <td>
+                                                <p class="etc">실손24 서비스</p>
                                             </td>
                                         </tr>
 
@@ -117,7 +117,7 @@
         <div class="tab1 active" id="tab1">
             <div class="hosinft">
                 <div class="mtitle">
-                    <span class="mtitle-span">병원소개</span>
+                    <span class="mtitle-span">병원소식</span>
                 </div>
             </div>
             <div class="hos-info">
