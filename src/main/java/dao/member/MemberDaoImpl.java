@@ -54,7 +54,7 @@ public class MemberDaoImpl implements MemberDao{
         return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
     }
 	
-
+	
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {
 		session.update("mapper.member.updateProfile", memberDto);
@@ -73,10 +73,16 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return session.selectOne("existId", userId);
 	}
+	
+	
+	// 지성이가 작성한 .....
 	public MemberDto selectFindById(Integer uNo) throws Exception {
 		return session.selectOne("mapper.member.selectId", uNo);
 	}
-
+	
+	
+	
+	//비밀번호를 알고 있다고는 가정으로 비밀번호 업데이트
 	@Override
 	public void updatePassword(MemberDto memberDto) throws Exception {
 		session.update("mapper.member.updatePass", memberDto);

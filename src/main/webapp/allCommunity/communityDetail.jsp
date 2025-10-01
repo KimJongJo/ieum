@@ -353,12 +353,25 @@ $(function () {
         const commuNo = $(this).data('communo');  // 클릭한 게시글 번호 저장
         $('#completeModal').data('communo', commuNo).show();
     });
+    
+ // 모달 삭제 버튼 클릭 시
+    $('#modalOkComplete').click(function() {
+        const commuNo = $('#completeModal').data('communo'); // 모달에 저장된 게시글 번호
+        $.post("${pageContext.request.contextPath}/delComDetail", { commuNo: commuNo })
+         .done(function() {
+             // 삭제 후 페이지 이동
+             window.location.href = "${pageContext.request.contextPath}/myCom";
+         })
+         .fail(function() {
+             alert("삭제 실패");
+         });
+    });
 
 
     /* 모달 닫기 */
-    $('#modalCloseComplete, #modalCancelComplete').click(function() {
-        $('#completeModal').hide();
-    });
+   $('#modalCloseComplete, #modalCancelComplete, #modalCloseBlockCom').click(function() {
+    $('#completeModal').hide();
+});
     
     
     /* 신고 모달 */
@@ -412,10 +425,10 @@ $(function () {
             	<c:out value="${community.commuTitle}"/>
             </div>
             <div id="btn1">
-            <%-- <c:if test="${member.uNo==community.uNo}"> --%>
+            <c:if test="${member.uNo==community.uNo}">
 	            <button onclick="location.href='/ieum/comDetailMo?no=${community.commuNo}'" id="btn-update">수정</button>
 	            <button type="button" id="btn-delete" data-communo="${community.commuNo}">삭제</button>
-	        <%-- </c:if> --%>
+	        </c:if>
 	        </div>
         </div>
         <div id="san"></div>
@@ -500,7 +513,7 @@ $(function () {
 	    <div class="modal-div-over">
 	        <div class="modal-header-div">
 	            <span class="modal-header-div-span">알림</span>
-	            <button type="button" class="x-button" id="modalCloseBlock">✖</button>
+	            <button type="button" class="x-button" id="modalCloseBlockCom">✖</button>
 	        </div>
 	        <div class="modal-content-div">
 	            <span class="modal-content-div-span">삭제 하시겠습니까?</span>
@@ -557,29 +570,6 @@ $(function () {
 	        </div>
 	    </div>
 	</div>
-	
-	<%-- <!-- ✅ 유저차단 모달 추가 -->
-	<div class="modal-main-div" id="blockUserModal" style="display:none;">
-	    <div class="modal-div-over">
-	        <div class="modal-header-div">
-	            <span class="modal-header-div-span">알림</span>
-	            <button type="button" class="x-button" id="modalCloseUserBlock">✖</button>
-	        </div>
-	        <div class="modal-content-div">
-	            <span class="modal-content-div-span">해당 유저를 차단 하시겠습니까?</span>
-	        </div>
-	        <div class="modal-div-under">
-	            <div class="modal-btn-div">
-	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelUserBlock">취소</button>
-	            <form id="blockUserForm" action="${pageContext.request.contextPath}/blackUser" method="post" style="display:inline;">
-				    <input type="hidden" name="blockedNo" id="blockedNo" />
-				    <input type="hidden" name="commuNo" id="commuNo" />
-				    <button type="submit" class="modal-btn-right modal-btn" id="modalOkUserBlock">차단</button>
-				</form>
-	            </div>
-	        </div>
-	    </div>
-	</div> --%>
 	
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>

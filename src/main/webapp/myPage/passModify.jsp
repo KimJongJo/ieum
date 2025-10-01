@@ -63,15 +63,15 @@
 		    <form action="${pageContext.request.contextPath}/pModify" method="post">
 		    <div id="passwordModipy">
 			    <div class="form-row">
-			        <label for="current-pass">아이디 *</label>
-			        <input type="password" id="current-pass" name="current-pass" placeholder="아이디를 입력하세요.">
+			        <label for="current-pass">기존 비밀번호 *</label>
+			        <input type="password" id="current-pass" name="current-pass" placeholder="비밀번호를 입력하세요.">
 			    </div>
 			    <div class="form-row">
 			        <label for="new-pass">신규 비밀번호 *</label>
 			        <input type="password" id="new-pass" name="new-pass" placeholder="신규 비밀번호를 입력하세요.">
 			    </div>
 			    <div class="form-row">
-			        <label for="confirm-pass">비밀번호 확인 *</label>
+			        <label for="confirm-pass">확인 비밀번호 *</label>
 			        <input type="password" id="confirm-pass" name="confirm-pass" placeholder="확인 비밀번호를 입력하세요.">
 			    </div>
 			</div>

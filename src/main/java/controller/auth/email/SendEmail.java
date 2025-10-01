@@ -23,14 +23,14 @@ public class SendEmail extends HttpServlet {
 	EmailService service;
     
     public SendEmail() {
-    	service = new EmailServiceImpl(getServletContext());
+    
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		EmailService service = new EmailServiceImpl(getServletContext());
 		request.setCharacterEncoding("utf-8");
 		String email = request.getParameter("email");
 		boolean useEmail = service.useEmail(email);
@@ -52,7 +52,7 @@ public class SendEmail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		EmailService service = new EmailServiceImpl(getServletContext());
 		request.setCharacterEncoding("utf-8");
 		String email = request.getParameter("email");
 		Gson gson = new Gson();

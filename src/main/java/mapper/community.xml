@@ -43,7 +43,7 @@
         FROM community c
         INNER JOIN commu_category cg ON c.category_no = cg.category_no
         INNER JOIN member m ON c.u_no = m.u_no
-        ORDER BY c.commu_created DESC  		
+        ORDER BY c.commu_no DESC  		
     
     </select>
 	       
