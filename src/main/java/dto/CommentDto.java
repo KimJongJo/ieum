@@ -11,6 +11,13 @@ public class CommentDto {
 	Integer comEmpathy;
 	Date comCreated;
 	Integer comDeclaration; //신고수
+	
+	
+	
+	boolean blocked = false;
+	
+	
+	
 	public CommentDto() {
 		super();
 	}
@@ -96,5 +103,6 @@ public class CommentDto {
 	}
 	
 	
-	
+	 public boolean isBlocked() { return blocked; }
+	    public void setBlocked(boolean blocked) { this.blocked = blocked; }
 }

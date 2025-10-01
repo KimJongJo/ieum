@@ -8,6 +8,7 @@ import dao.allCommunity.CommunityDao;
 import dao.allCommunity.CommunityDaoImpl;
 
 import dto.CommunityDto;
+import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;
 
 public class CommunityServiceImpl implements CommunityService{
@@ -41,6 +42,13 @@ public class CommunityServiceImpl implements CommunityService{
         // 2. 게시글 삭제
         communityDao.deleteCommunity(commuNo);
         session.commit();
+		
+	}
+
+	@Override
+	public void updateCommunity(MyCommunityDto myCommunity) throws Exception {
+		communityDao.updateCommu(myCommunity);
+		session.commit();
 		
 	}
 
