@@ -13,7 +13,6 @@ public class HospitalDto {
 	String holidayInfo; // 휴무 정보
 	String hTel; // 전화번호
 	String hLink; // 홈페이지 링크
-	String introduceNote; // 소개글
 	Integer hosImgFileNo; // 병원 썸네일 파일
 	Integer hosReFileNo; // 사업자등록증 파일 번호
 	String hosReNo; // 사업자등록증 파일 번호
@@ -25,14 +24,17 @@ public class HospitalDto {
 	String gungu; // 시군구
 	String services; // 제공하는 편의 시설
 	boolean silson; // 실손 24 서비스 제공 여부
+	String newsTitle; // 뉴스 제목
+	String newsContent; // 뉴스 내용
 
 	public HospitalDto() {
 		super();
 	}
+
 	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
-			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, String introduceNote,
-			Integer hosImgFileNo, Integer hosReFileNo, String hosReNo, Date hCreated, Date hUpdated, String status,
-			String hCode, String city, String gungu, String services, boolean silson) {
+			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, Integer hosImgFileNo,
+			Integer hosReFileNo, String hosReNo, Date hCreated, Date hUpdated, String status, String hCode, String city,
+			String gungu, String services, boolean silson, String newsTitle, String newsContent) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -44,7 +46,6 @@ public class HospitalDto {
 		this.holidayInfo = holidayInfo;
 		this.hTel = hTel;
 		this.hLink = hLink;
-		this.introduceNote = introduceNote;
 		this.hosImgFileNo = hosImgFileNo;
 		this.hosReFileNo = hosReFileNo;
 		this.hosReNo = hosReNo;
@@ -56,74 +57,20 @@ public class HospitalDto {
 		this.gungu = gungu;
 		this.services = services;
 		this.silson = silson;
+		this.newsTitle = newsTitle;
+		this.newsContent = newsContent;
 	}
+
 	@Override
 	public String toString() {
 		return "HospitalDto [hNo=" + hNo + ", hNm=" + hNm + ", categoryNo=" + categoryNo + ", hAddress=" + hAddress
 				+ ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX + ", transferInfo=" + transferInfo
-				+ ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink=" + hLink + ", introduceNote="
-				+ introduceNote + ", hosImgFileNo=" + hosImgFileNo + ", hosReFileNo=" + hosReFileNo + ", hosReNo="
-				+ hosReNo + ", hCreated=" + hCreated + ", hUpdated=" + hUpdated + ", status=" + status + ", hCode="
-				+ hCode + ", city=" + city + ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + "]";
-	}
-
-
-
-	public String getIntroduceNote() {
-		return introduceNote;
-	}
-
-	public void setIntroduceNote(String introduceNote) {
-		this.introduceNote = introduceNote;
-	}
-
-
-	public String getServices() {
-		return services;
-	}
-
-
-	public void setServices(String services) {
-		this.services = services;
-	}
-
-
-
-	public Integer getHosImgFileNo() {
-		return hosImgFileNo;
-	}
-
-
-	public void setHosImgFileNo(Integer hosImgFileNo) {
-		this.hosImgFileNo = hosImgFileNo;
-	}
-
-
-	public Integer getHosReFileNo() {
-		return hosReFileNo;
-	}
-
-
-
-	public void setHosReFileNo(Integer hosReFileNo) {
-		this.hosReFileNo = hosReFileNo;
-	}
-
-	public String getHosReNo() {
-		return hosReNo;
-	}
-
-	public void setHosReNo(String hosReNo) {
-		this.hosReNo = hosReNo;
-	}
-
-	public boolean isSilson() {
-		return silson;
-	}
-
-
-	public void setSilson(boolean silson) {
-		this.silson = silson;
+				+ ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink=" + hLink + ", hosImgFileNo="
+				+ hosImgFileNo + ", hosReFileNo=" + hosReFileNo + ", hosReNo=" + hosReNo + ", hCreated=" + hCreated
+				+ ", hUpdated=" + hUpdated + ", status=" + status + ", hCode=" + hCode + ", city=" + city + ", gungu="
+				+ gungu + ", services=" + services + ", silson=" + silson + ", newsTitle=" + newsTitle
+				+ ", newsContent=" + newsContent + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 	public Integer gethNo() {
@@ -206,18 +153,9 @@ public class HospitalDto {
 		this.hLink = hLink;
 	}
 
-	public String getIntroduceNote() {
-		return introduceNote;
-	}
-
-	public void setIntroduceNote(String introduceNote) {
-		this.introduceNote = introduceNote;
-	}
-
 	public Integer getHosImgFileNo() {
 		return hosImgFileNo;
 	}
-
 
 	public void setHosImgFileNo(Integer hosImgFileNo) {
 		this.hosImgFileNo = hosImgFileNo;
@@ -302,5 +240,23 @@ public class HospitalDto {
 	public void setSilson(boolean silson) {
 		this.silson = silson;
 	}
+
+	public String getNewsTitle() {
+		return newsTitle;
+	}
+
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public String getNewsContent() {
+		return newsContent;
+	}
+
+	public void setNewsContent(String newsContent) {
+		this.newsContent = newsContent;
+	}
+	
+	
 
 }
