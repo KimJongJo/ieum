@@ -13,7 +13,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/allCommunityList.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/allCommunityList.js"></script>
-
+<script type="text/javascript">
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted || window.performance && window.performance.navigation.type === 2) {
+        // 브라우저 캐시나 뒤로가기 시 새로고침
+        window.location.reload();
+    }
+});
+</script>
 </head>
 <body>
 
