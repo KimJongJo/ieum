@@ -1,5 +1,7 @@
 package service.allCommunity;
 
+import java.util.List;
+
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 
@@ -13,4 +15,5 @@ public interface CommunityService {
     void updateCommunity(MyCommunityDto myCommunity) throws Exception;
     
     CommunityDto updateViews(int commuNo) throws Exception;
+
 }

@@ -12,6 +12,15 @@ public class CommentDto {
 	Date comCreated;
 	Integer comDeclaration; //신고수
 	
+	boolean likedByUser;
+	
+	public boolean isLikedByUser() { // boolean 타입은 isXxx()
+        return likedByUser;
+    }
+
+    public void setLikedByUser(boolean likedByUser) {
+        this.likedByUser = likedByUser;
+    }
 	
 	
 	boolean blocked = false;

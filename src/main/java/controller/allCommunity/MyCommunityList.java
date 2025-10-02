@@ -9,7 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.allCommunity.CommunityDao;
+import dto.CommentWithMemberDto;
 import dto.MyCommunityDto;
+import service.allCommunity.CommentWithMemberService;
+import service.allCommunity.CommentWithMemberServiceImpl;
+import service.allCommunity.CommunityService;
+import service.allCommunity.CommunityServiceImpl;
 import service.allCommunity.MyCommunityService;
 import service.allCommunity.MyCommunityServiceImpl;
 
@@ -34,13 +40,20 @@ public class MyCommunityList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int uNo = 5; // 🔹 현재 로그인 유저 번호(세션에서 꺼내는게 좋음)
 		MyCommunityService service = new MyCommunityServiceImpl();
+		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
 		try {
 			List<MyCommunityDto> myComList = service.getMyCommunityList(uNo);
+			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
+			List<MyCommunityDto> myEmpathy = service.getSelectLikedCommunityList(uNo);
+			request.setAttribute("myCommeList", myCommeList);
 			request.setAttribute("myComList", myComList);
+			request.setAttribute("myEmpathy", myEmpathy);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
 	}

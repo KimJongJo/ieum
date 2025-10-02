@@ -1,28 +1,29 @@
-package controller.myPage;
+package controller.allCommunity;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dto.MemberDto;
-import service.myPage.ProfileInfoService;
-import service.myPage.ProfileInfoServiceImpl;
+import dto.CommentWithMemberDto;
+import service.allCommunity.CommentWithMemberService;
+import service.allCommunity.CommentWithMemberServiceImpl;
 
 /**
- * Servlet implementation class ProfileInfo
+ * Servlet implementation class MyCommentList
  */
-@WebServlet("/pInfo")
-public class ProfileInfo extends HttpServlet {
+@WebServlet("/myComList")
+public class MyCommentList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileInfo() {
+    public MyCommentList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +32,24 @@ public class ProfileInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int uNo=5;
-//		 HttpSession session = request.getSession();
-//	        Integer uNo = (Integer) session.getAttribute("uNo");
-		ProfileInfoService service = new ProfileInfoServiceImpl();
-		try {
-			MemberDto memberDto = service.selectProfileView(uNo);
-			request.setAttribute("member", memberDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("myPage/profileInfo.jsp").forward(request, response);
+//		int uNo = 5;
+//		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
+//		try {
+//			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
+//			request.setAttribute("myCommeList", myCommeList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("pInfo");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

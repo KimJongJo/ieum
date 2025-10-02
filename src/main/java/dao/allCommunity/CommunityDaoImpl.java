@@ -1,5 +1,7 @@
 package dao.allCommunity;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.CommunityDto;
@@ -44,5 +46,6 @@ public class CommunityDaoImpl implements CommunityDao{
 		session.commit();
 		
 	}
+
 
 }

@@ -295,7 +295,7 @@ body {
 	    max-width: 100%;         /* 영역 넘치지 않게 */
 	    max-height: 100%;        /* 영역 넘치지 않게 */
 	}
-		
+
 	.action-item {
 	    display: flex;
 	    align-items: center;
@@ -329,7 +329,7 @@ body {
 			gap: 10px;
 	}
 	#Heart1{
-		margin-right:2px;
+		top:3px;
 	}
 	
 </style>
@@ -352,7 +352,7 @@ $(function () {
     });
     
 
-    
+    // 게시글 하트 색 변경
     $(function() {
         $('.actions form').submit(function(e){
             e.preventDefault(); // 새로고침 막기
@@ -376,8 +376,23 @@ $(function () {
         });
     });
 
-    
-    
+  //댓글 하트 색 변경
+	$('.comment-action-item').click(function(e){
+	    e.preventDefault(); // 버튼 기본 submit 막기
+	    let form = $(this).closest('form');
+	    let commeNo = form.find('input[name="commeNo"]').val();
+	    let countSpan = form.find('.comment-action-count');
+	    let heartSpan = form.find('.heart1');
+	
+	    $.post(form.attr('action'), {commeNo: commeNo}, function(data){
+	        countSpan.text(data.newCount);
+	        if (data.liked) {
+	            heartSpan.html('<img class="heart1-img" src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" width="15" height="15"/>');
+	        } else {
+	            heartSpan.html('<img class="heart1-img" src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" width="15" height="15"/>');
+	        }
+	    }, "json");
+	});
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -508,11 +523,13 @@ $(function () {
 
 		<!-- 댓글 달리는 장소 -->        
         <c:forEach var="comment" items="${comments}" varStatus="status">
+        
          <c:if test="${blockedList == null or not blockedList.contains(comment.commeNo)}">
+         
 	        <div class="comment-box" data-comme-no="${comment.commeNo}">
 			    <div class="comment-row">
 			        <div class="row1">
-			            <div class="number">${status.count}</div> 
+			            <div class="number">${status.count}</div><!-- 번호 카운트 되는 구간 -->
 			            <div class="comNick">
 			            	<span data-no="${comment.uNo}">	
 			            		<c:out value="${comment.nickName}"/>
@@ -527,11 +544,25 @@ $(function () {
 			        <div id="comment">
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
-			        <button class="comment-action-item">
-					        <img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
-					</button>
+			        <form action="${pageContext.request.contextPath}/commeEmpathy" method="post">
+			        <input type="hidden" name="commeNo" value="${comment.commeNo}"/>
+			        	<button type="submit" class="comment-action-item">
+					        <span class="heart1">
+							    <c:choose>
+							        <c:when test="comment.likedByUser">
+							        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:when>
+							        <c:otherwise>
+							        	<img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:otherwise>
+							    </c:choose>
+							</span> 				        
+					        <span class="comment-action-count">
+					        	<c:out value="${comment.comEmpathy}"/>
+					        </span>
+						</button>
+					</form>
 			    </div>
-			<!-- ❤️ -->
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>
@@ -539,7 +570,6 @@ $(function () {
 			    </div>
 			</div>	
 		</c:if>
-	
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">

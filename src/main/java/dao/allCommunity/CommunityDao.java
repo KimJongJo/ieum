@@ -1,5 +1,7 @@
 package dao.allCommunity;
 
+import java.util.List;
+
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 
@@ -13,4 +15,5 @@ public interface CommunityDao {
 	void updateCommu(MyCommunityDto myCommunityDto) throws Exception;
 	
 	void updateViewsCount(int commuNo)throws Exception;
+	
 }

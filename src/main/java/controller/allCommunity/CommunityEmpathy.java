@@ -58,7 +58,6 @@ public class CommunityEmpathy extends HttpServlet {
 
             // JSON 반환
             response.setContentType("application/json;charset=UTF-8");
-			/* response.getWriter().write("{\"newCount\": " + newCount + "}"); */
             response.getWriter().write("{\"newCount\": " + newCount + ", \"liked\": " + liked + "}");
         } catch (Exception e) {
             e.printStackTrace();

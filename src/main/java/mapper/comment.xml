@@ -47,4 +47,17 @@
         set commu_comment = #{count}
         where commu_no = #{commuNo}
     </update>
+    
+    <!-- member와 join해서 닉네임과 comment모든 정보 가져오기 -->
+    <select id="selectMemberWithComment" parameterType="int" resultType="ComWithMember" >
+    	select m.nickname, c.comme_no, c.u_no, c.commu_no, c.com_content, c.com_empathy, c.com_created
+		from comment c
+		inner join member m
+    	on c.u_no = m.u_no
+    	order by c.com_created DESC
+    </select>
+    
+    
+    
+    
 </mapper>
