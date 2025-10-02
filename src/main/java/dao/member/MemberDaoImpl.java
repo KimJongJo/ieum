@@ -105,8 +105,6 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public List<MemberDto> docList(Integer hNo) throws Exception {
-		System.out.println("hNo>>>"+hNo);
-		System.out.println("dao>>>>"+session.selectList("mapper.member.docList",hNo));
 		return session.selectList("mapper.member.docList",hNo);
 	}
 }

@@ -48,10 +48,7 @@ public class HosDetail extends HttpServlet {
 			request.setAttribute("hosd", hosd);
 			List<MemberDto> docList = mService.DoclistBy2(hNo);
 			request.setAttribute("docList", docList);
-			
-			System.out.println("hNo>>" +hNo);
-			System.out.println(docList);
-			
+		
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 		}catch (Exception e) {
 			e.printStackTrace();

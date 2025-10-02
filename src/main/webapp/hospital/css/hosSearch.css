@@ -72,8 +72,9 @@ a {
 
 }
 
-.search-txt {
-    border: none;
+
+.rc {
+	  border: none;
     background: none;
     outline: none;
     float: left;
@@ -83,7 +84,6 @@ a {
     line-height: 30px;
     width: 250px;
     box-sizing: border-box;
-
 }
 
 .search-btn {

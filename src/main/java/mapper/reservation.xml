@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.reservation">
-	
+
+
+	<!-- 시간 조회 -->
+	<select id="selectResTime" parameterType="map" resultType="reservation">
+		select r_time
+		from reservation
+		where m_no=#{mNo} and r_date=#{rDate}
+	</select>
+
 </mapper>	
