@@ -34,4 +34,5 @@
     <select id="selectCommunityEmpathy" parameterType="int" resultType="int">
 	    select empathy from community WHERE commu_no = #{commuNo}
 	</select>
-</mapper>	
+
+</mapper>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityDetail.css" />
-<script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script> --%>
 <style>
 body {
     margin: 0;
@@ -334,6 +334,10 @@ body {
 	
 </style>
 <script>
+const contextPath = '${contextPath}'; // JS에서 사용할 contextPath
+</script>
+<script>
+<%-- const contextPath = '<%= request.getContextPath() %>'; --%>
 $(function () {
     /* 댓글 메뉴 토글 */
     $(document).on('click', '.comment-box .menu-button', function (e) {
@@ -347,6 +351,8 @@ $(function () {
         }
     });
     
+
+    
     $(function() {
         $('.actions form').submit(function(e){
             e.preventDefault(); // 새로고침 막기
@@ -359,6 +365,7 @@ $(function () {
                 // 공감 수 갱신
                 countSpan.text(data.newCount);
 
+
                 // 하트 이미지 갱신
                 if (data.liked) {
                     heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
@@ -368,6 +375,9 @@ $(function () {
             }, "json"); // JSON으로 받기
         });
     });
+
+    
+    
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -518,11 +528,10 @@ $(function () {
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
 			        <button class="comment-action-item">
-			        	<span class="heart">
-					        <img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
-						</span>
+					        <img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
 					</button>
 			    </div>
+			<!-- ❤️ -->
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>
@@ -530,8 +539,7 @@ $(function () {
 			    </div>
 			</div>	
 		</c:if>
-		
-		<!-- 댓글 등록 장소 -->
+	
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
@@ -608,8 +616,12 @@ $(function () {
 	        </div>
 	    </div>
 	</div>
+
+
+
 	
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
+
 
