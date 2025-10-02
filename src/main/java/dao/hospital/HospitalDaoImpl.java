@@ -9,7 +9,6 @@ import dto.HospitalDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
-import dto.otherDto.HospitalDateFormatDto;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
