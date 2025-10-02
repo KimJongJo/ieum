@@ -15,20 +15,24 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public void insert(NoticeDto notice) throws Exception {
-		// TODO Auto-generated method stub
-		
+		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			session.insert("insertNotice", notice);
+			session.commit();
+		}
 	}
 
 	@Override
-	public NoticeDto select(Integer dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public NoticeDto select(Integer nNo) throws Exception {
+		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			return session.selectOne("selectNoticeDetail", nNo);
+		}
 	}
 
 	@Override
 	public Integer cnt() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			return session.selectOne("selectNoticeCnt");
+		}
 	}
 
 	@Override

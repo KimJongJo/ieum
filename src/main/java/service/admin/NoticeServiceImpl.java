@@ -7,23 +7,21 @@ import dao.admin.NoticeDaoImpl;
 import dto.NoticeDto;
 import util.PageInfo;
 
-public class noticeServiceImpl implements noticeService {
+public class NoticeServiceImpl implements NoticeService {
 	private NoticeDao noticeDao;
 
-	public noticeServiceImpl() {
+	public NoticeServiceImpl() {
 		noticeDao = new NoticeDaoImpl();
 	}
 
 	@Override
 	public void write(NoticeDto notice) throws Exception {
-		// TODO Auto-generated method stub
-		
+		noticeDao.insert(notice);
 	}
 
 	@Override
-	public NoticeDto getDetail(Integer dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public NoticeDto getDetail(Integer nNo) throws Exception {
+		return noticeDao.select(nNo);
 	}
 
 	@Override
@@ -39,7 +37,7 @@ public class noticeServiceImpl implements noticeService {
 	}
 
 	@Override
-	public boolean delete(Integer dNo) throws Exception {
+	public boolean delete(Integer nNo) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
