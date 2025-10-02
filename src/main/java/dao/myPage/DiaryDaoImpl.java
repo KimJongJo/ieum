@@ -30,7 +30,7 @@ public class DiaryDaoImpl implements DiaryDao {
 	@Override
 	public Integer cnt() throws Exception {
 		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
-			return session.selectOne("selectCnt");
+			return session.selectOne("selectDiaryCnt");
 		}
 	}
 
