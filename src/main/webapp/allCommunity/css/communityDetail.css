@@ -267,12 +267,24 @@ body {
 	    font-size: 14px;
 	    margin-bottom: 10px;
 	}
-	
+	.heart {
+	    display: flex;           /* flex 컨테이너로 설정 */
+	    justify-content: center; /* 가로 중앙 정렬 */
+	    align-items: center;     /* 세로 중앙 정렬 */
+	    height: 20px;            /* 필요에 따라 높이 조정 */
+	}
+	.heart img {
+	    display: block;          /* 이미지 주변 여백 제거 */
+	    max-width: 100%;         /* 영역 넘치지 않게 */
+	    max-height: 100%;        /* 영역 넘치지 않게 */
+	}
+		
 	.action-item {
 	    display: flex;
 	    align-items: center;
 	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
 	    width: 50px;        /* 3자리 기준 고정 */
+	  flex-direction: row;     /* 아이콘-숫자 한 줄로 */
 	}
 	
 	.action-item span.action-count {
@@ -296,5 +308,9 @@ body {
 	
 	.comment-action-item{
 		border:none;
-		background-color: white;	
+		background-color: white;
+			gap: 10px;
+	}
+	#Heart1{
+		margin-right:2px;
 	}

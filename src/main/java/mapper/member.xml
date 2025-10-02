@@ -83,9 +83,9 @@
 			password = #{password}
 		where u_no = #{uNo}
 	</update>
-	<!-- 아이디 찾기 -->
+	<!-- 비밀번호 찾기 -->
 	<select id="selectId" parameterType="int" resultType="member">
-		select id from member where u_no = #{uNo}
+		select password from member where u_no = #{uNo}
 	</select>
 	
 	<!-- 프로필 업데이트 -->

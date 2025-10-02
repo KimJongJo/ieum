@@ -29,7 +29,9 @@ public class CommunityEmpathy extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 로그인 사용자 번호 (임시)
+		response.setContentType("application/json;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");  // 추가
+		// 로그인 사용자 번호 (임시)
         int uNo = 5;
 
         // 게시글 번호 확인
@@ -56,8 +58,8 @@ public class CommunityEmpathy extends HttpServlet {
 
             // JSON 반환
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write("{\"newCount\": " + newCount + "}");
-
+			/* response.getWriter().write("{\"newCount\": " + newCount + "}"); */
+            response.getWriter().write("{\"newCount\": " + newCount + ", \"liked\": " + liked + "}");
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

@@ -14,6 +14,8 @@ public class CommunityDto {
 	Integer categoryNo;
 	Integer commuComment;
 	
+	
+	
 	public CommunityDto() {
 		super();
 	}
@@ -25,7 +27,6 @@ public class CommunityDto {
 		this.commuContent = commuContent;
 		this.categoryNo = categoryNo;
 	}
-
 
 
 	public CommunityDto(Integer commuNo, Integer uNo, String commuTitle, String commuContent, Integer commuViews,
@@ -42,6 +43,7 @@ public class CommunityDto {
 		this.categoryNo = categoryNo;
 		this.commuComment = commuComment;
 	}
+	
 
 	public Integer getCommuNo() { 
 		return commuNo; 

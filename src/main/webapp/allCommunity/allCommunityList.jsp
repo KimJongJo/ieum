@@ -14,9 +14,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/allCommunityList.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/allCommunityList.js"></script>
 <script type="text/javascript">
-window.addEventListener('pageshow', function(event) {
-    if (event.persisted || window.performance && window.performance.navigation.type === 2) {
-        // 브라우저 캐시나 뒤로가기 시 새로고침
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
         window.location.reload();
     }
 });
@@ -113,7 +112,7 @@ window.addEventListener('pageshow', function(event) {
 					</div>
 					<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 			    </div>
-			    </form>
+			    
 		    </c:forEach>
 		    </div>
 	    </div>

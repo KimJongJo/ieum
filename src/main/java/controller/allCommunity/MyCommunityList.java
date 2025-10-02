@@ -32,7 +32,7 @@ public class MyCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uNo = 1; // 🔹 현재 로그인 유저 번호(세션에서 꺼내는게 좋음)
+		int uNo = 5; // 🔹 현재 로그인 유저 번호(세션에서 꺼내는게 좋음)
 		MyCommunityService service = new MyCommunityServiceImpl();
 		try {
 			List<MyCommunityDto> myComList = service.getMyCommunityList(uNo);
