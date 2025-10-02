@@ -46,8 +46,7 @@ public class DiaryEvents extends HttpServlet {
 		response.setContentType("application/json; charset=UTF-8");
 		DiaryService service = new DiaryServiceImpl();
 		HttpSession session = request.getSession();
-//		Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+		Integer uNo = (Integer)session.getAttribute("uNo");
 		try {
 			String sDate = request.getParameter("start");
 			String eDate = request.getParameter("end");

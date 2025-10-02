@@ -38,7 +38,11 @@ public class FileServiceImpl implements FileService {
 //			realFilePath="C:\\testImg";
 			filePath = "img\\hosImg\\";
 			fileDto = new FileDto(fileName, filePath, "hosProfile");
-		}else { // 사업자등록증파일이면
+		} else if(type.equals("noticeFile")) { // 공지사항 파일이면
+			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\file\\notice";
+			filePath = "file\\notice\\";
+			fileDto = new FileDto(fileName, filePath, "noticeFile");
+		} else { // 사업자등록증파일이면
 			realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosRe";
 //			realFilePath="C:\\testImg";
 			filePath = "img\\hosRe\\";
