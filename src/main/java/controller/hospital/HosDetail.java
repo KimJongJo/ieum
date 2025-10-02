@@ -38,8 +38,11 @@ public class HosDetail extends HttpServlet {
 		HospitalService hosService = new HospitalServiceImpl();
 		
 		try {
+			request.setAttribute("hNo", hNo);
 			HosDetailDto hosd = hosService.getDetail(hNo);
 			request.setAttribute("hosd", hosd);
+			HosDetailDto docd = hosService.getDocDetail(hNo);
+			request.setAttribute("docd", docd);
 			
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 		}catch (Exception e) {

@@ -35,8 +35,7 @@ public class DiaryUpdate extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();
 		HttpSession session = request.getSession();
-//	    Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+	    Integer uNo = (Integer)session.getAttribute("uNo");
 		String title = request.getParameter("title");
 		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
 		try {

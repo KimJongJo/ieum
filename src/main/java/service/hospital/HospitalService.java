@@ -11,7 +11,9 @@ import dto.otherDto.HospitalPageResponseDto;
 import util.PageInfo;
 
 public interface HospitalService {
-	HosDetailDto getDetail (Integer hNm) throws Exception;
+	HosDetailDto getDetail (Integer hNo) throws Exception;
+	
+	HosDetailDto getDocDetail (Integer hNo) throws Exception;
   
 	List<HosSearchListDto> listByFilter (HosSearchDto hosSearch, PageInfo pageInfo) throws Exception;
 

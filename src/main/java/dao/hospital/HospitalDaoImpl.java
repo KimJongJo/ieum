@@ -28,6 +28,11 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 	
 	@Override
+	public HosDetailDto selectDocDetail(Integer hNo) throws Exception {
+		return sqlsession.selectOne("mapper.hospital.selectHosDetailDoc", hNo);
+	}
+	
+	@Override
 	public Integer selectCount() throws Exception {
 		return sqlsession.selectOne("mapper.hospital.selectCount");
 	}

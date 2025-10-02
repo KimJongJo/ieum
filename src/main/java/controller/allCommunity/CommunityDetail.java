@@ -108,10 +108,11 @@ public class CommunityDetail extends HttpServlet {
 		//댓글 등록
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 5; //로그인된 사용자 번호
+		int uNo = 1; //로그인된 사용자 번호
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");
+		
 		if (commuNoStr == null || commuNoStr.isEmpty()) {
 	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 필요합니다.");
 	        return;
