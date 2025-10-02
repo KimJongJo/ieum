@@ -1,5 +1,6 @@
 package dao.member;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -96,6 +97,16 @@ public class MemberDaoImpl implements MemberDao{
 		session.commit();
 		
 	}
+	//병원에 근무하는 의사 수, 의사 리스트
+	@Override
+	public Integer docCnt(Integer hNo) throws Exception {
+		return session.selectOne("mapper.member.docCnt",hNo);
+	}
 
-	
+	@Override
+	public List<MemberDto> docList(Integer hNo) throws Exception {
+		System.out.println("hNo>>>"+hNo);
+		System.out.println("dao>>>>"+session.selectList("mapper.member.docList",hNo));
+		return session.selectList("mapper.member.docList",hNo);
+	}
 }

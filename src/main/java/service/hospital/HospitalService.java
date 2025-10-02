@@ -3,7 +3,7 @@ package service.hospital;
 import java.util.List;
 import java.util.Map;
 
-import dto.HospitalDto;
+import dto.MemberDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
