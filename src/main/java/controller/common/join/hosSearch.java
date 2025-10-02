@@ -44,7 +44,6 @@ public class hosSearch extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String result;
-		
 		// 비어있을때
 		if(hosList == null) {
 			result = gson.toJson(new ResponseDto(false, "검색결과가 없음", hosList));

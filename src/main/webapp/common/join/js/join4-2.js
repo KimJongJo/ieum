@@ -39,6 +39,7 @@ $(document).on("click", ".hosName", function() {
 	    userInfo.userHos = false;
 	});
 
+// $("#hosAuthCode").prop("disabled", true);
 
 // 검색했을때 키워드를 통해 가져온 병원 목록 뿌리기
 $("#hosName-search-btn").click(function () {
@@ -55,9 +56,10 @@ $("#hosName-search-btn").click(function () {
 		dataType:"json",
 		success:function(res){
 			if(res.success){
+				let rows = "";
 				
 				if(res.object.length > 0){
-					let rows = "";
+					
 					// 성공
 					res.object.forEach(item => {
 						rows += `
@@ -87,6 +89,15 @@ $("#hosAuth").click(function() {
 	
 	if($("#hosNameInput").val().trim() === ""){
 		alert("병원 검색을 통해 소속병원을 등록해주세요");
+		userInfo.userHos = false;
+		$("#hosAuth-i").removeClass("fa-check span-check").addClass("fa-xmark span-x");
+		return;
+	}
+	
+	if($("#hosAuthCode").val().trim() === ""){
+		alert("인증코드를 입력해주세요");
+		userInfo.userHos = false;
+		$("#hosAuth-i").removeClass("fa-check span-check").addClass("fa-xmark span-x");
 		return;
 	}
 	
@@ -102,6 +113,7 @@ $("#hosAuth").click(function() {
 				alert("인증되었습니다.");
 				$("#hosAuth-i").removeClass("fa-xmark span-x").addClass("fa-check span-check");
 				userInfo.userHos = true;
+				$("#hosAuthCode").prop("disabled", true);
 			}else{
 				alert("인증코드가 일치하지 않습니다.");
 				$("#hosAuth-i").removeClass("fa-check span-check").addClass("fa-xmark span-x");
