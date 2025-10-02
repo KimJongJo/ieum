@@ -14,8 +14,17 @@ public class CommunityDto {
 	Integer categoryNo;
 	Integer commuComment;
 	
+	 // 서버에서 사용자가 이미 공감했는지 여부
+    private boolean userLiked;
 	
-	
+	public boolean isUserLiked() {
+		return userLiked;
+	}
+
+	public void setUserLiked(boolean userLiked) {
+		this.userLiked = userLiked;
+	}
+
 	public CommunityDto() {
 		super();
 	}

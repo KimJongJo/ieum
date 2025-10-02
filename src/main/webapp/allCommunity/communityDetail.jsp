@@ -409,6 +409,22 @@ $(function () {
 
 });
 
+
+
+$(function(){
+    $('.heart-btn').click(function(e){
+        e.preventDefault(); // ✅ submit 막기
+
+        // 하트 색상 토글
+        var heartSpan = $(this).find('.heart');
+        heartSpan.text(heartSpan.text() === "🤍" ? "❤️" : "🤍");
+
+        // 서버 요청 없이 화면만 변경
+        // 원하는 경우 서버와 통신하려면 form.submit() 대신 fetch나 ajax 사용
+    });
+});
+
+
 </script>
 
 </head>
@@ -449,12 +465,7 @@ $(function () {
         			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
 					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
 					    <button type="submit" class="action-item">
-					        <span class="heart">
-							    <c:choose>
-							        <c:when test="">❤️</c:when>
-							        <c:otherwise>🤍</c:otherwise>
-							    </c:choose>
-							</span>
+					        🤍
 					         <span class="action-count"><c:out value="${community.empathy}" /></span>
 					    </button>
 				    </form>

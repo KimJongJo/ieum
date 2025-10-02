@@ -20,7 +20,6 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
 		Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
-		session.commit();
 		return count != null && count > 0;
 	}
 
