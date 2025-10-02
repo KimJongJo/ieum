@@ -16,11 +16,9 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 		Map<String, Integer> map = new HashMap<>();
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
-		try(SqlSession session = sqlSessionFactory.openSession()) {
-			Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
-			session.commit();
-			return count != null && count > 0;
-		}
+		Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
+		return count != null && count > 0;
+
 	}
 
 	@Override

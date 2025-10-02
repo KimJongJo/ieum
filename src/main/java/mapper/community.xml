@@ -36,6 +36,18 @@
         ORDER BY c.commu_created DESC
     </select>
     
+    
+    
+    <select id="selectLikedCommunityList" parameterType="int" resultType="myCommunity">
+	    select c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+	    from community c
+	    inner join commu_category cg on c.category_no = cg.category_no
+	    inner join member m ON c.u_no = m.u_no
+	    inner join commu_like cl on c.commu_no = cl.commu_no
+	    where cl.u_no = #{uNo}
+	    order by c.commu_created DESC
+	</select>
+
     <!-- 모든 커뮤니티 불러오기 -->
     <select id="selectAllCommunityList" resultType="allCommunity">
     	SELECT
@@ -64,5 +76,12 @@
         set commu_views = commu_views + 1
         where commu_no = #{commuNo}
     </update>
-
+    
+    
+    <!-- 공감 테이블에 commu_no가 있다면 community테이블의 commu_no에 해당하는 모든 정보 가져오기 -->
+    <select id="selectCommuWithLike" parameterType="int" resultType="community">
+	    select c.*
+		from community c
+		join commu_like cl on c.commu_no = cl.commu_no;
+	</select>
 </mapper>	

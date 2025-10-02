@@ -16,6 +16,7 @@ public class CommunityDto {
 
 	boolean likedByUser;
 	
+
 	public boolean isLikedByUser() { // boolean 타입은 isXxx()
         return likedByUser;
     }
@@ -23,6 +24,7 @@ public class CommunityDto {
     public void setLikedByUser(boolean likedByUser) {
         this.likedByUser = likedByUser;
     }
+
 	public CommunityDto() {
 		super();
 	}
