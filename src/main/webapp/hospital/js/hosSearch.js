@@ -56,8 +56,8 @@ function loadHospitals(page, appendMode = false) {
 		.each(function() {
 			categoryNo.push($(this).val());
 		});
-		
-		
+
+
 	$.ajax({
 		url: "/ieum/hospital/search",
 		async: true,
@@ -89,9 +89,10 @@ function loadHospitals(page, appendMode = false) {
         </div>
 					`);
 			} else {
+				console.log(data)
 				data.hosSearchDto.forEach(h => {
 					$("#hospitalList").append(`
-                    <div class="list-box">
+                    <div class="list-box" data-hno="${h.hNo}">
 					<div class="right3">
 						<img class="hosf" src="" />
 						<div class="infodetail">
@@ -111,15 +112,15 @@ function loadHospitals(page, appendMode = false) {
 				</div>
                 `);
 				});
-				
-				 $("#loadMore").empty();
-				 $("#goTop").empty();
-				
+
+				$("#loadMore").empty();
+				$("#goTop").empty();
+
 				if (curPge < allPage) {
-				$("#loadMore").append(`
+					$("#loadMore").append(`
 					<div class="loadmore"><button class="btn-cir-w">
            				 더보기<i class="fa-solid fa-chevron-down"></i></button></div>`)
-				}else {
+				} else {
 					$("#goTop").append(`
 					<div class="loadmore"><button class="btn-cir-w">
            				 맨위로<i class="fa-solid fa-angle-up"></i></button></div>
@@ -196,31 +197,25 @@ $("#city, #gungu, input[name='hc']").on("change keyup", function() {
 // 더보기 버튼 이벤트
 $("#loadMore").on("click", function() {
 	if (curPge < allPage) {
-        loadHospitals(curPge + 1, true); // appendMode=true
-    }
+		loadHospitals(curPge + 1, true); // appendMode=true
+	}
 });
 
 //맨위로 버튼
-$("#goTop").on("click", function(){
+$("#goTop").on("click", function() {
 	$('html, container').animate({ scrollTop: 0 }, 'slow');
 });
 
 //리스트에서 특정 병원 클릭
-$(".list-box").on("click", function() {
-    const hNo = $(this).data("hno"); // 리스트에 출력된 병원 번호
-    
-    $.ajax({
-        url: "/hospital/setDetail",   // hNo 저장만 하는 컨트롤러
-        type: "POST",
-        data: { hNo: hNo },
-        success: function() {
-            // 저장이 끝나면 이동 (URL에 hNo 안 붙음)
-            window.location.href = "/hospital/detail";
-        },
-        error: function(err) {
-            console.log("저장 실패:", err);
-        }
-    });
+$(document).on("click", ".list-box", function() {
+	const hNo = $(this).data("hno"); // div에 저장된 병원번호
+	console.log("클릭한 병원 번호:", hNo);
+
+	$.post("/ieum/hospital/detail", { hNo: hNo }, function() {
+		// 서버에 세션 저장 성공하면 디테일 페이지로 이동
+		window.location.href = "/ieum/hospital/detail";
+	});
+
 });
 
 

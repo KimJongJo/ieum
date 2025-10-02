@@ -19,17 +19,14 @@ import service.auth.EmailServiceImpl;
 @WebServlet("/auth/sendEmailCode")
 public class SendEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	EmailService service;
-    
-    public SendEmail() {
-    
-    }
+
+    public SendEmail() {}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		EmailService service = new EmailServiceImpl(getServletContext());
 		request.setCharacterEncoding("utf-8");
 		String email = request.getParameter("email");
@@ -52,13 +49,15 @@ public class SendEmail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		EmailService service = new EmailServiceImpl(getServletContext());
+
 		request.setCharacterEncoding("utf-8");
 		String email = request.getParameter("email");
 		Gson gson = new Gson();
 		String result;
 		try {
-			service.sendEmail(email);
+			service.sendEmail(email , "common");
 			result = gson.toJson(new ResponseDto(true, "이메일 전송 완료"));
 			response.getWriter().write(result);
 			

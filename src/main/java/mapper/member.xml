@@ -14,6 +14,12 @@
 		 , #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
 	</insert>
 	
+	<insert id="managerJoin" parameterType="member">
+		insert into member
+		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, major, h_no, state_code, file_no)
+		values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW(), #{userType}, #{major}, #{hNo}, 1, #{fileNo})
+	</insert>
+	
 	<select id="findId" parameterType="String" resultType="Map">
 		select id as userId, username as userName, user_type as userType from member where email = #{email}
 	</select>

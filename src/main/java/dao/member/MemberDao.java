@@ -10,6 +10,8 @@ public interface MemberDao {
 	MemberDto checkId(String userId);
 
 	void normalJoin(MemberDto member);
+	
+	void managerJoin(MemberDto member);
 
 	Map<String, Object> findId(String email);
 
@@ -30,4 +32,6 @@ public interface MemberDao {
 	void updatePassword(MemberDto memberDto) throws Exception;
 
 	MemberProfileDto selectMemberWithProfile(int uNo) throws Exception;
+
+	
 }

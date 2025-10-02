@@ -1,4 +1,4 @@
-package controller.auth.email;
+package controller.auth.hospitalCodt;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dto.otherDto.ResponseDto;
-import service.auth.EmailService;
-import service.auth.EmailServiceImpl;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
 
 /**
- * Servlet implementation class RequestHosSendEmail
+ * Servlet implementation class HospitalAuthCode
  */
-@WebServlet("/auth/requestHosEmail")
-public class RequestHosSendEmail extends HttpServlet {
+@WebServlet("/auth/hospitalAuth")
+public class HospitalAuthCode extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RequestHosSendEmail() {
+    public HospitalAuthCode() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +34,21 @@ public class RequestHosSendEmail extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
+		String hosAuthCode = request.getParameter("authCode");
 		
-		String email = request.getParameter("email");
-		EmailService service = new EmailServiceImpl(request.getServletContext());
+		HospitalService service = new HospitalServiceImpl();
+		boolean checkAuth = service.checkHosAuthCode(hNo, hosAuthCode);
 		
 		Gson gson = new Gson();
-		ResponseDto resDto;
 		String result;
 		
-		try {
-			service.sendEmail(email, "common");
-			resDto = new ResponseDto(true, "이메일이 전송되었습니다.");
-		}catch(Exception e) {
-			e.printStackTrace();
-			resDto = new ResponseDto(false, "이메일 전송중 에러 발생");
+		// 인증이 되었을 때
+		if(checkAuth) {
+			result = gson.toJson(new ResponseDto(true, "인증되었습니다."));
+		}else {
+			result = gson.toJson(new ResponseDto(false, "인증코드가 일치하지 않습니다."));
 		}
-		result = gson.toJson(resDto);
 		
 		response.getWriter().write(result);
 		

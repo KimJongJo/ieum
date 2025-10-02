@@ -13,8 +13,8 @@ public class HosSearchDto {
 	
 	public HosSearchDto() {
 		super();
-	}	
-	
+	}
+
 	public HosSearchDto(String keyword, List<String> categoryName, String city, String gungu, int offset, int limit) {
 		super();
 		this.keyword = keyword;
@@ -73,11 +73,7 @@ public class HosSearchDto {
 		this.limit = limit;
 	}
 
-	@Override
-	public String toString() {
-		return "HosSearchDto [keyword=" + keyword + ", categoryName=" + categoryName + ", city=" + city + ", gungu="
-				+ gungu + ", offset=" + offset + ", limit=" + limit + "]";
-	}
+	
 	
 	
 

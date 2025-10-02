@@ -36,7 +36,7 @@ public class HospitalServiceImpl implements HospitalService {
 		Integer offset = (pageInfo.getCurPage() - 1) * 8;
 		hosSearch.setOffset(offset);
 		hosSearch.setLimit(8);
-		System.out.println(hosSearch);
+//		System.out.println(hosSearch);
 		return hosDao.selectList(hosSearch);
 	}
 
@@ -48,8 +48,6 @@ public class HospitalServiceImpl implements HospitalService {
 		ApplicantDto appDto = (ApplicantDto)requestMap.get("appDto");
 		
 		Integer hosNo = hosDao.addHospital(hosDto);
-		
-		System.out.println(hosNo);
 		
 		appDto.sethNo(hosNo);
 		appDao.addApplicant(appDto);
@@ -164,10 +162,38 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public HosDetailDto getDetail(Integer hNm) throws Exception {
+	public HosDetailDto getDetail(Integer hNo) throws Exception {
 		
 		// 병원 디테일정보 가져오기
-		return hosDao.selectHosDetail(hNm);
+		return hosDao.selectHosDetail(hNo);
+	}
+
+	@Override
+	public HosDetailDto getDocDetail(Integer hNo) throws Exception {
+		
+		// 의사 디테일 가져오기
+		return hosDao.selectDocDetail(hNo);
+	}
+
+	// 관리자 회원가입 시 병원 이름 가져오기
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
+		
+		return hosDao.joinSearchHosName(keyword);
+	}
+
+	
+	// 병원 인증
+	@Override
+	public boolean checkHosAuthCode(Integer hNo, String hosAuthCode) {
+		
+		Map<String, Object> hosMap = new HashMap<String, Object>();
+		hosMap.put("hNo", hNo);
+		hosMap.put("hosAuthCode", hosAuthCode);
+		
+		HospitalDto hosDto = hosDao.checkHosAuthCode(hosMap);
+		if(hosDto == null) return false;
+		return true;
 	}
 
 }

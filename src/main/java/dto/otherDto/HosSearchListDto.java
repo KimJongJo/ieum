@@ -6,7 +6,17 @@ public class HosSearchListDto {
 	String transferInfo;	// 근거리 교통 정보
 	Integer fileNo;	// 병원 썸네일 파일
 	String categoryName;
+	Integer hNo; //병원 번호
 	
+	public HosSearchListDto(String hNm, String transferInfo, Integer fileNo, String categoryName, Integer hNo) {
+		super();
+		this.hNm = hNm;
+		this.transferInfo = transferInfo;
+		this.fileNo = fileNo;
+		this.categoryName = categoryName;
+		this.hNo = hNo;
+	}
+
 	HosSearchListDto() {
 		super();
 	}
@@ -55,6 +65,14 @@ public class HosSearchListDto {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public Integer gethNo() {
+		return hNo;
+	}
+
+	public void sethNo(Integer hNo) {
+		this.hNo = hNo;
 	}
 	
 	
