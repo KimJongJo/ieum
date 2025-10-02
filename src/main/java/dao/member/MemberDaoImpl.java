@@ -109,4 +109,20 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("dao>>>>"+session.selectList("mapper.member.docList",hNo));
 		return session.selectList("mapper.member.docList",hNo);
 	}
+
+	@Override
+	public Integer kakaoSignUp(MemberDto member) {
+		Integer uNo = session.insert("kakaoSignUp", member);
+		session.close();
+		return uNo;
+		
+		
+	}
+
+	// 네이버 로그인시 이메일이 이미 있는 경우
+	@Override
+	public MemberDto checkEmail(String email) {
+		System.out.println(email);
+		return session.selectOne("checkNaverEmail",email);
+	}
 }

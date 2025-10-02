@@ -63,9 +63,24 @@ public class MemberDto {
 		this.hNo = hNo;
 	}
 	
+	// 카카오 회원가입
+	public MemberDto(String id, String username, Date birthDate, String gender, String uTel, String email,
+			String nickname, String uAddress, Boolean diaryPrivate, String social, Integer fileNo) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.uTel = uTel;
+		this.email = email;
+		this.nickname = nickname;
+		this.uAddress = uAddress;
+		this.diaryPrivate = diaryPrivate;
+		this.social = social;
+		this.fileNo = fileNo;
+	}
 	
-
-
+	
 
 	public MemberDto(Integer uNo, String password) {
 		super();
@@ -74,7 +89,6 @@ public class MemberDto {
 	}
 
 	
-
 
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
@@ -106,15 +120,18 @@ public class MemberDto {
 	
 	
 	
+	
 	@Override
 	public String toString() {
 		return "MemberDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
 				+ ", password=" + password + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email
 				+ ", createdAt=" + createdAt + ", userType=" + userType + ", major=" + major + ", introduction="
-				+ introduction + ", nickName=" + nickname + ", uAddress=" + uAddress
-				+ ", diaryPrivate=" + diaryPrivate + ", warningCount=" + warningCount + ", social=" + social + ", hNo="
-				+ hNo + ", stateCode=" + stateCode + "]";
+				+ introduction + ", nickname=" + nickname + ", uAddress=" + uAddress + ", diaryPrivate=" + diaryPrivate
+				+ ", warningCount=" + warningCount + ", social=" + social + ", hNo=" + hNo + ", stateCode=" + stateCode
+				+ ", fileNo=" + fileNo + "]";
 	}
+
+
 	public Integer getuNo() {
 		return uNo;
 	}

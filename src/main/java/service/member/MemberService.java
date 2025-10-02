@@ -19,5 +19,11 @@ public interface MemberService {
 	MemberDto selectByNickName(Integer uNo) throws Exception;
 	
 	List<MemberDto> DoclistBy2 (Integer hNo) throws Exception;
+
+	MemberDto socialIdCheck(String idStr);
+
+	Integer socialSignUp(MemberDto member);
+
+	MemberDto emailCheck(String email);
 	
 }

@@ -129,13 +129,33 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 의사 리스트 가져오기
-		@Override
-		public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
-			System.out.println("service>>>>"+memberDao.docList(hNo));
-			return memberDao.docList(hNo);
-			
-		}
+	@Override
+	public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
+		System.out.println("service>>>>"+memberDao.docList(hNo));
+		return memberDao.docList(hNo);
+		
+	}
+
+	// 소셜로그인 할때 아이디가 존재하는지 검사
+	@Override
+	public MemberDto socialIdCheck(String idStr) {
+
+		return memberDao.checkId(idStr);
+	}
 
 	
+	// 카카오 회원가입
+	@Override
+	public Integer socialSignUp(MemberDto member) {
+		
+		return memberDao.kakaoSignUp(member);
+	}
+
+	// 네이버 이메일 체크
+	@Override
+	public MemberDto emailCheck(String email) {
+
+		return memberDao.checkEmail(email);
+	}
 
 }

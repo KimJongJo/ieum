@@ -334,6 +334,10 @@ body {
 	
 </style>
 <script>
+
+const contextPath = '<%= request.getContextPath() %>';
+
+
 $(function () {
     /* 댓글 메뉴 토글 */
     $(document).on('click', '.comment-box .menu-button', function (e) {
@@ -361,9 +365,9 @@ $(function () {
 
                 // 하트 이미지 갱신
                 if (data.liked) {
-                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                    heartSpan.html('<img src="' + contextPath + '/img/빨간하트.png" alt="좋아요" width="15" height="15"/>');
                 } else {
-                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                    heartSpan.html('<img src="' + contextPath + '/img/횐색하트.png" alt="좋아요" width="15" height="15"/>');
                 }
             }, "json"); // JSON으로 받기
         });
