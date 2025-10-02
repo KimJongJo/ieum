@@ -27,6 +27,13 @@ public class MemberDaoImpl implements MemberDao{
 		session.commit();
 		
 	}
+	
+	@Override
+	public void managerJoin(MemberDto member) {
+		session.insert("managerJoin", member);
+		session.commit();
+		
+	}
 
 	@Override
 	public Map<String, Object> findId(String email) {
@@ -83,4 +90,6 @@ public class MemberDaoImpl implements MemberDao{
 		session.commit();
 		
 	}
+
+	
 }

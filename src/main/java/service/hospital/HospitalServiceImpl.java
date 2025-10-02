@@ -175,4 +175,25 @@ public class HospitalServiceImpl implements HospitalService {
 		return hosDao.selectDocDetail(hNo);
 	}
 
+	// 관리자 회원가입 시 병원 이름 가져오기
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
+		
+		return hosDao.joinSearchHosName(keyword);
+	}
+
+	
+	// 병원 인증
+	@Override
+	public boolean checkHosAuthCode(Integer hNo, String hosAuthCode) {
+		
+		Map<String, Object> hosMap = new HashMap<String, Object>();
+		hosMap.put("hNo", hNo);
+		hosMap.put("hosAuthCode", hosAuthCode);
+		
+		HospitalDto hosDto = hosDao.checkHosAuthCode(hosMap);
+		if(hosDto == null) return false;
+		return true;
+	}
+
 }
