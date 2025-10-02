@@ -1,6 +1,7 @@
 package service.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -111,5 +112,13 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDto selectByNickName(Integer uNo) throws Exception {
 		return memberDao.selectByNickName(uNo);
 	}
+	
+	// 의사 리스트 가져오기
+		@Override
+		public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
+			System.out.println("service>>>>"+memberDao.docList(hNo));
+			return memberDao.docList(hNo);
+			
+		}
 
 }

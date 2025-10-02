@@ -1,5 +1,6 @@
 package dao.member;
 
+import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
@@ -30,4 +31,8 @@ public interface MemberDao {
 	void updatePassword(MemberDto memberDto) throws Exception;
 
 	MemberProfileDto selectMemberWithProfile(int uNo) throws Exception;
+	
+	Integer docCnt(Integer hNo) throws Exception;
+	
+	List<MemberDto> docList(Integer hNo) throws Exception;
 }

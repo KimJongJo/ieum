@@ -1,4 +1,5 @@
 package service.member;
+import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
@@ -16,5 +17,7 @@ public interface MemberService {
 	int login(String userId, String password);
 
 	MemberDto selectByNickName(Integer uNo) throws Exception;
+	
+	List<MemberDto> DoclistBy2 (Integer hNo) throws Exception;
 	
 }

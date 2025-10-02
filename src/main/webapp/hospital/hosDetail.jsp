@@ -16,9 +16,9 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header.css" />
+	href="${contextPath}/css/header.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/common/button/button.css" />
+	href="${contextPath}/common/button/button.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -157,9 +157,10 @@
 			<div class="hos-info">
 				<form class="hos-inf" action="" method="get">
 					<div class="inf">
-						<p class="p1">1회용품 줄이기에 동참해주세요<c:out value="${hosd.newsTitle }"/></p>
+						<p class="p1">
+						<c:out value="${hosd.newsTitle }"/>
+						</p>
 						<span class="p2">
-						2024년 3월 29일부터 일부 숙소는 1회용품 (칫솔,면도기 등)을 무료로 제공하지 않을 수 있습니다.
 						<c:out value="${hosd.newsContent }"/>
 						</span>
 					</div>
@@ -169,31 +170,22 @@
 				<div class="mtitle">상담사</div>
 			</div>
 			<div class="doctor-box">
-				<div class="dall">
-					<img src="" class="doc-prof" />
+			<c:forEach var="doctorlist" items="${docList}">
+				<div class="dall" >
+					<img src="" class="doc-prof"/>
 					<div class="d1">
 						<div class="username">
-						<c:out value="${docd.username }"/>
+						<c:out value="${docList.username }"/>
 						</div>
 						<p class="introduction">
-							<c:out value="${docd.introduction }"/>
+						<c:out value="${docLists.introduction }"/>
 						</p>
 						<p class="major">
-						<c:out value="${docd.major }"/>
+						<c:out value="${docList.major }"/>
 						</p>
 					</div>
 				</div>
-
-				<div class="dall">
-					<img src="" class="doc-prof" />
-					<div class="d1">
-						<div class="username">황혜진</div>
-						<p class="introduction">(한마디?)잠시쉬었다 가는 것도 괜찮아요 지금 여기에서 진심으로 함께
-							있겠습니다.</p>
-						<p class="major">가정의학과 전문의</p>
-					</div>
-				</div>
-
+				</c:forEach>
 			</div>
 
 			<div class="map">
@@ -227,20 +219,27 @@
 				<div class="mtitle">상담사</div>
 			</div>
 			<div class="doctor-box">
-				<div class="dall">
-					<img src="" class="doc-prof" />
+			<c:forEach var="doctorlist" items="${docList}">
+				<div class="dall" >
+					<img src="" class="doc-prof"/>
 					<div class="d1">
-						<div class="username">황혜진</div>
-						<p class="introduction">(한마디?)잠시쉬었다 가는 것도 괜찮아요 지금 여기에서 진심으로 함께
-							있겠습니다.</p>
-						<p class="major">가정의학과 전문의</p>
+						<div class="username">
+						<c:out value="${docList.username }"/>
+						</div>
+						<p class="introduction">
+						<c:out value="${docLists.introduction }"/>
+						</p>
+						<p class="major">
+						<c:out value="${docList.major }"/>
+						</p>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 
 			<div class="mheader">
-				<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
-					시간을 선택해 주세요</span>
+				<i class="fa-solid fa-calendar-days"></i>
+				<span class="h">날짜와 시간을 선택해 주세요</span>
 			</div>
 
 			<div class="select-date">
@@ -295,9 +294,9 @@
 
 			<div class="btn">
 				<a href="${contextPath }/hospital/detail"><button type="button"
-						class="white">그만두기</button></a> <a
+						class="btn-rec-w">그만두기</button></a> <a
 					href="${contextPath }/reservation/content"><button
-						type="button" class="blue">다음으로</button></a>
+						type="button" class="btn-long-b">다음으로</button></a>
 			</div>
 		</div>
 	</div>
