@@ -13,26 +13,51 @@ $(document).ready(() => {
 	$("#tab1").addClass("active");
 	$("#tab2").removeClass("active");
 
-	// 왼쪽 버튼 클릭
+	// 왼쪽 탭 (상세정보)
 	navl.click(function() {
 		navl.addClass("active");
 		navr.removeClass("active");
 		tab1.addClass("active");
 		tab2.removeClass("active");
-	});
 
-	// 오른쪽 버튼 클릭
+	});
+	
+	//하단 버튼 (예약하기)
+		$(document).on('click', '#resbtn', function() {
+			activeReservation();
+		});
+
+	// 오른쪽 탭 (예약하기)
 	navr.click(function() {
 		navr.addClass("active");
 		navl.removeClass("active");
-		$('html, nav-box').animate({ scrollTop: 0 }, 'slow');
 		tab2.addClass("active");
 		tab1.removeClass("active");
 
+		activeReservation();
+
+	});
+
+
+	// 예약하기 탭
+	function activeReservation() {
+		//스크롤 이동
+		$('html, body').animate({
+			scrollTop: $('.nav-box').offset().top
+		}, 'slow');
+
+		//오른쪽 탭 (예약하기)	
+		navr.addClass("active");
+		navl.removeClass("active");
+		tab2.addClass("active");
+		tab1.removeClass("active");
+
+		showCalendar();
+	}
+
+	function showCalendar() {
 		//calender
 		const today = new Date();
-
-
 		const startOfThisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 		// 다다음 달 마지막 날
 		const endOfNext2Month = new Date(today.getFullYear(), today.getMonth() + 2 + 1, 0);
@@ -140,7 +165,10 @@ $(document).ready(() => {
 				}
 
 			});
+
+
 			calendar.render();
+
 			const now = new Date(); // 현재 시각
 			const buttons = document.querySelectorAll(".tb1");
 
@@ -156,10 +184,8 @@ $(document).ready(() => {
 		} else {
 			calendar.updateSize(); // 이미 렌더링 됐으면 크기 재계산
 		}
-	});
-
-	$('.blue').click(function() {
-		$('html, body').animate({ scrollTop: 0 }, 'slow');
-	});
+	}
 
 });
+
+
