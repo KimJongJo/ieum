@@ -68,31 +68,7 @@ public class CommunityDetail extends HttpServlet {
         MemberService memberService = new MemberServiceImpl();
         CommentService commentService = new CommentServiceImpl();
         try {
-        	
-//        	HttpSession session = request.getSession();
-//        	Object obj = session.getAttribute("viewedPosts");
-//
-//        	Set<Integer> viewed;
-//        	if (obj == null) {
-//        	    viewed = new HashSet<>();
-//        	} else if (obj instanceof Set) {
-//        	    viewed = (Set<Integer>) obj;
-//        	} else if (obj instanceof List) {
-//        	    viewed = new HashSet<>((List<Integer>) obj); // ArrayList → HashSet 변환
-//        	} else {
-//        	    viewed = new HashSet<>();
-//        	}
-//
-//        	// 조회수 증가 처리
-//        	if (!viewed.contains(commuNo)) {
-//        		communityService.updateViews(commuNo);
-//        	    viewed.add(commuNo);
-//        	    session.setAttribute("viewedPosts", viewed);
-//        	}
-//        	
-//        	
-        	
-        	
+                	
         	// 조회수 증가
         	communityService.updateViews(commuNo);
         	//1. 커뮤글 조회

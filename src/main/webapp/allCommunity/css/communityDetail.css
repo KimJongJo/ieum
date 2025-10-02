@@ -308,5 +308,9 @@ body {
 	
 	.comment-action-item{
 		border:none;
-		background-color: white;	
+		background-color: white;
+			gap: 10px;
+	}
+	#Heart1{
+		margin-right:2px;
 	}

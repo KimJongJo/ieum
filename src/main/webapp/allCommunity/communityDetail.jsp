@@ -325,8 +325,13 @@ body {
 	
 	.comment-action-item{
 		border:none;
-		background-color: white;	
+		background-color: white;
+			gap: 10px;
 	}
+	#Heart1{
+		margin-right:2px;
+	}
+	
 </style>
 <script>
 $(function () {
@@ -513,10 +518,11 @@ $(function () {
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
 			        <button class="comment-action-item">
-					        <img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+			        	<span class="heart">
+					        <img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+						</span>
 					</button>
 			    </div>
-			<!-- ❤️ -->
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>
@@ -524,7 +530,8 @@ $(function () {
 			    </div>
 			</div>	
 		</c:if>
-	
+		
+		<!-- 댓글 등록 장소 -->
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
