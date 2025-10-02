@@ -60,5 +60,10 @@ public class CommentDaoImpl implements CommentDao{
 		session.update("mapper.comment.updateCommentCount", map);
 		session.commit();
 	}
+	@Override
+	public CommentDto selectByNo(int commeNo) throws Exception {
+		
+		return session.selectOne("mapper.comment.selectByNo", commeNo);
+	}
 
 }

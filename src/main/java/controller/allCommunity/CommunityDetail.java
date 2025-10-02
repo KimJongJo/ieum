@@ -19,8 +19,12 @@ import dto.CommunityDto;
 import dto.MemberDto;
 import service.allCommunity.CategoryService;
 import service.allCommunity.CategoryServiceImpl;
+import service.allCommunity.CommentEmpathyService;
+import service.allCommunity.CommentEmpathyServiceImpl;
 import service.allCommunity.CommentService;
 import service.allCommunity.CommentServiceImpl;
+import service.allCommunity.CommuEmpathyService;
+import service.allCommunity.CommuEmpathyServiceImpl;
 import service.allCommunity.CommunityService;
 import service.allCommunity.CommunityServiceImpl;
 import service.member.MemberService;
@@ -67,6 +71,9 @@ public class CommunityDetail extends HttpServlet {
         CategoryService categoryService = new CategoryServiceImpl();
         MemberService memberService = new MemberServiceImpl();
         CommentService commentService = new CommentServiceImpl();
+        CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
+        CommentEmpathyService commentEmpathyService = new CommentEmpathyServiceImpl();
+        CommentDto commentDto = new CommentDto();
         try {
                 	
         	// 조회수 증가
@@ -90,6 +97,19 @@ public class CommunityDetail extends HttpServlet {
          // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
             BlackListService blackListService = new BlackListServiceImpl();
             List<Integer> blockedList = null;
+            
+            //공감 유지
+            boolean likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
+            communityDto.setLikedByUser(likedByUser);
+            request.setAttribute("community", communityDto);
+
+            
+            for (CommentDto comment : commentList) {
+                boolean likedByUserCom = commentEmpathyService.checkEmpathy(uNo, comment.getCommeNo());
+                comment.setLikedByUserCom(likedByUserCom); // DTO에 필드 있어야 함
+            }
+            request.setAttribute("comment", commentList);
+            
             try {
                 blockedList = blackListService.getBlockedComments(uNo, commuNo);
             } catch (Exception e) {

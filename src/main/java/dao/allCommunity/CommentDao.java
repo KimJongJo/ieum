@@ -3,6 +3,7 @@ package dao.allCommunity;
 import java.util.List;
 
 import dto.CommentDto;
+import dto.CommunityDto;
 
 public interface CommentDao {
 	//등록하기
@@ -17,7 +18,7 @@ public interface CommentDao {
 	// 댓글 조회
 	List<CommentDto> getCommentsByCommuNo(int commuNo) throws Exception;
 	
-	
+	CommentDto selectByNo(int commeNo) throws Exception;
 	
 	 // 댓글 개수 조회
     int countCommentsByCommuNo(int commuNo) throws Exception;

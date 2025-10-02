@@ -33,4 +33,10 @@ public class CommentEmpathyServiceImpl implements CommentEmpathyService{
 		return commentEmpathyDao.getCommeEmpathyCount(commeNo);
 	}
 
+	@Override
+	public boolean checkEmpathy(int uNo, int commeNo) throws Exception {
+		
+		return commentEmpathyDao.ckeckCommeEmpathy(uNo, commeNo);
+	}
+
 }

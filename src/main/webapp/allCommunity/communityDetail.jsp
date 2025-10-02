@@ -498,7 +498,7 @@ $(function () {
 					    <button type="submit" class="action-item">
 					        <span class="heart">
 							    <c:choose>
-							        <c:when test="community.likedByUser">
+							        <c:when test="${community.likedByUser}">
 							        	 <img id="Heart" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
 							        </c:when>
 							        <c:otherwise>
@@ -546,7 +546,7 @@ $(function () {
 			        	<button type="submit" class="comment-action-item">
 					        <span class="heart1">
 							    <c:choose>
-							        <c:when test="comment.likedByUser">
+							        <c:when test="${comment.likedByUserCom}">
 							        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
 							        </c:when>
 							        <c:otherwise>

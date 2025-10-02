@@ -57,7 +57,8 @@
     	order by c.com_created DESC
     </select>
     
-    
-    
-    
+    <!-- 댓글 조회 -->
+    <select id="selectByNo" parameterType="int" resultType="comment">
+    	select * from comment where comme_no = #{commeNo}
+    </select>
 </mapper>
