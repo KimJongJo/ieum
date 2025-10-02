@@ -55,7 +55,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-        int uNo = 1; // 로그인된 사용자 번호
+        int uNo = 5; // 로그인된 사용자 번호
         String title = request.getParameter("title");
         String content = request.getParameter("content");
 

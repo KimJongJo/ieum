@@ -1,22 +1,12 @@
-
 $(document).ready(function() {
 
-    // 1. 탭 클릭 시 active 바꾸기
-    $(".tab").click(function() {
-        $(".tab").removeClass("active");
-        $(this).addClass("active");
-    });
-
-    // 2. 댓글 길면 짤리게
+    // 댓글 길면 짤리게
     const maxChars = 50;
     const $p = $("#text");
     if ($p.text().length > maxChars) {
         $p.text($p.text().slice(0, maxChars) + '...');
     }
 
-   
-
-    // 4. 클릭 이벤트 (탭에 따라 게시판/댓글 영역 전환)
     const $tabCommu = $('.tab-commu');
     const $tabComment = $('.tab-comment');
     const $tabHeart = $('.tab-heart');
@@ -24,33 +14,39 @@ $(document).ready(function() {
     const $frame = $('.frame');      // 게시판 영역
     const $comment = $('.comment');  // 댓글 영역
 
-    // 처음에는 게시판만 보이도록
+    // 처음에는 작성한 게시판만 active
+    $tabCommu.addClass('active');
     $frame.show();
     $comment.hide();
 
-    function activateTab($selectedTab) {
-        $tabCommu.add($tabComment).add($tabHeart).removeClass('active');
-        $selectedTab.addClass('active');
-    }
-
+    // 탭 클릭 이벤트
     $tabCommu.click(function() {
-        activateTab($tabCommu);
+        $tabCommu.addClass('active');
+        $tabComment.removeClass('active');
+        $tabHeart.removeClass('active');
         $frame.show();
         $comment.hide();
     });
 
     $tabComment.click(function() {
-        activateTab($tabComment);
+        $tabComment.addClass('active');
+        $tabCommu.removeClass('active');
+        $tabHeart.removeClass('active');
         $frame.hide();
         $comment.show();
     });
 
     $tabHeart.click(function() {
-        activateTab($tabHeart);
-        $frame.show();     // 좋아요 누른 게시판도 게시판처럼
+        $tabHeart.addClass('active');
+        $tabCommu.removeClass('active');
+        $tabComment.removeClass('active');
+        $frame.show();
         $comment.hide();
     });
 });
- $(document).ready(function() {
-	    $('.hide-if-user').hide();
-	});
+
+
+// 숨김 요소 처리
+$(document).ready(function() {
+    $('.hide-if-user').hide();
+});

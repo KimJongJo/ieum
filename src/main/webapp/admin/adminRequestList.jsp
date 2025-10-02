@@ -39,7 +39,7 @@
 					<div class="search-name">
 						<span class="search-name-span">병원 신청 목록</span>
 					</div>
-					<form class="search-bar">
+					<div class="search-bar">
 						<input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
 						<button class="search-bar-icon" type="button" id="searchBtn">
 							<i class="fa-solid fa-magnifying-glass"></i>
@@ -51,7 +51,7 @@
 							<option value="created_young">신청일(최신순)</option>
 							<option value="created_old">신청일(오래된순)</option>
 						</select>
-					</form>
+					</div>
 					<div class="table-div">
 						<table class="table" id="tableSetting">
 							<thead>

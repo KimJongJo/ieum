@@ -89,6 +89,7 @@ public class HosSignUp2 extends HttpServlet {
 		String hos_y = request.getParameter("hos_y");
 		String hos_x = request.getParameter("hos_x");
 		
+		System.out.println(categoryNo);
 		List<String> holidays = new ArrayList<>();
 		String holiday;
 		if(weekDay != null) {
@@ -144,15 +145,15 @@ public class HosSignUp2 extends HttpServlet {
 		// 도로명 주소
 //		String loadNameAdd = addArr[addArr.length - 2] + " " + addArr[addArr.length - 1];
 		
-//		HospitalDto hosDto = new HospitalDto(hosName, categoryNo, address, hos_y, hos_x,
-//				holiday, tel, hosImgNo, hosReFileNo, requestNo, siDo, siGunGu, hosService, silson);
-//		
+		HospitalDto hosDto = new HospitalDto(hosName, categoryNo, address, hos_y, hos_x,
+				holiday, tel, hosImgNo, hosReFileNo, requestNo, siDo, siGunGu, hosService, silson);
+		
 		// 병원 신청 페이지1 에서 저장한 세션에서 신청자 정보 가져오기
 		
 		ApplicantDto appDto = (ApplicantDto)session.getAttribute("appInfoDto");
 		
 		Map<String, Object> requestMap = new HashMap<String, Object>();
-//		requestMap.put("hosDto", hosDto);
+		requestMap.put("hosDto", hosDto);
 		requestMap.put("appDto", appDto);
 		
 		

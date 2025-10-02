@@ -28,6 +28,11 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 	
 	@Override
+	public HosDetailDto selectDocDetail(Integer hNo) throws Exception {
+		return sqlsession.selectOne("mapper.hospital.selectHosDetailDoc", hNo);
+	}
+	
+	@Override
 	public Integer selectCount() throws Exception {
 		return sqlsession.selectOne("mapper.hospital.selectCount");
 	}
@@ -92,6 +97,19 @@ public class HospitalDaoImpl implements HospitalDao {
 	public List<HospitalDto> selectWaitHosByKeyword(Map<String, Object> page) {
 		
 		return sqlsession.selectList("selectWaitHosByKeyword", page);
+	}
+	// 회원가입 시 병원 검색
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
+		
+		return sqlsession.selectList("joinSearchHosName", keyword);
+	}
+	
+	// 병원 인증
+	@Override
+	public HospitalDto checkHosAuthCode(Map<String, Object> hosMap) {
+		
+		return sqlsession.selectOne("checkHosAuthCode", hosMap);
 	}
 
 }

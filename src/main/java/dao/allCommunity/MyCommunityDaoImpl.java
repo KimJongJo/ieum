@@ -15,8 +15,13 @@ public class MyCommunityDaoImpl implements MyCommunityDao{
 	}
 		
 	@Override
-	public List<MyCommunityDto> selectMyCommunityList(int uNo) {
+	public List<MyCommunityDto> selectMyCommunityList(int uNo) throws Exception  {
 		return session.selectList("mapper.community.selectMyCommunityList", uNo);
+	}
+
+	@Override
+	public List<MyCommunityDto> selectLikedCommunityList(int uNo) throws Exception {
+		return session.selectList("mapper.community.selectLikedCommunityList", uNo);
 	}
 
 }

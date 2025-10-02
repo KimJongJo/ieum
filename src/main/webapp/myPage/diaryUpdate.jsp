@@ -81,7 +81,7 @@
 				<!-- 제목 -->
 				<div class="form-group">
 					<input type="text" name="title" class="form-input"
-						placeholder="제목을 입력하세요" value="${diary.title}">
+						placeholder="제목을 입력하세요" value="${diary.title}" maxlength="30">
 				</div>
 				<!-- 내용 -->
 				<div class="form-group">

@@ -7,9 +7,10 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join1.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
     </head>
     <body>
-    	<%@ include file="../header/userHeader.html" %>
+    	<c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <div class="chap-div">

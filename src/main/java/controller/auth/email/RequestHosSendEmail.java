@@ -43,7 +43,7 @@ public class RequestHosSendEmail extends HttpServlet {
 		String result;
 		
 		try {
-			service.sendEmail(email);
+			service.sendEmail(email, "common");
 			resDto = new ResponseDto(true, "이메일이 전송되었습니다.");
 		}catch(Exception e) {
 			e.printStackTrace();

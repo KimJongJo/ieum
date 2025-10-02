@@ -2,5 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.comme_like">
+	<!-- 공감 상태확인 -->
+	<select id="selectCommeEmpathy" parameterType="int" resultType="int">
+		select count(*)
+		from comme_like
+		where u_no=#{uNo} and comme_no = #{commeNo}
+	</select>
 	
+	<!-- 공감수 추가 -->
+	<insert id="insertCommeEmpathy" parameterType="map" useGeneratedKeys="true" keyProperty="commeLikeNo">
+		insert into comme_like (u_no, comme_no)
+		values (#{uNo},#{commeNo})
+	</insert>
+	<!-- 공감 삭제 -->
+	<delete id='deleteCommeEmpathy' parameterType="map">
+		delete from comme_like
+		where u_no = #{uNo} and comme_no = #{commeNo}
+	</delete>
+	
+	<!-- comment의 empathy update -->
+	<update id="updateCommentEmpathy" parameterType="map">
+		update comment
+		set com_empathy = com_empathy + #{delta}
+		where comme_no = #{commeNo}
+	</update>
+	
+	<!-- 댓글 공감수 가져오기 -->
+	<select id="selectComentEmpathy" parameterType="int" resultType="int">
+		select com_empathy from comment where comme_no = #{commeNo}
+	</select>
+
 </mapper>	

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/myCommunityList.css" />
-<script src="${pageContext.request.contextPath}/allCommunity/js/myCommunityList.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/allCommunity/js/myCommunityList.js"></script> --%>
 <script type="text/javascript">
 window.addEventListener("pageshow", function(event) {
     if (event.persisted) {
@@ -142,15 +142,35 @@ body {
 }
 
 
-
-/* 클릭 시 활성화 */
+/* 클릭 시 활성화 탭 색상 */
 .tab-commu.active, .tab-comment.active, .tab-heart.active {
     background-color: #4356B3;
     color: #fff;
     font-weight: bold;
 }
 
+/* 비활성 탭 색상 */
+.tab-commu, .tab-comment, .tab-heart {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
 .frame {
+  position: relative;
+  width: 100%;
+  max-width: 1003px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #d9d9d9;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.frame1 {
   position: relative;
   width: 100%;
   max-width: 1003px;
@@ -313,6 +333,61 @@ body {
   font-size: 14px;
 }
 </style>
+
+<script>
+$(document).ready(function() {
+
+    const $tabCommu = $('.tab-commu');
+    const $tabComment = $('.tab-comment');
+    const $tabHeart = $('.tab-heart');
+
+    const $frame = $('.frame');      // 작성한 게시판
+    const $comment = $('.comment');  // 작성한 댓글
+    const $frame1 = $('.frame1');    // 좋아요 누른 게시판
+
+    // 처음에는 작성한 게시판만 active
+    $tabCommu.addClass('active');
+    $frame.show();
+    $comment.hide();
+    $frame1.hide();
+
+    // 탭 클릭 이벤트
+    $tabCommu.click(function() {
+        $tabCommu.addClass('active');
+        $tabComment.removeClass('active');
+        $tabHeart.removeClass('active');
+        $frame.show();
+        $comment.hide();
+        $frame1.hide();
+    });
+
+    $tabComment.click(function() {
+        $tabComment.addClass('active');
+        $tabCommu.removeClass('active');
+        $tabHeart.removeClass('active');
+        $frame.hide();
+        $comment.show();
+        $frame1.hide();
+    });
+
+    $tabHeart.click(function() {
+        $tabHeart.addClass('active');
+        $tabCommu.removeClass('active');
+        $tabComment.removeClass('active');
+        $frame.hide();
+        $comment.hide();
+        $frame1.show();
+    });
+});
+
+
+
+// 숨김 요소 처리
+$(document).ready(function() {
+    $('.hide-if-user').hide();
+});
+
+</script>
 </head>
 <body>
 
@@ -320,7 +395,7 @@ body {
 
     <!-- Section Title -->
     <div id="section-title">
-        <span>나의 기본 정보</span>
+        <span>나의 커뮤니티</span>
     </div>
 
     <!-- Main -->
@@ -358,6 +433,7 @@ body {
                 <button class="tab-comment">작성한 댓글</button>
                 <button class="tab-heart">좋아요 누른 게시판</button>
             </div>
+            <!-- 작성한 게시판 -->
 			<c:forEach var="myComList" items="${myComList}" varStatus="status">
 
 			    <input type="hidden" name="commu_no" class="commu_no" value="${myComList.commuNo}" />
@@ -405,35 +481,88 @@ body {
 			    </div>
 			</c:forEach>
             
-            
+            <!-- 댓글 작성한 곳 -->
+            <c:forEach var="myCommeList" items="${myCommeList}" varStatus="status">
             <!-- 옵션 밑 새로운 영역 -->
             <div class="comment">
                 <!-- 상단: 닉네임 + 카테고리 -->
                 <div class="comment-top">
                     <div class="nickName">
-                    	<c:out value="${member.nickName}" default="익명"/>
+                    	<c:out value="${myCommeList.nickname}" default="익명"/>
                     </div>
                 </div>
 
                 <!-- 제목 및 본문 -->
                 <div class="overlap-group">
                     <p class="p">
-                    	<c:out value="${comment.comContent}" escapeXml="false"/>
+                    	<c:out value="${myCommeList.comContent}" escapeXml="false"/>
                     </p>
                 </div>
 
                 <!-- 업로드 날짜 -->
                 <div class="text-wrapper-3">
-                	<fmt:formatDate value="${comment.comCreated}" pattern="yyyy-MM-dd"/>
+                	<fmt:formatDate value="${myCommeList.comCreated}" pattern="yyyy-MM-dd"/>
                 </div>
 
                 <!-- 액션 아이콘 (오른쪽 아래) -->
                 <div id="actions">
                     <span class="action-item">
-				        ❤️ <span class="action-count"><c:out value="${comment.comEmpathy}"/></span>
+				        ❤️ <span class="action-count"><c:out value="${myCommeList.comEmpathy}"/></span>
 				    </span>
                 </div>
             </div>
+            </c:forEach>
+            
+            
+            
+            
+            <c:forEach var="myEmpathy" items="${myEmpathy}" varStatus="status">
+
+			    <input type="hidden" name="commu_no" class="commu_no" value="${myEmpathy.commuNo}" />
+			    
+			    <div class="frame1" data-commu-no="${myEmpathy.commuNo}"
+			    	onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myEmpathy.commuNo}'">
+			    <button type="submit" class="hidden-submit" style="display:none;"></button>
+			        <!-- 상단: 닉네임 + 카테고리 -->
+			        <div class="frame-top">
+			            <div class="text-wrapper-1">
+			            	<c:out value="${myEmpathy.nickName}" default="익명"/>
+			            </div>
+			            <div class="text-wrapper-2">
+			            	<c:out value="${myEmpathy.categoryName}" default="카테고리"/>
+			            </div>
+			        </div>
+			
+			        <!-- 제목 및 본문 -->
+			        <div class="overlap-group">
+			            <div class="title"><c:out value="${myEmpathy.commuTitle}"/></div>
+			            <p class="p">
+			            	<c:out value="${myEmpathy.commuContent}" escapeXml="false"/>
+			            </p>
+			        </div>
+			
+			        <!-- 업로드 날짜 -->
+			        <div class="text-wrapper-3">
+			        	<fmt:formatDate value="${myEmpathy.commuCreated}" pattern="yyyy-MM-dd"/>
+			        </div>
+			
+			        <!-- 액션 아이콘 (오른쪽 아래) -->
+			        <div class="actions">
+			            <span class="action-item">
+			                ❤️ <span class="action-count"><c:out value="${myEmpathy.empathy}" /></span>
+			            </span>
+			            <span class="action-item">
+			                💬 <span class="action-count"><c:out value="${myEmpathy.commuComment}" /></span>
+			            </span>
+			            <span class="action-item">
+			                🔗 <span class="action-count"><c:out value="${myEmpathy.commuViews}" /></span>
+			            </span>
+			        </div>
+			                <!-- 숨겨진 버튼: 전체 frame 클릭 시 제출 -->
+        			<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
+			    </div>
+			</c:forEach>
+            
         </div>
     </div>
     

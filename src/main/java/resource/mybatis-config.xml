@@ -9,6 +9,7 @@
    </settings>
    <typeAliases>
    	  <typeAlias type="dto.BlackWithMemberDto" alias="blackMember" />
+   	  <typeAlias type="dto.CommentWithMemberDto" alias="ComWithMember" />
    	  <typeAlias type="dto.AllCommunityDto" alias="allCommunity" />
       <typeAlias type="dto.MemberProfileDto" alias="memberProfile" />
       <typeAlias type="dto.MemberDto" alias="member" />

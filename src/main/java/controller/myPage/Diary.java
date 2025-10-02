@@ -41,11 +41,10 @@ public class Diary extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-//		String dNo = request.getParameter("dNo");
+		response.setCharacterEncoding("utf-8");
 		// 세션에서 로그인 uNo 가져오기
 		HttpSession session = request.getSession();
-//	    Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+	    Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer dNo = (Integer) session.getAttribute("dNo");
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
@@ -62,8 +61,6 @@ public class Diary extends HttpServlet {
                     Gson gson = new Gson();
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("diaryList", diaryList);
-                    resultMap.put("pageInfo", pageInfo);
-
                     String result = gson.toJson(resultMap);
                     response.getWriter().write(result);
                     return;
@@ -97,8 +94,7 @@ public class Diary extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		DiaryService service = new DiaryServiceImpl();
 		HttpSession session = request.getSession();
-//	    Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+	    Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
 		try {
 			session.setAttribute("dNo", dNo);

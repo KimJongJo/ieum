@@ -20,7 +20,10 @@
 		AND (title LIKE CONCAT('%', #{keyword}, '%')
         OR content LIKE CONCAT('%', #{keyword}, '%'))
         </if>
-		ORDER BY #{sort} DESC LIMIT #{row}, 10
+        <if test="sort != null and sort != ''">
+		ORDER BY ${sort} DESC
+		</if>
+		LIMIT #{row}, 10
 	</select>
 	<select id="selectCnt" resultType="Integer">
 		SELECT COUNT(*) FROM diary;

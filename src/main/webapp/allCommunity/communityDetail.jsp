@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityDetail.css" />
-<script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script> --%>
 <style>
 body {
     margin: 0;
@@ -284,12 +284,24 @@ body {
 	    font-size: 14px;
 	    margin-bottom: 10px;
 	}
-	
+	.heart {
+	    display: flex;           /* flex 컨테이너로 설정 */
+	    justify-content: center; /* 가로 중앙 정렬 */
+	    align-items: center;     /* 세로 중앙 정렬 */
+	    height: 20px;            /* 필요에 따라 높이 조정 */
+	}
+	.heart img {
+	    display: block;          /* 이미지 주변 여백 제거 */
+	    max-width: 100%;         /* 영역 넘치지 않게 */
+	    max-height: 100%;        /* 영역 넘치지 않게 */
+	}
+
 	.action-item {
 	    display: flex;
 	    align-items: center;
 	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
 	    width: 50px;        /* 3자리 기준 고정 */
+	  flex-direction: row;     /* 아이콘-숫자 한 줄로 */
 	}
 	
 	.action-item span.action-count {
@@ -313,10 +325,19 @@ body {
 	
 	.comment-action-item{
 		border:none;
-		background-color: white;	
+		background-color: white;
+			gap: 10px;
 	}
+	#Heart1{
+		top:3px;
+	}
+	
 </style>
 <script>
+const contextPath = '${contextPath}'; // JS에서 사용할 contextPath
+</script>
+<script>
+<%-- const contextPath = '<%= request.getContextPath() %>'; --%>
 $(function () {
     /* 댓글 메뉴 토글 */
     $(document).on('click', '.comment-box .menu-button', function (e) {
@@ -330,22 +351,48 @@ $(function () {
         }
     });
     
-    
+
+    // 게시글 하트 색 변경
     $(function() {
         $('.actions form').submit(function(e){
-            e.preventDefault(); // 페이지 새로고침 막기
+            e.preventDefault(); // 새로고침 막기
             let form = $(this);
             let commuNo = form.find('input[name="commuNo"]').val();
             let countSpan = form.find('.action-count');
+            let heartSpan = form.find('.heart'); // ❤️ 담는 곳
 
             $.post(form.attr('action'), {commuNo: commuNo}, function(data){
-                // data로 서버에서 최신 count를 보내준다고 가정
+                // 공감 수 갱신
                 countSpan.text(data.newCount);
-            });
+
+
+                // 하트 이미지 갱신
+                if (data.liked) {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                } else {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                }
+            }, "json"); // JSON으로 받기
         });
     });
-    
-    
+
+  //댓글 하트 색 변경
+	$('.comment-action-item').click(function(e){
+	    e.preventDefault(); // 버튼 기본 submit 막기
+	    let form = $(this).closest('form');
+	    let commeNo = form.find('input[name="commeNo"]').val();
+	    let countSpan = form.find('.comment-action-count');
+	    let heartSpan = form.find('.heart1');
+	
+	    $.post(form.attr('action'), {commeNo: commeNo}, function(data){
+	        countSpan.text(data.newCount);
+	        if (data.liked) {
+	            heartSpan.html('<img class="heart1-img" src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" width="15" height="15"/>');
+	        } else {
+	            heartSpan.html('<img class="heart1-img" src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" width="15" height="15"/>');
+	        }
+	    }, "json");
+	});
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -409,22 +456,6 @@ $(function () {
 
 });
 
-
-
-$(function(){
-    $('.heart-btn').click(function(e){
-        e.preventDefault(); // ✅ submit 막기
-
-        // 하트 색상 토글
-        var heartSpan = $(this).find('.heart');
-        heartSpan.text(heartSpan.text() === "🤍" ? "❤️" : "🤍");
-
-        // 서버 요청 없이 화면만 변경
-        // 원하는 경우 서버와 통신하려면 form.submit() 대신 fetch나 ajax 사용
-    });
-});
-
-
 </script>
 
 </head>
@@ -465,7 +496,16 @@ $(function(){
         			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
 					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
 					    <button type="submit" class="action-item">
-					        🤍
+					        <span class="heart">
+							    <c:choose>
+							        <c:when test="community.likedByUser">
+							        	 <img id="Heart" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:when>
+							        <c:otherwise>
+							        	<img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:otherwise>
+							    </c:choose>
+							</span>
 					         <span class="action-count"><c:out value="${community.empathy}" /></span>
 					    </button>
 				    </form>
@@ -480,11 +520,13 @@ $(function(){
 
 		<!-- 댓글 달리는 장소 -->        
         <c:forEach var="comment" items="${comments}" varStatus="status">
+        
          <c:if test="${blockedList == null or not blockedList.contains(comment.commeNo)}">
+         
 	        <div class="comment-box" data-comme-no="${comment.commeNo}">
 			    <div class="comment-row">
 			        <div class="row1">
-			            <div class="number">${status.count}</div> 
+			            <div class="number">${status.count}</div><!-- 번호 카운트 되는 구간 -->
 			            <div class="comNick">
 			            	<span data-no="${comment.uNo}">	
 			            		<c:out value="${comment.nickName}"/>
@@ -499,11 +541,25 @@ $(function(){
 			        <div id="comment">
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
-			        <button class="comment-action-item">
-					        🤍 <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
-					</button>
+			        <form action="${pageContext.request.contextPath}/commeEmpathy" method="post">
+			        <input type="hidden" name="commeNo" value="${comment.commeNo}"/>
+			        	<button type="submit" class="comment-action-item">
+					        <span class="heart1">
+							    <c:choose>
+							        <c:when test="comment.likedByUser">
+							        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:when>
+							        <c:otherwise>
+							        	<img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:otherwise>
+							    </c:choose>
+							</span> 				        
+					        <span class="comment-action-count">
+					        	<c:out value="${comment.comEmpathy}"/>
+					        </span>
+						</button>
+					</form>
 			    </div>
-			<!-- ❤️ -->
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>
@@ -511,7 +567,6 @@ $(function(){
 			    </div>
 			</div>	
 		</c:if>
-	
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
@@ -588,8 +643,12 @@ $(function(){
 	        </div>
 	    </div>
 	</div>
+
+
+
 	
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
+
 

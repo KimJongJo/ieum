@@ -13,17 +13,17 @@ public class CommunityDto {
 	Integer commuDeclaration;
 	Integer categoryNo;
 	Integer commuComment;
-	
-	 // 서버에서 사용자가 이미 공감했는지 여부
-    private boolean userLiked;
-	
-	public boolean isUserLiked() {
-		return userLiked;
-	}
 
-	public void setUserLiked(boolean userLiked) {
-		this.userLiked = userLiked;
-	}
+	boolean likedByUser;
+	
+
+	public boolean isLikedByUser() { // boolean 타입은 isXxx()
+        return likedByUser;
+    }
+
+    public void setLikedByUser(boolean likedByUser) {
+        this.likedByUser = likedByUser;
+    }
 
 	public CommunityDto() {
 		super();

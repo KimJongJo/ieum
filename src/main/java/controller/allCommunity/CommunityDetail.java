@@ -54,7 +54,7 @@ public class CommunityDetail extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 전달되지 않았습니다.");
             return;
         }
-        int uNo = 4; // 테스트용, 실제 로그인 세션 값으로 교체 필요
+        int uNo = 5; // 테스트용, 실제 로그인 세션 값으로 교체 필요
         int commuNo = 0;
         try {
             commuNo = Integer.parseInt(noStr);
@@ -68,31 +68,7 @@ public class CommunityDetail extends HttpServlet {
         MemberService memberService = new MemberServiceImpl();
         CommentService commentService = new CommentServiceImpl();
         try {
-        	
-//        	HttpSession session = request.getSession();
-//        	Object obj = session.getAttribute("viewedPosts");
-//
-//        	Set<Integer> viewed;
-//        	if (obj == null) {
-//        	    viewed = new HashSet<>();
-//        	} else if (obj instanceof Set) {
-//        	    viewed = (Set<Integer>) obj;
-//        	} else if (obj instanceof List) {
-//        	    viewed = new HashSet<>((List<Integer>) obj); // ArrayList → HashSet 변환
-//        	} else {
-//        	    viewed = new HashSet<>();
-//        	}
-//
-//        	// 조회수 증가 처리
-//        	if (!viewed.contains(commuNo)) {
-//        		communityService.updateViews(commuNo);
-//        	    viewed.add(commuNo);
-//        	    session.setAttribute("viewedPosts", viewed);
-//        	}
-//        	
-//        	
-        	
-        	
+                	
         	// 조회수 증가
         	communityService.updateViews(commuNo);
         	//1. 커뮤글 조회
@@ -110,8 +86,8 @@ public class CommunityDetail extends HttpServlet {
             //4. 댓글 목록 조회
             List<CommentDto> commentList = commentService.getCommentsByCommuNo(commuNo);
             request.setAttribute("comments", commentList);
-         // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
             
+         // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
             BlackListService blackListService = new BlackListServiceImpl();
             List<Integer> blockedList = null;
             try {
@@ -139,7 +115,7 @@ public class CommunityDetail extends HttpServlet {
 		//댓글 등록
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 1; //로그인된 사용자 번호
+		int uNo = 5; //로그인된 사용자 번호
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");

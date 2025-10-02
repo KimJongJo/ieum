@@ -8,8 +8,11 @@ import dao.applicant.ApplicantDao;
 import dao.applicant.ApplicantDaoImpl;
 import dao.hospital.HospitalDao;
 import dao.hospital.HospitalDaoImpl;
+import dao.member.MemberDao;
+import dao.member.MemberDaoImpl;
 import dto.ApplicantDto;
 import dto.HospitalDto;
+import dto.MemberDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
@@ -19,155 +22,180 @@ import util.PageInfo;
 public class HospitalServiceImpl implements HospitalService {
 	HospitalDao hosDao;
 	ApplicantDao appDao;
-	
+	MemberDao memDao;
+
 	public HospitalServiceImpl() {
 		hosDao = new HospitalDaoImpl();
 		appDao = new ApplicantDaoImpl();
+		
 	}
 
 	@Override
 	public List<HosSearchListDto> listByFilter(HosSearchDto hosSearch, PageInfo pageInfo) throws Exception {
-		
-		//병원목록 필터 조회
+
+		// 병원목록 필터 조회
 		Integer hosCnt = hosDao.selectListResCnt(hosSearch);
 		pageInfo.setAllCnt(hosCnt);
-		Integer allPage = (int)Math.ceil((double)hosCnt/8); 
+		Integer allPage = (int) Math.ceil((double) hosCnt / 8);
 		pageInfo.setAllPage(allPage);
 		Integer offset = (pageInfo.getCurPage() - 1) * 8;
 		hosSearch.setOffset(offset);
 		hosSearch.setLimit(8);
-		System.out.println(hosSearch);
 		return hosDao.selectList(hosSearch);
 	}
 
 	@Override
 	public void addHospital(Map<String, Object> requestMap) {
-		
+
 		// 병원을 등록하고 등록한 병원의 번호를 가져와서 신청자 테이블에서 생성
-		HospitalDto hosDto = (HospitalDto)requestMap.get("hosDto");
-		ApplicantDto appDto = (ApplicantDto)requestMap.get("appDto");
-		
+		HospitalDto hosDto = (HospitalDto) requestMap.get("hosDto");
+		ApplicantDto appDto = (ApplicantDto) requestMap.get("appDto");
+
 		Integer hosNo = hosDao.addHospital(hosDto);
-		
-		System.out.println(hosNo);
-		
+
 		appDto.sethNo(hosNo);
 		appDao.addApplicant(appDto);
-		
-	}
 
+	}
 
 	// 병원 등록 신청중인 병원 리스트 조회
 	@Override
 	public HospitalPageResponseDto hosWaitList(int curPage, String filter) {
-		
+
 		String sort;
 		// 신청일(최신순)일 경우
-		if("created_young".equals(filter)) {
+		if ("created_young".equals(filter)) {
 			sort = "DESC";
-		}else {
+		} else {
 			sort = "ASC";
 		}
-		
+
 		// 정렬 조건이 없을경우
 		String sortValue;
-		
-		if(filter.equals("created_young") || filter.equals("created_old")) {  
+
+		if (filter.equals("created_young") || filter.equals("created_old")) {
 			sortValue = "h_created";
-		}else if(filter.equals("none")) {
+		} else if (filter.equals("none")) {
 			sortValue = "h_no";
-		}else {
+		} else {
 			sortValue = "h_nm";
 		}
-		
-		
-	    int pageSize = 8; // 한 페이지당 데이터 수
-	    int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
 
-	    int hosCount = hosDao.hosWaitCount(); // 전체 데이터 수
-	    int allPage = (int) Math.ceil((double) hosCount / pageSize); // 전체 페이지 수
+		int pageSize = 8; // 한 페이지당 데이터 수
+		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
 
-	    int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
-	    int endPage = Math.min(startPage + blockSize - 1, allPage);   // 끝 페이지
+		int hosCount = hosDao.hosWaitCount(); // 전체 데이터 수
+		int allPage = (int) Math.ceil((double) hosCount / pageSize); // 전체 페이지 수
 
-	    int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+		int endPage = Math.min(startPage + blockSize - 1, allPage); // 끝 페이지
 
-	    Map<String, Object> page = new HashMap<>();
-	    page.put("offset", offset);
-	    page.put("pageSize", pageSize);
-	    page.put("sort", sort);
-	    page.put("sortValue", sortValue);
-	    
-	    List<HospitalDto> list = hosDao.selectWaitHos(page);
-	    // 데이터 + 페이지 정보 같이 반환
-	    return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+		int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
+
+		List<HospitalDto> list = hosDao.selectWaitHos(page);
+		// 데이터 + 페이지 정보 같이 반환
+		return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
 	}
 
 	// 병원 승인
 	@Override
 	public void approve(Integer hNo) {
-		
+
 		hosDao.approve(hNo);
-		
+
 	}
+
 	// 병원 거부
 	@Override
 	public void reject(Integer hNo) {
-		
+
 		hosDao.reject(hNo);
 	}
 
 	// 검색해서 가져오는 병원 등록 리스트
 	@Override
 	public HospitalPageResponseDto hosWaitListByKeyword(int curPage, String keyword, String filter) {
-		
+
 		String sort;
 		// 신청일(최신순)일 경우
-		if("created_young".equals(filter)) {
+		if ("created_young".equals(filter)) {
 			sort = "DESC";
-		}else {
+		} else {
 			sort = "ASC";
 		}
-		
+
 		// 정렬 조건이 없을경우
 		String sortValue;
-		
-		if(filter.equals("created_young") || filter.equals("created_old")) {  
+
+		if (filter.equals("created_young") || filter.equals("created_old")) {
 			sortValue = "h_created";
-		}else if(filter.equals("none")) {
+		} else if (filter.equals("none")) {
 			sortValue = "h_no";
-		}else {
+		} else {
 			sortValue = "h_nm";
 		}
-		
-	    int pageSize = 8;
-	    int blockSize = 5;
 
-	    int hosCount = hosDao.hosWaitCountByKeyword(keyword); // 검색어 기준 총 개수
-	    int allPage = (int) Math.ceil((double) hosCount / pageSize);
+		int pageSize = 8;
+		int blockSize = 5;
 
-	    int startPage = ((curPage - 1) / blockSize) * blockSize + 1;
-	    int endPage = Math.min(startPage + blockSize - 1, allPage);
+		int hosCount = hosDao.hosWaitCountByKeyword(keyword); // 검색어 기준 총 개수
+		int allPage = (int) Math.ceil((double) hosCount / pageSize);
 
-	    int offset = (curPage - 1) * pageSize;
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1;
+		int endPage = Math.min(startPage + blockSize - 1, allPage);
 
-	    Map<String, Object> page = new HashMap<>();
-	    page.put("offset", offset);
-	    page.put("pageSize", pageSize);
-	    page.put("keyword", keyword); // 검색어 전달
-	    page.put("sort", sort);
-	    page.put("sortValue", sortValue);
+		int offset = (curPage - 1) * pageSize;
 
-	    List<HospitalDto> list = hosDao.selectWaitHosByKeyword(page);
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("keyword", keyword); // 검색어 전달
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
 
-	    return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+		List<HospitalDto> list = hosDao.selectWaitHosByKeyword(page);
+
+		return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
 	}
 
+	// 병원 디테일정보 가져오기
 	@Override
-	public HosDetailDto getDetail(Integer hNm) throws Exception {
+	public HosDetailDto getDetail(Integer hNo) throws Exception {
+
+		return hosDao.selectHosDetail(hNo);
+	}
+
+	// 의사 디테일 가져오기
+	@Override
+	public HosDetailDto getDocDetail(Integer hNo) throws Exception {
+
+		return hosDao.selectDocDetail(hNo);
+	}
+	// 관리자 회원가입 시 병원 이름 가져오기
+	@Override
+	public List<HospitalDto> joinSearchHosName(String keyword) {
 		
-		// 병원 디테일정보 가져오기
-		return hosDao.selectHosDetail(hNm);
+		return hosDao.joinSearchHosName(keyword);
+	}
+
+	
+	// 병원 인증
+	@Override
+	public boolean checkHosAuthCode(Integer hNo, String hosAuthCode) {
+		
+		Map<String, Object> hosMap = new HashMap<String, Object>();
+		hosMap.put("hNo", hNo);
+		hosMap.put("hosAuthCode", hosAuthCode);
+		
+		HospitalDto hosDto = hosDao.checkHosAuthCode(hosMap);
+		if(hosDto == null) return false;
+		return true;
 	}
 
 }

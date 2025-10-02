@@ -19,4 +19,9 @@ public class MyCommunityServiceImpl implements MyCommunityService{
 		return myCommunityDao.selectMyCommunityList(uNo);
 	}
 
+	@Override
+	public List<MyCommunityDto> getSelectLikedCommunityList(int uNo) throws Exception {
+		return myCommunityDao.selectLikedCommunityList(uNo);
+	}
+
 }

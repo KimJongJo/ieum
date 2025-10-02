@@ -1,27 +1,27 @@
 package dto;
 
 public class CommeLikeDto {
-	Integer commeLikeOn;
+	Integer commeLikeNo;
 	Integer uNo;
 	Integer commeNo;
 	public CommeLikeDto() {
 		super();
 	}
-	public CommeLikeDto(Integer commeLikeOn, Integer uNo, Integer commeNo) {
+	public CommeLikeDto(Integer commeLikeNo, Integer uNo, Integer commeNo) {
 		super();
-		this.commeLikeOn = commeLikeOn;
+		this.commeLikeNo = commeLikeNo;
 		this.uNo = uNo;
 		this.commeNo = commeNo;
 	}
 	@Override
 	public String toString() {
-		return "commeLikeDto [commmeLikeOn=" + commeLikeOn + ", uNo=" + uNo + ", commeNo=" + commeNo + "]";
+		return "commeLikeDto [commmeLikeNo=" + commeLikeNo + ", uNo=" + uNo + ", commeNo=" + commeNo + "]";
 	}
 	public Integer getCommmeLikeOn() {
-		return commeLikeOn;
+		return commeLikeNo;
 	}
-	public void setCommmeLikeOn(Integer commmeLikeOn) {
-		this.commeLikeOn = commmeLikeOn;
+	public void setCommmeLikeOn(Integer commmeLikeNo) {
+		this.commeLikeNo = commmeLikeNo;
 	}
 	public Integer getuNo() {
 		return uNo;

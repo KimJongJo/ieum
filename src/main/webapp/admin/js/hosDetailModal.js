@@ -69,7 +69,6 @@ $(document).ready(function(){
 	$("#selectFilter").on("change", function(){
 		curKeyword = $("#searchKeyword").val().trim(); // 검색어 저장
 		filter = $("#selectFilter").val();
-		console.log(filter);
 		loadPage(1, curKeyword, filter); // 정렬 필터 사용
 	})
 	
@@ -130,6 +129,7 @@ $(document).ready(function(){
 
     // 승인 버튼
     $("#addHos").click(function() {
+		var approve = false;
         $.ajax({
             url:"/ieum/admin/approve",
             type:"POST",
@@ -140,6 +140,24 @@ $(document).ready(function(){
                     alert("병원이 등록되었습니다.");
                     loadPage(curPage,$("#searchKeyword").val() ,$("#selectFilter").val()); // 전체 reload 대신 현재 페이지 갱신
                     hosDetailModal.css("display", "none");
+                    
+                    $.ajax({
+						url:"/ieum/admin/sendHosAuthCode",
+						type:"POST",
+						data:{hNo:$("#addHos").val(),
+							email:$("#requestEmail").text()},
+						dataType:"json",
+						success:function(res){
+							if(res.success){
+								console.log("이메일 전송 완료");
+							}else{
+								console.log("이메일 전송 실패");
+							}
+						},
+						error:function(err){
+							console.log(err);
+						}
+					})
                 }else{
                     console.log(res.success);
                 }
@@ -148,6 +166,7 @@ $(document).ready(function(){
                 console.log(err);
             }
         });
+
     });
     
         // 거부 버튼
@@ -155,7 +174,7 @@ $(document).ready(function(){
         $.ajax({
             url:"/ieum/admin/reject",
             type:"POST",
-            data:{hNo:$("#addHos").val()},
+            data:{hNo:$("#delHos").val()},
             dataType:"json",
             success:function(res){
                 if(res.success){
