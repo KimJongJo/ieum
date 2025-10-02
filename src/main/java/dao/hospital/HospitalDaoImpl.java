@@ -9,7 +9,6 @@ import dto.HospitalDto;
 import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
-import dto.otherDto.HospitalDateFormatDto;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -25,6 +24,11 @@ public class HospitalDaoImpl implements HospitalDao {
 	@Override
 	public HosDetailDto selectHosDetail(Integer hNo) throws Exception {
 		return sqlsession.selectOne("mapper.hospital.selectHosDetail", hNo);
+	}
+	
+	@Override
+	public HosDetailDto selectDocDetail(Integer hNo) throws Exception {
+		return sqlsession.selectOne("mapper.hospital.selectHosDetailDoc", hNo);
 	}
 	
 	@Override

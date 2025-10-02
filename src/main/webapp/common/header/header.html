@@ -3,50 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	$(document).ready(function() {
+
+		// 클릭 시 드롭다운 보이기 / 숨기기
+		$('.dropdown-btn').on('click', function(event) {
+			event.stopPropagation(); // 클릭 이벤트 전파 방지
+			$('#adminMenu').toggleClass('show');
+		});
+
+		// 다른 곳 클릭 시 드롭다운 닫기
+		$(window).on('click', function(event) {
+			if (!$(event.target).closest('.dropdown-btn').length) {
+				$('.dropdown-content').removeClass('show');
+			}
+		});
+
+	});
+</script>
 </head>
 <body>
-<!-- 헤더 위 검정 줄 -->
-    <div id="header-line-top"></div>
-    
-    <!-- Header -->
-    <div class="container">
-        <div class="header">
-            <div class="header-inner">
-                <div style="cursor:pointer;" onclick="location.href='/ieum/index'" class="logo">건강이음</div>
-                <div class="menu">
-                    <span style="cursor:pointer;">병원조회/예약</span>
-                    <span style="cursor:pointer;">자가진단</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/allCommunityList'">커뮤니티</span>
-                    <span style="cursor:pointer;">공지사항</span>
-                    <span style="cursor:pointer;" class="hide-if-user">관리 메뉴</span>
-                    <span style="cursor:pointer;">마이페이지</span>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- 헤더 위 검정 줄 -->
+	<div id="header-line-top"></div>
+
+	<!-- Header -->
+	<div class="container">
+		<div class="header">
+			<div class="header-inner">
+				<div style="cursor: pointer;" onclick="location.href='/ieum/index'"
+					class="logo">건강이음</div>
+				<div class="menu">
+					<span style="cursor: pointer;"
+						onclick="location.href='/ieum/hospital/search'">병원조회/예약</span> <span
+						style="cursor: pointer;" onclick="location.href='/ieum/exam'">자가진단</span>
+					<span style="cursor: pointer;"
+						onclick="location.href='/ieum/allComList'">커뮤니티</span> <span
+						style="cursor: pointer;" onclick="location.href='/ieum/notice'">공지사항</span>
+<!-- 					<div class="dropdown" style="cursor: pointer;"> -->
+<!-- 						<span class="dropdown-btn">관리 메뉴</span> -->
+<!-- 						병원관리자 관리메뉴 -->
+<!-- 						<div class="dropdown-content" id="hosMenu"> -->
+<!-- 							<a href="/ieum/admin/member">회원 관리</a> -->
+<!-- 														  <a href="/ieum/admin/chat">마음톡 -->
+<!-- 															관리</a>  -->
+<!-- 							<a href="/ieum/admin/notice">공지사항 관리</a> -->
+<!-- 						</div> -->
+<!-- 						사이트 관리자 관리 메뉴 -->
+<!-- 						<div class="dropdown-content" id="adminMenu"> -->
+<!-- 							<a href="/ieum/hosManager/reservationToday">대기열 관리</a> <a -->
+<!-- 								href="/ieum/admin/notice">공지사항 관리</a> -->
+<!-- 						</div> -->
+					<!-- 					</div> -->
+					<span class="hide-if-user">관리 메뉴</span> <span
+						style="cursor: pointer;" onclick="location.href='/ieum/calender'">마이페이지</span>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <!-- Middle Header -->
-    <div class="middle-header">
-        <div class="full-rect"></div>
-        <div class="group xlarge">
-            <div class="outer-circle xlarge-circle">
-                <div class="inner-circle xlarge-inner"></div>
-            </div>
-            <div class="rectangle xlarge-rect"></div>
-        </div>
-        <div class="group large">
-            <div class="outer-circle large-circle">
-                <div class="inner-circle large-inner"></div>
-            </div>
-            <div class="rectangle large-rect"></div>
-        </div>
-        <div class="group small">
-            <div class="outer-circle small-circle">
-                <div class="inner-circle small-inner"></div>
-            </div>
-            <div class="rectangle small-rect"></div>
-        </div>
-    </div>
+	<!-- Middle Header -->
+	<div class="middle-header">
+		<div class="full-rect"></div>
+		<div class="group xlarge">
+			<div class="outer-circle xlarge-circle">
+				<div class="inner-circle xlarge-inner"></div>
+			</div>
+			<div class="rectangle xlarge-rect"></div>
+		</div>
+		<div class="group large">
+			<div class="outer-circle large-circle">
+				<div class="inner-circle large-inner"></div>
+			</div>
+			<div class="rectangle large-rect"></div>
+		</div>
+		<div class="group small">
+			<div class="outer-circle small-circle">
+				<div class="inner-circle small-inner"></div>
+			</div>
+			<div class="rectangle small-rect"></div>
+		</div>
+	</div>
 </body>
 </html>

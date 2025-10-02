@@ -18,7 +18,7 @@
         where c.commu_no = #{commuNo}
         order by c.com_created ASC
     </select>
-	
+	 <!-- 댓글 등록 -->
 	<insert id="insertComment" parameterType="comment">
 		insert into comment (comme_no, u_no, commu_no, com_content, com_empathy, com_created, com_declaration)
 		values (#{commeNo}, #{uNo}, #{commuNo}, #{comContent}, 0, now(), 0)
@@ -32,5 +32,19 @@
     <select id="selectCommentsByCommuNo" parameterType="int" resultType="comment">
         select * from comment where commu_no = #{commuNo} order by com_created ASC
     </select>
+
+    
 	
+	
+	<!-- 5. 특정 게시글 댓글 수 조회 -->
+    <select id="countCommentsByCommuNo" parameterType="int" resultType="int">
+        select count(*) from comment where commu_no = #{commuNo}
+    </select>
+
+    <!-- 6. community 테이블의 commu_comment 갱신 -->
+    <update id="updateCommentCount" parameterType="map">
+        update community
+        set commu_comment = #{count}
+        where commu_no = #{commuNo}
+    </update>
 </mapper>

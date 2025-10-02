@@ -55,7 +55,7 @@
 				<div class="notice-search">
 					<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
 					<button type="button" onclick="searchDiary()">
-						검색 <i class="fa-solid fa-magnifying-glass"></i>
+						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
 				</div>
 

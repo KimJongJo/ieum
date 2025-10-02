@@ -1,6 +1,7 @@
 package controller.hospital;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dto.MemberDto;
 import dto.otherDto.HosDetailDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
+import service.member.MemberService;
+import service.member.MemberServiceImpl;
 
 /**
  * Servlet implementation class HosDetail
@@ -36,10 +40,17 @@ public class HosDetail extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer hNo = (Integer) session.getAttribute("hNo");
 		HospitalService hosService = new HospitalServiceImpl();
+		MemberService mService = new MemberServiceImpl(); 
 		
 		try {
+			request.setAttribute("hNo", hNo);
 			HosDetailDto hosd = hosService.getDetail(hNo);
 			request.setAttribute("hosd", hosd);
+			List<MemberDto> docList = mService.DoclistBy2(hNo);
+			request.setAttribute("docList", docList);
+			
+			System.out.println("hNo>>" +hNo);
+			System.out.println(docList);
 			
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 		}catch (Exception e) {

@@ -1,5 +1,6 @@
 package dao.member;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -61,7 +62,7 @@ public class MemberDaoImpl implements MemberDao{
         return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
     }
 	
-
+	
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {
 		session.update("mapper.member.updateProfile", memberDto);
@@ -80,16 +81,32 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return session.selectOne("existId", userId);
 	}
+	
+	
+	// 지성이가 작성한 .....
 	public MemberDto selectFindById(Integer uNo) throws Exception {
 		return session.selectOne("mapper.member.selectId", uNo);
 	}
-
+	
+	
+	
+	//비밀번호를 알고 있다고는 가정으로 비밀번호 업데이트
 	@Override
 	public void updatePassword(MemberDto memberDto) throws Exception {
 		session.update("mapper.member.updatePass", memberDto);
 		session.commit();
 		
 	}
+	//병원에 근무하는 의사 수, 의사 리스트
+	@Override
+	public Integer docCnt(Integer hNo) throws Exception {
+		return session.selectOne("mapper.member.docCnt",hNo);
+	}
 
-	
+	@Override
+	public List<MemberDto> docList(Integer hNo) throws Exception {
+		System.out.println("hNo>>>"+hNo);
+		System.out.println("dao>>>>"+session.selectList("mapper.member.docList",hNo));
+		return session.selectList("mapper.member.docList",hNo);
+	}
 }

@@ -69,7 +69,7 @@
 
     <!-- Section Title -->
     <div id="section-title">
-        <span>나의 기본 정보</span>
+        <span>나의 기본 수정</span>
     </div>
 
     <!-- Main -->

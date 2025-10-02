@@ -43,7 +43,7 @@
         FROM community c
         INNER JOIN commu_category cg ON c.category_no = cg.category_no
         INNER JOIN member m ON c.u_no = m.u_no
-        ORDER BY c.commu_created DESC  		
+        ORDER BY c.commu_no DESC  		
     
     </select>
 	       
@@ -51,15 +51,18 @@
 	<delete id="deleteCommunity" parameterType="int">
         delete from community WHERE commu_no = #{commuNo}
     </delete>
-  
+	  
     <update id="updateCommunity" parameterType="myCommunity">
     	update community set
     		commu_title = #{commuTitle}, commu_content = #{commuContent},category_no = #{categoryNo}
     	where commu_no = #{commuNo} 
     </update>
     
-    
-    
-    <!-- 댓글수 가져오기 -->
-    
+    <!-- 조회수 증가 쿼리 -->
+    <update id="updateViews" parameterType="int">
+        update community
+        set commu_views = commu_views + 1
+        where commu_no = #{commuNo}
+    </update>
+
 </mapper>	
