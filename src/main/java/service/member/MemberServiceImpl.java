@@ -36,14 +36,29 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
-	// 일반 유저 회원가입 
+	// 일반 유저, 병원관리자 회원가입 
 	@Override
 	public void normalJoin(MemberDto member) {
-		String filePath = "img";
-		FileDto file = new FileDto("회원이미지.jpg",filePath,"userProfile");
-		Integer fileNo = fileService.normalImg(file);
+		
+		String filePath;
+		FileDto file;
+		Integer fileNo;
+		// 일반회원
+		if(member.gethNo() == null) {
+			filePath = "img/userProfile";
+			file = new FileDto("회원이미지.jpg",filePath,"userProfile");
+		}else { // 병원 관리자
+			filePath = "img/managerProfile";
+			file = new FileDto("회원이미지.jpg",filePath,"managerProfile");
+		}
+		fileNo = fileService.normalImg(file);
 		member.setFileNo(fileNo);
-		memberDao.normalJoin(member);
+		
+		if(member.gethNo() == null) {
+			memberDao.normalJoin(member);
+		}else {
+			memberDao.managerJoin(member);
+		}
 		
 	}
 
@@ -120,5 +135,7 @@ public class MemberServiceImpl implements MemberService {
 			return memberDao.docList(hNo);
 			
 		}
+
+	
 
 }

@@ -11,6 +11,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/myCommunityList.css" />
 <script src="${pageContext.request.contextPath}/allCommunity/js/myCommunityList.js"></script>
+<script type="text/javascript">
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+        // bfcache(뒤로가기 캐시)에서 불러온 경우
+        window.location.reload();
+    }
+});
+</script>
 <style type="text/css">
 /* 전체 레이아웃 */
 body {

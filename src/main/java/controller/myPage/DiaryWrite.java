@@ -40,8 +40,7 @@ public class DiaryWrite extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-//	    Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+	    Integer uNo = (Integer)session.getAttribute("uNo");
 		DiaryService service = new DiaryServiceImpl();
 		try {
 			String selectedDt = request.getParameter("date");
@@ -69,8 +68,8 @@ public class DiaryWrite extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-//	    Integer uNo = (Integer)session.getAttribute("uNo");
-		Integer uNo = 123;
+	    Integer uNo = (Integer)session.getAttribute("uNo");
+	    System.out.println("no" + uNo);
 		DiaryService service = new DiaryServiceImpl();
 		try {
 			String title = request.getParameter("title");

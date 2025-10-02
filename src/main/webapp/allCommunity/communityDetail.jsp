@@ -284,12 +284,24 @@ body {
 	    font-size: 14px;
 	    margin-bottom: 10px;
 	}
-	
+	.heart {
+	    display: flex;           /* flex 컨테이너로 설정 */
+	    justify-content: center; /* 가로 중앙 정렬 */
+	    align-items: center;     /* 세로 중앙 정렬 */
+	    height: 20px;            /* 필요에 따라 높이 조정 */
+	}
+	.heart img {
+	    display: block;          /* 이미지 주변 여백 제거 */
+	    max-width: 100%;         /* 영역 넘치지 않게 */
+	    max-height: 100%;        /* 영역 넘치지 않게 */
+	}
+		
 	.action-item {
 	    display: flex;
 	    align-items: center;
 	    gap: 2px;          /* 아이콘과 숫자 사이 간격 */
 	    width: 50px;        /* 3자리 기준 고정 */
+	  flex-direction: row;     /* 아이콘-숫자 한 줄로 */
 	}
 	
 	.action-item span.action-count {
@@ -313,8 +325,13 @@ body {
 	
 	.comment-action-item{
 		border:none;
-		background-color: white;	
+		background-color: white;
+			gap: 10px;
 	}
+	#Heart1{
+		margin-right:2px;
+	}
+	
 </style>
 <script>
 $(function () {
@@ -330,22 +347,27 @@ $(function () {
         }
     });
     
-    
     $(function() {
         $('.actions form').submit(function(e){
-            e.preventDefault(); // 페이지 새로고침 막기
+            e.preventDefault(); // 새로고침 막기
             let form = $(this);
             let commuNo = form.find('input[name="commuNo"]').val();
             let countSpan = form.find('.action-count');
+            let heartSpan = form.find('.heart'); // ❤️ 담는 곳
 
             $.post(form.attr('action'), {commuNo: commuNo}, function(data){
-                // data로 서버에서 최신 count를 보내준다고 가정
+                // 공감 수 갱신
                 countSpan.text(data.newCount);
-            });
+
+                // 하트 이미지 갱신
+                if (data.liked) {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                } else {
+                    heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" alt="좋아요" width="15" height="15"/>');
+                }
+            }, "json"); // JSON으로 받기
         });
     });
-    
-    
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -353,12 +375,25 @@ $(function () {
         const commuNo = $(this).data('communo');  // 클릭한 게시글 번호 저장
         $('#completeModal').data('communo', commuNo).show();
     });
+    
+ // 모달 삭제 버튼 클릭 시
+    $('#modalOkComplete').click(function() {
+        const commuNo = $('#completeModal').data('communo'); // 모달에 저장된 게시글 번호
+        $.post("${pageContext.request.contextPath}/delComDetail", { commuNo: commuNo })
+         .done(function() {
+             // 삭제 후 페이지 이동
+             window.location.href = "${pageContext.request.contextPath}/myCom";
+         })
+         .fail(function() {
+             alert("삭제 실패");
+         });
+    });
 
 
     /* 모달 닫기 */
-    $('#modalCloseComplete, #modalCancelComplete').click(function() {
-        $('#completeModal').hide();
-    });
+   $('#modalCloseComplete, #modalCancelComplete, #modalCloseBlockCom').click(function() {
+    $('#completeModal').hide();
+});
     
     
     /* 신고 모달 */
@@ -395,6 +430,10 @@ $(function () {
     $('.hide-if-user').hide();
 
 });
+
+
+
+
 </script>
 
 </head>
@@ -412,10 +451,10 @@ $(function () {
             	<c:out value="${community.commuTitle}"/>
             </div>
             <div id="btn1">
-            <%-- <c:if test="${member.uNo==community.uNo}"> --%>
+            <c:if test="${member.uNo==community.uNo}">
 	            <button onclick="location.href='/ieum/comDetailMo?no=${community.commuNo}'" id="btn-update">수정</button>
 	            <button type="button" id="btn-delete" data-communo="${community.commuNo}">삭제</button>
-	        <%-- </c:if> --%>
+	        </c:if>
 	        </div>
         </div>
         <div id="san"></div>
@@ -435,7 +474,17 @@ $(function () {
         			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
 					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
 					    <button type="submit" class="action-item">
-					        ❤️ <span class="action-count"><c:out value="${community.empathy}" /></span>
+					        <span class="heart">
+							    <c:choose>
+							        <c:when test="community.likedByUser">
+							        	 <img id="Heart" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:when>
+							        <c:otherwise>
+							        	<img id="Heart" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+							        </c:otherwise>
+							    </c:choose>
+							</span>
+					         <span class="action-count"><c:out value="${community.empathy}" /></span>
 					    </button>
 				    </form>
 				    <span class="action-item">
@@ -469,10 +518,11 @@ $(function () {
 			            <c:out value="${comment.comContent}" escapeXml="false"/>
 			        </div>
 			        <button class="comment-action-item">
-					        ❤️ <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+			        	<span class="heart">
+					        <img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/> <span class="comment-action-count"><c:out value="${comment.comEmpathy}"/></span>
+						</span>
 					</button>
 			    </div>
-			
 			    <!-- ✅ 이 위치가 중요!!  comment-box 안쪽에 userMenu 삽입 -->
 			    <div class="userMenu">
 			        <div class="menu-item1">신고하기</div>
@@ -480,7 +530,8 @@ $(function () {
 			    </div>
 			</div>	
 		</c:if>
-	
+		
+		<!-- 댓글 등록 장소 -->
 		</c:forEach>
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
@@ -500,7 +551,7 @@ $(function () {
 	    <div class="modal-div-over">
 	        <div class="modal-header-div">
 	            <span class="modal-header-div-span">알림</span>
-	            <button type="button" class="x-button" id="modalCloseBlock">✖</button>
+	            <button type="button" class="x-button" id="modalCloseBlockCom">✖</button>
 	        </div>
 	        <div class="modal-content-div">
 	            <span class="modal-content-div-span">삭제 하시겠습니까?</span>
@@ -557,29 +608,6 @@ $(function () {
 	        </div>
 	    </div>
 	</div>
-	
-	<%-- <!-- ✅ 유저차단 모달 추가 -->
-	<div class="modal-main-div" id="blockUserModal" style="display:none;">
-	    <div class="modal-div-over">
-	        <div class="modal-header-div">
-	            <span class="modal-header-div-span">알림</span>
-	            <button type="button" class="x-button" id="modalCloseUserBlock">✖</button>
-	        </div>
-	        <div class="modal-content-div">
-	            <span class="modal-content-div-span">해당 유저를 차단 하시겠습니까?</span>
-	        </div>
-	        <div class="modal-div-under">
-	            <div class="modal-btn-div">
-	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelUserBlock">취소</button>
-	            <form id="blockUserForm" action="${pageContext.request.contextPath}/blackUser" method="post" style="display:inline;">
-				    <input type="hidden" name="blockedNo" id="blockedNo" />
-				    <input type="hidden" name="commuNo" id="commuNo" />
-				    <button type="submit" class="modal-btn-right modal-btn" id="modalOkUserBlock">차단</button>
-				</form>
-	            </div>
-	        </div>
-	    </div>
-	</div> --%>
 	
 <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>

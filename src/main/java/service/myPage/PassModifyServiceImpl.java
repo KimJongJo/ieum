@@ -1,5 +1,7 @@
 package service.myPage;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dto.MemberDto;
@@ -13,12 +15,13 @@ public class PassModifyServiceImpl implements PassModifyService{
 	
 	
 	@Override
-	public boolean checkCurrentId(int uNo, String currentId) throws Exception {
+	public boolean checkCurrentId(int uNo, String currentId) throws Exception {// 입력한 비번
 		if (currentId == null) return false;
 
-	    MemberDto member = memberDao.selectFindById(uNo);
-	    if (member != null && member.getId() != null) {
-	        return member.getId().trim().equals(currentId.trim());
+	    MemberDto member = memberDao.selectFindById(uNo);// 현재 암호화된 비번
+	    if (BCrypt.checkpw(currentId, member.getPassword())) {
+
+	        return true;
 	    }
 	    return false;
 	}

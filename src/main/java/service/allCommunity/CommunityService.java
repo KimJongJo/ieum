@@ -11,4 +11,6 @@ public interface CommunityService {
     void deleteCommunityWithComments(int commuNo) throws Exception;
     
     void updateCommunity(MyCommunityDto myCommunity) throws Exception;
+    
+    CommunityDto updateViews(int commuNo) throws Exception;
 }

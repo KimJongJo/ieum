@@ -11,6 +11,8 @@ public interface MemberDao {
 	MemberDto checkId(String userId);
 
 	void normalJoin(MemberDto member);
+	
+	void managerJoin(MemberDto member);
 
 	Map<String, Object> findId(String email);
 

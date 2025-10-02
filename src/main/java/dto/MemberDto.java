@@ -31,6 +31,7 @@ public class MemberDto {
 	}
 	
 	
+	// 일반 유저 회원가입
 	public MemberDto(String id, String username, Date birthDate, String password, String gender, String uTel,
 			String email, String nickName, String uAddress, Boolean diaryPrivate) {
 		super();
@@ -44,9 +45,23 @@ public class MemberDto {
 		this.nickname = nickName;
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
-
 	}
 
+	// 병원관리자 회원가입
+	public MemberDto(String id, String username, Date birthDate, String password, String gender, String uTel,
+			String email, String userType, String major, Integer hNo) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.birthDate = birthDate;
+		this.password = password;
+		this.gender = gender;
+		this.uTel = uTel;
+		this.email = email;
+		this.userType = userType;
+		this.major = major;
+		this.hNo = hNo;
+	}
 	
 	
 
@@ -57,6 +72,9 @@ public class MemberDto {
 		this.uNo = uNo;
 		this.password = password;
 	}
+
+	
+
 
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,

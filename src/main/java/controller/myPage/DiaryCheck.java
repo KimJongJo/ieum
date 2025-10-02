@@ -44,8 +44,7 @@ public class DiaryCheck extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 			String date = request.getParameter("date");
-			// Integer uNo = (Integer) session.getAttribute("uNo");
-			Integer uNo = 123;
+			 Integer uNo = (Integer) session.getAttribute("uNo");
 			DiaryDto diary = service.getDate(uNo, date);			
 			Gson gson = new Gson();
 			Map<String, Object> result = new HashMap<>();
