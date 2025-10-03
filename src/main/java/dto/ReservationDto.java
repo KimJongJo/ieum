@@ -1,6 +1,8 @@
 package dto;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ReservationDto {
 	
@@ -8,8 +10,8 @@ public class ReservationDto {
 	Integer uNo;	// 예약자 번호
 	Integer hNo;	// 병원 번호
 	Integer mNo;	// 의사 번호
-	Date rDate;	// 예약 날짜
-	Date rTime;	// 예약 시간
+	LocalDate rDate;	// 예약 날짜
+	LocalTime rTime;	// 예약 시간
 	String rContent;	// 상담 내용
 	String actName;	// 실제 방문자
 	String actTel;	// 실제 전화번호
@@ -22,8 +24,8 @@ public class ReservationDto {
 	}
 
 
-	public ReservationDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, Date rDate, Date rTime, String rContent,
-			String actName, String actTel, String rStatus, String rDay) {
+	public ReservationDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
+			String rContent, String actName, String actTel, String rStatus, String rDay) {
 		super();
 		this.rNo = rNo;
 		this.uNo = uNo;
@@ -87,22 +89,22 @@ public class ReservationDto {
 	}
 
 
-	public Date getrDate() {
+	public LocalDate getrDate() {
 		return rDate;
 	}
 
 
-	public void setrDate(Date rDate) {
+	public void setrDate(LocalDate rDate) {
 		this.rDate = rDate;
 	}
 
 
-	public Date getrTime() {
+	public LocalTime getrTime() {
 		return rTime;
 	}
 
 
-	public void setrTime(Date rTime) {
+	public void setrTime(LocalTime rTime) {
 		this.rTime = rTime;
 	}
 
@@ -155,6 +157,10 @@ public class ReservationDto {
 	public void setrDay(String rDay) {
 		this.rDay = rDay;
 	}
+
+	
+	
+	
 	
 	
 	

@@ -32,9 +32,9 @@ public class ProfileInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
-		 HttpSession session = request.getSession();
-	        Integer uNo = (Integer) session.getAttribute("uNo");
+		int uNo=5;
+//		 HttpSession session = request.getSession();
+//	        Integer uNo = (Integer) session.getAttribute("uNo");
 		ProfileInfoService service = new ProfileInfoServiceImpl();
 		try {
 			MemberDto memberDto = service.selectProfileView(uNo);

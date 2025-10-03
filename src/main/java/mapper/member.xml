@@ -99,8 +99,6 @@
 	<select id="docCnt" parameterType="Integer" resultType="Integer">
 	select count(*)
 	from member m
-	join hospital h
-	using (h_no)
 	where h_no=#{hNo} and state_code=1
 	</select>
 	
@@ -108,15 +106,14 @@
 	<select id="docList" parameterType="Integer" resultType="member">
 	select * ,count(r.r_no) as resCount
 	from member m
-	join hospital h
+	left join reservation r
 	using (h_no)
-	join reservation r
-	using (h_no)
-	where h_no=#{hNo} and state_code=1
+	where m.h_no=#{hNo} and m.state_code=1
 	group by m.u_no, m.h_no
 	order by resCount desc
 	</select>
 	
+
 	<insert id="kakaoSignUp" parameterType="member" useGeneratedKeys="true" keyProperty="uNo">
 		insert into member (id, username, birth_date, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code, file_no)
 		 values(#{id}, #{username}, #{birthDate}, #{gender}, #{uTel}, #{email}, NOW(), 'USER', #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
@@ -124,6 +121,13 @@
 	
 	<select id="checkNaverEmail" parameterType="String" resultType="member">
 		select * from member where email = #{email}
+  </select>
+
+	<!-- 의사선택 -->
+	<select id="selectDoc" parameterType="integer" resultType="Integer">
+	select *
+	from member
+	where u_no=#{uNo} and state_code=1
 	</select>
 	
 </mapper>	

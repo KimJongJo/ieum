@@ -3,23 +3,25 @@ package dao.allCommunity;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.CommuCategoryDto;
 import util.MybatisSqlSessionFactory;
 
 public class CategoryDaoImpl implements CategoryDao{
-	private SqlSession session;
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 	
-	public CategoryDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
-	}
 	@Override
 	public List<CommuCategoryDto> selectAllCategory() throws Exception {
-		return session.selectList("mapper.commu_category.selectAll");
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList("mapper.commu_category.selectAll");
+		}
 	}
 	@Override
 	public CommuCategoryDto selectByNo(Integer categoryNo) throws Exception {
-		return session.selectOne("mapper.commu_category.selectByNo", categoryNo);
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.commu_category.selectByNo", categoryNo);
+		}
 	}
 
 }

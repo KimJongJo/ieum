@@ -12,36 +12,41 @@
 	href="${contextPath}/css/adminHeader.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/header.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<script src="${contextPath}/admin/js/notice.js"></script>
 <title>건강이음 - 공지사항 관리 작성</title>
 </head>
 <body>
+	<jsp:include page="/common/header/basicHeader.html" />
 	<header>
+
 		<c:import url="/common/header/adminHeader.html" charEncoding="UTF-8" />
 	</header>
 	<div class="main">
 		<div class="main-div">
 			<div class="notice-under-section">
 				<jsp:include page="/common/nav/adminNav.html"></jsp:include>
-				<form method="post">
+				<form method="post" id="noticeWriteForm"
+					enctype="multipart/form-data" action="/admin/notice/write">
 					<div class="info">
 						<div class="notice-container">
 							<div class="form-group">
 								<div class="form-label multi">
 									<span>상단공지여부</span><input type="checkbox" class="form-check"
-										name="topYn" placeholder="상단공지여부" checked />
+										name="topYn" placeholder="상단공지여부" ${topYn ? 'checked' : ''} />
 								</div>
 							</div>
 							<!-- 제목 -->
 							<div class="form-group">
 								<div class="form-label">제목</div>
 								<input type="text" class="form-input" name="title"
-									placeholder="제목을 입력하세요" value="${notice.title}" />
+									placeholder="제목을 입력해주세요" value="${title}" />
 							</div>
 							<!-- 작성자 -->
 							<div class="form-group">
@@ -53,7 +58,7 @@
 							<div class="form-group textarea-group">
 								<div class="form-label">내용</div>
 								<textarea class="form-textarea" name="content"
-									placeholder="내용을 입력하세요">${notice.content}</textarea>
+									placeholder="내용을 입력해주세요">${content}</textarea>
 							</div>
 
 							<div class="notice-footer">
@@ -62,16 +67,17 @@
 									<label class="file-upload" for="noticeFile">📂파일 선택</label>
 
 									<!-- 기존에 업로드된 파일이 있다면 파일명 보여주기 -->
-									<span class="upload-file-name"> ${not empty notice.fileName ? notice.fileName : "첨부된 파일 없음"}
-									</span> <input class="file-input" type="file" name="noticeFile"
-										id="noticeFile" />
+									<span id="uploadFileNm" class="upload-file-name"
+										data-label="${fileNm != null ? fileNm : ''}"> 첨부된 파일 없음
+									</span> <input class="file-input" type="file" name="file"
+										id="noticeFile" required/>
 								</div>
 								<!-- 버튼 -->
 								<div>
 									<a class="btn-link" onclick="window.history.go(-1)">
 										<button type="button" class="btn-cir-w">취소</button>
 									</a>
-									<button type="button" class="btn-cir-b" id="writeBtn">수정</button>
+									<button type="button" class="btn-cir-b" id="writeBtn" data-label="${nNo != null ? nNo : ''}">${nNo != null ? '수정' : '작성'}</button>
 								</div>
 							</div>
 						</div>

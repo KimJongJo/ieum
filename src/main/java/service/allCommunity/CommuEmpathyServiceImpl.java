@@ -33,4 +33,9 @@ public class CommuEmpathyServiceImpl implements CommuEmpathyService {
 	public int getEmpathyCount(int commuNo) throws Exception {
 	    return commuEmpathyDao.getEmpathyCount(commuNo);
 	}
+
+	@Override
+	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
+		return commuEmpathyDao.checkEmpathy(uNo, commuNo);
+	}
 }

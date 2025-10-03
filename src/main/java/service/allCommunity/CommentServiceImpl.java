@@ -30,6 +30,13 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public List<CommentDto> getCommentsByCommuNo(Integer commuNo) throws Exception {
 		return commentDao.selectCommentWithNick(commuNo);
+	}
+
+
+	@Override
+	public CommentDto selectByNo(Integer commeNo) throws Exception {
+		
+		return commentDao.selectByNo(commeNo);
 	}	
 
 }

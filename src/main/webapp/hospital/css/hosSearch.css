@@ -63,15 +63,6 @@ a {
 
 }
 
-.line {
-    width: 296px;
-    height: 2px;
-    background-color: #EFEFEF;
-    margin-top: 15px;
-    margin-bottom: 17px;
-
-}
-
 .search-txt {
     border: none;
     background: none;
@@ -84,6 +75,29 @@ a {
     width: 250px;
     box-sizing: border-box;
 
+}
+
+.line {
+    width: 296px;
+    height: 2px;
+    background-color: #EFEFEF;
+    margin-top: 15px;
+    margin-bottom: 17px;
+
+}
+
+
+.rc {
+	  border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding-left: 10px;
+    color: gray;
+    font-size: 16px;
+    line-height: 30px;
+    width: 250px;
+    box-sizing: border-box;
 }
 
 .search-btn {

@@ -4,24 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import util.MybatisSqlSessionFactory;
 
 public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
-	private SqlSession session;
-	
-	public CommuEmpathyDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
-	}
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 	
 	@Override
 	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
+		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
-		Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
-		session.commit();
-		return count != null && count > 0;
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
+			return count != null && count > 0;
+		}
 	}
 
 	@Override
@@ -30,8 +29,10 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
 		
-		session.insert("mapper.commu_like.insertEmpathy", map);
-		session.commit();
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			session.insert("mapper.commu_like.insertEmpathy", map);
+			session.commit();
+		}
 	}
 
 	@Override
@@ -40,8 +41,10 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
 		
-		session.delete("mapper.commu_like.deleteEmpathy", map);
-		session.commit();
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			session.delete("mapper.commu_like.deleteEmpathy", map);
+			session.commit();
+		}
 	}
 
 	@Override
@@ -49,14 +52,18 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 		Map<String, Integer> map = new HashMap<>();
 		map.put("commuNo", commuNo);
 		map.put("delta", delta);
-		
-		session.update("mapper.commu_like.updateCommunityEmpathy", map);
-		session.commit();
+
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			session.update("mapper.commu_like.updateCommunityEmpathy", map);
+			session.commit();
+		}
 	}
 
 	@Override
 	public int getEmpathyCount(int commuNo) throws Exception {
-	    return session.selectOne("mapper.commu_like.selectCommunityEmpathy", commuNo);
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.commu_like.selectCommunityEmpathy", commuNo);
+		}
 	}
 
 }

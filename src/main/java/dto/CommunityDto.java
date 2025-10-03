@@ -13,9 +13,18 @@ public class CommunityDto {
 	Integer commuDeclaration;
 	Integer categoryNo;
 	Integer commuComment;
+
+	boolean likedByUser;
 	
-	
-	
+
+	public boolean isLikedByUser() { // boolean 타입은 isXxx()
+        return likedByUser;
+    }
+
+    public void setLikedByUser(boolean likedByUser) {
+        this.likedByUser = likedByUser;
+    }
+
 	public CommunityDto() {
 		super();
 	}

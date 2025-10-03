@@ -46,9 +46,9 @@ public class ProfileInfoModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session = request.getSession();
-	        Integer uNo = (Integer) session.getAttribute("uNo");
-
+//		 HttpSession session = request.getSession();
+//	        Integer uNo = (Integer) session.getAttribute("uNo");
+		int uNo = 5;
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
         FileService fileService = new FileServiceImpl();
 
