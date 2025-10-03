@@ -1,4 +1,6 @@
 let calendar;
+let selectMno;
+let selectedDate;
 
 //tab
 const navl = $(".navl");
@@ -21,11 +23,11 @@ $(document).ready(() => {
 		tab2.removeClass("active");
 
 	});
-	
+
 	//하단 버튼 (예약하기)
-		$(document).on('click', '#resbtn', function() {
-			activeReservation();
-		});
+	$(document).on('click', '#resbtn', function() {
+		activeReservation();
+	});
 
 	// 오른쪽 탭 (예약하기)
 	navr.click(function() {
@@ -51,10 +53,31 @@ $(document).ready(() => {
 		navl.removeClass("active");
 		tab2.addClass("active");
 		tab1.removeClass("active");
-
+		
+		selectDoc();		
 		showCalendar();
+
+
+	}
+	
+	//의사 선택
+	function selectDoc() {
+		$(document).off("click",".dall").on("click", ".dall", function() {
+			selectMno = Number($(this).data("mno")); // 의사 번호
+			$(this).addClass("active");
+		});
 	}
 
+	//의사 선택 + 날짜 선택 보내기
+	function sendDateToServer(mNo, rDate) {
+		$.post("/ieum/hospital/detail", {
+			mNo: mNo,
+			rDate: rDate,
+			action:"getResDate"
+		});
+	}
+
+	//캘린더 + 날짜 선택
 	function showCalendar() {
 		//calender
 		const today = new Date();
@@ -66,44 +89,35 @@ $(document).ready(() => {
 
 		if (!calendar) {
 			calendar = new FullCalendar.Calendar(document.getElementById('fc'), {
+				//기본 스타일 변경
 				headerToolbar: {
 					start: '',
 					center: 'prev,title,next',
 					end: ''
 				},
-
 				showNonCurrentDates: false,
 
-				// 이동 가능 범위 제한
+				// 이동 가능 범위 제한 (현재달부터 두달 뒤 까지만)
 				validRange: {
 					start: startOfThisMonth,   // 이번 달 시작
 					end: endOfNext2Month       // 다다음 달 마지막 날
 				},
 
+				// n년 n월 형식
 				titleFormat: function(arg) {
-					// 현재 뷰의 날짜 정보
 					const year = arg.date.year;
 					const month = arg.date.month + 1; // 0부터 시작하므로 +1
-					return year + ' ' + month + '월';
+					return year + '년 ' + month + '월';
 				},
 
+				//요일column 한글로
 				dayHeaderContent: function(arg) {
-					// 요일 표시 (일~토)
 					const day = arg.date.getDay();
 					const days = ['일', '월', '화', '수', '목', '금', '토'];
 					return days[day];
 				},
 
-				dayCellDidMount: function(info) {
-					const cellDate = info.date;
-					const now = new Date();
-
-					// 오늘 이전 날짜 → 비활성화 스타일
-					if (cellDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
-						info.el.classList.add("fc-day-disabled");
-					}
-				},
-
+				//선택한 날짜 파란배경
 				dateClick: function(info) {
 					// 클릭 불가 날짜면 무시
 					if (info.dayEl.classList.contains("fc-day-disabled")) return;
@@ -116,8 +130,17 @@ $(document).ready(() => {
 					// 클릭한 날짜 스타일 추가
 					selectedDateEl = info.dayEl;
 					selectedDateEl.classList.add('fc-today-clicked');
+
+					//선택한 날짜 정보 전송
+					selectedDate = info.dateStr; 
+					
+					if (selectMno) {
+						sendDateToServer(selectMno, selectedDate);
+					}
+
 				},
 
+				//날짜 선택
 				dayCellDidMount: function(info) {
 					const today = new Date();
 					const cellDate = info.date;
@@ -145,6 +168,8 @@ $(document).ready(() => {
 
 					}
 				},
+
+				//"오늘" 문구 추가
 				dayCellContent: function(arg) {
 					const date = arg.date;
 					const today = new Date();
@@ -152,7 +177,6 @@ $(document).ready(() => {
 					// 날짜 텍스트
 					let html = `<div class="fc-day-number">${date.getDate()}</div>`;
 
-					// 오늘이면 'today' 문구 추가
 					if (
 						date.getFullYear() === today.getFullYear() &&
 						date.getMonth() === today.getMonth() &&
@@ -166,26 +190,35 @@ $(document).ready(() => {
 
 			});
 
-
 			calendar.render();
 
-			const now = new Date(); // 현재 시각
-			const buttons = document.querySelectorAll(".tb1");
-
-			buttons.forEach((btn) => {
-				const targetTime = new Date(btn.dataset.datetime);
-
-				// 현재시간보다 이전이면 비활성화
-				if (targetTime < now) {
-					btn.disabled = true;
-					btn.style.opacity = "0.5";
-				}
-			});
 		} else {
 			calendar.updateSize(); // 이미 렌더링 됐으면 크기 재계산
 		}
 	}
 
+
 });
+
+function showTime(resList) {
+	
+	const buttons = document.querySelectorAll(".tb1");
+
+	buttons.forEach((btn) => {
+		
+		
+
+		// 현재시간보다 이전이면 비활성화
+		if (targetTime < now) {
+			btn.disabled = true;
+			btn.style.opacity = "0.5";
+		}
+
+
+	});
+}
+
+
+
 
 

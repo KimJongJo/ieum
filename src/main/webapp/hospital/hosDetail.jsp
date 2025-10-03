@@ -170,16 +170,16 @@
 			</div>
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
-					<div class="dall">
+					<div class="dal">
 						<img src="${doctorlist.fileNo }" class="doc-prof" />
 						<div class="d1">
 							<div class="d2">
-								<div class="username">
+								<p class="username">
 									<c:out value="${doctorlist.username }" />
-								</div>
-								<p class="introduction">
-									<c:out value="${doctorlist.introduction }" default="믿음을 주는 상담사" />
 								</p>
+								<div class="introduction">
+									<c:out value="${doctorlist.introduction }" default="믿음을 주는 상담사" />
+								</div>
 							</div>
 							<div class="d3">
 								<p class="major">
@@ -225,17 +225,17 @@
 			<form class="doctor" action="" method="post" class="tt">
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
-						<button class="dall" id="docBox" type="button">
-							<img src="${doctorlist.fileNo }" class="doc-prof" />
+						<button class="dall" id="docBox" type="button" data-mno="${doctorlist.uNo}">
+							<img src="${doctorlist.fileNo }" class="doc-prof" onerror="this.onerror=null; this.src='';"/>
 							<div class="d1">
 								<div class="d2">
-									<div class="username">
+									<p class="username">
 										<c:out value="${doctorlist.username }" />
-									</div>
-									<p class="introduction">
+									</p>
+									<div class="introduction">
 										<c:out value="${doctorlist.introduction }"
 											default="믿음을 주는 상담사" />
-									</p>
+									</div>
 								</div>
 								<div class="d3">
 									<p class="major">
@@ -249,8 +249,8 @@
 			</form>
 
 			<div class="mheader">
-				<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
-					시간을 선택해 주세요</span>
+				<i class="fa-solid fa-calendar-days"></i>
+				<span class="h">날짜와 시간을 선택해 주세요</span>
 			</div>
 
 			<div class="select-date">
@@ -274,21 +274,18 @@
 						<button type="button" class="tb1" name="time" value="11:00">11:00</button>
 						<button type="button" class="tb1" name="time" value="11:30">11:30</button>
 
-
 						<p class="day">오후</p>
 
-						<button type="button" class="tb1" name="time" value="1:00">1:00</button>
-						<button type="button" class="tb1" name="time" value="1:30">1:30</button>
-						<button type="button" class="tb1" name="time" value="2:00">2:00</button>
-						<button type="button" class="tb1" name="time" value="2:30">2:30</button>
-						<button type="button" class="tb1" name="time" value="3:00">3:00</button>
-						<button type="button" class="tb1" name="time" value="3:30">3:30</button>
-						<button type="button" class="tb1" name="time" value="4:00">4:00</button>
-						<button type="button" class="tb1" name="time" value="4:30">4:30</button>
-						<button type="button" class="tb1" name="time" value="5:00">5:00</button>
-						<button type="button" class="tb1" name="time" value="5:30">5:30</button>
-
-
+						<button type="button" class="tb1" name="time" value="13:00">1:00</button>
+						<button type="button" class="tb1" name="time" value="13:30">1:30</button>
+						<button type="button" class="tb1" name="time" value="14:00">2:00</button>
+						<button type="button" class="tb1" name="time" value="14:30">2:30</button>
+						<button type="button" class="tb1" name="time" value="15:00">3:00</button>
+						<button type="button" class="tb1" name="time" value="15:30">3:30</button>
+						<button type="button" class="tb1" name="time" value="16:00">4:00</button>
+						<button type="button" class="tb1" name="time" value="16:30">4:30</button>
+						<button type="button" class="tb1" name="time" value="17:00">5:00</button>
+						<button type="button" class="tb1" name="time" value="17:30">5:30</button>
 
 					</div>
 				</form>
