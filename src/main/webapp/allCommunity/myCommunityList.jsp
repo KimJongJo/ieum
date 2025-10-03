@@ -554,7 +554,9 @@ $(document).ready(function() {
             <!-- 댓글 작성한 곳 -->
             <c:forEach var="myCommeList" items="${myCommeList}" varStatus="status">
             <!-- 옵션 밑 새로운 영역 -->
-            <div class="comment" >
+            <div class="comment" data-commu-no="${myCommeList.commuNo}"
+             onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myCommeList.commuNo}'">
+     
                 <!-- 상단: 닉네임 + 카테고리 -->
                 <div class="comment-top">
                     <div class="nickName">
