@@ -56,6 +56,7 @@ $(document).ready(() => {
 		
 		selectDoc();		
 		showCalendar();
+		showTime();
 
 
 	}
@@ -74,8 +75,40 @@ $(document).ready(() => {
 			mNo: mNo,
 			rDate: rDate,
 			action:"getResDate"
+		})
+		.done(function(data){
+			timeList = data;
+			console.log("예약된 시간 목록:", reservationList);
+			
+			showTime();
+			
+		})
+		.fail(function(err){
+			console.error("예약 정보 불러오기 실패:", err);
+			
 		});
 	}
+	
+	//시간 버튼 노출
+	function showTime() {
+	
+	const timebtn = document.querySelectorAll(".tb1");
+
+	timebtn.forEach((btn => {
+		
+		const time = btn.value;
+		const isResd = timeList.some(res => res.rTime === time);
+
+		// 현재시간보다 이전이면 비활성화
+		if (isResd) {
+			btn.ariaDisabled = true;
+		}else{
+			btn.ariaDisabled = false;
+		}
+
+	}));
+}
+
 
 	//캘린더 + 날짜 선택
 	function showCalendar() {
@@ -200,23 +233,6 @@ $(document).ready(() => {
 
 });
 
-function showTime(resList) {
-	
-	const buttons = document.querySelectorAll(".tb1");
-
-	buttons.forEach((btn) => {
-		
-		
-
-		// 현재시간보다 이전이면 비활성화
-		if (targetTime < now) {
-			btn.disabled = true;
-			btn.style.opacity = "0.5";
-		}
-
-
-	});
-}
 
 
 

@@ -25,4 +25,13 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 	}
 
+	@Override
+	public void insertRes(ReservationDto reservation) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			session.insert("mapper.reservation.insertReservation");
+			session.commit();
+		}
+		
+	}
+
 }
