@@ -63,6 +63,20 @@ a {
 
 }
 
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding-left: 10px;
+    color: gray;
+    font-size: 16px;
+    line-height: 30px;
+    width: 250px;
+    box-sizing: border-box;
+
+}
+
 .line {
     width: 296px;
     height: 2px;

@@ -1,28 +1,37 @@
 package dao.reservation;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.ReservationDto;
 import util.MybatisSqlSessionFactory;
 
-public class ReservationDaoImpl implements ReservationDao {
-	private SqlSession session;
+public class ReservationDaoImpl implements ReservationDao {	
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
+
+	@Override
+	public List<ReservationDto> selectTime(Integer mNo, String rDate) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			Map<String, Object> docTime = new HashMap<>();
+			docTime.put("mNo", mNo);
+			docTime.put("rDate", java.sql.Date.valueOf(rDate));
 	
-	ReservationDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
+			return session.selectList("mapper.reservation.selectResTime",docTime);
+		}
 	}
 
 	@Override
-	public List<ReservationDto> selectTime(Integer mNo, Integer rDate) throws Exception {
-		Map<String,Object> docDate = new HashMap<>();
-		docDate.put("mNo", mNo);
-		docDate.put("rDate", rDate);
-		return session.selectList("selectResTime",docDate);
+	public void insertRes(ReservationDto reservation) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			session.insert("mapper.reservation.insertReservation");
+			session.commit();
+		}
+		
 	}
 
-	
 }

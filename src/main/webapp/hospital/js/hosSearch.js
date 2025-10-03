@@ -89,7 +89,6 @@ function loadHospitals(page, appendMode = false) {
         </div>
 					`);
 			} else {
-				console.log(data)
 				data.hosSearchDto.forEach(h => {
 					$("#hospitalList").append(`
                     <div class="list-box" data-hno="${h.hNo}">
@@ -194,7 +193,7 @@ $("#city, #gungu, input[name='hc']").on("change keyup", function() {
 });
 
 
-// 더보기 버튼 이벤트
+// 더보기 버튼
 $("#loadMore").on("click", function() {
 	if (curPge < allPage) {
 		loadHospitals(curPge + 1, true); // appendMode=true
@@ -207,14 +206,22 @@ $("#goTop").on("click", function() {
 });
 
 //리스트에서 특정 병원 클릭
-$(document).on("click", ".list-box", function() {
+$(document).off("click", ".list-box").on("click", ".list-box", function(e) {
+	e.preventDefault(); // a 태그나 기본 동작 막기
 	const hNo = $(this).data("hno"); // div에 저장된 병원번호
-	console.log("클릭한 병원 번호:", hNo);
 
-	$.post("/ieum/hospital/detail", { hNo: hNo }, function() {
-		// 서버에 세션 저장 성공하면 디테일 페이지로 이동
-		window.location.href = "/ieum/hospital/detail";
-	});
+	$.post("/ieum/hospital/detail",
+		{
+			action: "goHosDetail",
+			hNo: hNo
+		})
+		.done(function() {
+			window.location.href = "/ieum/hospital/detail";
+		})
+		.fail(function(err) {
+			console.error("병원 선택 POST 실패:", err);
+			alert("병원 선택에 실패했습니다. 다시 시도해주세요.");
+		});
 
 });
 
