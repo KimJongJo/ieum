@@ -70,14 +70,14 @@
 									<span id="uploadFileNm" class="upload-file-name"
 										data-label="${fileNm != null ? fileNm : ''}"> 첨부된 파일 없음
 									</span> <input class="file-input" type="file" name="file"
-										id="noticeFile" />
+										id="noticeFile" required/>
 								</div>
 								<!-- 버튼 -->
 								<div>
 									<a class="btn-link" onclick="window.history.go(-1)">
 										<button type="button" class="btn-cir-w">취소</button>
 									</a>
-									<button type="button" class="btn-cir-b" id="writeBtn">${nNo != null ? '수정' : '작성'}</button>
+									<button type="button" class="btn-cir-b" id="writeBtn" data-label="${nNo != null ? nNo : ''}">${nNo != null ? '수정' : '작성'}</button>
 								</div>
 							</div>
 						</div>

@@ -7,6 +7,7 @@ public class NoticeDto {
 	Date nCreated; // 작성일
 	Date nUpdated; // 수정일
 	Integer uNo; // 작성자 번호
+	String uNm;
 	String title; // 제목
 	String content; // 내용
 	Boolean isPinned; // 상단고정여부
@@ -26,6 +27,17 @@ public class NoticeDto {
 
 	public NoticeDto(Integer uNo, String title, String content, Boolean isPinned, Integer fileNo) {
 		super();
+		this.uNo = uNo;
+		this.title = title;
+		this.content = content;
+		this.isPinned = isPinned;
+		this.fileNo = fileNo;
+	}
+	
+	
+	public NoticeDto(Integer nNo, Integer uNo, String title, String content, Boolean isPinned, Integer fileNo) {
+		super();
+		this.nNo = nNo;
 		this.uNo = uNo;
 		this.title = title;
 		this.content = content;

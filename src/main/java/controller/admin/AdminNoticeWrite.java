@@ -98,9 +98,7 @@ public class AdminNoticeWrite extends HttpServlet {
 		HttpSession session = request.getSession();
 		FileService fService = new FileServiceImpl();
 		NoticeService service = new NoticeServiceImpl();
-		try {
-			// 작성
-						
+		try {	
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			boolean isPinned = "on".equals(request.getParameter("topYn"));
@@ -112,9 +110,16 @@ public class AdminNoticeWrite extends HttpServlet {
 				fileNo = fService.uploadFile(filePart, "noticeFile");
 //				System.out.println("파일 업로드 완료, fileNo = " + fileNo);
 			}
-			NoticeDto notice = new NoticeDto(uNo, title, content, isPinned, fileNo);
-			if (nNo == null) service.write(notice);
-			else service.update(notice);
+			// 작성
+			if (nNo == null) {
+				NoticeDto notice = new NoticeDto(uNo, title, content, isPinned, fileNo);
+				service.write(notice);
+			} 
+			// 수정
+			else {
+				NoticeDto notice = new NoticeDto(Integer.parseInt(nNo), uNo, title, content, isPinned, fileNo);
+				service.update(notice);
+			}
 			request.setAttribute("msg", (nNo == null) ? "작성" : "수정");
 			request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);
 		} catch (Exception e) {

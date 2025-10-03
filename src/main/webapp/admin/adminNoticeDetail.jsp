@@ -26,64 +26,78 @@
 				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
 				<form method="get">
 					<div class="notice-container">
-					<!-- 제목 -->
-					<div class="notice-header">
-						<div class="tag">공지</div>
-						만성 코로나 19 증후군 연구성과와 미래 대응 협력 위해 한자리에
-					</div>
-
-					<!-- 정보 -->
-					<div class="notice-info">
-						<div>
-							<span>등록일</span>2025-09-04
+						<!-- 제목 -->
+						<div class="notice-header">
+							<div class="tag">${notice.isPinned == 1 ? '공지' : ''}</div>
+							${notice.title}
 						</div>
-						<div>
-							<span>최근 수정일</span>2025-09-04
-						</div>
-						<div>
-							<span>작성자</span>박은솔
-						</div>
-					</div>
 
-					<!-- 첨부파일 -->
-					<div class="notice-attach">
-						첨부파일 <span>[보도참고자료] 참고자료.pdf</span>
-					</div>
-
-					<!-- 본문 -->
-					<div class="notice-content">
-						(서울=연합뉴스) 성서호 기자 = 의료계 집단 휴진을 하루 앞두고 정부가 진료를 유지하려 비대면 진료를 하는 병의원
-						안내에 나섰다.<br> <br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로
-						확인할 수 있다.<br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br>
-						17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br> 17일
-						보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br> 17일 보건복지부에
-						따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br>
-					</div>
-
-					<!-- 이전글/다음글 -->
-					<div class="notice-nav">
-						<a class="link" href="">
+						<!-- 정보 -->
+						<div class="notice-info">
 							<div>
-								<span>이전글</span>만성 코로나 19증후군 연구성과와 미래 대응 협력 위해
+								<span>등록일</span>${notice.nCreated}
 							</div>
-						</a> <a class="link" href="">
 							<div>
-								<span>다음글</span>경남 고성군, 찾아가는 보건소 운영
+								<span>최근 수정일</span>${notice.nUpdated != null ? notice.nUpdated : ''}
 							</div>
-						</a>
-					</div>
+							<div>
+								<span>작성자</span>${notice.uNm}
+							</div>
+						</div>
 
-					<!-- 버튼 -->
-					<div class="notice-footer">
-						<div class="button-wrapper">
-							<a class="btn-link" href="${contextPath}/admin/notice">
-								<div class="basic-big-btn">목록</div>
-							</a>
-							<button formaction="${contextPath}/admin/notice/write" type="submit" class="primary-big-btn" id="updateBtn">수정</button>
-							<button formaction="${contextPath}/admin/notice" type="submit" class="primary-big-btn" id="delBtn">삭제</button>
+						<!-- 첨부파일 -->
+						<div class="notice-attach">
+							첨부파일 <span>${fileNm}</span>
+						</div>
+
+						<!-- 본문 -->
+						<div class="notice-content">${notice.content}</div>
+
+						<!-- 이전글/다음글 -->
+						<div class="notice-nav">
+							<div onclick="goBefore()">
+								<span>이전글</span>${befTitle}
+							</div>
+							<div onclick="goBefore()">
+								<span>다음글</span>${aftTitle}
+							</div>
+						</div>
+
+						<!-- 버튼 -->
+						<div class="notice-footer">
+							<div class="button-wrapper">
+								<button class="btn-rec-w"
+									onclick="location.href=`${contextPath}/admin/notice`">목록</button>
+								<button class="btn-rec-w"
+									onclick="location.href=`${contextPath}/admin/notice/write?nNo=${nNo}`">수정</button>
+								<button class="btn-rec-w"
+									onclick="location.href=`${contextPath}/admin/notice/delete`">삭제</button>
+							</div>
+						</div>
+						<!-- 삭제 확인 팝업 -->
+						<div class="modal-main-div" id="delConfirmModal"
+							style="display: none">
+							<div class="modal-div-over">
+								<div class="modal-header-div">
+									<span class="modal-header-div-span">알림</span>
+									<button type="button" class="x-button" onclick="cancelDel()">
+										<i class="fa-solid fa-x x-btn"></i>
+									</button>
+								</div>
+								<div class="modal-content-div">
+									<span class="modal-content-div-span">선택하신 공지를 삭제하시겠습니까?</span>
+								</div>
+								<div class="modal-div-under">
+									<div class="modal-btn-div">
+										<button type="button" class="modal-btn-left modal-btn"
+											onclick="cancelDel()">취소</button>
+										<button class="modal-btn-right modal-btn"
+											onclick="confirmDel()">확인</button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 		</div>

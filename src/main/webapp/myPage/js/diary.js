@@ -7,7 +7,7 @@ $(".pagination button").on("click", function() {
 	}
 });
 function goDetail(dNo) {
-	console.log("dNo", dNo);
+//	console.log("dNo", dNo);
 	const form = document.createElement("form");
 	form.method = "POST";
 	form.action = "/ieum/myPage/diary";
