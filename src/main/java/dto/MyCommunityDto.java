@@ -14,6 +14,22 @@ public class MyCommunityDto {
     String nickName;
     Integer categoryNo;
     
+    
+    boolean likedByUserCom; // 댓글 하트 상태
+
+    
+	
+    
+
+
+	public boolean isLikedByUserCom() {
+		return likedByUserCom;
+	}
+
+	public void setLikedByUserCom(boolean likedByUserCom) {
+		this.likedByUserCom = likedByUserCom;
+	}
+
 	public MyCommunityDto() {
 		super();
 	}

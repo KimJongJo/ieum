@@ -332,9 +332,67 @@ body {
   gap: 10px;
   font-size: 14px;
 }
+
+
+.heart-button {
+    background: none;       /* 버튼 배경 제거 */
+    border: none;           /* 테두리 제거 */
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+
+    display: inline-flex;   /* ✅ 내부 요소 가로 정렬 */
+    align-items: center;    /* 세로 가운데 정렬 */
+    gap: 4px;               /* 하트와 숫자 간격 */
+}
+
+.heart-button:focus {
+    outline: none;          /* 클릭 시 파란 테두리 제거 */
+}
+.heart {
+	    display: flex;           /* flex 컨테이너로 설정 */
+	    justify-content: center; /* 가로 중앙 정렬 */
+	    align-items: center;     /* 세로 중앙 정렬 */
+	    height: 20px;            /* 필요에 따라 높이 조정 */
+	}
+	.heart1 img {
+	    display: block;          /* 이미지 주변 여백 제거 */
+	    max-width: 100%;         /* 영역 넘치지 않게 */
+	    max-height: 100%;        /* 영역 넘치지 않게 */
+	}
+
 </style>
 
 <script>
+
+
+//게시글 하트 색 변경
+$(function(){
+    $('.actions form').submit(function(e){
+        e.preventDefault(); // 새로고침 방지
+        var form = $(this);
+        var commuNo = form.find('input[name="commuNo"]').val();
+        var countSpan = form.find('.action-count').first(); // 공감 수
+        var heartSpan = form.find('.heart'); // 하트 이미지 span
+
+        $.post(form.attr('action'), {commuNo: commuNo}, function(data){
+            // 공감 수 갱신
+            countSpan.text(data.newCount);
+
+            // 하트 색상 갱신
+            if(data.liked){
+                heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/빨간하트.png' + '" alt="좋아요" width="15" height="15"/>');
+            } else {
+                heartSpan.html('<img src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" alt="좋아요" width="15" height="15"/>');
+            }
+        }, "json");
+    });
+});
+
+
+
 $(document).ready(function() {
 
     const $tabCommu = $('.tab-commu');
@@ -435,9 +493,6 @@ $(document).ready(function() {
             </div>
             <!-- 작성한 게시판 -->
 			<c:forEach var="myComList" items="${myComList}" varStatus="status">
-
-			    <input type="hidden" name="commu_no" class="commu_no" value="${myComList.commuNo}" />
-			    
 			    <div class="frame" data-commu-no="${myComList.commuNo}"
 			    	onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myComList.commuNo}'">
 			    <button type="submit" class="hidden-submit" style="display:none;"></button>
@@ -466,9 +521,24 @@ $(document).ready(function() {
 			
 			        <!-- 액션 아이콘 (오른쪽 아래) -->
 			        <div class="actions">
-			            <span class="action-item">
-			                ❤️ <span class="action-count"><c:out value="${myComList.empathy}" /></span>
-			            </span>
+				            <span class="action-item">
+				            <input type="hidden" name="commuNo" value="${myComList.commuNo}"/>
+				            <button type="submit" class="heart-button">
+				                <span class="heart1">
+								    <c:choose>
+								        <c:when test="${myComList.likedByUserCom}">
+								        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:when>
+								        <c:otherwise>
+								        	<img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:otherwise>
+								    </c:choose>
+								</span>
+				                <span class="action-count">
+				                	<c:out value="${myComList.empathy}" />
+				                </span>
+				                </button>
+				            </span>
 			            <span class="action-item">
 			                💬 <span class="action-count"><c:out value="${myComList.commuComment}" /></span>
 			            </span>
@@ -569,5 +639,4 @@ $(document).ready(function() {
     <c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
-
 
