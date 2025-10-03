@@ -619,7 +619,8 @@ $(document).ready(function() {
 			        <!-- 액션 아이콘 (오른쪽 아래) -->
 			        <div class="actions">
 			            <span class="action-item">
-			                ❤️ <span class="action-count"><c:out value="${myEmpathy.empathy}" /></span>
+			                 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+			                 <span class="action-count"><c:out value="${myEmpathy.empathy}" /></span>
 			            </span>
 			            <span class="action-item">
 			                💬 <span class="action-count"><c:out value="${myEmpathy.commuComment}" /></span>
