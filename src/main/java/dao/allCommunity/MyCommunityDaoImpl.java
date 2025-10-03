@@ -15,22 +15,25 @@ public class MyCommunityDaoImpl implements MyCommunityDao{
 	
 	@Override
 	public List<MyCommunityDto> selectMyCommunityList(int uNo) throws Exception  {
-		return session.selectList("mapper.community.selectMyCommunityList", uNo);
-
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList("mapper.community.selectMyCommunityList", uNo);
+		}
 	}
 
 	@Override
 	public List<MyCommunityDto> selectLikedCommunityList(int uNo) throws Exception {
-		return session.selectList("mapper.community.selectLikedCommunityList", uNo);
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList("mapper.community.selectLikedCommunityList", uNo);
+		}
 	}
-
 
 	@Override
 	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
 		 Map<String, Object> map = new HashMap<>();
 		 map.put("uNo", uNo);
 		 map.put("commuNo", commuNo);
-         return session.selectOne("mapper.comunity.selectEmpathy", map);
-    }
-
+		 try(SqlSession session = sqlSessionFactory.openSession()) {
+			 return session.selectOne("mapper.comunity.selectEmpathy", map);
+		 }
+	}
 }

@@ -73,8 +73,10 @@ public class CommentDaoImpl implements CommentDao{
 	}
 	@Override
 	public CommentDto selectByNo(int commeNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("mapper.comment.selectByNo", commeNo);
+		}
 		
-		return session.selectOne("mapper.comment.selectByNo", commeNo);
 	}
 
 }
