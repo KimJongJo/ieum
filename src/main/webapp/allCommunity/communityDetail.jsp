@@ -432,13 +432,11 @@ $(function () {
 	
     
     /* 댓글 차단 모달 */
-    $(document).on('click', '.userMenu .menu-item2:contains("댓글차단")', function (e) {
+$(document).on('click', '.userMenu .menu-item2:contains("댓글차단")', function (e) {
     e.preventDefault();
     var commentBox = $(this).closest('.comment-box');
     var commuNo = "${community.commuNo}";
-    // 실제 PK 를 읽어온다 (data-comme-no)
     var commeNo = commentBox.attr('data-comme-no'); 
-    // 작성자 uNo
     var blockedNo = commentBox.find('.comNick span').attr('data-no');
 
     $('#blockCommuNo').val(commuNo);
@@ -446,6 +444,31 @@ $(function () {
     $('#blockBlockedNo').val(blockedNo);
     $('#blockModal').show();
 });
+    
+//댓글 차단 모달에서 "차단" 버튼 클릭 시 AJAX 처리
+$('#blockCommentForm').submit(function(e){
+    e.preventDefault(); // 기본 submit 막기
+    var form = $(this);
+    var commuNo = $('#blockCommuNo').val();
+    var commeNo = $('#blockCommeNo').val();
+    var blockedNo = $('#blockBlockedNo').val();
+
+    $.post(form.attr('action'), { commuNo: commuNo, commeNo: commeNo, blockedNo: blockedNo })
+     .done(function(data){
+         if(data.success){
+             // 해당 댓글 DOM 제거
+             $('.comment-box[data-comme-no="'+commeNo+'"]').remove();
+             $('#blockModal').hide();
+         } else {
+             alert("댓글 차단 실패");
+         }
+     })
+     .fail(function(){
+         alert("서버 오류 발생");
+     });
+});    
+    
+    
     /* 모달 닫기 */
     $('#modalCloseBlock, #modalCancelBlock').click(function() {
         $('#blockModal').hide();
@@ -568,6 +591,7 @@ $(function () {
 			</div>	
 		</c:if>
 		</c:forEach>
+		
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
         	<input type="hidden" name="commuNo" value="${community.commuNo}" />

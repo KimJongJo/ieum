@@ -26,6 +26,7 @@ body {
         display: flex;
         gap: 40px;
         align-items: flex-start; /* 높이 정렬 */
+        grid-template-columns: repeat(2, 1fr); /* 2열 */
     }
 
     /* 사이드바 */

@@ -69,7 +69,7 @@
 
             <!-- 업로드 날짜 -->
             <div class="text-wrapper-3">
-            	<c:out value="${blackMember.blackCreated}" default="차단닐찌"/>
+            	<c:out value="${blackMember.blackCreated}" default="차단닐짜"/>
             </div>
         
         </div>

@@ -33,47 +33,33 @@ public class BlackComment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+		
+	    request.setCharacterEncoding("UTF-8");
+	    response.setContentType("application/json; charset=UTF-8");
 
-        // 임의 로그인 유저 번호 (테스트용)
-        Integer uNo = 5;
+	    Integer uNo = 4; // 임시 로그인
 
-        // 차단할 댓글 정보
-        Integer commuNo = Integer.parseInt(request.getParameter("commuNo"));
-        Integer commeNo = Integer.parseInt(request.getParameter("commeNo"));
-        Integer blockedNo = Integer.parseInt(request.getParameter("blockedNo")); // 댓글 작성자 uNo
+	    Integer commuNo = Integer.parseInt(request.getParameter("commuNo"));
+	    Integer commeNo = Integer.parseInt(request.getParameter("commeNo"));
+	    Integer blockedNo = Integer.parseInt(request.getParameter("blockedNo"));
 
-        BlackListService blackListService = new BlackListServiceImpl();
-        BlackListDto dto = new BlackListDto();
-        dto.setuNo(uNo);
-        dto.setCommuNo(commuNo);
-        dto.setCommeNo(commeNo);
-        dto.setBlockedNo(blockedNo);
+	    BlackListService blackListService = new BlackListServiceImpl();
+	    BlackListDto dto = new BlackListDto();
+	    dto.setuNo(uNo);
+	    dto.setCommuNo(commuNo);
+	    dto.setCommeNo(commeNo);
+	    dto.setBlockedNo(blockedNo);
 
-        boolean success = false;
-        try {
-            success = blackListService.blockComment(dto);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	    boolean success = false;
+	    try {
+	        success = blackListService.blockComment(dto);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-        if (success) {
-            // 차단 성공 시, 차단된 댓글 목록 가져오기
-            List<Integer> blockedList = null;
-            try {
-                blockedList = blackListService.getBlockedComments(uNo, commuNo);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            // 세션이나 request에 차단 목록 저장
-            request.setAttribute("blockedList", blockedList);
-
-            // 다시 커뮤니티 상세 페이지로 이동
-            response.sendRedirect(request.getContextPath() + "/comDetail?no=" + commuNo);
-        } else {
-            response.getWriter().write("차단 실패");
-        }
+	    // JSON 응답
+	    response.getWriter().write("{\"success\":" + success + "}");
 	}
+	
 
 }

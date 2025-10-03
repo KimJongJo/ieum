@@ -97,6 +97,14 @@ public class CommunityDetail extends HttpServlet {
          // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
             BlackListService blackListService = new BlackListServiceImpl();
             List<Integer> blockedList = null;
+            try {
+                blockedList = blackListService.getBlockedComments(uNo, commuNo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.setAttribute("blockedList", blockedList);
+            
+            
             
             //공감 유지
             boolean likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
@@ -110,12 +118,7 @@ public class CommunityDetail extends HttpServlet {
             }
             request.setAttribute("comment", commentList);
             
-            try {
-                blockedList = blackListService.getBlockedComments(uNo, commuNo);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            request.setAttribute("blockedList", blockedList);
+            
             
         } catch (Exception e) {
             e.printStackTrace();

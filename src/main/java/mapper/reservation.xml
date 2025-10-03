@@ -12,7 +12,7 @@
 	</select>
 	
 	<!-- 예약하기 -->
-	<insert id="insertReservation" parameterMap="reservation">
+	<insert id="insertReservation" parameterType="reservation">
 		insert into reservation
 		(r_date,r_time,r_content,act_name,acr_tel,r_status,r_day,h_no,u_no,m_no)
 		values (#{rDate},#{rTime},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
