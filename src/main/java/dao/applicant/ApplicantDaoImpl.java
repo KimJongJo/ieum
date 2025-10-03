@@ -8,22 +8,21 @@ import util.MybatisSqlSessionFactory;
 
 public class ApplicantDaoImpl implements ApplicantDao {
 
-	SqlSession session;
-	public ApplicantDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
-	}
 	
 	@Override
-	public void addApplicant(ApplicantDto appDto) {
-		
-		session.insert("addApplicant", appDto);
-		session.commit();
-		
+	public void addApplicant(ApplicantDto appDto){
+		try(SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			session.insert("addApplicant", appDto);
+			session.commit();
+		}
 	}
 
 	@Override
 	public ApplicantDto select(Integer hNo) {
-		return session.selectOne("selectRequestInfo", hNo);
+		try(SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+			return session.selectOne("selectRequestInfo", hNo);
+		}
+		
 	}
 
 }

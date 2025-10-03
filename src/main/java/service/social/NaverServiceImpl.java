@@ -92,7 +92,6 @@ public class NaverServiceImpl implements NaverService {
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, Object>>() {}.getType();
             Map<String, Object> map = gson.fromJson(sb.toString(), type);
-            
             Map<String, Object> profile = (Map<String, Object>) map.get("response");
             
             String id = (String)profile.get("id");

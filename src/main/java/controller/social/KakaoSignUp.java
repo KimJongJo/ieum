@@ -37,7 +37,7 @@ public class KakaoSignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/common/join/joinNaver.jsp").forward(request, response);
+		request.getRequestDispatcher("/common/join/joinKakao.jsp").forward(request, response);
 	}
 	
 	@Override

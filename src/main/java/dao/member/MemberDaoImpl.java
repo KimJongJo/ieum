@@ -112,6 +112,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public Integer kakaoSignUp(MemberDto member) {
+		System.out.println(member);
 		Integer uNo = session.insert("kakaoSignUp", member);
 		session.close();
 		return uNo;
