@@ -554,7 +554,7 @@ $(document).ready(function() {
             <!-- 댓글 작성한 곳 -->
             <c:forEach var="myCommeList" items="${myCommeList}" varStatus="status">
             <!-- 옵션 밑 새로운 영역 -->
-            <div class="comment">
+            <div class="comment" >
                 <!-- 상단: 닉네임 + 카테고리 -->
                 <div class="comment-top">
                     <div class="nickName">
@@ -577,7 +577,20 @@ $(document).ready(function() {
                 <!-- 액션 아이콘 (오른쪽 아래) -->
                 <div id="actions">
                     <span class="action-item">
-				        ❤️ <span class="action-count"><c:out value="${myCommeList.comEmpathy}"/></span>
+                     <input type="hidden" name="commuNo" value="${myCommeList.commuNo}"/>
+				        <button type="submit" class="heart-button">
+				                <span class="heart1">
+								    <c:choose>
+								        <c:when test="${myCommeList.likedByUserCom}">
+								        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:when>
+								        <c:otherwise>
+								        	<img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:otherwise>
+								    </c:choose>
+								</span>
+							<span class="action-count"><c:out value="${myCommeList.comEmpathy}"/></span>
+				        </button>				        
 				    </span>
                 </div>
             </div>

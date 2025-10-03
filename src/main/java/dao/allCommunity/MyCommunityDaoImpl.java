@@ -32,7 +32,7 @@ public class MyCommunityDaoImpl implements MyCommunityDao{
 		 Map<String, Object> map = new HashMap<>();
 		 map.put("uNo", uNo);
 		 map.put("commuNo", commuNo);
-         return session.selectOne("mapper.CommuEmpathyMapper.selectEmpathy", map);
+         return session.selectOne("mapper.comunity.selectEmpathy", map);
     }
 
 }

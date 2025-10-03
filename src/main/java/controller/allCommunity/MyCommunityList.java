@@ -14,6 +14,8 @@ import dto.CommentDto;
 import dto.CommentWithMemberDto;
 import dto.CommunityDto;
 import dto.MyCommunityDto;
+import service.allCommunity.CommentEmpathyService;
+import service.allCommunity.CommentEmpathyServiceImpl;
 import service.allCommunity.CommentWithMemberService;
 import service.allCommunity.CommentWithMemberServiceImpl;
 import service.allCommunity.CommuEmpathyService;
@@ -46,6 +48,7 @@ public class MyCommunityList extends HttpServlet {
 		MyCommunityService service = new MyCommunityServiceImpl();
 		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
+		CommentEmpathyService commentEmpathyService = new CommentEmpathyServiceImpl();
 		//추가됨
 		CommentDto commentDto = new CommentDto();
 		CommunityDto communityDto = new CommunityDto();
@@ -54,12 +57,19 @@ public class MyCommunityList extends HttpServlet {
 			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
 			List<MyCommunityDto> myEmpathy = service.getSelectLikedCommunityList(uNo);
 			
-			// 🔹 좋아요 여부 세팅
+			// 게시물 좋아요 여부 세팅
 	        for(MyCommunityDto community : myComList) {
 	            boolean liked = commuEmpathyService.checkEmpathy(uNo, community.getCommuNo());
 	            community.setLikedByUserCom(liked);
 	        }
 			
+	        
+	        // 댓글 좋아여 여부 세팅
+	        for (CommentWithMemberDto comment : myCommeList) {
+                boolean likedByUserCom = commentEmpathyService.checkEmpathy(uNo, comment.getCommeNo());
+                comment.setLikedByUserCom(likedByUserCom); // DTO에 필드 있어야 함
+            }
+	        
 			
 			//작성한 게시판
 			request.setAttribute("myComList", myComList);
