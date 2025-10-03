@@ -15,10 +15,8 @@
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
-<link rel="stylesheet"
-	href="${contextPath}/css/header.css" />
-<link rel="stylesheet"
-	href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/header.css" />
+<link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -31,10 +29,12 @@
 		<div class="hh">
 			<div class="hbt">
 				<div class="hos-category">
-					[<c:out value="${hosd.categoryName }" />]
+					[
+					<c:out value="${hosd.categoryName }" />
+					]
 				</div>
 				<div class="hos-name">
-				<c:out value="${hosd.hNm }"/>
+					<c:out value="${hosd.hNm }" />
 				</div>
 			</div>
 			<div class="share">
@@ -60,10 +60,12 @@
 					<div class="hinfor">
 						<div class="hinfoh">
 							<div class="hos-cate">
-							[<c:out value="${hosd.categoryName }" />]
+								[
+								<c:out value="${hosd.categoryName }" />
+								]
 							</div>
 							<div class="hos-na">
-							<c:out value="${hosd.hNm }"/>
+								<c:out value="${hosd.hNm }" />
 							</div>
 
 						</div>
@@ -77,7 +79,7 @@
 											<td class="icon"><i class="fa-solid fa-location-dot"></i></td>
 											<td>
 												<p class="etc">
-												<c:out value="${hosd.hAddress }"/>
+													<c:out value="${hosd.hAddress }" />
 												</p>
 											</td>
 										</tr>
@@ -85,7 +87,7 @@
 											<td class="icon"><i class="fa-solid fa-bus"></i></td>
 											<td>
 												<p class="etc">
-												<c:out value="${hosd.transferInfo }"/>
+													<c:out value="${hosd.transferInfo }" />
 												</p>
 											</td>
 										</tr>
@@ -93,7 +95,7 @@
 											<td class="icon"><i class="fa-solid fa-clock"></i></td>
 											<td>
 												<p class="etc">
-												<c:out value="${hosd.holidayInfo }"/>
+													<c:out value="${hosd.holidayInfo }" />
 												</p>
 											</td>
 										</tr>
@@ -101,29 +103,27 @@
 											<td class="icon"><i class="fa-solid fa-phone"></i></td>
 											<td>
 												<p class="etc">
-												<c:out value="${hosd.hTel }"/>
+													<c:out value="${hosd.hTel }" />
 												</p>
 											</td>
 										</tr>
 										<tr>
 											<td class="icon"></td>
-											<td><a href="#" class="etc">
-													<c:out value="${hosd.hLink }"/></a></td>
+											<td><a href="#" class="etc"> <c:out
+														value="${hosd.hLink }" /></a></td>
 										</tr>
 										<tr>
 											<td class="icon"></td>
 											<td>
 												<p class="etc">
-												<c:out value="${hosd.services }"/>
+													<c:out value="${hosd.services }" />
 												</p>
 											</td>
 										</tr>
 										<tr>
 											<td class="icon"></td>
 											<td>
-												<p class="etc">
-												
-												</p>
+												<p class="etc"></p>
 											</td>
 										</tr>
 
@@ -158,10 +158,9 @@
 				<form class="hos-inf" action="" method="get">
 					<div class="inf">
 						<p class="p1">
-						<c:out value="${hosd.newsTitle }"/>
+							<c:out value="${hosd.newsTitle }" />
 						</p>
-						<span class="p2">
-						<c:out value="${hosd.newsContent }"/>
+						<span class="p2"> <c:out value="${hosd.newsContent }" />
 						</span>
 					</div>
 				</form>
@@ -170,21 +169,25 @@
 				<div class="mtitle">상담사</div>
 			</div>
 			<div class="doctor-box">
-			<c:forEach var="doctorlist" items="${docList}">
-				<div class="dall" >
-					<img src="" class="doc-prof"/>
-					<div class="d1">
-						<div class="username">
-						<c:out value="${docList.username }"/>
+				<c:forEach var="doctorlist" items="${docList}">
+					<div class="dall">
+						<img src="${doctorlist.fileNo }" class="doc-prof" />
+						<div class="d1">
+							<div class="d2">
+								<div class="username">
+									<c:out value="${doctorlist.username }" />
+								</div>
+								<p class="introduction">
+									<c:out value="${doctorlist.introduction }" default="믿음을 주는 상담사" />
+								</p>
+							</div>
+							<div class="d3">
+								<p class="major">
+									<c:out value="${doctorlist.major }" />
+								</p>
+							</div>
 						</div>
-						<p class="introduction">
-						<c:out value="${docLists.introduction }"/>
-						</p>
-						<p class="major">
-						<c:out value="${docList.major }"/>
-						</p>
 					</div>
-				</div>
 				</c:forEach>
 			</div>
 
@@ -198,9 +201,10 @@
 			</div>
 
 			<div class="btn">
-				<a href="${contextPath }/hospital/search"><button type="button"
-						class="white">이전으로</button></a>
-				<button type="button" class="blue">예약하기</button>
+				<a href="${contextPath }/hospital/search">
+					<button type="button" class="btn-rec-w">이전으로</button>
+				</a>
+				<button type="button" class="btn-long-b" id="resbtn">예약하기</button>
 			</div>
 
 		</div>
@@ -218,28 +222,35 @@
 			<div class="doctor-section">
 				<div class="mtitle">상담사</div>
 			</div>
-			<div class="doctor-box">
-			<c:forEach var="doctorlist" items="${docList}">
-				<div class="dall" >
-					<img src="" class="doc-prof"/>
-					<div class="d1">
-						<div class="username">
-						<c:out value="${docList.username }"/>
-						</div>
-						<p class="introduction">
-						<c:out value="${docLists.introduction }"/>
-						</p>
-						<p class="major">
-						<c:out value="${docList.major }"/>
-						</p>
-					</div>
+			<form class="doctor" action="" method="post" class="tt">
+				<div class="doctor-box">
+					<c:forEach var="doctorlist" items="${docList}">
+						<button class="dall" id="docBox" type="button">
+							<img src="${doctorlist.fileNo }" class="doc-prof" />
+							<div class="d1">
+								<div class="d2">
+									<div class="username">
+										<c:out value="${doctorlist.username }" />
+									</div>
+									<p class="introduction">
+										<c:out value="${doctorlist.introduction }"
+											default="믿음을 주는 상담사" />
+									</p>
+								</div>
+								<div class="d3">
+									<p class="major">
+										<c:out value="${doctorlist.major }" />
+									</p>
+								</div>
+							</div>
+							</button>
+					</c:forEach>
 				</div>
-				</c:forEach>
-			</div>
+			</form>
 
 			<div class="mheader">
-				<i class="fa-solid fa-calendar-days"></i>
-				<span class="h">날짜와 시간을 선택해 주세요</span>
+				<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
+					시간을 선택해 주세요</span>
 			</div>
 
 			<div class="select-date">
@@ -253,7 +264,7 @@
 				<form class="time" action="" method="post" class="tt">
 					<div class="time-table">
 						<label class="cnb"><input type="checkbox" name="chojin"
-							value="true" />이 병원에서 초진일 경우 체크</label>
+							value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
 						<p class="day">오전</p>
 
 						<button type="button" class="tb1" name="time" value="9:00">09:00</button>
@@ -276,7 +287,7 @@
 						<button type="button" class="tb1" name="time" value="4:30">4:30</button>
 						<button type="button" class="tb1" name="time" value="5:00">5:00</button>
 						<button type="button" class="tb1" name="time" value="5:30">5:30</button>
-						<button type="button" class="tb1" name="time" value="8:30">8:30</button>
+
 
 
 					</div>
@@ -288,15 +299,21 @@
 					<i class="fa-solid fa-pen-to-square"></i> <span class="h">어떤
 						주제의 상담이 필요하신가요?</span>
 				</div>
-				<div class="b"></div>
+				<div class="b">
+					<form class="resContent-box" name="resContent" method="post">
+						<textarea class="rc" id="rc" name="rc"
+							placeholder="상담 주제에 대해 메모해보세요!"></textarea>
+					</form>
+				</div>
 
 			</div>
 
 			<div class="btn">
-				<a href="${contextPath }/hospital/detail"><button type="button"
-						class="btn-rec-w">그만두기</button></a> <a
-					href="${contextPath }/reservation/content"><button
-						type="button" class="btn-long-b">다음으로</button></a>
+				<a href="${contextPath }/hospital/search">
+					<button type="button" class="btn-rec-w">그만두기</button>
+				</a> <a href="${contextPath }/reservation/content">
+					<button type="button" class="btn-long-b">다음으로</button>
+				</a>
 			</div>
 		</div>
 	</div>

@@ -5,20 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;
 
 public class MyCommunityDaoImpl implements MyCommunityDao{
-	private SqlSession session;
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 	
-	public MyCommunityDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
-	}
-		
 	@Override
 	public List<MyCommunityDto> selectMyCommunityList(int uNo) throws Exception  {
 		return session.selectList("mapper.community.selectMyCommunityList", uNo);
+
 	}
 
 	@Override
