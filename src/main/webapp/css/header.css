@@ -39,7 +39,7 @@
 	color: #0044cc;
 }
 
-.header .menu {
+.header-menu {
 	display: flex; /* 한 줄로 가로 정렬 */
 	gap: 100px; /* 메뉴 간격 */
 	align-items: center;

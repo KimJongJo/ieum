@@ -4,41 +4,48 @@
 <mapper namespace="mapper.notice">
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO notice
-		(title, content, is_pinned, file_no, u_no) VALUES #{title},
-		#{content}, #{isPinned}, #{fileNo}, #{uNo}
+		(title, content, is_pinned, file_no, u_no) VALUES (#{title},
+		#{content}, #{isPinned}, #{fileNo, jdbcType=INTEGER}, #{uNo})
 	</insert>
-	<select id="selectNoticeList">
-		SELECT n(*), f.file_path, f.file_no FROM notice n
-		JOIN file f
-		USING(file_no)
-		WHERE n.is_pinned = #{isPinned} 
+	<select id="selectNoticeList" parameterType="map"
+		resultType="notice">
+		SELECT *
+		FROM notice n
+		LEFT JOIN file f
+		using(file_no)
+		WHERE n.is_pinned = #{isPinned}
 		<if test="keyword != null and keyword != ''">
-		AND (title LIKE CONCAT('%', #{keyword}, '%')
-        OR content LIKE CONCAT('%', #{keyword}, '%'))
-        </if>
-		ORDER BY ${sort} DESC
-		<if test="topYn == true">
-			LIMIT 5
+			AND (n.title LIKE CONCAT('%', #{keyword}, '%')
+			OR n.content
+			LIKE CONCAT('%', #{keyword}, '%'))
 		</if>
-		<if test="row != null and row != ''">
-			LIMIT #{row}, 10
-		</if>
+
+		<choose>
+			<when test="sort == 'title'">ORDER BY n.title DESC</when>
+			<otherwise>ORDER BY  n.n_created DESC</otherwise>
+		</choose>
+		<choose>
+			<when test="isPinned == 1">LIMIT 5</when>
+			<otherwise>LIMIT #{row}, 10</otherwise>
+		</choose>
 	</select>
-	<select id="selectNoticeDetail">
-		SELECT n(*), f.file_path, f.file_no FROM notice n
-		JOIN file f USING(file_no) WHERE
-		n_no = #{nNo}
+	<select id="selectNoticeDetail" resultType="notice">
+		SELECT * FROM notice
+		WHERE n_no = #{nNo}
 	</select>
-	<select id="selectCnt">
-		SELECT COUNT(*) FROM notice WHERE n.is_pinned = false;
+	<select id="selectNoticeCnt" resultType="Integer">
+		SELECT COUNT(*) FROM
+		notice WHERE is_pinned = 0;
 	</select>
-	<update id="updateNotice">
-		UPDATE diary SET
-		title=#{title}, content=#{content}, is_pinned=#{isPinned}, n_updated=now(), file_no=#{fileNo}
-		WHERE  n_no=#{nNo}
+	<update id="updateNotice" parameterType="notice">
+		UPDATE notice SET
+		title=#{title}, content=#{content}, is_pinned=#{isPinned},
+		n_updated=now(), file_no=#{fileNo}
+		WHERE n_no=#{nNo}
 	</update>
-	<delete id="delNotice">
-		DELETE FROM diary WHERE n_no=#{nNo}
+	<delete id="delNotice" parameterType="Integer">
+		DELETE FROM notice WHERE
+		n_no=#{nNo}
 	</delete>
 	<select id="selectUserNm" parameterType="Integer"
 		resultType="String">

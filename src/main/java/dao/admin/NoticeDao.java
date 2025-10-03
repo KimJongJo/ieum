@@ -12,7 +12,7 @@ public interface NoticeDao {
 
 	public Integer cnt() throws Exception;
 
-	public List<NoticeDto> selectNoticeList(Integer uNo, String keyword, String sort, Integer row) throws Exception;
+	public List<NoticeDto> selectNoticeList(Integer uNo, String keyword, String sort, Integer row,  Integer isPinned) throws Exception;
 
 	public NoticeDto update(NoticeDto notice) throws Exception;
 

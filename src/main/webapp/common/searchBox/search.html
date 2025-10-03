@@ -1,14 +1,18 @@
-<div class="notice-search">
-	<input type="text">
-	<button>
-		검색 
-		<div class="search-icon">
+<!-- 검색 및 작성 버튼 -->
+<div class="button-wrapper">
+	<div class="notice-search">
+		<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
+		<button type="button" onclick="">
 			<i class="fa-solid fa-magnifying-glass"></i>
-		</div>
-	</button>
+		</button>
+	</div>
+
+	<select class="notice-select" onchange="sortDiary(this)">
+		<option selected disabled value="none">정렬</option>
+		<option value="d_created">최신순</option>
+		<option value="target_dt">날짜순</option>
+		<option value="title">제목순</option>
+	</select>
+	<button class="btn-rec-w"
+		onclick="">작성</button>
 </div>
-<select class="notice-select">
-	<option selected disabled value="none">정렬</option>
-	<option>최신순</option>
-	<option>제목순</option>
-</select>

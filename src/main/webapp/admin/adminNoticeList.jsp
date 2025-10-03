@@ -6,9 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${contextPath}/admin/css/noticeList.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/admin/css/noticeList.css">
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/css/adminHeader.css">
+<link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${contextPath}/css/modal.css" />
+<link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -19,7 +24,8 @@
 <title>건강이음 - 공지사항관리 목록</title>
 </head>
 <body>
-	<jsp:include page="../common/header/adminHeader.html"></jsp:include>
+	<jsp:include page="/common/header/basicHeader.html" />
+	<c:import url="/common/header/adminHeader.html" charEncoding="UTF-8" />
 	<div class="main">
 		<div class="main-div">
 			<div class="under-section">
@@ -27,123 +33,146 @@
 				<div class="info">
 					<div class="select-reservation">
 						<div class="notice-div">
-							<span class="notice-span">공지사항</span>
-							<div class="search-div">
-								<div class="search-keyword-box">
-									<input type="text" placeholder="검색" class="keyword-input" /> <i
-										class="fa-solid fa-magnifying-glass search-img"></i>
+							<span class="notice-span">공지사항 관리</span>
+							<!-- 검색 및 작성 버튼 -->
+							<div class="button-wrapper">
+								<div class="notice-search">
+									<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
+									<button type="button" onclick="searchDiary()">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
 								</div>
-								<select name="" id="" class="filter-select">
-									<option value="">정렬</option>
+
+								<select class="notice-select" onchange="sortNotice(this)">
+									<option selected disabled value="none">정렬</option>
+									<option value="n_created">작성순</option>
+									<option value="n_updated">수정순</option>
+									<option value="title">제목순</option>
 								</select>
+								<button class="btn-rec-w"
+									onclick="location.href=`${contextPath}/admin/notice/write`">작성</button>
 							</div>
 						</div>
 					</div>
-					<table class="notice-table">
-						<tr>
-							<td class="n-t-th"><input type="checkbox" /></td>
-							<td class="n-t-th">번호</td>
-							<td class="n-t-th">제목</td>
-							<td class="n-t-th">작성자</td>
-							<td class="n-t-th">등록일</td>
-							<td class="n-t-th">최근수정일</td>
-							<td class="n-t-th">관리</td>
-						</tr>
-						<tr class="notice-item">
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>					
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-						<tr>
-							<td class="checkinput"><input type="checkbox" /></td>
-							<td class="n-t-td">93</td>
-							<td class="n-t-td">구로구 병원 휴진일 공고</td>
-							<td class="n-t-td">구로구병원</td>
-							<td class="n-t-td">2025-09-05</td>
-							<td class="n-t-td">2025-09-06</td>
-							<td class="n-t-td"><button class="n-update">수정</button>
-								<button class="n-delete">삭제</button></td>
-						</tr>
-					</table>
-					<div class="notice-footer">
-						<div class="page-nav">
-							<a href="#"><i class="fa-solid fa-chevron-left"></i></a> <a
-								href="#" class="cur-page">1</a> <a href="#">2</a> <a href="#">3</a>
-							<a href="#">4</a> <a href="#">5</a> <a href="#">6</a> <a href="#">7</a>
-							<a href="#">8</a> <a href="#">9</a> <a href="#">10</a> <a
-								href="#"><i class="fa-solid fa-chevron-right"></i></a>
+					<c:if test="${not empty topList}">
+						<table class="notice-table" id="noticeList">
+							<tr>
+								<td class="n-t-th">번호</td>
+								<td class="n-t-th">제목</td>
+								<td class="n-t-th">작성자</td>
+								<td class="n-t-th">등록일</td>
+								<td class="n-t-th">최근수정일</td>
+								<td class="n-t-th">관리</td>
+							</tr>
+							<c:forEach var="top" items="${topNoticeList}">
+								<tr class="notice-item" onclick="goDetail(${top.nNo})">
+									<td class="n-t-td">${top.nNo}</td>
+									<td class="n-t-td">${top.title}</td>
+									<td class="n-t-td">${top.uNm}</td>
+									<td class="n-t-td">${top.nCreated}</td>
+									<td class="n-t-td">${top.nUpdated != null ? top.nUpdated : ''}</td>
+									<td class="n-t-td"><button class="n-update"
+											onclick="updateNotice()">수정</button>
+										<button class="n-delete" onclick="deleteNotice()">삭제</button></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
+					<c:choose>
+						<c:when test="${not empty noticeList}">
+							<table class="notice-table" id="noticeList">
+								<tr>
+									<td class="n-t-th">번호</td>
+									<td class="n-t-th">제목</td>
+									<td class="n-t-th">작성자</td>
+									<td class="n-t-th">등록일</td>
+									<td class="n-t-th">최근수정일</td>
+									<td class="n-t-th">관리</td>
+								</tr>
+								<c:forEach var="notice" items="${noticeList}">
+									<tr class="notice-item" onclick="goDetail(${notice.nNo})">
+										<td class="n-t-td">${notice.nNo}</td>
+										<td class="n-t-td">${notice.title}</td>
+										<td class="n-t-td">${notice.uNm}</td>
+										<td class="n-t-td">${notice.nCreated}</td>
+										<td class="n-t-td">${notice.nUpdated != null ? notice.nUpdated : ''}</td>
+										<td class="n-t-td"><button class="n-update"
+												onclick="updateNotice()">수정</button>
+											<button class="n-delete" onclick="deleteNotice()">삭제</button></td>
+									</tr>
+								</c:forEach>
+
+
+							</table>
+						</c:when>
+						<c:otherwise>
+							<div class="no-data" id="noDataList">
+								<div class="icon">
+									<i class="fa-solid fa-circle-exclamation"></i>
+								</div>
+								<div>작성된 공지사항이 없습니다.</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					<div class="no-data" id="noSearchList" style="display: none">
+						<div class="icon">
+							<i class="fa-solid fa-circle-exclamation"></i>
 						</div>
-						<div class="button-wrapper">
-							<a class="btn-link" href="${contextPath}/admin/notice/write">
-								<div class="primary-big-btn">작성</div>
-							</a>
+						<div>검색결과가 없습니다.</div>
+					</div>
+					<!-- 삭제 확인 팝업 -->
+					<div class="modal-main-div" id="delConfirmModal"
+						style="display: none">
+						<div class="modal-div-over">
+							<div class="modal-header-div">
+								<span class="modal-header-div-span">알림</span>
+								<button type="button" class="x-button" onclick="cancelDel()">
+									<i class="fa-solid fa-x x-btn"></i>
+								</button>
+							</div>
+							<div class="modal-content-div">
+								<span class="modal-content-div-span">선택하신 공지를 삭제하시겠습니까?</span>
+							</div>
+							<div class="modal-div-under">
+								<div class="modal-btn-div">
+									<button type="button" class="modal-btn-left modal-btn"
+										onclick="cancelDel()">취소</button>
+									<button class="modal-btn-right modal-btn"
+										onclick="confirmDel()">확인</button>
+								</div>
+							</div>
 						</div>
 					</div>
+					<!-- 페이지네이션 -->
+					<c:if test="${not empty noticeList}">
+						<div class="diary-footer">
+							<div class="pagination" id="pagination">
+								<!-- 이전 버튼 -->
+								<button
+									<c:if test="${pageInfo.curPage > 1}">
+                    onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage-1}'"
+                </c:if>>
+									&lt;</button>
+
+								<!-- 페이지 번호 반복 -->
+								<c:forEach begin="${pageInfo.startPage}"
+									end="${pageInfo.endPage}" step="1" var="pageNum">
+									<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
+										onclick="location.href='${contextPath}/admin/notice?page=${pageNum}'">
+										${pageNum}</button>
+								</c:forEach>
+
+								<!-- 다음 버튼 -->
+								<button
+									<c:if test="${pageInfo.curPage < pageInfo.allPage}">
+                    onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage+1}'"
+                </c:if>>
+									&gt;</button>
+
+
+							</div>
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<%-- 			<jsp:include page="../footer.html"></jsp:include> --%>

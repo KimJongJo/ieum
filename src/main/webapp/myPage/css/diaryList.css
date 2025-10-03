@@ -35,6 +35,10 @@ body {
 	gap: 10px;
 }
 
+.fc .fc-toolbar.fc-header-toolbar{
+	margin-top: 4px;
+}
+
 .fc-toolbar-title {
 	width: 230px;
 	display: flex;
