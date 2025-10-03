@@ -24,4 +24,9 @@ public class MyCommunityServiceImpl implements MyCommunityService{
 		return myCommunityDao.selectLikedCommunityList(uNo);
 	}
 
+	@Override
+	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
+		 return myCommunityDao.checkEmpathy(uNo, commuNo);
+	}
+
 }

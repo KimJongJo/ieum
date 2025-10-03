@@ -12,7 +12,7 @@ public class CommentWithMemberDto {
 	 Date comCreated;
 	 
 	 
-	 
+	 boolean likedByUserCom; // 댓글 하트 상태
 	 
 	public CommentWithMemberDto() {
 		super();
@@ -33,7 +33,13 @@ public class CommentWithMemberDto {
 		this.comCreated = comCreated;
 	}
 
+	public boolean isLikedByUserCom() {
+		return likedByUserCom;
+	}
 
+	public void setLikedByUserCom(boolean likedByUserCom) {
+		this.likedByUserCom = likedByUserCom;
+	}
 
 
 	public String getNickname() {

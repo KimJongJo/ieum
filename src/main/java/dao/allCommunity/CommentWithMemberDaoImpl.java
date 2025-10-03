@@ -20,4 +20,11 @@ public class CommentWithMemberDaoImpl implements CommentWithMemberDao{
 		return session.selectList("mapper.comment.selectMemberWithComment", uNo);
 	}
 
+
+	@Override
+	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

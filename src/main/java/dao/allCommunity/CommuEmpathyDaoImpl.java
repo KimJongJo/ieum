@@ -13,12 +13,14 @@ public class CommuEmpathyDaoImpl implements CommuEmpathyDao{
 	
 	@Override
 	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {
+		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("uNo", uNo);
 		map.put("commuNo", commuNo);
-		Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
-		return count != null && count > 0;
-
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			Integer count = session.selectOne("mapper.commu_like.selectEmpathy", map);
+			return count != null && count > 0;
+		}
 	}
 
 	@Override
