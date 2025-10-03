@@ -77,8 +77,8 @@
 
                 <div class="button-div">
                     <div class="social-login-btn-div">
-                        <a href=""><img src="${pageContext.request.contextPath}/img/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
-                        <a href=""><img src="${pageContext.request.contextPath}/img/네이버로그인.png" alt="" width="45px" class="Nimg" /></a>
+                        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoKey}&redirect_uri=${kakaoRedirectUrl}"><img src="${pageContext.request.contextPath}/img/카카오로그인.webp" alt="" width="45px" class="Kimg" /></a>
+                        <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&state=${state}&redirect_uri=${naverRedirectUrl}"><img src="${pageContext.request.contextPath}/img/네이버로그인.png" alt="" width="45px" class="Nimg" /></a>
                         <a href=""><img src="${pageContext.request.contextPath}/img/구글로그인.png" alt="" width="45px" class="Gimg" /></a>
                     </div>
                 </div>

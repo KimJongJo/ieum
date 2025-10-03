@@ -55,7 +55,6 @@ public class HospitalDaoImpl implements HospitalDao {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
 			sqlsession.insert("addHospital", hosDto);
 			sqlsession.commit();
-
 			return hosDto.gethNo();
 		}
 	}
@@ -79,7 +78,7 @@ public class HospitalDaoImpl implements HospitalDao {
 	public List<HospitalDto> selectWaitHos(Map<String, Object> page) {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {	
 			return sqlsession.selectList("selectWaithos", page);
-		}
+    }
 	}
 	
 	// 병원 승인
@@ -88,8 +87,7 @@ public class HospitalDaoImpl implements HospitalDao {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
 			sqlsession.update("approve", hNo);
 			sqlsession.commit();
-		}
-		
+		}		
 	}
 	// 병원 거부
 	@Override
@@ -97,8 +95,7 @@ public class HospitalDaoImpl implements HospitalDao {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
 			sqlsession.update("reject", hNo);
 			sqlsession.commit();
-		}
-		
+		}		
 	}
 	
 	

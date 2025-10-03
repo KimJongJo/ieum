@@ -1,6 +1,9 @@
 package controller.common.login;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -34,6 +37,24 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Servlet
+		Properties prop = new Properties();
+		try(InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
+		    prop.load(is);
+		    String kakaoKey = prop.getProperty("kakao.api.key");
+		    String kakaoRedirectUrl = prop.getProperty("kakao.api.redirectUrl");
+		    String naverClientId = prop.getProperty("naver.api.id");
+		    String naverRedirectUrl = prop.getProperty("naver.api.redirectUrl");
+		    request.setAttribute("kakaoKey", kakaoKey);
+		    request.setAttribute("kakaoRedirectUrl", kakaoRedirectUrl);
+		    request.setAttribute("naverClientId", naverClientId);
+		    request.setAttribute("naverRedirectUrl", naverRedirectUrl);
+		    request.setAttribute("state", "aB3dE9fGh12IjK45fes"); // -> 그냥 아무거나 막 친거임
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		
 		request.getRequestDispatcher("/common/login/login.jsp").forward(request, response);
 	}
 

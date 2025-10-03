@@ -8,7 +8,6 @@ import dto.otherDto.RequestInfoDto;
 import util.MybatisSqlSessionFactory;
 
 public class ApplicantDaoImpl implements ApplicantDao {
-
 	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 	
 	@Override
@@ -17,7 +16,6 @@ public class ApplicantDaoImpl implements ApplicantDao {
 			session.insert("addApplicant", appDto);
 			session.commit();
 		}
-		
 	}
 
 	@Override

@@ -37,4 +37,8 @@ public interface MemberDao {
 	Integer docCnt(Integer hNo) throws Exception;
 	
 	List<MemberDto> docList(Integer hNo) throws Exception;
+
+	Integer kakaoSignUp(MemberDto member);
+
+	MemberDto checkEmail(String email);
 }

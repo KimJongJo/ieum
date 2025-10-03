@@ -37,7 +37,6 @@ public class FileDaoImpl implements FileDao{
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 			session.insert("uploadFile", fileDto);
 			session.commit();
-
 			return fileDto.getFileNo();
 		}
 	}

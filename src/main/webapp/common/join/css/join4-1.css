@@ -140,6 +140,11 @@
                 align-items: center;
                 width: 888px;
             }
+            
+            .diary{
+            	width:135px;
+            }
+            
 
             .input {
                 border-top: 1px solid #b8b8b8;
@@ -235,7 +240,7 @@
                 align-items: center;
             }
 
-            #man {
+            #man, #yes {
                 margin-left: 20px;
             }
 
@@ -324,7 +329,7 @@
                 cursor: pointer;
             }
 
-            #women {
+            #women, #no {
                 margin-left: 15px;
             }
             
