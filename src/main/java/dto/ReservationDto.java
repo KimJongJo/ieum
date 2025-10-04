@@ -39,6 +39,36 @@ public class ReservationDto {
 		this.rStatus = rStatus;
 		this.rDay = rDay;
 	}
+	
+	
+	public ReservationDto(Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
+			String rContent, String rStatus, String rDay) {
+		super();
+		this.uNo = uNo;
+		this.hNo = hNo;
+		this.mNo = mNo;
+		this.rDate = rDate;
+		this.rTime = rTime;
+		this.rContent = rContent;
+		this.rStatus = rStatus;
+		this.rDay = rDay;
+	}
+
+
+	public ReservationDto(Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime, String rContent,
+			String actName, String actTel, String rStatus, String rDay) {
+		super();
+		this.uNo = uNo;
+		this.hNo = hNo;
+		this.mNo = mNo;
+		this.rDate = rDate;
+		this.rTime = rTime;
+		this.rContent = rContent;
+		this.actName = actName;
+		this.actTel = actTel;
+		this.rStatus = rStatus;
+		this.rDay = rDay;
+	}
 
 
 	@Override

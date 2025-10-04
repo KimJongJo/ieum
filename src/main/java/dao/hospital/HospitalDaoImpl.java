@@ -63,7 +63,7 @@ public class HospitalDaoImpl implements HospitalDao {
 		try(SqlSession sqlsession = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
 			return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
 		}
-//		return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
+
 	}
 	// 병원 신청 대기중인 병원 수
 	@Override
