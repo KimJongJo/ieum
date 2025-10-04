@@ -13,9 +13,7 @@ public interface BlackListDao {
 
 	int insertBlackList(BlackListDto dto) throws Exception;
 
-	List<Integer> getBlockedComments(Map<String, Object> params) throws Exception;
-	
-	
-	List<BlackWithMemberDto> selectselectBlackWithMember(Integer uNo) throws Exception;
+	List<Integer> getBlockedUsers(int uNo) throws Exception;
 
+	List<BlackWithMemberDto> selectBlackWithMember(Integer uNo) throws Exception;
 }

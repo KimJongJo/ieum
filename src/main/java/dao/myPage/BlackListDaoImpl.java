@@ -14,26 +14,31 @@ public class BlackListDaoImpl implements BlackListDao{
 	
 	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 
-	@Override
-    public int insertBlackList(BlackListDto dto) throws Exception{
-		try(SqlSession session = sqlSessionFactory.openSession()) {
-			int result = session.insert("mapper.blacklist.insertBlackList", dto);
-			session.commit();
-			return result;
-		}
-    }
-
+	
+	// 사용자 차단 기록 삽입
     @Override
-    public List<Integer> getBlockedComments(Map<String, Object> params) throws Exception{
-		try(SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectList("mapper.blacklist.getBlockedComments", params);
-		}
+    public int insertBlackList(BlackListDto dto) throws Exception {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            int result = session.insert("mapper.blacklist.insertBlackList", dto);
+            session.commit();
+            return result;
+        }
     }
 
-	@Override
-	public List<BlackWithMemberDto> selectselectBlackWithMember(Integer uNo) throws Exception {
-		try(SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectList("mapper.blacklist.selectBlackWithMember", uNo);
-		}
-	}
+    // 로그인 사용자가 차단한 사용자 목록 조회
+    @Override
+    public List<Integer> getBlockedUsers(int uNo) throws Exception {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            return session.selectList("mapper.blacklist.getBlockedUsers", uNo);
+        }
+    }
+
+    // 블랙리스트 + 회원 정보 조회
+    @Override
+    public List<BlackWithMemberDto> selectBlackWithMember(Integer uNo) throws Exception {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            return session.selectList("mapper.blacklist.selectBlackWithMember", uNo);
+        }
+    }
+	
 }

@@ -457,8 +457,10 @@ $('#blockCommentForm').submit(function(e){
      .done(function(data){
          if(data.success){
              // 해당 댓글 DOM 제거
-             $('.comment-box[data-comme-no="'+commeNo+'"]').remove();
-             $('#blockModal').hide();
+             // $('.comment-box[data-comme-no="'+commeNo+'"]').remove();  // 기존 DOM 제거는 필요 없으면 주석 처리
+             
+             // 페이지 자동 새로고침
+             location.reload();  
          } else {
              alert("댓글 차단 실패");
          }
@@ -466,7 +468,7 @@ $('#blockCommentForm').submit(function(e){
      .fail(function(){
          alert("서버 오류 발생");
      });
-});    
+});  
     
     
     /* 모달 닫기 */

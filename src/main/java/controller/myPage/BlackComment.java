@@ -34,31 +34,40 @@ public class BlackComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	    request.setCharacterEncoding("UTF-8");
-	    response.setContentType("application/json; charset=UTF-8");
+		// 로그인 사용자 번호 (테스트용)
+        int uNo = 4;
+        BlackListService blackListService = new BlackListServiceImpl();
+        String blockedNoStr = request.getParameter("blockedNo");
+        if (blockedNoStr == null || blockedNoStr.isEmpty()) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
 
-	    Integer uNo = 4; // 임시 로그인
+        int blockedNo = 0;
+        try {
+            blockedNo = Integer.parseInt(blockedNoStr);
+        } catch (NumberFormatException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
 
-	    Integer commuNo = Integer.parseInt(request.getParameter("commuNo"));
-	    Integer commeNo = Integer.parseInt(request.getParameter("commeNo"));
-	    Integer blockedNo = Integer.parseInt(request.getParameter("blockedNo"));
+        boolean success = false;
+        try {
+            success = blackListService.blockUser(uNo, blockedNo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	    BlackListService blackListService = new BlackListServiceImpl();
-	    BlackListDto dto = new BlackListDto();
-	    dto.setuNo(uNo);
-	    dto.setCommuNo(commuNo);
-	    dto.setCommeNo(commeNo);
-	    dto.setBlockedNo(blockedNo);
-
-	    boolean success = false;
-	    try {
-	        success = blackListService.blockComment(dto);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    // JSON 응답
-	    response.getWriter().write("{\"success\":" + success + "}");
+        // JSON 반환
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().write("{\"success\":" + success + "}");
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 
