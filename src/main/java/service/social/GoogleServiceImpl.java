@@ -14,27 +14,29 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import dto.MemberDto;
+import dto.otherDto.GoogleMemberDto;
 import dto.otherDto.NaverMemberDto;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
 
-public class NaverServiceImpl implements NaverService {
+public class GoogleServiceImpl implements GoogleService {
 
 	MemberService service;
 	
-	public NaverServiceImpl() {
+	public GoogleServiceImpl() {
 		service = new MemberServiceImpl();
 	}
-
+	
 	// 액세스 토큰 요청
 	@Override
-	public String getAccessToken(String clientId, String clientSecret, String code, String state) throws Exception {
-		String tokenUrl = "https://nid.naver.com/oauth2.0/token";
+	public String getAccessToken(String clientId, String clientSecret, String code, String redirectUrl) throws Exception{
+		
+		String tokenUrl = "https://oauth2.googleapis.com/token";
         String params = "grant_type=authorization_code"
                       + "&client_id=" + clientId
                       + "&client_secret=" + clientSecret
                       + "&code=" + code
-                      + "&state=" + state;
+                      + "&redirect_uri=" + redirectUrl;
         
         URL url = new URL(tokenUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -46,7 +48,7 @@ public class NaverServiceImpl implements NaverService {
             os.write(params.getBytes(StandardCharsets.UTF_8));
             os.flush();
        }
-
+		
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
         StringBuilder sb = new StringBuilder();
         String line;
@@ -63,13 +65,11 @@ public class NaverServiceImpl implements NaverService {
         String accessToken = (String) map.get("access_token");
 		
 		return accessToken;
-		
 	}
 
-	// 사용자 정보 요청
 	@Override
-	public NaverMemberDto getMemberDto(String token) throws Exception{
-		String tokenUrl = "	https://openapi.naver.com/v1/nid/me";
+	public GoogleMemberDto getMemberDto(String token) throws Exception {
+		String tokenUrl = "	https://www.googleapis.com/oauth2/v1/userinfo";
 		try {
 			URL url = new URL(tokenUrl);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -89,29 +89,21 @@ public class NaverServiceImpl implements NaverService {
             br.close();
             conn.disconnect();
             
-            
-            
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, Object>>() {}.getType();
             Map<String, Object> map = gson.fromJson(sb.toString(), type);
-            Map<String, Object> profile = (Map<String, Object>) map.get("response");
             
-            String id = (String)profile.get("id");
-            
+            Object idObj = map.get("id");
+            String id = idObj.toString();  // 숫자든 문자열이든 모두 안전하게 String으로 변환
+
             MemberDto member = service.socialIdCheck(id);
             
-            
-            String profileImage = (String)profile.get("profile_image");
-            String gender = ((String)profile.get("gender")).equals("M") ? "MALE" : "FEMALE";
-            String email = (String)profile.get("email");
-            String tel = (String)profile.get("mobile");
-            String birthDate = (String)profile.get("birthyear") + "-" + (String)profile.get("birthday");
-            NaverMemberDto memberDto = new NaverMemberDto(member, id, profileImage, gender, email, tel, birthDate);
+            String name = (String)map.get("name");
+            String profileImage = (String)map.get("picture");
+            String email = (String)map.get("email");
+            GoogleMemberDto memberDto = new GoogleMemberDto(member, id, name, profileImage, email);
             
             return memberDto; 
-            
-            
-            
             
 	        
 		}catch(Exception e) {
@@ -120,14 +112,10 @@ public class NaverServiceImpl implements NaverService {
 		}
 	}
 
-	// 계정은 없지만 이미 사용중인 네이버 계정이 있는지
 	@Override
 	public MemberDto emailCheck(String email) {
-
+		
 		return service.emailCheck(email);
 	}
-	
-	
-
 
 }

@@ -25,5 +25,9 @@ public interface MemberService {
 	Integer socialSignUp(MemberDto member);
 
 	MemberDto emailCheck(String email);
+
+	boolean checkPw(String email, String password);
+
+	MemberDto socialUpdate(String email, String id) throws Exception;
 	
 }

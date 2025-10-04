@@ -41,4 +41,6 @@ public interface MemberDao {
 	Integer kakaoSignUp(MemberDto member);
 
 	MemberDto checkEmail(String email);
+
+	void socialUpdate(Map<String, String> map);
 }
