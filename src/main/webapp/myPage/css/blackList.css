@@ -26,6 +26,7 @@ body {
         display: flex;
         gap: 40px;
         align-items: flex-start; /* 높이 정렬 */
+        grid-template-columns: repeat(2, 1fr); /* 2열 */
     }
 
     /* 사이드바 */
@@ -139,7 +140,7 @@ body {
         }
 
     /* 버튼 스타일 */
-    #btn {
+    .unblock-btn {
         padding: 6px 12px;
         border: 1px solid red;
         border-radius: 6px;

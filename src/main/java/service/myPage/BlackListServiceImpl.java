@@ -18,28 +18,27 @@ public class BlackListServiceImpl implements BlackListService{
 		blackListDao = new BlackListDaoImpl();
 	}
 	
-	
+	 // 사용자 차단
     @Override
-    public boolean blockComment(BlackListDto dto) throws Exception{
+    public boolean blockUser(int uNo, int blockedNo) throws Exception {
+        BlackListDto dto = new BlackListDto();
+        dto.setuNo(uNo);
+        dto.setBlockedNo(blockedNo);
         int result = blackListDao.insertBlackList(dto);
         return result > 0;
     }
 
+    // 로그인 사용자가 차단한 사용자 목록
     @Override
-    public List<Integer> getBlockedComments(int uNo, int commuNo) throws Exception{
-        Map<String, Object> params = new HashMap<>();
-        params.put("uNo", uNo);
-        params.put("commuNo", commuNo);
-        return blackListDao.getBlockedComments(params);
+    public List<Integer> getBlockedUsers(int uNo) throws Exception {
+        return blackListDao.getBlockedUsers(uNo);
     }
 
+    // 블랙리스트 + 회원 정보 조회
+    @Override
+    public List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception {
+        return blackListDao.selectBlackWithMember(uNo);
+    }
 
-	@Override
-	public List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception {
-		
-		return blackListDao.selectselectBlackWithMember(uNo);
-	}
-    
-    
     
 }

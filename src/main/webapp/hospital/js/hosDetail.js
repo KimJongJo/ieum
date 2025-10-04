@@ -1,6 +1,7 @@
 let calendar;
-let selectMno;
 let selectedDate;
+let selectedMno;
+let selectedTime;
 
 //tab
 const navl = $(".navl");
@@ -53,61 +54,118 @@ $(document).ready(() => {
 		navl.removeClass("active");
 		tab2.addClass("active");
 		tab1.removeClass("active");
-		
-		selectDoc();		
-		showCalendar();
-		showTime();
 
+		selectDoc();
+		showCalendar();
 
 	}
-	
+
 	//의사 선택
 	function selectDoc() {
-		$(document).off("click",".dall").on("click", ".dall", function() {
-			selectMno = Number($(this).data("mno")); // 의사 번호
+		$(document).off("click", ".dall").on("click", ".dall", function() {
+			$(".dall").removeClass("active");
 			$(this).addClass("active");
+
+			resetTimeSelection();
+
+			// 선택된 의사 번호 저장
+			selectedMno = Number($(this).data("mno"));
+			$("#selectedMno").val(selectedMno);
+
+			// 오늘 날짜 선택시 값
+			if (!selectedDate) {
+				const today = new Date();
+				selectedDate = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, '0') + "-" + String(today.getDate()).padStart(2, '0');
+				$("#selectedDate").val(selectedDate);
+
+				//요일 정보
+				const days = ['일', '월', '화', '수', '목', '금', '토'];
+				const day = days[today.getDay()];
+				const selectedDay = `(${day})`;
+				$("#selectedDays").val(selectedDay);
+
+			}
+			sendDateToServer(selectedMno, selectedDate);
+
 		});
 	}
+
 
 	//의사 선택 + 날짜 선택 보내기
 	function sendDateToServer(mNo, rDate) {
 		$.post("/ieum/hospital/detail", {
 			mNo: mNo,
 			rDate: rDate,
-			action:"getResDate"
+			action: "getResDate"
 		})
-		.done(function(data){
-			timeList = data;
-			console.log("예약된 시간 목록:", reservationList);
-			
-			showTime();
-			
-		})
-		.fail(function(err){
-			console.error("예약 정보 불러오기 실패:", err);
-			
+			.done(function(resList) {
+				showTime(resList);
+
+			})
+			.fail(function(err) {
+				console.error("예약 정보 불러오기 실패:", err);
+
+			});
+	}
+
+	//시간 버튼 노출
+	function showTime(resList) {
+		$(".tb1").each(function() {
+			const btn = $(this);
+			const btnTime = btn.val();
+
+			// 예약 리스트 중 같은 시간이 있으면 disable
+			const isRes = resList.some(res => res.rTime === btnTime)
+
+			if (isRes) {
+				btn.prop("disabled", true).addClass("reserved");
+			} else {
+				btn.prop("disabled", false).removeClass("reserved");
+			}
+
+		});
+
+		selectTime();
+
+	}
+
+	//시간 선택
+	function selectTime() {
+		$(".tb1").on("click", function() {
+			$(".tb1").removeClass("active");
+			$(this).addClass("active");
+
+			selectedTime = $(this).val();
+			$("#selectedTime").val(selectedTime);
 		});
 	}
-	
-	//시간 버튼 노출
-	function showTime() {
-	
-	const timebtn = document.querySelectorAll(".tb1");
 
-	timebtn.forEach((btn => {
-		
-		const time = btn.value;
-		const isResd = timeList.some(res => res.rTime === time);
 
-		// 현재시간보다 이전이면 비활성화
-		if (isResd) {
-			btn.ariaDisabled = true;
-		}else{
-			btn.ariaDisabled = false;
+	//시간 선택 초기화
+	function resetTimeSelection() {
+		selectedTime = null;
+		$("#selectedTime").val("");
+		$(".tb1").removeClass("active");
+	}
+
+	//예약
+	function doReservation() {
+
+		if (!selectedMno || !selectedTime) {
+			alert("의사와 시간을 모두 선택해주세요");
+			return;
 		}
+		
+		// textarea 값 복사
+		$("#resContent").val($("#rc").val());
 
-	}));
-}
+		// form submit
+        $("#resform").submit();
+	}
+
+	$("#resAnd").off("click").on("click", function() {
+		doReservation();
+	});
 
 
 	//캘린더 + 날짜 선택
@@ -148,6 +206,7 @@ $(document).ready(() => {
 					const day = arg.date.getDay();
 					const days = ['일', '월', '화', '수', '목', '금', '토'];
 					return days[day];
+
 				},
 
 				//선택한 날짜 파란배경
@@ -164,12 +223,23 @@ $(document).ready(() => {
 					selectedDateEl = info.dayEl;
 					selectedDateEl.classList.add('fc-today-clicked');
 
+					resetTimeSelection();
+
 					//선택한 날짜 정보 전송
-					selectedDate = info.dateStr; 
-					
-					if (selectMno) {
-						sendDateToServer(selectMno, selectedDate);
+					selectedDate = info.dateStr;
+
+					//요일 정보
+					const days = ['일', '월', '화', '수', '목', '금', '토'];
+					const today = new Date(selectedDate);
+					const day = days[today.getDay()];
+					const selectedDay = `(${day})`;
+
+					if (selectedMno) {
+						sendDateToServer(selectedMno, selectedDate);
 					}
+
+					$("#selectedDate").val(selectedDate);
+					$("#selectedDays").val(selectedDay);
 
 				},
 
@@ -229,6 +299,7 @@ $(document).ready(() => {
 			calendar.updateSize(); // 이미 렌더링 됐으면 크기 재계산
 		}
 	}
+
 
 
 });

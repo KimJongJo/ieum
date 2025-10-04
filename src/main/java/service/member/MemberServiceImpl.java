@@ -158,4 +158,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.checkEmail(email);
 	}
 
+	@Override
+	public MemberDto selectResUser(Integer uNo) throws Exception {
+		return memberDao.selectProfileInfo(uNo);
+	}
+
 }

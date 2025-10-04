@@ -26,4 +26,6 @@ public interface MemberService {
 
 	MemberDto emailCheck(String email);
 	
+	MemberDto selectResUser (Integer uNo)throws Exception;
+	
 }
