@@ -30,6 +30,7 @@
       <typeAlias type="dto.FileDto" alias="file" />
       <typeAlias type="dto.HospitalDto" alias="hospital" />
       <typeAlias type="dto.NoticeDto" alias="notice" />
+       <typeAlias type="dto.otherDto.OtherNoticeDto" alias="otherNotice" />
       <typeAlias type="dto.ReservationDto" alias="reservation" />
       <typeAlias type="dto.UserStateDto" alias="userState" />
       <typeAlias type="dto.ApplicantDto" alias="applicant" />
@@ -45,7 +46,7 @@
          <dataSource type="POOLED">
             <property name="driver" value="org.mariadb.jdbc.Driver" />
             <property name="url"
-               value="jdbc:mariadb://localhost:3307/ieum" />
+               value="jdbc:mariadb://localhost:3306/ieum" />
             <property name="username" value="root" />
             <property name="password" value="7564" />
             <property name="poolMaximumActiveConnections" value="500" />

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.NoticeDto;
+import dto.otherDto.OtherNoticeDto;
 import util.MybatisSqlSessionFactory;
 
 public class NoticeDaoImpl implements NoticeDao {
@@ -29,23 +30,24 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public Integer cnt() throws Exception {
+	public Integer cnt(Integer isPinned) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectOne("selectNoticeCnt");
+			return session.selectOne("selectNoticeCnt", isPinned);
 		}
 	}
 
 	@Override
-	public List<NoticeDto> selectNoticeList(Integer uNo, String keyword, String sort, Integer row, Integer isPinned)
+	public List<NoticeDto> selectNoticeList(Integer uNo, String keyword, String sort, Integer row, Integer topCnt, Integer isPinned)
 			throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("uNo", uNo);
 			params.put("row", row);
+			params.put("topCnt", topCnt);
 			params.put("keyword", keyword);
 			params.put("sort", sort);
 			params.put("isPinned", isPinned);
-			 return session.selectList("selectList", params);
+			return session.selectList("selectNoticeList", params);
 		}
 	}
 
@@ -59,9 +61,9 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public void delete(Integer dNo) throws Exception {
+	public void delete(Integer nNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			session.delete("delete", dNo);
+			session.delete("delNotice", nNo);
 			session.commit();
 		}
 	}
@@ -71,6 +73,18 @@ public class NoticeDaoImpl implements NoticeDao {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("selectUserNm", uNo);
 		}
+	}
+
+	@Override
+	public OtherNoticeDto selectOtherNotice(Integer nNo, Integer uNo, String part) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			Map<String, Object> params = new HashMap<>();
+			params.put("nNo", nNo);
+			params.put("uNo", uNo);
+			if (part=="prev") return session.selectOne("selectPrev", params);
+			return session.selectOne("selectNext", params);
+		}
+		
 	}
 
 }
