@@ -109,13 +109,11 @@ public class ResContent extends HttpServlet {
 			
 			String rStatus = "WAITING";
 			
-			System.out.println("controller>>>"+hNo);
 
 			ReservationService rService = new ReservationServiceImpl();
 
 			try {
-				ReservationDto doRes = new ReservationDto(uNo,hNo,mNo,rDate,rTime,rDay,rContent,rStatus,actName,actTel);
-				System.out.println("dto hNo >>> " + doRes.gethNo());
+				ReservationDto doRes = new ReservationDto(uNo,hNo,mNo,rDate,rTime,rContent,actName,actTel,rStatus,rDay);
 				rService.doReservation(doRes);
 			
 			    response.getWriter().write("success");
