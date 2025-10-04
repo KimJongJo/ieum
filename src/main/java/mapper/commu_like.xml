@@ -35,6 +35,5 @@
 	    select empathy from community WHERE commu_no = #{commuNo}
 	</select>
 
-
 	
 </mapper>
