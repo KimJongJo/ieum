@@ -22,5 +22,12 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.selectTime(mNo, rDate);
 	}
 
+	// 오늘 예약 리스트 조회
+	@Override
+	public List<ReservationDto> todayReservationList() {
+		
+		return reservationDao.todayReservationList();
+	}
+
 	
 }

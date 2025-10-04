@@ -17,5 +17,8 @@
 		(r_date,r_time,r_content,act_name,acr_tel,r_status,r_day,h_no,u_no,m_no)
 		values (#{rDate},#{rTime},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
 	</insert>
+	
+	<!-- 오늘 예약인 예약 리스트 -->
+	
 
 </mapper>	

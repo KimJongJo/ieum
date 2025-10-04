@@ -9,4 +9,6 @@ public interface ReservationService {
 	
 	List<ReservationDto> getTimeFromRes (Integer mNo, String rDate) throws Exception;
 
+	List<ReservationDto> todayReservationList();
+
 }
