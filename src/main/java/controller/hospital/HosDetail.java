@@ -1,6 +1,8 @@
 package controller.hospital;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
 
+import controller.hosManager.Reservation;
 import dto.MemberDto;
 import dto.ReservationDto;
 import dto.otherDto.HosDetailDto;
@@ -79,7 +85,7 @@ public class HosDetail extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
-		System.out.println("받은 action: " + action);
+		System.out.println("hosDetail 받은 action: " + action);
 		
 		
 		if ("goHosDetail".equals(action)) {
@@ -96,21 +102,26 @@ public class HosDetail extends HttpServlet {
 			// 예약하기			
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
 			String rDate = request.getParameter("rDate");
-			
-			System.out.println("mNo>>>>"+mNo);
-			System.out.println("rDate>>>>"+rDate);
 			ReservationService rService = new ReservationServiceImpl();
 
 			try {
 				List<ReservationDto> getTimeFromRes = rService.getTimeFromRes(mNo, rDate);
-				System.out.println("comtroller>>>>>"+getTimeFromRes);
 				
-				Gson gson = new Gson();
+				Gson gson = new GsonBuilder()
+			            .registerTypeAdapter(LocalDate.class, 
+			                (JsonSerializer<LocalDate>) (src, typeOfSrc, context) -> new JsonPrimitive(src.toString()))
+			            .registerTypeAdapter(LocalTime.class, 
+			                (JsonSerializer<LocalTime>) (src, typeOfSrc, context) -> new JsonPrimitive(src.toString()))
+			            .create();
+				
 				String jsonStr = gson.toJson(getTimeFromRes);
-				
 				response.setContentType("application/json; charset=UTF-8");
-				response.setCharacterEncoding("urf-8");
 				response.getWriter().write(jsonStr);
+			
+				if(jsonStr != null) {
+					
+				}
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
