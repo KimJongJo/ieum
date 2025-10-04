@@ -3,6 +3,7 @@ package service.admin;
 import java.util.List;
 
 import dto.NoticeDto;
+import dto.otherDto.OtherNoticeDto;
 import util.PageInfo;
 
 public interface NoticeService {
@@ -12,4 +13,5 @@ public interface NoticeService {
 	public NoticeDto update(NoticeDto notice) throws Exception;
 	public boolean delete(Integer nNo) throws Exception;
 	public String getUserNm(Integer uNo) throws Exception;
+	public OtherNoticeDto getOtherNo(Integer nNo, Integer uNo, String part) throws Exception;
 }

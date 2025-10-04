@@ -51,7 +51,7 @@
 	color: #444;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 320px;
+	gap: 200px;
 }
 
 .notice-info>div:nth-child(1) {
@@ -106,6 +106,7 @@
 	padding: 12px 20px;
 	border-top: 1px solid #d9d9d9;
 	font-size: 13px;
+	cursor: pointer;
 }
 
 .notice-nav div span {

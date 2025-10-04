@@ -210,23 +210,25 @@
 		</div>
 
 		<div class="tab2" id="tab2">
-			<div class="doctor-section">
-				<div class="mtitle">상담예약</div>
-			</div>
-			<div class="mheader">
-				<i class="fa-solid fa-user-doctor"></i> <span class="h">원하는
-					상담사를 선택해주세요</span>
-			</div>
-
-
-			<div class="doctor-section">
-				<div class="mtitle">상담사</div>
-			</div>
-			<form class="doctor" action="" method="post" class="tt">
+			<form id="resform" action="${contextPath }/reservation/content" method="post">
+			<input type="hidden" name="action" value="doReservation">
+				<div class="doctor-section">
+					<div class="mtitle">상담예약</div>
+				</div>
+				<div class="mheader">
+					<i class="fa-solid fa-user-doctor"></i> <span class="h">원하는
+						상담사를 선택해주세요</span>
+				</div>
+				
+				<div class="doctor-section">
+					<div class="mtitle">상담사</div>
+				</div>
+				<input type="hidden" id="selectedMno" name="mNo">
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
-						<button class="dall" id="docBox" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${doctorlist.fileNo }" class="doc-prof" onerror="this.onerror=null; this.src='';"/>
+						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
+							<img src="${doctorlist.fileNo }" class="doc-prof"
+								onerror="this.onerror=null; this.src='';" />
 							<div class="d1">
 								<div class="d2">
 									<p class="username">
@@ -243,32 +245,32 @@
 									</p>
 								</div>
 							</div>
-							</button>
+						</button>
 					</c:forEach>
 				</div>
-			</form>
 
-			<div class="mheader">
-				<i class="fa-solid fa-calendar-days"></i>
-				<span class="h">날짜와 시간을 선택해 주세요</span>
-			</div>
+				<div class="mheader">
+					<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
+						시간을 선택해 주세요</span>
+				</div>
 
-			<div class="select-date">
+				<div class="select-date">
 
-				<form class="date" action="" method="post">
+					<input type="hidden" id="selectedDate" name="rDate">
 					<div class="calendar">
 						<div class="date-header"></div>
 						<div id="fc"></div>
 					</div>
-				</form>
-				<form class="time" action="" method="post" class="tt">
+
+					<input type="hidden" id="selectedTime" name="rTime">
+					<input type="hidden" id="selectedDays" name="rDay">
 					<div class="time-table">
 						<label class="cnb"><input type="checkbox" name="chojin"
 							value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
 						<p class="day">오전</p>
 
-						<button type="button" class="tb1" name="time" value="9:00">09:00</button>
-						<button type="button" class="tb1" name="time" value="9:30">09:30</button>
+						<button type="button" class="tb1" name="time" value="09:00">09:00</button>
+						<button type="button" class="tb1" name="time" value="09:30">09:30</button>
 						<button type="button" class="tb1" name="time" value="10:00">10:00</button>
 						<button type="button" class="tb1" name="time" value="10:30">10:30</button>
 						<button type="button" class="tb1" name="time" value="11:00">11:00</button>
@@ -288,30 +290,28 @@
 						<button type="button" class="tb1" name="time" value="17:30">5:30</button>
 
 					</div>
-				</form>
-			</div>
-
-			<div class="cont">
-				<div class="mhea">
-					<i class="fa-solid fa-pen-to-square"></i> <span class="h">어떤
-						주제의 상담이 필요하신가요?</span>
-				</div>
-				<div class="b">
-					<form class="resContent-box" name="resContent" method="post">
-						<textarea class="rc" id="rc" name="rc"
-							placeholder="상담 주제에 대해 메모해보세요!"></textarea>
-					</form>
 				</div>
 
-			</div>
+				<div class="cont">
+					<div class="mhea">
+						<i class="fa-solid fa-pen-to-square"></i> <span class="h">어떤
+							주제의 상담이 필요하신가요?</span>
+					</div>
+					<input type="hidden" id="resContent" name="rContent">
+					<div class="b">
+						<textarea class="rc" id="rc"
+							placeholder="상담 주제에 대해 메모해보세요!" spellcheck="false"></textarea>
+					</div>
+				</div>
+			
 
 			<div class="btn">
 				<a href="${contextPath }/hospital/search">
 					<button type="button" class="btn-rec-w">그만두기</button>
-				</a> <a href="${contextPath }/reservation/content">
-					<button type="button" class="btn-long-b">다음으로</button>
 				</a>
+				<button type="submit" class="btn-long-b" id="resAnd">다음으로</button>
 			</div>
+			</form>
 		</div>
 	</div>
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>

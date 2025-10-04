@@ -46,7 +46,7 @@ public class AdminNoticeWrite extends HttpServlet {
 		// 멤버에서 로그인 사용자 이름 뽑아오기
 		HttpSession session = request.getSession();
 		// Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer uNo = 6;
+		Integer uNo = 1;
 		FileDao fDao = new FileDaoImpl();
 		NoticeService service = new NoticeServiceImpl();
 		String nNo = request.getParameter("nNo");
@@ -103,7 +103,7 @@ public class AdminNoticeWrite extends HttpServlet {
 			String content = request.getParameter("content");
 			boolean isPinned = "on".equals(request.getParameter("topYn"));
 			// Integer uNo = (Integer) session.getAttribute("uNo");
-			Integer uNo = 6;
+			Integer uNo = 1;
 			Part filePart = request.getPart("file");
 			Integer fileNo = null;
 			if (filePart != null && filePart.getSize() > 0) {
@@ -119,6 +119,7 @@ public class AdminNoticeWrite extends HttpServlet {
 			else {
 				NoticeDto notice = new NoticeDto(Integer.parseInt(nNo), uNo, title, content, isPinned, fileNo);
 				service.update(notice);
+				request.setAttribute("no", notice.getnNo());
 			}
 			request.setAttribute("msg", (nNo == null) ? "작성" : "수정");
 			request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);

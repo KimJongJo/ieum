@@ -285,6 +285,10 @@ body {
 	align-items: center;
 	text-align: center;
 }
+.rectangle.reservation {
+	background-color:  #E992F2;
+	color: #fff;
+}
 
 .rectangle.hospital {
 	background-color: #63e6be;

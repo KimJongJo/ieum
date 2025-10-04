@@ -175,7 +175,11 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.socialUpdate(map);
 		
 		return memberDao.checkEmail(email);
+	}
 		
+	@Override
+	public MemberDto selectResUser(Integer uNo) throws Exception {
+		return memberDao.selectProfileInfo(uNo);
 	}
 
 }

@@ -30,4 +30,6 @@ public interface MemberService {
 
 	MemberDto socialUpdate(String email, String id) throws Exception;
 	
+	MemberDto selectResUser (Integer uNo)throws Exception;
+	
 }
