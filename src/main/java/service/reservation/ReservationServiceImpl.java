@@ -1,6 +1,5 @@
 package service.reservation;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import dao.reservation.ReservationDao;
@@ -31,7 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<ReservationDto> todayReservationList() {
 		
-		return reservationDao.todayReservationList();
+		return resDao.todayReservationList();
 	}
 
 	

@@ -157,6 +157,7 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberDao.checkEmail(email);
 	}
+	
 	// 병합할때 비밀번호 확인
 	@Override
 	public boolean checkPw(String email, String password) {
@@ -173,7 +174,8 @@ public class MemberServiceImpl implements MemberService {
 		map.put("id", id);
 		memberDao.socialUpdate(map);		
 		return memberDao.checkEmail(email);
-  }
+	}
+
   
 	@Override
 	public MemberDto selectResUser(Integer uNo) throws Exception {
