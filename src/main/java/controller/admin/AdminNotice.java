@@ -14,7 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import dao.admin.NoticeDao;
+import dao.admin.NoticeDaoImpl;
 import dto.NoticeDto;
+import dto.otherDto.OtherNoticeDto;
 import service.admin.NoticeService;
 import service.admin.NoticeServiceImpl;
 import util.PageInfo;
@@ -43,12 +46,14 @@ public class AdminNotice extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		Integer uNo = (Integer) session.getAttribute("uNo");
+//		Integer uNo = (Integer) session.getAttribute("uNo");
+		Integer uNo = 1;
 		String nNo = request.getParameter("nNo");
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
 		String sort = request.getParameter("sort");
 		NoticeService service = new NoticeServiceImpl();
+		NoticeDao noticeDao = new NoticeDaoImpl();
 		try {
 			boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 			if (curPage != null) {
@@ -59,20 +64,30 @@ public class AdminNotice extends HttpServlet {
 					response.setContentType("application/json; charset=UTF-8");
 					Gson gson = new Gson();
 					Map<String, Object> resultMap = new HashMap<>();
+					resultMap.put("topList", topList);
 					resultMap.put("noticeList", noticeList);
+					resultMap.put("loginUNo", uNo);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;
 				}
-				System.out.println("top" + topList);
 				request.setAttribute("topList", topList);
 				request.setAttribute("noticeList", noticeList);
 				request.setAttribute("pageInfo", pageInfo);
+				request.setAttribute("loginUNo", uNo);
 				request.getRequestDispatcher("/admin/adminNoticeList.jsp").forward(request, response);
 				
 			} else {
-				NoticeDto notice = service.getDetail(Integer.parseInt(nNo));
+				Integer no = Integer.parseInt(nNo);
+				NoticeDto notice = service.getDetail(no);				
 				request.setAttribute("notice", notice);
+				String uNm = noticeDao.selectUserNm(notice.getuNo());
+				OtherNoticeDto prev = service.getOtherNo(no, uNo, "prev");
+				OtherNoticeDto next = service.getOtherNo(no, uNo, "next");
+				request.setAttribute("writer", uNm);
+				request.setAttribute("loginUNo", uNo);
+				request.setAttribute("prev", prev);
+				request.setAttribute("next", next);
 				request.getRequestDispatcher("/admin/adminNoticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
