@@ -58,7 +58,7 @@ public class CommunityDetail extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 전달되지 않았습니다.");
             return;
         }
-        int uNo = 5; // 테스트용, 실제 로그인 세션 값으로 교체 필요
+        int uNo = 4; // 테스트용, 실제 로그인 세션 값으로 교체 필요
         int commuNo = 0;
         try {
             commuNo = Integer.parseInt(noStr);
@@ -73,7 +73,7 @@ public class CommunityDetail extends HttpServlet {
         CommentService commentService = new CommentServiceImpl();
         CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
         CommentEmpathyService commentEmpathyService = new CommentEmpathyServiceImpl();
-        CommentDto commentDto = new CommentDto();
+//        CommentDto commentDto = new CommentDto();
         try {
                 	
         	// 조회수 증가
@@ -94,28 +94,30 @@ public class CommunityDetail extends HttpServlet {
             List<CommentDto> commentList = commentService.getCommentsByCommuNo(commuNo);
             request.setAttribute("comments", commentList);
             
-         // ✅ 5. 로그인한 사용자가 차단한 댓글 목록 가져오기
+
+         // 로그인 사용자가 차단한 사용자 목록 가져오기
             BlackListService blackListService = new BlackListServiceImpl();
-            List<Integer> blockedList = null;
+            List<Integer> blockedUsers = blackListService.getBlockedUsers(uNo);
+            Set<Integer> blockedSet = blockedUsers != null ? new HashSet<>(blockedUsers) : new HashSet<>();
+
+            // 댓글 필터링: 댓글 작성자가 차단 대상이면 제거
+            commentList.removeIf(comment -> blockedSet.contains(comment.getuNo()));
+            request.setAttribute("comments", commentList);
+
             
-            //공감 유지
+            //8.공감 유지
             boolean likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
             communityDto.setLikedByUser(likedByUser);
             request.setAttribute("community", communityDto);
 
-            
+            //9 공감 유지
             for (CommentDto comment : commentList) {
                 boolean likedByUserCom = commentEmpathyService.checkEmpathy(uNo, comment.getCommeNo());
                 comment.setLikedByUserCom(likedByUserCom); // DTO에 필드 있어야 함
             }
             request.setAttribute("comment", commentList);
             
-            try {
-                blockedList = blackListService.getBlockedComments(uNo, commuNo);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            request.setAttribute("blockedList", blockedList);
+            
             
         } catch (Exception e) {
             e.printStackTrace();

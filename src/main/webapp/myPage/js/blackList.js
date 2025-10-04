@@ -8,3 +8,24 @@ $(function () {
         $(this).addClass("active");      // 클릭한 탭에 active 추가
     });
 });
+
+
+
+
+$(document).ready(function () {
+    // 차단 해제 버튼 클릭 시 모달 열기
+    $(document).on("click", ".unblock-btn", function () {
+        $("#completeModalBlack").fadeIn(); // 모달 열기
+    });
+
+    // 모달 닫기 (X 버튼, 취소 버튼)
+    $("#modalCloseCompleteBlack, #modalCancelCompleteBlack").click(function () {
+        $("#completeModalBlack").fadeOut(); // 모달 닫기
+    });
+
+    // 해제 버튼 클릭 시 (추후 서버와 연동 가능)
+    $("#modalOkCompleteBlack").click(function () {
+        alert("차단 해제 처리 완료!"); 
+        $("#completeModalBlack").fadeOut(); 
+    });
+});

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.AllCommunityDto;
+import dto.MyCommunityDto;
 import service.allCommunity.AllCommunityService;
 import service.allCommunity.AllCommunityServiceImpl;
+import service.allCommunity.CommuEmpathyService;
+import service.allCommunity.CommuEmpathyServiceImpl;
 
 /**
  * Servlet implementation class AllCommunityList
@@ -32,12 +35,22 @@ public class AllCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int uNo = 5;
 		AllCommunityService service = new AllCommunityServiceImpl();
-		List<AllCommunityDto> allComList = service.getAllCommunity();
-		System.out.println(allComList);
-
-	    request.setAttribute("allComList", allComList);
+		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
+		try {
+			List<AllCommunityDto> allComList = service.getAllCommunity();
+			request.setAttribute("allComList", allComList);
+			
+			// 게시물 좋아요 여부 세팅
+	        for(AllCommunityDto community : allComList) {
+	            boolean liked = commuEmpathyService.checkEmpathy(uNo, community.getCommuNo());
+	            community.setLikedByUserCom(liked);
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}   
+	    
 		request.getRequestDispatcher("allCommunity/allCommunityList.jsp").forward(request, response);
 	}
 
