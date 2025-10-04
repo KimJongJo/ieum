@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.ReservationDto;
+import dto.otherDto.ResUserDoctorInfoDto;
 import service.reservation.ReservationService;
 import service.reservation.ReservationServiceImpl;
 
@@ -35,7 +37,9 @@ public class ReservationToday extends HttpServlet {
 		
 		// 오늘 있는 예약의 리스트를 받아온다
 		ReservationService resService = new ReservationServiceImpl();
-		List<ReservationDto> resList = resService.todayReservationList();
+		List<ResUserDoctorInfoDto> resList = resService.todayReservationList();
+		
+		request.setAttribute("resList", resList);
 		
 		request.getRequestDispatcher("/hosManager/reservationToday.jsp").forward(request, response);
 	}

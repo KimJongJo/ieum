@@ -19,6 +19,14 @@
 	</insert>
 	
 	<!-- 오늘 예약인 예약 리스트 -->
-	
+	<select id="todayReservationList" resultType="reservation">
+		select r.r_no, u.u_no as pNo, u.username as pName, DATE_FORMAT(r.r_time, '%H:%i') AS time,
+		d.diagnosis_no as diaNo, d.diagnosis_state as diaState
+		from reservation r
+		join member u using(u_no)
+		join diagnosis_history d on(d.r_no = r.r_no)
+		WHERE DATE(r_date) = CURDATE()
+		and r.m_no = #{uNo}
+	</select>
 
 </mapper>	

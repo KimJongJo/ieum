@@ -247,6 +247,13 @@
 	cursor: pointer;
 }
 
+.state-div{
+	width:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
 .active, .stop, .hide, .leave, .retired {
 	width: 80px;
 	height: 30px;

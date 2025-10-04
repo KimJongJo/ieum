@@ -6,8 +6,10 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.MemberFileDto;
 import util.MybatisSqlSessionFactory;
 
 public class MemberDaoImpl implements MemberDao{		
@@ -158,5 +160,56 @@ public class MemberDaoImpl implements MemberDao{
 			session.commit();
 		}
 		
+	}
+
+	// 전체 일반 회원 수
+	@Override
+	public int memberCount(Integer state) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("memberCount", state);
+		}
+		
+	}
+
+	@Override
+	public List<MemberDto> selectMembers(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			
+			return session.selectList("selectMembers", page);
+		}
+	}
+
+	// 총 검색어 유저 수
+	@Override
+	public int memberListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {	
+			return sqlsession.selectOne("memberListByKeyword", page);
+		}
+	}
+
+	// 총 검색어 유저 리스트
+	@Override
+	public List<MemberDto> selectUserListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectList("selectUserListByKeyword", page);
+		}
+	}
+
+
+	// 회원 상태 변경
+	@Override
+	public void userState(Map<String, Integer> map) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			sqlsession.update("userState", map);
+			sqlsession.commit();
+		}
+		
+	}
+
+	@Override
+	public MemberFileDto memberInfoAndFile(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("memberInfoAndFile", uNo);
+		}
 	}
 }

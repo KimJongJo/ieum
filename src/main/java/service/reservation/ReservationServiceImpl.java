@@ -5,6 +5,7 @@ import java.util.List;
 import dao.reservation.ReservationDao;
 import dao.reservation.ReservationDaoImpl;
 import dto.ReservationDto;
+import dto.otherDto.ResUserDoctorInfoDto;
 
 public class ReservationServiceImpl implements ReservationService {
 
@@ -28,7 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 	// 오늘 예약 리스트 조회
 	@Override
-	public List<ReservationDto> todayReservationList() {
+	public List<ResUserDoctorInfoDto> todayReservationList() {
 		
 		return resDao.todayReservationList();
 	}

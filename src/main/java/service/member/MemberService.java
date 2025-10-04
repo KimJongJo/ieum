@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
+import dto.otherDto.MemberFileDto;
+import dto.otherDto.MemberPageResponseDto;
 
 public interface MemberService {
 	
@@ -31,5 +33,14 @@ public interface MemberService {
 	MemberDto socialUpdate(String email, String id) throws Exception;
 	
 	MemberDto selectResUser (Integer uNo)throws Exception;
+
+	MemberPageResponseDto userList(int curPage, String filter, Integer state);
+
+	MemberPageResponseDto memberListByKeyword(int requestPage, String keyword, String filter, Integer state);
+
+	void userState(Integer uNo, Integer stateCode);
+
+	MemberFileDto memberInfoAndFile(Integer uNo);
+
 	
 }

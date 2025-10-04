@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,17 +46,19 @@
 		                            </tr>
 								</thead>
 								<tbody>
+								<c:forEach var="res" items="${resList}">
 									<tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>
-	                                	10:00
-	                                </td>
-                                	<td><button type="button" class="write-btn"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                                    <td class="reservation-table-td">미작성</td>
-	                                <td><button class="status-btn complete">완료</button></td>
-	                            </tr>
+		                                <td>${res.rNo}</td>
+		                                <td>김환자</td>
+		                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+		                                <td>
+		                                	10:00
+		                                </td>
+	                                	<td><button type="button" class="write-btn"><i class="fa-regular fa-pen-to-square"></i></button></td>
+	                                    <td class="reservation-table-td">미작성</td>
+		                                <td><button class="status-btn complete">완료</button></td>
+	                            	</tr>
+								</c:forEach>
 								</tbody>
 	                        </table>
 						</div>
