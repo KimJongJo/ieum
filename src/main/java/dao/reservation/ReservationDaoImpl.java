@@ -34,4 +34,12 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 	}
 
+	// 오늘 예약 리스트 가져오기
+	@Override
+	public List<ReservationDto> todayReservationList() {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationList");
+		}
+	}
+
 }

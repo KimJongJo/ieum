@@ -1,6 +1,5 @@
 
-const modalProfile2 = document.getElementById("modal-dia2");
-const closeBtn2 = document.getElementById("p-info-div"); // 닫기 아이콘
+// const closeBtn2 = document.getElementById("p-info-div"); // 닫기 아이콘
 
 // 모달 열기 함수
 function openModal() {

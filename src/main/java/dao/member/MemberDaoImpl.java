@@ -136,7 +136,7 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println(member);
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 		Integer uNo = session.insert("kakaoSignUp", member);
-		session.close();
+		session.commit();
 		return uNo;
 		}
 		
@@ -149,5 +149,14 @@ public class MemberDaoImpl implements MemberDao{
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 		return session.selectOne("checkNaverEmail",email);
 		}
+	}
+
+	@Override
+	public void socialUpdate(Map<String, String> map) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			session.update("socialUpdate", map);
+			session.commit();
+		}
+		
 	}
 }

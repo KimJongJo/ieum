@@ -3,8 +3,8 @@ const modalProfile = document.getElementById("modal-dia");
 const modalProfile2 = document.getElementById("modal-dia2");
 
 // 닫기 버튼
-const closeBtn1 = modalProfile.querySelector(".fa-xmark");
-const closeBtn2 = modalProfile2.querySelector(".fa-xmark");
+const closeBtn1 = modalProfile.querySelector(".diaWriteX");
+const closeBtn2 = modalProfile2.querySelector(".patientInfoX");
 
 // td 클릭 시 modalProfile 열기
 document.querySelectorAll(".write-btn").forEach(td => {

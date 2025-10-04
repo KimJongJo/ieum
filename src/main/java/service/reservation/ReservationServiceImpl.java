@@ -27,5 +27,12 @@ public class ReservationServiceImpl implements ReservationService {
 		resDao.insertRes(reservation);
 	}
 
+	// 오늘 예약 리스트 조회
+	@Override
+	public List<ReservationDto> todayReservationList() {
+		
+		return reservationDao.todayReservationList();
+	}
+
 	
 }

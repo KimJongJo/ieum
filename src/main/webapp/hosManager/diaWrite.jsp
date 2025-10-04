@@ -3,7 +3,7 @@
 <div class="modal-dia" id="modal-dia">
 <form action="" class="form-div">
     <div class="save-div">
-        <div class="xmark-div"><i class="fa-solid fa-xmark"></i></div>
+        <div class="xmark-div"><i class="fa-solid fa-xmark diaWriteX"></i></div>
         <table class="user-dia-table">
         	<tr>
         		<td colspan="6" class="td-name">환자 정보</td>

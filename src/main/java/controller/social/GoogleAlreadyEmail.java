@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NaverAlreadyEmail
  */
-@WebServlet("/social/naverAlreadyEmail")
-public class NaverAlreadyEmail extends HttpServlet {
+@WebServlet("/social/googleAlreadyEmail")
+public class GoogleAlreadyEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NaverAlreadyEmail() {
+    public GoogleAlreadyEmail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class NaverAlreadyEmail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/common/join/naverAlreadyEmail.jsp").forward(request, response);
+		request.getRequestDispatcher("/common/join/googleAlreadyEmail.jsp").forward(request, response);
 	}
 
 }
