@@ -6,6 +6,7 @@ public class BlackWithMemberDto {
 	String nickname;
 	String email;
 	Date blackCreated;
+	Integer uNo;
 	
 	
 	
@@ -17,6 +18,15 @@ public class BlackWithMemberDto {
 		this.nickname = nickname;
 		this.email = email;
 		this.blackCreated = blackCreated;
+	}
+	
+	
+	
+	public Integer getuNo() {
+		return uNo;
+	}
+	public void setuNo(Integer uNo) {
+		this.uNo = uNo;
 	}
 	
 	public String getNickname() {
