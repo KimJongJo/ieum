@@ -28,34 +28,34 @@ public class CommunityEmpathy extends HttpServlet {
         commuEmpathyService = new CommuEmpathyServiceImpl();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        int uNo = 5; // 로그인 사용자 (임시)
-
-        String commuNoStr = request.getParameter("commuNo");
-        if (commuNoStr == null || commuNoStr.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호 필요");
-            return;
-        }
-
-        int commuNo = 0;
-        try {
-            commuNo = Integer.parseInt(commuNoStr);
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 올바르지 않음");
-            return;
-        }
-
-        try {
-            boolean likedByUser  = commuEmpathyService.checkEmpathy(uNo, commuNo);
-            int newCount = commuEmpathyService.getEmpathyCount(commuNo);
-
-            response.getWriter().write("{\"newCount\": " + newCount + ", \"likedByUser \": " + likedByUser  + "}");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
+//        response.setContentType("application/json;charset=UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        
+//        int uNo = 4; // 로그인 사용자 (임시)
+//
+//        String commuNoStr = request.getParameter("commuNo");
+//        if (commuNoStr == null || commuNoStr.isEmpty()) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호 필요");
+//            return;
+//        }
+//
+//        int commuNo = 0;
+//        try {
+//            commuNo = Integer.parseInt(commuNoStr);
+//        } catch (NumberFormatException e) {
+//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 올바르지 않음");
+//            return;
+//        }
+//
+//        try {
+//            boolean likedByUser  = commuEmpathyService.checkEmpathy(uNo, commuNo);
+//            int newCount = commuEmpathyService.getEmpathyCount(commuNo);
+//
+//            response.getWriter().write("{\"newCount\": " + newCount + ", \"likedByUser \": " + likedByUser  + "}");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//        }
     }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,7 +65,7 @@ public class CommunityEmpathy extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");  // 추가
 		
 		// 로그인 사용자 번호 (임시)
-        int uNo = 5;
+        int uNo = 4;
 
         // 게시글 번호 확인
         String commuNoStr = request.getParameter("commuNo");
