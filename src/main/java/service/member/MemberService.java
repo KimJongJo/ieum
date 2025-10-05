@@ -3,6 +3,8 @@ import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import dto.otherDto.MemberPageResponseDto;
 
@@ -41,6 +43,13 @@ public interface MemberService {
 	void userState(Integer uNo, Integer stateCode);
 
 	MemberFileDto memberInfoAndFile(Integer uNo);
+
+	ManagerPageResponseDto managerList(int curPage, String filter, int state, String role);
+
+	ManagerPageResponseDto managerListByKeyword(int requestPage, String keyword, String filter, Integer state,
+			String role);
+
+	ManagerInfoDto managerInfoAndFile(Integer uNo);
 
 	
 }

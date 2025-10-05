@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
 
@@ -31,13 +33,20 @@ public class AdminHosManager extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 모든 병원매니저 목록 조회
-//		int curPage = 1;
-//		String filter = "none";
-//		int state = 0;
-//		
-//		MemberService service = new MemberServiceImpl();
-//		ManagerPageResponseDto managerList = service.managerList(curPage, filter, state);
-//		request.setAttribute("managerList", managerList);
+		
+		int curPage = 1;
+		String filter = "none";
+		int state = 0;
+		String role= "allMember";
+		
+		
+		MemberService service = new MemberServiceImpl();
+		// 의사가 소속한 병원의 이름을 받아오기 위해서 의사정보 + 병원 정보를 담는 추가적 DTO를 만들어야함
+		
+		// ManagerInfoDto
+		
+		ManagerPageResponseDto managerList = service.managerList(curPage, filter, state, role);
+		request.setAttribute("managerList", managerList);
 		
 		request.getRequestDispatcher("/admin/adminHosManager.jsp").forward(request, response);
 	}

@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import util.MybatisSqlSessionFactory;
 
@@ -208,6 +210,46 @@ public class MemberDaoImpl implements MemberDao{
 	public MemberFileDto memberInfoAndFile(Integer uNo) {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
 			return sqlsession.selectOne("memberInfoAndFile", uNo);
+		}
+	}
+
+
+	@Override
+	public int managerCount(Map<String, Object> filterMap) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()){
+			return sqlsession.selectOne("managerCount", filterMap);
+		}
+	}
+
+
+	// 매니저의 정보 + 소속 병원의 정보가 담긴 매니저인포리스트
+	@Override
+	public List<ManagerInfoDto> selectManagers(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()){
+			return sqlsession.selectList("selectManagers", page);
+		}
+	}
+	
+	// 검색어가 있는 매니저 조회 수
+	@Override
+	public int managerListByKeyword(Map<String, Object> keywordPage) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {	
+			return sqlsession.selectOne("managerListByKeyword", keywordPage);
+		}
+	}
+
+	// 검색어가 있는 매니저 조회 목록
+	@Override
+	public List<ManagerInfoDto> selectManagerListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectList("selectManagerListByKeyword", page);
+		}
+	}
+
+	@Override
+	public ManagerInfoDto managerInfoAndFile(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("managerInfoAndFile", uNo);
 		}
 	}
 }

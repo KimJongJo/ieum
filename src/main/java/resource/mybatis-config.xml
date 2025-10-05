@@ -50,6 +50,7 @@
 		<typeAlias type="dto.otherDto.MainDiagnosisDto" alias="mainDiag" />
 		<typeAlias type="dto.otherDto.ResUserDoctorInfoDto" alias="resUserDocterInfo" />
 		<typeAlias type="dto.otherDto.MemberFileDto" alias="memberFile" />
+		<typeAlias type="dto.otherDto.ManagerInfoDto" alias="managerInfo" />
 	</typeAliases>
 
    <environments default="development">

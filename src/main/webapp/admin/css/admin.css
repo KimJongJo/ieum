@@ -143,6 +143,16 @@
 	justify-content: flex-start;
 }
 
+.info2{
+	width: 970px;
+	height: 900px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}	
+
 .search-name {
 	display: flex;
 	align-items: center;

@@ -6,14 +6,14 @@ import dto.MemberDto;
 
 public class ManagerPageResponseDto {
 
-	private List<ManagerDto> list;
+	private List<ManagerInfoDto> list;
 	private int curPage;
     private int allPage;
     private int startPage;
     private int endPage;
     private int totalCount;
     
-	public ManagerPageResponseDto(List<ManagerDto> list, int curPage, int allPage, int startPage, int endPage,
+	public ManagerPageResponseDto(List<ManagerInfoDto> list, int curPage, int allPage, int startPage, int endPage,
 			int totalCount) {
 		super();
 		this.list = list;
@@ -34,11 +34,11 @@ public class ManagerPageResponseDto {
 
 
 
-	public List<ManagerDto> getList() {
+	public List<ManagerInfoDto> getList() {
 		return list;
 	}
 
-	public void setList(List<ManagerDto> list) {
+	public void setList(List<ManagerInfoDto> list) {
 		this.list = list;
 	}
 

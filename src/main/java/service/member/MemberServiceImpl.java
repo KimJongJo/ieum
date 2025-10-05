@@ -12,6 +12,8 @@ import dto.FileDto;
 import dto.HospitalDto;
 import dto.MemberDto;
 import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import dto.otherDto.MemberPageResponseDto;
 import service.file.FileService;
@@ -298,6 +300,123 @@ public class MemberServiceImpl implements MemberService {
 	public MemberFileDto memberInfoAndFile(Integer uNo) {
 		
 		return memberDao.memberInfoAndFile(uNo);
+	}
+
+	
+	// 병원 매니저 정보와 병원 매니저가 속한 병원 정보를 받아오기
+	@Override
+	public ManagerPageResponseDto managerList(int curPage, String filter, int state, String role) {
+		
+		String sort;
+		// 신청일(최신순)일 경우
+		if ("created_at".equals(filter)) {
+			sort = "DESC";
+		} else {
+			sort = "ASC";
+		}
+
+		// 정렬 조건이 없을경우
+		String sortValue;
+
+		if (filter.equals("created_at")) {
+			sortValue = "created_at";
+		} else if (filter.equals("h_nm")) {
+			sortValue = "h_nm";
+		} else {
+			sortValue = "u_no";
+		}
+
+		int pageSize = 8; // 한 페이지당 데이터 수
+		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
+
+		Map<String, Object> filterMap = new HashMap<String, Object>();
+		filterMap.put("state", state);
+		filterMap.put("userType", role);
+		
+		int memberCount = memberDao.managerCount(filterMap); // 전체 데이터 수
+		
+		int allPage = (int) Math.ceil((double) memberCount / pageSize); // 전체 페이지 수
+
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+		int endPage = Math.min(startPage + blockSize - 1, allPage); // 끝 페이지
+
+		int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
+		page.put("state", state);
+		page.put("userType", role);
+		
+		List<ManagerInfoDto> list = memberDao.selectManagers(page);
+		
+		// 데이터 + 페이지 정보 같이 반환
+		return new ManagerPageResponseDto(list, curPage, allPage, startPage, endPage, memberCount);
+		
+		
+	}
+
+	// 키워드가 있을 때 병원 관리자 리스트
+	@Override
+	public ManagerPageResponseDto managerListByKeyword(int requestPage, String keyword, String filter, Integer state,
+			String role) {
+		
+		String sort;
+		// 신청일(최신순)일 경우
+		if ("created_at".equals(filter)) {
+			sort = "DESC";
+		} else {
+			sort = "ASC";
+		}
+
+		// 정렬 조건이 없을경우
+		String sortValue;
+
+		if (filter.equals("created_at")) {
+			sortValue = "created_at";
+		} else if (filter.equals("h_nm")) {
+			sortValue = "h_nm";
+		} else {
+			sortValue = "u_no";
+		}
+
+		int pageSize = 8;
+		int blockSize = 5;
+		
+		Map<String, Object> keywordPage = new HashMap<String, Object>();
+		keywordPage.put("keyword", keyword);
+		keywordPage.put("state", state);
+		keywordPage.put("userType", role);
+
+		int memberCount = memberDao.managerListByKeyword(keywordPage); // 검색어 기준 총 개수
+		
+		int allPage = (int) Math.ceil((double) memberCount / pageSize);
+
+		int startPage = ((requestPage - 1) / blockSize) * blockSize + 1;
+		int endPage = Math.min(startPage + blockSize - 1, allPage);
+
+		int offset = (requestPage - 1) * pageSize;
+
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("keyword", keyword); // 검색어 전달
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
+		page.put("state", state);
+		page.put("userType", role);
+
+		List<ManagerInfoDto> list = memberDao.selectManagerListByKeyword(page);
+		
+		return new ManagerPageResponseDto(list, requestPage, allPage, startPage, endPage, memberCount);
+	}
+
+	// 매니저 정보랑 병원정보, 파일 경로까지
+	@Override
+	public ManagerInfoDto managerInfoAndFile(Integer uNo) {
+		return memberDao.managerInfoAndFile(uNo);
 	}
 
 

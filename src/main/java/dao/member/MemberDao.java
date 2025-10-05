@@ -6,6 +6,8 @@ import java.util.Map;
 import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 
 public interface MemberDao {
@@ -57,4 +59,14 @@ public interface MemberDao {
 	void userState(Map<String, Integer> map);
 
 	MemberFileDto memberInfoAndFile(Integer uNo);
+
+	int managerCount(Map<String, Object> filterMap);
+
+	List<ManagerInfoDto> selectManagers(Map<String, Object> page);
+
+	int managerListByKeyword(Map<String, Object> keywordPage);
+
+	List<ManagerInfoDto> selectManagerListByKeyword(Map<String, Object> page);
+
+	ManagerInfoDto managerInfoAndFile(Integer uNo);
 }

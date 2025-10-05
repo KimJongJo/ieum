@@ -220,4 +220,159 @@
 		WHERE u_no = #{_parameter};
 	</select>
 	
+	<select id="managerCount" parameterType="Map" resultType="Integer">
+	    SELECT count(*) 
+	    FROM member m
+	    INNER JOIN hospital h USING(h_no)
+	    WHERE 1=1
+	    <choose>
+	        <!-- 전체 회원 (0) -->
+	        <when test="state == 0">
+	            <!-- 아무 조건도 안 넣음 -->
+	        </when>
+	        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+	        <otherwise>
+	            AND state_code = #{state}
+	        </otherwise>
+	    </choose>
+	
+	    <choose>
+	        <!-- DOCTOR인 경우 -->
+	        <when test="userType == 'DOCTOR'">
+	            AND user_type = 'DOCTOR'
+	        </when>
+	
+	        <!-- HOSMANAGER인 경우 -->
+	        <when test="userType == 'MANAGER'">
+	            AND user_type = 'MANAGER'
+	        </when>
+	
+	        <!-- 그 외 (예: allMember 등) -->
+	        <otherwise>
+	            <!-- 아무 조건도 안 넣음 -->
+	        </otherwise>
+	    </choose>
+	</select>
+
+	
+	<select id="selectManagers" parameterType="Map" resultType="managerInfo">
+		SELECT m.u_no, m.user_type, m.username, h.h_no, h.h_nm, m.email, m.created_at, m.state_code , m.major
+		FROM member m
+		INNER JOIN hospital h
+		USING(h_no)
+		where 1=1
+		<choose>
+        <!-- 전체 회원 (0) -->
+        <when test="state  == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{state}
+        </otherwise>
+    	</choose>
+       <choose>
+		    <!-- DOCTOR인 경우 -->
+		    <when test="userType == 'DOCTOR'">
+		        AND user_type = 'DOCTOR'
+		    </when>
+		
+		    <!-- HOSMANAGER인 경우 -->
+		    <when test="userType == 'MANAGER'">
+		        AND user_type = 'MANAGER'
+		    </when>
+		
+		    <!-- 그 외 (예: allMember 등) -->
+		    <otherwise>
+		        <!-- 아무 조건도 안 넣음 -->
+		    </otherwise>
+    	</choose>
+    	order by ${sortValue} ${sort}
+    	LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="managerListByKeyword" parameterType="Map" resultType="Integer">
+		SELECT count(*) 
+	    FROM member m
+	    INNER JOIN hospital h USING(h_no)
+	    WHERE 1=1
+	    <choose>
+	        <!-- 전체 회원 (0) -->
+	        <when test="state == 0">
+	            <!-- 아무 조건도 안 넣음 -->
+	        </when>
+	        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+	        <otherwise>
+	            AND state_code = #{state}
+	        </otherwise>
+	    </choose>
+	
+	    <choose>
+	        <!-- DOCTOR인 경우 -->
+	        <when test="userType == 'DOCTOR'">
+	            AND user_type = 'DOCTOR'
+	        </when>
+	
+	        <!-- HOSMANAGER인 경우 -->
+	        <when test="userType == 'MANAGER'">
+	            AND user_type = 'MANAGER'
+	        </when>
+	
+	        <!-- 그 외 (예: allMember 등) -->
+	        <otherwise>
+	            <!-- 아무 조건도 안 넣음 -->
+	        </otherwise>
+	    </choose>
+	     and (m.username like concat ('%', #{keyword}, '%')
+			or h.h_nm like concat ('%', #{keyword}, '%')
+			or m.email like concat ('%', #{keyword}, '%'))
+	</select>
+	
+	<select id="selectManagerListByKeyword" parameterType="Map" resultType="managerInfo">
+		SELECT m.u_no, m.user_type, m.username, h.h_no, h.h_nm, m.email, m.created_at, m.state_code , m.major
+		FROM member m
+		INNER JOIN hospital h
+		USING(h_no)
+		where 1=1
+		<choose>
+        <!-- 전체 회원 (0) -->
+        <when test="state  == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{state}
+        </otherwise>
+    	</choose>
+       <choose>
+		    <!-- DOCTOR인 경우 -->
+		    <when test="userType == 'DOCTOR'">
+		        AND user_type = 'DOCTOR'
+		    </when>
+		
+		    <!-- HOSMANAGER인 경우 -->
+		    <when test="userType == 'MANAGER'">
+		        AND user_type = 'MANAGER'
+		    </when>
+		
+		    <!-- 그 외 (예: allMember 등) -->
+		    <otherwise>
+		        <!-- 아무 조건도 안 넣음 -->
+		    </otherwise>
+    	</choose>
+		and (m.username like concat ('%', #{keyword}, '%')
+		or h.h_nm like concat ('%', #{keyword}, '%')
+		or m.email like concat ('%', #{keyword}, '%'))
+    	order by ${sortValue} ${sort}
+    	LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="managerInfoAndFile" parameterType="Integer" resultType="managerInfo">
+		SELECT m.u_no, m.user_type, m.username, h.h_no, h.h_nm ,m.email, m.created_at,  m.state_code , m.major, CONCAT(f.file_path,'/', f.file_name) AS prifileImg
+		FROM member m
+		JOIN file f USING(file_no)
+		JOIN hospital h using(h_no)
+		WHERE u_no = #{_parameter};
+	</select>
+	
 </mapper>	

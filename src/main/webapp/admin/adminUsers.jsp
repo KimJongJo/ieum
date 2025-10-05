@@ -89,36 +89,36 @@
 	                        </thead>
 	                        <tbody>
 	                        	<c:choose>
-								<c:when test="${empty userList.list}">
-									<tr>
-										<td colspan="6">회원이 존재하지 않습니다.</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-								<c:forEach var="user" items="${userList.list}">
-									<tr class="userInfo" data-value="${user.uNo}">
-										<td>${user.uNo}</td>
-										<td>${user.username}</td>
-										<td>${user.email}</td>
-										<td>${user.createdAt}</td>
-										<td>${user.warningCount}</td>
-										<td>
-											<div class="state-div">
-												<c:if test="${user.stateCode == 1}">
-													<div class="active">정상</div>
-												</c:if>
-												<c:if test="${user.stateCode == 2}">
-													<div class="hide">비활성화</div>
-												</c:if>
-												<c:if test="${user.stateCode == 3}">
-													<div class="stop">활동정지</div>
-												</c:if>
-											</div>
-										</td>
-									</tr>
-								</c:forEach>
-								</c:otherwise>
-							</c:choose>
+									<c:when test="${empty userList.list}">
+										<tr>
+											<td colspan="6">회원이 존재하지 않습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+									<c:forEach var="user" items="${userList.list}">
+										<tr class="userInfo" data-value="${user.uNo}">
+											<td>${user.uNo}</td>
+											<td>${user.username}</td>
+											<td>${user.email}</td>
+											<td>${user.createdAt}</td>
+											<td>${user.warningCount}</td>
+											<td>
+												<div class="state-div">
+													<c:if test="${user.stateCode == 1}">
+														<div class="active">정상</div>
+													</c:if>
+													<c:if test="${user.stateCode == 2}">
+														<div class="hide">비활성화</div>
+													</c:if>
+													<c:if test="${user.stateCode == 3}">
+														<div class="stop">활동정지</div>
+													</c:if>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+									</c:otherwise>
+								</c:choose>
 	                        </tbody>
                         </table>
                         </div>
