@@ -2,69 +2,70 @@ package dto.otherDto;
 
 
 public class MainCommuDto {
-	Integer hNo; // 병원 번호
-	String hNm; // 병원 이름
-	String hAddress; // 병원 주소
-	Integer hosImgFileNo; // 병원 썸네일 파일 번호
-	String hosImgPath; // 병원 썸네일 파일 경로
+	Integer commuNo;
+	String commuTitle;
+	String commuContent;
+	Integer categoryNo;
+	String categoryName;
 
 	public MainCommuDto() {
 
 	}
-	
-	public MainCommuDto(Integer hNo, String hNm, String hAddress, Integer hosImgFileNo, String hosImgPath) {
+
+	public MainCommuDto(Integer commuNo, String commuTitle, String commuContent, Integer categoryNo,
+			String categoryName) {
 		super();
-		this.hNo = hNo;
-		this.hNm = hNm;
-		this.hAddress = hAddress;
-		this.hosImgFileNo = hosImgFileNo;
-		this.hosImgPath = hosImgPath;
+		this.commuNo = commuNo;
+		this.commuTitle = commuTitle;
+		this.commuContent = commuContent;
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
 	}
 
-	public Integer gethNo() {
-		return hNo;
+	public Integer getCommuNo() {
+		return commuNo;
 	}
 
-	public void sethNo(Integer hNo) {
-		this.hNo = hNo;
+	public void setCommuNo(Integer commuNo) {
+		this.commuNo = commuNo;
 	}
 
-	public String gethNm() {
-		return hNm;
+	public String getCommuTitle() {
+		return commuTitle;
 	}
 
-	public void sethNm(String hNm) {
-		this.hNm = hNm;
+	public void setCommuTitle(String commuTitle) {
+		this.commuTitle = commuTitle;
 	}
 
-	public String gethAddress() {
-		return hAddress;
+	public String getCommuContent() {
+		return commuContent;
 	}
 
-	public void sethAddress(String hAddress) {
-		this.hAddress = hAddress;
+	public void setCommuContent(String commuContent) {
+		this.commuContent = commuContent;
 	}
 
-	public Integer getHosImgFileNo() {
-		return hosImgFileNo;
+	public Integer getCategoryNo() {
+		return categoryNo;
 	}
 
-	public void setHosImgFileNo(Integer hosImgFileNo) {
-		this.hosImgFileNo = hosImgFileNo;
+	public void setCategoryNo(Integer categoryNo) {
+		this.categoryNo = categoryNo;
 	}
 
-	public String getHosImgPath() {
-		return hosImgPath;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setHosImgPath(String hosImgPath) {
-		this.hosImgPath = hosImgPath;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	@Override
 	public String toString() {
-		return "MainHosDto [hNo=" + hNo + ", hNm=" + hNm + ", hAdress=" + hAddress + ", hosImgFileNo=" + hosImgFileNo
-				+ ", hosImgPath=" + hosImgPath + "]";
+		return "MainCommuDto [commuNo=" + commuNo + ", commuTitle=" + commuTitle + ", commuContent=" + commuContent
+				+ ", categoryNo=" + categoryNo + ", categoryName=" + categoryName + "]";
 	}
-
+	
 }
