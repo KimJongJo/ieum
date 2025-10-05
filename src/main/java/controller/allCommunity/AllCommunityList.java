@@ -15,6 +15,7 @@ import service.allCommunity.AllCommunityService;
 import service.allCommunity.AllCommunityServiceImpl;
 import service.allCommunity.CommuEmpathyService;
 import service.allCommunity.CommuEmpathyServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class AllCommunityList
@@ -35,12 +36,20 @@ public class AllCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uNo = 5;
+		int uNo = 4;
+		String spage = request.getParameter("page"); 
+		Integer page = 1; 
+		if(spage != null) page=Integer.parseInt(spage); 
+		PageInfo pageInfo = new PageInfo(page);
+		
+		
 		AllCommunityService service = new AllCommunityServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
 		try {
-			List<AllCommunityDto> allComList = service.getAllCommunity();
-			request.setAttribute("allComList", allComList);
+			List<AllCommunityDto> allComList = service.listByPage(pageInfo);
+			request.setAttribute("allComList", allComList); 
+			request.setAttribute("pageInfo", pageInfo);
+			
 			
 			// 게시물 좋아요 여부 세팅
 	        for(AllCommunityDto community : allComList) {
@@ -50,6 +59,11 @@ public class AllCommunityList extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}   
+		
+		
+		
+		
+		
 	    
 		request.getRequestDispatcher("allCommunity/allCommunityList.jsp").forward(request, response);
 	}

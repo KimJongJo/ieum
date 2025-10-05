@@ -75,6 +75,8 @@ $(function() {
 	    max-width: 100%;         /* 영역 넘치지 않게 */
 	    max-height: 100%;        /* 영역 넘치지 않게 */
 	}
+	
+	
 </style>
 </head>
 <body>
@@ -183,9 +185,38 @@ $(function() {
 			    </div>
 			    
 		    </c:forEach>
+		    
+		    
 		    </div>
+		    <div id="paging" style="text-align:center; margin:40px 0;">
+		<c:choose>
+			<c:when test="${pageInfo.curPage>1 }">
+				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}">&lt&lt</a>
+			</c:when>
+			<c:otherwise>
+				<a>&lt&lt</a>
+			</c:otherwise>
+		</c:choose>
+	
+		<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" var="page">
+			<a href="${pageContext.request.contextPath}/allComList?page=${page}" class="${pageInfo.curPage == page? 'select' : 'btn'}">${page}</a>	
+		</c:forEach>
+			<c:choose>
+			<c:when test="${pageInfo.curPage<pageInfo.allPage }">
+				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage+1}">&gt&gt</a>
+			</c:when>
+			<c:otherwise>
+				<a>&gt&gt</a>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	    </div>
     </div>
+    
+    
+    
+    
+    
  	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

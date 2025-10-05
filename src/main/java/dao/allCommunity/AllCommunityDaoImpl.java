@@ -1,7 +1,8 @@
 package dao.allCommunity;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -19,4 +20,21 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 			return list;
 		}
 	}
+
+	@Override
+	public List<AllCommunityDto> selectList(Integer row) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+	        Map<String, Object> param = new HashMap<>();
+	        param.put("row", row);
+	        return session.selectList("mapper.community.selectList", param);
+	    }
+	}
+
+	@Override
+	public Integer selectCount() throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.community.selectCount");
+		}
+	}
+
 }
