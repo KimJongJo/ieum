@@ -23,6 +23,14 @@
             ON b.blocked_no = m.u_no
         WHERE b.u_no = #{uNo}
     </select>
+    
+    
+    
+    <delete id="deleteBlack" parameterType="map">
+	    DELETE FROM black_list
+	    WHERE u_no = #{uNo} AND blocked_no = #{blockedNo}
+	</delete>
+    
 </mapper> 		
 
 

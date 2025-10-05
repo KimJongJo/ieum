@@ -16,4 +16,6 @@ public interface BlackListDao {
 	List<Integer> getBlockedUsers(int uNo) throws Exception;
 
 	List<BlackWithMemberDto> selectBlackWithMember(Integer uNo) throws Exception;
+	
+	  int deleteBlack(Map<String, Integer> map) throws Exception;
 }
