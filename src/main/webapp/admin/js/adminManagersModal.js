@@ -32,6 +32,7 @@ $(document).ready(function(){
 							`
 						)
 					}else{
+						$(".major-tr").html("");
 						role = "병원관리자";
 					}
 
@@ -46,14 +47,16 @@ $(document).ready(function(){
                     
                     
                     if(object.stateCode == 1){
-						$("#active2").prop("checked", true);
-					}else if(object.stateCode == 2){
-						$("#hide2").prop("checked", true);
+						$("#stateDiv").text("정상");
+						$("#stateDiv").prop("class", "active");
+					}else if(object.stateCode == 4){
+						$("#stateDiv").text("휴직");
+						$("#stateDiv").prop("class", "leave");
 					}else{
-						$("#stop2").prop("checked", true);
+						$("#stateDiv").text("퇴직");
+						$("#stateDiv").prop("class", "retired");
 					}
                     
-                    $("#saveBtn").val(object.uNo);
                 } else {
                     console.log("에러 : 존재하지 않는 번호");
                 }

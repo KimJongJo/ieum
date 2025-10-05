@@ -218,7 +218,7 @@
                                 </tr>
                                 <tr>
                                     <th>상태</th>
-                                    <td class="profile-info"><div class="active" style="display: inline-block">정상</div></td>
+                                    <td class="profile-info"><div id="stateDiv" class="active" style="display: inline-block">정상</div></td>
                                     <td class="empty"></td>
                                 </tr>
                             </table>
