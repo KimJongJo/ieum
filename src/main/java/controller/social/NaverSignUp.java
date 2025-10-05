@@ -63,7 +63,6 @@ public class NaverSignUp extends HttpServlet {
 		FileDto file = new FileDto(profile, "img\\userProfile\\", "userProfile");
 		Integer fileNo = fileService.normalImg(file);
 		
-		String social = "Naver";
 		
 		String diary = request.getParameter("diary");
 		boolean diarYN = diary.equals("yes") ? true : false;
@@ -72,7 +71,7 @@ public class NaverSignUp extends HttpServlet {
         Date sqlDate = Date.valueOf(naverDto.getBirthDate());
 		
 		MemberDto member = new MemberDto(id, userName, sqlDate, naverDto.getGender(),
-				naverDto.getTel(), email, nickname, address, diarYN, social, fileNo);
+				naverDto.getTel(), email, nickname, address, diarYN, fileNo);
 		
 		Integer uNo = memberService.socialSignUp(member);
 		

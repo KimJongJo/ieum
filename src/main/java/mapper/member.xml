@@ -130,4 +130,9 @@
 	where u_no=#{uNo} and state_code=1
 	</select>
 	
+	<!-- 일반 계정이랑 소셜 계정 병합 -->
+	<update id="socialUpdate" parameterType="map">
+		update member set social_id = #{id} where email = #{email}
+	</update>
+	
 </mapper>	

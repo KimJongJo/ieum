@@ -20,7 +20,7 @@ public class MemberDto {
 	String uAddress; //주소
 	Boolean diaryPrivate; //다이어리 공개여부
 	Integer warningCount; //경고수
-	String social; //소셜로그인
+	String socialId; //소셜로그인
 	Integer hNo; //소속 병원 번호
 	Integer stateCode;	//상태코드
 	Integer fileNo;
@@ -63,9 +63,9 @@ public class MemberDto {
 		this.hNo = hNo;
 	}
 	
-	// 카카오 회원가입
+	// 소셜 회원가입
 	public MemberDto(String id, String username, Date birthDate, String gender, String uTel, String email,
-			String nickname, String uAddress, Boolean diaryPrivate, String social, Integer fileNo) {
+			String nickname, String uAddress, Boolean diaryPrivate, Integer fileNo) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -76,7 +76,6 @@ public class MemberDto {
 		this.nickname = nickname;
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
-		this.social = social;
 		this.fileNo = fileNo;
 	}
 	
@@ -92,7 +91,7 @@ public class MemberDto {
 
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
-			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String social,
+			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String socialId,
 			Integer hNo, Integer stateCode, Integer fileNo) {
 		super();
 		this.uNo = uNo;
@@ -111,7 +110,7 @@ public class MemberDto {
 		this.uAddress = uAddress;
 		this.diaryPrivate = diaryPrivate;
 		this.warningCount = warningCount;
-		this.social = social;
+		this.socialId = socialId;
 		this.hNo = hNo;
 		this.stateCode = stateCode;
 		this.fileNo = fileNo;
@@ -127,7 +126,7 @@ public class MemberDto {
 				+ ", password=" + password + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email
 				+ ", createdAt=" + createdAt + ", userType=" + userType + ", major=" + major + ", introduction="
 				+ introduction + ", nickname=" + nickname + ", uAddress=" + uAddress + ", diaryPrivate=" + diaryPrivate
-				+ ", warningCount=" + warningCount + ", social=" + social + ", hNo=" + hNo + ", stateCode=" + stateCode
+				+ ", warningCount=" + warningCount + ", socialId=" + socialId + ", hNo=" + hNo + ", stateCode=" + stateCode
 				+ ", fileNo=" + fileNo + "]";
 	}
 
@@ -223,11 +222,11 @@ public class MemberDto {
 	public void setWarningCount(Integer warningCount) {
 		this.warningCount = warningCount;
 	}
-	public String getSocial() {
-		return social;
+	public String getSocialId() {
+		return socialId;
 	}
-	public void setSocial(String social) {
-		this.social = social;
+	public void setSocialId(String socialId) {
+		this.socialId = socialId;
 	}
 	public Integer gethNo() {
 		return hNo;

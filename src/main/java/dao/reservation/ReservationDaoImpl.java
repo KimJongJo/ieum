@@ -28,10 +28,18 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void insertRes(ReservationDto reservation) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
-			session.insert("mapper.reservation.insertReservation");
+			session.insert("mapper.reservation.insertReservation",reservation);
 			session.commit();
 		}
 		
+	}
+
+	// 오늘 예약 리스트 가져오기
+	@Override
+	public List<ReservationDto> todayReservationList() {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationList");
+		}
 	}
 
 }

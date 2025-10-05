@@ -166,31 +166,8 @@
 .n-delete:hover {
 	background-color: #fccece;
 }
-
-.page-nav {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	width: 440px;
-	height: 55px;
-	margin-top: 15px;
+.diary-footer {
+	margin-top: 25px;
 }
 
-.page-nav a {
-	color: black;
-	text-decoration-line: none;
-	width: 33px;
-	height: 33px;
-	text-align: center;
-	line-height: 33px;
-}
 
-.page-nav i {
-	text-align: center;
-	line-height: 35px;
-}
-
-.cur-page {
-	background-color: #a7c6f4;
-	border-radius: 50px;
-}

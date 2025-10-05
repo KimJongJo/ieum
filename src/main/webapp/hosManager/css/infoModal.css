@@ -102,12 +102,14 @@
 			    overflow: auto;   /* 내용이 화면보다 크면 스크롤 가능 */
 			    padding: 20px;    /* 안쪽 여백 */
 			    box-sizing: border-box;
+			    gap: 20px; /* 요소 사이 최소 간격 */
 			}
 			
 			/* 모달 안의 내용 중앙 정렬 */
 			.modal-dia .form-div,
-			.modal-dia2 .form-div {
-			    margin: 0 auto;       /* 가로 중앙 */
+			.modal-dia2 .form-div,
+			.show-dia-info {
+			    margin: auto;       /* 가로 중앙 */
 			}
 
 

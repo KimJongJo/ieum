@@ -158,7 +158,8 @@
             
             
             
-            .search-user-btn{
+            .search-user-btn,
+            .write-btn{
             	background-color:white;
             	border: 1px solid #A6A6A6;
             	border-radius:5px;
@@ -167,11 +168,14 @@
             	cursor:pointer;
             }
             
-            .search-user-btn:hover{
+            .search-user-btn:hover,
+            .write-btn:hover{
             	background-color:#4356B3;
             	color:white;
             	transition-duration: 0.2s;
             }
+            
+            
             
             
         	

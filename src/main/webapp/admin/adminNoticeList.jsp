@@ -12,6 +12,7 @@
 	href="${contextPath}/css/adminHeader.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <link rel="stylesheet" href="${contextPath}/css/modal.css" />
+<link rel="stylesheet" href="${contextPath}/common/pagination/page.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
 <!-- jquery -->
@@ -38,12 +39,12 @@
 							<div class="button-wrapper">
 								<div class="notice-search">
 									<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
-									<button type="button" onclick="searchDiary()">
+									<button type="button" onclick="renderList()">
 										<i class="fa-solid fa-magnifying-glass"></i>
 									</button>
 								</div>
 
-								<select class="notice-select" onchange="sortNotice(this)">
+								<select class="notice-select" onchange="renderList()">
 									<option selected disabled value="none">정렬</option>
 									<option value="n_created">작성순</option>
 									<option value="n_updated">수정순</option>
@@ -54,30 +55,6 @@
 							</div>
 						</div>
 					</div>
-					<c:if test="${not empty topList}">
-						<table class="notice-table" id="noticeList">
-							<tr>
-								<td class="n-t-th">번호</td>
-								<td class="n-t-th">제목</td>
-								<td class="n-t-th">작성자</td>
-								<td class="n-t-th">등록일</td>
-								<td class="n-t-th">최근수정일</td>
-								<td class="n-t-th">관리</td>
-							</tr>
-							<c:forEach var="top" items="${topNoticeList}">
-								<tr class="notice-item" onclick="goDetail(${top.nNo})">
-									<td class="n-t-td">${top.nNo}</td>
-									<td class="n-t-td">${top.title}</td>
-									<td class="n-t-td">${top.uNm}</td>
-									<td class="n-t-td">${top.nCreated}</td>
-									<td class="n-t-td">${top.nUpdated != null ? top.nUpdated : ''}</td>
-									<td class="n-t-td"><button class="n-update"
-											onclick="updateNotice()">수정</button>
-										<button class="n-delete" onclick="deleteNotice()">삭제</button></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</c:if>
 					<c:choose>
 						<c:when test="${not empty noticeList}">
 							<table class="notice-table" id="noticeList">
@@ -89,20 +66,34 @@
 									<td class="n-t-th">최근수정일</td>
 									<td class="n-t-th">관리</td>
 								</tr>
+								<c:forEach var="top" items="${topList}">
+									<tr class="notice-item" data-label="${top.nNo}">
+										<td class="n-t-td">고정</td>
+										<td class="n-t-td">${top.title}</td>
+										<td class="n-t-td">${top.uNm}</td>
+										<td class="n-t-td">${top.nCreated}</td>
+										<td class="n-t-td">${top.nUpdated != null ? top.nUpdated : ''}</td>
+										<td class="n-t-td">
+											<button class="n-update" onclick="updateNotice(${top.nNo})">수정</button>
+											<button class="n-delete" onclick="deleteNotice(${top.nNo})">삭제</button>
+										</td>
+									</tr>
+								</c:forEach>
 								<c:forEach var="notice" items="${noticeList}">
-									<tr class="notice-item" onclick="goDetail(${notice.nNo})">
+									<tr class="notice-item" data-label="${notice.nNo}">
 										<td class="n-t-td">${notice.nNo}</td>
 										<td class="n-t-td">${notice.title}</td>
 										<td class="n-t-td">${notice.uNm}</td>
 										<td class="n-t-td">${notice.nCreated}</td>
 										<td class="n-t-td">${notice.nUpdated != null ? notice.nUpdated : ''}</td>
-										<td class="n-t-td"><button class="n-update"
-												onclick="updateNotice()">수정</button>
-											<button class="n-delete" onclick="deleteNotice()">삭제</button></td>
+										<td class="n-t-td">
+											<button class="n-update"
+												onclick="updateNotice(${notice.nNo})">수정</button>
+											<button class="n-delete"
+												onclick="deleteNotice(${notice.nNo})">삭제</button>
+										</td>
 									</tr>
 								</c:forEach>
-
-
 							</table>
 						</c:when>
 						<c:otherwise>
@@ -137,8 +128,8 @@
 								<div class="modal-btn-div">
 									<button type="button" class="modal-btn-left modal-btn"
 										onclick="cancelDel()">취소</button>
-									<button class="modal-btn-right modal-btn"
-										onclick="confirmDel()">확인</button>
+									<button id="del" data-label=""
+										class="modal-btn-right modal-btn" onclick="confirmDel()">확인</button>
 								</div>
 							</div>
 						</div>

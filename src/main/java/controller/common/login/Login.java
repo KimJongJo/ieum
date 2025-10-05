@@ -46,11 +46,15 @@ public class Login extends HttpServlet {
 		    String kakaoRedirectUrl = prop.getProperty("kakao.api.redirectUrl");
 		    String naverClientId = prop.getProperty("naver.api.id");
 		    String naverRedirectUrl = prop.getProperty("naver.api.redirectUrl");
+		    String googleId = prop.getProperty("google.api.id");
+		    String googleRedirectUrl = prop.getProperty("google.api.redirectUrl");
 		    request.setAttribute("kakaoKey", kakaoKey);
 		    request.setAttribute("kakaoRedirectUrl", kakaoRedirectUrl);
 		    request.setAttribute("naverClientId", naverClientId);
 		    request.setAttribute("naverRedirectUrl", naverRedirectUrl);
 		    request.setAttribute("state", "aB3dE9fGh12IjK45fes"); // -> 그냥 아무거나 막 친거임
+		    request.setAttribute("googleId", googleId);
+		    request.setAttribute("googleRedirectUrl", googleRedirectUrl);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

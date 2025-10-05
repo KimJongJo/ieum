@@ -46,8 +46,6 @@ public class NaverLogin extends HttpServlet {
 		    prop.load(is);
 		    clientId = prop.getProperty("naver.api.id");
 		    clientSecret = prop.getProperty("naver.api.secret");
-		    request.setAttribute("kakaoKey", clientId);
-		    request.setAttribute("kakaoRedirectUrl", clientSecret);
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -83,9 +81,9 @@ public class NaverLogin extends HttpServlet {
 		}else if(member != null) { // member 객체가 없지만 이미 기존 계정과 naver 소셜 계정을 병합한 계정인가? 
 			
 			// 만약에 이미 병합한 계정이라면
-			if(member.getSocial() == naverDto.getId()) {
+			if(member.getSocialId() != null && member.getSocialId().equals(naverDto.getId())) {
 				session.setAttribute("uNo", member.getuNo());
-				response.sendRedirect(request.getContextPath() + "index");
+				response.sendRedirect(request.getContextPath() + "/index");
 			}else { // 아니라면 병합을 묻는 페이지로 이동
 				session.setAttribute("naverDto", naverDto);
 				response.sendRedirect(request.getContextPath() + "/social/naverAlreadyEmail");

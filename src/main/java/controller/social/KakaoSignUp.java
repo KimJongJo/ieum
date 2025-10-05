@@ -71,14 +71,13 @@ public class KakaoSignUp extends HttpServlet {
 		if(day.length() == 1) day = "0" + day;
 		Date birthDate = Date.valueOf(year + "-" + month + "-" + day);
 		
-		String social = "Kakao";
 		// 전화번호 조립
 		String tel = "010-" + tel1 + "-" + tel2;
 		String diary = request.getParameter("diary");
 		boolean diarYN = diary.equals("yes") ? true : false;
 		
 		MemberDto member = new MemberDto(id, userName, birthDate, gender, tel, email,
-				nickname, address, diarYN, social, fileNo);
+				nickname, address, diarYN, fileNo);
 		
 		Integer uNo = memberService.socialSignUp(member);
 		

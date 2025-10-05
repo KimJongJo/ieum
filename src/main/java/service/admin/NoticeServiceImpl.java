@@ -6,9 +6,8 @@ import dao.admin.NoticeDao;
 import dao.admin.NoticeDaoImpl;
 import dao.file.FileDao;
 import dao.file.FileDaoImpl;
-import dto.DiaryDto;
-import dto.FileDto;
 import dto.NoticeDto;
+import dto.otherDto.OtherNoticeDto;
 import util.PageInfo;
 
 public class NoticeServiceImpl implements NoticeService {
@@ -32,10 +31,10 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeDto> getList(Integer uNo, String keyword, String sort, PageInfo page, Integer isPinned) throws Exception {
-		final int PAGE_SIZE = 10;      // 페이지 당 글 수
-		final int PAGE_GROUP = 10;     // 페이지 그룹 수 (페이징 버튼 갯수)
-
-		int totalCount = noticeDao.cnt(); // 전체 글 개수
+		int topCnt = noticeDao.cnt(1);
+		int totalCount = noticeDao.cnt(0); // 전체 글 개수
+		final int PAGE_SIZE = 8 - topCnt;      // 페이지 당 글 수
+		final int PAGE_GROUP = 8 - topCnt;     // 페이지 그룹 수 (페이징 버튼 갯수)
 		int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE); // 총 페이지 수
 
 		int curPage = page.getCurPage();
@@ -58,8 +57,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 		int offset = (curPage - 1) * PAGE_SIZE;
 		if (offset < 0) offset = 0;
-
-		return noticeDao.selectNoticeList(uNo, keyword, sort, offset, isPinned);
+		return noticeDao.selectNoticeList(uNo, keyword, sort, offset, topCnt, isPinned);
 	}
 
 	@Override
@@ -97,5 +95,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public String getUserNm(Integer uNo) throws Exception {
 		return noticeDao.selectUserNm(uNo);
 	}
+
+	@Override
+	public OtherNoticeDto getOtherNo(Integer nNo, Integer uNo, String part) throws Exception {
+		return noticeDao.selectOtherNotice(nNo, uNo, part);
+	}
+	
 
 }

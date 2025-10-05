@@ -8,6 +8,7 @@
 <script>
 const err = '<%=request.getAttribute("err") == null ? "" : request.getAttribute("err")%>';
 const msg = '<%=request.getAttribute("msg") == null ? "" : request.getAttribute("msg")%>';
+const no = '<%=request.getAttribute("no") == null ? "" : request.getAttribute("no")%>';
 	// 에러
 	if (err && err.trim() !== "") {
 		alert(err);
@@ -23,7 +24,7 @@ const msg = '<%=request.getAttribute("msg") == null ? "" : request.getAttribute(
 		if (msg === "작성" || msg === "삭제") {
 			moveUrl += "?page=1";
 		} else if (msg === "수정") {
-			console.log("수정 성공");
+			moveUrl += `?nNo=${no}`;
 		}
 
 		window.location.href = moveUrl;
