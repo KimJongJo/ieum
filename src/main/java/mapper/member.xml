@@ -130,4 +130,94 @@
 	where u_no=#{uNo} and state_code=1
 	</select>
 	
+	<!-- 일반 계정이랑 소셜 계정 병합 -->
+	<update id="socialUpdate" parameterType="map">
+		update member set social_id = #{id} where email = #{email}
+	</update>
+	
+	<select id="memberCount" parameterType="Integer" resultType="Integer">
+		select count(*) from member where user_type = 'USER'
+		<choose>
+        <!-- 전체 회원 (0) -->
+        <when test="_parameter  == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{_parameter}
+        </otherwise>
+    	</choose>
+	</select>
+	
+	<select id="selectMembers" parameterType="Map" resultType="member">
+		select * from member where user_type = 'USER'
+		<choose>
+        <!-- 전체 회원 (0) -->
+        <when test="state == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{state}
+        </otherwise>
+    	</choose>
+		order by ${sortValue} ${sort}
+    	LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<!-- 검색어 유저 수 -->
+	<select id="memberListByKeyword" parameterType="Map" resultType="Integer">
+		select count(*) from member
+		where user_type = 'USER'
+	 	<choose>
+        <!-- 전체 회원 (0) -->
+        <when test="state == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{state}
+        </otherwise>
+    	</choose>
+		and (username like concat ('%', #{keyword}, '%')
+			or nickname like concat ('%', #{keyword}, '%')
+			or email like concat ('%', #{keyword}, '%'))
+	</select>
+	
+	<!-- 검색어 유저 리스트 -->
+	<select id="selectUserListByKeyword" parameterType="Map" resultType="member">
+		select * from member
+	    where user_type = 'USER'
+	     <choose>
+        <!-- 전체 회원 (0) -->
+        <when test="state == 0">
+            <!-- 아무 조건도 안 넣음 -->
+        </when>
+        <!-- 정상(1), 활동정지(2), 탈퇴(3) -->
+        <otherwise>
+            AND state_code = #{state}
+        </otherwise>
+    	</choose>
+	    and (username like concat ('%', #{keyword}, '%')
+			or nickname like concat ('%', #{keyword}, '%')
+			or email like concat ('%', #{keyword}, '%'))
+	    order by ${sortValue} ${sort}
+	    limit #{pageSize} offset #{offset}
+	</select>
+	
+	<select id="memberInfo" parameterType="Integer" resultType="member">
+		select * from member where u_no = #{_parameter}
+	</select>
+	
+	<update id="userState" parameterType="Map">
+		update member set state_code = #{stateCode} where u_no = #{uNo}
+	</update>
+	
+	<select id="memberInfoAndFile" parameterType="Integer" resultType="memberFile">
+		SELECT m.u_no, m.username, CONCAT(f.file_path,'/', f.file_name) AS imgFile, m.email, m.created_at, m.warning_count, m.state_code
+		FROM member m
+		JOIN file f USING(file_no)
+		WHERE u_no = #{_parameter};
+	</select>
+	
 </mapper>	

@@ -47,39 +47,13 @@
 				</div>
 
 				<div class="hospital-list">
+					<c:forEach var="hospital" items="${hosList}" >
 					<div class="hospital-item"
 						onclick="location.href=`${contextPath}/hospital/detail`">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
+						<img class="hospital-img" src="${hospital.hosImgPath}"><span
+							class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
 					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<div class="hospital-item">
-						<img class="hospital-img" src=""> <span
-							class="hospital-name">병원명</span> <span>병원위치</span>
-					</div>
-					<!-- 					<div class="hospital-item"> -->
-					<!-- 						<img class="hospital-img" src=""> <span -->
-					<!-- 							class="hospital-name">병원명</span> <span>병원위치</span> -->
-					<!-- 					</div> -->
+					</c:forEach>
 				</div>
 				<div class="hospital-btn-right">
 					<div class="gt">
@@ -171,8 +145,8 @@
 				<div class="service-box">
 					<a href="${contextPath}/hospital/search" class="btn-link">
 						<div class="service item">
-							<div class="rectangle hospital">
-								<i class="fa-duotone fa-solid fa-hospital"></i>
+							<div class="rectangle reservation">
+								<i class="fa-regular fa-calendar"></i>
 							</div>
 							<span>병원조회 / 예약</span>
 						</div>

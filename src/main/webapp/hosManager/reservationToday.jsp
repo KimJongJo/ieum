@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,109 +36,30 @@
                         </form>
 						<div class="reservation-table-div">
 							<table class="table reservation-table2">
-	                            <tr>
-	                                <th>예약ID</th>
-	                                <th style="width: 150px" colspan=2>환자 이름/프로필</th>
-	                                <th style="width: 150px">담당 의사</th>
-	                                <th style="width: 200px">예약날짜 / 시간</th>
-	                                <th>상태</th>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
-	                            <tr>
-	                                <td>R045</td>
-	                                <td>김환자</td>
-	                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-	                                <td>김의사</td>
-	                                <td>
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td><button class="status-btn complete">완료</button> <button class="status-btn cancle">취소</button></td>
-	                            </tr>
+								<thead>
+									<tr>
+		                                <th>예약ID</th>
+		                                <th style="width: 150px" colspan=2>환자 이름/프로필</th>
+		                                <th style="width: 150px">예약시간</th>
+		                                <th style="width: 150px" colspan=2>진단서 / 작성상태</th>
+		                                <th>진료</th>
+		                            </tr>
+								</thead>
+								<tbody>
+								<c:forEach var="res" items="${resList}">
+									<tr>
+		                                <td>${res.rNo}</td>
+		                                <td>김환자</td>
+		                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+		                                <td>
+		                                	10:00
+		                                </td>
+	                                	<td><button type="button" class="write-btn"><i class="fa-regular fa-pen-to-square"></i></button></td>
+	                                    <td class="reservation-table-td">미작성</td>
+		                                <td><button class="status-btn complete">완료</button></td>
+	                            	</tr>
+								</c:forEach>
+								</tbody>
 	                        </table>
 						</div>
                         
@@ -154,6 +76,8 @@
                                 ><button class="page" type="button"><i class="fa-solid fa-angle-right"></i></button
                             ></a>
                         </div>
+                        
+                        <jsp:include page="diaWrite.jsp"></jsp:include>
                         <jsp:include page="patientInfo.jsp"></jsp:include>
                         
                     </div>
@@ -162,6 +86,7 @@
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/modal1.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal2.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal3.js"></script>
     </body>

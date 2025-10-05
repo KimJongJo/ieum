@@ -1,7 +1,10 @@
 package controller.myPage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,12 +35,19 @@ public class BlackList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer uNo = 5;
+		Integer uNo = 4;
 		BlackListService service = new BlackListServiceImpl();
 		
 		try {
 			List<BlackWithMemberDto> blackMember = service.getBlackWithMember(uNo);
-			request.setAttribute("blackMember", blackMember);
+			// 중복 제거 (nickname 기준)
+			Map<String, BlackWithMemberDto> uniqueMap = new LinkedHashMap<>();
+			for(BlackWithMemberDto b : blackMember) {
+			    uniqueMap.put(b.getNickname(), b); // key가 중복되면 나중 값이 덮어짐
+			}
+			List<BlackWithMemberDto> uniqueBlackMember = new ArrayList<>(uniqueMap.values());
+			
+			request.setAttribute("blackMember", uniqueBlackMember);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

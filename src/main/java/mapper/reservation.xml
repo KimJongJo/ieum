@@ -11,11 +11,22 @@
 		where m_no=#{mNo} and r_date=#{rDate}
 	</select>
 	
-	<!-- 예약하기 -->
+	<!-- 예약하기/act_tel오타확인!!!-->
 	<insert id="insertReservation" parameterType="reservation">
 		insert into reservation
-		(r_date,r_time,r_content,act_name,acr_tel,r_status,r_day,h_no,u_no,m_no)
-		values (#{rDate},#{rTime},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
+		(r_date,r_time,r_content,act_name,act_tel,r_status,r_day,h_no,u_no,m_no)
+		values (#{rDate},#{rTime},#{rContent},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
 	</insert>
+	
+	<!-- 오늘 예약인 예약 리스트 -->
+	<select id="todayReservationList" resultType="reservation">
+		select r.r_no, u.u_no as pNo, u.username as pName, DATE_FORMAT(r.r_time, '%H:%i') AS time,
+		d.diagnosis_no as diaNo, d.diagnosis_state as diaState
+		from reservation r
+		join member u using(u_no)
+		join diagnosis_history d on(d.r_no = r.r_no)
+		WHERE DATE(r_date) = CURDATE()
+		and r.m_no = #{uNo}
+	</select>
 
 </mapper>	

@@ -13,9 +13,7 @@
    	let moveUrl = hostUrl + contextPath + "/myPage/diary";
    	if (msg == '작성' || msg=='삭제'){   		
    		moveUrl += "?page=1";
-   	} else {
-   		console.log("수정");
-   	} 
+   	}
    	window.location.href = moveUrl;
 </script>
 </head>

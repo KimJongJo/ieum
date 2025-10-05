@@ -3,8 +3,10 @@ package dao.member;
 import java.util.List;
 import java.util.Map;
 
+import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.MemberFileDto;
 
 public interface MemberDao {
 	
@@ -41,4 +43,18 @@ public interface MemberDao {
 	Integer kakaoSignUp(MemberDto member);
 
 	MemberDto checkEmail(String email);
+
+	void socialUpdate(Map<String, String> map);
+
+	int memberCount(Integer state);
+
+	List<MemberDto> selectMembers(Map<String, Object> page);
+
+	int memberListByKeyword(Map<String, Object> page);
+
+	List<MemberDto> selectUserListByKeyword(Map<String, Object> page);
+
+	void userState(Map<String, Integer> map);
+
+	MemberFileDto memberInfoAndFile(Integer uNo);
 }

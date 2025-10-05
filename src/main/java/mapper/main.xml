@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.main">
+	
+	<select id="selectMainHosList" resultType="mainHos">
+	SELECT h.h_no, h.h_nm, h.h_address, h.hos_img_file_no, f.file_path AS hosImgPath, count(r.r_no) as resCount
+	FROM hospital h 
+	LEFT JOIN file f ON h.hos_img_file_no = f.file_no
+	LEFT JOIN reservation r USING(h_no)  
+	WHERE status = 'ACTIVE'
+	GROUP BY h.h_no
+	ORDER BY resCount DESC
+	LIMIT 1,8
+	</select>
+
+</mapper>	

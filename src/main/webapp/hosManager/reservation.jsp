@@ -64,7 +64,7 @@
 	                                    <span>10:00</span>
 	                                </td>
 	                                <td class="reservation-table-td">미작성</td>
-	                                <td><button type="button" class="write-btn">작성</button></td>
+	                                <td><button type="button" class="show-btn">보기</button></td>
 	                                <td><button type="button" class="show-btn" id="show-patient-info">보기</button></td>
 	                            </tr>
 	                            
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     
-                    <jsp:include page="diaWrite.jsp"></jsp:include>
+                    
                     <jsp:include page="patientInfo.jsp"></jsp:include>
                     
                     

@@ -1,6 +1,5 @@
 package dao.reservation;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.ReservationDto;
+import dto.otherDto.ResUserDoctorInfoDto;
 import util.MybatisSqlSessionFactory;
 
 public class ReservationDaoImpl implements ReservationDao {	
@@ -28,10 +28,19 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void insertRes(ReservationDto reservation) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
-			session.insert("mapper.reservation.insertReservation");
+			System.out.println(reservation);
+			session.insert("mapper.reservation.insertReservation",reservation);
 			session.commit();
 		}
 		
+	}
+
+	// 오늘 예약 리스트 가져오기
+	@Override
+	public List<ResUserDoctorInfoDto> todayReservationList() {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationList");
+		}
 	}
 
 }

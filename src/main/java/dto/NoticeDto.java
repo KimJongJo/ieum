@@ -12,6 +12,7 @@ public class NoticeDto {
 	String content; // 내용
 	Boolean isPinned; // 상단고정여부
 	Integer fileNo; // 파일 번호
+	String fileName;
 
 	public NoticeDto() {
 	}
@@ -55,9 +56,10 @@ public class NoticeDto {
 		this.fileNo = fileNo;
 	}
 
-	public NoticeDto(Integer nNo, Date nCreated, Date nUpdated, Integer uNo, String title, String content,
-			Boolean isPinned, Integer fileNo) {
+	public NoticeDto(String uNm, Integer nNo, Date nCreated, Date nUpdated, Integer uNo, String title, String content,
+			Boolean isPinned, Integer fileNo, String fileName) {
 		super();
+		this.uNm = uNm;
 		this.nNo = nNo;
 		this.nCreated = nCreated;
 		this.nUpdated = nUpdated;
@@ -66,12 +68,15 @@ public class NoticeDto {
 		this.content = content;
 		this.isPinned = isPinned;
 		this.fileNo = fileNo;
+		this.fileName = fileName;
 	}
+
 
 	@Override
 	public String toString() {
-		return "notice [nNo=" + nNo + ", nCreated=" + nCreated + ", nUpdated=" + nUpdated + ", uNo=" + uNo + ", title="
-				+ title + ", content=" + content + ", isPinned=" + isPinned + ", fileNo=" + fileNo + "]";
+		return "NoticeDto [nNo=" + nNo + ", nCreated=" + nCreated + ", nUpdated=" + nUpdated + ", uNo=" + uNo + ", uNm="
+				+ uNm + ", title=" + title + ", content=" + content + ", isPinned=" + isPinned + ", fileNo=" + fileNo
+				+ ", fileNm=" + fileName + "]";
 	}
 
 	public Integer getnNo() {
@@ -137,6 +142,23 @@ public class NoticeDto {
 	public void setFileNo(Integer fileNo) {
 		this.fileNo = fileNo;
 	}
+
+	public String getuNm() {
+		return uNm;
+	}
+
+	public void setuNm(String uNm) {
+		this.uNm = uNm;
+	}
+
+	public String getFileNm() {
+		return fileName;
+	}
+
+	public void setFileNm(String fileName) {
+		this.fileName = fileName;
+	}
+	
 
 
 }

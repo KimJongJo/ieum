@@ -5,16 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.DiagnosisHistoryDto;
 import dto.DiaryDto;
 import util.MybatisSqlSessionFactory;
 
 public class DiaryDaoImpl implements DiaryDao {
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 
 	@Override
 	public void insert(DiaryDto diary) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			session.insert("insert", diary);
 			session.commit();
 		}
@@ -22,21 +24,21 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public DiaryDto select(Integer dNo) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("selectDetail", dNo);
 		}
 	}
 
 	@Override
 	public Integer cnt() throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("selectDiaryCnt");
 		}
 	}
 
 	@Override
 	public List<DiaryDto> selectDiaryList(Integer uNo, String keyword, String sort, Integer row) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("uNo", uNo);
 			params.put("row", row);
@@ -48,7 +50,7 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public DiaryDto update(DiaryDto diary) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			session.update("update", diary);
 			session.commit();
 			return diary;
@@ -57,7 +59,7 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public void delete(Integer dNo) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			session.delete("delete", dNo);
 			session.commit();
 		}
@@ -65,14 +67,14 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public List<DiagnosisHistoryDto> selectHisList(Integer uNo) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectList("selectHisList", uNo);
 		}
 	}
 
 	@Override
 	public DiaryDto selectDate(Integer uNo, String date) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("uNo", uNo);
 			params.put("date", date);
@@ -82,7 +84,7 @@ public class DiaryDaoImpl implements DiaryDao {
 
 	@Override
 	public List<DiaryDto> selectCalList(Integer uNo, String sDate, String eDate) throws Exception {
-		try (SqlSession session = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("uNo", uNo);
 			params.put("sDate", sDate);

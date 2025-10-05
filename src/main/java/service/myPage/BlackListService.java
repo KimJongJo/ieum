@@ -8,10 +8,9 @@ import dto.BlackWithMemberDto;
 
 public interface BlackListService {
 
-	boolean blockComment(BlackListDto dto) throws Exception;
+	boolean blockUser(int uNo, int blockedNo) throws Exception;
 
-	List<Integer> getBlockedComments(int uNo, int commuNo) throws Exception;
-	
-	
+	List<Integer> getBlockedUsers(int uNo) throws Exception;
+
 	List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception;
 }

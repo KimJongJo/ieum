@@ -9,7 +9,11 @@ import org.mindrot.jbcrypt.BCrypt;
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dto.FileDto;
+import dto.HospitalDto;
 import dto.MemberDto;
+import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.MemberFileDto;
+import dto.otherDto.MemberPageResponseDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 public class MemberServiceImpl implements MemberService {
@@ -157,5 +161,144 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberDao.checkEmail(email);
 	}
+	
+	// 병합할때 비밀번호 확인
+	@Override
+	public boolean checkPw(String email, String password) {
+		
+		MemberDto member = memberDao.checkEmail(email);
+		
+		return BCrypt.checkpw(password, member.getPassword());
+	}
+
+	@Override
+	public MemberDto socialUpdate(String email, String id) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("id", id);
+		memberDao.socialUpdate(map);		
+		return memberDao.checkEmail(email);
+	}
+
+  
+	@Override
+	public MemberDto selectResUser(Integer uNo) throws Exception {
+		return memberDao.selectProfileInfo(uNo);
+	}
+
+	// 일반 회원 리스트
+	@Override
+	public MemberPageResponseDto userList(int curPage, String filter, Integer state) {
+		String sort;
+		// 신청일(최신순)일 경우
+		if ("created_at".equals(filter) || "warning_count".equals(filter)) {
+			sort = "DESC";
+		} else {
+			sort = "ASC";
+		}
+
+		// 정렬 조건이 없을경우
+		String sortValue;
+
+		if (filter.equals("created_at")) {
+			sortValue = "created_at";
+		} else if (filter.equals("warning_count")) {
+			sortValue = "warning_count";
+		} else {
+			sortValue = "u_no";
+		}
+
+		int pageSize = 8; // 한 페이지당 데이터 수
+		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
+
+		int memberCount = memberDao.memberCount(state); // 전체 데이터 수
+		int allPage = (int) Math.ceil((double) memberCount / pageSize); // 전체 페이지 수
+
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+		int endPage = Math.min(startPage + blockSize - 1, allPage); // 끝 페이지
+
+		int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
+		page.put("state", state);
+		
+		
+
+		List<MemberDto> list = memberDao.selectMembers(page);
+		// 데이터 + 페이지 정보 같이 반환
+		return new MemberPageResponseDto(list, curPage, allPage, startPage, endPage, memberCount);
+	}
+
+	@Override
+	public MemberPageResponseDto memberListByKeyword(int requestPage, String keyword, String filter, Integer state) {
+		String sort;
+		// 신청일(최신순)일 경우
+		if ("created_at".equals(filter) || "warning_count".equals(filter)) {
+			sort = "DESC";
+		} else {
+			sort = "ASC";
+		}
+
+		// 정렬 조건이 없을경우
+		String sortValue;
+
+		if (filter.equals("created_at")) {
+			sortValue = "created_at";
+		} else if (filter.equals("warning_count")) {
+			sortValue = "warning_count";
+		} else {
+			sortValue = "u_no";
+		}
+
+		int pageSize = 8;
+		int blockSize = 5;
+		
+		Map<String, Object> keywordPage = new HashMap<String, Object>();
+		keywordPage.put("keyword", keyword);
+		keywordPage.put("state", state);
+
+		int memberCount = memberDao.memberListByKeyword(keywordPage); // 검색어 기준 총 개수
+		int allPage = (int) Math.ceil((double) memberCount / pageSize);
+
+		int startPage = ((requestPage - 1) / blockSize) * blockSize + 1;
+		int endPage = Math.min(startPage + blockSize - 1, allPage);
+
+		int offset = (requestPage - 1) * pageSize;
+
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("keyword", keyword); // 검색어 전달
+		page.put("sort", sort);
+		page.put("sortValue", sortValue);
+		page.put("state", state);
+
+		List<MemberDto> list = memberDao.selectUserListByKeyword(page);
+
+		return new MemberPageResponseDto(list, requestPage, allPage, startPage, endPage, memberCount);
+	}
+
+
+	// 유저 상태 변경
+	@Override
+	public void userState(Integer uNo, Integer stateCode) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("stateCode", stateCode);
+		map.put("uNo", uNo);
+		
+		memberDao.userState(map);
+		
+	}
+
+	@Override
+	public MemberFileDto memberInfoAndFile(Integer uNo) {
+		
+		return memberDao.memberInfoAndFile(uNo);
+	}
+
 
 }
