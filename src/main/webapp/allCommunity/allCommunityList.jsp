@@ -76,7 +76,14 @@ $(function() {
 	    max-height: 100%;        /* 영역 넘치지 않게 */
 	}
 	
-	
+	#paging img {
+    position: relative;
+    vertical-align: middle; /* 중앙 정렬 유지 */
+}
+
+#arrow {
+margin: 0 10px 0 10px;
+}
 </style>
 </head>
 <body>
@@ -191,10 +198,10 @@ $(function() {
 		    <div id="paging" style="text-align:center; margin:40px 0;">
 		<c:choose>
 			<c:when test="${pageInfo.curPage>1 }">
-				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}">&lt&lt</a>
+				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
 			</c:when>
 			<c:otherwise>
-				<a>&lt&lt</a>
+				<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
 			</c:otherwise>
 		</c:choose>
 	
@@ -203,10 +210,10 @@ $(function() {
 		</c:forEach>
 			<c:choose>
 			<c:when test="${pageInfo.curPage<pageInfo.allPage }">
-				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage+1}">&gt&gt</a>
+				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage+1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
 			</c:when>
 			<c:otherwise>
-				<a>&gt&gt</a>
+				<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
 			</c:otherwise>
 		</c:choose>
 	</div>
