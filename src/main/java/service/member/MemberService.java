@@ -32,4 +32,6 @@ public interface MemberService {
 	
 	MemberDto selectResUser (Integer uNo)throws Exception;
 	
+	MemberDto getresDoc (Integer mNo)throws Exception;
+	
 }

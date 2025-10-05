@@ -43,4 +43,6 @@ public interface MemberDao {
 	MemberDto checkEmail(String email);
 
 	void socialUpdate(Map<String, String> map);
+	
+	MemberDto resDoc (Integer mNo) throws Exception;
 }

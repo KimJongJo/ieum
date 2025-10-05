@@ -48,6 +48,7 @@
 		<typeAlias type="dto.otherDto.MainCommuDto" alias="mainCommu" />
 		<typeAlias type="dto.otherDto.MainNoticeDto" alias="mainNotice" />
 		<typeAlias type="dto.otherDto.MainDiagnosisDto" alias="mainDiag" />
+		<typeAlias type="dto.otherDto.ReservationInfoDto" alias="resInfo" />
 	</typeAliases>
 
    <environments default="development">

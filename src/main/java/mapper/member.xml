@@ -135,4 +135,11 @@
 		update member set social_id = #{id} where email = #{email}
 	</update>
 	
+	<!-- 예약된 의사 -->
+	<select id="selectMnoDoc" parameterType="Integer" resultType="member">
+		select *
+		from member
+		where u_no=#{mNo} 
+	</select>
+	
 </mapper>	

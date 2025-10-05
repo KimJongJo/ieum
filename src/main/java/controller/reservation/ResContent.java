@@ -63,7 +63,7 @@ public class ResContent extends HttpServlet {
 		Integer hNo = 20;
 		
 		String action = request.getParameter("action");
-		System.out.println("resContent 받은 action: " + action);
+
 		
 		if ("doReservation".equals(action)) {
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
@@ -73,8 +73,6 @@ public class ResContent extends HttpServlet {
 			LocalTime rTime = LocalTime.parse(rTimeStr);
 			String rDay = request.getParameter("rDay");
 			String rContent = request.getParameter("rContent");
-			
-			System.out.println("살려줘>>>"+mNo+rDay+uNo);
 			
 			HospitalService hosService = new HospitalServiceImpl();
 			MemberService mService = new MemberServiceImpl();
@@ -106,7 +104,6 @@ public class ResContent extends HttpServlet {
 		    String rContent = request.getParameter("rContent");
 		    String actName = request.getParameter("actName");
 		    String actTel = request.getParameter("actTel");			
-			
 			String rStatus = "WAITING";
 			
 
