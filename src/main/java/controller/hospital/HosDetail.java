@@ -85,8 +85,6 @@ public class HosDetail extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
-		System.out.println("hosDetail 받은 action: " + action);
-		
 		
 		if ("goHosDetail".equals(action)) {
 			// 병원 디테일		

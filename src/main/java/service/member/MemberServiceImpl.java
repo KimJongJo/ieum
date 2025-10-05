@@ -129,7 +129,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 의사 리스트 가져오기
-
 	@Override
 	public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
 		return memberDao.docList(hNo);
@@ -180,6 +179,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDto selectResUser(Integer uNo) throws Exception {
 		return memberDao.selectProfileInfo(uNo);
+	}
+
+	//예약된 의사정보
+	@Override
+	public MemberDto getresDoc(Integer mNo) throws Exception {
+		return memberDao.resDoc(mNo);
 	}
 
 }
