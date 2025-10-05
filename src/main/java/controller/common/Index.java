@@ -1,16 +1,24 @@
 package controller.common;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dto.HospitalDto;
+import com.google.gson.Gson;
+
+import dto.otherDto.MainCommuDto;
+import dto.otherDto.MainDiagnosisDto;
 import dto.otherDto.MainHosDto;
+import dto.otherDto.MainNoticeDto;
+import dto.otherDto.MainUserDto;
 import service.common.MainService;
 import service.common.MainServiceImpl;
 
@@ -37,12 +45,50 @@ public class Index extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		try {
-			// 병원 추천
 			MainService service = new MainServiceImpl();
-			List<MainHosDto> mainHosList  = service.getHostList();
+			// 병원 추천
+			List<MainHosDto> mainHosList = service.getHostList();
 			request.setAttribute("hosList", mainHosList);
+			if (uNo != null) {// 로그인 정보
+				MainUserDto userInfo = service.getLoginInfo(uNo);
+				request.setAttribute("userInfo", userInfo);
+				request.setAttribute("uNo", uNo);
+			} else { // 자가진단
+				List<MainDiagnosisDto> diagCateList = service.getDiagCate();
+				request.setAttribute("diagCateList", diagCateList);
+			}
+			// 커뮤니티
+			List<MainCommuDto> commuList = service.getCommuList();
+			request.setAttribute("commuList", commuList);
+			// 공지사항
+			List<MainNoticeDto> topNoticeList = service.getTopNoticeList();
+			List<MainNoticeDto> noticeList = service.getNoticeList();
+			request.setAttribute("topNoticeList", topNoticeList);
+			request.setAttribute("noticeList", noticeList);
+			// 지도 - 병원 리스트
+//						String userLocX = request.getParameter("userLocX");
+//						String userLocY = request.getParameter("userLocY");
+//						List<MainHosDto> mapHosList = service.getMapHosList(userLocX, userLocY);
+//						request.setAttribute("mapHosList", mapHosList);
+//						boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-request-with"));
+//						String hNo = request.getParameter("hNo");
+//						MainHosDto mapHosInfo = service.getMapHosInfo(Integer.parseInt(hNo));
+//						if (isAjax) {
+//							response.setContentType("application/json; charset=UTF-8");
+//							Gson gson = new Gson();
+//							Map<String, Object> resultMap = new HashMap<>();
+//							resultMap.put("mapHosInfo", mapHosInfo);
+//							String result = gson.toJson(resultMap);
+//							response.getWriter().write(result);
+//							return;
+//						} else {
+//							request.setAttribute("mapInfo", mapHosInfo);
+//						}
 			request.getRequestDispatcher("common/main/index.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

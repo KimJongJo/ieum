@@ -1,69 +1,61 @@
 package dto.otherDto;
 
+import java.sql.Date;
+
 public class MainNoticeDto {
-	Integer hNo; // 병원 번호
-	String hNm; // 병원 이름
-	String hAddress; // 병원 주소
-	Integer hosImgFileNo; // 병원 썸네일 파일 번호
-	String hosImgPath; // 병원 썸네일 파일 경로
+	Integer nNo;
+	String title;
+	Integer isPinned;
+	Date nCreated;
 
 	public MainNoticeDto() {
 
 	}
-	
-	public MainNoticeDto(Integer hNo, String hNm, String hAddress, Integer hosImgFileNo, String hosImgPath) {
+
+	public MainNoticeDto(Integer nNo, String title, Integer isPinned, Date nCreated) {
 		super();
-		this.hNo = hNo;
-		this.hNm = hNm;
-		this.hAddress = hAddress;
-		this.hosImgFileNo = hosImgFileNo;
-		this.hosImgPath = hosImgPath;
+		this.nNo = nNo;
+		this.title = title;
+		this.isPinned = isPinned;
+		this.nCreated = nCreated;
 	}
 
-	public Integer gethNo() {
-		return hNo;
+	public Integer getnNo() {
+		return nNo;
 	}
 
-	public void sethNo(Integer hNo) {
-		this.hNo = hNo;
+	public void setnNo(Integer nNo) {
+		this.nNo = nNo;
 	}
 
-	public String gethNm() {
-		return hNm;
+	public String getTitle() {
+		return title;
 	}
 
-	public void sethNm(String hNm) {
-		this.hNm = hNm;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String gethAddress() {
-		return hAddress;
+	public Integer getIsPinned() {
+		return isPinned;
 	}
 
-	public void sethAddress(String hAddress) {
-		this.hAddress = hAddress;
+	public void setIsPinned(Integer isPinned) {
+		this.isPinned = isPinned;
 	}
 
-	public Integer getHosImgFileNo() {
-		return hosImgFileNo;
+	public Date getnCreated() {
+		return nCreated;
 	}
 
-	public void setHosImgFileNo(Integer hosImgFileNo) {
-		this.hosImgFileNo = hosImgFileNo;
-	}
-
-	public String getHosImgPath() {
-		return hosImgPath;
-	}
-
-	public void setHosImgPath(String hosImgPath) {
-		this.hosImgPath = hosImgPath;
+	public void setnCreated(Date nCreated) {
+		this.nCreated = nCreated;
 	}
 
 	@Override
 	public String toString() {
-		return "MainHosDto [hNo=" + hNo + ", hNm=" + hNm + ", hAdress=" + hAddress + ", hosImgFileNo=" + hosImgFileNo
-				+ ", hosImgPath=" + hosImgPath + "]";
-	}
+		return "MainNoticeDto [nNo=" + nNo + ", title=" + title + ", isPinned=" + isPinned + ", nCreated=" + nCreated
+				+ "]";
+	}	
 
 }
