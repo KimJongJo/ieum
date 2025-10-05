@@ -373,7 +373,7 @@ $(document).ready(function () {
                 </div>
                <!-- form POST 방식 -->
 	            <form action="${pageContext.request.contextPath}/black" method="post">
-				    <input type="hidden" name="blockedNo" value="${blackMember.uNo}"/>
+				    <input type="hidden" name="blockedNo" value="${blackMember.blockedNo}"/>
 				    <button type="submit" class="unblock-btn">차단 해제</button>
 				</form>
             </div>

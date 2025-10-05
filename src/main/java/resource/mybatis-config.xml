@@ -56,7 +56,7 @@
          <dataSource type="POOLED">
             <property name="driver" value="org.mariadb.jdbc.Driver" />
             <property name="url"
-               value="jdbc:mariadb://localhost:3306/ieum" />
+               value="jdbc:mariadb://localhost:3307/ieum" />
             <property name="username" value="root" />
             <property name="password" value="7564" />
             <property name="poolMaximumActiveConnections" value="500" />
