@@ -170,14 +170,14 @@
                                 <img src="../image/일반회원.png" class="profile-img" alt="" />
                             </div>
                             <table class="profile-table">
-                                <tr>
-                                    <th>이메일</th>
-                                    <td class="profile-info">desk1614@gmail.com</td>
+                             	<tr>
+                                    <th>소속</th>
+                                    <td class="profile-info">중랑구보건소</td>
                                     <td class="empty"></td>
                                 </tr>
-                                <tr>
-                                    <th>가입일</th>
-                                    <td class="profile-info">2025-08-31</td>
+                                 <tr>
+                                    <th>전공</th>
+                                    <td class="profile-info">노인심리상담</td>
                                     <td class="empty"></td>
                                 </tr>
                                 <tr>
@@ -186,8 +186,13 @@
                                     <td class="empty"></td>
                                 </tr>
                                 <tr>
-                                    <th>소속</th>
-                                    <td class="profile-info">중랑구보건소</td>
+                                    <th>이메일</th>
+                                    <td class="profile-info">desk1614@gmail.com</td>
+                                    <td class="empty"></td>
+                                </tr>
+                                <tr>
+                                    <th>가입일</th>
+                                    <td class="profile-info">2025-08-31</td>
                                     <td class="empty"></td>
                                 </tr>
                                 <tr>

@@ -135,7 +135,6 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public Integer kakaoSignUp(MemberDto member) {
-		System.out.println(member);
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 		Integer uNo = session.insert("kakaoSignUp", member);
 		session.commit();
@@ -147,7 +146,6 @@ public class MemberDaoImpl implements MemberDao{
 	// 네이버 로그인시 이메일이 이미 있는 경우
 	@Override
 	public MemberDto checkEmail(String email) {
-		System.out.println(email);
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 		return session.selectOne("checkNaverEmail",email);
 		}

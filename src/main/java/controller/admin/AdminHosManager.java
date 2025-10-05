@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.member.MemberService;
+import service.member.MemberServiceImpl;
+
 /**
  * Servlet implementation class AdminHosManager
  */
@@ -26,6 +29,16 @@ public class AdminHosManager extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 모든 병원매니저 목록 조회
+//		int curPage = 1;
+//		String filter = "none";
+//		int state = 0;
+//		
+//		MemberService service = new MemberServiceImpl();
+//		ManagerPageResponseDto managerList = service.managerList(curPage, filter, state);
+//		request.setAttribute("managerList", managerList);
+		
 		request.getRequestDispatcher("/admin/adminHosManager.jsp").forward(request, response);
 	}
 

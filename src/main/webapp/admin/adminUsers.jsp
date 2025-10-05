@@ -91,7 +91,7 @@
 	                        	<c:choose>
 								<c:when test="${empty userList.list}">
 									<tr>
-										<td colspan="6">현재 신청등록된 병원이 존재하지 않습니다.</td>
+										<td colspan="6">회원이 존재하지 않습니다.</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
@@ -147,7 +147,7 @@
                     <div class="modal-profile" id="modal-profile">
                         <div class="profile">
                             <div class="profile-header">
-                                <span>ID : 10203</span>
+                                <span>ID : <span id="userNo">10203</span></span>
                                 <i class="fa-solid fa-xmark"></i>
                             </div>
                             <div class="profile-name-div"><span class="profile-name" id="userName"></span></div>

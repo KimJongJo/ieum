@@ -22,8 +22,7 @@ $(document).ready(function(){
                     $("#userName").text(object.username);
                     // 이미지 경로 변경
 					$("#userImg").attr("src", contextPath + "/" + object.imgFile);
-					
-					console.log(contextPath + "/" + object.imgFile);
+					$("#userNo").text(object.uNo);
 					
                     $("#emailTd").text(object.email);
                     $("#createTd").text(object.createdAt);
