@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" /> --%>
 <script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script>
 <style>
 /* 전체 레이아웃 */
@@ -256,17 +257,19 @@ body {
 
 .frame {
   position: relative;
-  width: 996px;
+  width: 100%;
+  max-width: 996px;
   background-color: #ffffff;
-  border-radius: 0;
+  border-radius: 0 0 15px 15px;
   border: 2px solid #d9d9d9;
   padding: 15px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 0px;
 }
+
+
 
 /* 상단: 닉네임 + 카테고리 */
 .frame-top {
@@ -295,15 +298,22 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  align-items: flex-start; /* ← 추가: 왼쪽 정렬 */
 }
 
-.div {
+.title {
   font-family: "Noto Sans-Medium", Helvetica;
   font-weight: 500;
   font-size: 18px;
   color: #000;
 }
-
+.div {
+  font-family: "Noto Sans-Medium", Helvetica;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: left;      /* ← 추가 */
+  color: #000;
+}
 .p {
   font-family: "Inter-Regular", Helvetica;
   font-size: 14px;
@@ -322,8 +332,10 @@ body {
   color: #000;
 }
 
-/* 액션 아이콘 오른쪽 아래 고정 */
-#actions {
+
+
+/* 액션 아이콘 (좋아요, 댓글, 조회수) */
+.actions {
   position: absolute;
   bottom: 10px;
   right: 15px;
@@ -332,6 +344,80 @@ body {
   font-size: 14px;
 }
 
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;          /* 아이콘과 숫자 사이 간격 */
+  width: 50px;        /* 3자리 기준 고정 */
+}
+
+/* 댓글 스타일 */
+.comment {
+  position: relative;
+  width: 100%;
+  max-width: 1003px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #d9d9d9;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 상단: 닉네임 + 카테고리 */
+.comment-top {
+  display: flex;
+  justify-content: space-between; /* 좌우 분리 */
+  align-items: center;
+}
+
+/* 닉네임 */
+.nickName {
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 12px;
+  color: #000;
+}
+
+
+.action-item span.action-count {
+  display: inline-block;
+  min-width: 20px;   /* 숫자 자리 고정 */
+  text-align: left;  /* 숫자 왼쪽 정렬 */
+}
+
+/* 좋아요(하트) 버튼 */
+.heart-button {
+  background: none;       /* 버튼 배경 제거 */
+  border: none;           /* 테두리 제거 */
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;   /* 내부 요소 가로 정렬 */
+  align-items: center;    /* 세로 가운데 정렬 */
+  gap: 4px;               /* 하트와 숫자 간격 */
+}
+
+.heart-button:focus {
+  outline: none; /* 클릭 시 파란 테두리 제거 */
+}
+
+/* 하트 이미지 정렬 */
+.heart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+
+.heart1 img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
 
 
 #calendar {
@@ -396,6 +482,14 @@ $(function() {
     =========================== */
     $(".menu span:nth-child(5)").hide();
 
+});
+</script>
+
+<script>
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted || window.performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        window.location.reload();
+    }
 });
 </script>
 
@@ -470,7 +564,8 @@ $(function() {
                 <div>업로드 날짜</div>
             </div>
         </div>
-
+		
+		
         <div id="community-box">
             <div id="diagnosis2">
                 <div id="recent">최근 커뮤니티</div>
@@ -478,29 +573,62 @@ $(function() {
                     <img id="Heart1" src="${pageContext.request.contextPath}/img/버튼.png" alt="좋아요" width="15" height="15"/>
                 </button>
             </div>
-            <div class="frame">
+            <c:if test="${not empty myComList}">
+            <div class="frame" data-commu-no="${myComList.commuNo}"
+            onclick="location.href='${pageContext.request.contextPath}/comDetail?no=${myComList.commuNo}'">
+            <button type="submit" class="hidden-submit" style="display:none;"></button>
                 <!-- 상단: 닉네임 + 카테고리 -->
-                <div class="frame-top">
-                    <div class="text-wrapper-1">닉네임</div>
-                    <div class="text-wrapper-2">진로/취업</div>
-                </div>
+			        <div class="frame-top">
+			            <div class="text-wrapper-1">
+			            	<c:out value="${myComList.nickName}" default="익명"/>
+			            </div>
+			            <div class="text-wrapper-2">
+			            	<c:out value="${myComList.categoryName}" default="카테고리"/>
+			            </div>
+			        </div>
 
                 <!-- 제목 및 본문 -->
-                <div class="overlap-group">
-                    <div class="div">요즘 너무 힘듭니다</div>
-                    <p class="p">안녕하세요 20대 초반 남자이구여 현재 같은 어쩌구 저쩌구 그러니까 전 아니라니까요 그게 뭐냐니까요?</p>
-                </div>
-
-                <!-- 업로드 날짜 -->
-                <div class="text-wrapper-3">업로드 날짜</div>
+			        <div class="overlap-group">
+			            <div class="title"><c:out value="${myComList.commuTitle}"/></div>
+			            <p class="p">
+			            	<c:out value="${myComList.commuContent}" escapeXml="false"/>
+			            </p>
+			        </div>
+			
+			        <!-- 업로드 날짜 -->
+			        <div class="text-wrapper-3">
+			        	<fmt:formatDate value="${myComList.commuCreated}" pattern="yyyy-MM-dd"/>
+			        </div>
 
                 <!-- 액션 아이콘 (오른쪽 아래) -->
-                <div id="actions">
-                    <span>❤️ 0</span>
-                    <span>💬 0</span>
-                    <span>🔗 1</span>
-                </div>
+			        <div class="actions">
+				            <span class="action-item">
+				            <input type="hidden" name="commuNo" value="${myComList.commuNo}"/>
+				            <button type="submit" class="heart-button">
+				                <span class="heart1">
+								    <c:choose>
+								        <c:when test="${myComList.likedByUserCom}">
+								        	 <img id="Heart1" src="${pageContext.request.contextPath}/img/빨간하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:when>
+								        <c:otherwise>
+								        	<img id="Heart1" src="${pageContext.request.contextPath}/img/횐색하트.png" alt="좋아요" width="15" height="15"/>
+								        </c:otherwise>
+								    </c:choose>
+								</span>
+				                <span class="action-count">
+				                	<c:out value="${myComList.empathy}" />
+				                </span>
+				                </button>
+				            </span>
+			            <span class="action-item">
+			                💬 <span class="action-count"><c:out value="${myComList.commuComment}" /></span>
+			            </span>
+			            <span class="action-item">
+			                🔗 <span class="action-count"><c:out value="${myComList.commuViews}" /></span>
+			            </span>
+			        </div>
             </div>
+            </c:if>
         </div>
 	</div>
     </div>

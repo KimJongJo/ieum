@@ -1,14 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>건강이음 - 다이어리 메인</title>
+  <title>ê±´ê°ì´ì - ë¤ì´ì´ë¦¬ ë©ì¸</title>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
   <!-- jquery -->
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <!-- FullCalendar 스크립트 (Global build) -->
+  <!-- FullCalendar ì¤í¬ë¦½í¸ (Global build) -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
@@ -33,7 +34,7 @@
       padding: 20px;
     }
 
-    /* 캘린더 헤더 */
+    /* ìºë¦°ë í¤ë */
     .fc-toolbar-chunk div {
       display: flex;
       flex-direction: row;
@@ -82,7 +83,7 @@
       background-color: #B7B7B7;
     }
 
-    /* 검색창 */
+    /* ê²ìì°½ */
     .notice-search {
       margin-left: auto;
       display: flex;
@@ -125,7 +126,7 @@
       margin-left: 4px;
     }
 
-    /* 정렬 셀렉트 */
+    /* ì ë ¬ ìë í¸ */
     .notice-select {
       background: #f9fbff;
       border: 1px solid #E7E7E7;
@@ -137,7 +138,7 @@
       padding-left: 6px;
     }
 
-    /* 상세 팝업  */
+    /* ìì¸ íì  */
     .detail-popup {
       position: absolute;
       z-index: 10000;
@@ -304,7 +305,7 @@
       font-size: 13px;
     }
 
-    /* 페이지네이션 & 작성하기 버튼 컨테이너 */
+    /* íì´ì§ë¤ì´ì & ìì±íê¸° ë²í¼ ì»¨íì´ë */
     .diary-footer {
       position: relative;
       display: flex;
@@ -314,13 +315,13 @@
       margin-top: 20px;
     }
 
-    /* 페이지네이션 중앙 정렬 */
+    /* íì´ì§ë¤ì´ì ì¤ì ì ë ¬ */
     .pagination {
       display: flex;
       align-items: center;
       gap: 10px;
       margin: 0 auto;
-      /* 중앙 정렬 */
+      /* ì¤ì ì ë ¬ */
     }
 
     .pagination button {
@@ -347,7 +348,7 @@
   <div class="diary-container">
     <div id="calendar"></div>
     
-    <!-- 팝업 -->
+  	<!-- 팝업 -->
     <div class="detail-popup">
       <div id="close-btn">
         <i class="fa-solid fa-x"></i>
@@ -379,24 +380,24 @@
 
   </div>
   <script>
-    // 페이지네이션 클릭 이벤트
+	//페이지네이션 클릭 이벤트	
     $(".pagination button").on("click", function () {
       const pageNum = $(this).text();
 
-      if ($.isNumeric(pageNum)) { // 숫자 버튼 클릭 시
+      if ($.isNumeric(pageNum)) { // 숫자 버튼 클릭 시
         $(".pagination button").removeClass("active");
         $(this).addClass("active");
       }
     });
-    // 마우스 클릭 이벤트 리스너 추가
+    // 마우스 클릭 이벤트 리스너 추가
     $(document).ready(function () {
       const popup = $('.detail-popup');
       const fc = $('.fc');
       const closeButton = $('#close-btn');
       $(document).on('click', function (event) {
         const header = $(event.target).closest('.fc-header-toolbar').length > 0;
-        // console.log($(event.target).closest('.fc-header-toolbar').length);
-        // 팝업 내부를 클릭했거나 닫기 버튼을 클릭했을 때는 팝업을 띄우지 않음
+     	// console.log($(event.target).closest('.fc-header-toolbar').length);
+        // 팝업 내부를 클릭했거나 닫기 버튼을 클릭했을 때는 팝업을 띄우지 않음
         if (popup.has(event.target).length > 0
           || $(event.target).is(closeButton)
           || fc.has(event.target).length == 0 || header) {
@@ -404,11 +405,11 @@
           return;
         }
 
-        // 커서 위치 가져오기
+    	 // 커서 위치 가져오기
         const x = event.clientX;
         const y = event.clientY;
 
-        // 팝업의 위치 설정 및 보이기
+     	// 팝업의 위치 설정 및 보이기
         popup.css({
           'display': 'flex',
           'left': x + 'px',
@@ -417,9 +418,9 @@
       });
 
 
-      // 닫기 버튼 클릭 이벤트 리스너 추가
+      // 닫기 버튼 클릭 이벤트 리스너 추가
       closeButton.on('click', function () {
-        // 팝업 숨기기
+    	// 팝업 숨기기
         popup.css("display", "none");
       });
     });

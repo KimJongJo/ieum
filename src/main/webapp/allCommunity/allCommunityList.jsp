@@ -118,6 +118,13 @@ $(function() {
 </script>
 
 <style>
+.title {
+        font-family: "Noto Sans-Medium", Helvetica;
+        font-weight: 500;
+        font-size: 18px;
+        color: #000;
+    }
+
 .heart-button {
     background: none;       /* 버튼 배경 제거 */
     border: none;           /* 테두리 제거 */
@@ -224,7 +231,7 @@ margin: 0 10px 0 10px;
 			            </div>
 			        </div>
 			        <div class="overlap-group">
-			            <div class="div"></div>
+			            <div class="title"><c:out value="${allComList.commuTitle}"/></div>
 			            <p class="p">
 			            	<c:out value="${allComList.commuContent}" escapeXml="false"/>
 			            </p>

@@ -65,7 +65,7 @@ public class CommunityEmpathy extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");  // 추가
 		
 		// 로그인 사용자 번호 (임시)
-        int uNo = 4;
+        int uNo = 3;
 
         // 게시글 번호 확인
         String commuNoStr = request.getParameter("commuNo");
