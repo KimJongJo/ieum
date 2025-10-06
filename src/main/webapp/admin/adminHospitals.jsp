@@ -21,8 +21,8 @@
 		    let filter = "none"; // 정렬 기준 초기값
 		    let state = "ACTIVE"; // 회원 상태 초기값 0 -> 전체
 		</script>
-		<script src="./js/adminHospitalsModal.js"></script>
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}"></script>
+		
+		
     </head>
     <body>
         <div class="main">
@@ -172,6 +172,7 @@
                 </div>
             </div>
         </div>
-        
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
+		<script src="./js/adminHospitalsModal.js"></script>
     </body>
 </html>

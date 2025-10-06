@@ -37,14 +37,6 @@ public class RequestHospital extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Properties prop = new Properties();
-		try(InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
-		    prop.load(is);
-		    String kakaoKey = prop.getProperty("kakao.api.key");
-		    request.setAttribute("kakaoKey", kakaoKey);
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
 		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");

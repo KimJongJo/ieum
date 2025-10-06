@@ -46,7 +46,6 @@ function searchAddr() {
                 if (status === kakao.maps.services.Status.OK) {
                     var lat = result[0].y;
                     var lng = result[0].x;
-                    console.log("위도:", lat, "경도:", lng);
                     
                     document.getElementById("hos_y").value = lat;
                     document.getElementById("hos_x").value = lng;

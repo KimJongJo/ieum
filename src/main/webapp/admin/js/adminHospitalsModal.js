@@ -26,8 +26,6 @@ $(document).ready(function(){
                     $("#hosCategory").text(object.category);
                     $("#hosAddress").text(object.hAddress);
                     $("#hosReNo").text(object.hosReNo);
-                    console.log(object);
-                    
                     // 지도를 생성해서 현재 위치를 보여줘야함
                 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = { 
@@ -38,7 +36,7 @@ $(document).ready(function(){
 					var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 					
 					// 마커가 표시될 위치입니다 
-					var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+					var markerPosition  = new kakao.maps.LatLng(object.hLocationY, object.hLocationX); 
 					
 					// 마커를 생성합니다
 					var marker = new kakao.maps.Marker({
