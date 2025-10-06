@@ -65,20 +65,20 @@
                             <div class="filter-radio">
                                 <input id="stop" type="radio" name="filter" value="2" class="state" />
                                 <label for="stop" class="label">
-                                    <span class="filter-span">활동정지</span>
+                                    <span class="filter-span">비활성화</span>
                                 </label>
                             </div>
                             <div class="filter-radio">
                                 <input id="hide" type="radio" name="filter" value="3" class="state" />
                                 <label for="hide" class="label">
-                                    <span class="filter-span">비활성화</span>
+                                    <span class="filter-span">활동정지</span>
                                 </label>
                             </div>
                         </div>
                         <div class="table-div">
                         <table class="table"  id="tableSetting">
 	                        <thead>
-	                        <tr>
+	                        	<tr>
 	                                <th style="width: 100px">회원번호</th>
 	                                <th style="width: 150px">이름</th>
 	                                <th>이메일</th>

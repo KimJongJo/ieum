@@ -7,6 +7,7 @@ import dto.HospitalDto;
 
 import dto.MemberDto;
 import dto.otherDto.HosDetailDto;
+import dto.otherDto.HosInfoDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalPageResponseDto;
@@ -21,15 +22,21 @@ public interface HospitalService {
 
 	void addHospital(Map<String, Object> requestMap);
 
-	HospitalPageResponseDto hosWaitList(int curPage, String filter);
+	HospitalPageResponseDto<HospitalDto> hosWaitList(int curPage, String filter);
 
 	void approve(Integer hNo);
 
-	HospitalPageResponseDto hosWaitListByKeyword(int requestPage, String keyword, String filter);
+	HospitalPageResponseDto<HospitalDto> hosWaitListByKeyword(int requestPage, String keyword, String filter);
 
 	void reject(Integer hNo);
 
 	List<HospitalDto> joinSearchHosName(String keyword);
 
 	boolean checkHosAuthCode(Integer hNo, String hosAuthCode);
+
+	HospitalPageResponseDto<HosInfoDto> hosList(int curPage, String filter, String status);
+
+	HosInfoDto hosInfo(Integer hNo);
+
+	HospitalPageResponseDto<HosInfoDto> hosListByKeyword(Integer page, String keyword, String filter, String status);
 }

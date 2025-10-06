@@ -4,16 +4,16 @@ import java.util.List;
 
 import dto.HospitalDto;
 
-public class HospitalPageResponseDto {
+public class HospitalPageResponseDto<T> {
 	
-    private List<HospitalDto> list;
+    private List<T> list;
     private int curPage;
     private int allPage;
     private int startPage;
     private int endPage;
     private int totalCount;
     
-	public HospitalPageResponseDto(List<HospitalDto> list, int curPage, int allPage, int startPage, int endPage,
+	public HospitalPageResponseDto(List<T> list, int curPage, int allPage, int startPage, int endPage,
 			int totalCount) {
 		super();
 		this.list = list;
@@ -24,11 +24,12 @@ public class HospitalPageResponseDto {
 		this.totalCount = totalCount;
 	}
 
-	public List<HospitalDto> getList() {
+
+	public List<T> getList() {
 		return list;
 	}
 
-	public void setList(List<HospitalDto> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 

@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.otherDto.HosInfoDto;
+import dto.otherDto.HospitalPageResponseDto;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
+
 /**
  * Servlet implementation class AdminHospitals
  */
@@ -26,6 +31,17 @@ public class AdminHospitals extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 모든 회원 목록 조회
+		int curPage = 1;
+		String filter = "none";
+		String status = "ACTIVE";
+		
+		// 처음 기본값 -> 운영중인 병원 status가 ACTIVE 인 병원 목록
+		HospitalService service = new HospitalServiceImpl();
+		HospitalPageResponseDto<HosInfoDto> hosList = service.hosList(curPage, filter, status);
+		request.setAttribute("hosList", hosList);
+		
 		request.getRequestDispatcher("/admin/adminHospitals.jsp").forward(request, response);
 	}
 

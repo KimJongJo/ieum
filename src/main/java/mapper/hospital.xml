@@ -147,5 +147,85 @@
 	<select id="checkHosAuthCode" parameterType="Map" resultType="hospital">
 		select * from hospital where h_no = #{hNo} and h_code = #{hosAuthCode}
 	</select>
+	
+	<select id="hospitalCount" parameterType="String" resultType="Integer">
+		select count(*) from hospital where 1=1
+		<choose>
+			<when test="_parameter  == 'allHos'">
+			  and STATUS IN ('ACTIVE','INACTIVE')
+			</when>
+			<otherwise>
+				and status = #{_parameter}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectHospitals" parameterType="Map" resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created, '%Y-%m-%d') AS hCreated ,
+		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS hUpdated , h.hos_re_no
+		FROM hospital h
+		JOIN hos_category c
+		USING(category_no)
+		WHERE 1=1
+		<choose>
+			<when test="status  == 'allHos'">
+				and STATUS IN ('ACTIVE','INACTIVE')
+			</when>
+			<otherwise>
+				and status = #{status}
+			</otherwise>
+		</choose>
+		order by ${sortValue} ${sort}
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="hosInfo" parameterType="Integer" resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, h.hos_re_no
+		FROM hospital h
+		JOIN hos_category c
+		USING(category_no)
+		where h_no = #{_parameter}
+	</select>
+	
+	<select id="hospitalListByKeyword" parameterType="Map" resultType="Integer">
+		select count(*) from hospital WHERE 1=1
+		<choose>
+			<when test="status  == 'allHos'">
+				and STATUS IN ('ACTIVE','INACTIVE')
+			</when>
+			<otherwise>
+				and status = #{status}
+			</otherwise>
+		</choose>
+		and (h_nm like concat ('%', #{keyword}, '%')
+		or h_address like concat ('%', #{keyword}, '%')
+		or h_tel like concat ('%', #{keyword}, '%'))
+	</select>
+	
+	<select id="selectHosListByKeyword" parameterType="Map" resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created, '%Y-%m-%d') AS hCreated ,
+		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS hUpdated , h.hos_re_no
+		FROM hospital h
+		JOIN hos_category c
+		USING(category_no)
+		WHERE 1=1
+		<choose>
+			<when test="status  == 'allHos'">
+				and STATUS IN ('ACTIVE','INACTIVE')
+			</when>
+			<otherwise>
+				and status = #{status}
+			</otherwise>
+		</choose>
+		<if test="keyword != null and keyword != ''">
+		    AND (
+		        h.h_nm LIKE CONCAT('%', #{keyword}, '%')
+		        OR h.h_address LIKE CONCAT('%', #{keyword}, '%')
+		        OR h.h_tel LIKE CONCAT('%', #{keyword}, '%')
+		    )
+		</if>
+		order by ${sortValue} ${sort}
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
 
 </mapper>	
