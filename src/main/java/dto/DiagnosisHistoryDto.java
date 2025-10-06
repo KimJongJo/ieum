@@ -17,6 +17,7 @@ public class DiagnosisHistoryDto {
 	String doctorComment; // 의사의 말
 	String patientComment; // 환자 메모
 	String stats; // 진단서 작성상태
+	Integer reservationNo; // 예약 번호
 	
 	public DiagnosisHistoryDto() {
 		super();
@@ -24,7 +25,8 @@ public class DiagnosisHistoryDto {
 	
 	public DiagnosisHistoryDto(Integer diagnosisNo, Integer patientId, Integer doctorId, Integer hospitalId,
 			String diagnosisName, String sympotoms, String testSummary, String treatment, String prescription,
-			Date visitDatetime, String visitType, String doctorComment, String patientComment, String stats) {
+			Date visitDatetime, String visitType, String doctorComment, String patientComment, String stats,
+			Integer reservationNo) {
 		super();
 		this.diagnosisNo = diagnosisNo;
 		this.patientId = patientId;
@@ -40,8 +42,19 @@ public class DiagnosisHistoryDto {
 		this.doctorComment = doctorComment;
 		this.patientComment = patientComment;
 		this.stats = stats;
+		this.reservationNo = reservationNo;
 	}
-	
+
+
+	public DiagnosisHistoryDto(Integer patientId, Integer doctorId, Integer hospitalId,
+			Integer reservationNo) {
+		super();
+		this.patientId = patientId;
+		this.doctorId = doctorId;
+		this.hospitalId = hospitalId;
+		this.reservationNo = reservationNo;
+	}
+
 	@Override
 	public String toString() {
 		return "diagnosisHistory [diagnosisNo=" + diagnosisNo + ", patientId=" + patientId + ", doctorId=" + doctorId
@@ -133,6 +146,14 @@ public class DiagnosisHistoryDto {
 	}
 	public void setStats(String stats) {
 		this.stats = stats;
+	}
+
+	public Integer getReservationNo() {
+		return reservationNo;
+	}
+
+	public void setReservationNo(Integer reservationNo) {
+		this.reservationNo = reservationNo;
 	}
 	
 	

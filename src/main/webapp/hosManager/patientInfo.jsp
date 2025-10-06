@@ -10,25 +10,25 @@
 		        	</tr>
 		            <tr>
 		                <td class="u-td u-th up" style="width:100px;">환자ID</td>
-		          <td class="u-td up">2241</td>
-		          <td class="u-td u-th up" style="width:100px;">나이</td>
-		          <td class="u-td up" style="width:130px;">26</td>
+		          <td class="u-td up" id="infopNo">2241</td>
+		          <td class="u-td u-th up" style="width:100px;">생년월일</td>
+		          <td class="u-td up" style="width:130px;" id="infoBirthDate">26</td>
 		          <td class="u-td u-th" style="width:100px;">연락처</td>
-		          <td class="u-td add">010-1234-5678</td>
+		          <td class="u-td add" id="infoTel">010-1234-5678</td>
 		      </tr>
 		      <tr>
 		          <td class="u-td u-th up" style="width:100px;">이름</td>
-		          <td class="u-td up">김종조</td>
+		          <td class="u-td up" id="infoUsername">김종조</td>
 		          <td class="u-td u-th up" style="width:100px;">성별</td>
-		          <td class="u-td up">남</td>
+		          <td class="u-td up" id="infoGender">남</td>
 		          <td class="u-td u-th " style="width:100px;">주소</td>
-		          <td class="u-td add">서울시 중랑구 어쩌구 저쩌구</td>
+		          <td class="u-td add" id="infouAddress">서울시 중랑구 어쩌구 저쩌구</td>
 		      </tr>
 		  	<tr>
 		  		<td colspan="6" class="td-name">상담 내용</td>
 		  	</tr>
 		      <tr>
-		          <td colspan="6"><div class="p-info-content">상처를 치료해줄 사람어디 없나 가만히 놔두다간 끊임없이 덧나</div></td>
+		          <td colspan="6"><div class="p-info-content" id="content">상처를 치료해줄 사람어디 없나 가만히 놔두다간 끊임없이 덧나</div></td>
 		      </tr>
 		      <tr>
 		  		<td colspan="6" class="td-name">진단기록</td>

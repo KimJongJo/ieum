@@ -3,4 +3,9 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.diagnosis_history">
 	
+	<insert id="createDia" parameterType="diagnosisHistory">
+		insert into diagnosis_history (patient_id, doctor_id, h_no, r_no, diagnosis_state) 
+		values (#{patientId}, #{doctorId}, #{hospitalId}, #{reservationNo}, 'BASIC')
+	</insert>
+	
 </mapper>	

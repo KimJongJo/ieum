@@ -69,4 +69,6 @@ public interface MemberDao {
 	List<ManagerInfoDto> selectManagerListByKeyword(Map<String, Object> page);
 
 	ManagerInfoDto managerInfoAndFile(Integer uNo);
+
+	MemberDto selectUserByNo(Integer uNo);
 }

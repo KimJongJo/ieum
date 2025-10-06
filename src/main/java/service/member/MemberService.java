@@ -51,5 +51,7 @@ public interface MemberService {
 
 	ManagerInfoDto managerInfoAndFile(Integer uNo);
 
+	MemberDto selectUserByNo(Integer uNo);
+
 	
 }

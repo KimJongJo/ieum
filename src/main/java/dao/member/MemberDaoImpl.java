@@ -252,4 +252,11 @@ public class MemberDaoImpl implements MemberDao{
 			return sqlsession.selectOne("managerInfoAndFile", uNo);
 		}
 	}
+
+	@Override
+	public MemberDto selectUserByNo(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("selectUserByNo", uNo);
+		}
+	}
 }

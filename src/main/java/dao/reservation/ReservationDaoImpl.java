@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.ReservationDto;
-import dto.otherDto.ResUserDoctorInfoDto;
+import dto.otherDto.DiagnosisInfoDto;
 import util.MybatisSqlSessionFactory;
 
 public class ReservationDaoImpl implements ReservationDao {	
@@ -26,20 +26,43 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public void insertRes(ReservationDto reservation) throws Exception {
+	public Integer insertRes(ReservationDto reservation) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 			System.out.println(reservation);
 			session.insert("mapper.reservation.insertReservation",reservation);
 			session.commit();
+			return reservation.getrNo();
 		}
 		
 	}
 
-	// 오늘 예약 리스트 가져오기
+	// 오늘 예약 리스트 가져오기(병원관리자)
 	@Override
-	public List<ResUserDoctorInfoDto> todayReservationList() {
+	public List<DiagnosisInfoDto> todayReservationList() {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectList("todayReservationList");
+		}
+	}
+
+	// 오늘 예약 리스트 가져오기(의사)
+	@Override
+	public List<DiagnosisInfoDto> todayReservationMyList(Integer uNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationMyList", uNo);
+		}
+	}
+
+	@Override
+	public Map<String, Object> selectDiaByRNo(Integer rNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectDiaByRNo", rNo);
+		}
+	}
+
+	@Override
+	public Map<String, Object> patientProfile(Integer rNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("patientProfile", rNo);
 		}
 	}
 

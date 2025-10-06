@@ -419,5 +419,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.managerInfoAndFile(uNo);
 	}
 
+	// 회원 번호를 통해 회원 정보 가져오기
+	@Override
+	public MemberDto selectUserByNo(Integer uNo) {
+		return memberDao.selectUserByNo(uNo);
+	}
+
 
 }

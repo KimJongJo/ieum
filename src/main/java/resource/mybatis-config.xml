@@ -48,10 +48,10 @@
 		<typeAlias type="dto.otherDto.MainCommuDto" alias="mainCommu" />
 		<typeAlias type="dto.otherDto.MainNoticeDto" alias="mainNotice" />
 		<typeAlias type="dto.otherDto.MainDiagnosisDto" alias="mainDiag" />
-		<typeAlias type="dto.otherDto.ResUserDoctorInfoDto" alias="resUserDocterInfo" />
 		<typeAlias type="dto.otherDto.MemberFileDto" alias="memberFile" />
 		<typeAlias type="dto.otherDto.ManagerInfoDto" alias="managerInfo" />
 		<typeAlias type="dto.otherDto.HosInfoDto" alias="hosInfo" />
+		<typeAlias type="dto.otherDto.DiagnosisInfoDto" alias="diaInfo" />
 	</typeAliases>
 
    <environments default="development">

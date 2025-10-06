@@ -12,21 +12,51 @@
 	</select>
 	
 	<!-- 예약하기/act_tel오타확인!!!-->
-	<insert id="insertReservation" parameterType="reservation">
+	<insert id="insertReservation" parameterType="reservation" useGeneratedKeys="true" keyProperty="rNo">
 		insert into reservation
 		(r_date,r_time,r_content,act_name,act_tel,r_status,r_day,h_no,u_no,m_no)
 		values (#{rDate},#{rTime},#{rContent},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
 	</insert>
 	
 	<!-- 오늘 예약인 예약 리스트 -->
-	<select id="todayReservationList" resultType="reservation">
-		select r.r_no, u.u_no as pNo, u.username as pName, DATE_FORMAT(r.r_time, '%H:%i') AS time,
-		d.diagnosis_no as diaNo, d.diagnosis_state as diaState
-		from reservation r
+	<select id="todayReservationList" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
 		join member u using(u_no)
-		join diagnosis_history d on(d.r_no = r.r_no)
-		WHERE DATE(r_date) = CURDATE()
-		and r.m_no = #{uNo}
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		order by 4
+	</select>
+	
+	<select id="todayReservationMyList" parameterType="Integer" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and r.m_no = #{_parameter}
+		order by 4
 	</select>
 
+	<select id="selectDiaByRNo" parameterType="Integer" resultType="Map">
+		SELECT u.u_no as pNo, u.birth_date as birthDate, u.u_tel as uTel,
+		u.username as username, u.gender as gender, u.u_address as uAddress,
+		d.diagnosis_no as diaNo, DATE(r.r_date) as rDate, h.h_nm as hNm, h.h_address as hAddress,
+		m.username as mNm, m.major as major
+		from reservation r
+		join member u ON(u.u_no = r.u_no)
+		join member m on(r.m_no = m.u_no)
+		join hospital h ON(r.h_no = h.h_no)
+		join diagnosis_history d ON(r.r_no = d.r_no)
+		where r.r_no = #{_parameter}
+	</select>
+	
+	<select id="patientProfile" parameterType="Integer" resultType="Map">
+		select m.u_no as pNo, m.birth_date as birthDate, m.u_tel as uTel, m.username as username,
+		m.gender as gender, m.u_address as uAddress, r.r_content as content
+		from reservation r
+		join member m on(r.u_no = m.u_no)
+		where r.r_no = #{_parameterType}
+	</select>
+	
 </mapper>	

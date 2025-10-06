@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.ReservationDto;
-import dto.otherDto.ResUserDoctorInfoDto;
+import dto.otherDto.DiagnosisInfoDto;
 import service.reservation.ReservationService;
 import service.reservation.ReservationServiceImpl;
 
@@ -37,7 +37,10 @@ public class ReservationToday extends HttpServlet {
 		
 		// 오늘 있는 예약의 리스트를 받아온다
 		ReservationService resService = new ReservationServiceImpl();
-		List<ResUserDoctorInfoDto> resList = resService.todayReservationList();
+		// 회원 번호를 같이 보내서 service에서 의사인지 병원관리자인지를 확인
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer)session.getAttribute("uNo");
+		List<DiagnosisInfoDto> resList = resService.todayReservationList(uNo);
 		
 		request.setAttribute("resList", resList);
 		

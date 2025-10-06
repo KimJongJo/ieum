@@ -9,39 +9,39 @@
         		<td colspan="6" class="td-name">환자 정보</td>
         	</tr>
             <tr>
-                <td class="u-td u-th up">환자ID</td>
-                <td class="u-td up">2241</td>
-                <td class="u-td u-th up">나이</td>
-                <td class="u-td up">26</td>
+                <td class="u-td u-th up" >환자ID</td>
+                <td class="u-td up" id="pNo">2241</td>
+                <td class="u-td u-th up">생년월일</td>
+                <td class="u-td up" id="birthDate">26</td>
                 <td class="u-td u-th">연락처</td>
-                <td class="u-td add">010-1234-5678</td>
+                <td class="u-td add" id="uTel">010-1234-5678</td>
             </tr>
             <tr>
                 <td class="u-td u-th up">이름</td>
-                <td class="u-td up">김종조</td>
+                <td class="u-td up" id="username">김종조</td>
                 <td class="u-td u-th up">성별</td>
-                <td class="u-td up">남</td>
+                <td class="u-td up" id="gender">남</td>
                 <td class="u-td u-th ">주소</td>
-                <td class="u-td add">서울시 중랑구 어쩌구 저쩌구</td>
+                <td class="u-td add" id="uAddress">서울시 중랑구 어쩌구 저쩌구</td>
             </tr>
         	<tr>
         		<td colspan="6" class="td-name">진료 정보</td>
         	</tr>
             <tr>
                 <td class="u-td u-th up">진료ID</td>
-                <td class="u-td up">2241</td>
+                <td class="u-td up" id="dNo">2241</td>
                 <td class="u-td u-th up">진료 일시</td>
-                <td class="u-td up">2025-08-31</td>
+                <td class="u-td up" id="rDate">2025-08-31</td>
                 <td class="u-td u-th">진료 병원</td>
-                <td class="u-td add">중랑구보건소</td>
+                <td class="u-td add" id="hNm">중랑구보건소</td>
             </tr>
             <tr>
                 <td class="u-td u-th">담당의사</td>
-                <td class="u-td">김종조</td>
-                <td class="u-td u-th">진료 유형</td>
-                <td class="u-td">외래/응급</td>
+                <td class="u-td" id="mName">김종조</td>
+                <td class="u-td u-th">전공</td>
+                <td class="u-td" id="major">심리상담</td>
                 <td class="u-td u-th">병원 주소</td>
-                <td class="u-td add">중랑구 보건소 어쩌구 저쩌구</td>
+                <td class="u-td add" id="hAddress">중랑구 보건소 어쩌구 저쩌구</td>
             </tr>
             <tr>
         		<td colspan="6" class="td-name">진단/진료상세</td>

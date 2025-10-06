@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservationToday.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
+        <!-- jquery -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     </head>
     <body>
         <div class="main">
@@ -49,13 +52,25 @@
 								<c:forEach var="res" items="${resList}">
 									<tr>
 		                                <td>${res.rNo}</td>
-		                                <td>김환자</td>
-		                                <td><button type="button" class="search-user-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+		                                <td>${res.pNm}</td>
+		                                <td><button value="${res.rNo}" type="button" class="search-user-btn profileBtn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 		                                <td>
-		                                	10:00
+		                                	${res.time}
 		                                </td>
-	                                	<td><button type="button" class="write-btn"><i class="fa-regular fa-pen-to-square"></i></button></td>
-	                                    <td class="reservation-table-td">미작성</td>
+	                                	<td><button type="button" class="write-btn" value="${res.rNo}"><i class="fa-regular fa-pen-to-square"></i></button></td>
+	                                    <td class="reservation-table-td">
+	                                    	<c:choose>
+	                                    		<c:when test="${res.diaState == 'BASIC'}">
+	                                    			미작성
+	                                    		</c:when>
+	                                    		<c:when test="${res.diaState == 'WRITING'}">
+	                                    			작성중
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			작성완료
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+	                                    </td>
 		                                <td><button class="status-btn complete">완료</button></td>
 	                            	</tr>
 								</c:forEach>
