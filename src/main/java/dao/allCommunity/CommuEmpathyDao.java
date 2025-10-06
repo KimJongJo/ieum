@@ -1,5 +1,7 @@
 package dao.allCommunity;
 
+import dto.MyCommunityDto;
+
 public interface CommuEmpathyDao {
 	//공감 상태 확인
 	boolean checkEmpathy(int uNo, int commuNo) throws Exception;

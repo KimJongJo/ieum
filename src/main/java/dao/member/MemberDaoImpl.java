@@ -65,7 +65,7 @@ public class MemberDaoImpl implements MemberDao{
 			return session.selectOne("mapper.member.selectProfileInfo", uNo);
 		}
 	}
-	
+	//정보 수정	
 	@Override
     public MemberProfileDto selectMemberWithProfile(int uNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
@@ -73,7 +73,7 @@ public class MemberDaoImpl implements MemberDao{
 		}
     }
 	
-	
+	// 업데이트
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {

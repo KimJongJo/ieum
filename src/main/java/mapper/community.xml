@@ -35,9 +35,21 @@
         WHERE c.u_no = #{uNo}
         ORDER BY c.commu_created DESC
     </select>
+
+	<!-- 자신이 작성한 가장 최근 커뮤니티 1개 가져오기 -->
+	<select id="selectMyCommunityOne" parameterType="int" resultType="myCommunity">
+	    SELECT c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+        FROM community c
+        INNER JOIN commu_category cg ON c.category_no = cg.category_no
+        INNER JOIN member m ON c.u_no = m.u_no
+        WHERE c.u_no = #{uNo}
+        ORDER BY c.commu_created DESC
+	    LIMIT 1
+	</select>
+
+	
     
-    
-    
+    <!-- 자신이 좋아요한 여부 -->
     <select id="selectLikedCommunityList" parameterType="int" resultType="myCommunity">
 	    select c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
 	    from community c
@@ -47,6 +59,20 @@
 	    where cl.u_no = #{uNo}
 	    order by c.commu_created DESC
 	</select>
+	
+	
+	 <!-- 자신이 좋아요한 여부 한개만 가져오기 -->
+    <select id="selectLikedCommunityOne" parameterType="int" resultType="myCommunity">
+	    select c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+	    from community c
+	    inner join commu_category cg on c.category_no = cg.category_no
+	    inner join member m ON c.u_no = m.u_no
+	    inner join commu_like cl on c.commu_no = cl.commu_no
+	    where cl.u_no = #{uNo}
+	    order by c.commu_created DESC
+	    limit 1
+	</select>
+	
 
     <!-- 모든 커뮤니티 불러오기 -->
     <select id="selectAllCommunityList" resultType="allCommunity">
