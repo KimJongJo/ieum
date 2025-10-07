@@ -7,24 +7,40 @@
 		(title, content, is_pinned, file_no, u_no) VALUES (#{title},
 		#{content}, #{isPinned}, #{fileNo, jdbcType=INTEGER}, #{uNo})
 	</insert>
-	<select id="selectNoticeList" parameterType="map"
-		resultType="notice">
+	<select id="searchNoticeList" parameterType="map" resultType="notice">
+		SELECT * FROM notice
+		<if test="keyword != null and keyword != ''">
+		WHERE (title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')	)
+		</if>
+		ORDER BY n_created DESC
+		LIMIT 2
+	</select>
+	<select id="searchNoticeCnt" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM notice
+		<if test="keyword != null and keyword != ''">
+		WHERE (title LIKE CONCAT('%', #{keyword}, '%') OR content LIKE CONCAT('%', #{keyword}, '%')	)
+		</if>
+	</select>
+	<select id="selectNoticeList" parameterType="map" resultType="notice">
 		SELECT n.*,m.username AS uNm FROM notice n
-		JOIN member m ON n.u_no = m.u_no
+		JOIN member m ON n.u_no =
+		m.u_no
 		WHERE n.is_pinned = #{isPinned}
-		AND (
-		<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+		<if test="uNo != null and uNo != ''">
+			AND (
+			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
 
-		<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
-		OR (
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
-		AND (
-		n.u_no = #{uNo}
-		OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
-		)
-		)
-		)
+			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+			OR (
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+			AND (
+			n.u_no = #{uNo}
+			OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
+			)
+			)
+			)
+		</if>
 
 		<if test="keyword != null and keyword != ''">
 			AND (
@@ -57,8 +73,9 @@
 	<select id="selectNoticeDetail" parameterType="Integer"
 		resultType="notice">
 		SELECT n.*, f.file_name FROM notice n
-		LEFT JOIN file f USING(file_no)
-		WHERE n_no = #{nNo} 
+		LEFT JOIN file f
+		USING(file_no)
+		WHERE n_no = #{nNo}
 
 	</select>
 
@@ -68,19 +85,19 @@
 		SELECT n.n_no,n.title
 		FROM notice n
 		JOIN member m ON n.u_no = m.u_no
-		WHERE n_no &lt; #{nNo} 
+		WHERE n_no &lt; #{nNo}
 		AND (
-			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
-			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
-	
-			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
-			OR (
-				(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
-				AND (
-					n.u_no = #{uNo}
-					OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
-				)
-			)
+		<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+		(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+
+		<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+		OR (
+		(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+		AND (
+		n.u_no = #{uNo}
+		OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
+		)
+		)
 		)
 		ORDER BY n_no DESC
 		LIMIT 1
@@ -92,27 +109,52 @@
 		SELECT n.n_no,n.title
 		FROM notice n
 		JOIN member m ON n.u_no = m.u_no
-		WHERE n_no &gt; #{nNo} 
+		WHERE n_no &gt; #{nNo}
 		AND (
-			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
-			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
-	
-			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
-			OR (
-				(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
-				AND (
-					n.u_no = #{uNo}
-					OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
-				)
-			)
+		<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+		(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+
+		<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+		OR (
+		(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+		AND (
+		n.u_no = #{uNo}
+		OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
+		)
+		)
 		)
 		ORDER BY n_no ASC
 		LIMIT 1
 	</select>
 	<select id="selectNoticeCnt" parameterType="Integer"
 		resultType="Integer">
-		SELECT COUNT(*) FROM
-		notice WHERE is_pinned = #{isPinned};
+		SELECT COUNT(*) FROM notice 
+		JOIN member m ON n.u_no = m.u_no
+		WHERE is_pinned = #{isPinned}
+		<if test="uNo != null and uNo != ''">
+			AND (
+			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+
+			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+			OR (
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+			AND (
+			n.u_no = #{uNo}
+			OR m.h_no = (SELECT h_no FROM member WHERE u_no = #{uNo})
+			)
+			)
+			)
+		</if>
+
+		<if test="keyword != null and keyword != ''">
+			AND (
+			n.title LIKE CONCAT('%', #{keyword}, '%')
+			OR n.content
+			LIKE
+			CONCAT('%', #{keyword}, '%')
+			)
+		</if>
 	</select>
 	<update id="updateNotice" parameterType="notice">
 		UPDATE notice SET

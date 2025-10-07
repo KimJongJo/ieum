@@ -1,11 +1,17 @@
 package controller.common;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dto.NoticeDto;
+import service.admin.NoticeService;
+import service.admin.NoticeServiceImpl;
 
 /**
  * Servlet implementation class MainSearch
@@ -26,8 +32,30 @@ public class MainSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("common/main/mainSearch.jsp").forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		String keyword = request.getParameter("keyword");
+		String tab = request.getParameter("tab");
+		NoticeService service = new NoticeServiceImpl();
+		try {
+			if (keyword == null) keyword = "";
+			keyword = keyword.trim();
+//			if (tab == "notice" || tab == "all") {
+				List<NoticeDto> searchNoticeList = service.getSearchList(keyword);
+				request.setAttribute("noticeList", searchNoticeList);
+//			} 
+//			if (tab == "commu" || tab == "all") {
+//				
+//			}
+			Integer searchNoticeCnt = service.getSearchCnt(keyword);
+			request.setAttribute("noticeCnt", searchNoticeCnt);
+			request.setAttribute("allCnt", searchNoticeCnt);
+			request.setAttribute("keyword", keyword);
+			request.setAttribute("tab", tab);
+			request.getRequestDispatcher("common/main/mainSearch.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**

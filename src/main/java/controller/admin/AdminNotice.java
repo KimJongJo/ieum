@@ -90,7 +90,9 @@ public class AdminNotice extends HttpServlet {
 				request.getRequestDispatcher("/admin/adminNoticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			request.setAttribute("err", "목록 조회 중 오류가 발생했습니다.");
+			request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);
 		}
 
 	}
