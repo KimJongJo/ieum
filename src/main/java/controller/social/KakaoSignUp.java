@@ -80,7 +80,6 @@ public class KakaoSignUp extends HttpServlet {
 				nickname, address, diarYN, fileNo);
 		
 		Integer uNo = memberService.socialSignUp(member);
-		
 		session.setAttribute("uNo", uNo);
 		
 		response.sendRedirect(request.getContextPath() + "/index");

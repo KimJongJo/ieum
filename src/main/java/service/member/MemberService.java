@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
+import dto.otherDto.MemberFileDto;
+import dto.otherDto.MemberPageResponseDto;
 import dto.otherDto.HospitalDocDto;
 
 public interface MemberService {
@@ -32,6 +36,24 @@ public interface MemberService {
 	MemberDto socialUpdate(String email, String id) throws Exception;
 	
 	MemberDto selectResUser (Integer uNo)throws Exception;
+
+	MemberPageResponseDto userList(int curPage, String filter, Integer state);
+
+	MemberPageResponseDto memberListByKeyword(int requestPage, String keyword, String filter, Integer state);
+
+	void userState(Integer uNo, Integer stateCode);
+
+	MemberFileDto memberInfoAndFile(Integer uNo);
+
+	ManagerPageResponseDto managerList(int curPage, String filter, int state, String role);
+
+	ManagerPageResponseDto managerListByKeyword(int requestPage, String keyword, String filter, Integer state,
+			String role);
+
+	ManagerInfoDto managerInfoAndFile(Integer uNo);
+
+	MemberDto selectUserByNo(Integer uNo);
+
 	
 	HospitalDocDto getDocDetail (Integer mNo) throws Exception;
 

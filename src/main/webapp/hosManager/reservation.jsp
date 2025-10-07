@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,6 +12,16 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservation.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
+        <!-- jquery -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script>
+		    // HTML 페이지에서 선언, JSP에서 EL 치환됨
+		    const contextPath = "${pageContext.request.contextPath}";
+		    let curPage = ${resList.curPage};
+		    let allPage = ${resList.allPage};
+		    let curKeyword = ""; // 현재 검색어
+		    let uNo = ${sessionScope.uNo};
+		</script>
         
     </head>
     <body>
@@ -23,7 +34,7 @@
                     <jsp:include page="managerHeader.html"></jsp:include>
                     <div class="info">
                         <div class="search-name">
-                            <span class="hos-name">중랑구 보건소</span>
+                            <span class="hos-name">${hosName}</span>
                         </div>
                         <form class="search-bar2">
                             <div class="select-div">
@@ -46,55 +57,70 @@
                         </form>
 						<div class="reservation-table-div">
 							<table class="table reservation-table">
-	                            <tr>
-	                                <th style="width: 70px">예약ID</th>
-	                                <th style="width: 150px">환자 이름</th>
-	                                <th style="width: 150px">담당 의사</th>
-	                                <th style="width: 200px">예약날짜 / 시간</th>
-	                                <th colspan=2 style="width: 150px">진단서</th>
-	                                <th>환자정보</th>
-	                            </tr>
-	                            <tr>
-	                                <td class="reservation-table-td">R045</td>
-	                                <td class="reservation-table-td">김환자</td>
-	                                <td class="reservation-table-td">김의사</td>
-	                                <td class="reservation-table-td">
-	                                    <span>2025-08-31</span>
-	                                    /
-	                                    <span>10:00</span>
-	                                </td>
-	                                <td class="reservation-table-td">미작성</td>
-	                                <td><button type="button" class="show-btn">보기</button></td>
-	                                <td><button type="button" class="show-btn" id="show-patient-info">보기</button></td>
-	                            </tr>
-	                            
+								<thead>
+									<tr>
+		                                <th style="width: 70px">예약ID</th>
+		                                <th style="width: 150px">환자 이름</th>
+		                                <th style="width: 150px">담당 의사</th>
+		                                <th style="width: 200px">예약날짜 / 시간</th>
+		                                <th style="width: 150px">진단서</th>
+		                                <th>환자정보</th>
+		                            </tr>
+								</thead>	
+								<tbody>
+									<c:forEach var="res" items="${resList.list}">
+										<tr>
+											<td class="reservation-table-td">${res.rNo}</td>
+			                                <td class="reservation-table-td">${res.pNm}</td>
+			                                <td class="reservation-table-td">${res.mNm}</td>
+			                                <td class="reservation-table-td">
+			                                    <span>${res.date}</span>
+			                                    /
+			                                    <span>${res.time}</span>
+			                                </td>
+			                                <td><button value="${res.diaNo}" type="button" class="show-dia-btn">보기</button></td>
+	                                		<td><button value="${res.diaNo}" type="button" class="show-pInfo-btn" id="show-patient-info">보기</button></td>
+										</tr>
+									</c:forEach>
+								</tbody>
 	                        </table>
 						</div>
                         
-                        <div class="page-div">
-                            <a href="#"
-                                ><button class="page" type="button"><i class="fa-solid fa-angle-left"></i></button
-                            ></a>
-                            <a href="#"><button class="cur-page" type="button">1</button></a>
-                            <a href="#"><button class="page" type="button">2</button></a>
-                            <a href="#"><button class="page" type="button">3</button></a>
-                            <a href="#"><button class="page" type="button">4</button></a>
-                            <a href="#"><button class="page" type="button">5</button></a>
-                            <a href="#"
-                                ><button class="page" type="button"><i class="fa-solid fa-angle-right"></i></button
-                            ></a>
-                        </div>
+                        <c:if test="${not empty resList.list}">
+						<div class="page-div">
+							<button class="page previous" type="button">
+								<i class="fa-solid fa-angle-left"></i>
+							</button>
+							<!-- 페이지 번호 반복 -->
+							    <c:forEach var="i" begin="${resList.startPage}" end="${resList.endPage}">
+							        <c:choose>
+							            <c:when test="${i == resList.curPage}">
+							                <button value="${i}" class="cur-page" type="button">${i}</button>
+							            </c:when>
+							            <c:otherwise>
+							                <button value="${i}" class="page move-page" type="button">${i}</button>
+							            </c:otherwise>
+							        </c:choose>
+							    </c:forEach>
+						  
+							<button class="page next-page" type="button">
+								<i class="fa-solid fa-angle-right"></i>
+							</button>
+						</div>
+				  		</c:if>
                     </div>
                     
                     
                     <jsp:include page="patientInfo.jsp"></jsp:include>
+                   	<!-- 진단서 보기를 눌렀을때 나타날 진단서 -->
+				   <jsp:include page="showDia2.jsp"></jsp:include>
                     
                     
                 </div>
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
-        <script src="${pageContext.request.contextPath}/hosManager/js/modal1.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/modal4.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal3.js"></script>
     </body>
 </html>

@@ -3,8 +3,12 @@ package dao.member;
 import java.util.List;
 import java.util.Map;
 
+import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
+import dto.otherDto.MemberFileDto;
 import dto.otherDto.HospitalDocDto;
 
 public interface MemberDao {
@@ -44,7 +48,30 @@ public interface MemberDao {
 	MemberDto checkEmail(String email);
 
 	void socialUpdate(Map<String, String> map);
-	
+
+	int memberCount(Integer state);
+
+	List<MemberDto> selectMembers(Map<String, Object> page);
+
+	int memberListByKeyword(Map<String, Object> page);
+
+	List<MemberDto> selectUserListByKeyword(Map<String, Object> page);
+
+	void userState(Map<String, Integer> map);
+
+	MemberFileDto memberInfoAndFile(Integer uNo);
+
+	int managerCount(Map<String, Object> filterMap);
+
+	List<ManagerInfoDto> selectManagers(Map<String, Object> page);
+
+	int managerListByKeyword(Map<String, Object> keywordPage);
+
+	List<ManagerInfoDto> selectManagerListByKeyword(Map<String, Object> page);
+
+	ManagerInfoDto managerInfoAndFile(Integer uNo);
+
+	MemberDto selectUserByNo(Integer uNo);
+  
 	HospitalDocDto docDetail (Integer mNo)throws Exception;
-	
 }

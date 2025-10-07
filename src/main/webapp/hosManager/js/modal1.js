@@ -6,15 +6,9 @@ const modalProfile2 = document.getElementById("modal-dia2");
 const closeBtn1 = modalProfile.querySelector(".diaWriteX");
 const closeBtn2 = modalProfile2.querySelector(".patientInfoX");
 
-// td 클릭 시 modalProfile 열기
-document.querySelectorAll(".write-btn").forEach(td => {
-    td.addEventListener("click", (e) => {
-        // td 안에 show-btn 클릭시 modal2가 열리는 것을 방지
-        if(e.target.classList.contains("show-btn")) return;
-        modalProfile.style.display = "flex";
-        document.body.style.overflow = "hidden";
-    });
-});
+
+
+
 
 // show-btn 클릭 시 modalProfile2 열기
 document.querySelectorAll(".show-btn").forEach(btn => {

@@ -6,8 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.HospitalDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
+
+import dto.otherDto.ManagerInfoDto;
+import dto.otherDto.ManagerPageResponseDto;
+import dto.otherDto.MemberFileDto;
 import dto.otherDto.HospitalDocDto;
 import util.MybatisSqlSessionFactory;
 
@@ -119,7 +124,6 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Integer kakaoSignUp(MemberDto member) {
-		System.out.println(member);
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Integer uNo = session.insert("kakaoSignUp", member);
 			session.commit();
@@ -131,7 +135,6 @@ public class MemberDaoImpl implements MemberDao {
 	// 네이버 로그인시 이메일이 이미 있는 경우
 	@Override
 	public MemberDto checkEmail(String email) {
-		System.out.println(email);
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("checkNaverEmail", email);
 		}
@@ -146,41 +149,103 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	// 전체 일반 회원 수
+	@Override
+	public int memberCount(Integer state) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("memberCount", state);
+		}
+		
+	}
+
+	@Override
+	public List<MemberDto> selectMembers(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			
+			return session.selectList("selectMembers", page);
+		}
+	}
+
+	// 총 검색어 유저 수
+	@Override
+	public int memberListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {	
+			return sqlsession.selectOne("memberListByKeyword", page);
+		}
+	}
+
+	// 총 검색어 유저 리스트
+	@Override
+	public List<MemberDto> selectUserListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectList("selectUserListByKeyword", page);
+		}
+	}
+
+
+	// 회원 상태 변경
+	@Override
+	public void userState(Map<String, Integer> map) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			sqlsession.update("userState", map);
+			sqlsession.commit();
+		}
+		
+	}
+
+	@Override
+	public MemberFileDto memberInfoAndFile(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("memberInfoAndFile", uNo);
+		}
+	}
+
+
+	@Override
+	public int managerCount(Map<String, Object> filterMap) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()){
+			return sqlsession.selectOne("managerCount", filterMap);
+		}
+	}
+
+
+	// 매니저의 정보 + 소속 병원의 정보가 담긴 매니저인포리스트
+	@Override
+	public List<ManagerInfoDto> selectManagers(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()){
+			return sqlsession.selectList("selectManagers", page);
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 검색어가 있는 매니저 조회 수
+	@Override
+	public int managerListByKeyword(Map<String, Object> keywordPage) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {	
+			return sqlsession.selectOne("managerListByKeyword", keywordPage);
+		}
+	}
+
+	// 검색어가 있는 매니저 조회 목록
+	@Override
+	public List<ManagerInfoDto> selectManagerListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectList("selectManagerListByKeyword", page);
+		}
+	}
+
+	@Override
+	public ManagerInfoDto managerInfoAndFile(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("managerInfoAndFile", uNo);
+		}
+	}
+
+	@Override
+	public MemberDto selectUserByNo(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("selectUserByNo", uNo);
+		}
+	}
 	
 	// 병원에 근무하는 의사 수
 	@Override
@@ -205,5 +270,4 @@ public class MemberDaoImpl implements MemberDao {
 			return session.selectOne("mapper.member.docDetail", mNo);
 		}
 	}
-
 }

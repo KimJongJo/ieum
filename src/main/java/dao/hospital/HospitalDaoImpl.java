@@ -7,6 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.HospitalDto;
+import dto.otherDto.HosDetailDto;
+import dto.otherDto.HosInfoDto;
+import dto.otherDto.HosSearchDto;
+import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalSearchDto;
 import util.MybatisSqlSessionFactory;
@@ -120,6 +124,49 @@ public class HospitalDaoImpl implements HospitalDao {
 	public HospitalDto checkHosAuthCode(Map<String, Object> hosMap) {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
 			return sqlsession.selectOne("checkHosAuthCode", hosMap);
+		}
+	}
+
+	// 운영중인 병원 수
+	@Override
+	public int hospitalCount(String status) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("hospitalCount", status);
+		}
+	}
+
+	@Override
+	public List<HosInfoDto> selectHospitals(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectList("selectHospitals", page);
+		}
+	}
+
+	@Override
+	public HosInfoDto hosInfo(Integer hNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("hosInfo", hNo);
+		}
+	}
+
+	@Override
+	public int hospitalListByKeyword(Map<String, Object> keywordPage) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("hospitalListByKeyword", keywordPage);
+		}
+	}
+
+	@Override
+	public List<HosInfoDto> selectHosListByKeyword(Map<String, Object> page) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectList("selectHosListByKeyword", page);
+		}
+	}
+
+	@Override
+	public String getHosName(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("getHosName", uNo);
 		}
 	}
 }

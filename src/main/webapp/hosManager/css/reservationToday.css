@@ -59,6 +59,12 @@
                 color: white;
                 background-color: #4356b3;
                 border-radius: 5px;
+                transition-duration: 0.2s;
+                cursor: pointer;
+            }
+            
+            .reservation-btn:hover {
+                background-color: #2d3975;
             }
 
 			.reservation-table-div{

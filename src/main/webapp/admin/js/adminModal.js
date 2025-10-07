@@ -14,7 +14,7 @@ function closeModal() {
 }
 
 // 예: 테이블에서 클릭 시 모달 열기 (임의 예시)
-document.querySelectorAll(".table td").forEach((td) => {
+document.querySelectorAll(".userInfo").forEach((td) => {
     td.addEventListener("click", () => {
         openModal();
     });

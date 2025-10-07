@@ -14,10 +14,43 @@ function closeModal() {
 }
 
 // 예: 테이블에서 클릭 시 모달 열기 (임의 예시)
-document.querySelectorAll(".search-user-btn").forEach((td) => {
-    td.addEventListener("click", () => {
-        openModal();
-    });
+$(document).on("click", ".search-user-btn", function() {
+	
+	$.ajax({
+		url:"/ieum/hosManager/patientProfile",
+		type:"POST",
+		data:{rNo : $(this).val()},
+		dataType:"json",
+		success:function(res){
+			if(res.success){
+				
+				var gender;
+				if(res.object.gender == 'MALE'){
+					gender = '남'
+				}else{
+					gender = '여'
+				}
+				
+				var object = res.object;
+				$("#infopNo").text(object.pNo);
+				$("#infoBirthDate").text(object.birthDate);
+				$("#infoTel").text(object.uTel);
+				$("#infoUsername").text(object.username);
+				$("#infoGender").text(gender);
+				$("#infouAddress").text(object.uAddress);
+				$("#content").text(object.content);
+				
+			}else{
+				console.log(res.message);
+			}
+		},
+		error:function(err){
+			console.log(err);
+		}
+	})
+	
+	
+    openModal();
 });
 
 

@@ -11,9 +11,8 @@
 	</select>
 
 	<!-- 예약하기 -->
-	<insert id="insertReservation" parameterType="reservation">
-		insert into
-		reservation
+	<insert id="insertReservation" parameterType="reservation"  useGeneratedKeys="true" keyProperty="rNo">
+		insert into reservation
 		(r_date,r_time,r_content,act_name,act_tel,r_status,r_day,h_no,u_no,m_no)
 		values
 		(#{rDate},#{rTime},#{rContent},#{actName},#{actTel},#{rStatus},#{rDay},#{hNo},#{uNo},#{mNo})
@@ -21,33 +20,37 @@
 
 
 	<!-- 오늘 예약인 예약 리스트 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<select id="todayReservationList" parameterType="Map" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		order by 4
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="resCount" parameterType="Integer" resultType="Integer">
+		select count(*)
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and r.m_no = #{_parameter}
+		and d.is_completed = 0
+	</select>
+	
+	<select id="todayReservationMyList" parameterType="Map" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and r.m_no = #{uNo}
+		and d.is_completed = 0
+		order by 4
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
 
 
 	<!-- 유저의 가장 최근 예약건 -->
@@ -103,5 +106,54 @@
 		order by r.r_no DESC
 	</select>
 
-
+	<select id="selectDiaByRNo" parameterType="Integer" resultType="Map">
+		SELECT u.u_no as pNo, u.birth_date as birthDate, u.u_tel as uTel,
+		u.username as username, u.gender as gender, u.u_address as uAddress,
+		d.diagnosis_no as diaNo, DATE(r.r_date) as rDate, h.h_nm as hNm, h.h_address as hAddress,
+		m.username as mNm, m.major as major,
+		d.diagnosis_name as diaName, d.sympotoms as sym, d.test_summary as summary, d.treatment as treatment,
+		d.prescription as pre, d.doctor_comment as docComment
+		from reservation r
+		join member u ON(u.u_no = r.u_no)
+		join member m on(r.m_no = m.u_no)
+		join hospital h ON(r.h_no = h.h_no)
+		join diagnosis_history d ON(r.r_no = d.r_no)
+		where r.r_no = #{_parameter}
+	</select>
+	
+	<select id="patientProfile" parameterType="Integer" resultType="Map">
+		select m.u_no as pNo, m.birth_date as birthDate, m.u_tel as uTel, m.username as username,
+		m.gender as gender, m.u_address as uAddress, r.r_content as content
+		from reservation r
+		join member m on(r.u_no = m.u_no)
+		where r.r_no = #{_parameterType}
+	</select>
+	
+	<!-- 병원관리자 - 키워드가 있는 오늘 예약 -->
+	<select id="todayReservationListByKeyword" parameterType="Map" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and u.username like concat ('%', #{keyword}, '%')
+		and d.is_completed = 0
+		order by 4
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<!-- 의사 - 키워드가 있는 오늘 예약 -->
+	<select id="todayReservationMyListByKeyword" parameterType="Map" resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and r.m_no = #{uNo}
+		and u.username like concat ('%', #{keyword}, '%')
+		and d.is_completed = 0
+		order by 4
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
 </mapper>	

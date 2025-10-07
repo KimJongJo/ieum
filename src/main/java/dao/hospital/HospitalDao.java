@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import dto.HospitalDto;
+import dto.otherDto.HosDetailDto;
+import dto.otherDto.HosInfoDto;
+import dto.otherDto.HosSearchDto;
+import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDateFormatDto;
 import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalSearchDto;
 
@@ -22,4 +27,10 @@ public interface HospitalDao {
 	public void reject(Integer hNo);
 	public List<HospitalDto> joinSearchHosName(String keyword);
 	public HospitalDto checkHosAuthCode(Map<String, Object> hosMap);
+	public int hospitalCount(String status);
+	public List<HosInfoDto> selectHospitals(Map<String, Object> page);
+	public HosInfoDto hosInfo(Integer hNo);
+	public int hospitalListByKeyword(Map<String, Object> keywordPage);
+	public List<HosInfoDto> selectHosListByKeyword(Map<String, Object> page);
+	public String getHosName(Integer uNo);
 }

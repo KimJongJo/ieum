@@ -15,7 +15,7 @@ public class HospitalDto {
 	String hLink; // 홈페이지 링크
 	Integer hosImgFileNo; // 병원 썸네일 파일
 	Integer hosReFileNo; // 사업자등록증 파일 번호
-	String hosReNo; // 사업자등록증 파일 번호
+	String hosReNo; // 사업자등록 번호
 	Date hCreated; // 등록일
 	Date hUpdated; // 수정일
 	String status; // 활동 상태

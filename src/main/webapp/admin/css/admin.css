@@ -143,6 +143,16 @@
 	justify-content: flex-start;
 }
 
+.info2{
+	width: 970px;
+	height: 900px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}	
+
 .search-name {
 	display: flex;
 	align-items: center;
@@ -247,6 +257,13 @@
 	cursor: pointer;
 }
 
+.state-div{
+	width:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
 .active, .stop, .hide, .leave, .retired {
 	width: 80px;
 	height: 30px;
@@ -255,6 +272,7 @@
 	align-items: center;
 	border-radius: 5px;
 	cursor:pointer;
+	line-height: 30px;
 }
 
 .active {
@@ -391,7 +409,7 @@
 
 .hospital {
 	width: 710px;
-	height: 630px;
+	height: 665px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -695,4 +713,13 @@
 	height:325px;
 	border: none; 
 	overflow: hidden;
+}
+
+.trHover{
+	transition-duration: 0.3s;
+	cursor:pointer;
+}
+
+.trHover:hover{
+	background-color:#d4d4d4;
 }
