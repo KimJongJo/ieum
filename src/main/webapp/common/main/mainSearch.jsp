@@ -26,7 +26,7 @@
 		<div class="search-box">
 			<input class="search-input" id="searchInput"
 				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다." value="${keyword }">
-			<button class="search-btn" type="submit" id="searchBtn">
+			<button class="search-btn" id="searchBtn">
 				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</div>

@@ -57,7 +57,7 @@ public class MainDaoImpl implements MainDao {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
 			params.put("userLocX", userLocX);
-			params.put("userLocY", userLocY);			
+			params.put("userLocY", userLocY);	
 			return session.selectList("mapper.main.selectMapList", params);
 		}
 	}

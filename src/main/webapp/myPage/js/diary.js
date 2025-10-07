@@ -7,7 +7,7 @@ $(".pagination button").on("click", function() {
 	}
 });
 function goDetail(dNo) {
-//	console.log("dNo", dNo);
+	//	console.log("dNo", dNo);
 	const form = document.createElement("form");
 	form.method = "POST";
 	form.action = "/ieum/myPage/diary";
@@ -59,8 +59,8 @@ function renderList() {
 			const tbody = $("#diaryListBody");
 			const noDataDiv = $("#noSearchList");
 			const diaryTable = $("#diaryList");
-			const pagination   = $("#pagination");
-			 tbody.empty(); // 기존 목록 제거
+			const pagination = $("#pagination");
+			tbody.empty(); // 기존 목록 제거
 
 			if (data.diaryList.length === 0) {
 				diaryTable.hide();
@@ -152,6 +152,20 @@ $(document).ready(function() {
 		initialView: 'dayGridMonth',
 		validRange: {
 			end: todayFormatDt   // 유효한 범위의 끝 날짜
+		},
+		// n년 n월 형식
+		titleFormat: function(arg) {
+			const year = arg.date.year;
+			const month = arg.date.month + 1; // 0부터 시작하므로 +1
+			return year + '년 ' + month + '월';
+		},
+
+		//요일column 한글로
+		dayHeaderContent: function(arg) {
+			const day = arg.date.getDay();
+			const days = ['일', '월', '화', '수', '목', '금', '토'];
+			return days[day];
+
 		},
 		// 다이어리 데이터 가져오기
 		events: function(fetchInfo, successCallback, failureCallback) {

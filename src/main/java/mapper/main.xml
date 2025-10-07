@@ -44,9 +44,20 @@
 	</select>
 	
 	<select id="selectMapList" parameterType="Map" resultType="mainHos">
-		SELECT h_no, h_nm
-		FROM hospital WHERE h_location_y = #{userLocaY} AND h_location_x = #{userLocaX}
-		AND  status='ACTIVE' LIMIT3
+	  <!-- 박스 필터(도 단위) -->
+	  <bind name="latDeg" value="_parameter.radius / 111320.0" />
+	  <bind name="lonDeg" value="_parameter.radius / (111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat)))" />
+	  <!-- 경도 미터 보정 계수 -->
+	  <bind name="lonFactor" value="111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat))" />
+		SELECT h_no, h_nm,  h_no, h_nm,
+       ((h_location_y - #{userLocY}) * 111320.0) * ((h_location_y - #{userLocY}) * 111320.0)
+       + ((h_location_x - #{userLocX}) * #{lonFactor}) * ((h_location_x - #{userLocX}) * #{lonFactor}) AS distance
+      	FROM hospital
+		WHERE h_location_y BETWEEN #{userLocY} - #{latDeg} AND #{userLocY} + #{latDeg}
+    	AND h_location_x BETWEEN #{userLocX} - #{lonDeg} AND #{userLocX} + #{lonDeg}
+		AND  status='ACTIVE'
+		ORDER BY distance
+		LIMIT 3
 	</select>
 	
 	<select id="selectMap" parameterType="Integer" resultType="mainHos">
