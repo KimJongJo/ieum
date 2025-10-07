@@ -9,7 +9,6 @@ import dao.applicant.ApplicantDaoImpl;
 import dao.hospital.HospitalDao;
 import dao.hospital.HospitalDaoImpl;
 import dao.member.MemberDao;
-import dao.member.MemberDaoImpl;
 import dto.ApplicantDto;
 import dto.HospitalDto;
 import dto.MemberDto;
@@ -19,6 +18,9 @@ import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalPageResponseDto;
 import dto.otherDto.MemberPageResponseDto;
+import dto.otherDto.HospitalDetailDto;
+import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.HospitalSearchDto;
 import util.PageInfo;
 
 public class HospitalServiceImpl implements HospitalService {
@@ -33,7 +35,7 @@ public class HospitalServiceImpl implements HospitalService {
 	}
 
 	@Override
-	public List<HosSearchListDto> listByFilter(HosSearchDto hosSearch, PageInfo pageInfo) throws Exception {
+	public List<HospitalDetailDto> listByFilter(HospitalSearchDto hosSearch, PageInfo pageInfo) throws Exception {
 
 		// 병원목록 필터 조회
 		Integer hosCnt = hosDao.selectListResCnt(hosSearch);
@@ -43,7 +45,7 @@ public class HospitalServiceImpl implements HospitalService {
 		Integer offset = (pageInfo.getCurPage() - 1) * 8;
 		hosSearch.setOffset(offset);
 		hosSearch.setLimit(8);
-		return hosDao.selectList(hosSearch);
+		return hosDao.selectHosList(hosSearch);
 	}
 
 	@Override
@@ -168,17 +170,12 @@ public class HospitalServiceImpl implements HospitalService {
 
 	// 병원 디테일정보 가져오기
 	@Override
-	public HosDetailDto getDetail(Integer hNo) throws Exception {
+	public HospitalDetailDto getDetail(Integer hNo) throws Exception {
 
 		return hosDao.selectHosDetail(hNo);
 	}
 
-	// 의사 디테일 가져오기
-	@Override
-	public HosDetailDto getDocDetail(Integer hNo) throws Exception {
 
-		return hosDao.selectDocDetail(hNo);
-	}
 	// 관리자 회원가입 시 병원 이름 가져오기
 	@Override
 	public List<HospitalDto> joinSearchHosName(String keyword) {

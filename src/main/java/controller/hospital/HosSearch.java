@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,9 +17,9 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 
-import dto.otherDto.HosSearchDto;
-import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalListDto;
+import dto.otherDto.HospitalSearchDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
 import util.PageInfo;
@@ -46,7 +47,11 @@ public class HosSearch extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String jsonParam = request.getParameter("param");
+		
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		
 		try {
 			JSONParser parser = new JSONParser();
@@ -62,25 +67,25 @@ public class HosSearch extends HttpServlet {
 				categoryNo.add((String)categoryNoObj.get(i));
 			}
 		
-			HosSearchDto hsd = new HosSearchDto();
-			hsd.setKeyword(keyword);
-			hsd.setCategoryName(categoryNo);
-			hsd.setCity(city);
-			hsd.setGungu(gungu);			
+			HospitalSearchDto search = new HospitalSearchDto();
+			search.setKeyword(keyword);
+			search.setCategoryName(categoryNo);
+			search.setCity(city);
+			search.setGungu(gungu);			
 			PageInfo pageInfo = new PageInfo((int)page.longValue());
 			HospitalService hService = new HospitalServiceImpl();
-			List<HosSearchListDto> hoslist = hService.listByFilter(hsd,pageInfo);
+			List<HospitalDetailDto> hoslist = hService.listByFilter(search,pageInfo);
 			
-			HospitalListDto hospitalListDto = new HospitalListDto();
-			hospitalListDto.setPageInfo(pageInfo);
-			hospitalListDto.setHosSearchDto(hoslist);
+			HospitalListDto hosld = new HospitalListDto();
+			hosld.setPageInfo(pageInfo);
+			hosld.setHospitalDetailDto(hoslist);
 			
 			Gson gson = new Gson();
-			String jsonStr = gson.toJson(hospitalListDto);
+			String jsonStr = gson.toJson(hosld);
 			
 			response.setContentType("application/json; charset=UTF-8");
-			response.setCharacterEncoding("utf-8");
-			response.getWriter().write(jsonStr);			
+			response.getWriter().write(jsonStr);
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

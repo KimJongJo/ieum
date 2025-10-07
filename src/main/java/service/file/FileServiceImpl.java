@@ -62,5 +62,7 @@ public class FileServiceImpl implements FileService {
       Integer no = fileDao.uploadFile(fileDto);
       return no;
    }
+   
+   
 
 }

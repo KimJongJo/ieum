@@ -40,5 +40,14 @@ public class BlackListDaoImpl implements BlackListDao{
             return session.selectList("mapper.blacklist.selectBlackWithMember", uNo);
         }
     }
-	
+    
+    @Override
+    public int deleteBlack(Map<String, Integer> map) throws Exception {
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            int result = session.delete("mapper.blacklist.deleteBlack", map);
+            session.commit();
+            return result;
+        }
+    }
+
 }

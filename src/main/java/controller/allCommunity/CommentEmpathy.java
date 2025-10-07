@@ -32,7 +32,7 @@ public class CommentEmpathy extends HttpServlet {
 		response.setContentType("application/json;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");  // 추가
 		
-		int uNo = 5;
+		int uNo = 4;
 		
 		String commeNoStr = request.getParameter("commeNo");
 		if (commeNoStr == null || commeNoStr.isEmpty()) {

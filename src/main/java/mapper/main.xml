@@ -4,14 +4,65 @@
 <mapper namespace="mapper.main">
 	
 	<select id="selectMainHosList" resultType="mainHos">
-	SELECT h.h_no, h.h_nm, h.h_address, h.hos_img_file_no, f.file_path AS hosImgPath, count(r.r_no) as resCount
-	FROM hospital h 
-	LEFT JOIN file f ON h.hos_img_file_no = f.file_no
-	LEFT JOIN reservation r USING(h_no)  
-	WHERE status = 'ACTIVE'
-	GROUP BY h.h_no
-	ORDER BY resCount DESC
-	LIMIT 1,8
+		SELECT h.h_no, h.h_nm, h.h_address, h.hos_img_file_no, f.file_path AS hosImgPath, count(r.r_no) as resCount
+		FROM hospital h 
+		LEFT JOIN file f ON h.hos_img_file_no = f.file_no
+		LEFT JOIN reservation r USING(h_no)  
+		WHERE status = 'ACTIVE'
+		GROUP BY h.h_no
+		ORDER BY resCount DESC
+		LIMIT 8
+	</select>
+	
+	<select id="selectLoginInfo" parameterType="Integer" resultType="mainUser">
+		SELECT m.nickname, m.file_no, f.file_path
+		FROM member m
+		LEFT JOIN file f USING(file_no)
+		WHERE m.u_no=#{uNo}
+	</select>
+	
+	<select id="selectDiagnosis" resultType="mainDiag">
+		SELECT e.exam_no, e.exam_category AS examCate, e.file_no AS examImgNo, f.file_path AS examImgPath
+		FROM exam e
+		LEFT JOIN file f USING(file_no) 
+		LIMIT 10
+	</select>
+	
+	<select id="selectCommu" resultType="mainCommu">
+		SELECT c.commu_no, c.commu_title, c.commu_content, cate.category_no, cate.category_name
+		FROM community c
+		JOIN commu_category cate 
+		USING(category_no) ORDER BY commu_views DESC  LIMIT 3
+	</select>
+	
+	<select id="selectNotice" parameterType="Integer" resultType="mainNotice">
+		SELECT n_no, n_created, title, is_pinned
+		FROM notice
+		WHERE is_pinned = #{isPinned}
+		ORDER BY n_created DESC
+		LIMIT 3
+	</select>
+	
+	<select id="selectMapList" parameterType="Map" resultType="mainHos">
+	  <!-- 박스 필터(도 단위) -->
+	  <bind name="latDeg" value="_parameter.radius / 111320.0" />
+	  <bind name="lonDeg" value="_parameter.radius / (111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat)))" />
+	  <!-- 경도 미터 보정 계수 -->
+	  <bind name="lonFactor" value="111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat))" />
+		SELECT h_no, h_nm,  h_no, h_nm,
+       ((h_location_y - #{userLocY}) * 111320.0) * ((h_location_y - #{userLocY}) * 111320.0)
+       + ((h_location_x - #{userLocX}) * #{lonFactor}) * ((h_location_x - #{userLocX}) * #{lonFactor}) AS distance
+      	FROM hospital
+		WHERE h_location_y BETWEEN #{userLocY} - #{latDeg} AND #{userLocY} + #{latDeg}
+    	AND h_location_x BETWEEN #{userLocX} - #{lonDeg} AND #{userLocX} + #{lonDeg}
+		AND  status='ACTIVE'
+		ORDER BY distance
+		LIMIT 3
+	</select>
+	
+	<select id="selectMap" parameterType="Integer" resultType="mainHos">
+		SELECT h_no, h_nm, h_tel, h_address, h_location_y, h_location_x,transfer_info, holiday_info
+		FROM hospital WHERE h_no=#{hNo} 
 	</select>
 
 </mapper>	

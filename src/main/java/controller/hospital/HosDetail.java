@@ -17,10 +17,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializer;
 
-import controller.hosManager.Reservation;
-import dto.MemberDto;
 import dto.ReservationDto;
-import dto.otherDto.HosDetailDto;
+import dto.otherDto.HospitalDetailDto;
+import dto.otherDto.HospitalDocDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
 import service.member.MemberService;
@@ -55,17 +54,17 @@ public class HosDetail extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		Integer hNo = (Integer) session.getAttribute("hNo");
-
+		
 		HospitalService hosService = new HospitalServiceImpl();
 		MemberService mService = new MemberServiceImpl();
 
 		try {
 			request.setAttribute("hNo", hNo);
-			HosDetailDto hosd = hosService.getDetail(hNo);
-			request.setAttribute("hosd", hosd);
-			List<MemberDto> docList = mService.DoclistBy2(hNo);
+			HospitalDetailDto hosDetail = hosService.getDetail(hNo);
+			request.setAttribute("hosDetail", hosDetail);
+			List<HospitalDocDto> docList = mService.DoclistBy2(hNo);
 			request.setAttribute("docList", docList);
-
+			
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 
 		} catch (Exception e) {
@@ -85,8 +84,6 @@ public class HosDetail extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String action = request.getParameter("action");
-		System.out.println("hosDetail 받은 action: " + action);
-		
 		
 		if ("goHosDetail".equals(action)) {
 			// 병원 디테일		
@@ -99,7 +96,7 @@ public class HosDetail extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_OK);
 		
 		} else if ("getResDate".equals(action)) {
-			// 예약하기			
+			// 예약하기
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
 			String rDate = request.getParameter("rDate");
 			ReservationService rService = new ReservationServiceImpl();
@@ -118,10 +115,6 @@ public class HosDetail extends HttpServlet {
 				response.setContentType("application/json; charset=UTF-8");
 				response.getWriter().write(jsonStr);
 			
-				if(jsonStr != null) {
-					
-				}
-				
 				
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -7,7 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${contextPath}/common/main/css/search.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/common/main/css/search.css">
+<link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -17,14 +20,13 @@
 </head>
 <body>
 	<header>
-		<%--         <jsp:include page="header.jsp"></jsp:include> --%>
-		<%--         <jsp:include page="middleHeader.jsp"></jsp:include> --%>
+		<jsp:include page="/common/header/header.html" />
 	</header>
 	<div class="search-container">
 		<div class="search-box">
-			<input class="search-input"
-				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다.">
-			<button class="search-btn" type="submit">
+			<input class="search-input" id="searchInput"
+				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다." value="${keyword }">
+			<button class="search-btn" id="searchBtn">
 				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</div>
@@ -36,63 +38,53 @@
 		</div>
 		<div class="search-section">
 			<div class="section-header">
-				<img class="pin" src="img/pin.png"><span class="keyword">공지</span>에
-				대한 검색결과 <span id="all-cnt" class="cnt">1743</span> 건
-			</div>
-			<div class="notices-section">
-				<div class="section-subtitle">
-					공지사항
-					<div id="notice-cnt" class="cnt">17</div>
-					건
-				</div>
-				<div class="result-item" onclick="location.href=`${contextPath}/notice?nNo=1`">
-					<div class="result result-title">파크병원 공지사항</div>
-					<div class="result result-content">파크병원에서는 9월부터 휴일을 맞아 의료 서비스
-						공백을 최소화하기 위해 다음과 같이 운영하겠습니다. 파크병원에서는 9월부터 휴일을 맞아 의료 서비스 공백을 최소화하기
-						위해 다음과 같이 운영하겠습니다. 파크병원에서는 9월부터 휴일을 맞아 의료 서비스 공백을 최소화하기 위해 다음과 같이
-						운영하겠습니다.</div>
-					<div class="result result-date">2023-02-05</div>
-				</div>
-
-				<div class="result-item">
-					<div class="result result-title">파크병원 공지사항</div>
-					<div class="result result-content">파크병원에서는 9월부터 휴일을 맞아 의료 서비스
-						공백을 최소화하기 위해 다음과 같이 운영하겠습니다. 파크병원에서는 9월부터 휴일을 맞아 의료 서비스 공백을 최소화하기
-						위해 다음과 같이 운영하겠습니다. 파크병원에서는 9월부터 휴일을 맞아 의료 서비스 공백을 최소화하기 위해 다음과 같이
-						운영하겠습니다.</div>
-					<div class="result result-date">2023-02-05</div>
-				</div>
-
-				<div class="button-wrapper">
-					<a class="btn-link" href="${contextPath}/notice"><div class="primary-small-btn">더보기</div></a>
+				<div>
+					<span class="keyword">${keyword}</span>에 대한 검색결과 <span id="all-cnt"
+						class="cnt">${allCnt}</span> 건
 				</div>
 			</div>
-
-			<div class="community-section">
-				<div class="section-subtitle">
-					커뮤니티
-					<div id="commu-cnt" class="cnt">17</div>
-					건
+			<c:if test="${ not empty noticeList }">
+				<div class="notices-section">
+					<div class="section-subtitle">
+						공지사항
+						<div id="notice-cnt" class="cnt">${noticeCnt}</div>
+						건
+					</div>
+					<c:forEach var="notice" items="${noticeList}">
+						<div class="result-item"
+							onclick="goNoticeDetail(${notice.nNo})">
+							<div class="result result-title">${notice.title}</div>
+							<div class="result result-content">${notice.content}</div>
+							<div class="result result-date">${notice.nCreated}</div>
+						</div>
+					</c:forEach>
+					<div class="button-wrapper">
+						<button class="btn-cir-b"
+							onclick="location.href='${contextPath}/notice'">더보기</button>
+					</div>
 				</div>
-
-				<div class="result-item" onclick="location.href=`${contextPath}/comDetail`">
-					<div class="result result-title">공지사항 올리는 법 질문</div>
-					<div class="result result-content">공지사항을 올리는 방법을 알고 싶습니다. 어떻게
-						하면 되나요?</div>
-					<div class="result result-date">2023-02-05</div>
+			</c:if>
+			<c:if test="${ not empty commuList }">
+				<div class="community-section">
+					<div class="section-subtitle">
+						커뮤니티
+						<div id="commu-cnt" class="cnt">${commuCnt}</div>
+						건
+					</div>
+					<c:forEach var="commu" items="${commuList}">
+						<div class="result-item"
+							onclick="goCommuDetail(${commu.commuNo})">
+							<div class="result result-title">${commu.commuTitle }</div>
+							<div class="result result-content">${commu.commuContent }</div>
+							<div class="result result-date">${commu.commuCreated }</div>
+						</div>
+					</c:forEach>
+					<div class="button-wrapper">
+						<button class="btn-cir-b"
+							onclick="location.href='${contextPath}/allComList'">더보기</button>
+					</div>
 				</div>
-
-				<div class="result-item">
-					<div class="result result-title">공지사항 올리는 법 질문</div>
-					<div class="result result-content">공지사항을 올리는 방법을 알고 싶습니다. 어떻게
-						하면 되나요?</div>
-					<div class="result result-date">2023-02-05</div>
-				</div>
-
-				<div class="button-wrapper">
-					<a class="btn-link" href="${contextPath}/allCommunityList"><div class="primary-small-btn">더보기</div></a>
-				</div>
-			</div>
+			</c:if>
 		</div>
 
 	</div>

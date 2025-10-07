@@ -7,6 +7,7 @@ import dto.otherDto.ManagerInfoDto;
 import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import dto.otherDto.MemberPageResponseDto;
+import dto.otherDto.HospitalDocDto;
 
 public interface MemberService {
 	
@@ -22,7 +23,7 @@ public interface MemberService {
 
 	MemberDto selectByNickName(Integer uNo) throws Exception;
 	
-	List<MemberDto> DoclistBy2 (Integer hNo) throws Exception;
+	List<HospitalDocDto> DoclistBy2 (Integer hNo) throws Exception;
 
 	MemberDto socialIdCheck(String idStr);
 
@@ -52,6 +53,9 @@ public interface MemberService {
 	ManagerInfoDto managerInfoAndFile(Integer uNo);
 
 	MemberDto selectUserByNo(Integer uNo);
+
+	
+	HospitalDocDto getDocDetail (Integer mNo) throws Exception;
 
 	
 }

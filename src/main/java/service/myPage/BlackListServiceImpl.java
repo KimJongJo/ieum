@@ -40,5 +40,15 @@ public class BlackListServiceImpl implements BlackListService{
         return blackListDao.selectBlackWithMember(uNo);
     }
 
+	@Override
+	public boolean unblockUser(int uNo, int blockedNo) throws Exception {
+		Map<String, Integer> map = new HashMap<>();
+	    map.put("uNo", uNo);
+	    map.put("blockedNo", blockedNo);
+	    
+	    int result = blackListDao.deleteBlack(map);
+	    return result > 0;
+	}
+
     
 }

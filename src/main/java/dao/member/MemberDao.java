@@ -9,6 +9,7 @@ import dto.MemberProfileDto;
 import dto.otherDto.ManagerInfoDto;
 import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
+import dto.otherDto.HospitalDocDto;
 
 public interface MemberDao {
 	
@@ -40,7 +41,7 @@ public interface MemberDao {
 	
 	Integer docCnt(Integer hNo) throws Exception;
 	
-	List<MemberDto> docList(Integer hNo) throws Exception;
+	List<HospitalDocDto> docList(Integer hNo) throws Exception;
 
 	Integer kakaoSignUp(MemberDto member);
 
@@ -71,4 +72,6 @@ public interface MemberDao {
 	ManagerInfoDto managerInfoAndFile(Integer uNo);
 
 	MemberDto selectUserByNo(Integer uNo);
+  
+	HospitalDocDto docDetail (Integer mNo)throws Exception;
 }

@@ -17,12 +17,20 @@
 
     <!-- 3. 블랙리스트 + 회원 정보 조회 -->
     <select id="selectBlackWithMember" parameterType="int" resultType="blackMember">
-        SELECT m.nickname, m.email, b.black_created
+        SELECT m.nickname, m.email, b.black_created, b.u_no, b.blocked_no
         FROM black_list b
         JOIN member m
             ON b.blocked_no = m.u_no
         WHERE b.u_no = #{uNo}
     </select>
+    
+    
+    
+    <delete id="deleteBlack" parameterType="map">
+	    DELETE FROM black_list
+	    WHERE u_no = #{uNo} AND blocked_no = #{blockedNo}
+	</delete>
+    
 </mapper> 		
 
 

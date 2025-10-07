@@ -1,11 +1,21 @@
 package controller.reservation;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dto.MemberDto;
+import dto.otherDto.HospitalDocDto;
+import dto.otherDto.ReservationInfoDto;
+import service.member.MemberService;
+import service.member.MemberServiceImpl;
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
 
 /**
  * Servlet implementation class ResSummary
@@ -26,15 +36,43 @@ public class ResSummary extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/reservation/resSummary.jsp").forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+//		Integer uNo = (Integer) session.getAttribute("uNo");
+		Integer uNo = 6;
+		
+		ReservationService rService = new ReservationServiceImpl();
+		MemberService mService = new MemberServiceImpl();
+		
+		try {
+			Integer rNo = rService.getLastRes(uNo);
+			ReservationInfoDto resDetail = rService.getResDetail(rNo);
+			MemberDto resUser = mService.selectResUser(uNo);
+			
+			request.setAttribute("resDetail", resDetail);
+			request.setAttribute("resUser", resUser);
+			
+			String actName = resDetail.getActName();
+			String actTel = resDetail.getActTel();			
+			if(actName == null || actName.trim().isEmpty()) {
+				actName = resUser.getUsername();
+			}		
+			if(actTel == null || actTel.trim().isEmpty()) {
+				actTel = resUser.getuTel();
+			}
+			
+			request.setAttribute("actName", actName);
+			request.setAttribute("actTel", actTel);
+			
+			request.getRequestDispatcher("/reservation/resSummary.jsp").forward(request, response);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

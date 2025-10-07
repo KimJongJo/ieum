@@ -15,33 +15,26 @@
 	</select>
 	
 	<!-- 병원페이지: 병원정보 -->
-	<select id="selectHosDetail" resultType="hosDetail">
-	select h.h_no, h.h_nm, c.category_name, h.h_address, h.transfer_info, 
-	h.holiday_info, h.h_tel, h.h_link, h.news_title,h.news_content, h.hos_img_file_no,
-	h.services, h.silson
+	<select id="selectHosDetail" parameterType="Integer" resultType="hosDetail">
+	select *
 	from hospital h
 	join hos_category c
 	using (category_no)
-	where h_no=#{hNo} and status = 'ACTIVE'
-	</select>
-	
-	<!-- 병원: 의사정보 -->
-	<select id="selectHosDetailDoc" resultType="hosDetail">
-	select h.h_no,m.username, m.major, m.introduction, m.file_no
-	from hospital h
-	join member m
-	using (h_no)
-	where h_no=#{hNo} and status = 'ACTIVE'
+	left join file f
+	on (h.hos_img_file_no = f.file_no)
+	where h_no=#{hNo}
 	</select>
 	
 	<!-- 필터 정렬: 예약 많은 순 -->
-	<select id="selectListRes" parameterType="hosfilter" resultType="hosfilterlist">
-	select h.h_nm,h.h_no,h.hos_img_file_no,h.transfer_info,hc.category_name, count(r.r_no) as resCount
+	<select id="selectListRes" parameterType="hosfilter" resultType="hosDetail">
+	select *, count(r.r_no) as resCount
 	from hospital h
 	left join reservation r 
 	using (h_no)
 	left join hos_category hc 
 	using (category_no)
+	left join file f
+	on (h.hos_img_file_no = f.file_no) 
 	<where>
 	<if test="keyword !=null and keyword !=''">
 	and h.h_nm like concat('%', #{keyword}, '%')
@@ -60,21 +53,14 @@
 	</if>
 	and status = 'ACTIVE'
 	</where>
-	group by h.h_no, h.h_nm, h.hos_img_file_no, h.transfer_info
+	group by h.h_no
 	order by resCount desc
 	limit #{offset}, #{limit}
 	</select>
 	
-	<insert id="addHospital" parameterType="hospital" useGeneratedKeys="true" keyProperty="hNo">
-		insert into hospital (h_nm, h_address, h_location_y, h_location_x, holiday_info, h_tel, hos_img_file_no, hos_re_file_no,
-		hos_re_no, h_created, status, city, gungu, category_no, services, silson) 
-		values (#{hNm}, #{hAddress}, #{hLocationY}, #{hLocationX}, #{holidayInfo}, #{hTel}, #{hosImgFileNo}, #{hosReFileNo},
-		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{services}, #{silson})
-	</insert>
-	
 	<!-- 필터 정렬: 갯수 -->
 	<select id="selectListResCnt" parameterType="hosfilter" resultType="Integer">
-	select count(*)
+	select count(distinct h.h_no)
 	from hospital h
 	left join reservation r 
 	using (h_no)
@@ -99,6 +85,55 @@
 	and status = 'ACTIVE'
 	</where>
 	</select>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<insert id="addHospital" parameterType="hospital" useGeneratedKeys="true" keyProperty="hNo">
+		insert into hospital (h_nm, h_address, h_location_y, h_location_x, holiday_info, h_tel, hos_img_file_no, hos_re_file_no,
+		hos_re_no, h_created, status, city, gungu, category_no, services, silson) 
+		values (#{hNm}, #{hAddress}, #{hLocationY}, #{hLocationX}, #{holidayInfo}, #{hTel}, #{hosImgFileNo}, #{hosReFileNo},
+		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{services}, #{silson})
+	</insert>
 	
 	<select id="hosWaitcount" resultType="Integer">
 		select count(*) from hospital WHERE STATUS = 'WAITING';

@@ -46,7 +46,7 @@
     font-family: "Noto Sans KR", Helvetica;
     font-weight: 500;
     color: #000000;
-    font-size: 13px;
+    font-size: 14px;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -63,8 +63,9 @@
     font-family: "Noto Sans KR", Helvetica;
     font-weight: 600;
     color: #ffffff;
-    font-size: 13px;
+    font-size: 14px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .btn-long-w {

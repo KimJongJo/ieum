@@ -9,15 +9,16 @@ import dto.otherDto.HosInfoDto;
 import dto.otherDto.HosSearchDto;
 import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalDateFormatDto;
+import dto.otherDto.HospitalDetailDto;
+import dto.otherDto.HospitalSearchDto;
 
 public interface HospitalDao {
 	public HospitalDto select (Integer hNo) throws Exception;
-	public HosDetailDto selectHosDetail(Integer hNo) throws Exception;
-	public HosDetailDto selectDocDetail(Integer hNo) throws Exception;
+	public HospitalDetailDto selectHosDetail(Integer hNo) throws Exception;
 	public Integer selectCount() throws Exception;
 	public Integer addHospital(HospitalDto hosDto);
-	public List<HosSearchListDto> selectList (HosSearchDto hosSearch) throws Exception;
-	Integer selectListResCnt(HosSearchDto hosSearchDto) throws Exception;
+	public List<HospitalDetailDto> selectHosList (HospitalSearchDto hosSearch) throws Exception;
+	Integer selectListResCnt(HospitalSearchDto hosSearch) throws Exception;
 	public int hosWaitCount();
 	public List<HospitalDto> selectWaitHos(Map<String, Object> page);
 	public void approve(Integer hNo);

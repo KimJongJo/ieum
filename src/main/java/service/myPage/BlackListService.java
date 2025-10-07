@@ -13,4 +13,7 @@ public interface BlackListService {
 	List<Integer> getBlockedUsers(int uNo) throws Exception;
 
 	List<BlackWithMemberDto> getBlackWithMember(Integer uNo) throws Exception;
+	
+	// 차단 해제
+    boolean unblockUser(int uNo, int blockedNo) throws Exception;
 }

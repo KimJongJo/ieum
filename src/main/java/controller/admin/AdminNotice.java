@@ -46,8 +46,7 @@ public class AdminNotice extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-//		Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer uNo = 1;
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		String nNo = request.getParameter("nNo");
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
@@ -91,7 +90,9 @@ public class AdminNotice extends HttpServlet {
 				request.getRequestDispatcher("/admin/adminNoticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
+			request.setAttribute("err", "목록 조회 중 오류가 발생했습니다.");
+			request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);
 		}
 
 	}

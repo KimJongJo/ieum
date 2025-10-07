@@ -36,4 +36,20 @@ public class MyCommunityDaoImpl implements MyCommunityDao{
 			 return session.selectOne("mapper.comunity.selectEmpathy", map);
 		 }
 	}
+	
+	
+	
+	@Override
+	public MyCommunityDto selectMyCommunityOne(int uNo) throws Exception {
+	    try (SqlSession session = sqlSessionFactory.openSession()) {
+	        return session.selectOne("mapper.community.selectMyCommunityOne", uNo);
+	    }
+	}
+
+	@Override
+	public MyCommunityDto selectLikedCommunityOne(int uNo) throws Exception {
+	    try (SqlSession session = sqlSessionFactory.openSession()) {
+	        return session.selectOne("mapper.community.selectLikedCommunityOne", uNo);
+	    }
+	}
 }

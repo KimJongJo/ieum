@@ -12,12 +12,13 @@
 	</select>
 
 
-
+	<!-- 파일 등록 -->
 	<insert id ="insertFile" parameterType="file" useGeneratedKeys="true" keyProperty="fileNo">
 		insert into file (file_name, file_path, file_category)
         values (#{fileName}, #{filePath},#{fileCategory})
 	</insert>
 	
+	<!-- 파일 수정 -->
 	<update id="updateFile" parameterType="file">
 	    update file set 
 	        file_name = #{fileName},
@@ -30,5 +31,10 @@
 		insert into file (file_name, file_path, file_category) values (#{fileName}, #{filePath}, #{fileCategory})
 	</insert>
 	
-	
+	<!-- member-mapper.xml -->
+	<update id="updateProfileFile" parameterType="map">
+	    UPDATE member
+	    SET file_no = #{fileNo}
+	    WHERE u_no = #{uNo}
+	</update>
 </mapper>	

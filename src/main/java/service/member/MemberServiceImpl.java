@@ -16,6 +16,7 @@ import dto.otherDto.ManagerInfoDto;
 import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import dto.otherDto.MemberPageResponseDto;
+import dto.otherDto.HospitalDocDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 public class MemberServiceImpl implements MemberService {
@@ -135,9 +136,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	// 의사 리스트 가져오기
-
 	@Override
-	public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
+	public List<HospitalDocDto> DoclistBy2(Integer hNo) throws Exception {
 		return memberDao.docList(hNo);
 		
 	}
@@ -182,11 +182,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.checkEmail(email);
 	}
 
-  
+	//예약한 유저
 	@Override
 	public MemberDto selectResUser(Integer uNo) throws Exception {
 		return memberDao.selectProfileInfo(uNo);
 	}
+	
+	//의사 디테일 
+	@Override
+	public HospitalDocDto getDocDetail(Integer mNo) throws Exception {
+		return memberDao.docDetail(mNo);
+	}
+
 
 	// 일반 회원 리스트
 	@Override

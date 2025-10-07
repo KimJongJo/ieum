@@ -60,8 +60,36 @@ public class BlackList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Integer uNo = 4; // 로그인 세션에서 가져오기 가능
+        String blockedNoStr = request.getParameter("blockedNo");
+        
+	    BlackListService blackListService = new BlackListServiceImpl();
+
+        // POST 요청에서 차단 해제할 사용자 번호
+        if (blockedNoStr == null || blockedNoStr.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/black"); // 에러시 블랙리스트 페이지로
+            return;
+        }
+        
+        
+
+        int blockedNo = Integer.parseInt(blockedNoStr);
+        System.out.println("uNo = " + uNo);
+        System.out.println("blockedNo = " + blockedNo);
+        try {
+            boolean result = blackListService.unblockUser(uNo, blockedNo);
+            if(result) {
+                // 성공하면 블랙리스트 페이지로 리다이렉트
+                response.sendRedirect(request.getContextPath() + "/black");
+            } else {
+                // 실패 시 에러 메시지 페이지로 이동하거나 alert 띄우도록 처리 가능
+                response.sendRedirect(request.getContextPath() + "/black?error=fail");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/black?error=exception");
+        }
+
 	}
 
 }

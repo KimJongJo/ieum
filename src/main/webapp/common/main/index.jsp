@@ -7,11 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${contextPath}/common/main/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/common/main/css/main.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
+<!-- FullCalendar Script -->
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<!-- 카카오 맵 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=defbad50bdb32bfe18645a831ff8f296&libraries=services"></script>
 <title>건강이음 - 메인</title>
 <script src="${contextPath}/common/main/js/main.js"></script>
 </head>
@@ -20,9 +27,9 @@
 	<section class="banner-section">
 		<img class="banner-img">
 		<div class="search-box">
-			<input class="search-input"
+			<input class="search-input" id="searchInput"
 				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다.">
-			<button class="search-btn" type="submit">
+			<button class="search-btn" id="searchBtn">
 				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</div>
@@ -37,7 +44,6 @@
 	<div class="main-container">
 		<div class="hospital-login-group">
 			<!-- 병원추천 -->
-			<!-- 					todo 하단 스크롤 미노출 & 하나씩 넘어가게 설정 -->
 			<section class="hospital-section">
 				<span class="secton-title">이런 병원은 어떠세요?</span>
 				<div class="hospital-btn-left">
@@ -47,12 +53,11 @@
 				</div>
 
 				<div class="hospital-list">
-					<c:forEach var="hospital" items="${hosList}" >
-					<div class="hospital-item"
-						onclick="location.href=`${contextPath}/hospital/detail`">
-						<img class="hospital-img" src="${hospital.hosImgPath}"><span
-							class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
-					</div>
+					<c:forEach var="hospital" items="${hosList}">
+						<div class="hospital-item" onclick="goHosDetail(${hospital.hNo})">
+							<img class="hospital-img" src="${hospital.hosImgPath}"> <span
+								class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
+						</div>
 					</c:forEach>
 				</div>
 				<div class="hospital-btn-right">
@@ -62,78 +67,47 @@
 				</div>
 			</section>
 			<!-- 로그인 카드 -->
-			<!-- 로그인 전 -->
-			<section class="login-secton">
-				<div class="login-header">
-					<a href="${contextPath}/login" class="btn-link">로그인 / 회원가입</a>
-				</div>
-				<div class="login-body">
-					<span class="login-title"> 자가진단 </span>
-					<a href="${contextPath}/exam">
-					<div class="plusBtn">
-						 <span>더보기</span>
-							<div class="plusIcon">
-								<i class="fa-solid fa-plus"></i>
-							</div>
-					</div>
-					</a>
-					<div class="login-content">
-						<div class="login-item"
-							onclick="location.href=`${contextPath}/exam/examques`">
-							<div class="rectangle"></div>
-							<span>강박 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>공황 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>노인우울 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>정신 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>인지 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>강박 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>공황 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>노인우울 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>정신 장애</span>
-						</div>
-						<div class="login-item">
-							<div class="rectangle"></div>
-							<span>인지 장애</span>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- 로그인 후 -->
-			<!-- <section class="login-secton">
-                <div class="login-header after">
-                    <div class="profile">
-                        <img class="circle" src="">
-                        <span class="btn-link">닉네임</span>
-                    </div>
-                    <a href="" class="btn-link">마이페이지</a>
-                </div>
-                <div class="login-body fc" id="fc"></div>
-            </section> -->
 
+			<section class="login-secton">
+				<c:choose>
+					<c:when test="${uNo != null}">
+						<!-- 로그인 후 -->
+						<div class="login-header after">
+							<div class="profile">
+								<img class="circle" src="${userInfo.profilePath}"> <span
+									class="btn-link">${userInfo.nickName}</span>
+							</div>
+							<a href="" class="btn-link">마이페이지</a>
+						</div>
+						<div class="login-body fc" id="fc"></div>
+					</c:when>
+					<c:otherwise>
+						<!-- 로그인 전 -->
+						<div class="login-header">
+							<a href="${contextPath}/login" class="btn-link">로그인 / 회원가입</a>
+						</div>
+						<div class="login-body">
+							<span class="login-title"> 자가진단 </span> <a
+								href="${contextPath}/exam">
+								<div class="plusBtn">
+									<span>더보기</span>
+									<div class="plusIcon">
+										<i class="fa-solid fa-plus"></i>
+									</div>
+								</div>
+							</a>
+							<div class="login-content">
+								<c:forEach var="diag" items="${diagCateList}">
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/examques`">
+										<img class="rectangle" src="${diag.examImgPath }"></img> <span>${diag.examCate}</span>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</section>
 		</div>
 
 		<!-- 서비스 -->
@@ -150,7 +124,7 @@
 							</div>
 							<span>병원조회 / 예약</span>
 						</div>
-					</a> <a href="${contextPath}/hosSignUp" class="btn-link">
+					</a> <a href="${contextPath}/hosSignUp1" class="btn-link">
 						<div class="service item">
 							<div class="rectangle hospital">
 								<i class="fa-duotone fa-solid fa-hospital"></i>
@@ -164,7 +138,7 @@
 							</div>
 							<span>자가진단</span>
 						</div>
-					</a> <a href="${contextPath}/allCommunityList" class="btn-link">
+					</a> <a href="${contextPath}/allComList" class="btn-link">
 						<div class="service item">
 							<div class="rectangle commu">
 								<i class="fa-duotone fa-solid fa-comments"></i>
@@ -185,96 +159,73 @@
 
 		</section>
 		<!-- 마음톡 -->
-		<section class="community-secton">
-			<span class="section-title">마음톡 <a
-				href="${contextPath}/allCommunityList">
-					<div class="plusBtn">
-						<span>더보기</span>
-						<div class="plusIcon">
-							<i class="fa-solid fa-plus"></i>
+		<c:if test="${not empty commuList}">
+			<section class="community-secton">
+				<span class="section-title">마음톡 <a
+					href="${contextPath}/allComList">
+						<div class="plusBtn">
+							<span>더보기</span>
+							<div class="plusIcon">
+								<i class="fa-solid fa-plus"></i>
+							</div>
 						</div>
+				</a>
+				</span>
 
-
-					</div>
-			</a>
-			</span>
-
-			<div class="section-content commu-content">
-
-				<div class="commu-item"
-					onclick="location.href=`${contextPath}/comDetail`">
-					<span class="commu-cate">커뮤니티 카테고리</span> <span class="commu-title">마음톡
-						제목</span> <span class="commu-content">마음톡 내용 마음톡 내용 마음톡 내용 마음톡
-						내용마음톡 내용 마음톡 내용 마음톡 내용 마음톡 내용마음톡</span>
+				<div class="section-content commu-content">
+					<c:forEach var="commu" items="${commuList}">
+						<div class="commu-item"
+							onclick="location.href=`${contextPath}/comDetail?no=${commu.commuNo}`">
+							<span class="commu-cate">${commu.categoryName}</span> <span
+								class="commu-title">${commu.commuTitle}</span> <span
+								class="commu-content">${commu.commuContent}</span>
+						</div>
+					</c:forEach>
 				</div>
-				<div class="commu-item">
-					<span class="commu-cate">커뮤니티 카테고리</span> <span class="commu-title">마음톡
-						제목</span> <span class="commu-content">마음톡 내용 마음톡 내용 마음톡 내용 마음톡 내용</span>
-				</div>
-				<div class="commu-item">
-					<span class="commu-cate">커뮤니티 카테고리</span> <span class="commu-title">마음톡
-						제목</span> <span class="commu-content">마음톡 내용 마음톡 내용 마음톡 내용 마음톡 내용</span>
-				</div>
-			</div>
-		</section>
+			</section>
+		</c:if>
 		<!-- 공지사항 -->
-		<section class="notice-secton">
-			<span class="section-title">공지사항
-				<a href="${contextPath}/notice">
-				<div class="plusBtn">
-					<span>더보기</span> <div class="plusIcon">
-							<i class="fa-solid fa-plus"></i>
-						</div> 
+		<c:if test="${not empty topNoticeList and not empty noticeList}">
+			<section class="notice-secton">
+				<span class="section-title">공지사항 <a
+					href="${contextPath}/notice">
+						<div class="plusBtn">
+							<span>더보기</span>
+							<div class="plusIcon">
+								<i class="fa-solid fa-plus"></i>
+							</div>
+						</div>
+				</a>
+				</span>
+				<div class="notice-content">
+						<div class="top-notice">
+							<span class="notice title">고정 공지사항</span>
+							<div class="notice-box">
+								<c:forEach var="top" items="${topNoticeList}">
+									<div class="notice-item" onclick="goNoticeDetail(${top.nNo})">
+										<div class="badge">고정</div>
+										<div>${top.title}</div>
+										<div class="date">${top.nCreated }</div>
+									</div>
+								</c:forEach>
+							</div>
+
+						</div>
+						<div class="basic-notice">
+							<span class="notice title">일반 공지사항</span>
+							<div class="notice-box">
+								<c:forEach var="notice" items="${noticeList}">
+									<div class="notice-item"
+										onclick="goNoticeDetail(${notice.nNo})">
+										<div>${notice.title}</div>
+										<div class="date">${notice.nCreated }</div>
+									</div>
+								</c:forEach>
+							</div>
+						</div>
 				</div>
-				</a>
-			</span>
-			<div class="notice-content">
-				<a class="btn-link" href="${contextPath}/notice">
-					<div class="top-notice">
-						<span class="notice title">고정 공지사항</span>
-						<div class="notice-box">
-							<div class="notice-item" onclick="location.href=`${contextPath}/notice?nNo=1`">
-								<div class="badge">고정</div>
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-							<div class="notice-item">
-								<div class="badge">고정</div>
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-							<div class="notice-item">
-								<div class="badge">고정</div>
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-						</div>
-
-					</div>
-				</a> 
-				<a class="btn-link" href="${contextPath}/notice">
-					<div class="basic-notice">
-						<span class="notice title">일반 공지사항</span>
-						<div class="notice-box">
-							<div class="notice-item" onclick="location.href=`${contextPath}/notice?nNo=1`">
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-							<div class=" notice-item">
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-							<div class="notice-item">
-								<div>파크 병원 휴진 공고</div>
-								<div class="date">2025-09-08</div>
-							</div>
-						</div>
-
-					</div>
-				</a>
-
-			</div>
-		</section>
+			</section>
+		</c:if>
 	</div>
 	<!-- 지도 -->
 	<section class="map-secton">
@@ -287,31 +238,29 @@
 				<span>각 보건소의 주소와</span> <br> <span>운영시간을 확인하세요.</span>
 			</p>
 			<div class="choice-hospital-list">
-				<div class="choice-rectangle">구로보건소</div>
-				<div class="choice-rectangle">구로보건소</div>
-				<div class="choice-rectangle">구로보건소</div>
-
+				<c:forEach var="map" items="${mapHosList}">
+					<div class="choice-rectangle" onclick="showMap(${map.hNo})">${map.hNm}</div>
+				</c:forEach>
 			</div>
 		</div>
-		<div class="map-right">
-			<!-- 지도 영역 -->
-			<div class="map">
+		<!-- 지도 영역 -->
+		<div class="map-right" id="map">
+			
 				<!-- 지도 위 팝업 -->
-				<div class="map-popup">
-					<div class="map-hospital-info">
-						<div class="title">구로보건소</div>
-						<div class="tel">02-860-2600</div>
-						<div class="map-text address">서울 구로구 구로 중앙로 28길 6</div>
-						<div class="transfer">구로역 1번 출구에서 859m</div>
-						<div>
-							<div class="map-text">진료안내</div>
-							<div class="map-text">월요일~금요일 : 오전9시~오후6시</div>
-							<div class="map-text">점심시간 : 12시~오후1시</div>
-							<div class="map-text red">토요일 및 공휴일 : 휴무</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- 				<div class="map-popup"> -->
+<!-- 					<div class="map-hospital-info"> -->
+<%-- 						<div class="title">${mapInfo.hNm}</div> --%>
+<%-- 						<div class="tel">${mapInfo.hTel}</div> --%>
+<%-- 						<div class="map-text address">${mapInfo.hAddress}</div> --%>
+<%-- 						<div class="transfer">${mapInfo.transferInfo}</div> --%>
+<!-- 						<div> -->
+<!-- 							<div class="map-text">진료안내</div> -->
+<!-- 							<div class="map-text">월요일~금요일 : 오전9시~오후6시</div> -->
+<!-- 							<div class="map-text">점심시간 : 12시~오후1시</div> -->
+<%-- 							<div class="map-text red">${mapInfo.holidayInfo}</div> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 		</div>
 	</section>

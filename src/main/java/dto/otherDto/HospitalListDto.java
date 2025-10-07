@@ -6,23 +6,31 @@ import util.PageInfo;
 
 public class HospitalListDto {
 	private PageInfo pageInfo;	
-	private List<HosSearchListDto> hosSearchDto;
+	private List<HospitalDetailDto> hospitalDetailDto;
+	
+	@Override
+	public String toString() {
+		return "HospitalListDto [pageInfo=" + pageInfo + ", hospitalDetailDto=" + hospitalDetailDto + "]";
+	}
+
 	public PageInfo getPageInfo() {
 		return pageInfo;
 	}
+
 	public void setPageInfo(PageInfo pageInfo) {
 		this.pageInfo = pageInfo;
 	}
-	public List<HosSearchListDto> getHosSearchDto() {
-		return hosSearchDto;
+
+	public List<HospitalDetailDto> getHospitalDetailDto() {
+		return hospitalDetailDto;
 	}
-	public void setHosSearchDto(List<HosSearchListDto> hosSearchDto) {
-		this.hosSearchDto = hosSearchDto;
+
+	public void setHospitalDetailDto(List<HospitalDetailDto> hospitalDetailDto) {
+		this.hospitalDetailDto = hospitalDetailDto;
 	}
-	@Override
-	public String toString() {
-		return "HospitalListDto [pageInfo=" + pageInfo + ", hosSearchDto=" + hosSearchDto + "]";
-	}
+	
+	
+	
 	
 	
 }
