@@ -22,4 +22,16 @@ public interface DiagnosisDao {
 
 	Map<String, Object> getDiaInfo(Integer dNo);
 
+	int diaKeywordCount(Map<String, Object> keywordPage);
+
+	List<DiagnosisInfoDto> pastKeywordDia(Map<String, Object> page);
+
+	int diaDateCount(Map<String, Object> datePage);
+
+	List<DiagnosisInfoDto> pastDateDia(Map<String, Object> page);
+
+	int diaKeywordAndDateCount(Map<String, Object> keywordPage);
+
+	List<DiagnosisInfoDto> pastKeywordAndDateDia(Map<String, Object> page);
+
 }

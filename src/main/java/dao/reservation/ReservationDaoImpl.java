@@ -131,6 +131,27 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 	}
 
+	@Override
+	public int resCount(Map<String, Object> keywordPage) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("resCountKeyword", keywordPage);
+		}
+	}
+
+	@Override
+	public int resCount() {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("resCountByManager");
+		}
+	}
+
+	@Override
+	public int resCountByManager(Map<String, Object> keywordPage) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("resCountByManagerByKeyword", keywordPage);
+		}
+	}
+
 
 }
 

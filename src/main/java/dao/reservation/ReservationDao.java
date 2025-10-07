@@ -16,7 +16,11 @@ public interface ReservationDao {
 	List<DiagnosisInfoDto> todayReservationMyList(Map<String, Object> page);
 	Map<String, Object> selectDiaByRNo(Integer rNo);
 	Map<String, Object> patientProfile(Integer rNo);
-	int resCount(Integer uNo);
+	int resCount(Integer uNo); // 의사인 경우
+	int resCount(); // 병원관리자인 경우
+	int resCount(Map<String, Object> keywordPage); // 키워드를 찾는 전체 데이터 수
+	int resCountByManager(Map<String, Object> keywordPage); // 키워드를 찾는 전체 데이터 수(병원관리자)
+	
 	List<DiagnosisInfoDto> todayReservationMyListByKeyword(Map<String, Object> page);
 	List<DiagnosisInfoDto> todayReservationListByKeyword(Map<String, Object> page);
 	
@@ -25,5 +29,9 @@ public interface ReservationDao {
 	Integer docMno (Integer rNo)throws Exception;
 	List<ReservationInfoDto> commingRes (Integer uNo) throws Exception;
 	List<ReservationInfoDto> recordRes (Integer uNo) throws Exception;
+
+	
+
+	
 
 }

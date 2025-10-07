@@ -40,6 +40,19 @@
 		and d.is_completed = 0
 	</select>
 	
+	
+	
+	<select id="resCountByManager" resultType="Integer">
+		select count(*)
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and d.is_completed = 0
+	</select>
+	
+
+	
 	<select id="todayReservationMyList" parameterType="Map" resultType="diaInfo">
 		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
 		FROM reservation r
@@ -126,8 +139,20 @@
 		m.gender as gender, m.u_address as uAddress, r.r_content as content
 		from reservation r
 		join member m on(r.u_no = m.u_no)
-		where r.r_no = #{_parameterType}
+		where r.r_no = #{_parameter}
 	</select>
+	
+	<select id="resCountKeyword" parameterType="Map" resultType="Integer">
+		select count(*)
+		FROM reservation r
+		join member u using(u_no)
+		join diagnosis_history d using(r_no)
+		where DATE(r_date) = CURDATE()
+		and u.username like concat ('%', #{keyword}, '%')
+		and r.m_no = #{uNo}
+		and d.is_completed = 0
+	</select>
+	
 	
 	<!-- 병원관리자 - 키워드가 있는 오늘 예약 -->
 	<select id="todayReservationListByKeyword" parameterType="Map" resultType="diaInfo">

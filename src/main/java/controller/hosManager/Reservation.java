@@ -47,9 +47,9 @@ public class Reservation extends HttpServlet {
 		// 과거 자신이(의사) 진단했던 기록들을 불러오기
 		DiagnosisService diaService = new DiagnosisServiceImpl();
 		HospitalService hosService = new HospitalServiceImpl();
-		// 회원 번호를 같이 보내서 service에서 의사인지 병원관리자인지를 확인
+		
 		String hosName = hosService.getHosName(uNo);
-		ResPageResponseDto resList = diaService.myDianosisList(uNo, curPage);
+		ResPageResponseDto resList = diaService.myDianosisList(uNo, curPage, "");
         request.setAttribute("hosName", hosName);
 		request.setAttribute("resList", resList);
 		
