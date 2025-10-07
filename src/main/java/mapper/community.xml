@@ -58,6 +58,25 @@
         ORDER BY c.commu_no DESC  		
     
     </select>
+<!-- pes -->
+    <!-- 키워드 커뮤니티 불러오기 - 메인검색용 -->
+    <select id="searchCommuity" parameterType="map" resultType="allCommunity">
+    	SELECT commu_no, commu_title, commu_content, commu_created
+        FROM community
+        <if test="keyword != null and keyword != ''">
+		WHERE (commu_title LIKE CONCAT('%', #{keyword}, '%') OR commu_content LIKE CONCAT('%', #{keyword}, '%')	)
+		</if>
+        ORDER BY commu_no DESC  		
+    	LIMIT 2
+    </select>
+     <!-- 키워드 커뮤니티 개수 불러오기 - 메인검색용 -->
+    <select id="searchCommuCnt" parameterType="map" resultType="Integer">
+    	SELECT COUNT(*)
+        FROM community
+        <if test="keyword != null and keyword != ''">
+		WHERE (commu_title LIKE CONCAT('%', #{keyword}, '%') OR commu_content LIKE CONCAT('%', #{keyword}, '%')	)
+		</if>
+    </select>
 	       
 	<!-- 게시글 삭제 -->
 	<delete id="deleteCommunity" parameterType="int">

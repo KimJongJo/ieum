@@ -130,6 +130,9 @@ body {
 .button-wrapper {
 	float: right;
 }
+.button-wrapper button{
+	cursor: pointer;
+}
 
 .btn-link {
 	text-decoration: none;

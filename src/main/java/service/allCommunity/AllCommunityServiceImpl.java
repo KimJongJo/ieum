@@ -60,4 +60,14 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	    }
 		
 	}
+//pes
+	@Override
+	public Integer getSearchCnt(String keyword) throws Exception {
+		return allCommunityDao.getSearchCnt(keyword);
+	}
+
+	@Override
+	public List<AllCommunityDto> getSearchList(String keyword) throws Exception {
+		return allCommunityDao.getSearchList(keyword);
+	}
 }
