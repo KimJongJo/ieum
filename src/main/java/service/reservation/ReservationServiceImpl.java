@@ -41,6 +41,7 @@ public class ReservationServiceImpl implements ReservationService {
 		// 예약을 하고 예약 번호를 받아온다.
 		Integer rNo = resDao.insertRes(reservation);
 		// 환자 번호, 의사번호, 병원번호, 예약번호를 가지고 진단서 생성
+		System.out.println(rNo);
 		diaService.createDia(new DiagnosisHistoryDto(reservation.getuNo(), reservation.getmNo(), reservation.gethNo(), rNo));
 		
 	}
