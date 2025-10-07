@@ -40,8 +40,8 @@ public class ResSummary extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-//		Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer uNo = 6;
+		Integer uNo = (Integer) session.getAttribute("uNo");
+//		Integer uNo = 6;
 		
 		ReservationService rService = new ReservationServiceImpl();
 		MemberService mService = new MemberServiceImpl();
