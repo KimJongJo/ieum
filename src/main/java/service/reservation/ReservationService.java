@@ -17,7 +17,6 @@ public interface ReservationService {
 	Map<String, Object> selectDiaByRNo(Integer rNo);
 	Map<String, Object> patientProfile(Integer rNo);
 	ResPageResponseDto todayReservationByKeywordList(Integer page, String keyword, Integer uNo);
-	List<ReservationDto> todayReservationList();
 	
 	Integer getLastRes (Integer uNo) throws Exception;
 	ReservationInfoDto getResDetail (Integer rNo) throws Exception;

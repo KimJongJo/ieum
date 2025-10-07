@@ -20,8 +20,6 @@ public interface ReservationDao {
 	int resCount(Integer uNo);
 	List<DiagnosisInfoDto> todayReservationMyListByKeyword(Map<String, Object> page);
 	List<DiagnosisInfoDto> todayReservationListByKeyword(Map<String, Object> page);
-	void insertRes (ReservationDto reservation)throws Exception;
-	List<ReservationDto> todayReservationList();
 	
 	Integer lastRes (Integer uNo)throws Exception;
 	ReservationInfoDto resDetail (Integer rNo)throws Exception;

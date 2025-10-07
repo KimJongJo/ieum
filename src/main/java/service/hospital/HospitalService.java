@@ -5,10 +5,7 @@ import java.util.Map;
 
 import dto.HospitalDto;
 import dto.MemberDto;
-import dto.otherDto.HosDetailDto;
 import dto.otherDto.HosInfoDto;
-import dto.otherDto.HosSearchDto;
-import dto.otherDto.HosSearchListDto;
 import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalPageResponseDto;
 import dto.otherDto.HospitalSearchDto;
