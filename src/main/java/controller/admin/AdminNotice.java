@@ -46,8 +46,7 @@ public class AdminNotice extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-//		Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer uNo = 1;
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		String nNo = request.getParameter("nNo");
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
