@@ -31,4 +31,5 @@ public interface HospitalDao {
 	public HosInfoDto hosInfo(Integer hNo);
 	public int hospitalListByKeyword(Map<String, Object> keywordPage);
 	public List<HosInfoDto> selectHosListByKeyword(Map<String, Object> page);
+	public String getHosName(Integer uNo);
 }

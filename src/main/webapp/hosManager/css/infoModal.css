@@ -9,6 +9,14 @@
                 padding: 0;
             }
             
+            .u-td2{
+            	border: 1px solid #a6a6a6;
+                height: 40px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            
+            
              .u-th {
                 background-color: #4356b3;
                 color: white;
@@ -91,7 +99,8 @@
 			}
 			
 			.modal-dia,
-			.modal-dia2 {
+			.modal-dia2,
+			.modal-dia3 {
 			    display: none; /* 기본 숨김 */
 			    position: fixed; /* 화면 기준 */
 			    top: 0;          /* 왼쪽 위 고정 */
@@ -105,9 +114,11 @@
 			    gap: 20px; /* 요소 사이 최소 간격 */
 			}
 			
+			
 			/* 모달 안의 내용 중앙 정렬 */
 			.modal-dia .form-div,
 			.modal-dia2 .form-div,
+			.modal-dia3 .form-div,
 			.show-dia-info {
 			    margin: auto;       /* 가로 중앙 */
 			}

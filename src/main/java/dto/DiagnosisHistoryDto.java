@@ -1,6 +1,5 @@
 package dto;
 
-import java.sql.Date;
 
 public class DiagnosisHistoryDto {
 	Integer diagnosisNo; //진단 번호
@@ -12,8 +11,7 @@ public class DiagnosisHistoryDto {
 	String testSummary; // 검사결과요약
 	String treatment; // 처치수술내용
 	String prescription; // 처방전
-	Date visitDatetime; // 진료일시
-	String visitType; // 진료유형
+	Boolean isCompleted; // 진료 완료 여부
 	String doctorComment; // 의사의 말
 	String patientComment; // 환자 메모
 	String stats; // 진단서 작성상태
@@ -23,10 +21,17 @@ public class DiagnosisHistoryDto {
 		super();
 	}
 	
+
+
+
+
+
+
+
+
 	public DiagnosisHistoryDto(Integer diagnosisNo, Integer patientId, Integer doctorId, Integer hospitalId,
 			String diagnosisName, String sympotoms, String testSummary, String treatment, String prescription,
-			Date visitDatetime, String visitType, String doctorComment, String patientComment, String stats,
-			Integer reservationNo) {
+			Boolean isCompleted, String doctorComment, String patientComment, String stats, Integer reservationNo) {
 		super();
 		this.diagnosisNo = diagnosisNo;
 		this.patientId = patientId;
@@ -37,13 +42,19 @@ public class DiagnosisHistoryDto {
 		this.testSummary = testSummary;
 		this.treatment = treatment;
 		this.prescription = prescription;
-		this.visitDatetime = visitDatetime;
-		this.visitType = visitType;
+		this.isCompleted = isCompleted;
 		this.doctorComment = doctorComment;
 		this.patientComment = patientComment;
 		this.stats = stats;
 		this.reservationNo = reservationNo;
 	}
+
+
+
+
+
+
+
 
 
 	public DiagnosisHistoryDto(Integer patientId, Integer doctorId, Integer hospitalId,
@@ -54,15 +65,42 @@ public class DiagnosisHistoryDto {
 		this.hospitalId = hospitalId;
 		this.reservationNo = reservationNo;
 	}
+	
+	
+
+	public DiagnosisHistoryDto(Integer diagnosisNo, String diagnosisName, String sympotoms, String testSummary,
+			String treatment, String prescription, String doctorComment) {
+		super();
+		this.diagnosisNo = diagnosisNo;
+		this.diagnosisName = diagnosisName;
+		this.sympotoms = sympotoms;
+		this.testSummary = testSummary;
+		this.treatment = treatment;
+		this.prescription = prescription;
+		this.doctorComment = doctorComment;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "diagnosisHistory [diagnosisNo=" + diagnosisNo + ", patientId=" + patientId + ", doctorId=" + doctorId
+		return "DiagnosisHistoryDto [diagnosisNo=" + diagnosisNo + ", patientId=" + patientId + ", doctorId=" + doctorId
 				+ ", hospitalId=" + hospitalId + ", diagnosisName=" + diagnosisName + ", sympotoms=" + sympotoms
 				+ ", testSummary=" + testSummary + ", treatment=" + treatment + ", prescription=" + prescription
-				+ ", visitDatetime=" + visitDatetime + ", visitType=" + visitType + ", doctorComment=" + doctorComment
-				+ ", patientComment=" + patientComment + ", stats=" + stats + "]";
+				+ ", isCompleted=" + isCompleted + ", doctorComment=" + doctorComment + ", patientComment="
+				+ patientComment + ", stats=" + stats + ", reservationNo=" + reservationNo + "]";
 	}
+
+
+
+
+
+
+
+
+
 	public Integer getDiagnosisNo() {
 		return diagnosisNo;
 	}
@@ -117,18 +155,8 @@ public class DiagnosisHistoryDto {
 	public void setPrescription(String prescription) {
 		this.prescription = prescription;
 	}
-	public Date getVisitDatetime() {
-		return visitDatetime;
-	}
-	public void setVisitDatetime(Date visitDatetime) {
-		this.visitDatetime = visitDatetime;
-	}
-	public String getVisitType() {
-		return visitType;
-	}
-	public void setVisitType(String visitType) {
-		this.visitType = visitType;
-	}
+
+	
 	public String getDoctorComment() {
 		return doctorComment;
 	}

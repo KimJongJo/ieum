@@ -213,12 +213,6 @@
     table-layout: fixed;
 }
 
-.table tr td:last-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .table th {
     border-bottom: 1px solid black;
     padding-top: 18px;

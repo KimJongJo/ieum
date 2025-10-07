@@ -227,5 +227,11 @@
 		order by ${sortValue} ${sort}
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
+	
+	<select id="getHosName" parameterType="Integer" resultType="String">
+		select h_nm from hospital h
+		join member m on(h.h_no = m.h_no)
+		where m.u_no = #{_parameter}
+	</select>
 
 </mapper>	

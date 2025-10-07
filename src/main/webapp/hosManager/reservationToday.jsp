@@ -12,8 +12,17 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservationToday.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/modal.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script>
+		    // HTML 페이지에서 선언, JSP에서 EL 치환됨
+		    const contextPath = "${pageContext.request.contextPath}";
+		    let curPage = ${resList.curPage};
+		    let allPage = ${resList.allPage};
+		    let curKeyword = ""; // 현재 검색어
+		    let uNo = ${sessionScope.uNo};
+		</script>
 
     </head>
     <body>
@@ -26,19 +35,19 @@
                     <jsp:include page="managerHeader.html"></jsp:include>
                     <div class="info">
                         <div class="search-name">
-                            <span class="hos-name">중랑구 보건소</span>
+                            <span class="hos-name">${hosName}</span>
                         </div>
                         <form class="search-bar2">
                             <div class="select-div">
-                                <div class="today-div"><span class="today-res">오늘 날짜 : </span> <span>2025-08-31</span></div>
+                                <div class="today-div"><span class="today-res">오늘 날짜 : </span> <span>${today}</span></div>
                                 <div class="search-div">
-                                    <input type="text" placeholder="환자 이름을 검색해주세요" class="reservation-input" />
-                                    <button type="button" class="reservation-btn">검색</button>
+                                    <input id="searchKeyword" type="text" placeholder="환자 이름을 검색해주세요" class="reservation-input" />
+                                    <button id="searchBtn" type="button" class="reservation-btn">검색</button>
                                 </div>
                             </div>
                         </form>
 						<div class="reservation-table-div">
-							<table class="table reservation-table2">
+							<table class="table reservation-table2" id="tableSetting">
 								<thead>
 									<tr>
 		                                <th>예약ID</th>
@@ -49,7 +58,7 @@
 		                            </tr>
 								</thead>
 								<tbody>
-								<c:forEach var="res" items="${resList}">
+								<c:forEach var="res" items="${resList.list}">
 									<tr>
 		                                <td>${res.rNo}</td>
 		                                <td>${res.pNm}</td>
@@ -59,6 +68,7 @@
 		                                </td>
 	                                	<td><button type="button" class="write-btn" value="${res.rNo}"><i class="fa-regular fa-pen-to-square"></i></button></td>
 	                                    <td class="reservation-table-td">
+	                                    	<input class="diaState" type="hidden" value="${res.diaState}" />
 	                                    	<c:choose>
 	                                    		<c:when test="${res.diaState == 'BASIC'}">
 	                                    			미작성
@@ -71,36 +81,64 @@
 	                                    		</c:otherwise>
 	                                    	</c:choose>
 	                                    </td>
-		                                <td><button class="status-btn complete">완료</button></td>
+		                                <td><button value="${res.diaNo}" class="status-btn complete">완료</button></td>
 	                            	</tr>
 								</c:forEach>
 								</tbody>
 	                        </table>
 						</div>
                         
-                        <div class="page-div">
-                            <a href="#"
-                                ><button class="page" type="button"><i class="fa-solid fa-angle-left"></i></button
-                            ></a>
-                            <a href="#"><button class="cur-page" type="button">1</button></a>
-                            <a href="#"><button class="page" type="button">2</button></a>
-                            <a href="#"><button class="page" type="button">3</button></a>
-                            <a href="#"><button class="page" type="button">4</button></a>
-                            <a href="#"><button class="page" type="button">5</button></a>
-                            <a href="#"
-                                ><button class="page" type="button"><i class="fa-solid fa-angle-right"></i></button
-                            ></a>
-                        </div>
+                        <c:if test="${not empty resList.list}">
+						<div class="page-div">
+							<button class="page previous" type="button">
+								<i class="fa-solid fa-angle-left"></i>
+							</button>
+							<!-- 페이지 번호 반복 -->
+							    <c:forEach var="i" begin="${resList.startPage}" end="${resList.endPage}">
+							        <c:choose>
+							            <c:when test="${i == resList.curPage}">
+							                <button value="${i}" class="cur-page" type="button">${i}</button>
+							            </c:when>
+							            <c:otherwise>
+							                <button value="${i}" class="page move-page" type="button">${i}</button>
+							            </c:otherwise>
+							        </c:choose>
+							    </c:forEach>
+						  
+							<button class="page next-page" type="button">
+								<i class="fa-solid fa-angle-right"></i>
+							</button>
+						</div>
+				  		</c:if>
                         
                         <jsp:include page="diaWrite.jsp"></jsp:include>
                         <jsp:include page="patientInfo.jsp"></jsp:include>
-                        
+                        <div id="checkModal" class="modal-main-div">
+				            <div class="modal-div-over">
+				                <div class="modal-header-div">
+				                    <span class="modal-header-div-span">진료를 완료하시겠습니까?</span>
+				                    <button type="button" class="x-button" id="checkModalX">
+				                        <i class="fa-solid fa-x x-btn"></i>
+				                    </button>
+				                </div>
+				                <div class="modal-content-div">
+				                    <span class="modal-content-div-span">더 이상 진단서 작성 및 수정이 불가능합니다.</span>
+				                </div>
+				                <div class="modal-div-under">
+				                    <div class="modal-btn-div">
+				                        <button id="checkModalCancle" class="modal-btn-left modal-btn">취소</button>
+				                        <button id="diaConfirm" class="modal-btn-right modal-btn">완료</button>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
                     </div>
                     </div>
                 </div>
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
+        <script src="${pageContext.request.contextPath}/hosManager/js/modal.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal1.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal2.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal3.js"></script>

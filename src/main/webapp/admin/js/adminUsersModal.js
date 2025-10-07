@@ -102,7 +102,7 @@ $(document).ready(function(){
 	            if(res.object.list.length == 0){
 					$("#tableSetting tbody").html(
 						`<tr>
-							<td colspan="6">검색 결과에 맞는 회원 정보가 없음</td>
+							<td colspan="6">검색 결과에 맞는 회원 정보가 없습니다.</td>
 						</tr>`
 					);
 					

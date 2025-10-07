@@ -1,5 +1,6 @@
 package service.reservation;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import dto.DiagnosisHistoryDto;
 import dto.MemberDto;
 import dto.ReservationDto;
 import dto.otherDto.DiagnosisInfoDto;
+import dto.otherDto.ResPageResponseDto;
 import service.diagnosis.DiagnosisService;
 import service.diagnosis.DiagnosisServiceImpl;
 import service.member.MemberService;
@@ -46,14 +48,30 @@ public class ReservationServiceImpl implements ReservationService {
 
 	// 오늘 예약 리스트 조회
 	@Override
-	public List<DiagnosisInfoDto> todayReservationList(Integer uNo) {
+	public ResPageResponseDto todayReservationList(Integer uNo, int curPage) {
+		
+		int pageSize = 8; // 한 페이지당 데이터 수
+		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
+
+		int resCount = resDao.resCount(uNo); // 전체 데이터 수
+		int allPage = (int) Math.ceil((double) resCount / pageSize); // 전체 페이지 수
+
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+		int endPage = Math.min(startPage + blockSize - 1, allPage); // 끝 페이지
+
+		int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+		
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("pageSize", pageSize);
+		page.put("uNo", uNo);
 		
 		MemberDto member = memberService.selectUserByNo(uNo);
 		// 현재 로그인한 회원이 의사일 경우 자신의 예약자만 보기
 		if("DOCTOR".equals(member.getUserType())) {
-			return resDao.todayReservationMyList(uNo);
+			return new ResPageResponseDto(resDao.todayReservationMyList(page), curPage, allPage, startPage, endPage, resCount);
 		}else { // 현재 병원관리자가 로그인할 경우 모든 의사에 대한 예약 정보 보기
-			return resDao.todayReservationList();
+			return new ResPageResponseDto(resDao.todayReservationList(page), curPage, allPage, startPage, endPage, resCount);
 		}
 	}
 
@@ -66,6 +84,35 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public Map<String, Object> patientProfile(Integer rNo) {
 		return resDao.patientProfile(rNo);
+	}
+
+	// 
+	@Override
+	public ResPageResponseDto todayReservationByKeywordList(Integer curPage, String keyword, Integer uNo) {
+		int pageSize = 8; // 한 페이지당 데이터 수
+		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
+
+		int resCount = resDao.resCount(uNo); // 전체 데이터 수
+		int allPage = (int) Math.ceil((double) resCount / pageSize); // 전체 페이지 수
+
+		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
+		int endPage = Math.min(startPage + blockSize - 1, allPage); // 끝 페이지
+
+		int offset = (curPage - 1) * pageSize; // DB 조회 시작 위치
+		
+		Map<String, Object> page = new HashMap<>();
+		page.put("offset", offset);
+		page.put("uNo", uNo);
+		page.put("pageSize", pageSize);
+		page.put("keyword", keyword);
+		
+		MemberDto member = memberService.selectUserByNo(uNo);
+		// 현재 로그인한 회원이 의사일 경우 자신의 예약자만 보기
+		if("DOCTOR".equals(member.getUserType())) {
+			return new ResPageResponseDto(resDao.todayReservationMyListByKeyword(page), curPage, allPage, startPage, endPage, resCount);
+		}else { // 현재 병원관리자가 로그인할 경우 모든 의사에 대한 예약 정보 보기
+			return new ResPageResponseDto(resDao.todayReservationListByKeyword(page), curPage, allPage, startPage, endPage, resCount);
+		}
 	}
 
 	

@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="modal-dia" id="modal-dia">
-<form action="" class="form-div">
+<form class="form-div">
     <div class="save-div">
         <div class="xmark-div"><i class="fa-solid fa-xmark diaWriteX"></i></div>
         <table class="user-dia-table">
@@ -48,30 +48,30 @@
         	</tr>
             <tr>
                 <td class="u-td u-th up">진단명</td>
-                <td class="u-td up"  style="width:100px;"><textarea name="" id="" class="area area0"></textarea></td>
+                <td class="u-td up"  style="width:100px;"><textarea id="diaName" class="area area0"></textarea></td>
                 <td class="u-td u-th up">증상</td>
-                <td colspan="3" id="area1" class="u-td "><textarea name="" id="" class="area area1"></textarea></td>
+                <td colspan="3" id="area1" class="u-td "><textarea id="sym" class="area area1"></textarea></td>
             </tr>
             <tr>
                 <td colspan="2" class="u-td u-th">검사 내용 및 결과</td>
-                    <td colspan="4" id="area2" class="u-td" colspan="2"><textarea name="" id="" class="area area2"></textarea></td>
+                    <td colspan="4" id="area2" class="u-td" colspan="2"><textarea id="summary" class="area area2"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">처치/수술내용</td>
-                    <td colspan="4" id="area3" class="u-td" colspan="2"><textarea name="" id="" class="area area3"></textarea></td>
+                    <td colspan="4" id="area3" class="u-td" colspan="2"><textarea id="treatment" class="area area3"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">처방전</td>
-                    <td colspan="4" id="area4" class="u-td" colspan="2"><textarea name="" id="" class="area area4"></textarea></td>
+                    <td colspan="4" id="area4" class="u-td" colspan="2"><textarea id="pre" class="area area4"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">의사의 말</td>
-                    <td colspan="4" id="area5" class="u-td" colspan="2"><textarea name="" id="" class="area area5"></textarea></td>
+                    <td colspan="4" id="area5" class="u-td" colspan="2"><textarea id="docComment" class="area area5"></textarea></td>
                 </tr>
             </table>
             <div id="btn-event">
-                <button id="btn-cancellation">임시저장</button>
-                <button id="btn-complete">저장</button>
+                <button type="button" id="btn-cancellation">임시저장</button>
+                <button type="button" id="btn-complete">저장</button>
             </div>
         </div>
     </form>

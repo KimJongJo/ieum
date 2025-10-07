@@ -39,4 +39,6 @@ public interface HospitalService {
 	HosInfoDto hosInfo(Integer hNo);
 
 	HospitalPageResponseDto<HosInfoDto> hosListByKeyword(Integer page, String keyword, String filter, String status);
+
+	String getHosName(Integer uNo);
 }

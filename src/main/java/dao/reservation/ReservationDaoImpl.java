@@ -38,17 +38,25 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	// 오늘 예약 리스트 가져오기(병원관리자)
 	@Override
-	public List<DiagnosisInfoDto> todayReservationList() {
+	public List<DiagnosisInfoDto> todayReservationList(Map<String, Object> page) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			return session.selectList("todayReservationList");
+			return session.selectList("todayReservationList", page);
+		}
+	}
+	
+	// 오늘 예약 수 가져오기(의사)
+	@Override
+	public int resCount(Integer uNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("resCount", uNo);
 		}
 	}
 
 	// 오늘 예약 리스트 가져오기(의사)
 	@Override
-	public List<DiagnosisInfoDto> todayReservationMyList(Integer uNo) {
+	public List<DiagnosisInfoDto> todayReservationMyList(Map<String, Object> page) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			return session.selectList("todayReservationMyList", uNo);
+			return session.selectList("todayReservationMyList", page);
 		}
 	}
 
@@ -65,5 +73,21 @@ public class ReservationDaoImpl implements ReservationDao {
 			return session.selectOne("patientProfile", rNo);
 		}
 	}
+
+	@Override
+	public List<DiagnosisInfoDto> todayReservationMyListByKeyword(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationMyListByKeyword", page);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> todayReservationListByKeyword(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("todayReservationListByKeyword", page);
+		}
+	}
+
+
 
 }

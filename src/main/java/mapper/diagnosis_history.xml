@@ -4,8 +4,66 @@
 <mapper namespace="mapper.diagnosis_history">
 	
 	<insert id="createDia" parameterType="diagnosisHistory">
-		insert into diagnosis_history (patient_id, doctor_id, h_no, r_no, diagnosis_state) 
-		values (#{patientId}, #{doctorId}, #{hospitalId}, #{reservationNo}, 'BASIC')
+		insert into diagnosis_history (patient_id, doctor_id, h_no, r_no, diagnosis_state, is_completed) 
+		values (#{patientId}, #{doctorId}, #{hospitalId}, #{reservationNo}, 'BASIC', 0)
 	</insert>
+	
+	<update id="tempSave" parameterType="diagnosisHistory">
+		update diagnosis_history set diagnosis_name = #{diagnosisName}, sympotoms = #{sympotoms}, test_summary = #{testSummary},
+		treatment = #{treatment}, prescription = #{prescription}, doctor_comment = #{doctorComment},
+		diagnosis_state = 'WRITING'
+		where diagnosis_no = #{diagnosisNo}
+	</update>
+	
+	<update id="writeCompleted" parameterType="diagnosisHistory">
+		update diagnosis_history set diagnosis_name = #{diagnosisName}, sympotoms = #{sympotoms}, test_summary = #{testSummary},
+		treatment = #{treatment}, prescription = #{prescription}, doctor_comment = #{doctorComment},
+		diagnosis_state = 'COMPLETED'
+		where diagnosis_no = #{diagnosisNo}
+	</update>
+	
+	<update id="diaCompleted" parameterType="Integer">
+		update diagnosis_history set is_completed = 1 where diagnosis_no = #{_parameter}
+	</update>
+	
+	<!-- 크기 비교 < 이걸 그대로 넣으면 xml 파일에러 발생 -->
+	<select id="PastDiagnosesCount" parameterType="Integer" resultType="Integer">
+	    SELECT count(*) 
+	    FROM diagnosis_history d
+	    JOIN reservation r ON d.r_no = r.r_no
+	    WHERE d.doctor_id = #{_parameter}
+      	AND DATE(r.r_date) &lt; CURDATE()
+      	or d.is_completed = 1
+	</select>
+	
+	<select id="selectPastDiagnoses" parameterType="Map" resultType="diaInfo">
+		SELECT d.r_no, u.username AS pNm, u.u_no AS pNo, DATE_FORMAT(r.r_time, '%H:%i') AS TIME, d.diagnosis_no AS diaNo,
+		m.username AS mNm, DATE_FORMAT(r.r_date, '%Y-%m-%d') AS date
+		from diagnosis_history d
+		join member u on(d.patient_id = u.u_no)
+		join member m on(d.doctor_id = m.u_no)
+		join reservation r on(d.r_no = r.r_no)
+		where d.doctor_id = #{uNo}
+		AND DATE(r.r_date) &lt; CURDATE()
+		or d.is_completed = 1
+		LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="getDiaInfo" parameterType="Integer" resultType="Map">
+		SELECT u.u_no AS pNo, u.birth_date AS birthDate, u.u_tel AS uTel,
+		u.username AS pNm, u.gender AS gender, u.u_address AS uAddress,
+		d.diagnosis_no AS diaNo, r.r_date AS rDate, h.h_nm AS hNm,
+		m.username AS mNm, m.major AS major, h.h_address AS hAddress,
+		d.diagnosis_name AS diaName, d.sympotoms AS sym,
+		d.test_summary AS summary, d.treatment AS treatment,
+		d.prescription AS pre, d.doctor_comment AS docComment
+		from reservation r
+		join member u ON(u.u_no = r.u_no)
+		join member m on(r.m_no = m.u_no)
+		join hospital h ON(r.h_no = h.h_no)
+		join diagnosis_history d ON(r.r_no = d.r_no)
+		where diagnosis_no = #{_parameter}
+	</select>
+	
 	
 </mapper>	

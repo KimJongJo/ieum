@@ -105,6 +105,5 @@
 		    </div>
 		    
 		</div>
-		
 	   <jsp:include page="showDia.jsp"></jsp:include>
 	</div>

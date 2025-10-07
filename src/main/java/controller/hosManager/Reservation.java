@@ -1,11 +1,23 @@
 package controller.hosManager;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dto.otherDto.ResPageResponseDto;
+import service.diagnosis.DiagnosisService;
+import service.diagnosis.DiagnosisServiceImpl;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
 
 /**
  * Servlet implementation class Reservation
@@ -27,16 +39,22 @@ public class Reservation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 모든 회원 목록 조회
+		int curPage = 1;
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer)session.getAttribute("uNo");
+		
+		// 과거 자신이(의사) 진단했던 기록들을 불러오기
+		DiagnosisService diaService = new DiagnosisServiceImpl();
+		HospitalService hosService = new HospitalServiceImpl();
+		// 회원 번호를 같이 보내서 service에서 의사인지 병원관리자인지를 확인
+		String hosName = hosService.getHosName(uNo);
+		ResPageResponseDto resList = diaService.myDianosisList(uNo, curPage);
+        request.setAttribute("hosName", hosName);
+		request.setAttribute("resList", resList);
+		
 		request.getRequestDispatcher("/hosManager/reservation.jsp").forward(request, response);
 		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

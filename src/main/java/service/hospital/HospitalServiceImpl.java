@@ -318,4 +318,10 @@ public class HospitalServiceImpl implements HospitalService {
 		return new HospitalPageResponseDto<HosInfoDto>(list, curPage, allPage, startPage, endPage, hosCount);
 	}
 
+	// 의사, 병원관리자 번호를 가지고 소속 병원 이름 가져오기
+	@Override
+	public String getHosName(Integer uNo) {
+		return hosDao.getHosName(uNo);
+	}
+
 }

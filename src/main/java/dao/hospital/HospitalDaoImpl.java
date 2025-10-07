@@ -164,4 +164,11 @@ public class HospitalDaoImpl implements HospitalDao {
 			return sqlsession.selectList("selectHosListByKeyword", page);
 		}
 	}
+
+	@Override
+	public String getHosName(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("getHosName", uNo);
+		}
+	}
 }

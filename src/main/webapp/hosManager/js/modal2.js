@@ -24,7 +24,6 @@ $(document).on("click", ".search-user-btn", function() {
 		success:function(res){
 			if(res.success){
 				
-				console.log(res.object);
 				var gender;
 				if(res.object.gender == 'MALE'){
 					gender = '남'

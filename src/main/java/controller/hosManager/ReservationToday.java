@@ -1,6 +1,8 @@
 package controller.hosManager;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import dto.ReservationDto;
 import dto.otherDto.DiagnosisInfoDto;
+import dto.otherDto.ResPageResponseDto;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
 import service.reservation.ReservationService;
 import service.reservation.ReservationServiceImpl;
 
@@ -35,13 +40,29 @@ public class ReservationToday extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 모든 회원 목록 조회
+		int curPage = 1;
+		
 		// 오늘 있는 예약의 리스트를 받아온다
 		ReservationService resService = new ReservationServiceImpl();
+		HospitalService hosService = new HospitalServiceImpl();
 		// 회원 번호를 같이 보내서 service에서 의사인지 병원관리자인지를 확인
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer)session.getAttribute("uNo");
-		List<DiagnosisInfoDto> resList = resService.todayReservationList(uNo);
+		String hosName = hosService.getHosName(uNo);
+		ResPageResponseDto resList = resService.todayReservationList(uNo, curPage);
 		
+		// 오늘 날짜 가져오기
+        LocalDate today = LocalDate.now();
+
+        // 원하는 포맷 만들기
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // 포맷 적용
+        String formattedDate = today.format(formatter);
+		
+        request.setAttribute("hosName", hosName);
+        request.setAttribute("today", formattedDate);
 		request.setAttribute("resList", resList);
 		
 		request.getRequestDispatcher("/hosManager/reservationToday.jsp").forward(request, response);

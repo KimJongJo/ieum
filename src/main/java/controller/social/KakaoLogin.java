@@ -81,7 +81,7 @@ public class KakaoLogin extends HttpServlet {
 			// member 객체가 있을때
 			if(kakaoDto.getMemberDto() != null) {
 				
-				session.setAttribute("hNo", kakaoDto.getMemberDto().getuNo());
+				session.setAttribute("uNo", kakaoDto.getMemberDto().getuNo());
 				response.sendRedirect(request.getContextPath() + "/index");
 			}else {
 				session.setAttribute("kakaoDto",kakaoDto);

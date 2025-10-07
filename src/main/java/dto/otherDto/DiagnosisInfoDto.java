@@ -8,6 +8,8 @@ public class DiagnosisInfoDto {
 	private String time; // 예약 시간
 	private String diaState; // 진단서 작성상태
 	private Integer diaNo; // 진단서 번호
+	private String mNm; // 의사 이름
+	private String date; // 예약날짜
 	
 	public DiagnosisInfoDto(Integer rNo, String pNm, Integer pNo, String time, String diaState, Integer diaNo) {
 		super();
@@ -19,7 +21,31 @@ public class DiagnosisInfoDto {
 		this.diaNo = diaNo;
 	}
 	
+	public DiagnosisInfoDto(Integer rNo, String pNm, Integer pNo, String time, String diaState, Integer diaNo,
+			String mNm, String date) {
+		super();
+		this.rNo = rNo;
+		this.pNm = pNm;
+		this.pNo = pNo;
+		this.time = time;
+		this.diaState = diaState;
+		this.diaNo = diaNo;
+		this.mNm = mNm;
+		this.date = date;
+	}
 	
+	
+	
+	public DiagnosisInfoDto(Integer rNo, String pNm, Integer pNo, String time, Integer diaNo, String mNm, String date) {
+		super();
+		this.rNo = rNo;
+		this.pNm = pNm;
+		this.pNo = pNo;
+		this.time = time;
+		this.diaNo = diaNo;
+		this.mNm = mNm;
+		this.date = date;
+	}
 
 	@Override
 	public String toString() {
@@ -31,6 +57,22 @@ public class DiagnosisInfoDto {
 	}
 
 
+
+	public String getmNm() {
+		return mNm;
+	}
+
+	public void setnMn(String mNm) {
+		this.mNm = mNm;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public Integer getrNo() {
 		return rNo;
