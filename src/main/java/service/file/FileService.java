@@ -12,5 +12,7 @@ public interface FileService {
 	Integer uploadFile(Part file, String type) throws IOException;
 
 	Integer managerJoin(FileDto file);
-
+	
+	
+	
 }

@@ -48,9 +48,8 @@ public class ProfileInfoModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		 HttpSession session = request.getSession();
 //	        Integer uNo = (Integer) session.getAttribute("uNo");
-		int uNo = 5;
+		int uNo = 4;
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
-        FileService fileService = new FileServiceImpl();
 
         try {
         	//회원 정보 조회
@@ -59,7 +58,6 @@ public class ProfileInfoModify extends HttpServlet {
             
             MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
             request.setAttribute("file", memberProfileDto);
-            System.out.println(memberProfileDto.toString());
              
             request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
 
@@ -76,6 +74,8 @@ public class ProfileInfoModify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("utf-8");
 	    int uNo = 4;
+	    
+	    
 
         String nickName     = request.getParameter("nickName");
         String email        = request.getParameter("email");
@@ -83,10 +83,8 @@ public class ProfileInfoModify extends HttpServlet {
         String uTel         = request.getParameter("uTel");
         String uAddress     = request.getParameter("uAddress");
         String diaryPrivate = request.getParameter("diaryPrivate");
-
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
-        FileService fileService = new FileServiceImpl();
-
+        
         try {
         	// 회원 기존 프로필 정보 조회
         	MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
@@ -103,40 +101,7 @@ public class ProfileInfoModify extends HttpServlet {
             profileService.updateProfile(member);
            
             
-            // 3️⃣ 프로필 이미지 업로드 처리
-            Part filePart = request.getPart("profileFile");
-            if (filePart != null && filePart.getSize() > 0) {
-                String fileName = new File(filePart.getSubmittedFileName()).getName();
-                String savePath = getServletContext().getRealPath("/img");
-                File saveDir = new File(savePath);
-                if (!saveDir.exists()) saveDir.mkdirs();
-
-                filePart.write(savePath + File.separator + fileName);
-
-                // 4️⃣ DB 업데이트 또는 insert
-                Integer existingFileNo = memberProfileDto.getFileNo();
-                FileDto fileDto = new FileDto();
-                fileDto.setFileName(fileName);
-                fileDto.setFilePath("img");
-                fileDto.setFileCategory("userProfile");
-
-                boolean fileExists = false;
-                if (existingFileNo != null && existingFileNo > 0) {
-                    try {
-                        fileExists = fileService.getFileByFileNo(existingFileNo) != null;
-                    } catch (Exception e) {
-                        fileExists = false;
-                    }
-                }
-
-                if (fileExists) {
-                    fileDto.setFileNo(existingFileNo);
-                    fileService.updateFile(fileDto); // 존재하면 update
-                } else {
-                    fileService.insertFile(fileDto); // 없으면 insert
-                }
-            }
-            System.out.println(memberProfileDto.getFileNo());
+           
             
             response.sendRedirect(request.getContextPath() + "/pInfo");
 
