@@ -41,7 +41,6 @@ public class ResSummary extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
-//		Integer uNo = 6;
 		
 		ReservationService rService = new ReservationServiceImpl();
 		MemberService mService = new MemberServiceImpl();
