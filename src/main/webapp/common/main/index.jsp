@@ -13,7 +13,11 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
+<!-- FullCalendar Script -->
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <!-- 카카오 맵 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=defbad50bdb32bfe18645a831ff8f296&libraries=services"></script>
 <title>건강이음 - 메인</title>
 <script src="${contextPath}/common/main/js/main.js"></script>
@@ -23,9 +27,9 @@
 	<section class="banner-section">
 		<img class="banner-img">
 		<div class="search-box">
-			<input class="search-input"
+			<input class="search-input" id="searchInput"
 				placeholder="입력하신 키워드는 공지사항 커뮤니티에서 검색됩니다.">
-			<button class="search-btn" type="submit">
+			<button class="search-btn" id="searchBtn">
 				<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 		</div>
@@ -171,7 +175,7 @@
 				<div class="section-content commu-content">
 					<c:forEach var="commu" items="${commuList}">
 						<div class="commu-item"
-							onclick="location.href=`${contextPath}/comDetail`">
+							onclick="location.href=`${contextPath}/comDetail?no=${commu.commuNo}`">
 							<span class="commu-cate">${commu.categoryName}</span> <span
 								class="commu-title">${commu.commuTitle}</span> <span
 								class="commu-content">${commu.commuContent}</span>
@@ -194,7 +198,6 @@
 				</a>
 				</span>
 				<div class="notice-content">
-					<a class="btn-link" href="${contextPath}/notice?page=1">
 						<div class="top-notice">
 							<span class="notice title">고정 공지사항</span>
 							<div class="notice-box">
@@ -208,7 +211,6 @@
 							</div>
 
 						</div>
-					</a> <a class="btn-link" href="${contextPath}/notice?page=1">
 						<div class="basic-notice">
 							<span class="notice title">일반 공지사항</span>
 							<div class="notice-box">
@@ -220,10 +222,7 @@
 									</div>
 								</c:forEach>
 							</div>
-
 						</div>
-					</a>
-
 				</div>
 			</section>
 		</c:if>
@@ -244,9 +243,9 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div class="map-right">
-			<!-- 지도 영역 -->
-			<div class="map" id="map">
+		<!-- 지도 영역 -->
+		<div class="map-right" id="map">
+			
 				<!-- 지도 위 팝업 -->
 <!-- 				<div class="map-popup"> -->
 <!-- 					<div class="map-hospital-info"> -->
@@ -262,7 +261,6 @@
 <!-- 						</div> -->
 <!-- 					</div> -->
 <!-- 				</div> -->
-			</div>
 
 		</div>
 	</section>

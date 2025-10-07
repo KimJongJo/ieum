@@ -75,6 +75,8 @@ body {
 }
 
 .section-header {
+	display: flex;
+	justify-content: left;
 	font-size: 18px;
 	font-weight: 600;
 	color: #333;
@@ -126,36 +128,14 @@ body {
 }
 
 .button-wrapper {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-	padding: 6px 24px;
-	position: relative;
-	background-color: #4287ef;
-	border-radius: 100px;
 	float: right;
-	cursor: pointer;
 }
-
-.button-wrapper .primary-small-btn {
-	position: relative;
-	background-color: inherit;
-	width: fit-content;
-	font-weight: 600;
-	color: #ffffff;
-	font-size: 11px;
-	text-align: center;
-	letter-spacing: 0;
-	line-height: normal;
+.button-wrapper button{
+	cursor: pointer;
 }
 
 .btn-link {
 	text-decoration: none;
-}
-
-.button-wrapper:hover {
-	background-color: #1565c0;
 }
 
 .search-section {
@@ -175,7 +155,7 @@ body {
 .pin {
 	width: 7px;
 	height: 10px;
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .keyword, .cnt {

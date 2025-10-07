@@ -44,7 +44,7 @@ public class DiaryDaoImpl implements DiaryDao {
 			params.put("row", row);
 			params.put("keyword", keyword);
 			params.put("sort", sort);
-			return session.selectList("selectList", params);
+			return session.selectList("mapper.diary.selectList", params);
 		}
 	}
 

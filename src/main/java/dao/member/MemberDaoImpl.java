@@ -60,21 +60,23 @@ public class MemberDaoImpl implements MemberDao {
 			return session.selectOne("mapper.member.selectByNickName", uNo);
 		}
 	}
-
+  	
+  
+  	// 내가 작성한거임 
 	@Override
 	public MemberDto selectProfileInfo(Integer uNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("mapper.member.selectProfileInfo", uNo);
 		}
 	}
-
+	//정보 수정	
 	@Override
 	public MemberProfileDto selectMemberWithProfile(int uNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
 		}
 	}
-
+  // 프로파일 업데이트
 	@Override
 	public void updateProfile(MemberDto memberDto) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {

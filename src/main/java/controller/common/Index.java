@@ -68,25 +68,25 @@ public class Index extends HttpServlet {
 			List<MainNoticeDto> noticeList = service.getNoticeList();
 			request.setAttribute("topNoticeList", topNoticeList);
 			request.setAttribute("noticeList", noticeList);
-			// 지도 - 병원 리스트
-//						String userLocX = request.getParameter("userLocX");
-//						String userLocY = request.getParameter("userLocY");
-//						List<MainHosDto> mapHosList = service.getMapHosList(userLocX, userLocY);
-//						request.setAttribute("mapHosList", mapHosList);
-//						boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-request-with"));
-//						String hNo = request.getParameter("hNo");
-//						MainHosDto mapHosInfo = service.getMapHosInfo(Integer.parseInt(hNo));
-//						if (isAjax) {
-//							response.setContentType("application/json; charset=UTF-8");
-//							Gson gson = new Gson();
-//							Map<String, Object> resultMap = new HashMap<>();
-//							resultMap.put("mapHosInfo", mapHosInfo);
-//							String result = gson.toJson(resultMap);
-//							response.getWriter().write(result);
-//							return;
-//						} else {
-//							request.setAttribute("mapInfo", mapHosInfo);
-//						}
+//			 지도 - 병원 리스트
+			String userLocX = request.getParameter("lon"); // 경도
+			String userLocY = request.getParameter("lat"); // 위도 
+			List<MainHosDto> mapHosList = service.getMapHosList(userLocX, userLocY);
+			request.setAttribute("mapHosList", mapHosList);
+			boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-request-with"));
+			String hNo = request.getParameter("hNo");
+//			MainHosDto mapHosInfo = service.getMapHosInfo(Integer.parseInt(hNo));
+//			if (isAjax) {
+//				response.setContentType("application/json; charset=UTF-8");
+//				Gson gson = new Gson();
+//				Map<String, Object> resultMap = new HashMap<>();
+//				resultMap.put("mapHosInfo", mapHosInfo);
+//				String result = gson.toJson(resultMap);
+//				response.getWriter().write(result);
+//				return;
+//			} else {
+//				request.setAttribute("mapInfo", mapHosInfo);
+//			}
 			request.getRequestDispatcher("common/main/index.jsp").forward(request, response);
 
 		} catch (Exception e) {
