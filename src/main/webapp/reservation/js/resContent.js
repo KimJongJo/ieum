@@ -29,7 +29,6 @@ $(document).ready(function() {
 		$.post("/ieum/reservation/content", data)
 			.done(function(res) {
 				if (res === "success") {
-					alert("예약 완료!");
 					window.location.href = "/ieum/reservation/summary";
 				} else {
 					alert("예약 실패!");

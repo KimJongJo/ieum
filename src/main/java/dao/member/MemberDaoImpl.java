@@ -161,4 +161,12 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		
 	}
+
+	// 예약된 의사 정보
+	@Override
+	public MemberDto resDoc(Integer mNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectMnoDoc", mNo);
+		}
+	}
 }

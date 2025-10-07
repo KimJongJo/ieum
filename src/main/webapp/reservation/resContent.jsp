@@ -23,8 +23,8 @@
 	<form id="actResForm">
 		<input type="hidden" id="mNo" value="${mNo}"> 
 		<input type="hidden" id="rDate" value="${rDate}">
-		<input type="hidden" id="rTime" value="${rTime}">
 		<input type="hidden" id="rDay" value="${rDay}">
+		<input type="hidden" id="rTime" value="${rTime}">
 		<input type="hidden" id="rContent" value="${rContent}">
 		
 		<div class="container1">
@@ -92,8 +92,7 @@
 		</div>
 
 		<div class="btn">
-			<a href="${contextPath }/hospital/detail"><button type="button"
-					class="btn-rec-w">이전으로</button></a>
+			<button type="button" class="btn-rec-w" onclick="history.back()">이전으로</button>
 			<button type="button" class="btn-long-b" id="resSubmit">다음단계</button>
 		</div>
 	</form>
