@@ -59,11 +59,6 @@ public class ResContent extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		Integer hNo = (Integer) session.getAttribute("hNo");
-//		Integer uNo = 6;
-//		Integer hNo = 20;
-		
-		System.out.println("회원번호 : " + uNo);
-		System.out.println("병원번호 : " + hNo);
 		
 		String action = request.getParameter("action");
 
