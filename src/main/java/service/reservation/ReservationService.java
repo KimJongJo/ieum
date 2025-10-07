@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import dto.ReservationDto;
-
-import dto.otherDto.DiagnosisInfoDto;
 import dto.otherDto.ResPageResponseDto;
 import dto.otherDto.ReservationInfoDto;
 
