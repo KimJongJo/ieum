@@ -9,10 +9,64 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfoModify.css" />
-<script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify.js"></script> --%>
 <!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+window.addEventListener('DOMContentLoaded', () => {
+    const uploadBtn = document.getElementById('uploadBtn');
+    const profileInput = document.getElementById('profileInput');
+
+    // 업로드 버튼 클릭 시 파일 선택 창 열기
+    uploadBtn.addEventListener('click', function() {
+        profileInput.click();
+    });
+
+    // 파일 선택 시 미리보기 적용
+    profileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.querySelector('#profile-preview img').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+
+    });
+
+    // 기존 '관리 메뉴' 숨기기 코드
+    const manageMenu = document.querySelector('.menu span:nth-child(5)');
+    if (manageMenu) manageMenu.style.display = 'none';
+});
+
+// 다음 우편번호 찾기
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = '';
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+            document.getElementById("address").value = addr;
+            document.getElementById("detailAddress").focus();
+        }
+    }).open();
+}
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    // '관리 메뉴' 요소 선택
+    const manageMenu = document.querySelector('.menu span:nth-child(5)');
+    if (manageMenu) {
+        manageMenu.style.display = 'none'; // 메뉴 숨기기
+    }
+});
+
+</script>
 <script>
     function execDaumPostcode() {
         new daum.Postcode({
@@ -116,8 +170,8 @@
 				    <div id="profile-upload-box">
 				        <div id="profile-preview">
 						    <c:choose>
-							    <c:when test="${not empty file and not empty file.fileName}">
-							        <img src="${pageContext.request.contextPath}/${file.filePath}/${file.fileName}" alt="프로필">
+							    <c:when test="${not empty member and not empty member.fileName}">
+							        <img src="${pageContext.request.contextPath}/${member.filePath}/${member.fileName}" alt="프로필">
 							    </c:when>
 							    <c:otherwise>
 							        <img src="${pageContext.request.contextPath}/img/회원기본이미지.jpg" alt="기본 프로필">
@@ -137,7 +191,7 @@
                 <input type="hidden" name="id" value="<c:out value='${member.id}'/>">
                 <div class="form-row">
                     <label>닉네임 *</label>
-                    <input type="text" id="nickName" name="nickName" value="<c:out value='${member.nickName}'/>" placeholder="닉네임">
+                    <input type="text" id="nickName" name="nickName" value="<c:out value='${member.nickname}'/>" placeholder="닉네임">
                 </div>
                 <div class="form-row">
                     <label>이메일 *</label>

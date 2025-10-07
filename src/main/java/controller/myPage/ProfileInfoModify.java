@@ -48,15 +48,18 @@ public class ProfileInfoModify extends HttpServlet {
 //	        Integer uNo = (Integer) session.getAttribute("uNo");
 		int uNo = 6;
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
+        
+       
 
         try {
         	//회원 정보 조회
-            MemberDto member = profileService.selectProfileView(uNo);
+        	MemberProfileDto member = profileService.selectMemberWithProFileImg(uNo);
+        	System.out.println(member);
             request.setAttribute("member", member);
             
-            MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
-            request.setAttribute("file", memberProfileDto);
-             
+//            MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
+//            request.setAttribute("file", memberProfileDto);
+//             
             request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
 
         } catch (Exception e) {
@@ -81,21 +84,23 @@ public class ProfileInfoModify extends HttpServlet {
         String uTel         = request.getParameter("uTel");
         String uAddress     = request.getParameter("uAddress");
         String diaryPrivate = request.getParameter("diaryPrivate");
+        Part proFile = request.getPart("profileFile");
+        if (proFile == null) {
+            System.out.println("❌ file 객체가 null 입니다. (폼 name 불일치 또는 enctype 누락 가능)");
+        } else {
+        	String fileName = proFile.getSubmittedFileName();
+        	System.out.println("파일 크기: " + proFile.getSize());
+        	System.out.println(fileName);
+            System.out.println("✅ file 객체가 존재합니다.");
+        }
         
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
+        
+        
         
         try {
         	// 회원 기존 프로필 정보 조회
         	MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
-        	
-        	// ✅ 파일 업로드 처리 부분 (HosSignUp2에서 가져온 구조)
-            Part profileImgPart = request.getPart("profileImg"); // JSP의 input name="profileImg" 이어야 함
-            Integer profileFileNo = null;
-        	
-            if (profileImgPart != null && profileImgPart.getSize() > 0) {
-                FileService fileService = new FileServiceImpl();
-                profileFileNo = fileService.uploadFile(profileImgPart, "profile"); // "profile"은 파일 카테고리
-            }
         	
         	//2. 회원 기본 정보 수정
             MemberDto member = new MemberDto();            
@@ -106,7 +111,12 @@ public class ProfileInfoModify extends HttpServlet {
             member.setuTel(uTel);
             member.setuAddress(uAddress);
             member.setDiaryPrivate("yes".equals(diaryPrivate));
-            profileService.updateProfile(member);
+            
+            
+            profileService.updateProfile(member, proFile);
+            
+            
+            
            
 	     
             response.sendRedirect(request.getContextPath() + "/pInfo");

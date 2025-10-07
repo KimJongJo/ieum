@@ -12,7 +12,9 @@ public interface FileService {
 	Integer uploadFile(Part file, String type) throws IOException;
 
 	Integer managerJoin(FileDto file);
-	
-	
+
+	FileDto getFile(Integer fileNo);
+
+	void updateFile(Part file, String string, FileDto fileDto)throws Exception;
 	
 }
