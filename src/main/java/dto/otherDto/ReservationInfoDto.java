@@ -30,21 +30,27 @@ public class ReservationInfoDto {
 	Integer hosImgFileNo; // 병원 썸네일 파일
 	String status; // 활동 상태
 	String hCode; // 병원코드
+	String city; // 시도
+	String gungu; // 시군구
 	String services; // 제공하는 편의 시설
 	boolean silson; // 실손 24 서비스 제공 여부
+	String newsTitle; // 뉴스 제목
+	String newsContent; // 뉴스 내용
 	
-	String id;	// 아이디
+	String categoryName; //카테고리 이름
+	
 	String username;	// 이름
-	Date birthDate;	// 생년월일
 	String gender;	//성별
 	String uTel; //전화번호
 	String email;	//이메일
-	Date createdAt;	// 가입일
 	String userType;	// 회원분류 -> 
 	String major; //전공
 	String introduction; //자기소개
-	String nickname; //닉네임
-	Integer fileNo;
+	Integer stateCode;	//상태코드
+	Integer fileNo;	//회원 프로필
+	
+	String fileName; //파일명
+	String filePath; // 경로
 	
 	ReservationInfoDto(){
 		super();
@@ -53,9 +59,10 @@ public class ReservationInfoDto {
 	public ReservationInfoDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
 			String rContent, String actName, String actTel, String rStatus, String rDay, String hNm, Integer categoryNo,
 			String hAddress, String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel,
-			String hLink, Integer hosImgFileNo, String status, String hCode, String services, boolean silson, String id,
-			String username, Date birthDate, String gender, String uTel, String email, Date createdAt, String userType,
-			String major, String introduction, String nickname, Integer fileNo) {
+			String hLink, Integer hosImgFileNo, String status, String hCode, String city, String gungu, String services,
+			boolean silson, String newsTitle, String newsContent, String categoryName, String username, String gender,
+			String uTel, String email, String userType, String major, String introduction, Integer stateCode,
+			Integer fileNo, String fileName, String filePath) {
 		super();
 		this.rNo = rNo;
 		this.uNo = uNo;
@@ -80,20 +87,24 @@ public class ReservationInfoDto {
 		this.hosImgFileNo = hosImgFileNo;
 		this.status = status;
 		this.hCode = hCode;
+		this.city = city;
+		this.gungu = gungu;
 		this.services = services;
 		this.silson = silson;
-		this.id = id;
+		this.newsTitle = newsTitle;
+		this.newsContent = newsContent;
+		this.categoryName = categoryName;
 		this.username = username;
-		this.birthDate = birthDate;
 		this.gender = gender;
 		this.uTel = uTel;
 		this.email = email;
-		this.createdAt = createdAt;
 		this.userType = userType;
 		this.major = major;
 		this.introduction = introduction;
-		this.nickname = nickname;
+		this.stateCode = stateCode;
 		this.fileNo = fileNo;
+		this.fileName = fileName;
+		this.filePath = filePath;
 	}
 
 	@Override
@@ -103,11 +114,12 @@ public class ReservationInfoDto {
 				+ ", rStatus=" + rStatus + ", rDay=" + rDay + ", hNm=" + hNm + ", categoryNo=" + categoryNo
 				+ ", hAddress=" + hAddress + ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX
 				+ ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink="
-				+ hLink + ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", services="
-				+ services + ", silson=" + silson + ", id=" + id + ", username=" + username + ", birthDate=" + birthDate
-				+ ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", createdAt=" + createdAt
-				+ ", userType=" + userType + ", major=" + major + ", introduction=" + introduction + ", nickname="
-				+ nickname + ", fileNo=" + fileNo + "]";
+				+ hLink + ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city="
+				+ city + ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + ", newsTitle="
+				+ newsTitle + ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", username="
+				+ username + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", userType=" + userType
+				+ ", major=" + major + ", introduction=" + introduction + ", stateCode=" + stateCode + ", fileNo="
+				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + "]";
 	}
 
 	public Integer getrNo() {
@@ -294,6 +306,22 @@ public class ReservationInfoDto {
 		this.hCode = hCode;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getGungu() {
+		return gungu;
+	}
+
+	public void setGungu(String gungu) {
+		this.gungu = gungu;
+	}
+
 	public String getServices() {
 		return services;
 	}
@@ -310,12 +338,28 @@ public class ReservationInfoDto {
 		this.silson = silson;
 	}
 
-	public String getId() {
-		return id;
+	public String getNewsTitle() {
+		return newsTitle;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public String getNewsContent() {
+		return newsContent;
+	}
+
+	public void setNewsContent(String newsContent) {
+		this.newsContent = newsContent;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public String getUsername() {
@@ -324,14 +368,6 @@ public class ReservationInfoDto {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
 	}
 
 	public String getGender() {
@@ -358,14 +394,6 @@ public class ReservationInfoDto {
 		this.email = email;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	public String getUserType() {
 		return userType;
 	}
@@ -390,12 +418,12 @@ public class ReservationInfoDto {
 		this.introduction = introduction;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public Integer getStateCode() {
+		return stateCode;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setStateCode(Integer stateCode) {
+		this.stateCode = stateCode;
 	}
 
 	public Integer getFileNo() {
@@ -406,8 +434,22 @@ public class ReservationInfoDto {
 		this.fileNo = fileNo;
 	}
 
-	
-	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
 	
 
 

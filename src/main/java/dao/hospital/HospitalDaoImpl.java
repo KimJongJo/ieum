@@ -7,9 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.HospitalDto;
-import dto.otherDto.HosDetailDto;
-import dto.otherDto.HosSearchDto;
-import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDetailDto;
+import dto.otherDto.HospitalSearchDto;
 import util.MybatisSqlSessionFactory;
 
 public class HospitalDaoImpl implements HospitalDao {
@@ -21,21 +20,6 @@ public class HospitalDaoImpl implements HospitalDao {
 			return sqlsession.selectOne("mapper.hospital.select", hNo);
 		}
 	}
-	
-	@Override
-	public HosDetailDto selectHosDetail(Integer hNo) throws Exception {
-		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
-			return sqlsession.selectOne("mapper.hospital.selectHosDetail", hNo);
-		}
-	}
-	
-	@Override
-	public HosDetailDto selectDocDetail(Integer hNo) throws Exception {
-		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
-			return sqlsession.selectOne("mapper.hospital.selectHosDetailDoc", hNo);
-		}
-	}
-	
 	@Override
 	public Integer selectCount() throws Exception {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
@@ -43,12 +27,29 @@ public class HospitalDaoImpl implements HospitalDao {
 		}
 	}
 	
+	//병원 디테일
+		@Override
+		public HospitalDetailDto selectHosDetail(Integer hNo) throws Exception {
+			try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+				return sqlsession.selectOne("mapper.hospital.selectHosDetail", hNo);
+			}
+		}
+		
+	//병원 리스트
 	@Override
-	public List<HosSearchListDto> selectList(HosSearchDto hosSearch) throws Exception {
+	public List<HospitalDetailDto> selectHosList(HospitalSearchDto hosSearch) throws Exception {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
 			return sqlsession.selectList("mapper.hospital.selectListRes",hosSearch);
 		}
 	}
+	
+	//병원 리스트 수 
+		public Integer selectListResCnt(HospitalSearchDto hosSearch) throws Exception {
+			try(SqlSession sqlsession = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
+				return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearch);
+			}
+
+		}
   
 	@Override
 	public Integer addHospital(HospitalDto hosDto) {
@@ -58,13 +59,7 @@ public class HospitalDaoImpl implements HospitalDao {
 			return hosDto.gethNo();
 		}
 	}
-
-	public Integer selectListResCnt(HosSearchDto hosSearchDto) throws Exception {
-		try(SqlSession sqlsession = MybatisSqlSessionFactory.getSessionFactory().openSession()) {
-			return sqlsession.selectOne("mapper.hospital.selectListResCnt", hosSearchDto);
-		}
-
-	}
+	
 	// 병원 신청 대기중인 병원 수
 	@Override
 	public int hosWaitCount() {

@@ -98,8 +98,8 @@ $(document).ready(() => {
 			rDate: rDate,
 			action: "getResDate"
 		})
-			.done(function(resList) {
-				showTime(resList);
+			.done(function(result) {
+				showTime(result);
 
 			})
 			.fail(function(err) {
@@ -153,6 +153,7 @@ $(document).ready(() => {
 
 		if (!selectedMno || !selectedTime) {
 			alert("의사와 시간을 모두 선택해주세요");
+			e.preventDefault();
 			return;
 		}
 		

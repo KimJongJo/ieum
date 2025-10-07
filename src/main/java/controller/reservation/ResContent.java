@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dto.MemberDto;
 import dto.ReservationDto;
-import dto.otherDto.HosDetailDto;
+import dto.otherDto.HospitalDetailDto;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
 import service.member.MemberService;
@@ -67,8 +67,8 @@ public class ResContent extends HttpServlet {
 		
 		if ("doReservation".equals(action)) {
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
-			String rDate = request.getParameter("rDate");
-			LocalDate rDates = LocalDate.parse(rDate);
+			String rDates = request.getParameter("rDate");
+			LocalDate rDate = LocalDate.parse(rDates);
 			String rTimeStr = request.getParameter("rTime");
 			LocalTime rTime = LocalTime.parse(rTimeStr);
 			String rDay = request.getParameter("rDay");
@@ -78,7 +78,7 @@ public class ResContent extends HttpServlet {
 			MemberService mService = new MemberServiceImpl();
 			
 			try {
-				HosDetailDto hosd = hosService.getDetail(hNo);
+				HospitalDetailDto hosd = hosService.getDetail(hNo);
 				request.setAttribute("hosd", hosd);
 				MemberDto memd = mService.selectResUser(uNo);
 				request.setAttribute("memd", memd);				

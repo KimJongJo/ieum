@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 import dto.MemberDto;
+import dto.otherDto.HospitalDocDto;
 
 public interface MemberService {
 	
@@ -18,7 +19,7 @@ public interface MemberService {
 
 	MemberDto selectByNickName(Integer uNo) throws Exception;
 	
-	List<MemberDto> DoclistBy2 (Integer hNo) throws Exception;
+	List<HospitalDocDto> DoclistBy2 (Integer hNo) throws Exception;
 
 	MemberDto socialIdCheck(String idStr);
 
@@ -32,6 +33,7 @@ public interface MemberService {
 	
 	MemberDto selectResUser (Integer uNo)throws Exception;
 	
-	MemberDto getresDoc (Integer mNo)throws Exception;
+	HospitalDocDto getDocDetail (Integer mNo) throws Exception;
+
 	
 }

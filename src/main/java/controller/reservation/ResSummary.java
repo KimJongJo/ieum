@@ -1,6 +1,7 @@
 package controller.reservation;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.MemberDto;
-import dto.ReservationDto;
+import dto.otherDto.HospitalDocDto;
 import dto.otherDto.ReservationInfoDto;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
@@ -47,12 +48,23 @@ public class ResSummary extends HttpServlet {
 		
 		try {
 			Integer rNo = rService.getLastRes(uNo);
-			ReservationInfoDto nowRes = rService.getNowRes(uNo, rNo);
-			Integer mNo = rService.getDocMno(rNo);
-			MemberDto resDoc = mService.getresDoc(mNo);
+			ReservationInfoDto resDetail = rService.getResDetail(rNo);
+			MemberDto resUser = mService.selectResUser(uNo);
 			
-			request.setAttribute("nowRes", nowRes);
-			request.setAttribute("resDoc", resDoc);
+			request.setAttribute("resDetail", resDetail);
+			request.setAttribute("resUser", resUser);
+			
+			String actName = resDetail.getActName();
+			String actTel = resDetail.getActTel();			
+			if(actName == null || actName.trim().isEmpty()) {
+				actName = resUser.getUsername();
+			}		
+			if(actTel == null || actTel.trim().isEmpty()) {
+				actTel = resUser.getuTel();
+			}
+			
+			request.setAttribute("actName", actName);
+			request.setAttribute("actTel", actTel);
 			
 			request.getRequestDispatcher("/reservation/resSummary.jsp").forward(request, response);
 			
@@ -62,11 +74,5 @@ public class ResSummary extends HttpServlet {
 		
 	}
 	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
 }

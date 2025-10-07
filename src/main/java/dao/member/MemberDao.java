@@ -5,6 +5,7 @@ import java.util.Map;
 
 import dto.MemberDto;
 import dto.MemberProfileDto;
+import dto.otherDto.HospitalDocDto;
 
 public interface MemberDao {
 	
@@ -36,7 +37,7 @@ public interface MemberDao {
 	
 	Integer docCnt(Integer hNo) throws Exception;
 	
-	List<MemberDto> docList(Integer hNo) throws Exception;
+	List<HospitalDocDto> docList(Integer hNo) throws Exception;
 
 	Integer kakaoSignUp(MemberDto member);
 
@@ -44,5 +45,6 @@ public interface MemberDao {
 
 	void socialUpdate(Map<String, String> map);
 	
-	MemberDto resDoc (Integer mNo) throws Exception;
+	HospitalDocDto docDetail (Integer mNo)throws Exception;
+	
 }

@@ -37,18 +37,19 @@
 		<typeAlias type="dto.ReservationDto" alias="reservation" />
 		<typeAlias type="dto.UserStateDto" alias="userState" />
 		<typeAlias type="dto.ApplicantDto" alias="applicant" />
-		<typeAlias type="dto.otherDto.HosSearchDto"
-			alias="hosfilter" />
-		<typeAlias type="dto.otherDto.HosSearchListDto"
-			alias="hosfilterlist" />
-		<typeAlias type="dto.otherDto.HosDetailDto"
-			alias="hosDetail" />
+		
+		<typeAlias type="dto.otherDto.HospitalSearchDto" alias="hosFilter" />
+		<typeAlias type="dto.otherDto.HospitalDetailDto" alias="hosDetail" />
+		<typeAlias type="dto.otherDto.HospitalDocDto" alias="hosDoc" />
+		<typeAlias type="dto.otherDto.HospitalListDto" alias="hosSearchList" />
+		<typeAlias type="dto.otherDto.ReservationInfoDto" alias="resInfo" />
+			
 		<typeAlias type="dto.otherDto.MainHosDto" alias="mainHos" />
 		<typeAlias type="dto.otherDto.MainUserDto" alias="mainUser" />
 		<typeAlias type="dto.otherDto.MainCommuDto" alias="mainCommu" />
 		<typeAlias type="dto.otherDto.MainNoticeDto" alias="mainNotice" />
 		<typeAlias type="dto.otherDto.MainDiagnosisDto" alias="mainDiag" />
-		<typeAlias type="dto.otherDto.ReservationInfoDto" alias="resInfo" />
+	
 	</typeAliases>
 
    <environments default="development">
@@ -57,7 +58,7 @@
          <dataSource type="POOLED">
             <property name="driver" value="org.mariadb.jdbc.Driver" />
             <property name="url"
-               value="jdbc:mariadb://localhost:3307/ieum" />
+               value="jdbc:mariadb://localhost:3306/ieum" />
             <property name="username" value="root" />
             <property name="password" value="7564" />
             <property name="poolMaximumActiveConnections" value="500" />

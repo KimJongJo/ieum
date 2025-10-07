@@ -57,15 +57,15 @@
 		where u_no =#{uNo}
 	</select>
 	
-	<!-- 새로운 예약 -->
-	<select id="newRes" parameterType="map" resultType="resInfo">
+	<!-- 예약 상세 -->
+	<select id="ResDetail" parameterType="Integer" resultType="resInfo">
 		select *
-		from reservation
-		join hospital
+		from reservation r
+		join hospital h
 		using(h_no)
-		join member
-		using (u_no)
-		where u_no=#{uNo} and r_no=#{rNo}
+		join member m
+		on (r.m_no = m.u_no)
+		where r_no=#{rNo}
 	</select>
 	
 	<!-- 예약된 의사번호 -->
@@ -76,27 +76,31 @@
 	</select>
 	
 	<!-- 다가오는예약 리스트 -->
-	<select id="commingRes" parameterType="map" resultType="resInfo">
+	<select id="commingRes" parameterType="Integer" resultType="resInfo">
 		select *
-		from reservation
-		join hospital
-		using (h_no)
-		join member
-		using (u_no)
-		where u_no=#{uNo} and r_status=#{rStatus}
-		order by ASC
+		from reservation r
+		join hospital h
+		using(h_no)
+		join member m
+		on (r.m_no = m.u_no)
+		left join file f
+		on (m.file_no = f.file_no)
+		where r.u_no=#{uNo} and r.r_status='WAITING'
+		order by r.r_no ASC
 	</select>
 	
 	<!-- 지난예약 리스트 -->
-	<select id="recordRes" parameterType="map" resultType="resInfo">
+	<select id="recordRes" parameterType="Integer" resultType="resInfo">
 		select *
-		from reservation
-		join hospital
-		using (h_no)
-		join member
-		using (u_no)
-		where u_no=#{uNo} and r_status=#(rStatus)
-		order by DESC
+		from reservation r
+		join hospital h
+		using(h_no)
+		join member m
+		on (r.m_no = m.u_no)
+		left join file f
+		on (m.file_no = f.file_no)
+		where r.u_no=#{uNo} and r.r_status='COMPLETE'
+		order by r.r_no DESC
 	</select>
 
 

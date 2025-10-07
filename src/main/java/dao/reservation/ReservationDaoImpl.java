@@ -51,22 +51,35 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 	}
 	
-	//새예약
+	//예약 상세
 	@Override
-	public ReservationInfoDto newRes(Integer uNo, Integer rNo) throws Exception {
+	public ReservationInfoDto resDetail(Integer rNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
-			Map<String, Object> neewRes = new HashMap<>();
-			neewRes.put("uNo", uNo);
-			neewRes.put("rNo", rNo);
-	
-			return session.selectOne("mapper.reservation.newRes",neewRes);
+			return session.selectOne("ResDetail",rNo);
 		}
 	}
-
+	
+	//의사번호
 	@Override
 	public Integer docMno(Integer rNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectOne("resDocMno", rNo);
+		}
+	}
+	
+	//다가오는 예약
+	@Override
+	public List<ReservationInfoDto> commingRes(Integer uNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("commingRes", uNo);
+		}
+	}
+
+	//지난 예약
+	@Override
+	public List<ReservationInfoDto> recordRes(Integer uNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("recordRes", uNo);
 		}
 	}
 

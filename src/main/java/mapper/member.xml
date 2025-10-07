@@ -4,142 +4,242 @@
 <mapper namespace="mapper.member">
 
 	<select id="checkId" parameterType="String" resultType="member">
-		select * from member where id = #{userId};
+		select *
+		from member where id = #{userId};
 	</select>
-	
+
 	<insert id="normalJoin" parameterType="member">
-		insert into member 
-		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code, file_no)
-		 values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW() , 'USER'
-		 , #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
+		insert into member
+		(id, username, birth_date, password, gender, u_tel, email, created_at,
+		user_type, nickname, u_address, diary_private, warning_count,
+		state_code, file_no)
+		values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email},
+		NOW() , 'USER'
+		, #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
 	</insert>
-	
+
 	<insert id="managerJoin" parameterType="member">
 		insert into member
-		(id, username, birth_date, password, gender, u_tel, email, created_at, user_type, major, h_no, state_code, file_no)
-		values(#{id}, #{username}, #{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW(), #{userType}, #{major}, #{hNo}, 1, #{fileNo})
+		(id,
+		username, birth_date, password, gender, u_tel, email, created_at,
+		user_type, major, h_no, state_code, file_no)
+		values(#{id}, #{username},
+		#{birthDate}, #{password}, #{gender}, #{uTel}, #{email}, NOW(),
+		#{userType}, #{major}, #{hNo}, 1, #{fileNo})
 	</insert>
-	
+
 	<select id="findId" parameterType="String" resultType="Map">
-		select id as userId, username as userName, user_type as userType from member where email = #{email}
+		select id
+		as userId, username as userName, user_type as userType from member
+		where email = #{email}
 	</select>
-	
-	<select id="CheckIdAndEmail" parameterType="Map" resultType="Map">
-		select * from member where id = #{userId} and email = #{email}
+
+	<select id="CheckIdAndEmail" parameterType="Map"
+		resultType="Map">
+		select * from member where id = #{userId} and email =
+		#{email}
 	</select>
-	
+
 	<update id="changePw" parameterType="Map">
-		update member set password = #{password} where id = #{userId}
+		update member set password =
+		#{password} where id = #{userId}
 	</update>
-	
+
 	<select id="beforePw" parameterType="String" resultType="String">
-		select password from member where id = #{userId}
+		select
+		password from member where id = #{userId}
 	</select>
-	
+
 	<select id="useEmail" parameterType="String" resultType="member">
-		select * from member where email = #{email}
+		select *
+		from member where email = #{email}
 	</select>
-	
+
 	<select id="existId" parameterType="String" resultType="Map">
-		select u_no as userNo, password from member where id = #{userId}
+		select
+		u_no as userNo, password from member where id = #{userId}
 	</select>
-	
+
 	<!-- 뭐였지? -->
-	<select id="selectByNickName" parameterType="int" resultType="member">
+	<select id="selectByNickName" parameterType="int"
+		resultType="member">
 		select nickname, u_no from member where u_no = #{u_no}
 	</select>
-	
+
 	<!-- 정보 가져오기 -->
-	<select id="selectProfileInfo" parameterType="int" resultType="member">
-		select username, nickname, id, u_address, email, birth_date, gender, diary_private, u_tel
+	<select id="selectProfileInfo" parameterType="int"
+		resultType="member">
+		select username, nickname, id, u_address, email,
+		birth_date, gender, diary_private, u_tel
 		from member
 		where u_no = #{uNo}
 	</select>
-	
+
 	<!-- 회원 정보 수정하기 전에 정보 가져오기 -->
-	<select id="selectMemberWithProfile" parameterType="int" resultType="memberProfile">
-		select m.u_no, m.id, m.username, m.nickname, m.u_address, m.email, m.u_tel, m.diary_private,
-        	  f.file_no, f.file_name, f.file_path, f.file_category
-    	from member m
-    	left JOIN file f
+	<select id="selectMemberWithProfile" parameterType="int"
+		resultType="memberProfile">
+		select m.u_no, m.id, m.username, m.nickname, m.u_address,
+		m.email, m.u_tel, m.diary_private,
+		f.file_no, f.file_name, f.file_path, f.file_category
+		from member m
+		left JOIN file f
 		ON m.file_no = f.file_no
 		where m.u_no = #{uNo}
 	</select>
-	
+
 	<!-- 회원 정보 수정 -->
 	<update id="updateProfile" parameterType="member">
-		update member set 
-			nickname = #{nickName}, email = #{email}, id = #{id}, u_tel = #{uTel}, u_address = #{uAddress},
-			 diary_private = #{diaryPrivate} 
-			<if test="fileNo != null">
-                , file_no = #{fileNo}
-            </if>
-        where u_no = #{uNo}
-	</update>	
-	
+		update member set
+		nickname = #{nickName}, email = #{email}, id = #{id}, u_tel = #{uTel},
+		u_address = #{uAddress},
+		diary_private = #{diaryPrivate}
+		<if test="fileNo != null">
+			, file_no = #{fileNo}
+		</if>
+		where u_no = #{uNo}
+	</update>
+
 	<!-- 비번 업데이트 -->
 	<update id="updatePass" parameterType="member">
 		update member set
-			password = #{password}
+		password = #{password}
 		where u_no = #{uNo}
 	</update>
 	<!-- 비밀번호 찾기 -->
 	<select id="selectId" parameterType="int" resultType="member">
-		select password from member where u_no = #{uNo}
+		select
+		password from member where u_no = #{uNo}
 	</select>
-	
+
 	<!-- 프로필 업데이트 -->
 	<update id="updateMemberFileNo" parameterType="member">
-	    update member
-	    set file_no = #{fileNo}
-	    where u_no = #{uNo}
+		update member
+		set file_no = #{fileNo}
+		where u_no = #{uNo}
 	</update>
-	
-	<!-- 의사 수  -->
-	<select id="docCnt" parameterType="Integer" resultType="Integer">
-	select count(*)
-	from member m
-	where h_no=#{hNo} and state_code=1
-	</select>
-	
-	<!-- 의사 리스트 정렬  -->
-	<select id="docList" parameterType="Integer" resultType="member">
-	select * ,count(r.r_no) as resCount
-	from member m
-	left join reservation r
-	using (h_no)
-	where m.h_no=#{hNo} and m.state_code=1
-	group by m.u_no, m.h_no
-	order by resCount desc
-	</select>
-	
 
-	<insert id="kakaoSignUp" parameterType="member" useGeneratedKeys="true" keyProperty="uNo">
-		insert into member (id, username, birth_date, gender, u_tel, email, created_at, user_type, nickname, u_address, diary_private, warning_count, state_code, file_no)
-		 values(#{id}, #{username}, #{birthDate}, #{gender}, #{uTel}, #{email}, NOW(), 'USER', #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1, #{fileNo})
+	<insert id="kakaoSignUp" parameterType="member"
+		useGeneratedKeys="true" keyProperty="uNo">
+		insert into member (id, username,
+		birth_date, gender, u_tel, email, created_at, user_type, nickname,
+		u_address, diary_private, warning_count, state_code, file_no)
+		values(#{id}, #{username}, #{birthDate}, #{gender}, #{uTel}, #{email},
+		NOW(), 'USER', #{nickname}, #{uAddress}, #{diaryPrivate}, 0, 1,
+		#{fileNo})
 	</insert>
-	
-	<select id="checkNaverEmail" parameterType="String" resultType="member">
+
+	<select id="checkNaverEmail" parameterType="String"
+		resultType="member">
 		select * from member where email = #{email}
-  </select>
+	</select>
+
+	<!-- 일반 계정이랑 소셜 계정 병합 -->
+	<update id="socialUpdate" parameterType="map">
+		update member set
+		social_id = #{id} where email = #{email}
+	</update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- 의사선택 -->
 	<select id="selectDoc" parameterType="integer" resultType="Integer">
-	select *
-	from member
-	where u_no=#{uNo} and state_code=1
-	</select>
-	
-	<!-- 일반 계정이랑 소셜 계정 병합 -->
-	<update id="socialUpdate" parameterType="map">
-		update member set social_id = #{id} where email = #{email}
-	</update>
-	
-	<!-- 예약된 의사 -->
-	<select id="selectMnoDoc" parameterType="Integer" resultType="member">
 		select *
 		from member
-		where u_no=#{mNo} 
+		where u_no=#{uNo} and state_code=1
 	</select>
 	
+	<!-- 의사정보 -->
+	<select id="docDetail" parameterType="Integer" resultType="hosDoc">
+		select *
+		from member
+		join file
+		using (file_no)
+		where u_no=#{uNo} or u_no=#{mNo}
+	</select>
+	
+	<!-- 의사 수 -->
+	<select id="docCnt" parameterType="Integer" resultType="Integer">
+		select count(*)
+		from member m
+		where h_no=#{hNo} and state_code=1
+	</select>
+
+	<!-- 의사 리스트 정렬 -->
+	<select id="docList" parameterType="Integer" resultType="hosDoc">
+		select * ,count(r.r_no) as resCount
+		from member m
+		left join reservation r
+		using (h_no)
+		left join file f
+		using (file_no)
+		where m.h_no=#{hNo} and m.state_code=1
+		group by m.u_no, m.h_no
+		order by resCount desc
+	</select>
+
+
 </mapper>	

@@ -45,15 +45,13 @@ a {
 
 .sumbox {
     width: 704px;
-    height: 753px;
     border: solid 2px #d9d9d9;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 40px;
+    padding: 40px 20px 80px 20px;
     box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
 

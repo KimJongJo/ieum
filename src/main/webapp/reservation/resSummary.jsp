@@ -29,19 +29,19 @@
         <div class="sumbox">
             <div class="ht">
                 <span class="hname">
-                <c:out value="${nowRes.hNm }"/>
+                <c:out value="${resDetail.hNm }"/>
                 </span>
                 <table class="date">
                     <tr>
                         <td class="hd">일정</td>
                         <td class="hd">
-                        <c:out value="${nowRes.rDate }"/>
+                        <c:out value="${resDetail.rDate }"/>
                         </td>
                         <td class="hd">
-                        <c:out value="${nowRes.rDay }"/>
+                        <c:out value="${resDetail.rDay }"/>
                         </td>
                         <td class="hd">
-                        <c:out value="${nowRes.rTime }"/>
+                        <c:out value="${resDetail.rTime }"/>
                         </td>
                     </tr>
                 </table>
@@ -50,19 +50,19 @@
 
 
             <div class="docbox">
-                <img class="docprof" src="" />
+                <img class="docprof" src="${resDetail.filePath }" />
 
                 <div class="info">
                     <div class="doci">
                     <p class="dname">
-                    <c:out value="${resDoc.username }"/>
+                    <c:out value="${resDetail.username }"/>
                     </p>
                     <p class="intro">
-                    <c:out value="${resDoc.introduction }" default="믿음을 주는 상담사"/>
+                    <c:out value="${resDetail.introduction }" default="믿음을 주는 상담사"/>
                     </p>
                     </div>
                     <span class="major">
-                    <c:out value="${resDoc.major }"/>
+                    <c:out value="${resDetail.major }"/>
                     </span>
                 </div>
             </div>
@@ -70,10 +70,10 @@
             <div class="painfo">
                 <span class="t2">예약자 정보</span>
                 <span class="pname">
-                <c:out value="${nowRes.actName }" default="${nowRes.username }"/>
+                <c:out value="${actName}"/>
                 </span>
                 <span class="ptel">
-                <c:out value="${nowRes.actTel }" default="${nowRes.uTel }"/>
+                <c:out value="${actTel}"/>
                 </span>
                 <div class="line"></div>
             </div>
@@ -81,7 +81,7 @@
             <div class="councon">
                 <span class="t2">상담내용</span>
                 <div class="counbox">
-                <c:out value="${nowRes.rContent }"/>
+                <c:out value="${resDetail.rContent }"/>
                 </div>
             </div>
         </div>

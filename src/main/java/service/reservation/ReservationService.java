@@ -13,7 +13,9 @@ public interface ReservationService {
 	List<ReservationDto> todayReservationList();
 	
 	Integer getLastRes (Integer uNo) throws Exception;
-	ReservationInfoDto getNowRes (Integer uNo, Integer rNo) throws Exception;
+	ReservationInfoDto getResDetail (Integer rNo) throws Exception;
 	Integer getDocMno (Integer rNo) throws Exception;
+	List<ReservationInfoDto> comResList (Integer uNo) throws Exception;
+	List<ReservationInfoDto> recResList (Integer uNo) throws Exception;
 
 }

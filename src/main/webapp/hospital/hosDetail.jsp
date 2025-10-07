@@ -30,11 +30,11 @@
 			<div class="hbt">
 				<div class="hos-category">
 					[
-					<c:out value="${hosd.categoryName }" />
+					<c:out value="${hosDetail.categoryName }" />
 					]
 				</div>
 				<div class="hos-name">
-					<c:out value="${hosd.hNm }" />
+					<c:out value="${hosDetail.hNm }" />
 				</div>
 			</div>
 			<div class="share">
@@ -55,17 +55,17 @@
 
 				<div class="hinfoa">
 
-					<img src="" class="file_no" />
+					<img src="${hosDetail.filePath }" class="file_no" />
 
 					<div class="hinfor">
 						<div class="hinfoh">
 							<div class="hos-cate">
 								[
-								<c:out value="${hosd.categoryName }" />
+								<c:out value="${hosDetail.categoryName }" />
 								]
 							</div>
 							<div class="hos-na">
-								<c:out value="${hosd.hNm }" />
+								<c:out value="${hosDetail.hNm }" />
 							</div>
 
 						</div>
@@ -79,7 +79,7 @@
 											<td class="icon"><i class="fa-solid fa-location-dot"></i></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosd.hAddress }" />
+													<c:out value="${hosDetail.hAddress }" />
 												</p>
 											</td>
 										</tr>
@@ -87,7 +87,7 @@
 											<td class="icon"><i class="fa-solid fa-bus"></i></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosd.transferInfo }" />
+													<c:out value="${hosDetail.transferInfo }" />
 												</p>
 											</td>
 										</tr>
@@ -95,7 +95,7 @@
 											<td class="icon"><i class="fa-solid fa-clock"></i></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosd.holidayInfo }" />
+													<c:out value="${hosDetail.holidayInfo }" />
 												</p>
 											</td>
 										</tr>
@@ -103,20 +103,20 @@
 											<td class="icon"><i class="fa-solid fa-phone"></i></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosd.hTel }" />
+													<c:out value="${hosDetail.hTel }" />
 												</p>
 											</td>
 										</tr>
 										<tr>
 											<td class="icon"></td>
 											<td><a href="#" class="etc"> <c:out
-														value="${hosd.hLink }" /></a></td>
+														value="${hosDetail.hLink }" /></a></td>
 										</tr>
 										<tr>
 											<td class="icon"></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosd.services }" />
+													<c:out value="${hosDetail.services }" />
 												</p>
 											</td>
 										</tr>
@@ -158,9 +158,9 @@
 				<form class="hos-inf" action="" method="get">
 					<div class="inf">
 						<p class="p1">
-							<c:out value="${hosd.newsTitle }" />
+							<c:out value="${hosDetail.newsTitle }" />
 						</p>
-						<span class="p2"> <c:out value="${hosd.newsContent }" />
+						<span class="p2"> <c:out value="${hosDetail.newsContent }" />
 						</span>
 					</div>
 				</form>
@@ -171,7 +171,7 @@
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
 					<div class="dal">
-						<img src="${doctorlist.fileNo }" class="doc-prof" />
+						<img src="${doctorlist.filePath }" class="doc-prof" />
 						<div class="d1">
 							<div class="d2">
 								<p class="username">
@@ -227,7 +227,7 @@
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
 						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${doctorlist.fileNo }" class="doc-prof"
+							<img src="${doctorlist.filePath }" class="doc-prof"
 								onerror="this.onerror=null; this.src='';" />
 							<div class="d1">
 								<div class="d2">

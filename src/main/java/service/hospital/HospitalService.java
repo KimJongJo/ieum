@@ -4,20 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import dto.HospitalDto;
-
-import dto.MemberDto;
-import dto.otherDto.HosDetailDto;
-import dto.otherDto.HosSearchDto;
-import dto.otherDto.HosSearchListDto;
+import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.HospitalSearchDto;
 import util.PageInfo;
 
 public interface HospitalService {
-	HosDetailDto getDetail (Integer hNo) throws Exception;
+	HospitalDetailDto getDetail (Integer hNo) throws Exception;
 	
-	HosDetailDto getDocDetail (Integer hNo) throws Exception;
-  
-	List<HosSearchListDto> listByFilter (HosSearchDto hosSearch, PageInfo pageInfo) throws Exception;
+	List<HospitalDetailDto> listByFilter (HospitalSearchDto hosSearch, PageInfo pageInfo) throws Exception;
 
 	void addHospital(Map<String, Object> requestMap);
 
