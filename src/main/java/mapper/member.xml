@@ -430,5 +430,7 @@
 		select * from member where u_no = #{_parameter}
 	</select>
 	
-
+	<select id="selectFileNo" parameterType="Integer" resultType="Integer">
+		SELECT file_no FROM member WHERE u_no = #{_parameter}
+	</select>
 </mapper>	

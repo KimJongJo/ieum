@@ -270,4 +270,18 @@ public class MemberDaoImpl implements MemberDao {
 			return session.selectOne("mapper.member.docDetail", mNo);
 		}
 	}
+
+	@Override
+	public Integer selectFileNo(Integer getuNo) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.member.selectFileNo", getuNo);
+		}
+	}
+	// 이미지와 사용자 정보 가져오기
+	@Override
+	public MemberProfileDto selectProFileView(Integer uNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
+		}
+	}
 }

@@ -18,8 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         reader.readAsDataURL(file);
 
-        // 같은 파일도 다시 선택할 수 있도록 input 초기화
-        profileInput.value = '';
     });
 
     // 기존 '관리 메뉴' 숨기기 코드

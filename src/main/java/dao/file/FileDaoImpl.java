@@ -40,6 +40,13 @@ public class FileDaoImpl implements FileDao{
 			return fileDto.getFileNo();
 		}
 	}
+
+	@Override
+	public FileDto getFile(Integer fileNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.file.getFile",fileNo);
+		}
+	}
 	
 
 

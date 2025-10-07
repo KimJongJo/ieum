@@ -74,4 +74,8 @@ public interface MemberDao {
 	MemberDto selectUserByNo(Integer uNo);
   
 	HospitalDocDto docDetail (Integer mNo)throws Exception;
+
+	Integer selectFileNo(Integer getuNo);
+	
+	MemberProfileDto selectProFileView(Integer uNo) throws Exception;
 }

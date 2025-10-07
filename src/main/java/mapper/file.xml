@@ -37,4 +37,9 @@
 	    SET file_no = #{fileNo}
 	    WHERE u_no = #{uNo}
 	</update>
+	
+	
+	<select id="getFile" parameterType="Integer" resultType="file">
+	      SELECT * FROM file WHERE file_no = #{_parameter}
+	</select>
 </mapper>	
