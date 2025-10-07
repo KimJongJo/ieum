@@ -169,7 +169,6 @@ public class MemberServiceImpl implements MemberService {
 	public boolean checkPw(String email, String password) {
 		
 		MemberDto member = memberDao.checkEmail(email);
-		
 		return BCrypt.checkpw(password, member.getPassword());
 	}
 
