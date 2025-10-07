@@ -12,8 +12,8 @@ import dao.member.MemberDao;
 import dto.ApplicantDto;
 import dto.HospitalDto;
 import dto.otherDto.HosInfoDto;
-import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.HospitalDetailDto;
 import dto.otherDto.HospitalSearchDto;
 import util.PageInfo;
 
