@@ -37,4 +37,22 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 		}
 	}
 
+	@Override
+	public Integer getSearchCnt(String keyword) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			Map<String, Object> param = new HashMap<>();
+	        param.put("keyword", keyword);
+	        return session.selectOne("mapper.community.searchCommuCnt", param);
+		}
+	}
+
+	@Override
+	public List<AllCommunityDto> getSearchList(String keyword) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			Map<String, Object> param = new HashMap<>();
+	        param.put("keyword", keyword);
+	        return session.selectList("mapper.community.searchCommuity", param);
+		}
+	}
+
 }

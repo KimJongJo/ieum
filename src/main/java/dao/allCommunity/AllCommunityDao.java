@@ -9,4 +9,7 @@ public interface AllCommunityDao {
 	
 	List<AllCommunityDto> selectList(Integer row) throws Exception;
 	Integer selectCount() throws Exception;
+	
+	Integer getSearchCnt(String keyword) throws Exception;
+	List<AllCommunityDto>getSearchList(String keyword) throws Exception;
 }

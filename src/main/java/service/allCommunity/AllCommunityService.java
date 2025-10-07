@@ -9,4 +9,9 @@ public interface AllCommunityService {
 	List<AllCommunityDto> getAllCommunity();
 
 	List<AllCommunityDto> listByPage(PageInfo pageInfo) throws Exception;
+	
+//	pes
+	Integer getSearchCnt(String keyword) throws Exception;
+	List<AllCommunityDto>getSearchList(String keyword) throws Exception;
+
 }

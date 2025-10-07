@@ -45,8 +45,7 @@ public class AdminNoticeWrite extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		// 멤버에서 로그인 사용자 이름 뽑아오기
 		HttpSession session = request.getSession();
-		// Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer uNo = 1;
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		FileDao fDao = new FileDaoImpl();
 		NoticeService service = new NoticeServiceImpl();
 		String nNo = request.getParameter("nNo");
@@ -102,8 +101,7 @@ public class AdminNoticeWrite extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			boolean isPinned = "on".equals(request.getParameter("topYn"));
-			// Integer uNo = (Integer) session.getAttribute("uNo");
-			Integer uNo = 1;
+			 Integer uNo = (Integer) session.getAttribute("uNo");
 			Part filePart = request.getPart("file");
 			Integer fileNo = null;
 			if (filePart != null && filePart.getSize() > 0) {
