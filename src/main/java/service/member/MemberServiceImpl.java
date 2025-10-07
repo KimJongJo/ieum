@@ -10,6 +10,7 @@ import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dto.FileDto;
 import dto.MemberDto;
+import dto.otherDto.HospitalDocDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 public class MemberServiceImpl implements MemberService {
@@ -130,7 +131,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 의사 리스트 가져오기
 	@Override
-	public List<MemberDto> DoclistBy2(Integer hNo) throws Exception {
+	public List<HospitalDocDto> DoclistBy2(Integer hNo) throws Exception {
 		return memberDao.docList(hNo);
 		
 	}
@@ -175,16 +176,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.checkEmail(email);
 	}
 
-  
+	//예약한 유저
 	@Override
 	public MemberDto selectResUser(Integer uNo) throws Exception {
 		return memberDao.selectProfileInfo(uNo);
 	}
-
-	//예약된 의사정보
+	
+	//의사 디테일 
 	@Override
-	public MemberDto getresDoc(Integer mNo) throws Exception {
-		return memberDao.resDoc(mNo);
+	public HospitalDocDto getDocDetail(Integer mNo) throws Exception {
+		return memberDao.docDetail(mNo);
 	}
+
 
 }

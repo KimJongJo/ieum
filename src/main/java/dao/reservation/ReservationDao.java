@@ -12,7 +12,9 @@ public interface ReservationDao {
 	List<ReservationDto> todayReservationList();
 	
 	Integer lastRes (Integer uNo)throws Exception;
-	ReservationInfoDto newRes (Integer uNo, Integer rNo)throws Exception;
+	ReservationInfoDto resDetail (Integer rNo)throws Exception;
 	Integer docMno (Integer rNo)throws Exception;
+	List<ReservationInfoDto> commingRes (Integer uNo) throws Exception;
+	List<ReservationInfoDto> recordRes (Integer uNo) throws Exception;
 
 }

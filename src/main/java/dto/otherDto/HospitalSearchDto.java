@@ -2,7 +2,7 @@ package dto.otherDto;
 
 import java.util.List;
 
-public class HosSearchDto {
+public class HospitalSearchDto {
 	
 	String keyword; //검색키워드
 	List<String> categoryName; //카테고리 이름
@@ -11,11 +11,11 @@ public class HosSearchDto {
 	int offset; //몇번째 row부터 가져올지
 	int limit; //몇개 가져올지
 	
-	public HosSearchDto() {
+	public HospitalSearchDto() {
 		super();
 	}
 
-	public HosSearchDto(String keyword, List<String> categoryName, String city, String gungu, int offset, int limit) {
+	public HospitalSearchDto(String keyword, List<String> categoryName, String city, String gungu, int offset, int limit) {
 		super();
 		this.keyword = keyword;
 		this.categoryName = categoryName;

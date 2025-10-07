@@ -11,6 +11,8 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_down" />
+<script src="https://kit.fontawesome.com/8d48045bdd.js"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="${contextPath }/reservation/css/resContent.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
@@ -36,8 +38,8 @@
 					<tr>
 						<td class="ta1">일정</td>
 						<td class="ta1"><c:out value="${rDate}" /></td>
-						<td class="ta1"><c:out value="${rTime}" /></td>
 						<td class="ta1"><c:out value="${rDay}" /></td>
+						<td class="ta1"><c:out value="${rTime}" /></td>
 					</tr>
 				</table>
 			</div>
@@ -79,11 +81,12 @@
 					<div class="aff">
 						<div class="af">
 							<span class="af2">이름</span> <input type="text" name="actName"
-								class="afinput" placeholder="이름">
+								class="name-input" placeholder="상담자 본명">
 						</div>
 						<div class="af">
-							<span class="af2">연락처</span> <input type="text" name="actTel"
-								class="afinput" placeholder="010-0000-0000">
+							<span class="af2">연락처</span> <input type="tel" name="actTel" id="actTel"
+								class="tel-input" placeholder="숫자만 입력" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13">
+								<div class="checkI"><i class="fa-solid fa-circle-check"></i></div>
 						</div>
 					</div>
 				</div>

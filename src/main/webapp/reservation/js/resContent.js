@@ -8,6 +8,48 @@ $(document).ready(function() {
 		$("#actUser").slideToggle(400);
 
 	});
+	
+	//전화번호 입력 확인
+	$("#actTel").css("letter-spacing", "2px").on("input", function(){
+		const check = actTel($(this).val());
+		$(this).val(check);
+		
+		if(check.length === 13){
+			$(".checkI").addClass("active");
+		}else{
+			$(".checkI").removeClass("active");
+		}
+	});
+
+
+	//전화번호 형식
+	function actTel (str) {
+		str = str.replace(/[^0-9]/g, '');
+		var tmp = '';
+		if (str.length < 4) {
+			return str;
+		} else if (str.length < 7) {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3);
+			return tmp;
+		} else if (str.length < 11) {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3, 3);
+			tmp += '-';
+			tmp += str.substr(6);
+			return tmp;
+		} else {
+			tmp += str.substr(0, 3);
+			tmp += '-';
+			tmp += str.substr(3, 4);
+			tmp += '-';
+			tmp += str.substr(7);
+			return tmp;
+		}
+	}
+
 
 	//insert
 	$("#resSubmit").on("click", function() {
