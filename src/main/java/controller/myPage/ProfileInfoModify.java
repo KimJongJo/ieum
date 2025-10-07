@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 
-import dto.FileDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
-import service.myPage.FileService;
-import service.myPage.FileServiceImpl;
 import service.myPage.ProfileInfoService;
 import service.myPage.ProfileInfoServiceImpl;
 
@@ -48,7 +46,7 @@ public class ProfileInfoModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		 HttpSession session = request.getSession();
 //	        Integer uNo = (Integer) session.getAttribute("uNo");
-		int uNo = 4;
+		int uNo = 6;
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
 
         try {
@@ -73,7 +71,7 @@ public class ProfileInfoModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("utf-8");
-	    int uNo = 4;
+	    int uNo = 6;
 	    
 	    
 
@@ -83,11 +81,21 @@ public class ProfileInfoModify extends HttpServlet {
         String uTel         = request.getParameter("uTel");
         String uAddress     = request.getParameter("uAddress");
         String diaryPrivate = request.getParameter("diaryPrivate");
+        
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
         
         try {
         	// 회원 기존 프로필 정보 조회
         	MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
+        	
+        	// ✅ 파일 업로드 처리 부분 (HosSignUp2에서 가져온 구조)
+            Part profileImgPart = request.getPart("profileImg"); // JSP의 input name="profileImg" 이어야 함
+            Integer profileFileNo = null;
+        	
+            if (profileImgPart != null && profileImgPart.getSize() > 0) {
+                FileService fileService = new FileServiceImpl();
+                profileFileNo = fileService.uploadFile(profileImgPart, "profile"); // "profile"은 파일 카테고리
+            }
         	
         	//2. 회원 기본 정보 수정
             MemberDto member = new MemberDto();            
@@ -100,9 +108,7 @@ public class ProfileInfoModify extends HttpServlet {
             member.setDiaryPrivate("yes".equals(diaryPrivate));
             profileService.updateProfile(member);
            
-            
-           
-            
+	     
             response.sendRedirect(request.getContextPath() + "/pInfo");
 
         } catch (Exception e) {
