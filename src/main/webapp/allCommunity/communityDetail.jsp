@@ -332,6 +332,31 @@ body {
 		top:3px;
 	}
 	
+	/* 목록 버튼 오른쪽 정렬 */
+.btn-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 끝 정렬 */
+    margin-top: 20px;          /* 위쪽 여백 */
+}
+.btn-container button {
+    background-color: #488EF6;
+    color: white;
+    border: 1px solid #488EF6;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-container button:hover {
+    transform: translateY(-2px);
+}
+
+.btn-container button:active {
+    transform: translateY(1px);
+}
+	
 </style>
 <script>
 const contextPath = '${contextPath}'; // JS에서 사용할 contextPath
@@ -604,7 +629,12 @@ $('#blockCommentForm').submit(function(e){
             </div>
         </form>   
         </div>
+        <div class="btn-container">
+	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/allComList'">목록</button>
+	    </div>
     </div>
+    
+    
     	<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
     
     <!-- ✅ 삭제 모달 추가 (처음에는 숨김) -->

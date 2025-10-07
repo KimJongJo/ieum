@@ -135,11 +135,21 @@
 		update member set social_id = #{id} where email = #{email}
 	</update>
 	
+
+	<!-- profileInfoModify 수정-->
+	<update id="updateProfileInfoModify" parameterType="member">
+		update member set 
+			nickname = #{nickName}, email = #{email}, u_tel = #{uTel}, u_address = #{uAddress},
+			 diary_private = #{diaryPrivate} 
+        where u_no = #{uNo}
+	</update>	
+
 	<!-- 예약된 의사 -->
 	<select id="selectMnoDoc" parameterType="Integer" resultType="member">
 		select *
 		from member
 		where u_no=#{mNo} 
 	</select>
+
 	
 </mapper>	

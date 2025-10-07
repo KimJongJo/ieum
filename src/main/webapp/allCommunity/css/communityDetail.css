@@ -278,7 +278,7 @@ body {
 	    max-width: 100%;         /* 영역 넘치지 않게 */
 	    max-height: 100%;        /* 영역 넘치지 않게 */
 	}
-		
+
 	.action-item {
 	    display: flex;
 	    align-items: center;
@@ -312,5 +312,31 @@ body {
 			gap: 10px;
 	}
 	#Heart1{
-		margin-right:2px;
+		top:3px;
 	}
+	
+	/* 목록 버튼 오른쪽 정렬 */
+.btn-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 끝 정렬 */
+    margin-top: 20px;          /* 위쪽 여백 */
+}
+.btn-container button {
+    background-color: #488EF6;
+    color: white;
+    border: 1px solid #488EF6;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-container button:hover {
+    transform: translateY(-2px);
+}
+
+.btn-container button:active {
+    transform: translateY(1px);
+}
+	
