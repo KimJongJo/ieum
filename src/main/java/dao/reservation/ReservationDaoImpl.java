@@ -91,7 +91,6 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 
-
 	//가장 최근예약 번호
 	@Override
 	public Integer lastRes(Integer uNo) throws Exception {
@@ -131,6 +130,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			return session.selectList("recordRes", uNo);
 		}
 	}
+
 
 }
 

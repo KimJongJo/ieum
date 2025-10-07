@@ -9,14 +9,12 @@ import dao.reservation.ReservationDaoImpl;
 import dto.DiagnosisHistoryDto;
 import dto.MemberDto;
 import dto.ReservationDto;
-
-import dto.otherDto.DiagnosisInfoDto;
 import dto.otherDto.ResPageResponseDto;
+import dto.otherDto.ReservationInfoDto;
 import service.diagnosis.DiagnosisService;
 import service.diagnosis.DiagnosisServiceImpl;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
-import dto.otherDto.ReservationInfoDto;
 public class ReservationServiceImpl implements ReservationService {
 
 	private ReservationDao resDao;
@@ -144,6 +142,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<ReservationInfoDto> recResList(Integer uNo) throws Exception {
 		return resDao.recordRes(uNo);
 	}
+
 
 	
 }
