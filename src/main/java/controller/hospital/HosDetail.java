@@ -52,8 +52,9 @@ public class HosDetail extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		HttpSession session = request.getSession();
-		Integer uNo = (Integer) session.getAttribute("uNo");
+//		Integer uNo = (Integer) session.getAttribute("uNo");
 		Integer hNo = (Integer) session.getAttribute("hNo");
+		Integer uNo = 6;
 		
 		HospitalService hosService = new HospitalServiceImpl();
 		MemberService mService = new MemberServiceImpl();

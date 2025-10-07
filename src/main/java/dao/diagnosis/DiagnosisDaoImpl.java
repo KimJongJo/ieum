@@ -17,7 +17,8 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	@Override
 	public void createDia(DiagnosisHistoryDto diagnosisHistoryDto) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			System.out.println(diagnosisHistoryDto.getReservationNo());
+
+			System.out.println("dao>>>>"+diagnosisHistoryDto.getReservationNo());
 			session.insert("createDia", diagnosisHistoryDto);
 			session.commit();
 		}
