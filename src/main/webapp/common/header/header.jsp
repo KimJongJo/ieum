@@ -45,7 +45,7 @@
 						style="cursor: pointer;" onclick="location.href='/ieum/exam'">자가진단</span>
 					<span style="cursor: pointer;"
 						onclick="location.href='/ieum/allComList'">커뮤니티</span> <span
-						style="cursor: pointer;" onclick="location.href='/ieum/notice'">공지사항</span>
+						style="cursor: pointer;" onclick="location.href='/ieum/notice?page=1'">공지사항</span>
 					<!-- 					<div class="dropdown" style="cursor: pointer;"> -->
 					<!-- 						<span class="dropdown-btn">관리 메뉴</span> -->
 					<!-- 						병원관리자 관리메뉴 -->

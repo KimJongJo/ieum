@@ -21,7 +21,7 @@ function goHosDetail(hNo) {
 }
 
 function goNoticeDetail(nNo) {
-	formSubmit("/ieum/notice", "nNo", nNo);
+	location.href=`/ieum/notice?nNo=${nNo}`
 }
 function choiceHos(idx) {
 	showPopup(hospitalList[idx]);
