@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -13,8 +15,42 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
-  <script>
-  </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 서버에서 전달한 diaryJson 가져오기 (JSON 문자열을 JS 객체로 변환)
+    var diaryEvents = [];
+    <% if(request.getAttribute("diaryJson") != null) { %>
+        diaryEvents = <%= request.getAttribute("diaryJson") %>;
+    <% } %>
+
+    // FullCalendar 이벤트 포맷으로 변환
+    var events = diaryEvents.map(function(item) {
+        return {
+            title: item.title,       // 달력에 표시할 제목
+            start: item.targetDt     // yyyy-MM-dd 형식 필요
+        };
+    });
+
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'today',
+            center: 'prev,title,next',
+            right: 'write'
+        },
+        customButtons: {
+            write: {
+                text: '작성',
+                click: function() { alert('일정 등록!'); }
+            }
+        },
+        events: events
+    });
+
+    calendar.render();
+});
+</script>
   <style>
     * {
       margin: 0;
@@ -364,18 +400,6 @@
         <div class="sub-title">내용<span>9월 6일 오전 10시경 상담을 받았다. 이번 상담은 두번째 상담이라 그런지 지난번보다 편안했다9월 6일 오전 10시경 상담을 받았다. 이번
             상담은 두번째 상담이라 그런지 지난번보다 편안했다</span></div>
       </div>
-      <div class="button-wrapper">
-        <a class="btn-link" href="">
-          <div class="basic-big-btn">수정</div>
-        </a>
-        <a class="btn-link" href="">
-          <div class="basic-big-btn">삭제</div>
-        </a>
-        <a class="btn-link" href="">
-          <div class="primary-big-btn">진단이력 바로가기</div>
-        </a>
-      </div>
-
     </div>
 
   </div>
