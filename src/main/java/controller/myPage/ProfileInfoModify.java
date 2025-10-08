@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 
-import dto.FileDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
-import service.myPage.FileService;
-import service.myPage.FileServiceImpl;
 import service.myPage.ProfileInfoService;
 import service.myPage.ProfileInfoServiceImpl;
 
@@ -48,17 +46,20 @@ public class ProfileInfoModify extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		 HttpSession session = request.getSession();
 //	        Integer uNo = (Integer) session.getAttribute("uNo");
-		int uNo = 4;
+		int uNo = 6;
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
+        
+       
 
         try {
         	//회원 정보 조회
-            MemberDto member = profileService.selectProfileView(uNo);
+        	MemberProfileDto member = profileService.selectMemberWithProFileImg(uNo);
+        	System.out.println(member);
             request.setAttribute("member", member);
             
-            MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
-            request.setAttribute("file", memberProfileDto);
-             
+//            MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
+//            request.setAttribute("file", memberProfileDto);
+//             
             request.getRequestDispatcher("myPage/profileInfoModify.jsp").forward(request, response);
 
         } catch (Exception e) {
@@ -73,7 +74,7 @@ public class ProfileInfoModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("utf-8");
-	    int uNo = 4;
+	    int uNo = 6;
 	    
 	    
 
@@ -83,7 +84,19 @@ public class ProfileInfoModify extends HttpServlet {
         String uTel         = request.getParameter("uTel");
         String uAddress     = request.getParameter("uAddress");
         String diaryPrivate = request.getParameter("diaryPrivate");
+        Part proFile = request.getPart("profileFile");
+        if (proFile == null) {
+            System.out.println("❌ file 객체가 null 입니다. (폼 name 불일치 또는 enctype 누락 가능)");
+        } else {
+        	String fileName = proFile.getSubmittedFileName();
+        	System.out.println("파일 크기: " + proFile.getSize());
+        	System.out.println(fileName);
+            System.out.println("✅ file 객체가 존재합니다.");
+        }
+        
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
+        
+        
         
         try {
         	// 회원 기존 프로필 정보 조회
@@ -98,11 +111,14 @@ public class ProfileInfoModify extends HttpServlet {
             member.setuTel(uTel);
             member.setuAddress(uAddress);
             member.setDiaryPrivate("yes".equals(diaryPrivate));
-            profileService.updateProfile(member);
-           
+            
+            
+            profileService.updateProfile(member, proFile);
+            
+            
             
            
-            
+	     
             response.sendRedirect(request.getContextPath() + "/pInfo");
 
         } catch (Exception e) {

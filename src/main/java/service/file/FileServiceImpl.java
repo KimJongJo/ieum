@@ -62,6 +62,27 @@ public class FileServiceImpl implements FileService {
       Integer no = fileDao.uploadFile(fileDto);
       return no;
    }
+
+	@Override
+	public FileDto getFile(Integer fileNo) {
+		FileDto dto = fileDao.getFile(fileNo);
+		System.out.println(dto);
+		return fileDao.getFile(fileNo);
+	}
+
+	@Override
+	public void updateFile(Part file, String string, FileDto fileDto) throws Exception{
+		String fileName = file.getSubmittedFileName();
+//		realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
+		String realFilePath="C:\\Users\\USER\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
+        System.out.println(fileName);
+        System.out.println(realFilePath);
+		String filePath = "img/userProfile";
+        fileDto.setFileName(fileName);
+        fileDto.setFilePath(filePath);
+        file.write(realFilePath + File.separator + fileName);
+        fileDao.updateFile(fileDto);
+	}
    
    
 

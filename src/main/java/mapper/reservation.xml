@@ -4,14 +4,17 @@
 <mapper namespace="mapper.reservation">
 
 	<!-- 시간 조회 -->
-	<select id="selectResTime" parameterType="map" resultType="reservation">
+	<select id="selectResTime" parameterType="map"
+		resultType="reservation">
 		select *
 		from reservation
-		where m_no=#{mNo} and r_date=#{rDate}
+		where m_no=#{mNo} and
+		r_date=#{rDate}
 	</select>
 
 	<!-- 예약하기 -->
-	<insert id="insertReservation" parameterType="reservation"  useGeneratedKeys="true" keyProperty="rNo">
+	<insert id="insertReservation" parameterType="reservation"
+		useGeneratedKeys="true" keyProperty="rNo">
 		insert into reservation
 		(r_date,r_time,r_content,act_name,act_tel,r_status,r_day,h_no,u_no,m_no)
 		values
@@ -20,8 +23,11 @@
 
 
 	<!-- 오늘 예약인 예약 리스트 -->
-	<select id="todayReservationList" parameterType="Map" resultType="diaInfo">
-		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+	<select id="todayReservationList" parameterType="Map"
+		resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo,
+		DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState,
+		d.diagnosis_no as diaNo
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
@@ -29,14 +35,16 @@
 		order by 4
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
-	<select id="resCount" parameterType="Integer" resultType="Integer">
+
+	<select id="resCount" parameterType="Integer"
+		resultType="Integer">
 		select count(*)
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
 		where DATE(r_date) = CURDATE()
-		and r.m_no = #{_parameter}
+		and
+		r.m_no = #{_parameter}
 		and d.is_completed = 0
 	</select>
 	
@@ -59,84 +67,125 @@
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
 		where DATE(r_date) = CURDATE()
-		and r.m_no = #{uNo}
+		and
+		r.m_no = #{uNo}
 		and d.is_completed = 0
 		order by 4
-		LIMIT #{pageSize} OFFSET #{offset}
+		LIMIT #{pageSize}
+		OFFSET #{offset}
 	</select>
 
 
 	<!-- 유저의 가장 최근 예약건 -->
-	<select id="latestRes" parameterType="Integer" resultType="Integer">
+	<select id="latestRes" parameterType="Integer"
+		resultType="Integer">
 		select MAX(r_no)
 		from reservation
 		where u_no =#{uNo}
 	</select>
-	
+
 	<!-- 예약 상세 -->
-	<select id="ResDetail" parameterType="Integer" resultType="resInfo">
+	<select id="ResDetail" parameterType="Integer"
+		resultType="resInfo">
 		select *
 		from reservation r
 		join hospital h
 		using(h_no)
-		join member m
+		join
+		member m
 		on (r.m_no = m.u_no)
 		where r_no=#{rNo}
 	</select>
-	
+
 	<!-- 예약된 의사번호 -->
-	<select id="resDocMno" parameterType="Integer" resultType="Integer">
+	<select id="resDocMno" parameterType="Integer"
+		resultType="Integer">
 		select m_no
 		from reservation
 		where r_no=#{rNo}
 	</select>
-	
+
 	<!-- 다가오는예약 리스트 -->
-	<select id="commingRes" parameterType="Integer" resultType="resInfo">
+	<select id="commingRes" parameterType="Integer"
+		resultType="resInfo">
 		select *
 		from reservation r
 		join hospital h
 		using(h_no)
-		join member m
+		join
+		member m
 		on (r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
 		where r.u_no=#{uNo} and r.r_status='WAITING'
-		order by r.r_no ASC
+		order by r.r_date ASC
 	</select>
-	
+
+	<!-- 지난예약 리스트 수 -->
+	<select id="recordResCnt" parameterType="Integer"
+		resultType="Integer">
+		select count(*)
+		from reservation r
+		where u_no=#{value} and
+		r_status='COMPLETE'
+	</select>
+
 	<!-- 지난예약 리스트 -->
-	<select id="recordRes" parameterType="Integer" resultType="resInfo">
+	<select id="recordRes" parameterType="map" resultType="resInfo">
 		select *
 		from reservation r
 		join hospital h
 		using(h_no)
 		join member m
-		on (r.m_no = m.u_no)
+		on
+		(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
-		where r.u_no=#{uNo} and r.r_status='COMPLETE'
-		order by r.r_no DESC
+		where
+		r.u_no=#{uNo} and r.r_status='COMPLETE'
+		<if test="keyword != null and keyword !=''">
+			and(
+			h.h_nm like concat('%', #{keyword}, '%')
+			or m.username like concat('%', #{keyword}, '%')
+			or r.r_date like concat('%', #{keyword}, '%')
+			)
+		</if>
+		<if test="sort != null and sort != ''">
+			order by ${sort} DESC
+		</if>
+		limit #{offset}, #{pageSize}
 	</select>
 
-	<select id="selectDiaByRNo" parameterType="Integer" resultType="Map">
-		SELECT u.u_no as pNo, u.birth_date as birthDate, u.u_tel as uTel,
-		u.username as username, u.gender as gender, u.u_address as uAddress,
-		d.diagnosis_no as diaNo, DATE(r.r_date) as rDate, h.h_nm as hNm, h.h_address as hAddress,
+	<select id="selectDiaByRNo" parameterType="Integer"
+		resultType="Map">
+		SELECT u.u_no as pNo, u.birth_date as birthDate, u.u_tel as
+		uTel,
+		u.username as username, u.gender as gender, u.u_address as
+		uAddress,
+		d.diagnosis_no as diaNo, DATE(r.r_date) as rDate, h.h_nm as
+		hNm, h.h_address as hAddress,
 		m.username as mNm, m.major as major,
-		d.diagnosis_name as diaName, d.sympotoms as sym, d.test_summary as summary, d.treatment as treatment,
-		d.prescription as pre, d.doctor_comment as docComment
+		d.diagnosis_name as diaName, d.sympotoms as sym, d.test_summary as
+		summary, d.treatment as treatment,
+		d.prescription as pre,
+		d.doctor_comment as docComment
 		from reservation r
-		join member u ON(u.u_no = r.u_no)
+		join member u
+		ON(u.u_no = r.u_no)
 		join member m on(r.m_no = m.u_no)
-		join hospital h ON(r.h_no = h.h_no)
+		join hospital h
+		ON(r.h_no = h.h_no)
 		join diagnosis_history d ON(r.r_no = d.r_no)
-		where r.r_no = #{_parameter}
+		where
+		r.r_no = #{_parameter}
 	</select>
-	
-	<select id="patientProfile" parameterType="Integer" resultType="Map">
-		select m.u_no as pNo, m.birth_date as birthDate, m.u_tel as uTel, m.username as username,
-		m.gender as gender, m.u_address as uAddress, r.r_content as content
+
+	<select id="patientProfile" parameterType="Integer"
+		resultType="Map">
+		select m.u_no as pNo, m.birth_date as birthDate, m.u_tel as
+		uTel, m.username as username,
+		m.gender as gender, m.u_address as
+		uAddress, r.r_content as content
 		from reservation r
 		join member m on(r.u_no = m.u_no)
 		where r.r_no = #{_parameter}
@@ -153,32 +202,41 @@
 		and d.is_completed = 0
 	</select>
 	
-	
+
 	<!-- 병원관리자 - 키워드가 있는 오늘 예약 -->
-	<select id="todayReservationListByKeyword" parameterType="Map" resultType="diaInfo">
-		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+	<select id="todayReservationListByKeyword" parameterType="Map"
+		resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo,
+		DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState,
+		d.diagnosis_no as diaNo
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
 		where DATE(r_date) = CURDATE()
-		and u.username like concat ('%', #{keyword}, '%')
+		and
+		u.username like concat ('%', #{keyword}, '%')
 		and d.is_completed = 0
 		order by 4
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
+
 	<!-- 의사 - 키워드가 있는 오늘 예약 -->
-	<select id="todayReservationMyListByKeyword" parameterType="Map" resultType="diaInfo">
-		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+	<select id="todayReservationMyListByKeyword" parameterType="Map"
+		resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo,
+		DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState,
+		d.diagnosis_no as diaNo
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
 		where DATE(r_date) = CURDATE()
-		and r.m_no = #{uNo}
+		and
+		r.m_no = #{uNo}
 		and u.username like concat ('%', #{keyword}, '%')
-		and d.is_completed = 0
+		and
+		d.is_completed = 0
 		order by 4
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
+
 </mapper>	

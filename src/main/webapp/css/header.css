@@ -3,6 +3,25 @@
 	margin: 0 auto; /* 화면 가운데 정렬 */
 }
 
+.login-inner {
+	height: 30px; display : flex;
+	justify-content: right;
+	margin-right: 350px;
+	align-items: center;
+	gap: 13px;
+	display: flex;
+}
+
+.header-profile {
+	display: flex;
+	width: 25px;
+	height: 25px;
+}
+.login-txt{
+	cursor: pointer;
+	font-size: 12px;
+}
+
 /* 헤더 위쪽 검정색 줄 (화면 전체 폭) */
 #header-line-top {
 	position: absolute;

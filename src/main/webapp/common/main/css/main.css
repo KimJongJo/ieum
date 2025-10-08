@@ -165,8 +165,10 @@ body {
 }
 
 .hospital-item {
+	white-space: normal;
+	overflow-wrap: break-word;
 	width: 203px;
-	height: 326px;
+	height: 340px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -458,6 +460,7 @@ body {
 .map-secton {
 	width: 100%;
 	margin: 0 auto;
+	padding-top: 40px;
 	max-width: 1920px;
 	display: flex;
 	border-radius: 30px;
@@ -523,13 +526,18 @@ body {
 .map-popup {
 	width: 320px;
 	height: 301px;
-	background-color: #d9d9d9;
+	z-index: 1000;
+	background-color: #D4E5FF;
 	position: absolute;
-	top: 60px;
 	border-radius: 15px 50px 15px 15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	padding: 40px;
+}
+.map-popup .close-btn{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	border: none;
+	background-color: #D4E5FF;
 }
 
 .map-hospital-info {
@@ -560,10 +568,15 @@ body {
 .map-hospital-info .map-text {
 	font-size: 13px;
 	margin-bottom: 4px;
+	white-space: normal;
+	overflow-wrap: break-word;
 }
 
 .map-text {
 	font-size: 12px;
+}
+.map-text.bold {
+	font-weight: 500;
 }
 
 .map-text.red {

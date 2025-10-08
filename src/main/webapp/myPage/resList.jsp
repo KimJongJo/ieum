@@ -29,7 +29,7 @@
 					<table class="come">
 						<tr>
 							<td class="t4">다가오는 예약</td>
-							<td class="tq">1</td>
+							<td class="tq"><c:out value="${comResCnt }" /></td>
 						</tr>
 					</table>
 					<div class="moveIcon">
@@ -44,67 +44,77 @@
 
 				<div class="carousel-wrapper">
 					<div class="carousel-container" id="hospitalCarousel">
+
 						<c:choose>
 							<c:when test="${not empty comRes }">
 								<c:forEach var="comResList" items="${comRes }">
-									<div class="list1">
+									<div class="list-center">
+										<div class="list1" data-rNo ="${comResList.rNo }">
 
-										<div class="l1">
-											<div class="d">
-												<table class="date">
-													<tr>
-														<td class="blue"><c:out value="${comResList.rDate }" /></td>
-														<td class="blue"><c:out value="${comResList.rDay }" /></td>
-														<td class="blue"><c:out value="${comResList.rTime }" /></td>
-													</tr>
-												</table>
-												<div class="dday">
-													<span class="dd">D-6</span>
+											<div class="l1">
+												<div class="d">
+													<table class="date">
+														<tr>
+															<td class="blue"><c:out value="${comResList.rDate }" /></td>
+															<td class="blue"><c:out value="${comResList.rDay }" /></td>
+															<td class="blue"><c:out value="${comResList.rTime }" /></td>
+														</tr>
+													</table>
+													<div class="dday">
+														<div class="dd">
+															<c:choose>
+																<c:when test="${comResList.dDay > 0 }">
+																D-${comResList.dDay }
+															</c:when>
+																<c:when test="${comResList.dDay == 0 }">D-Day</c:when>
+															</c:choose>
+														</div>
+													</div>
+												</div>
+												<div class="star">
+													<i class="fa-regular fa-star"></i>
 												</div>
 											</div>
-											<div class="star">
-												<i class="fa-regular fa-star"></i>
-											</div>
-										</div>
 
-										<div class="l2">
+											<div class="l2">
 
-											<div class="left">
-												<table class="t">
-													<tr>
-														<td class="hi"><span class="hosIcon"> <i
-																class="fa-regular fa-calendar-plus"></i></span></td>
-														<td class="hname"><c:out value="${comResList.hNm }" /></td>
-													</tr>
-												</table>
-												<table class="t2">
-													<tr>
-														<td class="line"></td>
-														<td class="dname"><c:out
-																value="${comResList.username }" /> <span>상담사</span></td>
-														<td class="coun">첫번째 상담</td>
-													</tr>
-												</table>
-											</div>
-											<div class="right">
-												<button class="lbt" type="button">
-													<span class="lbt1">예약취소</span>
-													<div class="lbt2">
-														<i class="fa-solid fa-rectangle-xmark"></i>
-													</div>
-												</button>
-												<button class="lbt" type="button">
-													<span class="lbt1">예약변경</span>
-													<div class="lbt2">
-														<i class="fa-solid fa-pen-to-square"></i>
-													</div>
-												</button>
-												<button class="lbtb" type="button">
-													<span class="lbt3">예약확인</span>
-													<div class="lbt4">
-														<i class="fa-solid fa-list"></i>
-													</div>
-												</button>
+												<div class="left">
+													<table class="t">
+														<tr>
+															<td class="hi"><span class="hosIcon"> <i
+																	class="fa-regular fa-calendar-plus"></i></span></td>
+															<td class="hname"><c:out value="${comResList.hNm }" /></td>
+														</tr>
+													</table>
+													<table class="t2">
+														<tr>
+															<td class="line"></td>
+															<td class="dname"><c:out
+																	value="${comResList.username }" /> <span>상담사</span></td>
+															<td class="coun">첫번째 상담</td>
+														</tr>
+													</table>
+												</div>
+												<div class="right">
+													<button class="lbt" type="button">
+														<span class="lbt1">예약취소</span>
+														<div class="lbt2">
+															<i class="fa-solid fa-rectangle-xmark"></i>
+														</div>
+													</button>
+													<button class="lbt" type="button">
+														<span class="lbt1">예약변경</span>
+														<div class="lbt2">
+															<i class="fa-solid fa-pen-to-square"></i>
+														</div>
+													</button>
+													<button class="lbtb" type="button">
+														<span class="lbt3">예약확인</span>
+														<div class="lbt4">
+															<i class="fa-solid fa-list"></i>
+														</div>
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -124,40 +134,53 @@
 								</div>
 							</c:otherwise>
 						</c:choose>
+
 					</div>
 				</div>
 			</div>
 
 			<div class="searchbar">
-				<span class="t1">지난예약</span>
-				<div class="sbox">
-					<table class="fil">
+				<div class="rechead">
+					<table class="rec">
 						<tr>
-							<td><span class="t3">기간선택</span></td>
-							<td><select class="month" name="month">
-									<option value="none">36개월</option>
-									<option value="none">12개월</option>
-									<option value="none">6개월</option>
-									<option value="none">3개월</option>
-							</select></td>
-							<td>
-								<form class="search-box" action="" method="get">
-									<div class="i">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</div>
-									<input class="search-txt" name="" placeholder="">
-								</form>
-							</td>
-							<td><button class="s" type="submit">조회</button></td>
+							<td class="t1">지난 예약</td>
+							<td class="tq1"><c:out value="${recResCnt }" /></td>
 						</tr>
 					</table>
 				</div>
+				<form id="serachRec" method="post"
+					action="${contextPath }/myPage/reservation/list">
+					<input type="hidden" name="uNo" value="${uNo }">
+					<div class="sbox">
+						<table class="fil">
+							<tr>
+								<td><span class="t3">기간선택</span></td>
+								<td><select class="month" name="sort">
+										<option value="r.r_date" selected>전체</option>
+										<option value="none">12개월</option>
+										<option value="none">6개월</option>
+										<option value="none">3개월</option>
+								</select></td>
+								<td>
+									<div class="search-box">
+										<div class="i">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</div>
+										<input type="text" name="keyword" class="search-txt" name=""
+											placeholder="" value="${param.keyword }">
+									</div>
+								</td>
+								<td><button class="btn-cir-w" type="submit">조회</button></td>
+							</tr>
+						</table>
+					</div>
+				</form>
 			</div>
 
 			<c:choose>
 				<c:when test="${not empty recRes }">
 					<c:forEach var="recResList" items="${recRes }">
-						<div class="list2">
+						<div class="list2" id="recList" data-rNo="${recResList.rNo }">
 							<div class="l3">
 								<table class="date">
 									<tr>
@@ -197,7 +220,7 @@
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<div class="list2">
+					<div class="list4">
 						<div class="no">
 							<div class="icon2">
 								<i class="fa-solid fa-circle-exclamation"></i>
@@ -210,8 +233,36 @@
 					</div>
 				</c:otherwise>
 			</c:choose>
+
+			<c:if test="${not empty recRes }">
+				<div class="page-div">
+					<div class="pagination" id="pagination" data-total="${page.allPage }">
+						<!-- 이전 -->
+						<button class="page previous" type="button">
+							<i class="fa-solid fa-angle-left"></i>
+						</button>
+						<!-- 페이지번호 -->
+						<c:forEach begin="${page.startPage }" end="${page.endPage }"
+							step="1" var="selectPage">
+							<c:choose>
+								<c:when test="${selectPage == page.curPage }">
+									<button value="${selectPage }" class="cur-page" type="button">${selectPage }</button>
+								</c:when>
+								<c:otherwise>
+									<button value="${selectPage }" class="move-page" type="button">${selectPage }</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<!-- 이후 -->
+						<button class="page next-page" type="button">
+							<i class="fa-solid fa-angle-right"></i>
+						</button>
+					</div>
+				</div>
+			</c:if>
+
 		</div>
 	</div>
-	<script src="${contextPath }/myPage/resList.js"></script>
+	<script src="${contextPath }/myPage/js/resList.js"></script>
 </body>
 </html>
