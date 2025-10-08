@@ -11,19 +11,25 @@
 	href="${contextPath}/common/main/css/main.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <!-- FullCalendar Script -->
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <!-- 카카오 맵 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 <title>건강이음 - 메인</title>
 <script src="${contextPath}/common/main/js/main.js"></script>
 </head>
 <body>
+	<header>
+		<jsp:include page="/common/header/header.jsp"></jsp:include>
+	</header>
 	<!-- 배너 -->
 	<section class="banner-section">
 		<img class="banner-img">
@@ -199,31 +205,30 @@
 				</a>
 				</span>
 				<div class="notice-content">
-						<div class="top-notice">
-							<span class="notice title">고정 공지사항</span>
-							<div class="notice-box">
-								<c:forEach var="top" items="${topNoticeList}">
-									<div class="notice-item" onclick="goNoticeDetail(${top.nNo})">
-										<div class="badge">고정</div>
-										<div>${top.title}</div>
-										<div class="date">${top.nCreated }</div>
-									</div>
-								</c:forEach>
-							</div>
+					<div class="top-notice">
+						<span class="notice title">고정 공지사항</span>
+						<div class="notice-box">
+							<c:forEach var="top" items="${topNoticeList}">
+								<div class="notice-item" onclick="goNoticeDetail(${top.nNo})">
+									<div class="badge">고정</div>
+									<div>${top.title}</div>
+									<div class="date">${top.nCreated }</div>
+								</div>
+							</c:forEach>
+						</div>
 
+					</div>
+					<div class="basic-notice">
+						<span class="notice title">일반 공지사항</span>
+						<div class="notice-box">
+							<c:forEach var="notice" items="${noticeList}">
+								<div class="notice-item" onclick="goNoticeDetail(${notice.nNo})">
+									<div>${notice.title}</div>
+									<div class="date">${notice.nCreated }</div>
+								</div>
+							</c:forEach>
 						</div>
-						<div class="basic-notice">
-							<span class="notice title">일반 공지사항</span>
-							<div class="notice-box">
-								<c:forEach var="notice" items="${noticeList}">
-									<div class="notice-item"
-										onclick="goNoticeDetail(${notice.nNo})">
-										<div>${notice.title}</div>
-										<div class="date">${notice.nCreated }</div>
-									</div>
-								</c:forEach>
-							</div>
-						</div>
+					</div>
 				</div>
 			</section>
 		</c:if>
@@ -238,12 +243,10 @@
 			<p class="direction-sub-title">
 				<span>각 병원의 주소와</span> <br> <span>운영시간을 확인하세요.</span>
 			</p>
-			<div class="choice-hospital-list" id="mapHosList">
-			</div>
+			<div class="choice-hospital-list" id="mapHosList"></div>
 		</div>
 		<!-- 지도 영역 -->
-		<div class="map-right" id="map">
-		</div>
+		<div class="map-right" id="map"></div>
 	</section>
 </body>
 </html>

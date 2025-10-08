@@ -76,6 +76,8 @@ public class Index extends HttpServlet {
 			List<MainNoticeDto> noticeList = service.getNoticeList();
 			request.setAttribute("topNoticeList", topNoticeList);
 			request.setAttribute("noticeList", noticeList);
+			String pageName = request.getRequestURI(); // 현재 페이지 경로
+			request.setAttribute("pageName", pageName);
 			request.getRequestDispatcher("common/main/index.jsp").forward(request, response);
 
 		} catch (Exception e) {

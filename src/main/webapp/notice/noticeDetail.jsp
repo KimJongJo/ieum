@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>건강이음 - 공지사항 상세</title>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="${contextPath}/notice/css/noticeDetail.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/notice/css/noticeDetail.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -16,6 +17,9 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<header>
+		<jsp:include page="../common/header/header.jsp"></jsp:include>
+	</header>
 	<div class="notice-container">
 
 		<!-- 제목 -->
@@ -45,12 +49,11 @@
 		<!-- 본문 -->
 		<div class="notice-content">
 			(서울=연합뉴스) 성서호 기자 = 의료계 집단 휴진을 하루 앞두고 정부가 진료를 유지하려 비대면 진료를 하는 병의원 안내에
-			나섰다.<br>
-			<br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br>
+			나섰다.<br> <br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수
+			있다.<br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br>
 			17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br> 17일 보건복지부에
 			따르면 동네 모든 병의원은 전화나 인터넷 등으로 확인할 수 있다.<br> 17일 보건복지부에 따르면 동네 모든
-			병의원은 전화나 인터넷 등으로 확인할 수 있다.<br> 17일 보건복지부에 따르면 동네 모든 병의원은 전화나 인터넷
-			등으로 확인할 수 있다.<br>
+			병의원은 전화나 인터넷 등으로 확인할 수 있다.<br>
 		</div>
 
 		<!-- 이전글/다음글 -->
