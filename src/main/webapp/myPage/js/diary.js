@@ -167,7 +167,7 @@ $(document).ready(function() {
 			return days[day];
 
 		},
-		// 다이어리 데이터 가져오기
+		// 다이어리 데이터 가져오기()
 		events: function(fetchInfo, successCallback, failureCallback) {
 			// fetchInfo.start, fetchInfo.end -> FullCalendar가 보내는 시작/끝 날짜
 			const start = fetchInfo.startStr; // "2025-09-01"

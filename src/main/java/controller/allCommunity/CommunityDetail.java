@@ -138,7 +138,7 @@ public class CommunityDetail extends HttpServlet {
 		//댓글 등록
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 3; //로그인된 사용자 번호
+		int uNo = 6; //로그인된 사용자 번호
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");

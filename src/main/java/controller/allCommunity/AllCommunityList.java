@@ -36,7 +36,7 @@ public class AllCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uNo = 4;
+		int uNo = 6;
 		String spage = request.getParameter("page"); 
 		Integer page = 1; 
 		if(spage != null) page=Integer.parseInt(spage); 
