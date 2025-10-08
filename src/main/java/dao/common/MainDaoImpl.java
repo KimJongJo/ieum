@@ -27,7 +27,7 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public MainUserDto selectLoginInfo(Integer uNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectOne("mapper.main.selectLoginInfo");
+			return session.selectOne("mapper.main.selectLoginInfo", uNo);
 		}
 	}
 

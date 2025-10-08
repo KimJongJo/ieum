@@ -13,6 +13,7 @@ public class NoticeDto {
 	Boolean isPinned; // 상단고정여부
 	Integer fileNo; // 파일 번호
 	String fileName;
+	String filePath;
 
 	public NoticeDto() {
 	}
@@ -71,12 +72,20 @@ public class NoticeDto {
 		this.fileName = fileName;
 	}
 
-
-	@Override
-	public String toString() {
-		return "NoticeDto [nNo=" + nNo + ", nCreated=" + nCreated + ", nUpdated=" + nUpdated + ", uNo=" + uNo + ", uNm="
-				+ uNm + ", title=" + title + ", content=" + content + ", isPinned=" + isPinned + ", fileNo=" + fileNo
-				+ ", fileNm=" + fileName + "]";
+	public NoticeDto(Integer nNo, Date nCreated, Date nUpdated, Integer uNo, String uNm, String title, String content,
+			Boolean isPinned, Integer fileNo, String fileName, String filePath) {
+		super();
+		this.nNo = nNo;
+		this.nCreated = nCreated;
+		this.nUpdated = nUpdated;
+		this.uNo = uNo;
+		this.uNm = uNm;
+		this.title = title;
+		this.content = content;
+		this.isPinned = isPinned;
+		this.fileNo = fileNo;
+		this.fileName = fileName;
+		this.filePath = filePath;
 	}
 
 	public Integer getnNo() {
@@ -111,6 +120,14 @@ public class NoticeDto {
 		this.uNo = uNo;
 	}
 
+	public String getuNm() {
+		return uNm;
+	}
+
+	public void setuNm(String uNm) {
+		this.uNm = uNm;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -143,22 +160,30 @@ public class NoticeDto {
 		this.fileNo = fileNo;
 	}
 
-	public String getuNm() {
-		return uNm;
-	}
-
-	public void setuNm(String uNm) {
-		this.uNm = uNm;
-	}
-
-	public String getFileNm() {
+	public String getFileName() {
 		return fileName;
 	}
 
-	public void setFileNm(String fileName) {
+	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	@Override
+	public String toString() {
+		return "NoticeDto [nNo=" + nNo + ", nCreated=" + nCreated + ", nUpdated=" + nUpdated + ", uNo=" + uNo + ", uNm="
+				+ uNm + ", title=" + title + ", content=" + content + ", isPinned=" + isPinned + ", fileNo=" + fileNo
+				+ ", fileName=" + fileName + ", filePath=" + filePath + "]";
+	}
 	
+
 
 
 }
