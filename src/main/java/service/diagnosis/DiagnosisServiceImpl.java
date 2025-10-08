@@ -13,6 +13,7 @@ import dto.MemberDto;
 import dto.otherDto.DiagnosisInfoDto;
 import dto.otherDto.PatientDto;
 import dto.otherDto.ResPageResponseDto;
+import dto.otherDto.ShowDIaListToUser;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
 import service.myPage.DiaryService;
@@ -176,5 +177,67 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 		
 		return new PatientDto(member, rContent, diaList, diaryList);
 	}
+
+	// 해당 환자에 대한 모든 진단서(진료한 모든 의사)
+	@Override
+	public PatientDto getPatientAllByDiaNo(Integer diaNo) {
+		Map<String, Object> memberMap = diaDao.selectUserInfo(diaNo);
+		Integer uNo = (Integer)memberMap.get("uNo");
+		String username = (String)memberMap.get("username");
+		Date birthDate = (Date)memberMap.get("birthDate");
+		String gender1 = (String)memberMap.get("gender");
+		String uTel = (String)memberMap.get("uTel");
+		String uAddress = (String)memberMap.get("uAddress");
+		
+		String gender = gender1.equals("MALE") ? "남" : "여";
+		MemberDto member = new MemberDto(uNo, username, birthDate, gender, uTel, uAddress);
+		String rContent = (String)memberMap.get("rContent");
+		
+		// 진단서 기록에는 일자, 담당의사명, 진단명, 진단서 번호만 가져옴
+		List<DiagnosisInfoDto> diaList = diaDao.getDiaAllList(diaNo);
+		// 다이어리 기록을 가져오기전에 먼저 다이어리 공개 여부를 확인
+		List<DiaryDto> diaryList = null;
+		if((boolean)memberMap.get("diaryPrivate")) {
+			diaryList = diaryService.getPatientDiaryList(uNo);
+		}
+		
+		return new PatientDto(member, rContent, diaList, diaryList);
+	}
+
+	// 마이페이지 진단 상세
+	@Override
+	public ShowDIaListToUser getUserDiaDetail(Integer diaNo) {
+		return diaDao.getUserDiaDetail(diaNo);
+	}
+
+	// 마이페이지 진단 이력
+	@Override
+	public List<ShowDIaListToUser> getUserDiaList(Integer uNo, int offset, int limit, String date) {
+		
+	    if(date.equals("")) { // 검색어 날짜가 없을때
+	    	return diaDao.getUserDiaList(uNo, offset, limit);
+	    }else { // 검색 날짜가 있을때
+	    	Map<String, Object> map = new HashMap<String, Object>();
+	    	map.put("uNo", uNo);
+	    	map.put("offset", offset);
+	    	map.put("limit", limit);
+	    	map.put("date", date);
+	    	return diaDao.getUserDiaListByDate(map);
+	    }
+	}
+
+
+	@Override
+	public int getTotalCount(Integer uNo) {
+		
+		return diaDao.getTotalCount(uNo);
+	}
+
+	@Override
+	public int getTotalCountByDate(Map<String, Object> paramMap) {
+		return diaDao.getTotalCountByDate(paramMap);
+	}
+
+
 
 }

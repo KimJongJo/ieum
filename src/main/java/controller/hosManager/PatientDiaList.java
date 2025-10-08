@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dto.otherDto.ResPageResponseDto;
+import dto.otherDto.PatientDto;
 import dto.otherDto.ResponseDto;
 import service.diagnosis.DiagnosisService;
 import service.diagnosis.DiagnosisServiceImpl;
-import service.reservation.ReservationService;
-import service.reservation.ReservationServiceImpl;
 
 /**
- * Servlet implementation class PastResListPage
+ * Servlet implementation class PatientMyDiaList
  */
-@WebServlet("/pastResList/page")
-public class PastResListPage extends HttpServlet {
+@WebServlet("/hosManager/patientDiaList")
+public class PatientDiaList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PastResListPage() {
+    public PatientDiaList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,26 +35,19 @@ public class PastResListPage extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		Integer page = Integer.parseInt(request.getParameter("page"));
-		String keyword = request.getParameter("keyword");
-		Integer uNo = Integer.parseInt(request.getParameter("uNo"));
-		String date = request.getParameter("date");
+		Integer diaNo = Integer.parseInt(request.getParameter("diaNo"));
 		
+		// 환자 번호, 생년월일, 연락처, 이름, 성별, 주소
+		// 상담내용
+		// 진단기록 리스트
+		// 다이어리 리스트(환자가 만약 다이어리 공개를 거부했을땐 가져오지 않음)
 		DiagnosisService service = new DiagnosisServiceImpl();
-		ResPageResponseDto pageDto;
-		
-		if(keyword != null && !keyword.isEmpty()) {
-		    // 검색어가 있으면 검색용 메서드 호출
-		    pageDto = service.myDianosisListByKeyword(page, keyword, uNo, date);
-		} else {
-		    // 검색어 없으면 전체 목록
-		    pageDto = service.myDianosisList(uNo, page, date);
-		}
-		
+		PatientDto patientDto = service.getPatientAllByDiaNo(diaNo);
 		
 		Gson gson = new Gson();
-		String result = gson.toJson(new ResponseDto(true, "요청 페이지를 담은 리스트", pageDto));
+		String result = gson.toJson(new ResponseDto(true, "환자 정보", patientDto));
 		response.getWriter().write(result);
+		
 	}
 
 }

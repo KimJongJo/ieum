@@ -53,6 +53,7 @@
 		<typeAlias type="dto.otherDto.ManagerInfoDto" alias="managerInfo" />
 		<typeAlias type="dto.otherDto.HosInfoDto" alias="hosInfo" />
 		<typeAlias type="dto.otherDto.DiagnosisInfoDto" alias="diaInfo" />
+		<typeAlias type="dto.otherDto.ShowDIaListToUser" alias="shwoDiaInfo" />
 	</typeAliases>
 
    <environments default="development">

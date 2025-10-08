@@ -36,6 +36,7 @@ public class PatientMyDiaList extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		Integer diaNo = Integer.parseInt(request.getParameter("diaNo"));
+		
 		// 환자 번호, 생년월일, 연락처, 이름, 성별, 주소
 		// 상담내용
 		// 진단기록 리스트
