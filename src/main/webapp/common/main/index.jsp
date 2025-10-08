@@ -62,8 +62,9 @@
 				<div class="hospital-list">
 					<c:forEach var="hospital" items="${hosList}">
 						<div class="hospital-item" onclick="goHosDetail(${hospital.hNo})">
-							<img class="hospital-img" src="${hospital.hosImgPath}"> <span
-								class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
+							<img class="hospital-img"
+								src="${contextPath}/${hospital.hosImgPath}/${hospital.hosImgNm}">
+							<span class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
 						</div>
 					</c:forEach>
 				</div>
@@ -81,8 +82,16 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<img class="circle" src="${userInfo.profilePath}"> <span
-									class="btn-link">${userInfo.nickName}</span>
+								<c:choose>
+									<c:when test="${not empty userInfo.profilePath}">
+										<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+									</c:when>
+									<c:otherwise>
+										<img class="circle"
+											src="${contextPath}/img/userProfile/회원이미지.jpg">
+									</c:otherwise>
+								</c:choose>
+								<span class="btn-link">${userInfo.nickname}</span>
 							</div>
 							<a href="" class="btn-link">마이페이지</a>
 						</div>
@@ -107,7 +116,9 @@
 								<c:forEach var="diag" items="${diagCateList}">
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/examques`">
-										<img class="rectangle" src="${diag.examImgPath }"></img> <span>${diag.examCate}</span>
+										<img class="rectangle"
+											src="${contextPath}/${diag.examImgPath}/${diag.examImgNm}"></img>
+										<span>${diag.examCate}</span>
 									</div>
 								</c:forEach>
 							</div>

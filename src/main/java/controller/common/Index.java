@@ -63,7 +63,7 @@ public class Index extends HttpServlet {
 			if (uNo != null) {// 로그인 정보
 				MainUserDto userInfo = service.getLoginInfo(uNo);
 				request.setAttribute("userInfo", userInfo);
-				request.setAttribute("uNo", uNo);
+				
 			} else { // 자가진단
 				List<MainDiagnosisDto> diagCateList = service.getDiagCate();
 				request.setAttribute("diagCateList", diagCateList);
@@ -78,6 +78,7 @@ public class Index extends HttpServlet {
 			request.setAttribute("noticeList", noticeList);
 			String pageName = request.getRequestURI(); // 현재 페이지 경로
 			request.setAttribute("pageName", pageName);
+			request.setAttribute("uNo", uNo);
 			request.getRequestDispatcher("common/main/index.jsp").forward(request, response);
 
 		} catch (Exception e) {

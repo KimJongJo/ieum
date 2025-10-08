@@ -13,7 +13,7 @@ public class MainHosDto {
 	String holidayInfo; // 휴무 정보
 	Integer hosImgFileNo; // 병원 썸네일 파일 번호
 	String hosImgPath; // 병원 썸네일 파일 경로
-
+	String hosImgNm;
 	public MainHosDto() {
 
 	}
@@ -41,7 +41,7 @@ public class MainHosDto {
 	}
 
 	public MainHosDto(Integer hNo, String hNm, String hTel, String hAddress, String hLocationY, String hLocationX,
-			String transferInfo, String holidayInfo, Integer hosImgFileNo, String hosImgPath) {
+			String transferInfo, String holidayInfo, Integer hosImgFileNo, String hosImgPath, String hosImgNm) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -53,6 +53,7 @@ public class MainHosDto {
 		this.holidayInfo = holidayInfo;
 		this.hosImgFileNo = hosImgFileNo;
 		this.hosImgPath = hosImgPath;
+		this.hosImgNm = hosImgNm;
 	}
 
 	public Integer gethNo() {
@@ -135,11 +136,22 @@ public class MainHosDto {
 		this.hosImgPath = hosImgPath;
 	}
 
+	public String getHosImgNm() {
+		return hosImgNm;
+	}
+
+	public void setHosImgNm(String hosImgNm) {
+		this.hosImgNm = hosImgNm;
+	}
+
 	@Override
 	public String toString() {
 		return "MainHosDto [hNo=" + hNo + ", hNm=" + hNm + ", hTel=" + hTel + ", hAddress=" + hAddress + ", hLocationY="
 				+ hLocationY + ", hLocationX=" + hLocationX + ", transferInfo=" + transferInfo + ", holidayInfo="
-				+ holidayInfo + ", hosImgFileNo=" + hosImgFileNo + ", hosImgPath=" + hosImgPath + "]";
-	}	
+				+ holidayInfo + ", hosImgFileNo=" + hosImgFileNo + ", hosImgPath=" + hosImgPath + ", hosImgNm="
+				+ hosImgNm + "]";
+	}
+
+	
 
 }

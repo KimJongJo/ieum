@@ -4,7 +4,7 @@
 <mapper namespace="mapper.main">
 	
 	<select id="selectMainHosList" resultType="mainHos">
-		SELECT h.h_no, h.h_nm, h.h_address, h.hos_img_file_no, f.file_path AS hosImgPath, count(r.r_no) as resCount
+		SELECT h.h_no, h.h_nm, h.h_address, h.hos_img_file_no, f.file_path AS hosImgPath, f.file_name AS hosImgNm, count(r.r_no) as resCount
 		FROM hospital h 
 		LEFT JOIN file f ON h.hos_img_file_no = f.file_no
 		LEFT JOIN reservation r USING(h_no)  
@@ -14,15 +14,15 @@
 		LIMIT 8
 	</select>
 	
-	<select id="selectLoginInfo" parameterType="Integer" resultType="mainUser">
-		SELECT m.nickname, m.file_no, f.file_path
+	<select id="selectLoginInfo" resultType="mainUser">
+		SELECT m.nickname, m.file_no AS profileNo , f.file_path AS profilePath, f.file_name AS profileNm
 		FROM member m
 		LEFT JOIN file f USING(file_no)
-		WHERE m.u_no=#{uNo}
+		WHERE m.u_no= #{value}
 	</select>
 	
 	<select id="selectDiagnosis" resultType="mainDiag">
-		SELECT e.exam_no, e.exam_category AS examCate, e.file_no AS examImgNo, f.file_path AS examImgPath
+		SELECT e.exam_no, e.exam_category AS examCate, e.file_no AS examImgNo, f.file_path AS examImgPath, f.file_name AS examImgNm
 		FROM exam e
 		LEFT JOIN file f USING(file_no) 
 		LIMIT 10
