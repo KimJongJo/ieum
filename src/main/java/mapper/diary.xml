@@ -53,4 +53,10 @@
 		AND target_dt &lt;= #{eDate}
 		ORDER BY target_dt ASC
 	</select>
+	
+	<select id="selectPatientDiaryList" parameterType="Integer" resultType="diary">
+		select d_no, u_no, d_updated, title, content, mood, target_dt, DATE_FORMAT(d_created, '%Y-%m-%d') as formatdCreated
+		from diary
+		where u_no = #{_parameter}
+	</select>
 </mapper>	

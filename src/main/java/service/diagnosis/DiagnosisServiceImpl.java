@@ -1,5 +1,6 @@
 package service.diagnosis;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,15 +8,24 @@ import java.util.Map;
 import dao.diagnosis.DiagnosisDao;
 import dao.diagnosis.DiagnosisDaoImpl;
 import dto.DiagnosisHistoryDto;
+import dto.DiaryDto;
+import dto.MemberDto;
 import dto.otherDto.DiagnosisInfoDto;
+import dto.otherDto.PatientDto;
 import dto.otherDto.ResPageResponseDto;
+import service.member.MemberService;
+import service.member.MemberServiceImpl;
+import service.myPage.DiaryService;
+import service.myPage.DiaryServiceImpl;
 
 public class DiagnosisServiceImpl implements DiagnosisService {
 	
 	private DiagnosisDao diaDao;
+	private DiaryService diaryService;
 	
 	public DiagnosisServiceImpl() {
 		diaDao = new DiagnosisDaoImpl();
+		diaryService = new DiaryServiceImpl();
 	}
 
 	// 진단서 생성
@@ -138,6 +148,33 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 		}
 		
 		
+	}
+
+	// 진단서 번호로 환자 정보, 상담내용, 진단서기록, 다이어리 기록 가져오기
+	@Override
+	public PatientDto getPatientDtoByDiaNo(Integer diaNo) {
+		
+		Map<String, Object> memberMap = diaDao.selectUserInfo(diaNo);
+		Integer uNo = (Integer)memberMap.get("uNo");
+		String username = (String)memberMap.get("username");
+		Date birthDate = (Date)memberMap.get("birthDate");
+		String gender1 = (String)memberMap.get("gender");
+		String uTel = (String)memberMap.get("uTel");
+		String uAddress = (String)memberMap.get("uAddress");
+		
+		String gender = gender1.equals("MALE") ? "남" : "여";
+		MemberDto member = new MemberDto(uNo, username, birthDate, gender, uTel, uAddress);
+		String rContent = (String)memberMap.get("rContent");
+		
+		// 진단서 기록에는 일자, 담당의사명, 진단명, 진단서 번호만 가져옴
+		List<DiagnosisInfoDto> diaList = diaDao.getDiaList(diaNo);
+		// 다이어리 기록을 가져오기전에 먼저 다이어리 공개 여부를 확인
+		List<DiaryDto> diaryList = null;
+		if((boolean)memberMap.get("diaryPrivate")) {
+			diaryList = diaryService.getPatientDiaryList(uNo);
+		}
+		
+		return new PatientDto(member, rContent, diaList, diaryList);
 	}
 
 }

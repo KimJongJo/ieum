@@ -3,6 +3,7 @@ package service.diagnosis;
 import java.util.Map;
 
 import dto.DiagnosisHistoryDto;
+import dto.otherDto.PatientDto;
 import dto.otherDto.ResPageResponseDto;
 
 public interface DiagnosisService {
@@ -18,5 +19,7 @@ public interface DiagnosisService {
 	Map<String, Object> getDiaInfo(Integer dNo);
 
 	ResPageResponseDto myDianosisListByKeyword(Integer page, String keyword, Integer uNo, String date);
+
+	PatientDto getPatientDtoByDiaNo(Integer diaNo);
 
 }

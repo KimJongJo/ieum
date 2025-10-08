@@ -14,4 +14,5 @@ public interface DiaryService {
 	public boolean getHisYn(Integer uNo) throws Exception;
 	public DiaryDto getDate(Integer uNo, String date) throws Exception;
 	public List<DiaryDto> getCalList(Integer uNo, String sDate, String eDate) throws Exception;
+	public List<DiaryDto> getPatientDiaryList(Integer uNo);
 }

@@ -92,4 +92,12 @@ public class DiaryServiceImpl implements DiaryService {
 		return diaryDao.selectCalList(uNo, sDate, eDate);
 	}
 
+	// 해당 환자의 다이어리 기로 가져오기
+	@Override
+	public List<DiaryDto> getPatientDiaryList(Integer uNo) {
+		
+		return diaryDao.selectPatientDiaryList(uNo);
+		
+	}
+
 }

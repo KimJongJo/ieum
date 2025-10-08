@@ -18,7 +18,7 @@ public class MemberDto {
 	String introduction; //자기소개
 	String nickname; //닉네임
 	String uAddress; //주소
-	Boolean diaryPrivate; //다이어리 공개여부
+	boolean diaryPrivate; //다이어리 공개여부
 	Integer warningCount; //경고수
 	String socialId; //소셜로그인
 	Integer hNo; //소속 병원 번호
@@ -33,7 +33,7 @@ public class MemberDto {
 	
 	// 일반 유저 회원가입
 	public MemberDto(String id, String username, Date birthDate, String password, String gender, String uTel,
-			String email, String nickName, String uAddress, Boolean diaryPrivate) {
+			String email, String nickName, String uAddress, boolean diaryPrivate) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -65,7 +65,7 @@ public class MemberDto {
 	
 	// 소셜 회원가입
 	public MemberDto(String id, String username, Date birthDate, String gender, String uTel, String email,
-			String nickname, String uAddress, Boolean diaryPrivate, Integer fileNo) {
+			String nickname, String uAddress, boolean diaryPrivate, Integer fileNo) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -79,7 +79,17 @@ public class MemberDto {
 		this.fileNo = fileNo;
 	}
 	
-	
+
+	public MemberDto(Integer uNo, String username, Date birthDate, String gender, String uTel, String uAddress) {
+		super();
+		this.uNo = uNo;
+		this.username = username;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.uTel = uTel;
+		this.uAddress = uAddress;
+	}
+
 
 	public MemberDto(Integer uNo, String password) {
 		super();
@@ -91,7 +101,7 @@ public class MemberDto {
 
 	public MemberDto(Integer uNo, String id, String username, Date birthDate, String password, String gender,
 			String uTel, String email, Date createdAt, String userType, String major, String introduction,
-			String nickName, String uAddress, Boolean diaryPrivate, Integer warningCount, String socialId,
+			String nickName, String uAddress, boolean diaryPrivate, Integer warningCount, String socialId,
 			Integer hNo, Integer stateCode, Integer fileNo) {
 		super();
 		this.uNo = uNo;
@@ -210,10 +220,10 @@ public class MemberDto {
 	public void setuAddress(String uAddress) {
 		this.uAddress = uAddress;
 	}
-	public Boolean getDiaryPrivate() {
+	public boolean getDiaryPrivate() {
 		return diaryPrivate;
 	}
-	public void setDiaryPrivate(Boolean diaryPrivate) {
+	public void setDiaryPrivate(boolean diaryPrivate) {
 		this.diaryPrivate = diaryPrivate;
 	}
 	public Integer getWarningCount() {

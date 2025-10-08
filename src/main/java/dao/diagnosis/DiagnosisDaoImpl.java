@@ -115,6 +115,20 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 		}
 	}
 
+	@Override
+	public Map<String, Object> selectUserInfo(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectUserInfo", diaNo);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> getDiaList(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("getDiaList", diaNo);
+		}
+	}
+
 
 
 

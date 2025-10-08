@@ -143,5 +143,30 @@
 		where diagnosis_no = #{_parameter}
 	</select>
 	
+	<select id="selectUserInfo" parameterType="Integer" resultType="Map">
+		select m.u_no as uNo, m.birth_date as birthDate, m.u_tel as uTel, m.username as username,
+		m.gender as gender, m.u_address as uAddress, m.diary_private as diaryPrivate, r.r_content AS rContent
+		from diagnosis_history d
+		join member m on(m.u_no = d.patient_id)
+		join reservation r on(d.r_no = r.r_no)
+		WHERE d.diagnosis_no = #{_parameter}
+	</select>
+	
+	<select id="getDiaList" parameterType="Integer" resultType="diaInfo">
+		SELECT d.diagnosis_no as diaNo, m.username as mNm,
+		DATE_FORMAT(r.r_date, '%Y-%m-%d') as date, d.diagnosis_name as diaName
+		FROM diagnosis_history d
+		JOIN reservation r ON(d.r_no = r.r_no)
+		JOIN member m ON(d.doctor_id = m.u_no)
+		JOIN member u ON(d.patient_id = u.u_no)
+		WHERE m.u_no = (SELECT doctor_id
+							FROM diagnosis_history
+							WHERE diagnosis_no = #{_parameter})
+		AND u.u_no = (SELECT patient_id
+							FROM diagnosis_history
+							WHERE diagnosis_no = #{_parameter})
+		ORDER BY 1 DESC
+	</select>
+	
 	
 </mapper>	

@@ -62,7 +62,7 @@
 									<tr>
 		                                <td>${res.rNo}</td>
 		                                <td>${res.pNm}</td>
-		                                <td><button value="${res.rNo}" type="button" class="search-user-btn profileBtn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+		                                <td><button value="${res.diaNo}" type="button" class="search-user-btn profileBtn show-pInfo-btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
 		                                <td>
 		                                	${res.time}
 		                                </td>

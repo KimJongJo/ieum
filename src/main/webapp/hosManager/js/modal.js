@@ -73,30 +73,30 @@ $(document).on("click", ".write-btn", function(e) {
 				}
 				
 				// 값 채워넣기
-				$("#pNo").text(object.pNo);
-				$("#birthDate").text(object.birthDate);
-				$("#uTel").text(object.uTel);
-				$("#username").text(object.username);
-				$("#gender").text(gender);
-				$("#uAddress").text(object.uAddress);
-				$("#dNo").text(object.diaNo);
-				$("#rDate").text(object.rDate);
-				$("#hNm").text(object.hNm);
-				$("#mName").text(object.mNm);
-				$("#major").text(object.major);
-				$("#hAddress").text(object.hAddress);
+				$("#wrpNo").text(object.pNo);
+				$("#wrbirthDate").text(object.birthDate);
+				$("#wruTel").text(object.uTel);
+				$("#wrusername").text(object.username);
+				$("#wrgender").text(gender);
+				$("#wruAddress").text(object.uAddress);
+				$("#wrdNo").text(object.diaNo);
+				$("#wrrDate").text(object.rDate);
+				$("#wrhNm").text(object.hNm);
+				$("#wrmName").text(object.mNm);
+				$("#wrmajor").text(object.major);
+				$("#wrhAddress").text(object.hAddress);
 				
 				$("#btn-cancellation").val(object.diaNo);
 				$("#btn-complete").val(object.diaNo);
 				
 				
 				// 진단/진료상세 채우기
-				$("#diaName").val(object.diaName);
-				$("#sym").val(object.sym);
-				$("#summary").val(object.summary);
-				$("#treatment").val(object.treatment);
-				$("#pre").val(object.pre);
-				$("#docComment").val(object.docComment);
+				$("#wrdiaName").val(object.diaName);
+				$("#wrsym").val(object.sym);
+				$("#wrsummary").val(object.summary);
+				$("#wrtreatment").val(object.treatment);
+				$("#wrpre").val(object.pre);
+				$("#wrdocComment").val(object.docComment);
 				
 				
 				$(".modal-dia").css("display", "flex");

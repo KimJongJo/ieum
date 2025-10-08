@@ -34,4 +34,8 @@ public interface DiagnosisDao {
 
 	List<DiagnosisInfoDto> pastKeywordAndDateDia(Map<String, Object> page);
 
+	Map<String, Object> selectUserInfo(Integer diaNo);
+
+	List<DiagnosisInfoDto> getDiaList(Integer diaNo);
+
 }
