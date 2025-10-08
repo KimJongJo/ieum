@@ -34,7 +34,7 @@ public class Logout extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate(); // 세션 제거
-			request.getRequestDispatcher("/index").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/index");
 		}		
 	}
 

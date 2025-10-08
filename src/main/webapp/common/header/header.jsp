@@ -22,7 +22,14 @@
 		<c:choose>
 			<c:when test="${uNo != null}">
 				<div class="header-profile">
-					<img src="${pageContext.request.contextPath}/img/회원기본이미지.jpg">
+				<c:choose>
+				<c:when test="${not empty userInfo}">
+				<img src="${contextPath}/${userInfo.profilePath}/${userInfo.profileName}">
+				</c:when>
+				<c:otherwise>
+					<img src="${pageContext.request.contextPath}/img/userProfile/회원이미지.jpg">
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<span class="login-txt" onclick="moveToUrl('/logout')">로그아웃</span>
 			</c:when>
