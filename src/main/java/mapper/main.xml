@@ -44,20 +44,22 @@
 	</select>
 	
 	<select id="selectMapList" parameterType="Map" resultType="mainHos">
-	  <!-- 박스 필터(도 단위) -->
-	  <bind name="latDeg" value="_parameter.radius / 111320.0" />
-	  <bind name="lonDeg" value="_parameter.radius / (111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat)))" />
-	  <!-- 경도 미터 보정 계수 -->
-	  <bind name="lonFactor" value="111320.0 * @java.lang.Math@cos(@java.lang.Math@toRadians(_parameter.userLat))" />
-		SELECT h_no, h_nm,  h_no, h_nm,
-       ((h_location_y - #{userLocY}) * 111320.0) * ((h_location_y - #{userLocY}) * 111320.0)
-       + ((h_location_x - #{userLocX}) * #{lonFactor}) * ((h_location_x - #{userLocX}) * #{lonFactor}) AS distance
-      	FROM hospital
-		WHERE h_location_y BETWEEN #{userLocY} - #{latDeg} AND #{userLocY} + #{latDeg}
-    	AND h_location_x BETWEEN #{userLocX} - #{lonDeg} AND #{userLocX} + #{lonDeg}
-		AND  status='ACTIVE'
-		ORDER BY distance
-		LIMIT 3
+	  <!--  두 지점(사용자 좌표와 DB에 저장된 좌표)의 거리(km) 를 구하는 Haversine 공식  -->
+	  SELECT h_no, h_nm, h_location_y, h_location_x,
+	  (
+           6371 * ACOS(
+               COS(RADIANS(#{userLocY}))      -- 사용자 위도
+               * COS(RADIANS(h_location_y)) -- DB 위도
+               * COS(RADIANS(h_location_x) - RADIANS(#{userLocX})) -- 경도 차
+               + SIN(RADIANS(#{userLocY}))    -- 사용자 위도
+               * SIN(RADIANS(h_location_y)) -- DB 위도
+           )
+       ) AS distance
+		FROM hospital
+		WHERE h_location_y IS NOT NULL
+  		AND h_location_x IS NOT NULL
+		ORDER BY distance ASC
+		LIMIT 3	
 	</select>
 	
 	<select id="selectMap" parameterType="Integer" resultType="mainHos">

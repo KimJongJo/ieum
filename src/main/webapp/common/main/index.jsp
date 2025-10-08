@@ -11,6 +11,7 @@
 	href="${contextPath}/common/main/css/main.css">
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <!-- FullCalendar Script -->
@@ -18,7 +19,7 @@
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <!-- 카카오 맵 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=defbad50bdb32bfe18645a831ff8f296&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 <title>건강이음 - 메인</title>
 <script src="${contextPath}/common/main/js/main.js"></script>
 </head>
@@ -235,33 +236,13 @@
 				<span>건강마음 병원</span> <br> <span>찾아 오시는 길</span>
 			</p>
 			<p class="direction-sub-title">
-				<span>각 보건소의 주소와</span> <br> <span>운영시간을 확인하세요.</span>
+				<span>각 병원의 주소와</span> <br> <span>운영시간을 확인하세요.</span>
 			</p>
-			<div class="choice-hospital-list">
-				<c:forEach var="map" items="${mapHosList}">
-					<div class="choice-rectangle" onclick="showMap(${map.hNo})">${map.hNm}</div>
-				</c:forEach>
+			<div class="choice-hospital-list" id="mapHosList">
 			</div>
 		</div>
 		<!-- 지도 영역 -->
 		<div class="map-right" id="map">
-			
-				<!-- 지도 위 팝업 -->
-<!-- 				<div class="map-popup"> -->
-<!-- 					<div class="map-hospital-info"> -->
-<%-- 						<div class="title">${mapInfo.hNm}</div> --%>
-<%-- 						<div class="tel">${mapInfo.hTel}</div> --%>
-<%-- 						<div class="map-text address">${mapInfo.hAddress}</div> --%>
-<%-- 						<div class="transfer">${mapInfo.transferInfo}</div> --%>
-<!-- 						<div> -->
-<!-- 							<div class="map-text">진료안내</div> -->
-<!-- 							<div class="map-text">월요일~금요일 : 오전9시~오후6시</div> -->
-<!-- 							<div class="map-text">점심시간 : 12시~오후1시</div> -->
-<%-- 							<div class="map-text red">${mapInfo.holidayInfo}</div> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-
 		</div>
 	</section>
 </body>

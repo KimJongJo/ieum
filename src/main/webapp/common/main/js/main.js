@@ -23,50 +23,145 @@ function goHosDetail(hNo) {
 function goNoticeDetail(nNo) {
 	formSubmit("/ieum/notice", "nNo", nNo);
 }
+function choiceHos(idx) {
+	showPopup(hospitalList[idx]);
+}
 // 지도
-function success({ coords, timestamp }) {
-	const latitude = coords.latitude;   // 위도
-	const longitude = coords.longitude; // 경도
-	//	console.log(`사용자 현위치: 위도:${latitude}, 경도:${longitude}, 위치반환시간:${new Date(timestamp).toLocaleString()}`);
+let hospitalList = [];
+let map;
+let currentOverlay = null; // ✅ 현재 열린 팝업 저장용 전역 변수
+
+function choiceHos(idx) {
+	showPopup(hospitalList[idx]);
+}
+
+// 지도
+function setMap(latitude, longitude) {
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+        center: new kakao.maps.LatLng(latitude, longitude),
+        level: 5
+    };
+    map = new kakao.maps.Map(mapContainer, mapOption);
+	const imageSrc = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png';
+
+	const markerImage = new kakao.maps.MarkerImage(
+	    imageSrc,
+	    new kakao.maps.Size(32, 32)
+	);
+    // 사용자 현위치 마커
+    const userMarker = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(latitude, longitude),
+        map: map,
+        title: "현재위치",
+        image: markerImage 
+    });
+
+    mapContainer.style.display = "block";
+    map.relayout();
+
+    // 근처 병원 리스트
+    $.ajax({
+        url: '/ieum/map',
+        type: 'GET',
+        data: { userLocY: latitude, userLocX: longitude },
+        success: function(res) {
+            const listArea = $("#mapHosList");
+            listArea.empty();
+            hospitalList = []; // ✅ 기존 리스트 초기화
+            let html = '';
+
+            res.forEach((mapData, index) => {
+				hospitalList.push(mapData);
+                html += `<div class="choice-rectangle" onclick="choiceHos(${index})">${mapData.hNm}</div>`;
+
+                // 지도에 마커 표시
+                new kakao.maps.Marker({
+                    position: new kakao.maps.LatLng(
+                        mapData.lat || latitude,
+                        mapData.lng || longitude
+                    ),
+                    map: map,
+                    title: mapData.hNm,
+                    desc: mapData.hNo
+                });
+            });
+            listArea.append(html);
+
+            // --- 첫 번째 병원 팝업 자동 표시 ---
+            showPopup(res[0]);
+        },
+        error: function(e) {
+            console.log("근처 병원 조회 오류", e);
+        }
+    });
+}
+
+function showPopup(info) {
+    if (!info || !info.hNo) return;
+
+    // ✅ 기존 팝업이 있으면 닫기
+    if (currentOverlay) {
+        currentOverlay.setMap(null);
+        currentOverlay = null;
+    }
+
+    $.ajax({
+        url: '/ieum/map/detail',
+        type: 'GET',
+        data: { hNo: info.hNo },
+        success: function(res) {
+            const hospital = res.mapHosInfo;
+            // 팝업 HTML
+            const content = document.createElement('div');
+            content.className = 'custom-overlay';
+            content.innerHTML = `
+                <div class="map-popup">
+                    <button class="close-btn">✕</button>
+                    <div class="map-hospital-info">
+                        <div class="title">${hospital.hNm}</div>
+                        <div class="tel">${hospital.hTel || ""}</div>
+                        <div class="map-text address">${hospital.hAddress || ""}</div>
+                        <div class="transfer">${hospital.transferInfo || ""}</div>
+                        <div>
+                            <div class="map-text bold">진료안내</div>
+                            <div class="map-text">월요일~금요일 : 오전9시~오후6시</div>
+                            <div class="map-text">점심시간 : 12시~오후1시</div>
+                            <div class="map-text red">${hospital.holidayInfo || ""}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // CustomOverlay 생성
+            const customOverlay = new kakao.maps.CustomOverlay({
+                position: new kakao.maps.LatLng(info.lat, info.lng),
+                content: content,
+                yAnchor: 1,
+                clickable: true
+            });
+
+            customOverlay.setMap(map);
+            currentOverlay = customOverlay; // ✅ 현재 팝업 저장
+
+            // 닫기 버튼 이벤트
+            content.querySelector('.close-btn').addEventListener('click', function() {
+                customOverlay.setMap(null);
+                currentOverlay = null;
+            });
+        },
+        error: function(e) {
+            console.log("병원 상세 조회 오류", e);
+        }
+    });
+}
 
 
-	const mapContainer = document.getElementById('map');
-	// 사용자 현위치를 중심으로 설정
-	const mapOption = {
-		center: new kakao.maps.LatLng(latitude, longitude),
-		level: 5
-	};
-	// 지도 생성
-	const map = new kakao.maps.Map(mapContainer, mapOption);
-	// 사용자 현위치에 마커 표시
-	const marker = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(latitude, longitude),
-		map: map
-	});
 
-	// 병원 정보팝업
-	//	const infowindow = new kakao.maps.InfoWindow({
-	//		content: `
-	//        <div class="map-popup">
-	//					<div class="map-hospital-info">
-	//						<div class="title">${mapInfo.hNm}</div>
-	//						<div class="tel">${mapInfo.hTel}</div>
-	//						<div class="map-text address">${mapInfo.hAddress}</div>
-	//						<div class="transfer">${mapInfo.transferInfo}</div>
-	//						<div>
-	//							<div class="map-text">진료안내</div>
-	//							<div class="map-text">월요일~금요일 : 오전9시~오후6시</div>
-	//							<div class="map-text">점심시간 : 12시~오후1시</div>
-	//							<div class="map-text red">${mapInfo.holidayInfo}</div>
-	//						</div>
-	//					</div>
-	//				</div>
-	//        `
-	//	});
-	//	infowindow.open(map, marker);
-	mapContainer.style.display = "block";
-	map.relayout();
-	// 현재 URL 가져오기
+
+
+// url 파라미터 넘기기
+function addSearchParams(latitude, longitude) {
 	const url = new URL(window.location.href);
 	if (!url.searchParams.has("lat") && !url.searchParams.has("lon")) {
 		url.searchParams.set("lat", latitude);
@@ -74,9 +169,19 @@ function success({ coords, timestamp }) {
 		window.location.href = url;
 	}
 }
+function success({ coords }) {
+	const latitude = coords.latitude;   // 위도
+	const longitude = coords.longitude; // 경도
+	//	console.log(`사용자 현위치: 위도:${latitude}, 경도:${longitude}, 위치반환시간:${new Date(timestamp).toLocaleString()}`);
+	// 사용자 현위치 좌표
+	setMap(latitude, longitude);
+}
 
 function error(err) {
-	console.log("위치 정보를 가져올 수 없습니다. 위치 접근을 허용해주세요.");
+	alert("위치 정보를 가져올 수 없습니다.\n주변 병원 검색을 위해 위치 접근을 허용해주세요.");
+	console.log("위치 미동의", err)
+	// 호서대 벤처타워 좌표
+	setMap('37.472227', '126.885977');
 }
 
 function getUserLocation() {
