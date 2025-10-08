@@ -53,4 +53,13 @@
 		AND target_dt &lt;= #{eDate}
 		ORDER BY target_dt ASC
 	</select>
+	
+	
+	<!-- 1. 특정 u_no의 모든 diary 조회 -->
+    <select id="selectAllByUser" parameterType="int" resultType="diary">
+        SELECT d_no, u_no, title, content, target_dt
+        FROM diary
+        WHERE u_no = #{uNo}
+        ORDER BY target_dt DESC
+    </select>
 </mapper>	
