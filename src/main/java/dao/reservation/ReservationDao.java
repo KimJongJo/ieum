@@ -24,6 +24,7 @@ public interface ReservationDao {
 	ReservationInfoDto resDetail (Integer rNo)throws Exception;
 	Integer docMno (Integer rNo)throws Exception;
 	List<ReservationInfoDto> commingRes (Integer uNo) throws Exception;
-	List<ReservationInfoDto> recordRes (Integer uNo) throws Exception;
+	List<ReservationInfoDto> recordRes (Map<String, Object> recPage) throws Exception;
+	Integer recordResCnt (Integer uNo) throws Exception;
 
 }

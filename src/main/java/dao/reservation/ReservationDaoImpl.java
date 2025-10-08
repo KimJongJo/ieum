@@ -125,9 +125,17 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	//지난 예약
 	@Override
-	public List<ReservationInfoDto> recordRes(Integer uNo) throws Exception {
+	public List<ReservationInfoDto> recordRes(Map<String, Object> recPage) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			return session.selectList("recordRes", uNo);
+			return session.selectList("recordRes", recPage);
+		}
+	}
+
+	//지난예약 수
+	@Override
+	public Integer recordResCnt(Integer uNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("recordResCnt", uNo);
 		}
 	}
 

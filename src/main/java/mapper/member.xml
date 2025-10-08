@@ -143,7 +143,7 @@
 	<select id="selectDoc" parameterType="integer" resultType="Integer">
 		select *
 		from member
-		where u_no=#{uNo} and state_code=1
+		where u_no=#{uNo} and state_code=1 and user_type='DOCTOR'
 	</select>
 	
   	<!-- profileInfoModify 수정-->
@@ -167,7 +167,7 @@
 	<select id="docCnt" parameterType="Integer" resultType="Integer">
 		select count(*)
 		from member m
-		where h_no=#{hNo} and state_code=1
+		where h_no=#{hNo} and state_code=1 and user_type='DOCTOR'
 	</select>
 
 	<!-- 의사 리스트 정렬 -->
@@ -178,7 +178,7 @@
 		using (h_no)
 		left join file f
 		using (file_no)
-		where m.h_no=#{hNo} and m.state_code=1
+		where m.h_no=#{hNo} and m.state_code=1 and user_type='DOCTOR'
 		group by m.u_no, m.h_no
 		order by resCount desc
 	</select>

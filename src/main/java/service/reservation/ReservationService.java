@@ -6,6 +6,7 @@ import java.util.Map;
 import dto.ReservationDto;
 import dto.otherDto.ResPageResponseDto;
 import dto.otherDto.ReservationInfoDto;
+import util.PageInfo;
 
 public interface ReservationService {
 	
@@ -20,6 +21,6 @@ public interface ReservationService {
 	ReservationInfoDto getResDetail (Integer rNo) throws Exception;
 	Integer getDocMno (Integer rNo) throws Exception;
 	List<ReservationInfoDto> comResList (Integer uNo) throws Exception;
-	List<ReservationInfoDto> recResList (Integer uNo) throws Exception;
-
+	List<ReservationInfoDto> recResList (Integer uNo, String keyword, PageInfo page, String sort) throws Exception;
+	Integer recResListCnt (Integer uNo) throws Exception;
 }

@@ -1,8 +1,8 @@
 package dto.otherDto;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class ReservationInfoDto {
 	
@@ -52,9 +52,18 @@ public class ReservationInfoDto {
 	String fileName; //파일명
 	String filePath; // 경로
 	
+	long dDay; //디데이
+	
+	public long getdDay() {
+		LocalDate today = LocalDate.now();
+		return ChronoUnit.DAYS.between(today, rDate);
+	}
+	
+	
 	ReservationInfoDto(){
 		super();
 	}
+
 
 	public ReservationInfoDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
 			String rContent, String actName, String actTel, String rStatus, String rDay, String hNm, Integer categoryNo,
@@ -62,7 +71,7 @@ public class ReservationInfoDto {
 			String hLink, Integer hosImgFileNo, String status, String hCode, String city, String gungu, String services,
 			boolean silson, String newsTitle, String newsContent, String categoryName, String username, String gender,
 			String uTel, String email, String userType, String major, String introduction, Integer stateCode,
-			Integer fileNo, String fileName, String filePath) {
+			Integer fileNo, String fileName, String filePath, long dDay) {
 		super();
 		this.rNo = rNo;
 		this.uNo = uNo;
@@ -105,7 +114,9 @@ public class ReservationInfoDto {
 		this.fileNo = fileNo;
 		this.fileName = fileName;
 		this.filePath = filePath;
+		this.dDay = dDay;
 	}
+
 
 	@Override
 	public String toString() {
@@ -119,337 +130,425 @@ public class ReservationInfoDto {
 				+ newsTitle + ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", username="
 				+ username + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", userType=" + userType
 				+ ", major=" + major + ", introduction=" + introduction + ", stateCode=" + stateCode + ", fileNo="
-				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + "]";
+				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", dDay=" + dDay + "]";
 	}
+
 
 	public Integer getrNo() {
 		return rNo;
 	}
 
+
 	public void setrNo(Integer rNo) {
 		this.rNo = rNo;
 	}
+
 
 	public Integer getuNo() {
 		return uNo;
 	}
 
+
 	public void setuNo(Integer uNo) {
 		this.uNo = uNo;
 	}
+
 
 	public Integer gethNo() {
 		return hNo;
 	}
 
+
 	public void sethNo(Integer hNo) {
 		this.hNo = hNo;
 	}
+
 
 	public Integer getmNo() {
 		return mNo;
 	}
 
+
 	public void setmNo(Integer mNo) {
 		this.mNo = mNo;
 	}
+
 
 	public LocalDate getrDate() {
 		return rDate;
 	}
 
+
 	public void setrDate(LocalDate rDate) {
 		this.rDate = rDate;
 	}
+
 
 	public LocalTime getrTime() {
 		return rTime;
 	}
 
+
 	public void setrTime(LocalTime rTime) {
 		this.rTime = rTime;
 	}
+
 
 	public String getrContent() {
 		return rContent;
 	}
 
+
 	public void setrContent(String rContent) {
 		this.rContent = rContent;
 	}
+
 
 	public String getActName() {
 		return actName;
 	}
 
+
 	public void setActName(String actName) {
 		this.actName = actName;
 	}
+
 
 	public String getActTel() {
 		return actTel;
 	}
 
+
 	public void setActTel(String actTel) {
 		this.actTel = actTel;
 	}
+
 
 	public String getrStatus() {
 		return rStatus;
 	}
 
+
 	public void setrStatus(String rStatus) {
 		this.rStatus = rStatus;
 	}
+
 
 	public String getrDay() {
 		return rDay;
 	}
 
+
 	public void setrDay(String rDay) {
 		this.rDay = rDay;
 	}
+
 
 	public String gethNm() {
 		return hNm;
 	}
 
+
 	public void sethNm(String hNm) {
 		this.hNm = hNm;
 	}
+
 
 	public Integer getCategoryNo() {
 		return categoryNo;
 	}
 
+
 	public void setCategoryNo(Integer categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+
 
 	public String gethAddress() {
 		return hAddress;
 	}
 
+
 	public void sethAddress(String hAddress) {
 		this.hAddress = hAddress;
 	}
+
 
 	public String gethLocationY() {
 		return hLocationY;
 	}
 
+
 	public void sethLocationY(String hLocationY) {
 		this.hLocationY = hLocationY;
 	}
+
 
 	public String gethLocationX() {
 		return hLocationX;
 	}
 
+
 	public void sethLocationX(String hLocationX) {
 		this.hLocationX = hLocationX;
 	}
+
 
 	public String getTransferInfo() {
 		return transferInfo;
 	}
 
+
 	public void setTransferInfo(String transferInfo) {
 		this.transferInfo = transferInfo;
 	}
+
 
 	public String getHolidayInfo() {
 		return holidayInfo;
 	}
 
+
 	public void setHolidayInfo(String holidayInfo) {
 		this.holidayInfo = holidayInfo;
 	}
+
 
 	public String gethTel() {
 		return hTel;
 	}
 
+
 	public void sethTel(String hTel) {
 		this.hTel = hTel;
 	}
+
 
 	public String gethLink() {
 		return hLink;
 	}
 
+
 	public void sethLink(String hLink) {
 		this.hLink = hLink;
 	}
+
 
 	public Integer getHosImgFileNo() {
 		return hosImgFileNo;
 	}
 
+
 	public void setHosImgFileNo(Integer hosImgFileNo) {
 		this.hosImgFileNo = hosImgFileNo;
 	}
+
 
 	public String getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 	public String gethCode() {
 		return hCode;
 	}
 
+
 	public void sethCode(String hCode) {
 		this.hCode = hCode;
 	}
+
 
 	public String getCity() {
 		return city;
 	}
 
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 
 	public String getGungu() {
 		return gungu;
 	}
 
+
 	public void setGungu(String gungu) {
 		this.gungu = gungu;
 	}
+
 
 	public String getServices() {
 		return services;
 	}
 
+
 	public void setServices(String services) {
 		this.services = services;
 	}
+
 
 	public boolean isSilson() {
 		return silson;
 	}
 
+
 	public void setSilson(boolean silson) {
 		this.silson = silson;
 	}
+
 
 	public String getNewsTitle() {
 		return newsTitle;
 	}
 
+
 	public void setNewsTitle(String newsTitle) {
 		this.newsTitle = newsTitle;
 	}
+
 
 	public String getNewsContent() {
 		return newsContent;
 	}
 
+
 	public void setNewsContent(String newsContent) {
 		this.newsContent = newsContent;
 	}
+
 
 	public String getCategoryName() {
 		return categoryName;
 	}
 
+
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+
 
 	public String getUsername() {
 		return username;
 	}
 
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 
 	public String getGender() {
 		return gender;
 	}
 
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 
 	public String getuTel() {
 		return uTel;
 	}
 
+
 	public void setuTel(String uTel) {
 		this.uTel = uTel;
 	}
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	public String getUserType() {
 		return userType;
 	}
 
+
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
 
 	public String getMajor() {
 		return major;
 	}
 
+
 	public void setMajor(String major) {
 		this.major = major;
 	}
+
 
 	public String getIntroduction() {
 		return introduction;
 	}
 
+
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
+
 
 	public Integer getStateCode() {
 		return stateCode;
 	}
 
+
 	public void setStateCode(Integer stateCode) {
 		this.stateCode = stateCode;
 	}
+
 
 	public Integer getFileNo() {
 		return fileNo;
 	}
 
+
 	public void setFileNo(Integer fileNo) {
 		this.fileNo = fileNo;
 	}
+
 
 	public String getFileName() {
 		return fileName;
 	}
 
+
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
 
 	public String getFilePath() {
 		return filePath;
 	}
 
+
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
+
+	public void setdDay(long dDay) {
+		this.dDay = dDay;
+	}
+
+	
 	
 
 

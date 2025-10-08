@@ -15,6 +15,7 @@ import service.diagnosis.DiagnosisService;
 import service.diagnosis.DiagnosisServiceImpl;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
+import util.PageInfo;
 public class ReservationServiceImpl implements ReservationService {
 
 	private ReservationDao resDao;
@@ -137,12 +138,54 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<ReservationInfoDto> comResList(Integer uNo) throws Exception {
 		return resDao.commingRes(uNo);
 	}
+	
 
 	//지난 예약
 	@Override
-	public List<ReservationInfoDto> recResList(Integer uNo) throws Exception {
-		return resDao.recordRes(uNo);
+	public List<ReservationInfoDto> recResList(Integer uNo, String keyword, PageInfo page, String sort) throws Exception {
+		final int pageSize = 5; // 페이지 당 글 수
+		final int pageGroup = 10;	// 페이지 그룹 수 (페이징 버튼 갯수)
+		
+		int totalCount = resDao.recordResCnt(uNo);
+		int totalPage = (int) Math.ceil((double)totalCount/pageSize); // 총 페이지 수
+		
+		int curPage = page.getCurPage();
+		
+		if(curPage < 1) {
+			curPage = 1;
+		}else if (curPage > totalPage && totalPage > 0 ) {
+			curPage = totalPage;
+		}
+		
+		page.setCurPage(curPage);
+		
+		int startPage = (curPage -1)/ pageGroup * pageGroup +1;
+		int endPage = startPage + pageGroup -1;
+		if(endPage > totalPage) endPage = totalPage;
+		
+		page.setAllPage(totalPage);
+		page.setStartPage(startPage);
+		page.setEndPage(endPage);
+		
+		int offset = (curPage -1) * pageSize;
+		if(offset < 0) offset = 0;
+		
+		Map<String, Object> recPage = new HashMap<>();
+		recPage.put("offset", offset);
+		recPage.put("keyword", keyword);
+		recPage.put("uNo", uNo);
+		recPage.put("sort", sort);
+		recPage.put("pageSize", pageSize);
+		
+		return resDao.recordRes(recPage);
+		
 	}
+
+	@Override
+	public Integer recResListCnt(Integer uNo) throws Exception {
+		return resDao.recordResCnt(uNo);
+	}
+	
 
 
 	
