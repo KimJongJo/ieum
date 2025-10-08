@@ -11,8 +11,20 @@ public class DiaryDto {
 	String content;
 	String mood;
 	Date targetDt;
+	// Date포맷
+	String formatdCreated;
 	
 	
+	public String getFormatdCreated() {
+		return formatdCreated;
+	}
+
+
+	public void setFormatdCreated(String formatdCreated) {
+		this.formatdCreated = formatdCreated;
+	}
+
+
 	public DiaryDto() {
 		super();
 	}
@@ -79,12 +91,29 @@ public class DiaryDto {
 		this.mood = mood;
 		this.targetDt = targetDt;
 	}
+	
+	public DiaryDto(Integer dNo, Integer uNo, Date dUpdated, String title, String content, String mood, Date targetDt,
+			String formatdCreated) {
+		super();
+		this.dNo = dNo;
+		this.uNo = uNo;
+		this.dUpdated = dUpdated;
+		this.title = title;
+		this.content = content;
+		this.mood = mood;
+		this.targetDt = targetDt;
+		this.formatdCreated = formatdCreated;
+	}
+
+
+
 
 
 	@Override
 	public String toString() {
 		return "DiaryDto [dNo=" + dNo + ", uNo=" + uNo + ", dCreated=" + dCreated + ", dUpdated=" + dUpdated
-				+ ", title=" + title + ", content=" + content + ", mood=" + mood + ", targetDt=" + targetDt + "]";
+				+ ", title=" + title + ", content=" + content + ", mood=" + mood + ", targetDt=" + targetDt
+				+ ", formatdCreated=" + formatdCreated + "]";
 	}
 
 
@@ -166,6 +195,8 @@ public class DiaryDto {
 	public void setTargetDt(Date targetDt) {
 		this.targetDt = targetDt;
 	}
+	
+	
 	
 	
 	

@@ -59,23 +59,41 @@
             }
 
             .area2 {
+             	display:flex;
+            	justify-content:flex-start;
+            	padding-left:5px;
                 height: 165px;
                 overflow:auto;
             }
 
             .area3 {
+            	display:flex;
+            	justify-content:flex-start;
+            	padding-left:5px;
                 height: 125px;
                 overflow:auto;
             }
 
             .area4 {
+            	display:flex;
+            	justify-content:flex-start;
+            	padding-left:5px;
                 height: 70px;
                 overflow:auto;
             }
             
             .area5{
+            	display:flex;
+            	justify-content:flex-start;
+            	padding-left:5px;
             	height: 90px;
             	overflow:auto;
+            }
+            
+            .sym{
+            	display:flex;
+            	justify-content:flex-start;
+            	padding-left:5px;
             }
 
             .xmark-div {
@@ -187,3 +205,4 @@
 		        margin: 15px 0 0 0;
 		
 		    }
+		    

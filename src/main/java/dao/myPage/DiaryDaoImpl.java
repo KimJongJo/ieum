@@ -92,4 +92,11 @@ public class DiaryDaoImpl implements DiaryDao {
 			return session.selectList("selectCalList", params);
 		}
 	}
+
+	@Override
+	public List<DiaryDto> selectPatientDiaryList(Integer uNo) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList("selectPatientDiaryList", uNo);
+		}
+	}
 }

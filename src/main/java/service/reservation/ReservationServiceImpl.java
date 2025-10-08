@@ -51,10 +51,18 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public ResPageResponseDto todayReservationList(Integer uNo, int curPage) {
 		
+		MemberDto member = memberService.selectUserByNo(uNo);
+		
+		int resCount;
+		
+		if("DOCTOR".equals(member.getUserType())) {
+			resCount = resDao.resCount(uNo); // 전체 데이터 수(의사)
+		}else { // 현재 병원관리자가 로그인할 경우 모든 의사에 대한 예약 정보 보기
+			resCount = resDao.resCount(); // 전체 데이터 수 (병원관리자)
+		}
+		
 		int pageSize = 8; // 한 페이지당 데이터 수
 		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
-
-		int resCount = resDao.resCount(uNo); // 전체 데이터 수
 		int allPage = (int) Math.ceil((double) resCount / pageSize); // 전체 페이지 수
 
 		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
@@ -67,7 +75,7 @@ public class ReservationServiceImpl implements ReservationService {
 		page.put("pageSize", pageSize);
 		page.put("uNo", uNo);
 		
-		MemberDto member = memberService.selectUserByNo(uNo);
+		
 		// 현재 로그인한 회원이 의사일 경우 자신의 예약자만 보기
 		if("DOCTOR".equals(member.getUserType())) {
 			return new ResPageResponseDto(resDao.todayReservationMyList(page), curPage, allPage, startPage, endPage, resCount);
@@ -93,7 +101,23 @@ public class ReservationServiceImpl implements ReservationService {
 		int pageSize = 8; // 한 페이지당 데이터 수
 		int blockSize = 5; // 한 화면에 보여줄 페이지 번호 개수
 
-		int resCount = resDao.resCount(uNo); // 전체 데이터 수
+		MemberDto member = memberService.selectUserByNo(uNo);
+		
+		Map<String, Object> keywordPage = new HashMap<>();
+		
+		int resCount;
+		if("DOCTOR".equals(member.getUserType())) {
+			keywordPage.put("keyword", keyword);
+			keywordPage.put("uNo", uNo);
+			
+			resCount = resDao.resCount(keywordPage); // 전체 데이터 수(의사)
+		}else { // 현재 병원관리자가 로그인할 경우 모든 의사에 대한 예약 정보 보기
+			keywordPage.put("keyword", keyword);
+			
+			resCount = resDao.resCountByManager(keywordPage); // 전체 데이터 수(병원관리자)
+		}
+		
+		
 		int allPage = (int) Math.ceil((double) resCount / pageSize); // 전체 페이지 수
 
 		int startPage = ((curPage - 1) / blockSize) * blockSize + 1; // 시작 페이지
@@ -107,7 +131,7 @@ public class ReservationServiceImpl implements ReservationService {
 		page.put("pageSize", pageSize);
 		page.put("keyword", keyword);
 		
-		MemberDto member = memberService.selectUserByNo(uNo);
+		
 		// 현재 로그인한 회원이 의사일 경우 자신의 예약자만 보기
 		if("DOCTOR".equals(member.getUserType())) {
 			return new ResPageResponseDto(resDao.todayReservationMyListByKeyword(page), curPage, allPage, startPage, endPage, resCount);

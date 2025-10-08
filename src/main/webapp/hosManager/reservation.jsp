@@ -21,6 +21,10 @@
 		    let allPage = ${resList.allPage};
 		    let curKeyword = ""; // 현재 검색어
 		    let uNo = ${sessionScope.uNo};
+		    let year = "";
+		    let month = "";
+		    let day = "";
+		    let date = "";
 		</script>
         
     </head>
@@ -39,24 +43,24 @@
                         <form class="search-bar2">
                             <div class="select-div">
                                 <div>
-                                    <select name="" id="" class="year">
-                                        <option value="">년</option>
+                                    <select name="year" id="year" name="year" class="year">
+                                        <option value="none">년</option>
                                     </select>
-                                    <select name="" id="" class="month">
-                                        <option value="">월</option>
+                                    <select name="month" id="month" name="month" class="month">
+                                        <option value="none">월</option>
                                     </select>
-                                    <select name="" id="" class="day">
-                                        <option value="">일</option>
+                                    <select name="day" id="day" name="day" class="day">
+                                        <option value="none">일</option>
                                     </select>
                                 </div>
                                 <div class="search-div">
-                                    <input type="text" placeholder="환자 이름을 검색해주세요" class="reservation-input" />
-                                    <button type="button" class="reservation-btn">검색</button>
+                                    <input id="searchKeyword" type="text" placeholder="환자 이름을 검색해주세요" class="reservation-input" />
+                                    <button id="searchBtn" type="button" class="reservation-btn">검색</button>
                                 </div>
                             </div>
                         </form>
 						<div class="reservation-table-div">
-							<table class="table reservation-table">
+							<table class="table reservation-table" id="tableSetting">
 								<thead>
 									<tr>
 		                                <th style="width: 70px">예약ID</th>

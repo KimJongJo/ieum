@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#profile-preview img').src = e.target.result;
         }
         reader.readAsDataURL(file);
-
     });
 
     // 기존 '관리 메뉴' 숨기기 코드

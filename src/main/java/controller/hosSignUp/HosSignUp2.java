@@ -89,7 +89,6 @@ public class HosSignUp2 extends HttpServlet {
 		String hos_y = request.getParameter("hos_y");
 		String hos_x = request.getParameter("hos_x");
 		
-		System.out.println(categoryNo);
 		List<String> holidays = new ArrayList<>();
 		String holiday;
 		if(weekDay != null) {

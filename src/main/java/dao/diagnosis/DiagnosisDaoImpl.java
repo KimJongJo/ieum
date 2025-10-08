@@ -57,12 +57,26 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 			return session.selectOne("PastDiagnosesCount", uNo);
 		}
 	}
+	
+	@Override
+	public int diaDateCount(Map<String, Object> datePage) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("diaDateCount", datePage);
+		}
+	}
 
 	// 로그인한 의사의 과거 진단 기록들
 	@Override
 	public List<DiagnosisInfoDto> pastDia(Map<String, Object> page) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectList("selectPastDiagnoses", page);
+		}
+	}
+	
+	@Override
+	public List<DiagnosisInfoDto> pastDateDia(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("pastDateDia", page);
 		}
 	}
 
@@ -72,5 +86,53 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 			return session.selectOne("getDiaInfo", dNo);
 		}
 	}
+
+	@Override
+	public int diaKeywordCount(Map<String, Object> keywordPage) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("diaKeywordCount", keywordPage);
+		}
+	}
+	
+	@Override
+	public int diaKeywordAndDateCount(Map<String, Object> keywordPage) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("diaKeywordAndDateCount", keywordPage);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> pastKeywordDia(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("pastKeywordDia", page);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> pastKeywordAndDateDia(Map<String, Object> page) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("pastKeywordAndDateDia", page);
+		}
+	}
+
+	@Override
+	public Map<String, Object> selectUserInfo(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectUserInfo", diaNo);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> getDiaList(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("getDiaList", diaNo);
+		}
+	}
+
+
+
+
+
+
 
 }

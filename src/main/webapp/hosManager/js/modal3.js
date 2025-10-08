@@ -1,31 +1,33 @@
-const viewBtn = document.getElementById("view-more");
-const contentDiv = document.getElementById("patient-content");
+$(document).ready(function() {
 
-viewBtn.addEventListener("click", () => {
-    if(contentDiv.style.display === "flex"){
-        contentDiv.style.display = "none";
-    } else {
-        contentDiv.style.display = "flex";
-    }
-});
+    // -----------------------------
+    // 1️⃣ 테이블 안 view-more 버튼 클릭 → 같은 행 콘텐츠 토글
+    // -----------------------------
+    $(document).on("click", ".view-more", function() {
+        const $contentDiv = $(this).closest("tr").find(".patient-comment-content");
+        $contentDiv.toggle(); // display: none ↔ block
+    });
 
-const showBtn = document.getElementById("show-btn");
-const xBtn = document.getElementById("more-dia-x");
-const showDib = document.getElementById("show-dia-info");
+    // -----------------------------
+    // 2️⃣ show-btn 클릭 → 모달 열기 -> 이건 각자 js 에서 해야함 넣으려는 div id가 다름
+    // -----------------------------
+//    $(document).on("click", ".show-btn", function() {
+//        $("#show-dia-info").css("display", "flex");
+//    });
 
-showBtn.addEventListener("click", () => {
-    if(showDib.style.display !== "flex"){
-    	showDib.style.display = "flex";
-    	}
-});
+    // -----------------------------
+    // 3️⃣ 모달 닫기 버튼 클릭 → 모달 닫기
+    // -----------------------------
+    $(document).on("click", "#more-dia-x", function() {
+        $("#show-dia-info").hide();
+    });
 
-xBtn.addEventListener("click", () => {
-	showDib.style.display = "none";
-})
+    // -----------------------------
+    // 4️⃣ 모달 배경 클릭 → 모달 닫기
+    // -----------------------------
+    $(document).on("click", "#p-info-div", function() {
+        $("#show-dia-info").hide();
+        $("#modal-dia2").hide(); // modalProfile2에 해당
+    });
 
-const xpinfo = document.getElementById("p-info-div");
-
-xpinfo.addEventListener("click", () => {
-	showDib.style.display = "none";
-	modalProfile2.style.display = "none";
 });

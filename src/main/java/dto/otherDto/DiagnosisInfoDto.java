@@ -10,6 +10,7 @@ public class DiagnosisInfoDto {
 	private Integer diaNo; // 진단서 번호
 	private String mNm; // 의사 이름
 	private String date; // 예약날짜
+	private String diaName;
 	
 	public DiagnosisInfoDto(Integer rNo, String pNm, Integer pNo, String time, String diaState, Integer diaNo) {
 		super();
@@ -45,6 +46,16 @@ public class DiagnosisInfoDto {
 		this.diaNo = diaNo;
 		this.mNm = mNm;
 		this.date = date;
+	}
+	
+	
+
+	public DiagnosisInfoDto(Integer diaNo, String mNm, String date, String diaName) {
+		super();
+		this.diaNo = diaNo;
+		this.mNm = mNm;
+		this.date = date;
+		this.diaName = diaName;
 	}
 
 	@Override
@@ -120,6 +131,18 @@ public class DiagnosisInfoDto {
 
 	public void setDiaNo(Integer diaNo) {
 		this.diaNo = diaNo;
+	}
+
+	public String getDiaName() {
+		return diaName;
+	}
+
+	public void setDiaName(String diaName) {
+		this.diaName = diaName;
+	}
+
+	public void setmNm(String mNm) {
+		this.mNm = mNm;
 	}
 	
 	

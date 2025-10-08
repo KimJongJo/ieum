@@ -23,4 +23,6 @@ public interface DiaryDao {
 	public DiaryDto selectDate (Integer uNo, String date) throws Exception;
 	
 	public List<DiaryDto> selectCalList(Integer uNo, String sDate, String eDate) throws Exception;
+
+	public List<DiaryDto> selectPatientDiaryList(Integer uNo);
 }
