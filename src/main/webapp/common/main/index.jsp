@@ -103,7 +103,7 @@
 							<a href="${contextPath}/login" class="btn-link">로그인 / 회원가입</a>
 						</div>
 						<div class="login-body">
-							<span class="login-title"> 자가진단 </span> <a
+							<span class="login-title"> 자가검진 </span> <a
 								href="${contextPath}/exam">
 								<div class="plusBtn">
 									<span>더보기</span>
@@ -149,7 +149,7 @@
 							</div>
 							<span>병원등록</span>
 						</div>
-					</a> <a href="${contextPath}/exam/examques" class="btn-link">
+					</a> <a href="${contextPath}/exam" class="btn-link">
 						<div class="service item">
 							<div class="rectangle diagnosis">
 								<i class="fa-duotone fa-solid fa-user-check"></i>
@@ -163,7 +163,7 @@
 							</div>
 							<span>커뮤니티</span>
 						</div>
-					</a> <a href="${contextPath}/notice" class="btn-link">
+					</a> <a href="${contextPath}/notice?page=1" class="btn-link">
 						<div class="service item">
 							<div class="rectangle notice">
 								<i class="fa-duotone fa-solid fa-bullhorn"></i>
@@ -206,7 +206,7 @@
 		<c:if test="${not empty topNoticeList and not empty noticeList}">
 			<section class="notice-secton">
 				<span class="section-title">공지사항 <a
-					href="${contextPath}/notice">
+					href="${contextPath}/notice?page=1">
 						<div class="plusBtn">
 							<span>더보기</span>
 							<div class="plusIcon">
