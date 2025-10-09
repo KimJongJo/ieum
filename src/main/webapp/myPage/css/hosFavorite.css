@@ -1,34 +1,30 @@
+
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Noto Sans KR", Helvetica;
-    color: #000000;
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #fff;
+	color: #000000;
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
+/* a { */
+/* 	text-decoration: none; */
+/* 	color: inherit; */
+/* } */
+
+.fav-container {
+	max-width: 1280px;
+	margin: 40px auto;
+	border-radius: 4px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
 }
 
-.container {
+.fav-container .container {
     width: 1022px;
     display: flex;
     flex-direction: column;
     margin-bottom: 60px;
     margin-top: 60px;
-}
-
-.list2 {
-    width: 1022px;
-    height: 205px;
-    border: 2px solid #d9d9d9;
-    border-radius: 15px;
-    padding: 30px;
-    box-sizing: border-box;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
 

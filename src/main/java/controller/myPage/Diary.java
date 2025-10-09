@@ -45,6 +45,11 @@ public class Diary extends HttpServlet {
 		// 세션에서 로그인 uNo 가져오기
 		HttpSession session = request.getSession();
 	    Integer uNo = (Integer)session.getAttribute("uNo");
+	    if (uNo == null) {
+		    request.setAttribute("err", "잘못된 접근입니다. 로그인 후 이용해주세요");
+		    request.getRequestDispatcher("/myPage/myPageAlert.jsp").forward(request, response);
+		    return;
+		}
 		Integer dNo = (Integer) session.getAttribute("dNo");
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
