@@ -27,11 +27,11 @@
 	</select>
 	<select id="selectNoticeList" parameterType="map"
 		resultType="notice">
-		SELECT n.*,m.username AS uNm FROM notice n
-		JOIN member m ON n.u_no =
-		m.u_no
+		SELECT n.*, f.*, m.username  AS uNm FROM notice n
+		LEFT JOIN member m USING(u_no)
+	    LEFT JOIN file f ON n.file_no = f.file_no
 		WHERE n.is_pinned = #{isPinned}
-		<if test="uNo != null and uNo != ''">
+		<if test="uNo != null and uNo > 0">
 			AND (
 			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
 			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
@@ -94,20 +94,23 @@
 		FROM notice n
 		JOIN member m ON n.u_no = m.u_no
 		WHERE n_no &lt; #{nNo}
-		AND (
-		<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+		<if test="uNo != null and uNo > 0">
+			AND (
+			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
 
-		<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
-		OR (
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
-		AND (
-		n.u_no = #{uNo}
-		OR m.h_no = (SELECT h_no FROM member WHERE u_no =
-		#{uNo})
-		)
-		)
-		)
+			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+			OR (
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+			AND
+			(
+			n.u_no = #{uNo}
+			OR m.h_no = (SELECT h_no FROM member WHERE u_no =
+			#{uNo})
+			)
+			)
+			)
+		</if>
 		ORDER BY n_no DESC
 		LIMIT 1
 	</select>
@@ -119,20 +122,23 @@
 		FROM notice n
 		JOIN member m ON n.u_no = m.u_no
 		WHERE n_no &gt; #{nNo}
-		AND (
-		<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
+		<if test="uNo != null and uNo > 0">
+			AND (
+			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'
 
-		<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
-		OR (
-		(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
-		AND (
-		n.u_no = #{uNo}
-		OR m.h_no = (SELECT h_no FROM member WHERE u_no =
-		#{uNo})
-		)
-		)
-		)
+			<!-- 로그인한 사용자가 DOCTOR인 경우: 본인 글이거나 같은 병원(h_no) 소속 글만 조회 -->
+			OR (
+			(SELECT user_type FROM member WHERE u_no = #{uNo}) = 'DOCTOR'
+			AND
+			(
+			n.u_no = #{uNo}
+			OR m.h_no = (SELECT h_no FROM member WHERE u_no =
+			#{uNo})
+			)
+			)
+			)
+		</if>
 		ORDER BY n_no ASC
 		LIMIT 1
 	</select>
@@ -142,7 +148,7 @@
 		JOIN member m ON n.u_no = m.u_no
 		WHERE
 		is_pinned = #{isPinned}
-		<if test="uNo != null and uNo != ''">
+		<if test="uNo != null and uNo > 0">
 			AND (
 			<!-- 로그인한 사용자가 DOCTOR가 아닌 경우: 모든 글 조회 -->
 			(SELECT user_type FROM member WHERE u_no = #{uNo}) != 'DOCTOR'

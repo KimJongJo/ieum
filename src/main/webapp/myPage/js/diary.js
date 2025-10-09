@@ -66,20 +66,20 @@ function renderList() {
 			let paginationHtml = "";
 			// 이전 버튼
 			if (pageInfo.curPage > 1) {
-			  paginationHtml += `<button onclick="loadPage(${pageInfo.curPage - 1})">&lt;</button>`;
+			  paginationHtml += `<button onclick=location.href='/ieum/myPage/diary?page=${pageInfo.curPage-1}'">&lt;</button>`;
 			}
 			
 			// 페이지 번호 버튼들
 			for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
 			  if (pageNum <= pageInfo.allPage) {
 			    const activeClass = pageNum === pageInfo.curPage ? "active" : "";
-			    paginationHtml += `<button class="${activeClass}" onclick="loadPage(${pageNum})">${pageNum}</button>`;
+			    paginationHtml += `<button class="${activeClass}" onclick=location.href='/ieum/myPage/diary?page=${pageNum}'">${pageNum}</button>`;
 			  }
 			}
 			
 			// 다음 버튼
 			if (pageInfo.curPage < pageInfo.endPage) {
-			  paginationHtml += `<button onclick="loadPage(${pageInfo.curPage + 1})">&gt;</button>`;
+			  paginationHtml += `<button onclick="location.href='/ieum/myPage/diary?page=${pageInfo.curPage+1}'">&gt;</button>`;
 			}
 			
 			paginationDiv.append(paginationHtml);

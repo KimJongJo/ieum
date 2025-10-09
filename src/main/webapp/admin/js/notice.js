@@ -37,17 +37,47 @@ function renderList() {
 		success: function(data) {
 			const noDataDiv = $("#noSearchList");
 			const noticeTable = $("#noticeList");
-			const pagination = $("#pagination");
+			const paginationDiv = $("#pagination");
+			const pageInfo = data.pageInfo;
 			noticeTable.empty(); // 기존 목록 제거
-
 			if (data.noticeList.length == 0 && data.topList.length == 0) {
 				noticeTable.hide();
 				noDataDiv.css('display', 'flex');
-				pagination.css('display', 'none');
+				paginationDiv.hide();
 			} else {
+				paginationDiv.empty(); // 기존 페이징 제거
+				let paginationHtml = "";
+				// 이전 버튼
+				if (pageInfo.curPage > 1) {
+					paginationHtml += `<button onclick="location.href='/ieum/admin/notice?page=${pageInfo.curPage - 1}'">&lt;</button>`;
+				}
+
+				// 페이지 번호 버튼들
+				for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
+					if (pageNum <= pageInfo.allPage) {
+						const activeClass = pageNum === pageInfo.curPage ? "active" : "";
+						paginationHtml += `<button class="${activeClass}" onclick="location.href='/ieum/admin/notice?page=${pageNum}'">${pageNum}</button>`;
+					}
+				}
+
+				// 다음 버튼
+				if (pageInfo.curPage < pageInfo.endPage) {
+					paginationHtml += `<button onclick="location.href='/ieum/admin/notice?page=${pageInfo.curPage + 1}'">&gt;</button>`;
+				}
+
+				paginationDiv.append(paginationHtml);
 				noticeTable.show();
+				paginationDiv.show();
 				noDataDiv.hide();
-				pagination.show();
+				noticeTable.append(`
+				<tr>
+									<td class="n-t-th">번호</td>
+									<td class="n-t-th">제목</td>
+									<td class="n-t-th">작성자</td>
+									<td class="n-t-th">등록일</td>
+									<td class="n-t-th">최근수정일</td>
+									<td class="n-t-th">관리</td>
+								</tr>`)
 				data.topList.forEach(function(top) {
 					const html = `
                     <tr class="notice-item" data-label="${top.nNo}">
