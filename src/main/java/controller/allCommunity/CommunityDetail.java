@@ -53,12 +53,15 @@ public class CommunityDetail extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
         String noStr = request.getParameter("no");
         if (noStr == null || noStr.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 전달되지 않았습니다.");
             return;
         }
-        int uNo = 3; // 테스트용, 실제 로그인 세션 값으로 교체 필요
+        
         int commuNo = 0;
         try {
             commuNo = Integer.parseInt(noStr);
@@ -138,7 +141,8 @@ public class CommunityDetail extends HttpServlet {
 		//댓글 등록
 		request.setCharacterEncoding("utf-8");
 		
-		int uNo = 6; //로그인된 사용자 번호
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");

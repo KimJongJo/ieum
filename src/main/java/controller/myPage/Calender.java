@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -46,7 +47,8 @@ public class Calender extends HttpServlet {
 	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0
 	    response.setDateHeader("Expires", 0); // Proxies
 		
-		int uNo = 6;
+	    HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		try {
 	        MyCommunityDto myComList = calenderService.getMyRecentCommunity(uNo);
 	        

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.allCommunity.CategoryDaoImpl;
 import dto.CommuCategoryDto;
@@ -53,7 +54,17 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-        int uNo = 6; // 로그인된 사용자 번호
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect("login.jsp");
+            return;
+        }
+		
+		
+		
         String title = request.getParameter("title");
         String content = request.getParameter("content");
 

@@ -44,12 +44,10 @@ public class ProfileInfoModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		 HttpSession session = request.getSession();
 	        Integer uNo = (Integer) session.getAttribute("uNo");
-		
         ProfileInfoService profileService = new ProfileInfoServiceImpl();
-        
-       
 
         try {
         	//회원 정보 조회
@@ -74,9 +72,8 @@ public class ProfileInfoModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("utf-8");
-	    int uNo = 6;
-	    
-	    
+	    HttpSession session = request.getSession();
+	    Integer uNo = (Integer) session.getAttribute("uNo");
 
         String nickName     = request.getParameter("nickName");
         String email        = request.getParameter("email");
