@@ -1,23 +1,20 @@
-function formSubmit(url, paramName, paramValue) {
-	const form = document.createElement("form");
-	form.method = "POST";
-	form.action = url;
-
-	const input = document.createElement("input");
-	input.type = "hidden";
-	input.name = paramName;
-	input.value = paramValue;
-
-	form.appendChild(input);
-	document.body.appendChild(form);
-	form.submit();
-}
 function searchKeyword() {
 	const keyword = $("#searchInput").val();
 	location.href = `/ieum/search?keyword=${keyword}`;
 }
 function goHosDetail(hNo) {
-	formSubmit("/ieum/hospital/detail", "hNo", hNo);
+	$.post("/ieum/hospital/detail", {
+    action: "goHosDetail",
+    hNo: hNo
+})
+.done(function() {
+    window.location.href = "/ieum/hospital/detail";
+})
+.fail(function(xhr) {
+    console.error("요청 실패:", xhr.status);
+    alert("서버 요청 중 오류가 발생했습니다.");
+});
+			
 }
 
 function goNoticeDetail(nNo) {

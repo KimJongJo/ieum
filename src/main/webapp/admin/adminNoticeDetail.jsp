@@ -50,9 +50,9 @@
 					</div>
 
 					<!-- 첨부파일 -->
-					<c:if test="${notice.fileNm != null }">
+					<c:if test="${notice.fileName != null }">
 					<div class="notice-attach">
-						첨부파일 <span>${notice.fileNm}</span>
+						첨부파일 <span>${notice.fileName}</span>
 					</div>
 					</c:if>
 

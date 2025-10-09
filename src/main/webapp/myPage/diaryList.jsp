@@ -216,28 +216,27 @@
 				<div class="diary-footer">
 					<div class="pagination" id="pagination">
 						<!-- 이전 버튼 -->
-						<button
-							<c:if test="${pageInfo.curPage > 1}">
-                    onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage-1}'"
-                </c:if>>
-							&lt;</button>
+						<c:if test="${pageInfo.curPage > 1}">
+							<button
+								onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage-1}'">&lt;</button>
+						</c:if>
 
 						<!-- 페이지 번호 반복 -->
-						<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}"
-							step="1" var="pageNum">
-							<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
-								onclick="location.href='${contextPath}/myPage/diary?page=${pageNum}'">
-								${pageNum}</button>
+						<c:forEach var="pageNum" begin="${pageInfo.startPage}"
+							end="${pageInfo.endPage}">
+							<c:if test="${pageNum <= pageInfo.allPage}">
+								<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
+									onclick="location.href='${contextPath}/myPage/diary?page=${pageNum}'">
+									${pageNum}</button>
+							</c:if>
 						</c:forEach>
 
 						<!-- 다음 버튼 -->
-						<button
-							<c:if test="${pageInfo.curPage < pageInfo.allPage}">
-                    onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage+1}'"
-                </c:if>>
-							&gt;</button>
+						<c:if test="${pageInfo.curPage < pageInfo.endPage}">
 
-
+							<button onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage+1}'">
+								&gt;</button>
+						</c:if>
 					</div>
 				</div>
 			</c:if>

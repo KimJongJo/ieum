@@ -46,6 +46,11 @@ public class AdminNoticeWrite extends HttpServlet {
 		// 멤버에서 로그인 사용자 이름 뽑아오기
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
+		if (uNo == null) {
+		    request.setAttribute("err", "잘못된 접근입니다. 로그인 후 이용해주세요");
+		    request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);
+		    return;
+		}
 		FileDao fDao = new FileDaoImpl();
 		NoticeService service = new NoticeServiceImpl();
 		String nNo = request.getParameter("nNo");
@@ -77,6 +82,8 @@ public class AdminNoticeWrite extends HttpServlet {
 					request.setAttribute("fileNm", fileDto.getFileName());
 				}
 			}
+			String pageName = request.getRequestURI(); // 현재 페이지 경로
+			request.setAttribute("pageName", pageName);
 			request.getRequestDispatcher("/admin/noticeWrite.jsp").forward(request, response);
 
 		} catch (Exception e) {

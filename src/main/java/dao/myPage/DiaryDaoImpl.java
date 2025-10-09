@@ -30,9 +30,12 @@ public class DiaryDaoImpl implements DiaryDao {
 	}
 
 	@Override
-	public Integer cnt() throws Exception {
+	public Integer cnt(Integer uNo, String keyword) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectOne("selectDiaryCnt");
+			Map<String, Object> params = new HashMap<>();
+			params.put("uNo", uNo);
+			params.put("keyword", keyword);
+			return session.selectOne("selectDiaryCnt", params);
 		}
 	}
 

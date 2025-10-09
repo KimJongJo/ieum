@@ -25,8 +25,10 @@
 <title>건강이음 - 공지사항관리 목록</title>
 </head>
 <body>
-	<jsp:include page="/common/header/basicHeader.html" />
-	<c:import url="/common/header/adminHeader.html" charEncoding="UTF-8" />
+	<header>
+		<jsp:include page="/common/header/header.jsp"></jsp:include>
+	</header>
+
 	<div class="main">
 		<div class="main-div">
 			<div class="under-section">
@@ -139,28 +141,28 @@
 						<div class="diary-footer">
 							<div class="pagination" id="pagination">
 								<!-- 이전 버튼 -->
-								<button
-									<c:if test="${pageInfo.curPage > 1}">
-                    onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage-1}'"
-                </c:if>>
-									&lt;</button>
+								<c:if test="${pageInfo.curPage > 1}">
+									<button
+										onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage-1}'">&lt;</button>
+								</c:if>
 
 								<!-- 페이지 번호 반복 -->
-								<c:forEach begin="${pageInfo.startPage}"
-									end="${pageInfo.endPage}" step="1" var="pageNum">
-									<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
-										onclick="location.href='${contextPath}/admin/notice?page=${pageNum}'">
-										${pageNum}</button>
+								<c:forEach var="pageNum" begin="${pageInfo.startPage}"
+									end="${pageInfo.endPage}">
+									<c:if test="${pageNum <= pageInfo.allPage}">
+										<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
+											onclick="location.href='${contextPath}/admin/notice?page=${pageNum}'">
+											${pageNum}</button>
+									</c:if>
 								</c:forEach>
 
 								<!-- 다음 버튼 -->
-								<button
-									<c:if test="${pageInfo.curPage < pageInfo.allPage}">
-                    onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage+1}'"
-                </c:if>>
-									&gt;</button>
+								<c:if test="${pageInfo.curPage < pageInfo.endPage}">
 
-
+									<button
+										onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage+1}'">
+										&gt;</button>
+								</c:if>
 							</div>
 						</div>
 					</c:if>

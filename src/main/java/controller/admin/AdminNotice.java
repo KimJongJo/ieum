@@ -57,8 +57,8 @@ public class AdminNotice extends HttpServlet {
 			boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 			if (curPage != null) {
 				PageInfo pageInfo = new PageInfo(Integer.parseInt(curPage));
-				List<NoticeDto> topList = service.getList(uNo, keyword, sort, pageInfo, 1);
-				List<NoticeDto> noticeList = service.getList(uNo, keyword, sort, pageInfo, 0);
+				List<NoticeDto> topList = service.getTopList(uNo, keyword, sort);
+				List<NoticeDto> noticeList = service.getList(uNo, keyword, sort, pageInfo);
 				if (isAjax) {
 					response.setContentType("application/json; charset=UTF-8");
 					Gson gson = new Gson();
@@ -66,6 +66,7 @@ public class AdminNotice extends HttpServlet {
 					resultMap.put("topList", topList);
 					resultMap.put("noticeList", noticeList);
 					resultMap.put("loginUNo", uNo);
+					resultMap.put("pageInfo", pageInfo);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;
@@ -74,6 +75,8 @@ public class AdminNotice extends HttpServlet {
 				request.setAttribute("noticeList", noticeList);
 				request.setAttribute("pageInfo", pageInfo);
 				request.setAttribute("loginUNo", uNo);
+				String pageName = request.getRequestURI(); // 현재 페이지 경로
+				request.setAttribute("pageName", pageName);
 				request.getRequestDispatcher("/admin/adminNoticeList.jsp").forward(request, response);
 				
 			} else {
@@ -87,6 +90,8 @@ public class AdminNotice extends HttpServlet {
 				request.setAttribute("loginUNo", uNo);
 				request.setAttribute("prev", prev);
 				request.setAttribute("next", next);
+				String pageName = request.getRequestURI(); // 현재 페이지 경로
+				request.setAttribute("pageName", pageName);
 				request.getRequestDispatcher("/admin/adminNoticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {

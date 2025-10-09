@@ -33,7 +33,7 @@ public class NoticeDaoImpl implements NoticeDao {
    public Integer cnt(Integer uNo, String keyword, Integer isPinned) throws Exception {
       try (SqlSession session = sqlSessionFactory.openSession()) {
          Map<String, Object> params = new HashMap<>();
-         if (uNo > 0) params.put("uNo", uNo);
+         if (uNo != null && uNo > 0) params.put("uNo", uNo);
          params.put("keyword", keyword);
          params.put("isPinned", isPinned);
          return session.selectOne("selectNoticeCnt", params);
@@ -45,9 +45,11 @@ public class NoticeDaoImpl implements NoticeDao {
          throws Exception {
       try (SqlSession session = sqlSessionFactory.openSession()) {
          Map<String, Object> params = new HashMap<>();
-         if (uNo > 0) params.put("uNo", uNo);
-         params.put("row", row);
-         params.put("topCnt", topCnt);
+         if (uNo != null && uNo > 0) params.put("uNo", uNo);
+         if (isPinned == 0) {
+        	 params.put("row", row);
+        	 params.put("topCnt", topCnt);
+         } 
          params.put("keyword", keyword);
          params.put("sort", sort);
          params.put("isPinned", isPinned);

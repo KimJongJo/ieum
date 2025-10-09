@@ -58,9 +58,11 @@ public class Diary extends HttpServlet {
 				List<DiaryDto> diaryList = service.getList(uNo, keyword, sort, pageInfo);
 				if (isAjax) {
                     response.setContentType("application/json; charset=UTF-8");
+                    
                     Gson gson = new Gson();
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("diaryList", diaryList);
+                    resultMap.put("pageInfo", pageInfo); 
                     String result = gson.toJson(resultMap);
                     response.getWriter().write(result);
                     return;
