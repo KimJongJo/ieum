@@ -9,7 +9,8 @@ public class MemberProfileDto {
     String email;
     String uTel;
     Boolean diaryPrivate;
-
+    Integer stateCode;	//상태코드
+    
     // file 테이블 컬럼 (profile)
     Integer fileNo;
     String fileName;    
@@ -19,7 +20,8 @@ public class MemberProfileDto {
     public MemberProfileDto() {}
     
 	public MemberProfileDto(Integer uNo, String id, String username, String nickname, String uAddress, String email,
-			String uTel, Boolean diaryPrivate, Integer fileNo, String fileName, String filePath, String fileCategory) {
+			String uTel, Boolean diaryPrivate, Integer stateCode, Integer fileNo, String fileName, String filePath,
+			String fileCategory) {
 		super();
 		this.uNo = uNo;
 		this.id = id;
@@ -29,23 +31,21 @@ public class MemberProfileDto {
 		this.email = email;
 		this.uTel = uTel;
 		this.diaryPrivate = diaryPrivate;
+		this.stateCode = stateCode;
 		this.fileNo = fileNo;
 		this.fileName = fileName;
 		this.filePath = filePath;
 		this.fileCategory = fileCategory;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
 	@Override
 	public String toString() {
 		return "MemberProfileDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", nickname=" + nickname
 				+ ", uAddress=" + uAddress + ", email=" + email + ", uTel=" + uTel + ", diaryPrivate=" + diaryPrivate
-				+ ", fileNo=" + fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", fileCategory="
-				+ fileCategory + "]";
+				+ ", stateCode=" + stateCode + ", fileNo=" + fileNo + ", fileName=" + fileName + ", filePath="
+				+ filePath + ", fileCategory=" + fileCategory + "]";
 	}
 
 	public Integer getuNo() {
@@ -119,6 +119,14 @@ public class MemberProfileDto {
 	}
 	public void setFileCategory(String fileCategory) {
 		this.fileCategory = fileCategory;
+	}
+
+	public Integer getStateCode() {
+		return stateCode;
+	}
+
+	public void setStateCode(Integer stateCode) {
+		this.stateCode = stateCode;
 	}
     
     

@@ -1,4 +1,4 @@
-const yearSelect = document.getElementById("year");
+const yearSelect = document.getElementById("joinYear");
 const monthSelect = document.getElementById("month");
 const daySelect = document.getElementById("day");
 
