@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservation.css" />
@@ -29,13 +31,21 @@
         
     </head>
     <body>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="managerHeader.html"></jsp:include>
+                    <c:choose>
+				    	<c:when test="${userType =='DOCTOR'}">
+				    		<jsp:include page="doctorHeader.html"></jsp:include>
+				    	</c:when>
+				    	<c:otherwise>
+				    		<jsp:include page="managerHeader.html"></jsp:include>
+				    	</c:otherwise>
+				    </c:choose>
                     <div class="info">
                         <div class="search-name">
                             <span class="hos-name">${hosName}</span>
@@ -43,7 +53,7 @@
                         <form class="search-bar2">
                             <div class="select-div">
                                 <div>
-                                    <select name="year" id="year" name="year" class="year">
+                                    <select name="year" id="year3" name="year" class="year">
                                         <option value="none">년</option>
                                     </select>
                                     <select name="month" id="month" name="month" class="month">
@@ -123,6 +133,7 @@
                 </div>
             </div>
         </div>
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
         <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal4.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal3.js"></script>

@@ -9,6 +9,8 @@
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
+     	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script>
@@ -24,6 +26,7 @@
 		
     </head>
     <body>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->
@@ -219,5 +222,6 @@
 			    });
 			});
 		</script> -->
+		<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
     </body>
 </html>

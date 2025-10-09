@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
        	<link rel="stylesheet" href="${pageContext.request.contextPath}/common/findId/css/findId1.css" />
        	<script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
     </head>
     <body>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <div class="title-div">
@@ -53,6 +56,7 @@
                 </div>
             </div>
         </div>
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
         <script>
 	        function submitForm(usertype) {
 	            document.getElementById('usertypeInput').value = usertype;

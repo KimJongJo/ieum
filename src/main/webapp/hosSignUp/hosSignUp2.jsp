@@ -9,11 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/hosSignUp/css/hosSignUp2.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/common/header/header.html" charEncoding="UTF-8"/>
 	<div class="main">
 		<div class="main-div">
 			<div class="chap-div">
@@ -255,7 +258,7 @@
 	</div>
 	</div>
 
-
+<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script type="text/javascript" 
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 

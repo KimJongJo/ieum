@@ -75,8 +75,12 @@ public class GoogleSignUp extends HttpServlet {
 		HttpSession session = request.getSession();
 		GoogleMemberDto googleDto = (GoogleMemberDto)session.getAttribute("googleDto");
 
+		MemberService memberService = new MemberServiceImpl(request.getServletContext());
+		
 		String id = googleDto.getId();
 		String profile = googleDto.getProfileImage();
+		// 타사에서 받은 프로필 이미지를 다운로드 하고 다른 이름으로 저장
+		profile = memberService.profileDown(id, profile);
 		String userName = googleDto.getName();
 		FileService fileService = new FileServiceImpl();
 		FileDto file = new FileDto(profile, "img\\userProfile\\", "userProfile");
@@ -85,7 +89,7 @@ public class GoogleSignUp extends HttpServlet {
 		MemberDto member = new MemberDto(id, userName, birthDate, gender, tel, 
 				email, nickname, address, diarYN, fileNo);
 		
-		MemberService memberService = new MemberServiceImpl();
+		
 		Integer uNo = memberService.socialSignUp(member);
 		
 		session.setAttribute("uNo", uNo);

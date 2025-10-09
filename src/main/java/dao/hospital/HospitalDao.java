@@ -29,4 +29,7 @@ public interface HospitalDao {
 	public int hospitalListByKeyword(Map<String, Object> keywordPage);
 	public List<HosInfoDto> selectHosListByKeyword(Map<String, Object> page);
 	public String getHosName(Integer uNo);
+	public HospitalDetailDto getHosInfo(Integer uNo);
+	public void updateHosInfo(Map<String, Object> map);
+	public String getHosNoByuNo(int userNo);
 }

@@ -1,7 +1,7 @@
 .main-bar {
 	min-width:1250px;
 	height: 115px;
-	background-color: #4356b3;
+	background-color: #f7faff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -38,17 +38,18 @@
 
 .count-div-title {
 	font-size: 12px;
-	color: white;
+	font-weight:bold;
+	color: #4356b3;
 }
 
 .count-div-num {
 	font-size: 24px;
-	color: white;
+	color: #4356b3;
 }
 
 .line {
 	height: 45px;
-	border: 2px solid white;
+	border: 2px solid #4356b3;
 	border-radius: 30px;
 	margin-left: 30px;
 	margin-right: 30px;

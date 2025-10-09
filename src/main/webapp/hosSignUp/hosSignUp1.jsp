@@ -10,10 +10,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/hosSignUp/css/hosSignUp1.css" />
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="/common/header/header.html" charEncoding="UTF-8"/>
 	<div class="main">
 		<div class="main-div">
 			<div class="chap-div">
@@ -125,6 +128,7 @@
 		</div>
 	</div>
 
+<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/hosSignUp/js/hosSignUp1.js"></script>

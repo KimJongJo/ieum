@@ -6,6 +6,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
@@ -25,6 +27,7 @@
 		
     </head>
     <body>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                  <!-- 헤더 들어올 곳 -->
@@ -172,6 +175,7 @@
                 </div>
             </div>
         </div>
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>
 		<script src="./js/adminHospitalsModal.js"></script>
     </body>

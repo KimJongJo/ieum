@@ -154,6 +154,7 @@ body {
     grid-auto-rows: 48px;                /* 각 행 높이 */
     gap: 0;
     width: 925px;
+    height:383px;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     overflow: hidden;
@@ -223,5 +224,42 @@ body {
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	height:200px;
+	height:245px;
+}
+
+.hosinfo{
+	height:105px;
+}
+
+.contentSpan{
+	width:705px;
+}
+
+.imgdiv{
+	border: 1px solid black;
+	background-color: red;
+	height:145px;
+	width:230px;
+	
+}
+
+.update_hos_btn{
+	display:flex;
+	justify-content:flex-end;
+	margin-top:10px;
+}
+
+.firsthide{
+	display:none;
+}
+
+.plusInput{
+	height:30px;
+	width:675px;
+}
+
+.plusText{
+	height:30px;
+	width:677px;
+	resize: none;
 }

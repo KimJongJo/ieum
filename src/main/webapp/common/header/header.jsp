@@ -34,7 +34,24 @@
 	<div id="header-line-top"></div>
 
 	<!-- Header -->
-	<div class="container">
+	<c:choose>
+		<c:when test="${userType == 'USER'}">
+			<jsp:include page="/common/header/basicHeader.html"></jsp:include>
+		</c:when>
+		<c:when test="${userType == 'DOCTOR'}">
+			<jsp:include page="/common/header/doctorHeader.html"></jsp:include>
+		</c:when>
+		<c:when test="${userType == 'MANAGER'}">
+			<jsp:include page="/common/header/managerHeader.html"></jsp:include>
+		</c:when>
+		<c:when test="${userType == 'ADMIN'}">
+			<jsp:include page="/common/header/adminNavHeader.html"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/common/header/guestHeader.html"></jsp:include>
+		</c:otherwise>
+	</c:choose>
+	<!-- <div class="container">
 		<div class="header">
 			<div class="header-inner">
 				<div style="cursor: pointer;" onclick="location.href='/ieum/index'"
@@ -46,27 +63,27 @@
 					<span style="cursor: pointer;"
 						onclick="location.href='/ieum/allComList'">커뮤니티</span> <span
 						style="cursor: pointer;" onclick="location.href='/ieum/notice?page=1'">공지사항</span>
-					<!-- 					<div class="dropdown" style="cursor: pointer;"> -->
-					<!-- 						<span class="dropdown-btn">관리 메뉴</span> -->
-					<!-- 						병원관리자 관리메뉴 -->
-					<!-- 						<div class="dropdown-content" id="hosMenu"> -->
-					<!-- 							<a href="/ieum/admin/member">회원 관리</a> -->
-					<!-- 														  <a href="/ieum/admin/chat">마음톡 -->
-					<!-- 															관리</a>  -->
-					<!-- 							<a href="/ieum/admin/notice">공지사항 관리</a> -->
-					<!-- 						</div> -->
-					<!-- 						사이트 관리자 관리 메뉴 -->
-					<!-- 						<div class="dropdown-content" id="adminMenu"> -->
-					<!-- 							<a href="/ieum/hosManager/reservationToday">대기열 관리</a> <a -->
-					<!-- 								href="/ieum/admin/notice">공지사항 관리</a> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
+										<div class="dropdown" style="cursor: pointer;">
+											<span class="dropdown-btn">관리 메뉴</span>
+											병원관리자 관리메뉴
+											<div class="dropdown-content" id="hosMenu">
+												<a href="/ieum/admin/member">회원 관리</a>
+																			  <a href="/ieum/admin/chat">마음톡
+																				관리</a> 
+												<a href="/ieum/admin/notice">공지사항 관리</a>
+											</div>
+											사이트 관리자 관리 메뉴
+											<div class="dropdown-content" id="adminMenu">
+												<a href="/ieum/hosManager/reservationToday">대기열 관리</a> <a
+													href="/ieum/admin/notice">공지사항 관리</a>
+											</div>
+										</div>
 					<span class="hide-if-user">관리 메뉴</span> <span
 						style="cursor: pointer;" onclick="location.href='/ieum/calender'">마이페이지</span>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<c:if test="${pageName ne '/ieum/index'}">
 		<!-- Middle Header -->
 		<div class="middle-header">

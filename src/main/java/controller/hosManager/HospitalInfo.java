@@ -1,4 +1,4 @@
-package controller.myPage;
+package controller.hosManager;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,21 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.MemberDto;
-import service.myPage.ProfileInfoService;
-import service.myPage.ProfileInfoServiceImpl;
+import dto.HospitalDto;
+import dto.otherDto.HospitalDetailDto;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
 
 /**
- * Servlet implementation class ProfileInfo
+ * Servlet implementation class HospitalInfo
  */
-@WebServlet("/pInfo")
-public class ProfileInfo extends HttpServlet {
+@WebServlet("/hosManager/hospitalInfo")
+public class HospitalInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfileInfo() {
+    public HospitalInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +32,26 @@ public class ProfileInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
-        Integer uNo = (Integer) session.getAttribute("uNo");
-		ProfileInfoService service = new ProfileInfoServiceImpl();
-		try {
-			MemberDto memberDto = service.selectProfileView(uNo);
-			request.setAttribute("member", memberDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher("myPage/profileInfo.jsp").forward(request, response);
+		Integer uNo = (Integer)session.getAttribute("uNo");
+		
+		HospitalService service = new HospitalServiceImpl();
+		HospitalDetailDto hospital = service.getHosInfo(uNo);
+		
+		String filePath = hospital.getFilePath().replace("\\", "/");
+		hospital.setFilePath(filePath);
+		request.setAttribute("hospital", hospital);
+		
+		request.getRequestDispatcher("/hosManager/hospitalInfo.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("pInfo");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -58,7 +58,11 @@ public class NaverSignUp extends HttpServlet {
 		NaverMemberDto naverDto = (NaverMemberDto)session.getAttribute("naverDto");
 		String id = naverDto.getId();
 		String profile = naverDto.getProfile();
-		MemberService memberService = new MemberServiceImpl();
+		MemberService memberService = new MemberServiceImpl(request.getServletContext());
+		
+		// 타사에서 받은 프로필 이미지를 다운로드 하고 다른 이름으로 저장
+		profile = memberService.profileDown(id, profile);
+		
 		FileService fileService = new FileServiceImpl();
 		FileDto file = new FileDto(profile, "img\\userProfile\\", "userProfile");
 		Integer fileNo = fileService.normalImg(file);
