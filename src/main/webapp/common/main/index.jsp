@@ -9,6 +9,12 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/common/main/css/main.css">
+	
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${contextPath}/admin/css/admin.css">
+	</c:if>
+	
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script

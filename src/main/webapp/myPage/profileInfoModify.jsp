@@ -160,9 +160,12 @@ window.addEventListener('DOMContentLoaded', () => {
                     <li>회원 기본정보 관리(닉네임, 주소, 연락처, 이메일, 다이어리 공개 여부)</li>
                 </ul>
             </div>
+            
+            
             <div id="modipy">나의 정보 수정</div>
             <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
             <form action="${pageContext.request.contextPath}/pUpdate" method="post" enctype="multipart/form-data">
+            <c:if test="${userType == 'USER'}">
             <div id="passwordModipy">
             	<!-- 기존 성명 아래에 추가 -->
 				<div class="form-row" style="align-items: center;">
@@ -240,7 +243,70 @@ window.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </div>
-            
+            </c:if>
+            <c:if test="${userType != 'USER'}">
+            <div id="passwordModipy">
+            	<!-- 기존 성명 아래에 추가 -->
+				<div class="form-row" style="align-items: center;">
+				    <label>프로필 사진</label>
+				    <div id="profile-upload-box">
+				        <div id="profile-preview">
+						    <c:choose>
+							    <c:when test="${not empty member and not empty member.fileName}">
+							        <img src="${pageContext.request.contextPath}/${member.filePath}/${member.fileName}" alt="프로필">
+							    </c:when>
+							    <c:otherwise>
+							        <img src="${pageContext.request.contextPath}/img/회원기본이미지.jpg" alt="기본 프로필">
+							    </c:otherwise>
+							</c:choose>
+						</div>
+				        <input type="file" id="profileInput" name="profileFile" accept="image/*" style="display:none;">
+				        <button type="button" id="uploadBtn">이미지 선택</button>
+				    </div>
+				</div>
+                <div class="form-row">
+                    <label>성명</label>
+                    <span id="name">
+                    	<c:out value="${member.username}"/>
+                    </span>
+                </div>
+                <input type="hidden" name="id" value="<c:out value='${member.id}'/>">
+                <div class="form-row">
+                    <label>이메일 *</label>
+                    <input type="email" id="email" name="email" value="<c:out value='${member.email}'/>" placeholder="이메일">
+                </div>
+                <div class="form-row">
+                    <label>비밀번호</label>
+                    <button type="button" onclick="location.href='/ieum/pModify'" id="btn1">비밀번호 변경</button>
+                </div>
+                <div class="form-row">
+                    <label>전화번호 *</label>
+                    <input type="tel" id="tel" name="uTel" value="<c:out value='${member.uTel}'/>" placeholder="전화번호">
+                </div>
+                
+<%--                 <div class="form-row1">
+                    <label>성별 *</label>
+                    <div class="checkbox-group">
+                        <label><input type="radio" name="gender" value="male"
+                        	${member.gender eq 'MALE' ? 'checked' : ''} > 남자</label>
+                        <label><input type="radio" name="gender" value="female"
+                        	${member.gender eq 'FEMALE' ? 'checked' : ''} > 여자</label>
+                    </div>
+                </div> --%>
+                
+                <div class="form-row1">
+                    <label>활동 상태 *</label>
+                    <div class="checkbox-group">
+                        <label><input type="radio" name="diaryPrivate" value="yes"
+                        	${member.stateCode == 1 ? 'checked' : ''} > 정상</label>
+                        <label><input type="radio" name="diaryPrivate" value="no"
+                        	${member.stateCode == 4 ? 'checked' : ''} > 휴직</label>
+                       	<label><input type="radio" name="diaryPrivate" value="no"
+                        	${member.stateCode == 5 ? 'checked' : ''}>퇴직</label>
+                    </div>
+                </div>
+            </div>
+            </c:if>
             <div id="edit">
                 <button id="btn2" type="submit">수정완료</button>
             </div>
