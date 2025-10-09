@@ -15,6 +15,7 @@
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
+<link rel="stylesheet" href="${contextPath}/hospital/css/favorite.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <script
@@ -37,10 +38,10 @@
 					<c:out value="${hosDetail.hNm }" />
 				</div>
 			</div>
-			<div class="share">
-				<button type="button" class="bt1">
+			<div class="share" data-hno="${hosDetail.hNo }" >
+				<button type="button" class="fav-btn ${hosDetail.favorite ? 'active' : ''}">
 					<div class="i">
-						<i class="fa-regular fa-star"></i>
+						<i class="fa${h.favorite ? 's' : 'r'} fa-star"></i>
 					</div>
 				</button>
 				<button type="button" class="bt1">
@@ -315,5 +316,6 @@
 		</div>
 	</div>
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>
+	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>
 </html>

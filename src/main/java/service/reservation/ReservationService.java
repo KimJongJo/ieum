@@ -22,5 +22,6 @@ public interface ReservationService {
 	Integer getDocMno (Integer rNo) throws Exception;
 	List<ReservationInfoDto> comResList (Integer uNo) throws Exception;
 	List<ReservationInfoDto> recResList (Integer uNo, String keyword, PageInfo page, String sort) throws Exception;
-	Integer recResListCnt (Integer uNo) throws Exception;
+	Integer recResListCnt (Integer uNo, String keyword, String sort) throws Exception;
+	void resCancel (Integer rNo) throws Exception;
 }

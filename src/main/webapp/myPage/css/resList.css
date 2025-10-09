@@ -51,8 +51,8 @@ a {
 	justify-content: center;
 }
 
-#moveLeft.disabled,
-#moveRight.disabled {
+#moveLeft[disabled],
+#moveRight[disabled] {
 	color: #d9d9d9;
     background-color: #F7FAFF;
     cursor: default;
@@ -156,12 +156,12 @@ a {
 
 .t2 {
 	font-weight: 600;
-	font-size: 19px;
-	margin-left: 32px;
+	font-size: 17px;
+	margin-left: 10px;
 }
 
 .icon2 {
-	font-size: 40px;
+	font-size: 25px;
 	color: #488EF6;
 }
 
@@ -216,6 +216,11 @@ a {
 	color: #4255b3;
 }
 
+.hosIcon2 {
+	font-size: 27px;
+	color: #bbbbbb;
+}
+
 .hi {
 	display: flex;
 	align-content: center;
@@ -245,7 +250,7 @@ a {
 	justify-content: flex-end;
 }
 
-.lbt {
+.lbt,.lbt-cancel {
 	width: 95px;
 	height: 82px;
 	background-color: white;
@@ -275,12 +280,14 @@ a {
 	cursor: pointer;
 }
 
-.lbtb:hover, .lbt:hover {
+.lbtb:hover, .lbt:hover,
+.lbt-cancel:hover {
 	background-color: #F7FAFF;
 	border-color: #F7FAFF;
 }
 
-.lbt:active, .lbtb:active {
+.lbt:active, .lbtb:active,
+.lbt-cancel:active {
 	transform: translateY(2px);
 }
 
