@@ -29,7 +29,7 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	}
 
 	@Override
-	public List<AllCommunityDto> listByPage(PageInfo pageInfo) throws Exception {
+	public List<AllCommunityDto> listByPage(PageInfo pageInfo , String sort) throws Exception {// String sort 추가도
 	    try (SqlSession session = sqlSessionFactory.openSession()) {
 
 	        // 1️⃣ 현재 페이지
@@ -56,11 +56,12 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	        // 6️⃣ 게시글 리스트 조회
 	        Map<String, Object> param = new HashMap<>();
 	        param.put("row", row);
+	        param.put("sort", sort); // ✅ 정렬 기준 추가 // 추가됨
 	        return session.selectList("mapper.community.selectList", param);
 	    }
 		
 	}
-//pes
+	
 	@Override
 	public Integer getSearchCnt(String keyword) throws Exception {
 		return allCommunityDao.getSearchCnt(keyword);

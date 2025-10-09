@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
 		<c:choose>
 			<c:when test="${uNo != null}">
 				<div class="header-profile">
-					<img src="${pageContext.request.contextPath}/img/userProfile/회원이미지.jpg">
+					<img src="${pageContext.request.contextPath}/img/회원이미지.jpg">
 				</div>
 				<span class="login-txt" onclick="moveToUrl('/logout')">로그아웃</span>
 			</c:when>
@@ -84,7 +85,7 @@
 			</div>
 		</div>
 	</div> -->
-	<c:if test="${pageName ne '/ieum/index'}">
+	<c:if test="${pageName ne '/ieum/index' and not fn:contains(pageName, 'admin')}">
 		<!-- Middle Header -->
 		<div class="middle-header">
 			<div class="full-rect"></div>

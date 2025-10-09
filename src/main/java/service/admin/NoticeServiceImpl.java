@@ -30,37 +30,6 @@ public class NoticeServiceImpl implements NoticeService {
    }
 
    @Override
-   public List<NoticeDto> getList(Integer uNo, String keyword, String sort, PageInfo page, Integer isPinned) throws Exception {
-      int topCnt = noticeDao.cnt(uNo, keyword, 1);
-      int totalCount = noticeDao.cnt(uNo, keyword, 0); // 전체 글 개수
-      final int PAGE_SIZE = 8 - topCnt;      // 페이지 당 글 수
-      final int PAGE_GROUP = 8 - topCnt;     // 페이지 그룹 수 (페이징 버튼 갯수)
-      int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE); // 총 페이지 수
-
-      int curPage = page.getCurPage();
-
-      if (curPage < 1) {
-          curPage = 1;
-      } else if (curPage > totalPage && totalPage > 0) {
-          curPage = totalPage;
-      }
-
-      page.setCurPage(curPage);
-
-      int startPage = (curPage - 1) / PAGE_GROUP * PAGE_GROUP + 1;
-      int endPage = startPage + PAGE_GROUP - 1;
-      if (endPage > totalPage) endPage = totalPage;
-
-      page.setAllPage(totalPage);
-      page.setStartPage(startPage);
-      page.setEndPage(endPage);
-
-      int offset = (curPage - 1) * PAGE_SIZE;
-      if (offset < 0) offset = 0;
-      return noticeDao.selectNoticeList(uNo, keyword, sort, offset, topCnt, isPinned);
-   }
-
-   @Override
    public NoticeDto update(NoticeDto notice) throws Exception {
        Integer nNo = notice.getnNo();
        Integer fNo = notice.getFileNo();
@@ -110,6 +79,41 @@ public class NoticeServiceImpl implements NoticeService {
    public Integer getSearchCnt(String keyword) throws Exception {
       return noticeDao.searchNoticeCnt(keyword);
    }
+
+@Override
+public List<NoticeDto> getTopList(Integer uNo, String keyword, String sort) throws Exception {
+	return noticeDao.selectNoticeList(uNo, keyword, sort, 0, 0, 1);	
+}
+
+@Override
+public List<NoticeDto> getList(Integer uNo, String keyword, String sort, PageInfo page) throws Exception {
+	int topCnt = noticeDao.cnt(uNo, keyword, 1);
+    int totalCount = noticeDao.cnt(uNo, keyword, 0); // 전체 글 개수
+    final int PAGE_SIZE = 8 - topCnt;      // 페이지 당 글 수
+    final int PAGE_GROUP = 8 - topCnt;     // 페이지 그룹 수 (페이징 버튼 갯수)
+    int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE); // 총 페이지 수
+    if (totalPage == 0)
+			totalPage = 1; // 최소 1페이지 유지
+
+		int curPage = page.getCurPage();
+		if (curPage < 1)
+			curPage = 1;
+		if (curPage > totalPage)
+			curPage = totalPage;
+
+		page.setCurPage(curPage);
+
+		// 페이지 그룹 시작/끝 계산 (안정화된 공식)
+		int startPage = ((curPage - 1) / PAGE_GROUP) * PAGE_GROUP + 1;
+		int endPage = Math.min(startPage + PAGE_GROUP - 1, totalPage);
+
+		page.setStartPage(startPage);
+		page.setEndPage(endPage);
+		page.setAllPage(totalPage);
+
+		int offset = (curPage - 1) * PAGE_SIZE;
+    return noticeDao.selectNoticeList(uNo, keyword, sort, offset, topCnt, 0);
+}
    
 
 }

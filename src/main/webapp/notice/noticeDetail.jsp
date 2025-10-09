@@ -16,10 +16,11 @@
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<script src="${contextPath}/notice/js/notice.js"></script>
 </head>
 <body>
 	<header>
-		<jsp:include page="../common/header/header.jsp"></jsp:include>
+		<jsp:include page="/common/header/header.jsp"></jsp:include>
 	</header>
 	<div class="notice-container">
 

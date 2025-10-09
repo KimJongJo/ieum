@@ -4,7 +4,8 @@
 }
 
 .login-inner {
-	height: 30px; display : flex;
+	width: 1280px;
+	height: 30px;
 	justify-content: right;
 	margin-right: 350px;
 	align-items: center;

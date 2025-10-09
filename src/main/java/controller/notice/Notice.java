@@ -57,19 +57,21 @@ public class Notice extends HttpServlet {
 			boolean isAjax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 			if (curPage != null) {
 				PageInfo pageInfo = new PageInfo(Integer.parseInt(curPage));
-				List<NoticeDto> topList = service.getList(uNo, keyword, sort, pageInfo, 1);
-				List<NoticeDto> noticeList = service.getList(uNo, keyword, sort, pageInfo, 0);
+				List<NoticeDto> topList = service.getTopList(uNo, keyword, sort);
+				List<NoticeDto> noticeList = service.getList(uNo, keyword, sort, pageInfo);
 				if (isAjax) {
 					response.setContentType("application/json; charset=UTF-8");
 					Gson gson = new Gson();
 					Map<String, Object> resultMap = new HashMap<>();
 					resultMap.put("topList", topList);
 					resultMap.put("noticeList", noticeList);
+					resultMap.put("pageInfo", pageInfo);
 					resultMap.put("loginUNo", uNo);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;
 				}
+				request.setAttribute("cnt", topList.size() + noticeList.size());
 				request.setAttribute("topList", topList);
 				request.setAttribute("noticeList", noticeList);
 				request.setAttribute("pageInfo", pageInfo);
@@ -81,8 +83,8 @@ public class Notice extends HttpServlet {
 				NoticeDto notice = service.getDetail(no);
 				request.setAttribute("notice", notice);
 				String uNm = noticeDao.selectUserNm(notice.getuNo());
-				OtherNoticeDto prev = service.getOtherNo(no, uNo, "prev");
-				OtherNoticeDto next = service.getOtherNo(no, uNo, "next");
+				OtherNoticeDto prev = service.getOtherNo(no, 0, "prev");
+				OtherNoticeDto next = service.getOtherNo(no, 0, "next");
 				request.setAttribute("writer", uNm);
 				request.setAttribute("loginUNo", uNo);
 				request.setAttribute("prev", prev);
