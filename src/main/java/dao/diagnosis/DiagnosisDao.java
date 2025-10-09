@@ -5,6 +5,7 @@ import java.util.Map;
 
 import dto.DiagnosisHistoryDto;
 import dto.otherDto.DiagnosisInfoDto;
+import dto.otherDto.ShowDIaListToUser;
 
 public interface DiagnosisDao {
 
@@ -37,5 +38,21 @@ public interface DiagnosisDao {
 	Map<String, Object> selectUserInfo(Integer diaNo);
 
 	List<DiagnosisInfoDto> getDiaList(Integer diaNo);
+
+	List<DiagnosisInfoDto> getDiaAllList(Integer diaNo);
+
+	ShowDIaListToUser getUserDiaDetail(Integer diaNo);
+
+	List<ShowDIaListToUser> getUserDiaList(Integer uNo, int offset, int limit);
+
+	List<ShowDIaListToUser> getUserDiaListByDate(Map<String, Object> map);
+
+	int getTotalCount(Integer uNo);
+
+	int getTotalCountByDate(Map<String, Object> paramMap);
+
+	List<Map<String, Object>> selectAll(Integer uNo);
+
+	ShowDIaListToUser selectDiaByNo(Integer diaNo);
 
 }

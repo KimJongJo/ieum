@@ -8,10 +8,13 @@
         <title>Document</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join2.css" />
 
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     </head>
     <body>
+    <c:import url="/common/header/guestHeader.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
             	<form action="/ieum/join3" method="get">
@@ -176,6 +179,8 @@
                 </form>
             </div>
         </div>
+        
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
         <script>
 	        $(function () {
 	            $("#agree-btn").click(function (e) {

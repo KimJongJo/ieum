@@ -53,9 +53,6 @@ public class PastResListPage extends HttpServlet {
 		    pageDto = service.myDianosisList(uNo, page, date);
 		}
 		
-		System.out.println(pageDto.getEndPage());
-		System.out.println(pageDto.getCurPage());
-		System.out.println(pageDto.getEndPage());
 		
 		Gson gson = new Gson();
 		String result = gson.toJson(new ResponseDto(true, "요청 페이지를 담은 리스트", pageDto));

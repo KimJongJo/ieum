@@ -57,5 +57,7 @@ public interface MemberService {
 	
 	HospitalDocDto getDocDetail (Integer mNo) throws Exception;
 
+	String profileDown(String id, String profile);
+
 	
 }

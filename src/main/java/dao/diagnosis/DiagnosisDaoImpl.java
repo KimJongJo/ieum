@@ -1,5 +1,6 @@
 package dao.diagnosis;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.DiagnosisHistoryDto;
 import dto.otherDto.DiagnosisInfoDto;
+import dto.otherDto.ShowDIaListToUser;
 import util.MybatisSqlSessionFactory;
 
 public class DiagnosisDaoImpl implements DiagnosisDao {
@@ -28,6 +30,7 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	@Override
 	public void tempSave(DiagnosisHistoryDto diagnosisHistoryDto) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
+			System.out.println(diagnosisHistoryDto);
 			session.update("tempSave", diagnosisHistoryDto);
 			session.commit();
 		}
@@ -126,6 +129,68 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	public List<DiagnosisInfoDto> getDiaList(Integer diaNo) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectList("getDiaList", diaNo);
+		}
+	}
+
+	@Override
+	public List<DiagnosisInfoDto> getDiaAllList(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("getDiaAllList", diaNo);
+		}
+	}
+	
+	@Override
+	public ShowDIaListToUser getUserDiaDetail(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("getUserDiaDetail", diaNo);
+		}
+	}
+
+	@Override
+	public List<ShowDIaListToUser> getUserDiaList(Integer uNo, int offset, int limit) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			map.put("uNo", uNo);
+			map.put("offset", offset);
+			map.put("limit", limit);
+			return session.selectList("getUserDiaList", map);
+		}
+	}
+
+	// 날짜에 맞는 진단서 리스트
+	@Override
+	public List<ShowDIaListToUser> getUserDiaListByDate(Map<String, Object> map) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("getUserDiaListByDate", map);
+		}
+	}
+
+	// 총 진단서 개수 반환
+	@Override
+	public int getTotalCount(Integer uNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("getTotalCount", uNo);
+		}
+	}
+
+	@Override
+	public int getTotalCountByDate(Map<String, Object> paramMap) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("getTotalCountByDate", paramMap);
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAll(Integer uNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("selectAllDiaList", uNo);
+		}
+	}
+
+	@Override
+	public ShowDIaListToUser selectDiaByNo(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectDiaByNo", diaNo);
 		}
 	}
 

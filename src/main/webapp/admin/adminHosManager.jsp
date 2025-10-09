@@ -7,7 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
-
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
         
@@ -26,6 +27,7 @@
 		<script src="./js/adminManagersModal.js"></script>
     </head>
     <body>
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->
@@ -228,6 +230,7 @@
                 </div>
             </div>
         </div>
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
         <script src="${pageContext.request.contextPath}/admin/js/adminModal.js"></script>
     </body>
 </html>

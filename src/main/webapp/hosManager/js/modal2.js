@@ -57,7 +57,7 @@ $(document).ready(function() {
 	$(document).on("click", ".show-pInfo-btn", function(e){
 		    e.stopPropagation();
 		    $.ajax({
-				url:"/ieum/hosManager/patientMyDiaList",
+				url:"/ieum/hosManager/patientDiaList",
 				type:"POST",
 				data:{diaNo:$(this).val()}, // 진단서 번호를 서버에 전달해서
 				dataType:"json",			// 해당 환자 번호와, 담당의사 번호를 가져와서
@@ -208,21 +208,6 @@ $(document).ready(function() {
 						$("#treatment").text(object.treatment);
 						$("#pre").text(object.pre);
 						$("#docComm").text(object.docComment);
-						
-						
-						
-						
-						console.log($("#major").text());
-						console.log($("#hAddress").text());
-						console.log($("#diaName").text());
-						console.log($("#sym").text());
-						console.log($("#summary").text());
-						console.log($("#treatment").text());
-						console.log($("#pre").text());
-						console.log($("#docComm").text());
-						
-						console.log(document.querySelectorAll("#major").length);
-						console.log(document.querySelectorAll("#docComm").length);
 						
 						$("#show-dia-info").css("display", "flex");
 		    			$("body").css("overflow", "hidden");

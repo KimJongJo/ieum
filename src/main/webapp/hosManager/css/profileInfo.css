@@ -1,0 +1,265 @@
+/* 전체 레이아웃 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+}
+
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#section-title > button{
+	margin-left:15px;
+}
+ 
+#section2-title{
+	width:216px;
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size: 20px;
+    color: #333;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 버튼: 내가 직접 위치 지정 가능 */
+#btn-update {
+    padding: 5px 14px;
+    background-color: #366FC6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btn-update:hover {
+    background-color: #2750a5;
+}
+
+/* ✅ 메인 영역 - 1280px 중앙 고정 */
+.main-container {
+    width: 1280px;
+    margin: 20px auto 0 auto; /* 위 20px 띄우고 가운데 정렬 */
+    display: flex;
+    gap: 40px; /* 사이 간격 */
+}
+
+/* 사이드바 */
+.sidebar {
+    width: 195px;
+    height: 550px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.sidebar-header {
+    background-color: #4a64d6;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    height: 114px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.6;
+}
+.welcome {
+    background-color: #e9ebf5;
+    text-align: left;
+    padding: 15px 15px;
+    border-bottom: 1px solid #ccc;
+}
+.welcome strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.welcome span {
+    font-size: 12px;
+    color: #555;
+}
+.sidebar-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-body ul li {
+    padding: 0; /* li 자체 여백 제거 */
+    border-top: 1px solid #ccc;
+}
+
+.sidebar-body ul li button {
+    width: 100%; /* li 전체 넓이 차지 */
+    height: 48px; /* 기존 li 높이와 동일 */
+    line-height: 48px;
+    text-align: left;
+    font-size: 14px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0 16px; /* 기존 li 좌우 여백 유지 */
+}
+
+.sidebar-body ul li button:hover {
+    background-color: #f7f7f7;
+}
+
+/* 클릭 시 살짝 눌리는 효과 */
+.sidebar-body ul li button:active {
+    transform: translateY(2px);
+    filter: brightness(90%);
+}
+
+
+/* 텍스트 박스 */
+#text-box {
+    width: 100%;
+    padding: 20px;
+    background-color: #F7FAFF;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+#text-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+#text-box li {
+    list-style-type: disc;
+    color: #555;
+}
+
+/* 메인 컨텐츠 */
+.container-three {
+    flex: 1; /* 남은 공간 차지 */
+}
+
+/* content 그리드 스타일 */
+.content {
+    display: grid;
+    grid-template-columns: 200px 825px;  /* 2열 */
+    grid-auto-rows: 48px;                /* 각 행 높이 */
+    gap: 0;
+    width: 925px;
+    height:383px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.content span {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/* 홀수 열(회색 블록)에도 구분선 추가 */
+.content span:nth-child(odd) {
+    background-color: #F7FAFF;
+    font-weight: 700;
+    border-bottom: 1px solid #ccc; /* 선 추가 */
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+}
+/* 마지막 행 하단선 제거 */
+.content span:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+/* 각 모서리 둥글게 */
+#box1 { border-top-left-radius: 8px; }
+#box2 { border-top-right-radius: 8px; }
+#box19 { border-bottom-left-radius: 8px; }
+#box20 { border-bottom-right-radius: 8px; }
+
+/* 클릭 가능 박스 스타일 */
+.clickable {
+    display: inline-block;   /* 텍스트 크기에 맞춤 */
+    padding: 2px;
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+#change-box {
+    display: flex;              /* flex 컨테이너로 변경 */
+    height: 30px;               /* 부모 박스 높이 맞춤 */
+    width: 93px;                /* 부모 박스 너비 맞춤 */
+    padding: 10px;                 /* 기존 padding 제거 */
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid black;
+
+}
+
+.clickable:hover {
+    background-color: #366FC6; /* 마우스 오버 시 살짝 어두워짐 */
+}
+
+.clickable:active {
+    transform: translateY(2px); /* 클릭 시 눌리는 모션 */
+}
+
+.hosImgDiv{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height:245px;
+}
+
+.hosinfo{
+	height:105px;
+}
+
+.contentSpan{
+	width:705px;
+}
+
+.imgdiv{
+	border: 1px solid black;
+	background-color: red;
+	height:145px;
+	width:230px;
+	
+}
+
+.update_hos_btn{
+	display:flex;
+	justify-content:flex-end;
+	margin-top:10px;
+}
+
+.firsthide{
+	display:none;
+}
+
+.plusInput{
+	height:30px;
+	width:675px;
+}
+
+.plusText{
+	height:30px;
+	width:677px;
+	resize: none;
+}

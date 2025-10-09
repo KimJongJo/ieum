@@ -166,4 +166,23 @@ public class HospitalDaoImpl implements HospitalDao {
 			return sqlsession.selectOne("getHosName", uNo);
 		}
 	}
+	@Override
+	public HospitalDetailDto getHosInfo(Integer uNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("getHosInfo", uNo);
+		}
+	}
+	@Override
+	public void updateHosInfo(Map<String, Object> map) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			sqlsession.update("updateHosInfo", map);
+			sqlsession.commit();
+		}
+	}
+	@Override
+	public String getHosNoByuNo(int userNo) {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
+			return sqlsession.selectOne("getHosNoByuNo", userNo);
+		}
+	}
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,13 +8,15 @@
         <title>Document</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join3.css" />
         
-
+	        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="${pageContext.request.contextPath}/common/join/js/join3.js"></script>
         
     </head>
     <body>
+        	<c:import url="/common/header/guestHeader.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <div class="chap-div">
@@ -140,5 +143,7 @@
                 </div>
             </div>
         </div>
+        
+       <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
     </body>
 </html>

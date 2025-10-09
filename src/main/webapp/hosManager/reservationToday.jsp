@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/modal.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script>
@@ -26,13 +28,24 @@
 
     </head>
     <body>
+
+    
+    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="managerHeader.html"></jsp:include>
+                        <c:choose>
+					    	<c:when test="${userType =='DOCTOR'}">
+					    		<jsp:include page="doctorHeader.html"></jsp:include>
+					    	</c:when>
+					    	<c:otherwise>
+					    		<jsp:include page="managerHeader.html"></jsp:include>
+					    	</c:otherwise>
+					    </c:choose>
+                    
                     <div class="info">
                         <div class="search-name">
                             <span class="hos-name">${hosName}</span>
@@ -94,9 +107,9 @@
 								<i class="fa-solid fa-angle-left"></i>
 							</button>
 							<!-- 페이지 번호 반복 -->
-							    <c:forEach var="i" begin="${resList.startPage}" end="${resList.endPage}">
+							    <c:forEach var="i" begin="${pageMap.startPage}" end="${pageMap.endPage}">
 							        <c:choose>
-							            <c:when test="${i == resList.curPage}">
+							            <c:when test="${i == pageMap.curPage}">
 							                <button value="${i}" class="cur-page" type="button">${i}</button>
 							            </c:when>
 							            <c:otherwise>
@@ -137,6 +150,7 @@
                 </div>
             </div>
         </div>
+        <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
         <script src="${pageContext.request.contextPath}/hosManager/js/managerHeader.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal.js"></script>
         <script src="${pageContext.request.contextPath}/hosManager/js/modal1.js"></script>
