@@ -26,9 +26,18 @@ public class FavoriteDto {
 	}
 
 
-	@Override
-	public String toString() {
-		return "favoriteDto [hFavNo=" + hFavNo + ", hosNo=" + hosNo + ", userNo=" + userNo + "]";
+	public FavoriteDto(Integer hFavNo, Integer hosNo, Integer userNo, String hNm, Integer categoryName, String hAddress,
+			Integer hosImgFileNo, String hosImgFilePath, String hosImgFileName) {
+		super();
+		this.hFavNo = hFavNo;
+		this.hosNo = hosNo;
+		this.userNo = userNo;
+		this.hNm = hNm;
+		this.categoryName = categoryName;
+		this.hAddress = hAddress;
+		this.hosImgFileNo = hosImgFileNo;
+		this.hosImgFilePath = hosImgFilePath;
+		this.hosImgFileName = hosImgFileName;
 	}
 
 
@@ -40,6 +49,7 @@ public class FavoriteDto {
 	public void sethFavNo(Integer hFavNo) {
 		this.hFavNo = hFavNo;
 	}
+
 
 	public Integer getHosNo() {
 		return hosNo;
@@ -59,6 +69,75 @@ public class FavoriteDto {
 	public void setUserNo(Integer userNo) {
 		this.userNo = userNo;
 	}
+
+
+	public String gethNm() {
+		return hNm;
+	}
+
+
+	public void sethNm(String hNm) {
+		this.hNm = hNm;
+	}
+
+
+	public Integer getCategoryName() {
+		return categoryName;
+	}
+
+
+	public void setCategoryName(Integer categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
+	public String gethAddress() {
+		return hAddress;
+	}
+
+
+	public void sethAddress(String hAddress) {
+		this.hAddress = hAddress;
+	}
+
+
+	public Integer getHosImgFileNo() {
+		return hosImgFileNo;
+	}
+
+
+	public void setHosImgFileNo(Integer hosImgFileNo) {
+		this.hosImgFileNo = hosImgFileNo;
+	}
+
+
+	public String getHosImgFilePath() {
+		return hosImgFilePath;
+	}
+
+
+	public void setHosImgFilePath(String hosImgFilePath) {
+		this.hosImgFilePath = hosImgFilePath;
+	}
+
+
+	public String getHosImgFileName() {
+		return hosImgFileName;
+	}
+
+
+	public void setHosImgFileName(String hosImgFileName) {
+		this.hosImgFileName = hosImgFileName;
+	}
+
+
+	@Override
+	public String toString() {
+		return "FavoriteDto [hFavNo=" + hFavNo + ", hosNo=" + hosNo + ", userNo=" + userNo + ", hNm=" + hNm
+				+ ", categoryName=" + categoryName + ", hAddress=" + hAddress + ", hosImgFileNo=" + hosImgFileNo
+				+ ", hosImgFilePath=" + hosImgFilePath + ", hosImgFileName=" + hosImgFileName + "]";
+	}
+
 	
 	
 
