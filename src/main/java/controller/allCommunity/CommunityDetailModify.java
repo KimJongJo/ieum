@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.CommuCategoryDto;
 import dto.CommunityDto;
@@ -83,10 +84,21 @@ public class CommunityDetailModify extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+        HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect("login.jsp");
+            return;
+        }
+		
 		int commuNo = Integer.parseInt(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String categoryNoStr = request.getParameter("categoryNo");
+		
         if (categoryNoStr == null || categoryNoStr.isEmpty()) {
             request.setAttribute("err", "카테고리를 선택해주세요.");
             request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
@@ -94,15 +106,18 @@ public class CommunityDetailModify extends HttpServlet {
         }
         
         int categoryNo = Integer.parseInt(categoryNoStr);
-        System.out.println(commuNo);
-        System.out.println(categoryNo);
-        System.out.println(title);
-        System.out.println(content);
-        
-        MyCommunityDto myCommunityDto = new MyCommunityDto(commuNo, title, content, categoryNo);;
         
         try {
+        	int writerNo = communityService.getWriterNoByCommuNo(commuNo);
+        	if(!uNo.equals(writerNo)) {
+        		response.sendError(HttpServletResponse.SC_FORBIDDEN, "본인 글만 수정할 수 있습니다.");
+                return;
+        	}
+        	
+        	MyCommunityDto myCommunityDto = new MyCommunityDto(commuNo, title, content, categoryNo);;
+        	
             communityService.updateCommunity(myCommunityDto);
+            
             response.sendRedirect(request.getContextPath()+ "/comDetail?no=" + commuNo);
         } catch (Exception e) {
             e.printStackTrace();

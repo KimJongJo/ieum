@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -65,7 +66,16 @@ public class CommunityEmpathy extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");  // 추가
 		
 		// 로그인 사용자 번호 (임시)
-        int uNo = 6;
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		
+		if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect("login.jsp");
+            return;
+        }
+		
 
         // 게시글 번호 확인
         String commuNoStr = request.getParameter("commuNo");

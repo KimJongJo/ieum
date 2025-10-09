@@ -34,8 +34,9 @@ public class BlackComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 로그인 사용자 번호 (테스트용)
-        int uNo = 4;
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
         BlackListService blackListService = new BlackListServiceImpl();
         String blockedNoStr = request.getParameter("blockedNo");
         if (blockedNoStr == null || blockedNoStr.isEmpty()) {

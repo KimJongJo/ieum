@@ -16,4 +16,6 @@ public interface CommunityDao {
 	
 	void updateViewsCount(int commuNo)throws Exception;
 	
+	
+	int selectWriterNoByCommuNo(int commuNo) throws Exception;
 }

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.allCommunity.CommunityDao;
 import dto.CommentDto;
@@ -44,7 +45,9 @@ public class MyCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uNo = 6; // 🔹 현재 로그인 유저 번호(세션에서 꺼내는게 좋음)
+		// 로그인 사용자 번호 (임시)
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
 		MyCommunityService service = new MyCommunityServiceImpl();
 		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();

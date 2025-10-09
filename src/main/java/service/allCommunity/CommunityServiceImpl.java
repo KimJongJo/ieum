@@ -60,4 +60,10 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDao.selectByNo(commuNo);
 	}
 
+	@Override
+	public int getWriterNoByCommuNo(int commuNo) throws Exception {
+		
+		return communityDao.selectWriterNoByCommuNo(commuNo);
+	}
+
 }
