@@ -25,8 +25,13 @@
 		</if>
 		LIMIT #{row}, 10
 	</select>
-	<select id="selectDiaryCnt" resultType="Integer">
-		SELECT COUNT(*) FROM diary;
+	<select id="selectDiaryCnt" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM diary
+		WHERE u_no=#{uNo} 
+		<if test="keyword != null and keyword != ''">
+		AND (title LIKE CONCAT('%', #{keyword}, '%')
+        OR content LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
 	</select>
 	<update id="update" parameterType="diary">
 		UPDATE diary SET

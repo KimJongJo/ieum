@@ -58,10 +58,31 @@ function renderList() {
 		success: function(data) {
 			const tbody = $("#diaryListBody");
 			const noDataDiv = $("#noSearchList");
-			const diaryTable = $("#diaryList");
-			const pagination = $("#pagination");
+			const paginationDiv = $("#pagination");
+			const diaryTable = $("#diaryList");		
+			const pageInfo = data.pageInfo;	
 			tbody.empty(); // 기존 목록 제거
-
+			paginationDiv.empty(); // 기존 페이징 제거
+			let paginationHtml = "";
+			// 이전 버튼
+			if (pageInfo.curPage > 1) {
+			  paginationHtml += `<button onclick="loadPage(${pageInfo.curPage - 1})">&lt;</button>`;
+			}
+			
+			// 페이지 번호 버튼들
+			for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
+			  if (pageNum <= pageInfo.allPage) {
+			    const activeClass = pageNum === pageInfo.curPage ? "active" : "";
+			    paginationHtml += `<button class="${activeClass}" onclick="loadPage(${pageNum})">${pageNum}</button>`;
+			  }
+			}
+			
+			// 다음 버튼
+			if (pageInfo.curPage < pageInfo.endPage) {
+			  paginationHtml += `<button onclick="loadPage(${pageInfo.curPage + 1})">&gt;</button>`;
+			}
+			
+			paginationDiv.append(paginationHtml);
 			if (data.diaryList.length === 0) {
 				diaryTable.hide();
 				noDataDiv.css('display', 'flex');
@@ -69,7 +90,6 @@ function renderList() {
 			} else {
 				diaryTable.show();
 				noDataDiv.hide();
-				pagination.show();
 				data.diaryList.forEach(function(diary) {
 					let createdDate = '';
 					if (diary.dCreated) {
@@ -90,6 +110,7 @@ function renderList() {
                     </tr>
                 `;
 					tbody.append(html);
+					
 				});
 			}
 		},
