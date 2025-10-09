@@ -53,6 +53,7 @@
 		<typeAlias type="dto.otherDto.ManagerInfoDto" alias="managerInfo" />
 		<typeAlias type="dto.otherDto.HosInfoDto" alias="hosInfo" />
 		<typeAlias type="dto.otherDto.DiagnosisInfoDto" alias="diaInfo" />
+		<typeAlias type="dto.otherDto.ShowDIaListToUser" alias="shwoDiaInfo" />
 	</typeAliases>
 
    <environments default="development">
@@ -61,7 +62,7 @@
          <dataSource type="POOLED">
             <property name="driver" value="org.mariadb.jdbc.Driver" />
             <property name="url"
-               value="jdbc:mariadb://localhost:3307/ieum" />
+               value="jdbc:mariadb://localhost:3306/ieum" />
             <property name="username" value="root" />
             <property name="password" value="7564" />
             <property name="poolMaximumActiveConnections" value="500" />

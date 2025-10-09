@@ -1,32 +1,45 @@
 package service.member;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 import dao.member.MemberDao;
 import dao.member.MemberDaoImpl;
 import dto.FileDto;
-import dto.HospitalDto;
 import dto.MemberDto;
-import dto.otherDto.HospitalPageResponseDto;
+import dto.otherDto.HospitalDocDto;
 import dto.otherDto.ManagerInfoDto;
 import dto.otherDto.ManagerPageResponseDto;
 import dto.otherDto.MemberFileDto;
 import dto.otherDto.MemberPageResponseDto;
-import dto.otherDto.HospitalDocDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 public class MemberServiceImpl implements MemberService {
 
 	MemberDao memberDao;
 	FileService fileService;
+	private ServletContext servletContext;
 	
 	public MemberServiceImpl() {
 		memberDao = new MemberDaoImpl();
 		fileService = new FileServiceImpl();
+	}
+	
+	public MemberServiceImpl(ServletContext servletContext) {
+		memberDao = new MemberDaoImpl();
+		fileService = new FileServiceImpl();
+		this.servletContext = servletContext;
 	}
 	
 	// 사용 가능한 아이디인지 확인
@@ -432,6 +445,58 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDto selectUserByNo(Integer uNo) {
 		return memberDao.selectUserByNo(uNo);
+	}
+
+	@Override
+	public String profileDown(String id, String profile) {
+		InputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            // 1. URL 연결
+            URL url = new URL(profile);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+
+            // 2. 파일 확장자 추출
+            String ext = ".jpg"; // 기본 jpg
+            String urlLower = profile.toLowerCase();
+            if (urlLower.endsWith(".png")) ext = ".png";
+            else if (urlLower.endsWith(".jpeg") || urlLower.endsWith(".jpg")) ext = ".jpg";
+            else if (urlLower.endsWith(".gif")) ext = ".gif";
+
+            // 3. 저장할 파일명 (UUID 기반)
+            String fileName = UUID.randomUUID().toString() + ext;
+
+            // 4. 저장 폴더 경로
+            String folderPath = servletContext.getRealPath("/img/userProfile/");
+            
+            File folder = new File(folderPath);
+            if (!folder.exists()) folder.mkdirs(); // 폴더 없으면 생성
+
+            // 5. 파일 다운로드
+            in = conn.getInputStream();
+            File file = new File(folder, fileName);
+            out = new FileOutputStream(file);
+
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+
+            // 6. DB 저장용 경로 반환
+            return fileName;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try { if (in != null) in.close(); } catch (Exception e) {}
+            try { if (out != null) out.close(); } catch (Exception e) {}
+        }
 	}
 
 

@@ -268,5 +268,26 @@
 		join member m on(h.h_no = m.h_no)
 		where m.u_no = #{_parameter}
 	</select>
+	
+	<select id="getHosInfo" parameterType="Integer" resultType="hosDetail">
+		select h.h_nm, h.h_address, h.h_tel, h.h_link, h.transfer_info, h.holiday_info,
+		h.news_title, h.news_content, f.file_name, f.file_path, h.h_no
+		from hospital h join member u on(h.h_no = u.h_no)
+		join file f on(f.file_no = h.hos_img_file_no)
+		where u.u_no = #{_parameter}
+	</select>
+	
+	<update id="updateHosInfo" parameterType="Map">
+		update hospital set transfer_info = #{transferInfo}, h_link = #{hLink},
+		news_title = #{newsTitle}, news_content = #{newsContent}
+		where h_no = #{hNo}
+	</update>
+	
+	<select id="getHosNoByuNo" parameterType="Integer" resultType="String">
+		select h.h_nm
+		from hospital h
+		join member m on(h.h_no = m.h_no)
+		where m.u_no = #{_parameter}
+	</select>
 
 </mapper>	

@@ -118,15 +118,16 @@ $("#btn-cancellation").click(function(){
 		url:"/ieum/hosManager/temp-save",
 		type:"POST",
 		data:{dNo : $("#btn-cancellation").val(),
-				diaName:$("#diaName").val(),
-				sym:$("#sym").val(),
-				summary:$("#summary").val(),
-				treatment:$("#treatment").val(),
-				pre:$("#pre").val(),
-				docComment:$("#docComment").val(),
+				diaName:$("#dwriaName").val(),
+				sym:$("#wrsym").val(),
+				summary:$("#wrsummary").val(),
+				treatment:$("#wrtreatment").val(),
+				pre:$("#wrpre").val(),
+				docComment:$("#wrdocComment").val(),
 				type:"temp-save"},
 		dataType:"json",
 		success:function(res){
+			
 			if(res.success){
 				// 임시저장되었다는 알림
 				alert("임시저장 되었습니다.");
@@ -150,12 +151,12 @@ $("#btn-complete").click(function(){
 		url:"/ieum/hosManager/temp-save",
 		type:"POST",
 		data:{dNo : $("#btn-cancellation").val(),
-				diaName:$("#diaName").val(),
-				sym:$("#sym").val(),
-				summary:$("#summary").val(),
-				treatment:$("#treatment").val(),
-				pre:$("#pre").val(),
-				docComment:$("#docComment").val(),
+				diaName:$("#dwriaName").val(),
+				sym:$("#wrsym").val(),
+				summary:$("#wrsummary").val(),
+				treatment:$("#wrtreatment").val(),
+				pre:$("#wrpre").val(),
+				docComment:$("#wrdocComment").val(),
 				type:"writeCompleted"},
 		dataType:"json",
 		success:function(res){
@@ -200,7 +201,6 @@ $(document).on("click", ".next-page", function() {
 
 // loadPage 함수
 function loadPage(pageNum, keyword, uNo) {
-	console.log(keyword);
     $.ajax({
         url: "/ieum/resList/page",
         type: "POST",

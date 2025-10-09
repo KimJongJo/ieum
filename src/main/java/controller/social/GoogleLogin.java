@@ -79,7 +79,7 @@ public class GoogleLogin extends HttpServlet {
 		
 		// member 객체가 있을때
 		if(googleDto.getMemberDto() != null) {
-			session.setAttribute("hNo", googleDto.getMemberDto().getuNo());
+			session.setAttribute("uNo", googleDto.getMemberDto().getuNo());
 			response.sendRedirect(request.getContextPath() + "/index");
 		}else if(member != null) { // member 객체가 없지만 이미 기존 계정과 naver 소셜 계정을 병합한 계정인가? 
 			

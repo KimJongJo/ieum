@@ -315,4 +315,21 @@ public class HospitalServiceImpl implements HospitalService {
 		return hosDao.getHosName(uNo);
 	}
 
+	// 유저가 소속된 병원의 정보
+	@Override
+	public HospitalDetailDto getHosInfo(Integer uNo) {
+		return hosDao.getHosInfo(uNo);
+	}
+
+	@Override
+	public void updateHosInfo(Map<String, Object> map) {
+		hosDao.updateHosInfo(map);
+		
+	}
+
+	@Override
+	public String getHosNoByuNo(int userNo) {
+		return hosDao.getHosNoByuNo(userNo);
+	}
+
 }

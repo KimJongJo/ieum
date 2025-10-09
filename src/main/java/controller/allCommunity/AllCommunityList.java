@@ -36,20 +36,23 @@ public class AllCommunityList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uNo = 4;
+		int uNo = 6;
 		String spage = request.getParameter("page"); 
 		Integer page = 1; 
 		if(spage != null) page=Integer.parseInt(spage); 
 		PageInfo pageInfo = new PageInfo(page);
 		
+		//2줄 추가됨
+		String sort = request.getParameter("sort"); // 최신, 공감, 조회
+        if(sort == null) sort = "latest"; // 기본값 최신순
 		
 		AllCommunityService service = new AllCommunityServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
 		try {
-			List<AllCommunityDto> allComList = service.listByPage(pageInfo);
+			List<AllCommunityDto> allComList = service.listByPage(pageInfo, sort);
 			request.setAttribute("allComList", allComList); 
 			request.setAttribute("pageInfo", pageInfo);
-			
+			request.setAttribute("sort", sort);// 추가됨
 			
 			// 게시물 좋아요 여부 세팅
 	        for(AllCommunityDto community : allComList) {

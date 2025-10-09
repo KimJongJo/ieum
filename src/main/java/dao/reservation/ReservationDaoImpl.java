@@ -133,9 +133,9 @@ public class ReservationDaoImpl implements ReservationDao {
 
 	//지난예약 수
 	@Override
-	public Integer recordResCnt(Integer uNo) throws Exception {
+	public Integer recordResCnt(Map<String, Object> recCnt) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			return session.selectOne("recordResCnt", uNo);
+			return session.selectOne("recordResCnt", recCnt);
 		}
 	}
 
@@ -157,6 +157,15 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int resCountByManager(Map<String, Object> keywordPage) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectOne("resCountByManagerByKeyword", keywordPage);
+		}
+	}
+
+	//예약 취소
+	@Override
+	public void resCancel(Integer rNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			session.selectOne("resCancel", rNo);
+			session.commit();
 		}
 	}
 

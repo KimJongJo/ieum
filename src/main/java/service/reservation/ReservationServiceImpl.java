@@ -168,9 +168,14 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<ReservationInfoDto> recResList(Integer uNo, String keyword, PageInfo page, String sort) throws Exception {
 		final int pageSize = 5; // 페이지 당 글 수
-		final int pageGroup = 10;	// 페이지 그룹 수 (페이징 버튼 갯수)
+		final int pageGroup = 10;	// 페이지 그룹 수 (페이징 버튼 갯수)	
 		
-		int totalCount = resDao.recordResCnt(uNo);
+		Map<String, Object> recCnt = new HashMap<>();
+		recCnt.put("keyword", keyword);
+		recCnt.put("sort", sort);
+		recCnt.put("uNo", uNo);
+		
+		int totalCount = resDao.recordResCnt(recCnt);
 		int totalPage = (int) Math.ceil((double)totalCount/pageSize); // 총 페이지 수
 		
 		int curPage = page.getCurPage();
@@ -205,9 +210,20 @@ public class ReservationServiceImpl implements ReservationService {
 		
 	}
 
+	//필터처리한 갯수
 	@Override
-	public Integer recResListCnt(Integer uNo) throws Exception {
-		return resDao.recordResCnt(uNo);
+	public Integer recResListCnt(Integer uNo, String keyword, String sort) throws Exception {
+		Map<String, Object> recCnt = new HashMap<>();
+		recCnt.put("keyword", keyword);
+		recCnt.put("sort", sort);
+		recCnt.put("uNo", uNo);
+		return resDao.recordResCnt(recCnt);
+	}
+
+	//예약취소
+	@Override
+	public void resCancel(Integer rNo) throws Exception {
+		resDao.resCancel(rNo);
 	}
 	
 

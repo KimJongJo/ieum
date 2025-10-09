@@ -14,7 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import dto.MemberDto;
 import dto.otherDto.ResponseDto;
+import service.hospital.HospitalService;
+import service.hospital.HospitalServiceImpl;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
 
@@ -88,9 +91,17 @@ public class Login extends HttpServlet {
 		}else {
 			// 로그인 성공시 세션에 정보를 저장, 아이디 저장을 체크했을때 쿠키생성
 			// 쿠키 시간은 7일정도로 지정
-			resDto = new ResponseDto(true, "로그인 성공");
 			session = request.getSession();
+			MemberDto member = service.selectUserByNo(userNo);
+			if(member.getUserType().equals("DOCTOR") || member.getUserType().equals("MANAGER")) {
+				HospitalService hosService = new HospitalServiceImpl();
+				String hNm = hosService.getHosNoByuNo(userNo);
+				session.setAttribute("hNm", hNm);
+			}
+			resDto = new ResponseDto(true, "로그인 성공");
+			
 			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장
+			session.setAttribute("userType", member.getUserType());
 			Cookie idCookie;
 			if(rememberId != null) { // 만약 아이디 저장을 체크했을때
 				idCookie = new Cookie("rememberId", userId);

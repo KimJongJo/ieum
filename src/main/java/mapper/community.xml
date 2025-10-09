@@ -143,7 +143,20 @@
         FROM community c
         INNER JOIN commu_category cg ON c.category_no = cg.category_no
         INNER JOIN member m ON c.u_no = m.u_no
-        ORDER BY c.commu_no DESC 
+            <choose>
+        <when test="sort == 'latest'">
+            ORDER BY c.commu_no DESC
+        </when>
+        <when test="sort == 'empathy'">
+            ORDER BY c.empathy DESC, c.commu_no DESC
+        </when>
+        <when test="sort == 'view'">
+            ORDER BY c.commu_views DESC, c.commu_no DESC
+        </when>
+        <otherwise>
+            ORDER BY c.commu_no DESC
+        </otherwise>
+    </choose>
         LIMIT #{row}, 20
 	</select>
 	
@@ -153,4 +166,33 @@
 		select count(*)
 	    from community
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="listByPageAndSort" resultType="allCommunity" parameterType="map">
+    SELECT *
+    FROM all_community
+    <choose>
+        <when test="sort == 'latest'">
+            ORDER BY commu_created DESC
+        </when>
+        <when test="sort == 'empathy'">
+            ORDER BY empathy_count DESC
+        </when>
+        <when test="sort == 'view'">
+            ORDER BY view_count DESC
+        </when>
+        <otherwise>
+            ORDER BY commu_created DESC
+        </otherwise>
+    </choose>
+    LIMIT #{start}, #{pageSize}
+  </select>
+	
+	
 </mapper>	

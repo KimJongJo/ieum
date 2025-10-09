@@ -3,6 +3,7 @@ package dao.allCommunity;
 import java.util.List;
 
 import dto.AllCommunityDto;
+import util.PageInfo;
 
 public interface AllCommunityDao {
 	List<AllCommunityDto> selectAllCommunityList();

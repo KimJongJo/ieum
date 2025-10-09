@@ -45,7 +45,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 click: function() { alert('일정 등록!'); }
             }
         },
-        events: events
+     // 다이어리 데이터 가져오기()
+		events: function(fetchInfo, successCallback, failureCallback) {
+			// fetchInfo.start, fetchInfo.end -> FullCalendar가 보내는 시작/끝 날짜
+			const start = fetchInfo.startStr; // "2025-09-01"
+			const end = fetchInfo.endStr;     // "2025-09-30"
+
+			$.ajax({
+				url: '/ieum/calender',
+				type: 'GET',
+				data: { start: start, end: end },
+				success: function(res) {
+					successCallback(res);
+				},
+				error: function(e) {
+					console.log("캘린더 조회 오류", e);
+				}
+			});
+		},
     });
 
     calendar.render();
