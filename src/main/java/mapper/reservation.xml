@@ -239,4 +239,9 @@
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
 
+
+	<!-- 저에용 -->
+	<select id="selectAllReservationList" parameterType="Integer" resultType="reservation">
+		select r_date from reservation where u_no=#{uNo}
+	</select>
 </mapper>	

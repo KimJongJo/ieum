@@ -48,14 +48,7 @@ public class Calender extends HttpServlet {
 		
 		int uNo = 6;
 		try {
-			List<DiaryDto> diaryList = calenderService.getAllByUser(uNo);
 	        MyCommunityDto myComList = calenderService.getMyRecentCommunity(uNo);
-	        
-	        
-	     // ✅ JSON 변환
-            Gson gson = new Gson();
-            String diaryJson = gson.toJson(diaryList);
-            request.setAttribute("diaryJson", diaryJson);
 	        
 
 	        // ✅ 공감 여부 세팅
@@ -73,13 +66,6 @@ public class Calender extends HttpServlet {
 	    }
 
 	    request.getRequestDispatcher("myPage/calender.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

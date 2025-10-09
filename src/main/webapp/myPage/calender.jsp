@@ -569,10 +569,11 @@ $(document).ready(function() {
 			const end = fetchInfo.endStr;     // "2025-09-30"
 
 			$.ajax({
-				url: '/ieum/myPage/diary/event',
+				url: '/ieum/myPage/reservation/event',
 				type: 'GET',
 				data: { start: start, end: end },
 				success: function(res) {
+					
 					successCallback(res);
 				},
 				error: function(e) {
@@ -580,10 +581,11 @@ $(document).ready(function() {
 				}
 			});
 		},
+		
+		
+		
 		dateClick: function(info) {
-			
-			
-			/* popup.hide();
+			popup.hide();
 			writeConfirmModal.hide();
 			//			console.log('Clicked on: ' + info.dateStr);
 			info.dayEl.style.backgroundColor = '#fff';
@@ -611,7 +613,7 @@ $(document).ready(function() {
 						$("#clickedDt").val(clickedDate);
 					}
 				}
-			}) */
+			})
 		}
 	});
 	calendar.render();
@@ -625,6 +627,10 @@ $(document).ready(function() {
 
 
  <style>
+ 
+ 
+ 
+ 
     * {
       margin: 0;
       padding: 0;

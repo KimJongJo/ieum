@@ -4,9 +4,12 @@ import java.util.List;
 
 import dto.DiaryDto;
 import dto.MyCommunityDto;
+import dto.ReservationDto;
 
 public interface CalenderDao {
 	MyCommunityDto selectMyRecentCommunity(int uNo)throws Exception;
 	
 	List<DiaryDto> selectAllByUser(int uNo) throws Exception;
+	
+	List<ReservationDto> selectAllReservationList(int uNo) throws Exception;
 }

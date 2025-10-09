@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import dto.DiaryDto;
 import dto.MyCommunityDto;
+import dto.ReservationDto;
 import util.MybatisSqlSessionFactory;
 
 public class CalenderDaoImpl implements CalenderDao{
@@ -24,6 +25,13 @@ public class CalenderDaoImpl implements CalenderDao{
 	public List<DiaryDto> selectAllByUser(int uNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 		return session.selectList("mapper.diary.selectAllByUser", uNo);
+		}
+	}
+
+	@Override
+	public List<ReservationDto> selectAllReservationList(int uNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("mapper.reservation.selectAllReservationList", uNo);
 		}
 	}
 }
