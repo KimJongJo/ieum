@@ -13,6 +13,8 @@
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
                 <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- FullCalendar Script -->
+		<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 		<script>
 		    // HTML 페이지에서 선언, JSP에서 EL 치환됨
 		    let year = "";
@@ -61,13 +63,11 @@
                                 <li class="info-li">과거 내원했던 병원의 정보와 날짜, 담당의가 작성했던 진단서를 확인할 수 있습니다.</li>
                             </ul>
                         </div>
-                        <div class="select-div-date">
-                            <button class="caret-btn"><i class="fa-solid fa-caret-left"></i></button>
-                            <span class="select-date">2025.09</span>
-                            <button class="caret-btn"><i class="fa-solid fa-caret-right"></i></button>
-                        </div>
-                        <div class="calendar"></div>
+                        
+                        <!-- 달력 -->
+                        <div id="calendar"></div>
                         <div class="select-div">
+                        	<button id="searchAllDia" type="button" class="reservation-all-btn">전체 조회</button>
                             <div>
                                 <select id="year2" class="year">
                                     <option value="none">년</option>

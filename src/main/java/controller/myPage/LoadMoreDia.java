@@ -62,7 +62,6 @@ public class LoadMoreDia extends HttpServlet {
 	    
 	    DiagnosisService service = new DiagnosisServiceImpl();
 	    List<ShowDIaListToUser> diaList = service.getUserDiaList(uNo, offset, limit, date);
-	    System.out.println(diaList);
 	    // 총 개수 구하기
 	    int totalCount = service.getTotalCount(uNo);
 	    

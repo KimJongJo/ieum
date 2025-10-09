@@ -30,6 +30,7 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	@Override
 	public void tempSave(DiagnosisHistoryDto diagnosisHistoryDto) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
+			System.out.println(diagnosisHistoryDto);
 			session.update("tempSave", diagnosisHistoryDto);
 			session.commit();
 		}
@@ -176,6 +177,20 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 	public int getTotalCountByDate(Map<String, Object> paramMap) {
 		try(SqlSession session = sqlSessionFactory.openSession()){
 			return session.selectOne("getTotalCountByDate", paramMap);
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAll(Integer uNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectList("selectAllDiaList", uNo);
+		}
+	}
+
+	@Override
+	public ShowDIaListToUser selectDiaByNo(Integer diaNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectDiaByNo", diaNo);
 		}
 	}
 

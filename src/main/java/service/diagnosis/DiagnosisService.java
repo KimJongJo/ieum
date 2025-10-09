@@ -37,5 +37,9 @@ public interface DiagnosisService {
 
 	int getTotalCountByDate(Map<String, Object> paramMap);
 
+	List<Map<String, Object>> selectAll(Integer uNo);
+
+	ShowDIaListToUser selectDiaByNo(Integer diaNo);
+
 
 }

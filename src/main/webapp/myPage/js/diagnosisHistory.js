@@ -1,4 +1,11 @@
 $(document).ready(function() {
+	let todayDt = new Date();
+	let todayYear = todayDt.getFullYear();
+	let todayMonth = String(todayDt.getMonth() + 1).padStart(2, "0");
+	let todayDay = String(todayDt.getDate()).padStart(2, "0");
+	let todayFormatDt = `${todayYear}-${todayMonth}-${todayDay}`;
+	
+	
     const $modalProfile = $("#modal-div");
 
     // 모달 열기
@@ -24,6 +31,27 @@ $(document).ready(function() {
 			success:function(res){
 				if(res.success){
 					var object = res.object;
+					// 비우기
+					$("#uNm").text("");
+					$("#gender").text("");
+					$("#birthDate").text("");
+					// 진단/진료상세
+					$("#diaName").text("");
+					$("#sym").text("");
+					$("#summary").text("");
+					$("#treatment").text("");
+					$("#pre").text("");
+					// 의사정보
+					$("#docImg").attr("src", "");
+					$("#mNm").text("");
+					$("#rDate").text("");
+					$("#major").text("");
+					$("#hNm").text("");
+					// 의사의말
+					$("#docComment").text("");
+					
+					
+					// 채우기
 					// 환자 정보
 					$("#uNm").text(object.uNm);
 					$("#gender").text(object.gender);
@@ -154,6 +182,72 @@ $(document).ready(function() {
     
     
     
+    // 진단서 조회 함수
+function fetchDiagnosisList(date) {
+
+    $.ajax({
+        url: "/ieum/myPage/diaHistoryDate",
+        type: "POST",
+        data: { date: date, offset: offset, limit: limit },
+        dataType: "json",
+        success: function(res) {
+            const list = res.object.diaList;
+
+            if(res.success) {
+                if(list.length === 0) {
+                    $disListDiv.html(`<div class="noSearchDia">진단 이력이 존재하지 않습니다.</div>`);
+                    $("#loadMoreBtn").hide();
+                } else {
+                    let rows = "";
+                    list.forEach(item => {
+                        rows += `
+                        <div class="diagnosis-box">
+                            <div class="box1">
+                                <div class="box-item">진단 일시</div>
+                                <div class="box-item">진단 명</div>
+                                <div class="box-item">결과요약</div>
+                                <div class="box-item">상세보기</div>
+                            </div>
+                            <div class="box2">
+                                <div class="box-item">${item.rDate}</div>
+                                <div class="box-item">${item.diagnosisName}</div>
+                                <div class="box-item">${item.testSummary}</div>
+                                <div class="box-item">
+                                    <button class="btn2" value="${item.diaNo}">진단 결과 보기</button>
+                                </div>
+                            </div>
+                            <div class="doc-comment">${item.doctorComment}</div>
+                            <div class="upload">
+                                <div>${item.hNm}</div>
+                                <div>업로드 날짜</div>
+                            </div>
+                        </div>`;
+                    });
+                    $disListDiv.html(rows);
+
+                    // offset 증가
+                    offset += list.length;
+
+                    // 더보기 버튼 표시 여부
+                    if(res.object.hasMore) {
+                        $("#loadMoreBtn").show();
+                    } else {
+                        $("#loadMoreBtn").hide();
+                    }
+                }
+            } else {
+                console.log("조회 실패");
+            }
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+    
+    
+    
     $("#searchDiaDate").click(function(){
 		if(date === ""){
 			alert("날짜를 선택해주세요");
@@ -162,67 +256,17 @@ $(document).ready(function() {
 		
 		offset = 0;
 		
-		//날짜를 가져와서 해당날짜에 있는 진단서 보여주기
-		 $.ajax({
-	        url: "/ieum/myPage/diaHistoryDate",
-	        type: "POST",
-	        data: { date: date, offset: offset, limit: limit },
-	        dataType: "json",
-	        success: function(res) {
-	            const list = res.object.diaList;
-	
-	            if(res.success) {
-	                if(list.length === 0) {
-	                    $disListDiv.html(`<div class="noSearchDia">진단 이력이 존재하지 않습니다.</div>`);
-	                    $("#loadMoreBtn").hide();
-	                } else {
-	                    let rows = "";
-	                    list.forEach(item => {
-	                        rows += `
-	                        <div class="diagnosis-box">
-	                            <div class="box1">
-	                                <div class="box-item">진단 일시</div>
-	                                <div class="box-item">진단 명</div>
-	                                <div class="box-item">결과요약</div>
-	                                <div class="box-item">상세보기</div>
-	                            </div>
-	                            <div class="box2">
-	                                <div class="box-item">${item.rDate}</div>
-	                                <div class="box-item">${item.diagnosisName}</div>
-	                                <div class="box-item">${item.testSummary}</div>
-	                                <div class="box-item">
-	                                    <button class="btn2" value="${item.diaNo}">진단 결과 보기</button>
-	                                </div>
-	                            </div>
-	                            <div class="doc-comment">${item.doctorComment}</div>
-	                            <div class="upload">
-	                                <div>${item.hNm}</div>
-	                                <div>업로드 날짜</div>
-	                            </div>
-	                        </div>`;
-	                    });
-	                    $disListDiv.html(rows);
-	
-	                    // offset 증가
-	                    offset += list.length;
-	
-	                    // 더보기 버튼 표시 여부
-	                    if(res.object.hasMore) {
-	                        $("#loadMoreBtn").show();
-	                    } else {
-	                        $("#loadMoreBtn").hide();
-	                    }
-	                }
-	            } else {
-	                console.log("조회 실패");
-	            }
-	        },
-	        error: function(err) {
-	            console.log(err);
-	        }
-	    });
+		fetchDiagnosisList(date);
 		
 	})
+	
+	
+    // 전체 조회 클릭 시 맨 처음 보여줬던 화면이랑 똑같이 보여줌
+    $("#searchAllDia").click(function(){
+		offset = 0;
+		fetchDiagnosisList(""); // 날짜 없이 전체 조회
+	})
+	
 	
 	let offset = 3;
 	const limit = 3;
@@ -235,7 +279,6 @@ $(document).ready(function() {
             data: { date:date, offset: offset, limit: limit },
             dataType: "json",
             success: function(res) {
-				console.log(res.object.diaList);
                 if (res.object.diaList && res.object.diaList.length > 0) {
                     // 기존 div에 새 데이터 추가
                     res.object.diaList.forEach(function(dia) {
@@ -281,7 +324,109 @@ $(document).ready(function() {
             }
         });
     });
-	
-	
+    
+    
 
+    
+    
+    // 캘린더
+    var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+       initialView: 'dayGridMonth',
+       
+       // n년 n월 형식
+  		titleFormat: function(arg) {
+  			const year = arg.date.year;
+  			const month = arg.date.month + 1; // 0부터 시작하므로 +1
+  			return year + '년 ' + month + '월';
+  		},
+		validRange: {
+			end: todayFormatDt   // 유효한 범위의 끝 날짜
+		},
+
+  		//요일column 한글로
+  		dayHeaderContent: function(arg) {
+  			const day = arg.date.getDay();
+  			const days = ['일', '월', '화', '수', '목', '금', '토'];
+  			return days[day];
+
+  		},
+  		headerToolbar: {
+  			left: 'today',
+  			center: 'prev,title,next',
+  			right: ''
+  		},
+  		
+		// 진단서 데이터 가져오기
+		events: function(fetchInfo, successCallback, failureCallback) {
+			// fetchInfo.start, fetchInfo.end -> FullCalendar가 보내는 시작/끝 날짜
+			const start = fetchInfo.startStr; // "2025-09-01"
+			const end = fetchInfo.endStr;     // "2025-09-30"
+
+			$.ajax({
+				url: '/ieum/myPage/diaList/event',
+				type: 'GET',
+				data: { start: start, end: end },
+				dataType:"json",
+				success: function(res) {
+					
+				    const events = res.map(e => ({
+				        id: e.id,
+				        title: e.title,
+				        start: e.start,       // 대문자 START를 소문자 start로 변환
+				        allDay: Boolean(e.allDay) // 1 → true
+				    }));
+
+				    successCallback(events);
+				},
+				error: function(e) {
+					console.log("캘린더 조회 오류", e);
+				}
+			});
+		},
+		
+	    eventClick: function(info) {
+	        $.ajax({
+				url:"/ieum/myPage/selectDia",
+				type:"POST",
+				data:{diaNo:info.event.id},
+				dataType:"json",
+				success:function(res){
+					if(res.success){
+						var object = res.object;
+						// 진단서 표시
+						$disListDiv.html(
+							`
+							<div class="diagnosis-box">
+	                            <div class="box1">
+	                                <div class="box-item">진단 일시</div>
+	                                <div class="box-item">진단 명</div>
+	                                <div class="box-item">결과요약</div>
+	                                <div class="box-item">상세보기</div>
+	                            </div>
+	                            <div class="box2">
+	                                <div class="box-item">${object.rDate}</div>
+	                                <div class="box-item">${object.diagnosisName}</div>
+	                                <div class="box-item">${object.testSummary}</div>
+	                                <div class="box-item">
+	                                    <button class="btn2" value="${object.diaNo}">진단 결과 보기</button>
+	                                </div>
+	                            </div>
+	                            <div class="doc-comment">${object.doctorComment}</div>
+	                            <div class="upload">
+	                                <div>${object.hNm}</div>
+	                                <div>업로드 날짜</div>
+	                            </div>
+	                        </div>`
+							
+						);
+						
+						$("#loadMoreBtn").css("display","none");
+					}
+				}
+			})
+	        
+	    }
+		
+    });
+    calendar.render();
 });

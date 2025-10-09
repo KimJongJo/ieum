@@ -247,4 +247,26 @@
       	AND DATE(r.r_date) = #{date}
 	</select>
 	
+	<select id="selectAllDiaList" parameterType="Integer" resultType="Map">
+		SELECT d.diagnosis_no AS id, DATE_FORMAT(r.r_date, '%Y-%m-%d') AS start,
+		h.h_nm AS title, TRUE AS allDay
+		FROM diagnosis_history d
+		JOIN reservation r ON(d.r_no = r.r_no)
+		JOIN hospital h ON(d.h_no = h.h_no)
+		JOIN member u ON(d.patient_id = u.u_no)
+		WHERE u.u_no = #{_parameter}
+	</select>
+	
+	<select id="selectDiaByNo" parameterType="Integer" resultType="shwoDiaInfo">
+		SELECT d.diagnosis_name, d.test_summary, d.doctor_comment, d.diagnosis_no as diaNo,
+		DATE_FORMAT(r.r_date, '%Y-%m-%d') as rDate, h.h_nm
+		FROM diagnosis_history d
+		JOIN member u ON(d.patient_id = u.u_no)
+		JOIN member m ON(d.doctor_id = m.u_no)
+		JOIN reservation r ON(d.r_no = r.r_no)
+		JOIN file f ON(f.file_no = m.file_no)
+		JOIN hospital h ON(m.h_no = h.h_no)
+		WHERE d.diagnosis_no = #{diaNo}
+	</select>
+	
 </mapper>	

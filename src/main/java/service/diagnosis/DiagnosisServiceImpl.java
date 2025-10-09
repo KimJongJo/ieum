@@ -238,6 +238,16 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 		return diaDao.getTotalCountByDate(paramMap);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAll(Integer uNo) {
+		return diaDao.selectAll(uNo);
+	}
+
+	@Override
+	public ShowDIaListToUser selectDiaByNo(Integer diaNo) {
+		return diaDao.selectDiaByNo(diaNo);
+	}
+
 
 
 }
