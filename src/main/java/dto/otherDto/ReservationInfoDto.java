@@ -53,6 +53,7 @@ public class ReservationInfoDto {
 	String filePath; // 경로
 	
 	long dDay; //디데이
+	boolean favorite;
 	
 	public long getdDay() {
 		LocalDate today = LocalDate.now();
@@ -65,13 +66,15 @@ public class ReservationInfoDto {
 	}
 
 
+	
+
 	public ReservationInfoDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
 			String rContent, String actName, String actTel, String rStatus, String rDay, String hNm, Integer categoryNo,
 			String hAddress, String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel,
 			String hLink, Integer hosImgFileNo, String status, String hCode, String city, String gungu, String services,
 			boolean silson, String newsTitle, String newsContent, String categoryName, String username, String gender,
 			String uTel, String email, String userType, String major, String introduction, Integer stateCode,
-			Integer fileNo, String fileName, String filePath, long dDay) {
+			Integer fileNo, String fileName, String filePath, long dDay, boolean favorite) {
 		super();
 		this.rNo = rNo;
 		this.uNo = uNo;
@@ -115,6 +118,7 @@ public class ReservationInfoDto {
 		this.fileName = fileName;
 		this.filePath = filePath;
 		this.dDay = dDay;
+		this.favorite = favorite;
 	}
 
 
@@ -130,7 +134,8 @@ public class ReservationInfoDto {
 				+ newsTitle + ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", username="
 				+ username + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", userType=" + userType
 				+ ", major=" + major + ", introduction=" + introduction + ", stateCode=" + stateCode + ", fileNo="
-				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", dDay=" + dDay + "]";
+				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", dDay=" + dDay + ", favorite="
+				+ favorite + "]";
 	}
 
 
@@ -546,6 +551,16 @@ public class ReservationInfoDto {
 
 	public void setdDay(long dDay) {
 		this.dDay = dDay;
+	}
+
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
 	}
 
 	

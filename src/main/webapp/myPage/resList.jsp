@@ -13,6 +13,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,600,0,0&icon_names=local_hospital" />
+<link rel="stylesheet" href="${contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${contextPath }/myPage/css/resList.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
@@ -49,7 +50,9 @@
 							<c:when test="${not empty comRes }">
 								<c:forEach var="comResList" items="${comRes }">
 									<div class="list-center">
-										<div class="list1" data-rNo ="${comResList.rNo }">
+										<div class="list1" data-rno="${comResList.rNo }"
+											data-rstatus="${comResList.rStatus }"
+											data-hno="${comResList.hNo }">
 
 											<div class="l1">
 												<div class="d">
@@ -96,7 +99,7 @@
 													</table>
 												</div>
 												<div class="right">
-													<button class="lbt" type="button">
+													<button class="lbt-cancel" type="button">
 														<span class="lbt1">예약취소</span>
 														<div class="lbt2">
 															<i class="fa-solid fa-rectangle-xmark"></i>
@@ -108,7 +111,7 @@
 															<i class="fa-solid fa-pen-to-square"></i>
 														</div>
 													</button>
-													<button class="lbtb" type="button">
+													<button class="lbtb" type="button" id="comResdetail">
 														<span class="lbt3">예약확인</span>
 														<div class="lbt4">
 															<i class="fa-solid fa-list"></i>
@@ -148,120 +151,64 @@
 						</tr>
 					</table>
 				</div>
-				<form id="serachRec" method="post"
-					action="${contextPath }/myPage/reservation/list">
-					<input type="hidden" name="uNo" value="${uNo }">
-					<div class="sbox">
-						<table class="fil">
-							<tr>
-								<td><span class="t3">기간선택</span></td>
-								<td><select class="month" name="sort">
-										<option value="r.r_date" selected>전체</option>
-										<option value="none">12개월</option>
-										<option value="none">6개월</option>
-										<option value="none">3개월</option>
-								</select></td>
-								<td>
-									<div class="search-box">
-										<div class="i">
-											<i class="fa-solid fa-magnifying-glass"></i>
-										</div>
-										<input type="text" name="keyword" class="search-txt" name=""
-											placeholder="" value="${param.keyword }">
+
+				<div class="sbox">
+					<table class="fil">
+						<tr>
+							<td><span class="t3">기간선택</span></td>
+							<td><select class="month" name="sort" id="sort">
+									<option value="" selected>전체</option>
+									<option value="3">3개월</option>
+									<option value="6">6개월</option>
+									<option value="12">12개월</option>
+							</select></td>
+							<td>
+								<div class="search-box">
+									<div class="i">
+										<i class="fa-solid fa-magnifying-glass"></i>
 									</div>
-								</td>
-								<td><button class="btn-cir-w" type="submit">조회</button></td>
-							</tr>
-						</table>
-					</div>
-				</form>
+									<input type="text" name="keyword" id="keyword"
+										class="search-txt" placeholder="">
+								</div>
+							</td>
+							<td><button class="btn-cir-w" type="button" id="searchBtn">조회</button></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 
-			<c:choose>
-				<c:when test="${not empty recRes }">
-					<c:forEach var="recResList" items="${recRes }">
-						<div class="list2" id="recList" data-rNo="${recResList.rNo }">
-							<div class="l3">
-								<table class="date">
-									<tr>
-										<td class="gray"><c:out value="${recResList.rDate }" /></td>
-										<td class="gray1"><c:out value="${recResList.rDay }" /></td>
-									</tr>
-								</table>
-								<div class="star">
-									<i class="fa-regular fa-star"></i>
-								</div>
-							</div>
-							<div class="l4">
+			<div id="recResList-container"></div>
 
-								<div class="left2">
-									<table class="t">
-										<tr>
-											<td class="hi"><span class="hosIcon"> <i
-													class="fa-regular fa-calendar-plus"></i></span></td>
-											<td class="hname"><c:out value="${recResList.hNm }" /></td>
-										</tr>
-									</table>
-									<table class="t2">
-										<tr>
-											<td class="line"></td>
-											<td class="dname"><c:out value="${recResList.username }" />
-												<span>상담사</span></td>
-											<td class="coun">첫번째 상담</td>
-										</tr>
-									</table>
-								</div>
-								<div class="right2">
-									<button class="btn-cir-w" type="button">다시예약</button>
-									<button class="btn-cir-w" type="button">예약확인</button>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<div class="list4">
-						<div class="no">
-							<div class="icon2">
-								<i class="fa-solid fa-circle-exclamation"></i>
-							</div>
-							<span class="t2">지난 예약이 없습니다.</span>
-						</div>
-						<div>
-							<button class="btn-cir-w">예약하러 가기</button>
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-
-			<c:if test="${not empty recRes }">
-				<div class="page-div">
-					<div class="pagination" id="pagination" data-total="${page.allPage }">
-						<!-- 이전 -->
-						<button class="page previous" type="button">
-							<i class="fa-solid fa-angle-left"></i>
-						</button>
-						<!-- 페이지번호 -->
-						<c:forEach begin="${page.startPage }" end="${page.endPage }"
-							step="1" var="selectPage">
-							<c:choose>
-								<c:when test="${selectPage == page.curPage }">
-									<button value="${selectPage }" class="cur-page" type="button">${selectPage }</button>
-								</c:when>
-								<c:otherwise>
-									<button value="${selectPage }" class="move-page" type="button">${selectPage }</button>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<!-- 이후 -->
-						<button class="page next-page" type="button">
-							<i class="fa-solid fa-angle-right"></i>
-						</button>
-					</div>
-				</div>
-			</c:if>
+			<div class="page-div">
+				<div class="pagination" id="pagination"></div>
+			</div>
 
 		</div>
+
+		<!-- 예약취소 모달 -->
+		<div class="modal-main-div" id="deleteRes" style="display: none;">
+			<div class="modal-div-over">
+				<div class="modal-header-div">
+					<span class="modal-header-div-span">알림</span>
+					<button type="button" class="x-button" id="xBtn">
+						<i class="fa-solid fa-x x-btn"></i>
+					</button>
+				</div>
+				<div class="modal-content-div">
+					<span class="modal-content-div-span">예약을 취소하시겠습니까?</span>
+				</div>
+				<div class="modal-div-under">
+					<div class="modal-btn-div">
+					<button type="button" class="modal-btn-left modal-btn"
+							id="modalKeepRes">닫기</button>
+						<button type="button" class="modal-btn-right modal-btn"
+							id="modalCancelRes">취소하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 	<script src="${contextPath }/myPage/js/resList.js"></script>
 </body>

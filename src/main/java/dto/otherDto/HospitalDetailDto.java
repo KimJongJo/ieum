@@ -28,15 +28,19 @@ public class HospitalDetailDto {
 
 	String fileName; //파일명
 	String filePath; // 경로
+	
+	boolean favorite;
 
 	HospitalDetailDto() {
 		super();
 	}
 
+	
+
 	public HospitalDetailDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
 			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, Integer hosImgFileNo,
 			String status, String hCode, String city, String gungu, String services, boolean silson, String newsTitle,
-			String newsContent, String categoryName, String fileName, String filePath) {
+			String newsContent, String categoryName, String fileName, String filePath, boolean favorite) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -60,18 +64,23 @@ public class HospitalDetailDto {
 		this.categoryName = categoryName;
 		this.fileName = fileName;
 		this.filePath = filePath;
+		this.favorite = favorite;
 	}
+
+
 
 	@Override
 	public String toString() {
-		return "HosDetailDto [hNo=" + hNo + ", hNm=" + hNm + ", categoryNo=" + categoryNo + ", hAddress=" + hAddress
-				+ ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX + ", transferInfo=" + transferInfo
-				+ ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink=" + hLink + ", hosImgFileNo="
-				+ hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city=" + city + ", gungu=" + gungu
-				+ ", services=" + services + ", silson=" + silson + ", newsTitle=" + newsTitle + ", newsContent="
-				+ newsContent + ", categoryName=" + categoryName + ", fileName=" + fileName + ", filePath=" + filePath
-				+ "]";
+		return "HospitalDetailDto [hNo=" + hNo + ", hNm=" + hNm + ", categoryNo=" + categoryNo + ", hAddress="
+				+ hAddress + ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX + ", transferInfo="
+				+ transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink=" + hLink
+				+ ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city=" + city
+				+ ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + ", newsTitle=" + newsTitle
+				+ ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", fileName=" + fileName
+				+ ", filePath=" + filePath + ", favorite=" + favorite + "]";
 	}
+
+
 
 	public Integer gethNo() {
 		return hNo;
@@ -247,6 +256,18 @@ public class HospitalDetailDto {
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+
+
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
 	}
 
 	

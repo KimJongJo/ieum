@@ -26,6 +26,8 @@ public class HospitalDto {
 	boolean silson; // 실손 24 서비스 제공 여부
 	String newsTitle; // 뉴스 제목
 	String newsContent; // 뉴스 내용
+	
+	boolean favorite;
 
 	public HospitalDto() {
 		super();
@@ -84,6 +86,41 @@ public class HospitalDto {
 		this.newsTitle = newsTitle;
 		this.newsContent = newsContent;
 	}
+	
+	
+
+	public HospitalDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
+			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, Integer hosImgFileNo,
+			Integer hosReFileNo, String hosReNo, Date hCreated, Date hUpdated, String status, String hCode, String city,
+			String gungu, String services, boolean silson, String newsTitle, String newsContent, boolean favorite) {
+		super();
+		this.hNo = hNo;
+		this.hNm = hNm;
+		this.categoryNo = categoryNo;
+		this.hAddress = hAddress;
+		this.hLocationY = hLocationY;
+		this.hLocationX = hLocationX;
+		this.transferInfo = transferInfo;
+		this.holidayInfo = holidayInfo;
+		this.hTel = hTel;
+		this.hLink = hLink;
+		this.hosImgFileNo = hosImgFileNo;
+		this.hosReFileNo = hosReFileNo;
+		this.hosReNo = hosReNo;
+		this.hCreated = hCreated;
+		this.hUpdated = hUpdated;
+		this.status = status;
+		this.hCode = hCode;
+		this.city = city;
+		this.gungu = gungu;
+		this.services = services;
+		this.silson = silson;
+		this.newsTitle = newsTitle;
+		this.newsContent = newsContent;
+		this.favorite = favorite;
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -93,9 +130,10 @@ public class HospitalDto {
 				+ hosImgFileNo + ", hosReFileNo=" + hosReFileNo + ", hosReNo=" + hosReNo + ", hCreated=" + hCreated
 				+ ", hUpdated=" + hUpdated + ", status=" + status + ", hCode=" + hCode + ", city=" + city + ", gungu="
 				+ gungu + ", services=" + services + ", silson=" + silson + ", newsTitle=" + newsTitle
-				+ ", newsContent=" + newsContent + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", newsContent=" + newsContent + ", favorite=" + favorite + "]";
 	}
+
+
 
 	public Integer gethNo() {
 		return hNo;
@@ -279,6 +317,18 @@ public class HospitalDto {
 
 	public void setNewsContent(String newsContent) {
 		this.newsContent = newsContent;
+	}
+
+
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
 	}
 
 	

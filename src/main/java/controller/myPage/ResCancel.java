@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
+
 /**
  * Servlet implementation class ResCancel
  */
@@ -33,8 +36,20 @@ public class ResCancel extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		Integer rNo = Integer.parseInt(request.getParameter("rNo"));
+		ReservationService rService = new ReservationServiceImpl();
+		
+		try {
+			rService.resCancel(rNo);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		response.setStatus(HttpServletResponse.SC_OK);
 	}
 
 }
