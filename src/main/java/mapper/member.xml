@@ -79,7 +79,7 @@
 	<select id="selectMemberWithProfile" parameterType="int"
 		resultType="memberProfile">
 		select m.u_no, m.id, m.username, m.nickname, m.u_address,
-		m.email, m.u_tel, m.diary_private,
+		m.email, m.u_tel, m.diary_private, m.state_code,
 		f.file_no, f.file_name, f.file_path, f.file_category
 		from member m
 		left JOIN file f
