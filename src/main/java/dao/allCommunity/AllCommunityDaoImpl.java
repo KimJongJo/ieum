@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.AllCommunityDto;
 import util.MybatisSqlSessionFactory;
+import util.PageInfo;
 
 public class AllCommunityDaoImpl implements AllCommunityDao{
 	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
