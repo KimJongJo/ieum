@@ -18,17 +18,6 @@
 	<delete id="delete">
 		DELETE FROM favorite WHERE h_fav_no=#{hFNo}
 	</delete>
-
-	<select id="select" parameterType="map"
-		resultType="favorite">
-		SELECT * FROM favorite WHERE h_fav_no=#{hFNo}
-	</select>
-
-	<select id="selectFavList" parameterType="map" resultType="favorite">
-		SELECT *
-		FROM favorite WHERE u_no=#{uNo} 
-		LIMIT #{row}, 10
-	</select>
 	<!-- 즐겨찾기 등록 -->
 	<insert id="insertFav" parameterType="map">
 		insert into favorite (u_no, hos_no)
