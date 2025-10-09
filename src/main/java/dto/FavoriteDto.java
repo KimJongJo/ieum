@@ -5,6 +5,12 @@ public class FavoriteDto {
 	Integer hFavNo; // 즐겨찾기 번호
 	Integer hosNo;	// 병원 번호
 	Integer userNo;	// 유저 번호
+	String hNm; // 병원 이름
+	Integer categoryName; // 카테고리
+	String hAddress; // 병원 주소
+	Integer hosImgFileNo; // 병원 썸네일 파일
+	String hosImgFilePath;
+	String hosImgFileName;
 	
 	
 	public FavoriteDto() {
