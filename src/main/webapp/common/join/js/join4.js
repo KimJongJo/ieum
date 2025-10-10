@@ -98,8 +98,8 @@ $(function() {
 // 생년월일
 
 $(function() {
-    $("#year, #month, #day").change(function() {
-        var year = $("#year").val();
+    $("#joinYear, #month, #day").change(function() {
+        var year = $("#joinYear").val();
         var month = $("#month").val();
         var day = $("#day").val();
 
