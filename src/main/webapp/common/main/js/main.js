@@ -218,7 +218,9 @@ $(document).ready(function() {
 		);
 	});
 	// 캘린더
-	var calendar = new FullCalendar.Calendar(document.getElementById('fc'), {
+	let calendar;
+	if ($("#fc").val()){
+	calendar = new FullCalendar.Calendar(document.getElementById('fc'), {
 		selectable: true,
 		headerToolbar: false,
 		initialView: 'dayGridMonth',
@@ -277,4 +279,5 @@ $(document).ready(function() {
 		}
 	});
 	calendar.render();
+	}
 });
