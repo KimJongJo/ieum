@@ -106,15 +106,15 @@
                                     <span class="i-span" id=birth-span><i class="fa-solid fa-check span-check" id="birth-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <select name="year" id="joinYear" name="year" class="year date">
+                                    <select id="year" name="year" class="year date">
                                         <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>
-                                    <select name="month" id="month" name="month" class="month date">
+                                    <select id="month" name="month" class="month date">
                                         <option value="none">월</option>
                                     </select>
                                     <span class="text">월</span>
-                                    <select name="day" id="day" name="day" class="day date">
+                                    <select id="day" name="day" class="day date">
                                         <option value="none">일</option>
                                     </select>
                                     <span class="text">일</span>
