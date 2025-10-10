@@ -6,7 +6,7 @@ public class FavoriteDto {
 	Integer hosNo;	// 병원 번호
 	Integer userNo;	// 유저 번호
 	String hNm; // 병원 이름
-	Integer categoryName; // 카테고리
+	String categoryName; // 카테고리
 	String hAddress; // 병원 주소
 	Integer hosImgFileNo; // 병원 썸네일 파일
 	String hosImgFilePath;
@@ -26,7 +26,7 @@ public class FavoriteDto {
 	}
 
 
-	public FavoriteDto(Integer hFavNo, Integer hosNo, Integer userNo, String hNm, Integer categoryName, String hAddress,
+	public FavoriteDto(Integer hFavNo, Integer hosNo, Integer userNo, String hNm, String categoryName, String hAddress,
 			Integer hosImgFileNo, String hosImgFilePath, String hosImgFileName) {
 		super();
 		this.hFavNo = hFavNo;
@@ -81,12 +81,12 @@ public class FavoriteDto {
 	}
 
 
-	public Integer getCategoryName() {
+	public String getCategoryName() {
 		return categoryName;
 	}
 
 
-	public void setCategoryName(Integer categoryName) {
+	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
 

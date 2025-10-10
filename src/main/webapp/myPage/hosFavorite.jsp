@@ -24,6 +24,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,600,0,0&icon_names=local_hospital" />
 <link rel="stylesheet" href="${contextPath}/myPage/css/hosFavorite.css" />
 <title>hosFav</title>
+<script src="${contextPath}/myPage/js/hosFav.js"></script>
 </head>
 <body>
 	<header>
@@ -33,28 +34,34 @@
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="container">
 			<div class="fav1">즐겨찾기</div>
-			<c:when test="${not empty noticeList}">
-			<c:forEach var="fav" items="${favList}">
-			<div class="list-box">
-				<div class="right3">
-					<img class="hosf" src="${contextPath}${fav.hosImgFilePath}${fav.hosImgFilePath}" />
-					<div class="infodetail">
-						<div class="hos-category">${ fav.categoryName }</div>
-						<div class="hos-name">${ fav.hNm }</div>
-						<div class="hos-loca">
-							<div class="icon3">
-								<i class="fa-solid fa-bus"></i>
-							</div>
-							${fav.transferInfo}
-						</div>
-					</div>
-				</div>
-				<div class="fav" onclick="delStar(${ fav.hFavNo })">
-					<i class="fa-solid fa-star"></i>
-				</div>
+			<div id="hospitalList">
+<%-- 				<c:when test="${not empty noticeList}"> --%>
+<%-- 					<c:forEach var="fav" items="${favList}"> --%>
+
+<!-- 						<div class="list-box"> -->
+<!-- 							<div class="right3"> -->
+<!-- 								<img class="hosf" -->
+<%-- 									src="${contextPath}${fav.hosImgFilePath}${fav.hosImgFilePath}" /> --%>
+<!-- 								<div class="infodetail"> -->
+<%-- 									<div class="hos-category">${ fav.categoryName }</div> --%>
+<%-- 									<div class="hos-name">${ fav.hNm }</div> --%>
+<!-- 									<div class="hos-loca"> -->
+<!-- 										<div class="icon3"> -->
+<!-- 											<i class="fa-solid fa-bus"></i> -->
+<!-- 										</div> -->
+<%-- 										${fav.transferInfo} --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<%-- 							<div class="fav" onclick="delStar(${ fav.hFavNo })"> --%>
+<!-- 								<i class="fa-solid fa-star"></i> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<%-- 					</c:forEach> --%>
+<%-- 				</c:when> --%>
 			</div>
-			</c:forEach>
-			</c:when>
+			<div id="loadMore"></div>
+			<div id="goTop"></div>
 		</div>
 	</div>
 </body>
