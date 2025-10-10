@@ -99,7 +99,7 @@
 								</c:choose>
 								<span class="btn-link">${userInfo.nickname}</span>
 							</div>
-							<a href="" class="btn-link">마이페이지</a>
+							<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
 						</div>
 						<div class="login-body fc" id="fc"></div>
 					</c:when>
