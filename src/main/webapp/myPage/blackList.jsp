@@ -316,6 +316,11 @@ $(document).ready(function () {
         $("#completeModalBlack").fadeOut();
     });
 });
+
+
+$(document).ready(function() {
+    $('.hide-if-user').hide();
+});
 </script>
 </head>
 <body>

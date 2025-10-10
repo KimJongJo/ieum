@@ -167,5 +167,6 @@
 	</div>
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script src="${contextPath }/hospital/js/hosSearch.js"></script>
+	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>
 </html>

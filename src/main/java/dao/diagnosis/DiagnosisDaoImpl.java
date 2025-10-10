@@ -194,6 +194,13 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 		}
 	}
 
+	@Override
+	public ShowDIaListToUser selectLatestDiagnosisByUser(int uNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("mapper.diagnosis_history.getLatestDiagnosisByUser", uNo);
+		}
+	}
+
 
 
 

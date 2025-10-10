@@ -115,6 +115,11 @@ $(function() {
         }, "json"); // JSON으로 받기
     });
 });
+
+
+$(document).ready(function() {
+    $('.hide-if-user').hide();
+});
 </script>
 
 <style>

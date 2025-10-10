@@ -78,7 +78,7 @@ public class CalenderList extends HttpServlet {
 	                ev.put("title", "상담예약"); // 캘린더에 표시될 텍스트
 	                ev.put("start", res.getrDate().toString());
 	                ev.put("allDay", true);
-	                ev.put("color", "#FFFFFF"); // Tomato 색
+	                ev.put("color", "#d9d9d9"); // Tomato 색
 	                ev.put("textColor", "#000000" );
 	                events.add(ev);
 	            }

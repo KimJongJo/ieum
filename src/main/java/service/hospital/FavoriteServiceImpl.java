@@ -19,7 +19,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 		favInfo.put("uNo", uNo);
 		favInfo.put("hNo", hNo);
 		
-		return favDao.Favorite(favInfo) >0 ;
+		return favDao.Favorite(favInfo) > 0 ;
 	}
 
 	@Override

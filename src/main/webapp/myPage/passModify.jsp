@@ -36,6 +36,7 @@
                 <c:if test="${userType == 'USER'}">
                		<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
                 </c:if>	
+
             </div>
         </div>
 

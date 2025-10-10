@@ -92,7 +92,7 @@ $(document).ready(() => {
 				} else {
 					data.hospitalDetailDto.forEach(h => {
 						$("#hospitalList").append(`
-                    <div class="list-box" data-hno="${h.hNo}">
+                    <div class="list-box" data-hno="${h.hNo}" data-favorite="${h.favorite}">
 					<div class="right3">
 						<img class="hosf" src="${h.filePath}" />
 						<div class="infodetail">
@@ -107,10 +107,15 @@ $(document).ready(() => {
 						</div>
 					</div>
 					<div class="fav">
-						<i class="fa-regular fa-star"></i>
+				<button type="button" class="fav-btn ${h.favorite ? 'active' : ''}">
+					<div class="i" >
+					<i class="fa${h.favorite ? 's' : 'r'} fa-star"></i>
 					</div>
-				</div>
-                `);
+				</button >
+			</div >
+					</div >
+				</div >
+						`);
 					});
 
 					$("#loadMore").empty();
@@ -118,13 +123,13 @@ $(document).ready(() => {
 
 					if (curPge < allPage) {
 						$("#loadMore").append(`
-					<div class="loadmore"><button class="btn-cir-w">
-           				 더보기<i class="fa-solid fa-chevron-down"></i></button></div>`)
+						< div class= "loadmore" > <button class="btn-cir-w">
+							더보기<i class="fa-solid fa-chevron-down"></i></button></div > `)
 					} else {
 						$("#goTop").append(`
-					<div class="loadmore"><button class="btn-cir-w">
-           				 맨위로<i class="fa-solid fa-angle-up"></i></button></div>
-					`)
+					< div class= "loadmore" > <button class="btn-cir-w">
+						맨위로<i class="fa-solid fa-angle-up"></i></button></div >
+						`)
 					}
 				}
 
@@ -161,7 +166,7 @@ $(document).ready(() => {
 
 	// 시/도 옵션 채우기
 	$.each(regionData, function(city, gungu) {
-		$("#city").append(`<option value="${city}">${city}</option>`);
+		$("#city").append(`< option value = "${city}" > ${city}</option > `);
 	});
 
 
@@ -175,7 +180,7 @@ $(document).ready(() => {
 		const gungus = regionData[city];
 		if (gungus && gungus.length > 0) {
 			$.each(gungus, function(index, gungu) {
-				$gungu.append(`<option value="${gungu}">${gungu}</option>`);
+				$gungu.append(`< option value = "${gungu}" > ${gungu}</option > `);
 			});
 		}
 	});
@@ -223,6 +228,18 @@ $(document).ready(() => {
 				alert("병원 선택에 실패했습니다. 다시 시도해주세요.");
 			});
 
+	});
+
+	// 목록 페이지 즐겨찾기
+	$(document).on("click", ".fav-btn, .fav-btn *", function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		const btn = $(this).closest(".fav-btn");
+		const listBox = btn.closest(".list-box");
+		const hNo = listBox.data("hno");
+
+		toggleFavorite(btn, hNo, listBox); // wrapper 전달
 	});
 
 });

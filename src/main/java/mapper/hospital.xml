@@ -16,25 +16,29 @@
 	
 	<!-- 병원페이지: 병원정보 -->
 	<select id="selectHosDetail" parameterType="Integer" resultType="hosDetail">
-	select *
+	select *, IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite
 	from hospital h
 	join hos_category c
 	using (category_no)
 	left join file f
 	on (h.hos_img_file_no = f.file_no)
+	left join favorite fav
+	on(fav.hos_no = h.h_no)
 	where h_no=#{hNo}
 	</select>
 	
 	<!-- 필터 정렬: 예약 많은 순 -->
 	<select id="selectListRes" parameterType="hosfilter" resultType="hosDetail">
-	select *, count(r.r_no) as resCount
+	select *, IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite, count(r.r_no) as resCount
 	from hospital h
 	left join reservation r 
 	using (h_no)
 	left join hos_category hc 
 	using (category_no)
 	left join file f
-	on (h.hos_img_file_no = f.file_no) 
+	on (h.hos_img_file_no = f.file_no)
+	left join favorite fav
+	on(fav.hos_no = h.h_no)  
 	<where>
 	<if test="keyword !=null and keyword !=''">
 	and h.h_nm like concat('%', #{keyword}, '%')
