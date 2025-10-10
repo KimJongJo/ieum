@@ -3,23 +3,27 @@ package dao.allCommunity;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dto.CommentWithMemberDto;
 import util.MybatisSqlSessionFactory;
 
 public class CommentWithMemberDaoImpl implements CommentWithMemberDao{
-	private SqlSession session;
-	
-	public CommentWithMemberDaoImpl() {
-		session = MybatisSqlSessionFactory.getSessionFactory().openSession();
-	}
-	
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
+
 	
 	@Override
-	public List<CommentWithMemberDto> selectMemberWithComment(Integer uNo) throws Exception {
-		return session.selectList("mapper.comment.selectMemberWithComment", uNo);
+	public List<CommentWithMemberDto> selectMemberWithComment(Integer row) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+		return session.selectList("mapper.comment.selectMemberWithComment", row);
+		}
 	}
-
+	
+	public Integer selectCommentCount(Integer uNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.comment.selectCommentCount", uNo);
+		}
+	}
 
 	@Override
 	public boolean checkEmpathy(int uNo, int commuNo) throws Exception {

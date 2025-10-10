@@ -56,7 +56,15 @@
     	on c.u_no = m.u_no
     	where c.u_no = #{uNo}
     	order by c.com_created DESC
+    	LIMIT #{row}, 10
     </select>
+    
+    <select id="selectCommentCount" resultType="Integer">
+		select count(*)
+	    from comment
+	    where u_no = #{uNo}
+	</select>
+    
     
     <!-- 댓글 조회 -->
     <select id="selectByNo" parameterType="int" resultType="comment">
