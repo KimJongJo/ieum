@@ -30,7 +30,7 @@ public class FavoriteDaoImpl implements FavoriteDao {
 	@Override
 	public void delete(Integer hFNo) throws Exception {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
-			sqlsession.selectOne("mapper.favorite.selectFavList", hFNo );
+			sqlsession.selectOne("mapper.favorite.delete", hFNo );
 			sqlsession.commit();
 		}
 		
@@ -39,8 +39,9 @@ public class FavoriteDaoImpl implements FavoriteDao {
 	public List<FavoriteDto> selectFavList(Integer row, Integer uNo) throws Exception {
 		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
 			Map<String, Object> params = new HashMap<>();
+			params.put("row", row);
 			params.put("uNo", uNo);
-			return sqlsession.selectOne("mapper.favorite.selectFavList", params );
+			return sqlsession.selectList("mapper.favorite.selectFavList", params );
 		}
 	}
 	
