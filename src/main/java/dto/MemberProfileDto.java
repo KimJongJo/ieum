@@ -10,6 +10,7 @@ public class MemberProfileDto {
     String uTel;
     Boolean diaryPrivate;
     Integer stateCode;	//상태코드
+    String introduction; //자기소개
     
     // file 테이블 컬럼 (profile)
     Integer fileNo;
@@ -20,8 +21,8 @@ public class MemberProfileDto {
     public MemberProfileDto() {}
     
 	public MemberProfileDto(Integer uNo, String id, String username, String nickname, String uAddress, String email,
-			String uTel, Boolean diaryPrivate, Integer stateCode, Integer fileNo, String fileName, String filePath,
-			String fileCategory) {
+			String uTel, Boolean diaryPrivate, Integer stateCode, String introduction, Integer fileNo, String fileName,
+			String filePath, String fileCategory) {
 		super();
 		this.uNo = uNo;
 		this.id = id;
@@ -32,6 +33,7 @@ public class MemberProfileDto {
 		this.uTel = uTel;
 		this.diaryPrivate = diaryPrivate;
 		this.stateCode = stateCode;
+		this.introduction = introduction;
 		this.fileNo = fileNo;
 		this.fileName = fileName;
 		this.filePath = filePath;
@@ -44,8 +46,8 @@ public class MemberProfileDto {
 	public String toString() {
 		return "MemberProfileDto [uNo=" + uNo + ", id=" + id + ", username=" + username + ", nickname=" + nickname
 				+ ", uAddress=" + uAddress + ", email=" + email + ", uTel=" + uTel + ", diaryPrivate=" + diaryPrivate
-				+ ", stateCode=" + stateCode + ", fileNo=" + fileNo + ", fileName=" + fileName + ", filePath="
-				+ filePath + ", fileCategory=" + fileCategory + "]";
+				+ ", stateCode=" + stateCode + ", introduction=" + introduction + ", fileNo=" + fileNo + ", fileName="
+				+ fileName + ", filePath=" + filePath + ", fileCategory=" + fileCategory + "]";
 	}
 
 	public Integer getuNo() {
@@ -127,6 +129,14 @@ public class MemberProfileDto {
 
 	public void setStateCode(Integer stateCode) {
 		this.stateCode = stateCode;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
     
     

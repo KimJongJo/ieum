@@ -78,4 +78,6 @@ public interface MemberDao {
 	Integer selectFileNo(Integer getuNo);
 	
 	MemberProfileDto selectProFileView(Integer uNo) throws Exception;
+
+	void updateManageProfile(MemberDto memberDto);
 }

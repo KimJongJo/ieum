@@ -37,7 +37,7 @@
                         <!-- Main Content -->
 				        <form class="container-three">
 				        	<div class="hosImgDiv">
-								<img src="${pageContext.request.contextPath}/${hospital.filePath}${hospital.fileName}">
+								<img style="width:300px; height:200px;" src="${pageContext.request.contextPath}/${hospital.filePath}${hospital.fileName}">
 							</div>
 				            <div class="content">
 				                <span id="box3">병원명</span>

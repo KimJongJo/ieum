@@ -284,4 +284,13 @@ public class MemberDaoImpl implements MemberDao {
 			return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
 		}
 	}
+
+	@Override
+	public void updateManageProfile(MemberDto memberDto) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			session.update("mapper.member.updateManageProfile", memberDto);
+			session.commit();
+			
+		}
+	}
 }

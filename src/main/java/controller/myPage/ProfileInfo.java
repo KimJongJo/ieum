@@ -37,6 +37,7 @@ public class ProfileInfo extends HttpServlet {
 		ProfileInfoService service = new ProfileInfoServiceImpl();
 		try {
 			MemberDto memberDto = service.selectProfileView(uNo);
+			System.out.println(memberDto);
 			request.setAttribute("member", memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();

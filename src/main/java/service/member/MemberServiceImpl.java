@@ -60,15 +60,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void normalJoin(MemberDto member) {
 		
-		String filePath;
+		String filePath = "img";
 		FileDto file;
 		Integer fileNo;
 		// 일반회원
 		if(member.gethNo() == null) {
-			filePath = "img/userProfile";
 			file = new FileDto("회원이미지.jpg",filePath,"userProfile");
 		}else { // 병원 관리자
-			filePath = "img/managerProfile";
 			file = new FileDto("회원이미지.jpg",filePath,"managerProfile");
 		}
 		fileNo = fileService.normalImg(file);

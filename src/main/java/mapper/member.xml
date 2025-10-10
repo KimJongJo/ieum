@@ -70,7 +70,7 @@
 	<select id="selectProfileInfo" parameterType="int"
 		resultType="member">
 		select username, nickname, id, u_address, email,
-		birth_date, gender, diary_private, u_tel
+		birth_date, gender, diary_private, u_tel, state_code
 		from member
 		where u_no = #{uNo}
 	</select>
@@ -80,7 +80,7 @@
 		resultType="memberProfile">
 		select m.u_no, m.id, m.username, m.nickname, m.u_address,
 		m.email, m.u_tel, m.diary_private, m.state_code,
-		f.file_no, f.file_name, f.file_path, f.file_category
+		f.file_no, f.file_name, f.file_path, f.file_category, m.introduction
 		from member m
 		left JOIN file f
 		ON m.file_no = f.file_no
@@ -433,4 +433,10 @@
 	<select id="selectFileNo" parameterType="Integer" resultType="Integer">
 		SELECT file_no FROM member WHERE u_no = #{_parameter}
 	</select>
+	
+	<update id="updateManageProfile" parameterType="member">
+		update member set u_tel = #{uTel}, state_code = #{stateCode},
+		introduction = #{introduction}
+		where u_no = #{uNo}
+	</update>
 </mapper>	
