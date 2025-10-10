@@ -219,8 +219,9 @@ $(document).ready(function() {
 	});
 	// 캘린더
 	let calendar;
-	if ($("#fc").val()){
-	calendar = new FullCalendar.Calendar(document.getElementById('fc'), {
+	const fc = document.getElementById('fc');
+	if (fc != null){
+	calendar = new FullCalendar.Calendar(fc, {
 		selectable: true,
 		headerToolbar: false,
 		initialView: 'dayGridMonth',
