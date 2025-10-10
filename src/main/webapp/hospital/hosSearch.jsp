@@ -162,5 +162,6 @@
 	</div>
 	<footer> </footer>
 	<script src="${contextPath }/hospital/js/hosSearch.js"></script>
+	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>
 </html>

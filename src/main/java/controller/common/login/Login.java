@@ -94,6 +94,7 @@ public class Login extends HttpServlet {
 			
 			session = request.getSession();
 			MemberDto member = service.selectUserByNo(userNo);
+			
 			if(member.getUserType().equals("DOCTOR") || member.getUserType().equals("MANAGER")) {
 				HospitalService hosService = new HospitalServiceImpl();
 				String hNm = hosService.getHosNoByuNo(userNo);
