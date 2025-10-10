@@ -37,6 +37,12 @@ public class BlackComment extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		
+		if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect("login.jsp");
+            return;
+        }
+		
         BlackListService blackListService = new BlackListServiceImpl();
         String blockedNoStr = request.getParameter("blockedNo");
         if (blockedNoStr == null || blockedNoStr.isEmpty()) {
