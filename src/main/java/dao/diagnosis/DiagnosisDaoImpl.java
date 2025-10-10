@@ -200,11 +200,6 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 			return session.selectOne("mapper.diagnosis_history.getLatestDiagnosisByUser", uNo);
 		}
 	}
-
-
-
-
-
-
-
+	
+	
 }

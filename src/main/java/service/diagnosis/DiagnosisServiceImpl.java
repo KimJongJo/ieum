@@ -252,7 +252,4 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	public ShowDIaListToUser getLatestDiagnosis(int uNo) throws Exception{
 		return diaDao.selectLatestDiagnosisByUser(uNo);
 	}
-
-
-
 }
