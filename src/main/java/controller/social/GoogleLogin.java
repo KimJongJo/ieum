@@ -76,7 +76,6 @@ public class GoogleLogin extends HttpServlet {
 		}
 		MemberDto member = googleService.emailCheck(googleDto.getEmail());
 			
-		System.out.println(member);
 		// member 객체가 있을때
 		if(googleDto.getMemberDto() != null) {
 			session.setAttribute("uNo", googleDto.getMemberDto().getuNo());

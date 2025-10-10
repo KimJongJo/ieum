@@ -15,7 +15,6 @@
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
-<link rel="stylesheet" href="${contextPath}/hospital/css/favorite.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <script
@@ -41,7 +40,7 @@
 			<div class="share" data-hno="${hosDetail.hNo }" >
 				<button type="button" class="fav-btn ${hosDetail.favorite ? 'active' : ''}">
 					<div class="i">
-						<i class="fa${h.favorite ? 's' : 'r'} fa-star"></i>
+						<i class="fa${hosDetail.favorite ? 's' : 'r'} fa-star"></i>
 					</div>
 				</button>
 				<button type="button" class="bt1">

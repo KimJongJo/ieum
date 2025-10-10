@@ -1,7 +1,6 @@
 package controller.myPage;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
-import dto.DiaryDto;
 import dto.MyCommunityDto;
+import dto.otherDto.ShowDIaListToUser;
 import service.allCommunity.CommuEmpathyService;
 import service.allCommunity.CommuEmpathyServiceImpl;
+import service.diagnosis.DiagnosisService;
+import service.diagnosis.DiagnosisServiceImpl;
 import service.myPage.CalenderService;
 import service.myPage.CalenderServiceImpl;
 
@@ -26,6 +25,7 @@ import service.myPage.CalenderServiceImpl;
 public class Calender extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CalenderService calenderService;
+	DiagnosisService diagnosisService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,6 +33,7 @@ public class Calender extends HttpServlet {
     public Calender() {
         super();
         calenderService = new CalenderServiceImpl();
+        diagnosisService = new DiagnosisServiceImpl();
     }
 
 	/**
@@ -49,6 +50,14 @@ public class Calender extends HttpServlet {
 		
 	    HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		
+		if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect("login.jsp");
+            return;
+        }
+		
 		try {
 	        MyCommunityDto myComList = calenderService.getMyRecentCommunity(uNo);
 	        
@@ -61,6 +70,11 @@ public class Calender extends HttpServlet {
 	        }
 
 	        request.setAttribute("myComList", myComList);
+	        
+	        
+	        
+	        ShowDIaListToUser showDIaListToUser = diagnosisService.getLatestDiagnosis(uNo);
+	        request.setAttribute("showDIaListToUser", showDIaListToUser);
 
 	    } catch (Exception e) {
 	        e.printStackTrace();

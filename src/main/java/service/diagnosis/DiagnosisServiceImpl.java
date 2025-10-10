@@ -248,6 +248,11 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 		return diaDao.selectDiaByNo(diaNo);
 	}
 
+	@Override
+	public ShowDIaListToUser getLatestDiagnosis(int uNo) throws Exception{
+		return diaDao.selectLatestDiagnosisByUser(uNo);
+	}
+
 
 
 }
