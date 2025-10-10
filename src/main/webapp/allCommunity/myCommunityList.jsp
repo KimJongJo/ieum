@@ -445,6 +445,10 @@ $(document).ready(function() {
     $('.hide-if-user').hide();
 });
 
+
+$('.comPaging').show();
+$('.commentPaging, .heartPaging').hide();
+
 </script>
 </head>
 <body>
@@ -647,6 +651,111 @@ $(document).ready(function() {
         			<button type="submit" style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer; border:none; background:none;"></button>
 			    </div>
 			</c:forEach>
+			
+			
+			
+			<!-- 작성한 게시판 페이징 -->
+<div class="paging comPaging" style="text-align:center; margin:40px 0;">
+    <c:choose>
+        <c:when test="${comPageInfo.curPage > 1}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage-1}&commentPage=${commentPageInfo.curPage}&heartPage=${heartPageInfo.curPage}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+
+    <c:forEach begin="${comPageInfo.startPage}" end="${comPageInfo.endPage}" var="page">
+        <a href="${pageContext.request.contextPath}/myComList?comPage=${page}&commentPage=${commentPageInfo.curPage}&heartPage=${heartPageInfo.curPage}"
+           class="${comPageInfo.curPage == page ? 'select' : 'btn'}">${page}</a>
+    </c:forEach>
+
+    <c:choose>
+        <c:when test="${comPageInfo.curPage < comPageInfo.allPage}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage+1}&commentPage=${commentPageInfo.curPage}&heartPage=${heartPageInfo.curPage}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+</div>
+
+<!-- 작성한 댓글 페이징 -->
+<div class="paging commentPaging" style="text-align:center; margin:40px 0;">
+    <c:choose>
+        <c:when test="${commentPageInfo.curPage > 1}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${commentPageInfo.curPage-1}&heartPage=${heartPageInfo.curPage}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+
+    <c:forEach begin="${commentPageInfo.startPage}" end="${commentPageInfo.endPage}" var="page">
+        <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${page}&heartPage=${heartPageInfo.curPage}"
+           class="${commentPageInfo.curPage == page ? 'select' : 'btn'}">${page}</a>
+    </c:forEach>
+
+    <c:choose>
+        <c:when test="${commentPageInfo.curPage < commentPageInfo.allPage}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${commentPageInfo.curPage+1}&heartPage=${heartPageInfo.curPage}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+</div>
+
+<!-- 좋아요 누른 게시판 페이징 -->
+<div class="paging heartPaging" style="text-align:center; margin:40px 0;">
+    <c:choose>
+        <c:when test="${heartPageInfo.curPage > 1}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${commentPageInfo.curPage}&heartPage=${heartPageInfo.curPage-1}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+
+    <c:forEach begin="${heartPageInfo.startPage}" end="${heartPageInfo.endPage}" var="page">
+        <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${commentPageInfo.curPage}&heartPage=${page}"
+           class="${heartPageInfo.curPage == page ? 'select' : 'btn'}">${page}</a>
+    </c:forEach>
+
+    <c:choose>
+        <c:when test="${heartPageInfo.curPage < heartPageInfo.allPage}">
+            <a href="${pageContext.request.contextPath}/myComList?comPage=${comPageInfo.curPage}&commentPage=${commentPageInfo.curPage}&heartPage=${heartPageInfo.curPage+1}">
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:when>
+        <c:otherwise>
+            <a>
+                <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+            </a>
+        </c:otherwise>
+    </c:choose>
+</div>
+
             
         </div>
     </div>

@@ -1,19 +1,24 @@
 package service.allCommunity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import dao.allCommunity.CommentDao;
 import dao.allCommunity.CommentDaoImpl;
 import dao.allCommunity.CommunityDao;
 import dao.allCommunity.CommunityDaoImpl;
-
+import dto.AllCommunityDto;
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;
+import util.PageInfo;
 
 public class CommunityServiceImpl implements CommunityService{
+	private SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSessionFactory();
 	private CommunityDao communityDao;
 	private CommentDao commentDao;
 	private SqlSession session;

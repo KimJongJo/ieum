@@ -1,10 +1,13 @@
 package dao.allCommunity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.AllCommunityDto;
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;

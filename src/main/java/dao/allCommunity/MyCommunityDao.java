@@ -18,5 +18,7 @@ public interface MyCommunityDao {
 
     // 최근 좋아요한 커뮤니티 1개
     MyCommunityDto selectLikedCommunityOne(int uNo) throws Exception;
+	List<MyCommunityDto> selectMyList(Integer row) throws Exception;
+	Integer selectMyConut() throws Exception;
     
 }

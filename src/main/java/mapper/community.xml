@@ -129,13 +129,6 @@
 		from community c
 		join commu_like cl on c.commu_no = cl.commu_no;
 	</select>
-	
-	
-	
-	
-	
-	
-	
 	<!-- 페이징 처리할 쿼리 (20개 가져오기)-->
 	<select id="selectList" parameterType="map" resultType="allCommunity">
 	    SELECT
@@ -158,20 +151,41 @@
         </otherwise>
     </choose>
         LIMIT #{row}, 20
-	</select>
-	
-	
+	</select>	
 	<!-- 커뮤니티 저장된것 다 가져오기 (갯수 파악함)-->
 	<select id="selectCount" resultType="Integer">
 		select count(*)
 	    from community
 	</select>
+	<!-- 페이징 처리할 쿼리 (10개 가져오기)-->
+	<select id="selectMyList" parameterType="map" resultType="allCommunity">
+	    SELECT
+            c.commu_no, c.commu_title, c.commu_content, c.commu_created, c.empathy, c.commu_comment, c.commu_views, cg.category_name, m.nickname
+        FROM community c
+        INNER JOIN commu_category cg ON c.category_no = cg.category_no
+        INNER JOIN member m ON c.u_no = m.u_no
+            <choose>
+        <when test="sort == 'latest'">
+            ORDER BY c.commu_no DESC
+        </when>
+        <when test="sort == 'empathy'">
+            ORDER BY c.empathy DESC, c.commu_no DESC
+        </when>
+        <when test="sort == 'view'">
+            ORDER BY c.commu_views DESC, c.commu_no DESC
+        </when>
+        <otherwise>
+            ORDER BY c.commu_no DESC
+        </otherwise>
+    </choose>
+        LIMIT #{row}, 10
+	</select>
 	
-	
-	
-	
-	
-	
+	<select id="selectMyCount" resultType="Integer">
+		select count(*)
+	    from community
+	    where u_no = #{uNo}
+	</select>
 	
 	
 	<select id="listByPageAndSort" resultType="allCommunity" parameterType="map">
@@ -197,10 +211,6 @@
 	
 	<select id="getCommunityAuthorNo" parameterType="int" resultType="int">
 		select u_no from community where commu_no = #{commuNo}
-	</select>
-	
-	
-	
-	
+	</select>	
 	
 </mapper>	

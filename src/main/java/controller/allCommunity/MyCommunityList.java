@@ -25,6 +25,7 @@ import service.allCommunity.CommunityService;
 import service.allCommunity.CommunityServiceImpl;
 import service.allCommunity.MyCommunityService;
 import service.allCommunity.MyCommunityServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class MyCommunityList
@@ -48,6 +49,15 @@ public class MyCommunityList extends HttpServlet {
 		// 로그인 사용자 번호 (임시)
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		String spage = request.getParameter("page");
+		Integer page = 1;
+		if(spage != null) page=Integer.parseInt(spage);
+		
+		PageInfo pageInfo = new PageInfo(page);
+		
+		
+		
 		MyCommunityService service = new MyCommunityServiceImpl();
 		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
