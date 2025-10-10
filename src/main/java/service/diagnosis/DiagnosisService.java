@@ -42,6 +42,4 @@ public interface DiagnosisService {
 	ShowDIaListToUser selectDiaByNo(Integer diaNo);
 	//저에용
 	ShowDIaListToUser getLatestDiagnosis(int uNo) throws Exception;
-
-
 }

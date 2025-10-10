@@ -270,6 +270,10 @@
 
 	<!-- 저에용 -->
 	<select id="selectAllReservationList" parameterType="Integer" resultType="reservation">
-		select r_date from reservation where u_no=#{uNo}
+		select r.r_date, d.diagnosis_state from reservation r 
+		JOIN diagnosis_history d ON r.r_no = d.r_no
+		where u_no=#{uNo}  
+		AND d.diagnosis_state IS NOT NULL
+		AND d.diagnosis_state != 'COMPLETED'
 	</select>
 </mapper>	

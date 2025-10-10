@@ -1,5 +1,6 @@
 package service.reservation;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -224,9 +225,5 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void resCancel(Integer rNo) throws Exception {
 		resDao.resCancel(rNo);
-	}
-	
-
-
-	
+	}	
 }
