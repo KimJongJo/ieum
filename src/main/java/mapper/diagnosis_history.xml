@@ -224,7 +224,7 @@
 	    WHERE u.u_no = #{uNo}
 	      AND DATE(r.r_date) = #{date}
 	    ORDER BY r.r_date DESC
-	    LIMIT #{offset}, #{limit}
+	    LIMIT #{offset}, #{limit}	    
 	</select>
 	
 	<select id="getTotalCount" parameterType="Integer" resultType="Integer">
@@ -267,6 +267,26 @@
 		JOIN file f ON(f.file_no = m.file_no)
 		JOIN hospital h ON(m.h_no = h.h_no)
 		WHERE d.diagnosis_no = #{diaNo}
+	</select>	
+	
+	
+	<!-- 최근 진단 이력 1개 조회 -->
+	<select id="getLatestDiagnosisByUser" parameterType="int" resultType="shwoDiaInfo">
+	    SELECT 
+	        d.diagnosis_no AS diaNo,
+	        d.diagnosis_name,
+	        d.test_summary,
+	        d.doctor_comment,
+	        DATE_FORMAT(r.r_date, '%Y-%m-%d') AS r_date, h.h_nm as hNm
+	    FROM diagnosis_history d
+	    JOIN member m ON d.patient_id = m.u_no
+	    JOIN reservation r ON d.r_no = r.r_no
+	    JOIN hospital h ON d.h_no = h.h_no
+	    WHERE d.diagnosis_state = 'COMPLETED'
+	      AND d.patient_id = #{uNo}
+	    ORDER BY d.diagnosis_no DESC
+	    LIMIT 1
 	</select>
+	
 	
 </mapper>	

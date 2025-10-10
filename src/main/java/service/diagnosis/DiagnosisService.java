@@ -40,6 +40,8 @@ public interface DiagnosisService {
 	List<Map<String, Object>> selectAll(Integer uNo);
 
 	ShowDIaListToUser selectDiaByNo(Integer diaNo);
+	//저에용
+	ShowDIaListToUser getLatestDiagnosis(int uNo) throws Exception;
 
 
 }

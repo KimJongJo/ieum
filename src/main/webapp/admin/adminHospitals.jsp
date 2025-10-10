@@ -173,7 +173,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            
         </div>
         <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services"></script>

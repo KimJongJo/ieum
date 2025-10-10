@@ -9,8 +9,10 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender2.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/diagnosisHistory.css" />
 <%-- <script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script> --%>
 <!-- <link
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
@@ -124,7 +126,7 @@ body {
     border: 2px solid #d9d9d9;
     background-color: white;
     width: 996px;
-    height: 230px;
+    height: 210px;
     margin:0;
     display: flex;            /* flex 사용 */
     flex-direction: column;   /* 세로로 쌓기 */
@@ -623,8 +625,82 @@ $(document).ready(function() {
 		popup.css("display", "none");
 	});
 })
+
+$(document).ready(function() {
+    $('.hide-if-user').hide();
+});
 </script>
 
+<script type="text/javascript">
+//동적 위임으로 버튼 클릭 시 모달 열기
+$(document).on("click", "#btn2", function() {
+	
+	$.ajax({
+		url:"/ieum/myPage/diagnosisHistory",
+		type:"POST",
+		data:{diaNo:$(this).val()},
+		dataType:"json",
+		success:function(res){
+			if(res.success){
+				var object = res.object;
+				// 비우기
+				$("#uNm").text("");
+				$("#gender").text("");
+				$("#birthDate").text("");
+				// 진단/진료상세
+				$("#diaName").text("");
+				$("#sym").text("");
+				$("#summary").text("");
+				$("#treatment").text("");
+				$("#pre").text("");
+				// 의사정보
+				$("#docImg").attr("src", "");
+				$("#mNm").text("");
+				$("#rDate").text("");
+				$("#major").text("");
+				$("#hNm").text("");
+				// 의사의말
+				$("#docComment").text("");
+				
+				
+				// 채우기
+				// 환자 정보
+				$("#uNm").text(object.uNm);
+				$("#gender").text(object.gender);
+				$("#birthDate").text(object.birthDate);
+				// 진단/진료상세
+				$("#diaName").text(object.diagnosisName);
+				$("#sym").text(object.sympotoms);
+				$("#summary").text(object.testSummary);
+				$("#treatment").text(object.treatment);
+				$("#pre").text(object.prescription);
+				// 의사정보
+				$("#docImg").attr("src", "/ieum/" + object.docFilePath + "/" + object.docFileName);
+				$("#mNm").text(object.mNm);
+				$("#rDate").text(object.rDate);
+				$("#major").text(object.major);
+				$("#hNm").text(object.hNm);
+				// 의사의말
+				$("#docComment").text(object.doctorComment);
+				
+				
+			}else{
+				console.log(res.message);
+			}
+		},
+		error:function(err){
+			console.log(err);
+		}
+	})
+	 $('#modal-div').css('display', 'flex');
+	
+    openModal();
+});
+//모달 확인 버튼 클릭 시 모달 닫기
+$(document).on("click", "#check", function() {
+    $("#modal-div").hide(); // 모달 숨김
+});
+</script>
 
  <style>
  
@@ -986,8 +1062,8 @@ $(document).ready(function() {
                 <div class="sidebar-body">
                      <ul>
 					    <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
-					    <li><button type="button">예약 내역</button></li>
-					    <li><button type="button">진단 이력</button></li>
+					    <a href="/ieum/myPage/reservation/list"><li><button type="button">예약 내역</button></li></a>
+						<a href="/ieum/myPage/diagnosisHistory"><li><button type="button">진단 이력</button></li></a>
 					    <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
 					    <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
 					    <a href="/ieum/myPage/diary?page=1"><li><button type="button">다이어리</button></li></a>
@@ -1010,6 +1086,7 @@ $(document).ready(function() {
             </button>
         </div>
         
+            
         <div id="diagnosis-box">
             <div id="box1">
                 <div class="box-item">진단 일시</div>
@@ -1017,23 +1094,24 @@ $(document).ready(function() {
                 <div class="box-item">결과요약</div>
                 <div class="box-item">상세보기</div>
             </div>
+            <c:if test="${showDIaListToUser !=null}">
             <div id="box2">
-                <div class="box-item">2025-09-18</div>
-                <div class="box-item">우울증</div>
-                <div class="box-item">중(약 복용)</div>
+                <div class="box-item">${showDIaListToUser.rDate}</div>
+                <div class="box-item">${showDIaListToUser.diagnosisName}</div>
+                <div class="box-item">${showDIaListToUser.testSummary}</div>
                 <div class="box-item">
-                    <button id="btn2">진단 결과 보기</button>
+                    <button id="btn2" value="${showDIaListToUser.diaNo}">진단 결과 보기</button>
                 </div>
-            </div>
-            <div id="doc-comment">우울증은 단순한 슬픔과는 달리, 하루 대부분 지속되는 우울감, 흥미와 즐거움 상실, 의욕 저하 등이 주요 증상으로 나타나 일상생활과 사회생활에 
-                                    어려움을 주는 질병입니다
-            </div>
-            <div id="upload">
-                <div>수원시 보건소</div>
-                <div>업로드 날짜</div>
-            </div>
+	            </div>
+	            <div id="doc-comment">
+	            	${showDIaListToUser.doctorComment}
+	            </div>
+	            <div id="upload">
+	                <div>${showDIaListToUser.hNm}</div>
+	                <div>${showDIaListToUser.rDate}</div>
+	            </div>
+			</c:if>
         </div>
-		
 		
         <div id="community-box">
             <div id="diagnosis2">
@@ -1099,10 +1177,89 @@ $(document).ready(function() {
             </div>
             </c:if>
         </div>
+        
+        
+        <div class="modal-div" id="modal-div">
+                            <div class="diagnosis">
+                                <div class="xmark-div"><i class="fa-solid fa-xmark"></i></div>
+                                <div class="diagnosis-div">
+                                    <!-- 왼쪽 내용 -->
+                                    <div class="left-div">
+                                        <div><span>환자 정보</span></div>
+                                        <table class="user-table">
+                                            <tr>
+                                                <td class="th user-th table-left">이름</td>
+                                                <td class="td user-td" id="uNm"></td>
+                                                <td class="th user-th th2">성별</td>
+                                                <td class="td user-td" id="gender"></td>
+                                                <td class="th user-th th2">생년월일</td>
+                                                <td class="td user-td table-right" id="birthDate"></td>
+                                            </tr>
+                                        </table>
+                                        <div><span>진단/진료상세</span></div>
+                                        <table class="diagnosis-table">
+                                            <tr>
+                                                <td class="th diagnosis-th diagnosis-left" style="height: 40px">진단명</td>
+                                                <td class="diagnosis-td diagnosis-right" id="diaName"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th diagnosis-th">증상</td>
+                                                <td class="diagnosis-td" id="sym"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th diagnosis-th" style="height: 200px">주요검사 결과 요약</td>
+                                                <td class="diagnosis-td" id="summary"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th diagnosis-th" style="height: 165px">처치/수술내용</td>
+                                                <td class="diagnosis-td" id="treatment"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="th diagnosis-th diagnosis-left-down">처방전</td>
+                                                <td class="diagnosis-td diagnosis-right-down" id="pre"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- 오른쪽 내용 -->
+                                    <div class="right-div">
+                                        <div><span>의사 정보</span></div>
+                                        <div class="doctor-info">
+                                            <img src="../image/병원관리자.png" alt="" class="doc-img" id="docImg"/>
+                                            <table class="doctor-table">
+                                                <tr>
+                                                    <td class="th doctor-th">담당의사</td>
+                                                    <td class="doctor-td doctor-first" id="mNm"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="th doctor-th">진료 일시</td>
+                                                    <td class="doctor-td" id="rDate"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="th doctor-th">전공</td>
+                                                    <td class="doctor-td" id="major"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="th doctor-th">진료 병원</td>
+                                                    <td class="doctor-td doctor-last" id="hNm"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div><span>의사의 말</span></div>
+                                        <table class="comment-table">
+                                            <tr>
+                                                <td class="th comment-th" style="width: 180px">내용</td>
+                                                <td class="comment-td" id="docComment"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="btn-div"><button type="button" class="check-btn" id="check">확인</button></div>
+                            </div>
+                        </div>
 	</div>
     </div>
     </div>
-	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
+	 <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
 
