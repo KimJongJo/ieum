@@ -54,5 +54,7 @@ public interface DiagnosisDao {
 	List<Map<String, Object>> selectAll(Integer uNo);
 
 	ShowDIaListToUser selectDiaByNo(Integer diaNo);
+	// 저에용
+	ShowDIaListToUser selectLatestDiagnosisByUser(int uNo) throws Exception;
 
 }
