@@ -13,6 +13,7 @@ const daySelect = document.getElementById("day");
 
 const currentYear = new Date().getFullYear();
 
+
 // 연도 채우기 (현재 연도부터 1900년까지 내림차순)
 for (let y = currentYear; y >= 1900; y--) {
     const option = document.createElement("option");

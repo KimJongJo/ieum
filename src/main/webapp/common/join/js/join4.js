@@ -1,6 +1,7 @@
-const yearSelect = document.getElementById("joinYear");
+const yearSelect = document.getElementById("year");
 const monthSelect = document.getElementById("month");
 const daySelect = document.getElementById("day");
+
 
 const currentYear = new Date().getFullYear();
 
