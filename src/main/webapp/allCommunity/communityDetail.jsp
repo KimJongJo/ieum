@@ -510,7 +510,7 @@ $('#blockCommentForm').submit(function(e){
 
 </head>
 <body>
-	<c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
     <div class="community">
         <div class="post-header">

@@ -15,7 +15,7 @@ public interface FileService {
 
 	FileDto getFile(Integer fileNo);
 
-	void updateFile(Part file, String string, FileDto fileDto, String realPath)throws Exception;
+	FileDto updateFile(Part file, String string, FileDto fileDto, String realPath)throws Exception;
 
 	void deleteFile(FileDto fileDto, String realPath);
 	

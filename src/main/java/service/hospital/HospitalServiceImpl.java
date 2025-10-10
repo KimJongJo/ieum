@@ -332,4 +332,14 @@ public class HospitalServiceImpl implements HospitalService {
 		return hosDao.getHosNoByuNo(userNo);
 	}
 
+	@Override
+	public int getTotalActiveHos() {
+		return hosDao.getTotalActiveHos();
+	}
+
+	@Override
+	public int getTotalInactiveHos() {
+		return hosDao.getTotalInactiveHos();
+	}
+
 }

@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/modal.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script>
@@ -30,7 +30,7 @@
     <body>
 
     
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->

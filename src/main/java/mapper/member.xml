@@ -439,4 +439,22 @@
 		introduction = #{introduction}
 		where u_no = #{uNo}
 	</update>
+	
+	<select id="getTotalUser" resultType="Integer">
+		select count(*) from member
+		where user_type = 'USER'
+		and state_code = 1
+	</select>
+	
+	<select id="getTotalManager" resultType="Integer">
+		select count(*) from member
+		where user_type in('MANAGER','DOCTOR')
+		and state_code = 1
+	</select>
+	
+	<select id="getTotalMember" resultType="Integer">
+		select count(*) from member
+		where state_code = 1
+		and user_type != 'ADMIN'
+	</select>
 </mapper>	

@@ -124,7 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </head>
 <body>
 
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
     <!-- Section Title -->
     <div id="section-title">
@@ -143,17 +143,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     <strong>*환영합니다*<br>최지성 회원님</strong>
                     <span>심원의방</span>
                 </div>
-                <div class="sidebar-body">
-                     <ul>
-					    <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
-					    <li><button type="button">예약 내역</button></li>
-					    <li><button type="button">진단 이력</button></li>
-					    <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
-					    <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
-					    <li><button type="button">다이어리</button></li>
-					    <li><button type="button">즐겨찾는 병원</button></li>
-					</ul>
-                </div>
+                <c:if test="${userType == 'USER'}">
+                	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
+                </c:if>	
             </div>
         </div>
 		

@@ -293,4 +293,25 @@ public class MemberDaoImpl implements MemberDao {
 			
 		}
 	}
+
+	@Override
+	public int getTotalUser() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalUser");
+		}
+	}
+
+	@Override
+	public int getTotalManager() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalManager");
+		}
+	}
+
+	@Override
+	public int getTotalMember() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalMember");
+		}
+	}
 }

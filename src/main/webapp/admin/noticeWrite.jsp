@@ -13,6 +13,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -88,5 +89,6 @@
 			<%-- 			<jsp:include page="../footer.html"></jsp:include> --%>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

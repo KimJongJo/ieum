@@ -13,7 +13,7 @@ import javax.servlet.http.Part;
 
 import service.file.FileService;
 import service.file.FileServiceImpl;
-
+import dto.FileDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
 import service.myPage.ProfileInfoService;
@@ -112,9 +112,12 @@ public class ProfileInfoModify extends HttpServlet {
 	            member.setDiaryPrivate("yes".equals(diaryPrivate));
 	            
 	            
-	            profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
+	            FileDto fileDto =  profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
 	            
-	            
+	            if(proFile.getSize() != 0) {
+	            	String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+	            	session.setAttribute("profile", filePath);
+	            }
 	            
 	           
 		     
@@ -149,8 +152,12 @@ public class ProfileInfoModify extends HttpServlet {
 	            member.setIntroduction(introduction);
 	            member.setStateCode(stateCode);
 	            
-	            profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
+	            FileDto fileDto = profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
 	            
+	            if(proFile.getSize() != 0) {
+	            	String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+	            	session.setAttribute("profile", filePath);
+	            }
 	            
 	            
 	           

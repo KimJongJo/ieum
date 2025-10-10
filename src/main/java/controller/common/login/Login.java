@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import dto.FileDto;
 import dto.MemberDto;
 import dto.otherDto.ResponseDto;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 import service.hospital.HospitalService;
 import service.hospital.HospitalServiceImpl;
 import service.member.MemberService;
@@ -94,11 +97,33 @@ public class Login extends HttpServlet {
 			
 			session = request.getSession();
 			MemberDto member = service.selectUserByNo(userNo);
+			// 로그인된 사용자의 사진을 세션에 저장하기
+			FileService fileService = new FileServiceImpl();
+			FileDto fileDto = fileService.getFile(member.getFileNo());
+			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+			session.setAttribute("profile", filePath);
+			
 			
 			if(member.getUserType().equals("DOCTOR") || member.getUserType().equals("MANAGER")) {
 				HospitalService hosService = new HospitalServiceImpl();
 				String hNm = hosService.getHosNoByuNo(userNo);
 				session.setAttribute("hNm", hNm);
+			}else if(member.getUserType().equals("ADMIN")) {
+				
+				HospitalService hosService = new HospitalServiceImpl();
+				
+				int totalMember = service.getTotalMember();
+				int totalUser = service.getTotalUser();
+				int totalManager = service.getTotalManager();
+				int totalActiveHos = hosService.getTotalActiveHos();
+				int totalInactiveHos = hosService.getTotalInactiveHos();
+				
+				session.setAttribute("totalMember", totalMember);
+				session.setAttribute("totalUser", totalUser);
+				session.setAttribute("totalManager", totalManager);
+				session.setAttribute("totalActiveHos", totalActiveHos);
+				session.setAttribute("totalInactiveHos", totalInactiveHos);
+				
 			}
 			resDto = new ResponseDto(true, "로그인 성공");
 			

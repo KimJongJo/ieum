@@ -111,7 +111,7 @@ $(function () {
 </script>
 </head>
 <body>
-<c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
     <c:choose>
 	    <c:when test="${empty community}">

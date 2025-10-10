@@ -1,4 +1,9 @@
+body{
+	margin:0;
+}
+
 .main-bar {
+	width:100%;
 	min-width:1250px;
 	height: 115px;
 	background-color: #4356b3;
@@ -47,7 +52,7 @@
 	color: white;
 }
 
-.line {
+.adminLine {
 	height: 45px;
 	border: 2px solid white;
 	border-radius: 30px;
@@ -168,7 +173,7 @@
 	font-weight: bold;
 }
 
-.search-bar {
+.admin-search-bar {
 	width: 930px;
 	margin-right: 45px;
 	display: flex;
@@ -351,7 +356,7 @@
 	border: none;
 }
 
-.profile {
+.userProfile {
 	width: 430px;
 	height: 585px;
 	display: flex;
@@ -408,15 +413,7 @@
 	width: 70px;
 }
 
-.hospital {
-	width: 710px;
-	height: 665px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 5px;
-	background-color: white;
-}
+
 
 .hospital-header {
 	margin-top: 10px;
@@ -434,12 +431,6 @@
 	margin-bottom: 30px;
 }
 
-.hospital-img {
-	width: 180px;
-	height: 180px;
-	border-radius: 50%;
-	margin-bottom: 35px;
-}
 
 .hospital-table {
 	width: 370px;

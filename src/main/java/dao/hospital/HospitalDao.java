@@ -32,4 +32,6 @@ public interface HospitalDao {
 	public HospitalDetailDto getHosInfo(Integer uNo);
 	public void updateHosInfo(Map<String, Object> map);
 	public String getHosNoByuNo(int userNo);
+	public int getTotalActiveHos();
+	public int getTotalInactiveHos();
 }

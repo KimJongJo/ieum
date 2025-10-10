@@ -11,12 +11,17 @@
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosSearch.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${contextPath}/admin/css/admin.css">
+	</c:if>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>hosSearch</title>
 </head>
 <body>
 
-	<jsp:include page="/common/header/header.html" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
 	<div class="container">
 		<div class="filter">
@@ -160,7 +165,7 @@
 
 		</div>
 	</div>
-	<footer> </footer>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script src="${contextPath }/hospital/js/hosSearch.js"></script>
 </body>
 </html>

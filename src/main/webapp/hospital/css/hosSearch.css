@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     font-family: "Noto Sans KR", Helvetica;
     color: #000000;
+    margin:0;
 }
 
 a {

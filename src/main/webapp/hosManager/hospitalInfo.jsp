@@ -24,7 +24,7 @@
 
     </head>
     <body>
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->

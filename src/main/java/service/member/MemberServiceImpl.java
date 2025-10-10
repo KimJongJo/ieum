@@ -497,5 +497,20 @@ public class MemberServiceImpl implements MemberService {
         }
 	}
 
+	@Override
+	public int getTotalUser() {
+		return memberDao.getTotalUser();
+	}
+
+	@Override
+	public int getTotalManager() {
+		return memberDao.getTotalManager();
+	}
+
+	@Override
+	public int getTotalMember() {
+		return memberDao.getTotalMember();
+	}
+
 
 }

@@ -1,9 +1,12 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: "Noto Sans KR", Helvetica;
     color: #000000;
+}
+.body-div{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:26px;
 }
 
 a {
@@ -11,7 +14,7 @@ a {
 	color: inherit;
 }
 
-.container {
+.exam-container {
     width: 1280px;
     display: flex;
     margin-bottom: 60px;
@@ -69,7 +72,7 @@ a {
 }
 
 
-.header {
+.cate-header {
     width: 1022px;
     height: 203px;
     border: 2px solid #dfdfdf;

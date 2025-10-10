@@ -80,4 +80,10 @@ public interface MemberDao {
 	MemberProfileDto selectProFileView(Integer uNo) throws Exception;
 
 	void updateManageProfile(MemberDto memberDto);
+
+	int getTotalUser();
+
+	int getTotalManager();
+
+	int getTotalMember();
 }

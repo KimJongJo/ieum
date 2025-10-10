@@ -26,7 +26,7 @@ public class ProfileInfoServiceImpl implements ProfileInfoService{
 	}
 
 	@Override
-	public void updateProfile(MemberDto memberDto, Part file, String type, String realPath) throws Exception {
+	public FileDto updateProfile(MemberDto memberDto, Part file, String type, String realPath) throws Exception {
 		// 일반 유저일때랑 병원관리자일때랑 들어가는 값이 다름
 		if("user".equals(type)) { // 일반유저일때
 			memberDao.updateProfile(memberDto);
@@ -34,17 +34,20 @@ public class ProfileInfoServiceImpl implements ProfileInfoService{
 			memberDao.updateManageProfile(memberDto);
 		}
 		
+		
 		Integer fileNo = memberDao.selectFileNo(memberDto.getuNo());
 		FileDto fileDto = fileService.getFile(fileNo);
 		 // 파일 경로가 img 또는 img/userProfile인 경우 업데이트
 		
-		if(fileDto != null) {
+		if(file.getSize() != 0) {
 			if(!fileDto.getFilePath().equals("img")) { // 만약 기본 회원 사진이 아닐때 기존 사진을 제거
 				
 				fileService.deleteFile(fileDto, realPath);
 			}
 			// 파일 이미지 변경
-			fileService.updateFile(file, type, fileDto, realPath);
+			return fileService.updateFile(file, type, fileDto, realPath);
+		}else {
+			return null;
 		}
 
         

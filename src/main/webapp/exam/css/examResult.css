@@ -1,9 +1,14 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	margin:0;
     font-family: "Noto Sans KR", Helvetica;
     color: #000000;
+}
+
+.body-div{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:26px;
 }
 
 a {
@@ -11,7 +16,7 @@ a {
 	color: inherit;
 }
 
-.container {
+.exam-container {
     margin-top: 110px;
     width: 1280px;
     display: flex;

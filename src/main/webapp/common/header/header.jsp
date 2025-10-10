@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -18,19 +19,25 @@
 </head>
 <body>
 
+
+	<c:if test="${userType == 'ADMIN'}">
+		<jsp:include page="/common/header/adminHeader.jsp"></jsp:include>
+	</c:if>
 	<!-- 헤더 위 검정 줄 -->
 	<div class="login-inner">
-		<c:choose>
-			<c:when test="${uNo != null}">
-				<div class="header-profile">
-					<img src="${pageContext.request.contextPath}/img/회원이미지.jpg">
-				</div>
-				<span class="login-txt" onclick="moveToUrl('/logout')">로그아웃</span>
-			</c:when>
-			<c:otherwise>
-				<span class="login-txt" onclick="moveToUrl('/login')">로그인 / 회원가입</span>
-			</c:otherwise>
-		</c:choose>
+		<div class="login-bar">
+			<c:choose>
+				<c:when test="${uNo != null}">
+					<div class="header-profile">
+						<img src="${contextPath}/${sessionScope.profile}">
+					</div>
+					<span class="login-txt" onclick="moveToUrl('/logout')">로그아웃</span>
+				</c:when>
+				<c:otherwise>
+					<span class="login-txt" onclick="moveToUrl('/login')">로그인 / 회원가입</span>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
 	<div id="header-line-top"></div>
 
@@ -46,7 +53,7 @@
 			<jsp:include page="/common/header/managerHeader.html"></jsp:include>
 		</c:when>
 		<c:when test="${userType == 'ADMIN'}">
-			<jsp:include page="/common/header/adminNavHeader.html"></jsp:include>
+			<jsp:include page="/common/header/adminNavHeader.jsp"></jsp:include>
 		</c:when>
 		<c:otherwise>
 			<jsp:include page="/common/header/guestHeader.html"></jsp:include>
@@ -85,8 +92,10 @@
 			</div>
 		</div>
 	</div> -->
-	<c:if test="${pageName ne '/ieum/index' and not fn:contains(pageName, 'admin')}">
+	<c:if test="${pageName ne '/ieum/index' and sessionScope.userType ne 'ADMIN'}">
+
 		<!-- Middle Header -->
+		
 		<div class="middle-header">
 			<div class="full-rect"></div>
 			<div class="group xlarge">

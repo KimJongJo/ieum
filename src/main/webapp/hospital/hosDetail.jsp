@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
 <link rel="stylesheet" href="${contextPath}/hospital/css/favorite.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-	<jsp:include page="/common/header/header.html" />
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<div class="container">
 		<div class="hh">
 			<div class="hbt">
@@ -315,6 +316,7 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>
 	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>

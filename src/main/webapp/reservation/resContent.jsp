@@ -17,11 +17,12 @@
 	href="${contextPath }/reservation/css/resContent.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>resContent</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.html" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<form id="actResForm">
 		<input type="hidden" id="mNo" value="${mNo}"> 
 		<input type="hidden" id="rDate" value="${rDate}">
@@ -99,6 +100,7 @@
 			<button type="button" class="btn-long-b" id="resSubmit">다음단계</button>
 		</div>
 	</form>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<script src="${contextPath }/reservation/js/resContent.js"></script>
 </body>
 </html>

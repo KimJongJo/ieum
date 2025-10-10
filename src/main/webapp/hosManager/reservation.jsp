@@ -8,7 +8,7 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservation.css" />
@@ -31,7 +31,7 @@
         
     </head>
     <body>
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->

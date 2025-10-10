@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./css/admin.css" />
 <link rel="stylesheet" href="./css/adminNav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -29,11 +29,9 @@
 
 </head>
 <body>
-<c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<div class="main">
 		<div class="main-div">
-			<!-- 헤더 들어올 곳 -->
-			<jsp:include page="../common/header/adminHeader.html"></jsp:include>
 			<!-- 아래 -->
 			<div class="under-section">
 				<!-- 네비 들어올 곳 -->
@@ -42,7 +40,7 @@
 					<div class="search-name">
 						<span class="search-name-span">병원 신청 목록</span>
 					</div>
-					<div class="search-bar">
+					<div class="admin-search-bar">
 						<input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
 						<button class="search-bar-icon" type="button" id="searchBtn">
 							<i class="fa-solid fa-magnifying-glass"></i>

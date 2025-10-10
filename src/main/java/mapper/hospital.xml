@@ -289,5 +289,15 @@
 		join member m on(h.h_no = m.h_no)
 		where m.u_no = #{_parameter}
 	</select>
+	
+	<select id="getTotalActiveHos" resultType="Integer">
+		select count(*) from hospital
+		where status = 'ACTIVE'
+	</select>
+	
+		<select id="getTotalInactiveHos" resultType="Integer">
+		select count(*) from hospital
+		where status = 'INACTIVE'
+	</select>
 
 </mapper>	

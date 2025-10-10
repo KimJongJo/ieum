@@ -18,7 +18,7 @@ $(document).ready(function(){
                 if(res.success) {
 					
                     const object = res.object;
-
+					console.log(object);
                     $("#userName").text(object.username);
                     // 이미지 경로 변경
 					$("#userImg").attr("src", contextPath + "/" + object.imgFile);

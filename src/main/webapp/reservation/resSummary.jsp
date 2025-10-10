@@ -14,10 +14,11 @@
 	href="${contextPath}/reservation/css/resSummary.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <title>resSummary</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.html" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<div class="container">
 		<div class="success">
 			<div class="icon">
@@ -82,6 +83,6 @@
 		</div>
 	</div>
 
-
+<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

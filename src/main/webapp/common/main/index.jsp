@@ -14,7 +14,7 @@
 		<link rel="stylesheet" type="text/css"
 	href="${contextPath}/admin/css/admin.css">
 	</c:if>
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
@@ -99,7 +99,7 @@
 								</c:choose>
 								<span class="btn-link">${userInfo.nickname}</span>
 							</div>
-							<a href="" class="btn-link">마이페이지</a>
+							<a href="/ieum/calender" class="btn-link">마이페이지</a>
 						</div>
 						<div class="login-body fc" id="fc"></div>
 					</c:when>
@@ -265,5 +265,6 @@
 		<!-- 지도 영역 -->
 		<div class="map-right" id="map"></div>
 	</section>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
