@@ -82,6 +82,7 @@ public class NaverLogin extends HttpServlet {
 			
 			// 만약에 이미 병합한 계정이라면
 			if(member.getSocialId() != null && member.getSocialId().equals(naverDto.getId())) {
+				session.setAttribute("userType", member.getUserType());
 				session.setAttribute("uNo", member.getuNo());
 				response.sendRedirect(request.getContextPath() + "/index");
 			}else { // 아니라면 병합을 묻는 페이지로 이동
