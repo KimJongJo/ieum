@@ -30,17 +30,18 @@ public class HospitalDetailDto {
 	String filePath; // 경로
 	
 	boolean favorite;
+	Integer uNo;
 
 	HospitalDetailDto() {
 		super();
 	}
-
 	
+
 
 	public HospitalDetailDto(Integer hNo, String hNm, Integer categoryNo, String hAddress, String hLocationY,
 			String hLocationX, String transferInfo, String holidayInfo, String hTel, String hLink, Integer hosImgFileNo,
 			String status, String hCode, String city, String gungu, String services, boolean silson, String newsTitle,
-			String newsContent, String categoryName, String fileName, String filePath, boolean favorite) {
+			String newsContent, String categoryName, String fileName, String filePath, boolean favorite, Integer uNo) {
 		super();
 		this.hNo = hNo;
 		this.hNm = hNm;
@@ -65,7 +66,9 @@ public class HospitalDetailDto {
 		this.fileName = fileName;
 		this.filePath = filePath;
 		this.favorite = favorite;
+		this.uNo = uNo;
 	}
+
 
 
 
@@ -77,7 +80,7 @@ public class HospitalDetailDto {
 				+ ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city=" + city
 				+ ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + ", newsTitle=" + newsTitle
 				+ ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", fileName=" + fileName
-				+ ", filePath=" + filePath + ", favorite=" + favorite + "]";
+				+ ", filePath=" + filePath + ", favorite=" + favorite + ", uNo=" + uNo + "]";
 	}
 
 
@@ -270,6 +273,18 @@ public class HospitalDetailDto {
 		this.favorite = favorite;
 	}
 
+
+
+	public Integer getuNo() {
+		return uNo;
+	}
+
+
+
+	public void setuNo(Integer uNo) {
+		this.uNo = uNo;
+	}
+	
 	
 
 }

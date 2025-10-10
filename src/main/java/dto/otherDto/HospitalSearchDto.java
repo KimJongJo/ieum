@@ -11,11 +11,17 @@ public class HospitalSearchDto {
 	int offset; //몇번째 row부터 가져올지
 	int limit; //몇개 가져올지
 	
+	Integer uNo;
+	boolean favorite;
+	
 	public HospitalSearchDto() {
 		super();
 	}
 
-	public HospitalSearchDto(String keyword, List<String> categoryName, String city, String gungu, int offset, int limit) {
+	
+
+	public HospitalSearchDto(String keyword, List<String> categoryName, String city, String gungu, int offset,
+			int limit, Integer uNo, boolean favorite) {
 		super();
 		this.keyword = keyword;
 		this.categoryName = categoryName;
@@ -23,7 +29,19 @@ public class HospitalSearchDto {
 		this.gungu = gungu;
 		this.offset = offset;
 		this.limit = limit;
+		this.uNo = uNo;
+		this.favorite = favorite;
 	}
+	
+
+	@Override
+	public String toString() {
+		return "HospitalSearchDto [keyword=" + keyword + ", categoryName=" + categoryName + ", city=" + city
+				+ ", gungu=" + gungu + ", offset=" + offset + ", limit=" + limit + ", uNo=" + uNo + ", favorite="
+				+ favorite + "]";
+	}
+
+
 
 	public String getKeyword() {
 		return keyword;
@@ -73,9 +91,30 @@ public class HospitalSearchDto {
 		this.limit = limit;
 	}
 
-	
-	
-	
+
+
+	public Integer getuNo() {
+		return uNo;
+	}
+
+
+
+	public void setuNo(Integer uNo) {
+		this.uNo = uNo;
+	}
+
+
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
+
 
 	
 }

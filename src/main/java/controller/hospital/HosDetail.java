@@ -60,7 +60,7 @@ public class HosDetail extends HttpServlet {
 
 		try {
 			request.setAttribute("hNo", hNo);
-			HospitalDetailDto hosDetail = hosService.getDetail(hNo);
+			HospitalDetailDto hosDetail = hosService.getDetail(hNo, uNo);
 			request.setAttribute("hosDetail", hosDetail);
 			List<HospitalDocDto> docList = mService.DoclistBy2(hNo);
 			request.setAttribute("docList", docList);

@@ -52,6 +52,12 @@ public class HosSearch extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
+		boolean favorite;
+		if(uNo != null) {
+			favorite = true;
+		}else {
+			favorite = false;
+		}
 		
 		try {
 			JSONParser parser = new JSONParser();
@@ -71,7 +77,10 @@ public class HosSearch extends HttpServlet {
 			search.setKeyword(keyword);
 			search.setCategoryName(categoryNo);
 			search.setCity(city);
-			search.setGungu(gungu);			
+			search.setGungu(gungu);
+			search.setFavorite(favorite);
+			search.setuNo(uNo);
+			
 			PageInfo pageInfo = new PageInfo((int)page.longValue());
 			HospitalService hService = new HospitalServiceImpl();
 			List<HospitalDetailDto> hoslist = hService.listByFilter(search,pageInfo);

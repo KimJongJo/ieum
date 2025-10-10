@@ -123,12 +123,12 @@ $(document).ready(() => {
 
 					if (curPge < allPage) {
 						$("#loadMore").append(`
-						< div class= "loadmore" > <button class="btn-cir-w">
-							더보기<i class="fa-solid fa-chevron-down"></i></button></div > `)
+						<div class= "loadmore"> <button class="btn-cir-w">
+							더보기<i class="fa-solid fa-chevron-down"></i></button></div> `)
 					} else {
 						$("#goTop").append(`
-					< div class= "loadmore" > <button class="btn-cir-w">
-						맨위로<i class="fa-solid fa-angle-up"></i></button></div >
+					<div class= "loadmore"> <button class="btn-cir-w">
+						맨위로<i class="fa-solid fa-angle-up"></i></button></div>
 						`)
 					}
 				}

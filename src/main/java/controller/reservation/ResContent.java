@@ -76,7 +76,7 @@ public class ResContent extends HttpServlet {
 			MemberService mService = new MemberServiceImpl();
 			
 			try {
-				HospitalDetailDto hosd = hosService.getDetail(hNo);
+				HospitalDetailDto hosd = hosService.getDetail(hNo,uNo);
 				request.setAttribute("hosd", hosd);
 				MemberDto memd = mService.selectResUser(uNo);
 				request.setAttribute("memd", memd);				
