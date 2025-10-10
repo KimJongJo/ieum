@@ -1,6 +1,7 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,17 @@ public class CommunityDetailModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+        Integer uNo = (Integer) session.getAttribute("uNo");
+
+        if (uNo == null) {
+            // 로그인 안 했을 경우
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+		
+		
+		
 		String noStr = request.getParameter("no");
 		if (noStr == null || noStr.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "게시글 번호가 전달되지 않았습니다.");
@@ -55,6 +67,26 @@ public class CommunityDetailModify extends HttpServlet {
         CategoryService categoryService = new CategoryServiceImpl();
                
         try {
+        	
+        	// 작성자 조회
+            Integer authorNo = communityService.getCommunityAuthorNo(commuNo);
+            if (authorNo == null) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "게시글이 존재하지 않습니다.");
+                return;
+            }
+
+            // 세션 사용자와 작성자 비교
+            if (!uNo.equals(authorNo)) {
+            	response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>");
+                out.println("alert('게시글 수정 권한이 없습니다.');");
+                out.println("history.back();"); // 이전 페이지로 돌아가기
+                out.println("</script>");
+                out.close();
+                return;
+            }
+        	
         	//1. 커뮤글 조회
             CommunityDto communityDto = communityService.selectByNo(commuNo);
             request.setAttribute("community", communityDto);
@@ -108,12 +140,6 @@ public class CommunityDetailModify extends HttpServlet {
         int categoryNo = Integer.parseInt(categoryNoStr);
         
         try {
-        	int writerNo = communityService.getWriterNoByCommuNo(commuNo);
-        	if(!uNo.equals(writerNo)) {
-        		response.sendError(HttpServletResponse.SC_FORBIDDEN, "본인 글만 수정할 수 있습니다.");
-                return;
-        	}
-        	
         	MyCommunityDto myCommunityDto = new MyCommunityDto(commuNo, title, content, categoryNo);;
         	
             communityService.updateCommunity(myCommunityDto);

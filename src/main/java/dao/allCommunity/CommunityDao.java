@@ -18,4 +18,8 @@ public interface CommunityDao {
 	
 	
 	int selectWriterNoByCommuNo(int commuNo) throws Exception;
+	
+	
+	
+	 Integer getCommunityAuthorNo(int commuNo) throws Exception;
 }
