@@ -156,12 +156,12 @@ $(document).ready(() => {
 			e.preventDefault();
 			return;
 		}
-		
+
 		// textarea 값 복사
 		$("#resContent").val($("#rc").val());
 
 		// form submit
-        $("#resform").submit();
+		$("#resform").submit();
 	}
 
 	$("#resAnd").off("click").on("click", function() {
@@ -301,6 +301,14 @@ $(document).ready(() => {
 		}
 	}
 
+	// 상세 페이지 즐겨찾기
+	$(document).on("click", ".fav-btn", function(e) {
+		const btn = $(this);
+		const wrapper = btn.closest(".share");
+		const hNo = wrapper.data("hno");
+
+		toggleFavorite(btn, hNo); // wrapper 생략 가능
+	});
 
 
 });
