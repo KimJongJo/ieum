@@ -73,8 +73,8 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public void updateFile(Part file, String string, FileDto fileDto) throws Exception{
 		String fileName = file.getSubmittedFileName();
-//		realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
-		String realFilePath="C:\\Users\\USER\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
+		String realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
+//		String realFilePath="C:\\Users\\USER\\git\\kosta-ieum\\src\\main\\webapp\\img\\userProfile";
         System.out.println(fileName);
         System.out.println(realFilePath);
 		String filePath = "img/userProfile";
