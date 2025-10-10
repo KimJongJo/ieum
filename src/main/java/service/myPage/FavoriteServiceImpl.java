@@ -30,8 +30,8 @@ public class FavoriteServiceImpl implements FavoriteService {
 
 	@Override
 	public List<FavoriteDto> getList(PageInfo page, Integer uNo) throws Exception {
-		final int PAGE_SIZE = 10; // 한 페이지당 글 수
-		final int PAGE_GROUP = 10; // 페이지 버튼 그룹 크기
+		final int PAGE_SIZE = 8; // 한 페이지당 글 수
+		final int PAGE_GROUP = 8; // 페이지 버튼 그룹 크기
 
 		int totalCount = fDao.cnt(uNo);
 		int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE);
@@ -49,11 +49,10 @@ public class FavoriteServiceImpl implements FavoriteService {
 		// 페이지 그룹 시작/끝 계산 (안정화된 공식)
 		int startPage = ((curPage - 1) / PAGE_GROUP) * PAGE_GROUP + 1;
 		int endPage = Math.min(startPage + PAGE_GROUP - 1, totalPage);
-
+		page.setAllCnt(totalCount);
 		page.setStartPage(startPage);
 		page.setEndPage(endPage);
 		page.setAllPage(totalPage);
-
 		int offset = (curPage - 1) * PAGE_SIZE;
 		return fDao.selectFavList(offset, uNo);
 	}

@@ -26,13 +26,10 @@
 				        dataType: 'json',
 				        success: function(res){
 				            if(res.success){
-				            	/* if (redirect != null && !redirect.isEmpty()) {
-				            	    response.sendRedirect(redirect); // 로그인 후 원래 페이지로 이동
-				            	} else {
-				            	    response.sendRedirect("/ieum/index"); // 기본 페이지
-				            	} */
-				            	
-				            	window.location.href = "/ieum/index";
+
+				            		window.location.href="/ieum/index"; // 기본 페이지
+				            	}
+
 				            } else {
 				                alert(res.message);
 				            }
