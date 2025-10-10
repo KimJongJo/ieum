@@ -34,6 +34,7 @@ public class Favorite extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
+		System.out.println(uNo +"........" +hNo);
 		
 		if(uNo == null) {
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
