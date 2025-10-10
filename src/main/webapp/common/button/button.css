@@ -122,8 +122,42 @@
 .btn-cir-w:active,
 .btn-rec-b:active,
 .btn-long-b:active,
-.btn-cir-b:active {
+.btn-cir-b:active,
+.fav-btn:active {
     transform: translateY(2px);
     filter: brightness(90%);
 }
+
+
+
+/* 즐겨찾기 */
+.fav-btn {
+	margin-top: 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #d9d9d9;
+    transition: color 0.2s ease;
+}
+.fav-btn.active i {
+    color: #488EF6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

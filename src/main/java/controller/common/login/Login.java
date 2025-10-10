@@ -92,7 +92,6 @@ public class Login extends HttpServlet {
 			// 로그인 성공시 세션에 정보를 저장, 아이디 저장을 체크했을때 쿠키생성
 			// 쿠키 시간은 7일정도로 지정
 			
-			
 			session = request.getSession();
 			MemberDto member = service.selectUserByNo(userNo);
 			

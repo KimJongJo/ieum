@@ -16,7 +16,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public boolean isFav(Integer uNo, Integer hNo) throws Exception {
 		Map<String, Object> favInfo = new HashMap<>();
-		favInfo.put("uNO", uNo);
+		favInfo.put("uNo", uNo);
 		favInfo.put("hNo", hNo);
 		
 		return favDao.Favorite(favInfo) >0 ;
@@ -25,7 +25,7 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public void toggleFav(Integer uNo, Integer hNo) throws Exception {
 		Map<String, Object> favInfo = new HashMap<>();
-		favInfo.put("uNO", uNo);
+		favInfo.put("uNo", uNo);
 		favInfo.put("hNo", hNo);
 		
 		if(favDao.Favorite(favInfo) > 0) {

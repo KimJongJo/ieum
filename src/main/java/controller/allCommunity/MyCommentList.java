@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.CommentWithMemberDto;
 import service.allCommunity.CommentWithMemberService;
@@ -32,16 +33,18 @@ public class MyCommentList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int uNo = 5;
-//		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
-//		try {
-//			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
-//			request.setAttribute("myCommeList", myCommeList);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
+		try {
+			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
+			request.setAttribute("myCommeList", myCommeList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
 	}
 
 	/**

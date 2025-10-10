@@ -54,6 +54,7 @@
 		from comment c
 		inner join member m
     	on c.u_no = m.u_no
+    	where c.u_no = #{uNo}
     	order by c.com_created DESC
     </select>
     
