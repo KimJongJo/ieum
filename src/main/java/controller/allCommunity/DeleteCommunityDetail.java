@@ -39,20 +39,29 @@ public class DeleteCommunityDetail extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
+
 		
 		CommunityService communityService = new CommunityServiceImpl();
 		
 		int commuNo = Integer.parseInt(request.getParameter("commuNo"));
         try {
         	
-        	int wrriterNo = communityService.getWriterNoByCommuNo(commuNo);
+        	// 게시글 작성자 번호 조회
+        	Integer authorNo = communityService.getCommunityAuthorNo(commuNo);
+        	if (authorNo == null) {
+        		response.sendError(HttpServletResponse.SC_NOT_FOUND, "게시글이 존재하지 않습니다.");
+        	return;
+        }
+
+        	// 작성자가 아니면 삭제 불가
+        	if (authorNo.intValue() != uNo) { // 안전하게 비교
+        	    response.sendError(HttpServletResponse.SC_FORBIDDEN, "삭제 권한이 없습니다.");
+        	    return;
+        	}
         	
-        	if(uNo.equals(wrriterNo)) {
+        
         		communityService.deleteCommunityWithComments(commuNo);
         		response.sendRedirect("myCom");
-        	} else {
-        		 response.sendError(HttpServletResponse.SC_FORBIDDEN, "권한이 없습니다.");
-        	}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "삭제 중 오류 발생");

@@ -60,4 +60,11 @@ public class CommunityDaoImpl implements CommunityDao{
 			return session.selectOne("mapper.community.selectUserId", commuNo);
 		}
 	}
+
+	@Override
+	public Integer getCommunityAuthorNo(int commuNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.community.getCommunityAuthorNo", commuNo);
+		}
+	}
 }

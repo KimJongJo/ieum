@@ -17,4 +17,6 @@ public interface CommunityService {
     CommunityDto updateViews(int commuNo) throws Exception;
     
     int getWriterNoByCommuNo(int commuNo) throws Exception;
+    
+    Integer getCommunityAuthorNo(int commuNo) throws Exception;
 }
