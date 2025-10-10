@@ -11,7 +11,7 @@
 		FROM favorite WHERE u_no=#{uNo} 
 		LIMIT #{row}, 10
 	</select>
-	<select id="selectDiaryCnt" parameterType="Integer" resultType="Integer">
+	<select id="selectFavCnt" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*) FROM favorite
 		WHERE u_no=#{uNo} 
 	</select>
