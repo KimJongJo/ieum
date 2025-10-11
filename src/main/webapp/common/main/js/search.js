@@ -23,6 +23,18 @@ function searchKeyword() {
 	location.href = `/ieum/search?keyword=${keyword}`;
 }
 $(document).ready(function() {
+	const keyword = $(".keyword").text().trim();
+    if (!keyword) return;
+
+    // 검색결과 텍스트가 들어있는 요소들 선택
+    const targets = $(".result-title, .result-content");
+
+    targets.each(function() {
+        const html = $(this).html();
+        const regex = new RegExp(`(${keyword})`, "gi"); // 대소문자 구분 없이 매칭
+        const newHtml = html.replace(regex, `<span class="keyword">$1</span>`);
+        $(this).html(newHtml);
+    });
 	$("#searchBtn").on("click", function() {
 		searchKeyword();
 	})

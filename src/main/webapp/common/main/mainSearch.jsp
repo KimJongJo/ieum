@@ -20,7 +20,7 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="/common/header/header.html" />
+		<jsp:include page="/common/header/header.jsp" />
 	</header>
 	<div class="search-container">
 		<div class="search-box">
@@ -60,7 +60,7 @@
 					</c:forEach>
 					<div class="button-wrapper">
 						<button class="btn-cir-b"
-							onclick="location.href='${contextPath}/notice'">더보기</button>
+							onclick="location.href='${contextPath}/notice?page=1'">더보기</button>
 					</div>
 				</div>
 			</c:if>
