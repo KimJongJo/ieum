@@ -2,206 +2,215 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.hospital">
-	
-	<select id="select" parameterType="Integer" resultType="hospital">
-	select  *
-	from hospital  
-	where h_no=#{hNo}
+
+	<select id="select" parameterType="Integer"
+		resultType="hospital">
+		select *
+		from hospital
+		where h_no=#{hNo}
 	</select>
-	
+
 	<select id="selectCount" resultType="Integer">
-	select count(*) from hospital 
-	where status = 'ACTIVE'
+		select count(*) from
+		hospital
+		where status = 'ACTIVE'
 	</select>
-	
+
 	<!-- 병원페이지: 병원정보 -->
-	<select id="selectHosDetail" parameterType="Integer" resultType="hosDetail">
-	select *, IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite
-	from hospital h
-	join hos_category c
-	using (category_no)
-	left join file f
-	on (h.hos_img_file_no = f.file_no)
-	left join favorite fav
-	on(fav.hos_no = h.h_no)
-	where h_no=#{hNo}
+	<select id="selectHosDetail" parameterType="map"
+		resultType="hosDetail">
+		select *,
+		<if test="uNo != null">
+			IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite
+		</if>
+		<if test="uNo == null">
+			0 AS favorite
+		</if>
+		from hospital h
+		left join hos_category c
+		using (category_no)
+		left join file f
+		on (h.hos_img_file_no = f.file_no)
+		left join favorite fav
+		on(fav.hos_no = h.h_no) AND fav.u_no = #{uNo}
+		where h.h_no=#{hNo}
 	</select>
-	
+
 	<!-- 필터 정렬: 예약 많은 순 -->
-	<select id="selectListRes" parameterType="hosfilter" resultType="hosDetail">
-	select *, IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite, count(r.r_no) as resCount
-	from hospital h
-	left join reservation r 
-	using (h_no)
-	left join hos_category hc 
-	using (category_no)
-	left join file f
-	on (h.hos_img_file_no = f.file_no)
-	left join favorite fav
-	on(fav.hos_no = h.h_no)  
-	<where>
-	<if test="keyword !=null and keyword !=''">
-	and h.h_nm like concat('%', #{keyword}, '%')
-	</if>
-	<if test="categoryName != null and categoryName.size >0">
-	and hc.category_no in
-	<foreach collection="categoryName" item="c" open="(" separator="," close=")">
-	#{c}
-	</foreach>
-	</if>
-	<if test="city != null and city !=''">
-	and h.city = #{city}
-	</if>
-	<if test="gungu !=null and gungu !=''">
-	and h.gungu = #{gungu}
-	</if>
-	and status = 'ACTIVE'
-	</where>
-	group by h.h_no
-	order by resCount desc
-	limit #{offset}, #{limit}
+	<select id="selectListRes" parameterType="hosfilter"
+		resultType="hosDetail">
+		select *, count(r.r_no)as resCount,
+		<if test="uNo != null">
+			IF(fav.hos_no IS NOT NULL, 1, 0) AS favorite
+		</if>
+		<if test="uNo == null">
+			0 AS favorite
+		</if>
+		from hospital h
+		left join reservation r
+		using (h_no)
+		left join hos_category hc
+		using (category_no)
+		left join file f
+		on
+		(h.hos_img_file_no = f.file_no)
+		left join favorite fav
+		on(fav.hos_no = h.h_no) AND fav.u_no = #{uNo}
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				and h.h_nm like concat('%', #{keyword}, '%')
+			</if>
+			<if test="categoryName != null and categoryName.size >0">
+				and hc.category_no in
+				<foreach collection="categoryName" item="c" open="("
+					separator="," close=")">
+					#{c}
+				</foreach>
+			</if>
+			<if test="city != null and city !=''">
+				and h.city = #{city}
+			</if>
+			<if test="gungu !=null and gungu !=''">
+				and h.gungu = #{gungu}
+			</if>		
+			and status = 'ACTIVE'
+		</where>
+		group by h.h_no
+		order by resCount desc
+		limit #{offset}, #{limit}
 	</select>
-	
+
 	<!-- 필터 정렬: 갯수 -->
-	<select id="selectListResCnt" parameterType="hosfilter" resultType="Integer">
-	select count(distinct h.h_no)
-	from hospital h
-	left join reservation r 
-	using (h_no)
-	left join hos_category hc 
-	using (category_no)
-	<where>
-	<if test="keyword !=null and keyword !=''">
-	and h.h_nm like concat('%', #{keyword}, '%')
-	</if>
-	<if test="categoryName != null and categoryName.size >0">
-	and hc.category_no in
-	<foreach collection="categoryName" item="c" open="(" separator="," close=")">
-	#{c}
-	</foreach>
-	</if>
-	<if test="city != null and city !=''">
-	and h.city = #{city}
-	</if>
-	<if test="gungu !=null and gungu !=''">
-	and h.gungu = #{gungu}
-	</if>
-	and status = 'ACTIVE'
-	</where>
-	</select>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<insert id="addHospital" parameterType="hospital" useGeneratedKeys="true" keyProperty="hNo">
-		insert into hospital (h_nm, h_address, h_location_y, h_location_x, holiday_info, h_tel, hos_img_file_no, hos_re_file_no,
-		hos_re_no, h_created, status, city, gungu, category_no, services, silson) 
-		values (#{hNm}, #{hAddress}, #{hLocationY}, #{hLocationX}, #{holidayInfo}, #{hTel}, #{hosImgFileNo}, #{hosReFileNo},
-		#{hosReNo}, NOW(), 'WAITING', #{city}, #{gungu}, #{categoryNo}, #{services}, #{silson})
+	<select id="selectListResCnt" parameterType="hosfilter"
+		resultType="Integer">
+		select count(distinct h.h_no)
+		from hospital h
+		left join reservation r
+		using (h_no)
+		left join hos_category hc
+		using (category_no)
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				and h.h_nm like concat('%', #{keyword}, '%')
+			</if>
+			<if test="categoryName != null and categoryName.size >0">
+				and hc.category_no in
+				<foreach collection="categoryName" item="c" open="("
+					separator="," close=")">
+					#{c}
+				</foreach>
+			</if>
+			<if test="city != null and city !=''">
+				and h.city = #{city}
+			</if>
+			<if test="gungu !=null and gungu !=''">
+				and h.gungu = #{gungu}
+			</if>
+			and status = 'ACTIVE'
+		</where>
+	</select>
+
+	<insert id="addHospital" parameterType="hospital"
+		useGeneratedKeys="true" keyProperty="hNo">
+		insert into hospital (h_nm,
+		h_address, h_location_y, h_location_x, holiday_info, h_tel,
+		hos_img_file_no, hos_re_file_no,
+		hos_re_no, h_created, status, city,
+		gungu, category_no, services, silson)
+		values (#{hNm}, #{hAddress},
+		#{hLocationY}, #{hLocationX}, #{holidayInfo},
+		#{hTel}, #{hosImgFileNo},
+		#{hosReFileNo},
+		#{hosReNo}, NOW(), 'WAITING',
+		#{city}, #{gungu},
+		#{categoryNo}, #{services}, #{silson})
 	</insert>
-	
+
 	<select id="hosWaitcount" resultType="Integer">
-		select count(*) from hospital WHERE STATUS = 'WAITING';
+		select count(*) from
+		hospital WHERE STATUS = 'WAITING';
 	</select>
-	
-	<select id="selectWaithos" parameterType="Map" resultType="hospital">
+
+	<select id="selectWaithos" parameterType="Map"
+		resultType="hospital">
 		select * from hospital where status = 'WAITING'
-		order by ${sortValue} ${sort}
-    	LIMIT #{pageSize} OFFSET #{offset}
+		order by
+		${sortValue} ${sort}
+		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
+
 	<update id="approve" parameterType="Integer">
-		update hospital set status = 'ACTIVE' where h_no = #{hNo}
+		update hospital set status =
+		'ACTIVE' where h_no = #{hNo}
 	</update>
-	
+
 	<update id="reject" parameterType="Integer">
-		update hospital set status = 'REJECTED' where h_no = #{hNo}
+		update hospital set status =
+		'REJECTED' where h_no = #{hNo}
 	</update>
-	
-	<select id="hosWaitCountByKeyword" parameterType="String" resultType="Integer">
+
+	<select id="hosWaitCountByKeyword" parameterType="String"
+		resultType="Integer">
 		select count(*) from hospital
 		where status = 'WAITING'
-		and (h_nm like concat ('%', #{keyword}, '%')
-			or h_address like concat ('%', #{keyword}, '%')
-			or h_tel like concat ('%', #{keyword}, '%'))
+		and
+		(h_nm like concat ('%', #{keyword}, '%')
+		or h_address like concat ('%',
+		#{keyword}, '%')
+		or h_tel like concat ('%', #{keyword}, '%'))
 	</select>
-	
-	<select id="selectWaitHosByKeyword" parameterType="Map" resultType="hospital">
+
+	<select id="selectWaitHosByKeyword" parameterType="Map"
+		resultType="hospital">
 		select * from hospital
-	    where status = 'WAITING'
-	    and (h_nm like concat('%', #{keyword}, '%')
-	         or h_address like concat('%', #{keyword}, '%')
-	         or h_tel like concat('%', #{keyword}, '%'))
-	    order by ${sortValue} ${sort}
-	    limit #{pageSize} offset #{offset}
+		where status = 'WAITING'
+		and (h_nm
+		like concat('%', #{keyword}, '%')
+		or h_address like concat('%',
+		#{keyword}, '%')
+		or h_tel like concat('%', #{keyword}, '%'))
+		order by
+		${sortValue} ${sort}
+		limit #{pageSize} offset #{offset}
 	</select>
 
 	<update id="saveHosCode" parameterType="Map">
-		update hospital set h_code = #{hCode} where h_no = #{hNo}
+		update hospital set
+		h_code = #{hCode} where h_no = #{hNo}
 	</update>
-	
-	<select id="joinSearchHosName" parameterType="String" resultType="hospital">
-		select * from hospital where h_nm like concat('%', #{keyword}, '%') and status = 'ACTIVE'
+
+	<select id="joinSearchHosName" parameterType="String"
+		resultType="hospital">
+		select * from hospital where h_nm like concat('%',
+		#{keyword}, '%') and status = 'ACTIVE'
 	</select>
-	
-	<select id="checkHosAuthCode" parameterType="Map" resultType="hospital">
-		select * from hospital where h_no = #{hNo} and h_code = #{hosAuthCode}
+
+	<select id="checkHosAuthCode" parameterType="Map"
+		resultType="hospital">
+		select * from hospital where h_no = #{hNo} and h_code =
+		#{hosAuthCode}
 	</select>
-	
-	<select id="hospitalCount" parameterType="String" resultType="Integer">
+
+	<select id="hospitalCount" parameterType="String"
+		resultType="Integer">
 		select count(*) from hospital where 1=1
 		<choose>
 			<when test="_parameter  == 'allHos'">
-			  and STATUS IN ('ACTIVE','INACTIVE')
+				and STATUS IN ('ACTIVE','INACTIVE')
 			</when>
 			<otherwise>
 				and status = #{_parameter}
 			</otherwise>
 		</choose>
 	</select>
-	
-	<select id="selectHospitals" parameterType="Map" resultType="hosInfo">
-		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created, '%Y-%m-%d') AS hCreated ,
-		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS hUpdated , h.hos_re_no
+
+	<select id="selectHospitals" parameterType="Map"
+		resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address,
+		h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created,
+		'%Y-%m-%d') AS hCreated ,
+		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS
+		hUpdated , h.hos_re_no
 		FROM hospital h
 		JOIN hos_category c
 		USING(category_no)
@@ -217,16 +226,21 @@
 		order by ${sortValue} ${sort}
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
-	<select id="hosInfo" parameterType="Integer" resultType="hosInfo">
-		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, h.hos_re_no
-		FROM hospital h
+
+	<select id="hosInfo" parameterType="Integer"
+		resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category,
+		h.h_address, h.h_location_y, h.h_location_x, h.h_tel, h.hos_re_no
+		FROM
+		hospital h
 		JOIN hos_category c
 		USING(category_no)
-		where h_no = #{_parameter}
+		where h_no =
+		#{_parameter}
 	</select>
-	
-	<select id="hospitalListByKeyword" parameterType="Map" resultType="Integer">
+
+	<select id="hospitalListByKeyword" parameterType="Map"
+		resultType="Integer">
 		select count(*) from hospital WHERE 1=1
 		<choose>
 			<when test="status  == 'allHos'">
@@ -237,13 +251,18 @@
 			</otherwise>
 		</choose>
 		and (h_nm like concat ('%', #{keyword}, '%')
-		or h_address like concat ('%', #{keyword}, '%')
+		or h_address like concat
+		('%', #{keyword}, '%')
 		or h_tel like concat ('%', #{keyword}, '%'))
 	</select>
-	
-	<select id="selectHosListByKeyword" parameterType="Map" resultType="hosInfo">
-		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address, h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created, '%Y-%m-%d') AS hCreated ,
-		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS hUpdated , h.hos_re_no
+
+	<select id="selectHosListByKeyword" parameterType="Map"
+		resultType="hosInfo">
+		SELECT h.h_no, h.h_nm, c.category_name as category, h.h_address,
+		h.h_location_y, h.h_location_x, h.h_tel, DATE_FORMAT(h.h_created,
+		'%Y-%m-%d') AS hCreated ,
+		DATE_FORMAT(h.h_updated, '%Y-%m-%d') AS
+		hUpdated , h.hos_re_no
 		FROM hospital h
 		JOIN hos_category c
 		USING(category_no)
@@ -257,40 +276,53 @@
 			</otherwise>
 		</choose>
 		<if test="keyword != null and keyword != ''">
-		    AND (
-		        h.h_nm LIKE CONCAT('%', #{keyword}, '%')
-		        OR h.h_address LIKE CONCAT('%', #{keyword}, '%')
-		        OR h.h_tel LIKE CONCAT('%', #{keyword}, '%')
-		    )
+			AND (
+			h.h_nm LIKE CONCAT('%', #{keyword}, '%')
+			OR
+			h.h_address LIKE CONCAT('%', #{keyword}, '%')
+			OR h.h_tel LIKE
+			CONCAT('%', #{keyword}, '%')
+			)
 		</if>
 		order by ${sortValue} ${sort}
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
-	<select id="getHosName" parameterType="Integer" resultType="String">
+
+	<select id="getHosName" parameterType="Integer"
+		resultType="String">
 		select h_nm from hospital h
-		join member m on(h.h_no = m.h_no)
+		join member m on(h.h_no =
+		m.h_no)
 		where m.u_no = #{_parameter}
 	</select>
-	
-	<select id="getHosInfo" parameterType="Integer" resultType="hosDetail">
-		select h.h_nm, h.h_address, h.h_tel, h.h_link, h.transfer_info, h.holiday_info,
-		h.news_title, h.news_content, f.file_name, f.file_path, h.h_no
-		from hospital h join member u on(h.h_no = u.h_no)
+
+	<select id="getHosInfo" parameterType="Integer"
+		resultType="hosDetail">
+		select h.h_nm, h.h_address, h.h_tel, h.h_link,
+		h.transfer_info, h.holiday_info,
+		h.news_title, h.news_content,
+		f.file_name, f.file_path, h.h_no
+		from hospital h join member u
+		on(h.h_no = u.h_no)
 		join file f on(f.file_no = h.hos_img_file_no)
-		where u.u_no = #{_parameter}
+		where
+		u.u_no = #{_parameter}
 	</select>
-	
+
 	<update id="updateHosInfo" parameterType="Map">
-		update hospital set transfer_info = #{transferInfo}, h_link = #{hLink},
-		news_title = #{newsTitle}, news_content = #{newsContent}
+		update hospital set
+		transfer_info = #{transferInfo}, h_link = #{hLink},
+		news_title =
+		#{newsTitle}, news_content = #{newsContent}
 		where h_no = #{hNo}
 	</update>
-	
-	<select id="getHosNoByuNo" parameterType="Integer" resultType="String">
+
+	<select id="getHosNoByuNo" parameterType="Integer"
+		resultType="String">
 		select h.h_nm
 		from hospital h
-		join member m on(h.h_no = m.h_no)
+		join member m on(h.h_no =
+		m.h_no)
 		where m.u_no = #{_parameter}
 	</select>
 	

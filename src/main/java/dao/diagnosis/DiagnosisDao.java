@@ -56,5 +56,6 @@ public interface DiagnosisDao {
 	ShowDIaListToUser selectDiaByNo(Integer diaNo);
 	// 저에용
 	ShowDIaListToUser selectLatestDiagnosisByUser(int uNo) throws Exception;
+	
 
 }

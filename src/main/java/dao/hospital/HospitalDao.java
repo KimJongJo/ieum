@@ -10,7 +10,7 @@ import dto.otherDto.HospitalSearchDto;
 
 public interface HospitalDao {
 	public HospitalDto select (Integer hNo) throws Exception;
-	public HospitalDetailDto selectHosDetail(Integer hNo) throws Exception;
+	public HospitalDetailDto selectHosDetail(Map<String, Object> hosFav) throws Exception;
 	public Integer selectCount() throws Exception;
 	public Integer addHospital(HospitalDto hosDto);
 	public List<HospitalDetailDto> selectHosList (HospitalSearchDto hosSearch) throws Exception;

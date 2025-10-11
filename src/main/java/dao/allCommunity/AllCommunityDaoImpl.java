@@ -21,7 +21,7 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 			return list;
 		}
 	}
-
+	// 페이징
 	@Override
 	public List<AllCommunityDto> selectList(Integer row) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
@@ -30,7 +30,7 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 	        return session.selectList("mapper.community.selectList", param);
 	    }
 	}
-
+	//페이징
 	@Override
 	public Integer selectCount() throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {

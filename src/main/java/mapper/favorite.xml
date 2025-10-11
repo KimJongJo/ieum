@@ -7,9 +7,13 @@
 		SELECT * FROM favorite WHERE h_fav_no=#{hFNo}
 	</select>
 	<select id="selectFavList" parameterType="map" resultType="favorite">
-		SELECT *
-		FROM favorite WHERE u_no=#{uNo} 
-		LIMIT #{row}, 10
+		SELECT fav.*,c.category_name, h.h_nm, h.h_address, f.file_no AS hosImgFileNo, f.file_name AS hosImgFileName, f.file_path AS hosImgFilePath
+		FROM favorite fav 
+		LEFT JOIN hospital h on (h.h_no = fav.hos_no)
+		LEFT JOIN hos_category c on (h.category_no = c.category_no)
+		LEFT JOIN file f on(h.hos_img_file_no = f.file_no)
+		WHERE u_no=#{uNo} 
+		LIMIT #{row}, 8
 	</select>
 	<select id="selectFavCnt" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*) FROM favorite

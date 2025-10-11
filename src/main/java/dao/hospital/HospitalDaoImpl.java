@@ -30,9 +30,9 @@ public class HospitalDaoImpl implements HospitalDao {
 	
 	//병원 디테일
 		@Override
-		public HospitalDetailDto selectHosDetail(Integer hNo) throws Exception {
+		public HospitalDetailDto selectHosDetail(Map<String, Object> hosFav) throws Exception {
 			try(SqlSession sqlsession = sqlSessionFactory.openSession()) {
-				return sqlsession.selectOne("mapper.hospital.selectHosDetail", hNo);
+				return sqlsession.selectOne("mapper.hospital.selectHosDetail", hosFav);
 			}
 		}
 		

@@ -62,8 +62,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             response.sendRedirect("login.jsp");
             return;
         }
-		
-		
+
 		
         String title = request.getParameter("title");
         String content = request.getParameter("content");

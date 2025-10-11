@@ -435,7 +435,7 @@ $(function () {
              window.location.href = "${pageContext.request.contextPath}/myCom";
          })
          .fail(function() {
-             alert("삭제 실패");
+             alert("당신 게시글 아니잖아 저리가");
          });
     });
 
@@ -527,6 +527,7 @@ $('#blockCommentForm').submit(function(e){
 	            <button onclick="location.href='/ieum/comDetailMo?no=${community.commuNo}'" id="btn-update">수정</button>
 	            <button type="button" id="btn-delete" data-communo="${community.commuNo}">삭제</button>
 	        </c:if>
+	        
 	        </div>
         </div>
         <div id="san"></div>

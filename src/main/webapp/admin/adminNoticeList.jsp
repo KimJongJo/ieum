@@ -43,12 +43,12 @@
 							<div class="button-wrapper">
 								<div class="notice-search">
 									<input id="searchInput" type="text" placeholder="검색어를 입력하세요">
-									<button type="button" onclick="renderList()">
+									<button type="button" onclick="renderList(1)">
 										<i class="fa-solid fa-magnifying-glass"></i>
 									</button>
 								</div>
 
-								<select class="notice-select" onchange="renderList()">
+								<select class="notice-select" onchange="renderList(1)">
 									<option selected disabled value="none">정렬</option>
 									<option value="n_created">작성순</option>
 									<option value="n_updated">수정순</option>
@@ -145,7 +145,7 @@
 								<!-- 이전 버튼 -->
 								<c:if test="${pageInfo.curPage > 1}">
 									<button
-										onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage-1}'">&lt;</button>
+										onclick="renderList(${pageInfo.curPage-1})">&lt;</button>
 								</c:if>
 
 								<!-- 페이지 번호 반복 -->
@@ -153,7 +153,7 @@
 									end="${pageInfo.endPage}">
 									<c:if test="${pageNum <= pageInfo.allPage}">
 										<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
-											onclick="location.href='${contextPath}/admin/notice?page=${pageNum}'">
+											onclick="renderList(${pageNum})">
 											${pageNum}</button>
 									</c:if>
 								</c:forEach>
@@ -162,7 +162,7 @@
 								<c:if test="${pageInfo.curPage < pageInfo.endPage}">
 
 									<button
-										onclick="location.href='${contextPath}/admin/notice?page=${pageInfo.curPage+1}'">
+										onclick="renderList${pageInfo.curPage+1}">
 										&gt;</button>
 								</c:if>
 							</div>

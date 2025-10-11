@@ -12,8 +12,8 @@ import dao.member.MemberDao;
 import dto.ApplicantDto;
 import dto.HospitalDto;
 import dto.otherDto.HosInfoDto;
-import dto.otherDto.HospitalPageResponseDto;
 import dto.otherDto.HospitalDetailDto;
+import dto.otherDto.HospitalPageResponseDto;
 import dto.otherDto.HospitalSearchDto;
 import util.PageInfo;
 
@@ -164,9 +164,12 @@ public class HospitalServiceImpl implements HospitalService {
 
 	// 병원 디테일정보 가져오기
 	@Override
-	public HospitalDetailDto getDetail(Integer hNo) throws Exception {
+	public HospitalDetailDto getDetail(Integer hNo, Integer uNo) throws Exception {
+		Map<String, Object> hosFav = new HashMap<>();
+		hosFav.put("hNo", hNo);
+		hosFav.put("uNo", uNo);
 
-		return hosDao.selectHosDetail(hNo);
+		return hosDao.selectHosDetail(hosFav);
 	}
 
 

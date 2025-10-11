@@ -51,6 +51,14 @@ public class AdminNotice extends HttpServlet {
 		String curPage = request.getParameter("page");
 		String keyword = request.getParameter("keyword");
 		String sort = request.getParameter("sort");
+		if (uNo == null) {
+		    request.setAttribute("loginErr", "로그인 후 이용해주세요");
+		    String pageName = request.getRequestURI(); // 현재 페이지 경로
+		    String queryString = request.getQueryString(); // 현재 페이지 queryString
+		    request.setAttribute("redirect", pageName +"?"+queryString);
+		    request.getRequestDispatcher("/common/errAlert.jsp").forward(request, response);
+		    return;
+		}
 		NoticeService service = new NoticeServiceImpl();
 		NoticeDao noticeDao = new NoticeDaoImpl();
 		try {
@@ -67,6 +75,8 @@ public class AdminNotice extends HttpServlet {
 					resultMap.put("noticeList", noticeList);
 					resultMap.put("loginUNo", uNo);
 					resultMap.put("pageInfo", pageInfo);
+					resultMap.put("keyword", keyword);
+					resultMap.put("sort", sort);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;

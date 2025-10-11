@@ -20,7 +20,9 @@
 <script src="${contextPath}/common/main/js/search.js"></script>
 </head>
 <body>
-	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	<header>
+		<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	</header>
 	<div class="search-container">
 		<div class="search-box">
 			<input class="search-input" id="searchInput"
@@ -59,7 +61,7 @@
 					</c:forEach>
 					<div class="button-wrapper">
 						<button class="btn-cir-b"
-							onclick="location.href='${contextPath}/notice'">더보기</button>
+							onclick="location.href='${contextPath}/notice?page=1'">더보기</button>
 					</div>
 				</div>
 			</c:if>

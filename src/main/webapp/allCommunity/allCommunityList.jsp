@@ -609,34 +609,30 @@ margin: 0 10px 0 10px;
 		    
 		    </div>
 		    <div id="paging" style="text-align:center; margin:40px 0;">
-		<c:choose>
-			<c:when test="${pageInfo.curPage>1 }">
-				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
-			</c:when>
-			<c:otherwise>
-				<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
-			</c:otherwise>
-		</c:choose>
-	
-		<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" var="page">
-			<a href="${pageContext.request.contextPath}/allComList?page=${page}" class="${pageInfo.curPage == page? 'select' : 'btn'}">${page}</a>	
-		</c:forEach>
-			<c:choose>
-			<c:when test="${pageInfo.curPage<pageInfo.allPage }">
-				<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage+1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
-			</c:when>
-			<c:otherwise>
-				<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
-			</c:otherwise>
-		</c:choose>
-	</div>
+				<c:choose>
+					<c:when test="${pageInfo.curPage>1 }">
+						<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
+					</c:when>
+					<c:otherwise>
+						<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
+					</c:otherwise>
+				</c:choose>
+			
+				<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" var="page">
+					<a href="${pageContext.request.contextPath}/allComList?page=${page}" class="${pageInfo.curPage == page? 'select' : 'btn'}">${page}</a>	
+				</c:forEach>
+					<c:choose>
+					<c:when test="${pageInfo.curPage<pageInfo.allPage }">
+						<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage+1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
+					</c:when>
+					<c:otherwise>
+						<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
+					</c:otherwise>
+				</c:choose>
+			</div>
 	    </div>
     </div>
-    
-    
-    
-    
-    
+       
  	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

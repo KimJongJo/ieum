@@ -144,6 +144,11 @@ public class CommunityDetail extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		
+		if (uNo == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");
 		

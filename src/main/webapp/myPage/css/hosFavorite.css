@@ -93,7 +93,27 @@ body {
     color: #9f9f9f;
 }
 
-.fav {
-    font-size: 25px;
+.list-box2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width: 931px;
+    height: 232px;
+    padding: 23px 15px;
+    box-sizing: border-box;
+    border: 2px solid #d9d9d9;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+}
+
+.icon2 {
+   font-size: 40px;
     color: #488EF6;
+}
+
+.t1 {
+    font-weight: 600;
+    font-size: 16pt;
 }

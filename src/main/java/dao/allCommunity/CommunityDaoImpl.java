@@ -1,10 +1,13 @@
 package dao.allCommunity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.AllCommunityDto;
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 import util.MybatisSqlSessionFactory;
@@ -58,6 +61,13 @@ public class CommunityDaoImpl implements CommunityDao{
 	public int selectWriterNoByCommuNo(int commuNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne("mapper.community.selectUserId", commuNo);
+		}
+	}
+
+	@Override
+	public Integer getCommunityAuthorNo(int commuNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.community.getCommunityAuthorNo", commuNo);
 		}
 	}
 }

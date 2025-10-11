@@ -133,7 +133,12 @@ $(document).ready(function() {
 										</tr>
 									</table>
 									<div class="star">
-										<i class="fa-regular fa-star"></i>
+										<button type="button"
+														class="fav-btn ${rec.favorite ? 'active' : ''}">
+														<div class="i">
+															<i class="fa${rec.favorite ? 's' : 'r'} fa-star"></i>
+														</div>
+													</button>
 									</div>
 								</div>
 								<div class="l4">
@@ -195,14 +200,14 @@ $(document).ready(function() {
 		//다음
 		pagination.append(`<button class="page next-page" type="button"><i class="fa-solid fa-angle-right"></i></button>`)
 	}
-	
+
 
 	//다가오는 예약 상세페이지 이동
 	$(document).on("click", ".lbtb", function() {
 		const parent = $(this).closest(".list1");
 		const rNo = parent.data("rno");
 		const rStatus = parent.data("rstatus");
-		
+
 		$.post("/ieum/myPage/reservation/detail",
 			{
 				action: "getComResDetail",
@@ -217,13 +222,13 @@ $(document).ready(function() {
 				alert("예약 조회에 실패했습니다.");
 			});
 	});
-	
+
 	//지난 예약 상세페이지 이동
-	$(document).on("click", ".recResDetail", function(){
+	$(document).on("click", ".recResDetail", function() {
 		const parent = $(this).closest(".list2");
 		const rNo = parent.data("rno");
 		const rStatus = parent.data("rstatus");
-		
+
 		$.post(
 			"/ieum/myPage/reservation/detail",
 			{
@@ -231,16 +236,16 @@ $(document).ready(function() {
 				rNo: rNo,
 				rStatus: rStatus
 			})
-			.done (function(){
+			.done(function() {
 				window.location.href = "/ieum/myPage/reservation/detail";
 			})
-			.fail(function(err){
+			.fail(function(err) {
 				console.error("실패", err);
 				alert("예약 조회에 실패했습니다.");
 			});
-		
+
 	});
-	
+
 	//다시 예약
 	$(document).off("click", ".resAgian").on("click", ".resAgian", function(e) {
 		e.preventDefault(); // a 태그나 기본 동작 막기
@@ -253,7 +258,7 @@ $(document).ready(function() {
 				hNo: hNo
 			})
 			.done(function() {
-				window.location.href = "/ieum/hospital/detail";
+				window.location.href = "/ieum/hospital/detail?hNo=" +hNo;
 			})
 			.fail(function(err) {
 				console.error("병원 선택 POST 실패:", err);
@@ -261,37 +266,36 @@ $(document).ready(function() {
 			});
 
 	});
-	
+
 	//예약취소 모달
-	$(document).on("click", ".lbt-cancel", function(e){
+	$(document).on("click", ".lbt-cancel", function(e) {
 		e.preventDefault();
 		const rNo = $(this).data("rno");
 		$("#deleteRes").data("rno", rNo).show();
 	});
-	
+
 	//모달 닫기
-	$("#xBtn, #modalKeepRes").on("click", function(){
+	$("#xBtn, #modalKeepRes").on("click", function() {
 		$("#deleteRes").hide();
 	});
-	
+
 	//예약취소
 	$(document).off("click", "#modalCancelRes").on("click", "#modalCancelRes", function(e) {
 		e.preventDefault(); // a 태그나 기본 동작 막기
 		const parent = $(".list1");
 		const rNo = parent.data("rno");
-		$.post("/ieum/myPage/reservation/cancel",{
+		$.post("/ieum/myPage/reservation/cancel", {
 			rNo: rNo
 		})
-		.done(function(){
-			window.location.href ="/ieum/myPage/reservation/cancel";
-		})
-		.fail (function(){
-			alert("예약 취소 실패");
-		});
+			.done(function() {
+				window.location.href = "/ieum/myPage/reservation/cancel";
+			})
+			.fail(function() {
+				alert("예약 취소 실패");
+			});
 	});
-	
-	
-	
+
+
 });
 
 

@@ -25,6 +25,7 @@ import service.allCommunity.CommunityService;
 import service.allCommunity.CommunityServiceImpl;
 import service.allCommunity.MyCommunityService;
 import service.allCommunity.MyCommunityServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class MyCommunityList
@@ -48,6 +49,14 @@ public class MyCommunityList extends HttpServlet {
 		// 로그인 사용자 번호 (임시)
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
+		System.out.println("uNo: " + uNo);
+		String spage = request.getParameter("page"); 
+		Integer page = 1; 
+		if(spage != null) page=Integer.parseInt(spage); 
+		PageInfo pageInfo = new PageInfo(page);
+		
+		
+		
 		MyCommunityService service = new MyCommunityServiceImpl();
 		CommentWithMemberService commentWithMemberService = new CommentWithMemberServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
@@ -56,9 +65,14 @@ public class MyCommunityList extends HttpServlet {
 		CommentDto commentDto = new CommentDto();
 		CommunityDto communityDto = new CommunityDto();
 		try {
-			List<MyCommunityDto> myComList = service.getMyCommunityList(uNo);
-			List<CommentWithMemberDto> myCommeList = commentWithMemberService.getMemWithCom(uNo);
-			List<MyCommunityDto> myEmpathy = service.getSelectLikedCommunityList(uNo);
+			List<MyCommunityDto> myComList = service.listByPage(pageInfo, uNo);
+			
+			List<CommentWithMemberDto> myCommeList = commentWithMemberService.listByCommentPage(pageInfo, uNo);
+			
+			List<MyCommunityDto> myEmpathy = service.listByLikePage(pageInfo, uNo);
+			
+			
+			
 			
 			// 게시물 좋아요 여부 세팅
 	        for(MyCommunityDto community : myComList) {
@@ -76,13 +90,15 @@ public class MyCommunityList extends HttpServlet {
 			
 			//작성한 게시판
 			request.setAttribute("myComList", myComList);
+			request.setAttribute("comPageInfo", pageInfo);
 			
 			// 댓글 작성한곳
 			request.setAttribute("myCommeList", myCommeList);
+			request.setAttribute("commentPageInfo", pageInfo);
 		
 			//좋아요 누른 게시판
 			request.setAttribute("myEmpathy", myEmpathy);
-			
+			request.setAttribute("heartPageInfo", pageInfo);
 			
 			
            

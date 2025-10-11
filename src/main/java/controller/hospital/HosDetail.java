@@ -1,9 +1,11 @@
 package controller.hospital;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,17 +55,28 @@ public class HosDetail extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
-		Integer hNo = (Integer) session.getAttribute("hNo");
+		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
+		session.setAttribute("hNo", hNo);
+		
+		Properties prop = new Properties();
 		
 		HospitalService hosService = new HospitalServiceImpl();
 		MemberService mService = new MemberServiceImpl();
 
 		try {
-			request.setAttribute("hNo", hNo);
-			HospitalDetailDto hosDetail = hosService.getDetail(hNo);
+			HospitalDetailDto hosDetail = hosService.getDetail(hNo, uNo);
 			request.setAttribute("hosDetail", hosDetail);
 			List<HospitalDocDto> docList = mService.DoclistBy2(hNo);
 			request.setAttribute("docList", docList);
+			
+			try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
+				// 지도 위한 카카오 앱 키
+				prop.load(is);
+				String kakaoKey = prop.getProperty("kakao.api.key");
+				request.setAttribute("kakaoKey", kakaoKey);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 
@@ -81,21 +94,10 @@ public class HosDetail extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-
-		HttpSession session = request.getSession();
+		
 		String action = request.getParameter("action");
 		
-		if ("goHosDetail".equals(action)) {
-			// 병원 디테일		
-			Integer uNo = (Integer) session.getAttribute("uNo");
-			Integer hNo = Integer.parseInt(request.getParameter("hNo"));
-			
-			session.setAttribute("uNo", uNo);
-			session.setAttribute("hNo", hNo);
-
-			response.setStatus(HttpServletResponse.SC_OK);
-		
-		} else if ("getResDate".equals(action)) {
+		if ("getResDate".equals(action)) {
 			// 예약하기
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
 			String rDate = request.getParameter("rDate");

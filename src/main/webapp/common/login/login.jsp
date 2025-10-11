@@ -25,11 +25,7 @@
 				        data: $(this).serialize(), // form 안의 값 자동 직렬화
 				        dataType: 'json',
 				        success: function(res){
-				            if(res.success){
-				                window.location.href = "/ieum/index";
-				            } else {
-				                alert(res.message);
-				            }
+				        	window.location.href="/ieum/index"; // 기본 페이지
 				        },
 				        error: function(){
 				            alert("서버 오류가 발생했습니다.");

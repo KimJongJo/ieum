@@ -120,6 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }).open();
     }
+    
+    
+
+    $(document).ready(function() {
+        $('.hide-if-user').hide();
+    });
 </script>
 </head>
 <body>

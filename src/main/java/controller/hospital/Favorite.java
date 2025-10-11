@@ -33,6 +33,7 @@ public class Favorite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer)session.getAttribute("uNo");
+		System.out.println(request.getParameter("hNo"));
 		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
 		System.out.println(uNo +"........" +hNo);
 		

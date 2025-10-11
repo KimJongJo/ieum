@@ -123,12 +123,12 @@ $(document).ready(() => {
 
 					if (curPge < allPage) {
 						$("#loadMore").append(`
-						< div class= "loadmore" > <button class="btn-cir-w">
-							더보기<i class="fa-solid fa-chevron-down"></i></button></div > `)
+						<div class= "loadmore"> <button class="btn-cir-w">
+							더보기<i class="fa-solid fa-chevron-down"></i></button></div> `)
 					} else {
 						$("#goTop").append(`
-					< div class= "loadmore" > <button class="btn-cir-w">
-						맨위로<i class="fa-solid fa-angle-up"></i></button></div >
+					<div class= "loadmore"> <button class="btn-cir-w">
+						맨위로<i class="fa-solid fa-angle-up"></i></button></div>
 						`)
 					}
 				}
@@ -215,16 +215,15 @@ $(document).ready(() => {
 		e.preventDefault(); // a 태그나 기본 동작 막기
 		const hNo = $(this).data("hno"); // div에 저장된 병원번호
 
-		$.post("/ieum/hospital/detail",
+		$.get("/ieum/hospital/detail",
 			{
-				action: "goHosDetail",
 				hNo: hNo
 			})
 			.done(function() {
-				window.location.href = "/ieum/hospital/detail";
+				window.location.href = "/ieum/hospital/detail?hNo=" + hNo;
 			})
 			.fail(function(err) {
-				console.error("병원 선택 POST 실패:", err);
+				console.error("병원 선택 get 실패:", err);
 				alert("병원 선택에 실패했습니다. 다시 시도해주세요.");
 			});
 
