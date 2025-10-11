@@ -129,6 +129,8 @@ public class Login extends HttpServlet {
 			
 			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장
 			session.setAttribute("userType", member.getUserType());
+			
+			
 			Cookie idCookie;
 			if(rememberId != null) { // 만약 아이디 저장을 체크했을때
 				idCookie = new Cookie("rememberId", userId);

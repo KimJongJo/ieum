@@ -24,6 +24,7 @@
 				        type: 'POST',
 				        data: $(this).serialize(), // form 안의 값 자동 직렬화
 				        dataType: 'json',
+				        xhrFields: { withCredentials: true }, // ← 세션 쿠키 포함
 				        success: function(res){
 				        	window.location.href="/ieum/index"; // 기본 페이지
 				        },

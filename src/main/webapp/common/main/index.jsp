@@ -88,16 +88,13 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<c:choose>
-									<c:when test="${not empty userInfo.profilePath}">
-										<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
-									</c:when>
-									<c:otherwise>
-										<img class="circle"
-											src="${contextPath}/img/userProfile/회원이미지.jpg">
-									</c:otherwise>
-								</c:choose>
-								<span class="btn-link">${userInfo.nickname}</span>
+								<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+								<c:if test="${sessionScope.userType == 'USER' }">
+									<span class="btn-link">${userInfo.nickname}</span>
+								</c:if>
+								<c:if test="${sessionScope.userType != 'USER' }">
+									<span class="btn-link">${userInfo.username}</span>
+								</c:if>
 							</div>
 							<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
 						</div>

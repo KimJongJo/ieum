@@ -84,7 +84,11 @@ public class KakaoSignUp extends HttpServlet {
 		MemberDto member = new MemberDto(id, userName, birthDate, gender, tel, email,
 				nickname, address, diarYN, fileNo);
 		
+		FileDto fileDto = fileService.getFile(member.getFileNo());
+		String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+		
 		Integer uNo = memberService.socialSignUp(member);
+		session.setAttribute("profile", filePath);
 		session.setAttribute("uNo", uNo);
 		
 		response.sendRedirect(request.getContextPath() + "/index");
