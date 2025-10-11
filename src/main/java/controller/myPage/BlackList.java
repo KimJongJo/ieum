@@ -62,7 +62,10 @@ public class BlackList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer uNo = 4; // 로그인 세션에서 가져오기 가능
+		HttpSession session = request.getSession();
+		Integer uNo = (Integer) session.getAttribute("uNo");
+		
+		
         String blockedNoStr = request.getParameter("blockedNo");
         
 	    BlackListService blackListService = new BlackListServiceImpl();

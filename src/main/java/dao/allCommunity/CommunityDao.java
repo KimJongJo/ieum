@@ -2,6 +2,7 @@ package dao.allCommunity;
 
 import java.util.List;
 
+import dto.AllCommunityDto;
 import dto.CommunityDto;
 import dto.MyCommunityDto;
 
@@ -16,10 +17,7 @@ public interface CommunityDao {
 	
 	void updateViewsCount(int commuNo)throws Exception;
 	
-	
 	int selectWriterNoByCommuNo(int commuNo) throws Exception;
 	
-	
-	
-	 Integer getCommunityAuthorNo(int commuNo) throws Exception;
+	Integer getCommunityAuthorNo(int commuNo) throws Exception;	
 }
