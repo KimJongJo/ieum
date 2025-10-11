@@ -39,7 +39,7 @@
 
 <body>
 	<header>
-		<jsp:include page="/common/header/header.html" />
+		<jsp:include page="/common/header/header.jsp" />
 	</header>
 
 	<div class="main-container">
@@ -217,16 +217,14 @@
 					<div class="pagination" id="pagination">
 						<!-- 이전 버튼 -->
 						<c:if test="${pageInfo.curPage > 1}">
-							<button
-								onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage-1}'">&lt;</button>
+							<button data-label="${pageInfo.curPage-1}">&lt;</button>
 						</c:if>
 
 						<!-- 페이지 번호 반복 -->
 						<c:forEach var="pageNum" begin="${pageInfo.startPage}"
 							end="${pageInfo.endPage}">
 							<c:if test="${pageNum <= pageInfo.allPage}">
-								<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
-									onclick="location.href='${contextPath}/myPage/diary?page=${pageNum}'">
+								<button data-label="${pageNum}" class="${pageNum == pageInfo.curPage ? 'active' : ''}">
 									${pageNum}</button>
 							</c:if>
 						</c:forEach>
@@ -234,8 +232,7 @@
 						<!-- 다음 버튼 -->
 						<c:if test="${pageInfo.curPage < pageInfo.endPage}">
 
-							<button onclick="location.href='${contextPath}/myPage/diary?page=${pageInfo.curPage+1}'">
-								&gt;</button>
+							<button data-label="${pageInfo.curPage+1}">&gt;</button>
 						</c:if>
 					</div>
 				</div>

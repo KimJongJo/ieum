@@ -1,11 +1,3 @@
-// 페이지네이션 클릭 이벤트
-$(".pagination button").on("click", function() {
-	const pageNum = $(this).text();
-	if ($.isNumeric(pageNum)) { // 숫자 버튼 클릭 시
-		$(".pagination button").removeClass("active");
-		$(this).addClass("active");
-	}
-});
 function goDetail(dNo) {
 	//	console.log("dNo", dNo);
 	const form = document.createElement("form");
@@ -42,9 +34,9 @@ function confirmWrite() {
 	// 작성 페이지 이동
 	location.href = `/ieum/myPage/diary/write?date=${date}`;
 }
-function renderList() {
+function renderList(page) {
 	const url = new URL(window.location.href);
-	url.searchParams.set('page', 1);
+	url.searchParams.set('page', page);
 	window.history.replaceState({}, '', url);
 	const sort = $('.notice-select').val();
 	const keyword = $("#searchInput").val().trim();
@@ -52,41 +44,44 @@ function renderList() {
 		url: "/ieum/myPage/diary",
 		type: "GET",
 		async: false,
-		data: { keyword: keyword, page: 1, sort: sort },
+		data: { keyword: keyword, page: page, sort: sort },
 		dataType: "json",
 		headers: { 'X-Requested-With': 'XMLHttpRequest' },
 		success: function(data) {
 			const tbody = $("#diaryListBody");
 			const noDataDiv = $("#noSearchList");
 			const paginationDiv = $("#pagination");
-			const diaryTable = $("#diaryList");		
-			const pageInfo = data.pageInfo;	
+			const diaryTable = $("#diaryList");
+			const pageInfo = data.pageInfo;
+			$('.notice-select').val(data.sort || 'none');
+			$("#searchInput").val(data.keyword);
 			tbody.empty(); // 기존 목록 제거
 			paginationDiv.empty(); // 기존 페이징 제거
 			let paginationHtml = "";
 			// 이전 버튼
 			if (pageInfo.curPage > 1) {
-			  paginationHtml += `<button onclick=location.href='/ieum/myPage/diary?page=${pageInfo.curPage-1}'">&lt;</button>`;
+				paginationHtml += `<button onclick="renderList(${pageInfo.curPage - 1})">&lt;</button>`;
 			}
-			
+
 			// 페이지 번호 버튼들
 			for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
-			  if (pageNum <= pageInfo.allPage) {
-			    const activeClass = pageNum === pageInfo.curPage ? "active" : "";
-			    paginationHtml += `<button class="${activeClass}" onclick=location.href='/ieum/myPage/diary?page=${pageNum}'">${pageNum}</button>`;
-			  }
+				if (pageNum <= pageInfo.allPage) {
+					const activeClass = pageNum === pageInfo.curPage ? "active" : "";
+					paginationHtml += `<button class="${activeClass}" onclick="renderList(${pageNum})">${pageNum}</button>`;
+				}
 			}
-			
+
 			// 다음 버튼
 			if (pageInfo.curPage < pageInfo.endPage) {
-			  paginationHtml += `<button onclick="location.href='/ieum/myPage/diary?page=${pageInfo.curPage+1}'">&gt;</button>`;
+				paginationHtml += `<button onclick="renderList(${pageInfo.curPage + 1})">&gt;</button>`;
 			}
-			
+
 			paginationDiv.append(paginationHtml);
+			paginationDiv.show();
 			if (data.diaryList.length === 0) {
 				diaryTable.hide();
+				paginationDiv.hide();
 				noDataDiv.css('display', 'flex');
-				pagination.css('display', 'none');
 			} else {
 				diaryTable.show();
 				noDataDiv.hide();
@@ -110,7 +105,7 @@ function renderList() {
                     </tr>
                 `;
 					tbody.append(html);
-					
+
 				});
 			}
 		},
@@ -121,16 +116,21 @@ function renderList() {
 	});
 }
 function searchDiary() {
-	renderList();
+	renderList(1);
 }
 
 
 function sortDiary(selectElement) {
-	renderList();
+	renderList(1);
 }
 
 //// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
+	// 페이지네이션 클릭 이벤트
+	$(".pagination button").on("click", function() {
+		const pageNum = $(this).data('label');
+		renderList(pageNum);
+	});
 	let todayDt = new Date();
 	let todayYear = todayDt.getFullYear();
 	let todayMonth = String(todayDt.getMonth() + 1).padStart(2, "0");
