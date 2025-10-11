@@ -81,6 +81,7 @@ public class GoogleLogin extends HttpServlet {
 		FileService fileService = new FileServiceImpl();		
 		FileDto fileDto = fileService.getFile(googleDto.getMemberDto().getFileNo());
 		
+		
 		// member 객체가 있을때
 		if(googleDto.getMemberDto() != null) {
 			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
