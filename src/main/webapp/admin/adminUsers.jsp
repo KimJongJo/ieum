@@ -19,7 +19,7 @@
 		    let curPage = ${userList.curPage};
 		    let allPage = ${userList.allPage};
 		    let curKeyword = ""; // 현재 검색어
-		    let filter = "none"; // 정렬 기준 초기값
+		    let filter = "none"; // 정렬 기준 초기값 
 		    let state = "0"; // 회원 상태 초기값 0 -> 전체
 		</script>
 		<script src="./js/adminUsersModal.js"></script>

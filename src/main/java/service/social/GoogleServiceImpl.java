@@ -97,7 +97,7 @@ public class GoogleServiceImpl implements GoogleService {
             String id = idObj.toString();  // 숫자든 문자열이든 모두 안전하게 String으로 변환
 
             MemberDto member = service.socialIdCheck(id);
-            
+            System.out.println(member);
             String name = (String)map.get("name");
             String profileImage = (String)map.get("picture");
             String email = (String)map.get("email");
