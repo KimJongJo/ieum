@@ -116,7 +116,7 @@
                         <a href="${contextPath }/exam/examQues10.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">외상 후 스트레스</span>
+                                <span class="e1">외상 후 스트레스 장애</span>
                             </div>
                             </a>
                         </td>
@@ -126,6 +126,5 @@
             </div>
         </div>
     </div>
-    <script src="${contextPath }/exam/js/examList.js"></script>
 </body>
 </html>

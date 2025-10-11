@@ -39,7 +39,7 @@
 
 			<form action="${contextPath }/exam/score" method="post">
 				<div class="ques">
-					<span class="question">01.다음처럼 당신은 평소의 자신과는 달랐던 적이 과거(예전)에
+					<span class="question">Q1.다음처럼 당신은 평소의 자신과는 달랐던 적이 과거(예전)에
 						있었습니까?</span>
 					<table class="quesTa">
 						<tr class="radio">
@@ -49,9 +49,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score1" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score1" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -61,9 +61,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score2" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score2" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -73,9 +73,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score3" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score3" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -85,9 +85,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score4" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score4" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -97,9 +97,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score5" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score5" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -109,9 +109,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score6" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score6" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -121,9 +121,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score7" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score7" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -133,45 +133,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score8" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
-						</tr>
-					</table>
-					<table class="quesTa">
-						<tr class="radio">
-							<td class="score-ques"><span class="s1"> 8) 평소보다 더욱
-									에너지가 넘쳤던 적이 있었다 </span></td>
-						</tr>
-						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
-						</tr>
-					</table>
-					<table class="quesTa">
-						<tr class="radio">
-							<td class="score-ques"><span class="s1"> 8) 평소보다 더욱
-									에너지가 넘쳤던 적이 있었다 </span></td>
-						</tr>
-						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
-						</tr>
-					</table>
-					<table class="quesTa">
-						<tr class="radio">
-							<td class="score-ques"><span class="s1"> 8) 평소보다 더욱
-									에너지가 넘쳤던 적이 있었다 </span></td>
-						</tr>
-						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score8" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -181,9 +145,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score9" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score9" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -193,9 +157,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score10" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score10" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -205,9 +169,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score11" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score11" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -217,9 +181,9 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score12" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score12" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
 					<table class="quesTa">
@@ -230,24 +194,24 @@
 						<tr class="margin"><td> </td></tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score13" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score13" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
-					<span class="question"> 02.만약 위의 질문 중에서 하나 이상 예라고 했다면, 그 중 몇
+					<span class="question"> Q2.만약 위의 질문 중에서 하나 이상 예라고 했다면, 그 중 몇
 						가지는 같은 시기에 벌어진 것입니까? </span>
 					<table class="quesTa">
 						<tr class="radio">
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">예</span></td>
+								name="score14" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">아니오</span></td>
+								name="score14" value="1"> <span class="s1">아니오</span></td>
 						</tr>
 					</table>
-					<span class="question"> 03.이러한 일들로 인해서 어느 정도의 문제가 발생했습니까? </span>
+					<span class="question"> Q3.이러한 일들로 인해서 어느 정도의 문제가 발생했습니까? </span>
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score-ques"><span class="s1"> 예를 들어 일할 수
@@ -256,21 +220,21 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="4"> <span class="s1"> 심각한 문제
+								name="score15" value="3"> <span class="s1"> 심각한 문제
 							</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="3"> <span class="s1"> 중등도의 문제
+								name="score15" value="2"> <span class="s1"> 중등도의 문제
 							</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="2"> <span class="s1">경미한 문제 </span></td>
+								name="score15" value="1"> <span class="s1">경미한 문제 </span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1"> 문제없었다 </span></td>
+								name="score15" value="1"> <span class="s1"> 문제없었다 </span></td>
 						</tr>
 					</table>
 
@@ -284,6 +248,5 @@
 			</form>
 		</div>
 	</div>
-	<script src="./js/examQues.js"></script>
 </body>
 </html>
