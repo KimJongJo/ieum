@@ -27,11 +27,13 @@ $(document).ready(() => {
 
 	//하단 버튼 (예약하기)
 	$(document).on('click', '#resbtn', function() {
+		resLogin(uNo)
 		activeReservation();
 	});
 
 	// 오른쪽 탭 (예약하기)
 	navr.click(function() {
+		resLogin(uNo)
 		navr.addClass("active");
 		navl.removeClass("active");
 		tab2.addClass("active");
@@ -56,17 +58,22 @@ $(document).ready(() => {
 		tab1.removeClass("active");
 
 		selectDoc();
-		showCalendar();
 
 	}
 
 	//의사 선택
 	function selectDoc() {
+
+		//시간탭 숨김
+		$("#tab3").hide();
+		$("#rescont").hide();
+		$("#resAnd").hide();
+
 		$(document).off("click", ".dall").on("click", ".dall", function() {
 			$(".dall").removeClass("active");
 			$(this).addClass("active");
-
-			resetTimeSelection();
+			$("#tab3").slideDown(500);
+			showCalendar();
 
 			// 선택된 의사 번호 저장
 			selectedMno = Number($(this).data("mno"));
@@ -86,6 +93,7 @@ $(document).ready(() => {
 
 			}
 			sendDateToServer(selectedMno, selectedDate);
+			resetTimeSelection();
 
 		});
 	}
@@ -132,12 +140,19 @@ $(document).ready(() => {
 	//시간 선택
 	function selectTime() {
 		$(".tb1").on("click", function() {
+
+			//content창
+			$("#rescont").slideDown(500);
+			$("#resAnd").delay(500).show();
+
 			$(".tb1").removeClass("active");
 			$(this).addClass("active");
 
 			selectedTime = $(this).val();
 			$("#selectedTime").val(selectedTime);
+
 		});
+
 	}
 
 
@@ -149,10 +164,10 @@ $(document).ready(() => {
 	}
 
 	//예약
-	function doReservation() {
+	function doReservation(e) {
 
 		if (!selectedMno || !selectedTime) {
-			alert("의사와 시간을 모두 선택해주세요");
+			alert("상담사와 시간을 모두 선택해주세요!");
 			e.preventDefault();
 			return;
 		}
@@ -310,8 +325,49 @@ $(document).ready(() => {
 		toggleFavorite(btn, hNo); // wrapper 생략 가능
 	});
 
+	//로그인 모달
+	function resLogin(uNo) {
+
+		if (!uNo || uNo === 0) {
+			//예약 로그인 모달
+			$("#modalResNeedLogin").show();
+		}
+
+		//모달 닫기
+		$("#xBtn, #modalClose").off("click").on("click", function() {
+			$("#modalResNeedLogin").hide();
+			location.reload();
+		});
+
+		//로그인하러가기
+		$(document).off("click", "#modalGoLogin").on("click", "#modalGoLogin", function(e) {
+			e.preventDefault();
+			const currentUrl = window.location.href;
+			// 로그인 페이지로 이동, redirect 파라미터로 현재 페이지 전달
+			window.location.href = "/ieum/login?redirect=" + encodeURIComponent(currentUrl);
+		});
+
+	}
+
+	//url 버튼
+	$("#shareBtn").on("click", function() {
+		const currentUrl = window.location.href; // 현재 페이지 URL
+
+		// 클립보드에 복사
+		navigator.clipboard.writeText(currentUrl)
+			.then(() => {
+				alert("URL이 복사되었습니다!");
+			})
+			.catch(err => {
+				console.error("복사 실패:", err);
+			});
+	});
+
+
 
 });
+
+
 
 
 

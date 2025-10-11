@@ -215,16 +215,15 @@ $(document).ready(() => {
 		e.preventDefault(); // a 태그나 기본 동작 막기
 		const hNo = $(this).data("hno"); // div에 저장된 병원번호
 
-		$.post("/ieum/hospital/detail",
+		$.get("/ieum/hospital/detail",
 			{
-				action: "goHosDetail",
 				hNo: hNo
 			})
 			.done(function() {
-				window.location.href = "/ieum/hospital/detail";
+				window.location.href = "/ieum/hospital/detail?hNo=" + hNo;
 			})
 			.fail(function(err) {
-				console.error("병원 선택 POST 실패:", err);
+				console.error("병원 선택 get 실패:", err);
 				alert("병원 선택에 실패했습니다. 다시 시도해주세요.");
 			});
 

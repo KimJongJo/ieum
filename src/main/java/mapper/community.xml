@@ -195,7 +195,12 @@
   </select>
 	
 	
-	<select id="selectUserId" parameterType="int" resultType="community">
-		select u_no from community where commu_no = #{commu_no}
+	<select id="getCommunityAuthorNo" parameterType="int" resultType="int">
+		select u_no from community where commu_no = #{commuNo}
 	</select>
+	
+	
+	
+	
+	
 </mapper>	

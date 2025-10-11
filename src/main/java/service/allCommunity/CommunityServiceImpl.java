@@ -66,4 +66,8 @@ public class CommunityServiceImpl implements CommunityService{
 		return communityDao.selectWriterNoByCommuNo(commuNo);
 	}
 
+	@Override
+	public Integer getCommunityAuthorNo(int commuNo) throws Exception{
+		return communityDao.getCommunityAuthorNo(commuNo);
+	}
 }

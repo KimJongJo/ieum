@@ -14,14 +14,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,600,0,0&icon_names=local_hospital" />
 <link rel="stylesheet" href="${contextPath}/css/modal.css" />
-<link rel="stylesheet" href="${contextPath }/myPage/css/resList.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath }/myPage/css/resList.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>resList</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.html" />
+	<jsp:include page="/common/header/header.jsp" />
 	<div class="myPage">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="container1">
@@ -74,8 +74,13 @@
 														</div>
 													</div>
 												</div>
-												<div class="star">
-													<i class="fa-regular fa-star"></i>
+												<div class="star" data-hno="${comResList.hNo }">
+													<button type="button"
+														class="fav-btn ${comResList.favorite ? 'active' : ''}">
+														<div class="i">
+															<i class="fa${comResList.favorite ? 's' : 'r'} fa-star"></i>
+														</div>
+													</button>
 												</div>
 											</div>
 
@@ -199,7 +204,7 @@
 				</div>
 				<div class="modal-div-under">
 					<div class="modal-btn-div">
-					<button type="button" class="modal-btn-left modal-btn"
+						<button type="button" class="modal-btn-left modal-btn"
 							id="modalKeepRes">닫기</button>
 						<button type="button" class="modal-btn-right modal-btn"
 							id="modalCancelRes">취소하기</button>

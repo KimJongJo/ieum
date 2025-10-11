@@ -26,12 +26,10 @@
 				        dataType: 'json',
 				        success: function(res){
 				            if(res.success){
-				            	const url = new URL(window.location.href);
-				            	if (url.searchParams.has('redirect')){
-				            		window.location.replace(url.searchParams.get('redirect')) // 로그인 후 원래 페이지로 이동
-				            	} else {
+
 				            		window.location.href="/ieum/index"; // 기본 페이지
 				            	}
+
 				            } else {
 				                alert(res.message);
 				            }

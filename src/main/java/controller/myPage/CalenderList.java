@@ -18,10 +18,14 @@ import com.google.gson.Gson;
 
 import dto.DiaryDto;
 import dto.ReservationDto;
+import service.diagnosis.DiagnosisService;
+import service.diagnosis.DiagnosisServiceImpl;
 import service.myPage.CalenderService;
 import service.myPage.CalenderServiceImpl;
 import service.myPage.DiaryService;
 import service.myPage.DiaryServiceImpl;
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
 
 /**
  * Servlet implementation class CalenderList
@@ -44,9 +48,8 @@ public class CalenderList extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json; charset=UTF-8");
 			DiaryService service = new DiaryServiceImpl();
-			
 			CalenderService calenderService = new CalenderServiceImpl();
-			
+						
 			HttpSession session = request.getSession();
 			Integer uNo = (Integer)session.getAttribute("uNo");
 			try {
@@ -56,7 +59,6 @@ public class CalenderList extends HttpServlet {
 					sDate = sDate.substring(0, 19).replace("T", " ");
 					eDate = eDate.substring(0, 19).replace("T", " ");
 				}
-				
 				// Diary 이벤트 추가
 				List<DiaryDto> diaryList = service.getCalList(uNo, sDate, eDate);
 				List<Map<String, Object>> events = new ArrayList<>();

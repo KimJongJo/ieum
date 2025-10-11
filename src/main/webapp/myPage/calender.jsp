@@ -1086,7 +1086,7 @@ $(document).on("click", "#check", function() {
             </button>
         </div>
         
-            
+            <c:if test="${showDIaListToUser !=null}">
         <div id="diagnosis-box">
             <div id="box1">
                 <div class="box-item">진단 일시</div>
@@ -1094,7 +1094,7 @@ $(document).on("click", "#check", function() {
                 <div class="box-item">결과요약</div>
                 <div class="box-item">상세보기</div>
             </div>
-            <c:if test="${showDIaListToUser !=null}">
+            
             <div id="box2">
                 <div class="box-item">${showDIaListToUser.rDate}</div>
                 <div class="box-item">${showDIaListToUser.diagnosisName}</div>
@@ -1110,9 +1110,9 @@ $(document).on("click", "#check", function() {
 	                <div>${showDIaListToUser.hNm}</div>
 	                <div>${showDIaListToUser.rDate}</div>
 	            </div>
-			</c:if>
+			
         </div>
-		
+		</c:if>
         <div id="community-box">
             <div id="diagnosis2">
                 <div id="recent">최근 커뮤니티</div>

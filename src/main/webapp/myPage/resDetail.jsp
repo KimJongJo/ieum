@@ -17,7 +17,7 @@
 <title>resDetail</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.html" />
+	<jsp:include page="/common/header/header.jsp" />
 	<div class="myPage">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="container1">
@@ -111,8 +111,34 @@
 
 					<div class="map">
 						<span class="t2">오시는 길</span>
-						<div class="counbox1"></div>
+						<div class="map-sec" id="map"></div>
+						<!-- 카카오맵 -->
+					<script
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false"></script>
+					<script>
+						kakao.maps.load(function() {
+									var lat = parseFloat('${rid.hLocationY}');
+									var lng = parseFloat('${rid.hLocationX}');
 
+									var container = document
+											.getElementById('map');
+									var options = {
+										center : new kakao.maps.LatLng(lat, lng),
+										level : 3
+									};
+
+									var map = new kakao.maps.Map(container,
+											options);
+
+									var markerPosition = new kakao.maps.LatLng(
+											lat, lng);
+									var marker = new kakao.maps.Marker({
+										position : markerPosition
+									});
+
+									marker.setMap(map);
+								});
+					</script>
 					</div>
 
 					<div class="hosinf">
