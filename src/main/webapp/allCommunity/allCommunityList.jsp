@@ -632,11 +632,7 @@ margin: 0 10px 0 10px;
 			</div>
 	    </div>
     </div>
-    
-    
-    
-    
-    
+       
  	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
