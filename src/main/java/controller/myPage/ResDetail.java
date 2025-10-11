@@ -1,6 +1,8 @@
 package controller.myPage;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,6 +41,7 @@ public class ResDetail extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
+		Properties prop = new Properties();
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer)session.getAttribute("uNo");
 		Integer rNo = (Integer)session.getAttribute("rNo");
@@ -71,6 +74,15 @@ public class ResDetail extends HttpServlet {
 			
 			request.setAttribute("actName", actName);
 			request.setAttribute("actTel", actTel);
+			
+			try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
+				// 지도 위한 카카오 앱 키
+				prop.load(is);
+				String kakaoKey = prop.getProperty("kakao.api.key");
+				request.setAttribute("kakaoKey", kakaoKey);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			
 			request.getRequestDispatcher("/myPage/resDetail.jsp").forward(request, response);
 			

@@ -7,12 +7,13 @@ function toggleFavorite(btn, hNo, wrapper = null) {
 			btn.find("i")
 				.removeClass("fa-regular fa-solid")
 				.addClass(res.favorite ? "fa-solid" : "fa-regular");
-
+				
 			// wrapper 존재 시 data 속성도 업데이트
 			if (wrapper) {
 				wrapper.data("favorite", res.favorite);
 				wrapper.attr("data-favorite", res.favorite);
 			}
+			
 		})
 		.fail(function(xhr) {
 			if (xhr.status === 401) {
