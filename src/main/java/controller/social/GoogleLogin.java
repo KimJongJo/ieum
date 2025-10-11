@@ -84,6 +84,7 @@ public class GoogleLogin extends HttpServlet {
 		
 		
 		
+		
 		// member 객체가 있을때
 		if(googleDto.getMemberDto() != null) {
 			FileDto fileDto = fileService.getFile(googleDto.getMemberDto().getFileNo());
