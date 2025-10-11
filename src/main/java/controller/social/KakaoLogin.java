@@ -19,9 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import dto.FileDto;
 import dto.MemberDto;
 import dto.otherDto.KakaoMemberDto;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 import service.social.KakaoService;
 import service.social.KakaoServiceImpl;
 
@@ -80,6 +82,10 @@ public class KakaoLogin extends HttpServlet {
 			
 			// member 객체가 있을때
 			if(kakaoDto.getMemberDto() != null) {
+				FileService fileService = new FileServiceImpl();
+				FileDto fileDto = fileService.getFile(kakaoDto.getMemberDto().getFileNo());
+				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+				session.setAttribute("profile", filePath);
 				session.setAttribute("userType", kakaoDto.getMemberDto().getUserType());
 				session.setAttribute("uNo", kakaoDto.getMemberDto().getuNo());
 				response.sendRedirect(request.getContextPath() + "/index");

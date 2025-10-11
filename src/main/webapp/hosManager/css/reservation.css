@@ -1,3 +1,6 @@
+body{
+	margin:0;
+}
 
 
 			.main {
@@ -73,6 +76,10 @@
                 
                 border-collapse: collapse;
             }
+            
+            .btn-td{
+            	padding:0 !important;
+            }
 
             .tr:nth-child(odd) {
                 background-color: #f6f8ff;
@@ -92,6 +99,22 @@
                 border-bottom: 1px solid #a6a6a6;
             }
 
+            .show-dia-btn, .show-pInfo-btn{
+            	font-size:15px;
+            	width:40px;
+            	height:25px;
+            	background-color: #ccd1df;
+            	border:none;
+            	border-radius:5px;
+            	cursor:pointer;
+            	transition-duration: 0.2s;
+            }
+            
+            .show-dia-btn:hover, .show-pInfo-btn:hover{
+            	background-color:#4356b3;
+            	color:white;
+            }
+            
             
             
             

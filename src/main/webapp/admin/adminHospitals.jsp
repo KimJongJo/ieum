@@ -136,7 +136,7 @@
 						</div>
 				  		</c:if>
                         <div class="modal-hospital" id="modal-hospital">
-                            <div class="hospital">
+                            <div class="admin-hospital">
                                 <div class="hospital-header">
                                     <i class="fa-solid fa-xmark"></i>
                                 </div>

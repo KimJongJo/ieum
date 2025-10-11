@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
+
 <body>
 
     
@@ -14,69 +16,35 @@
     <div class="container">
         <div class="header">
             <div class="header-inner">
-                <div style="cursor:pointer;" onclick="location.href='/ieum/index'" class="logo">건강이음</div>
-                <div class="header-menu">
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/hospital/search'">병원조회</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/admin/adminUsers'">회원관리</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/admin/adminHospitals'">병원관리</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/admin/hosRequestList'">병원신청목록</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/admin/notice?page=1'">공지사항관리</span>
-                </div>
+                
+                <a href="/ieum/index" style="display:flex; align-items:center;">
+                	<img src="/ieum/img/찐한로고.png" alt="" width="160px" />
+                </a>
+                
+				<nav id="main-nav" role="navigation" aria-label="주요">
+				  <ul>
+				    <li><a class="main-van-menu" href="/ieum/hospital/search">병원조회</a></li>
+				    <li><a class="main-van-menu" href="/ieum/allComList">커뮤니티</a></li>
+				    <li><a class="main-van-menu" href="/products">공지사항</a></li>
+				
+				    <!-- ✅ 여기 추가 -->
+				    <li class="admin-nav-list-li">
+				      <a class="main-van-menu2" href="#">관리메뉴</a>
+				      <ul class="snb">
+				        <li class="admin-in-list"><a href="/ieum/admin/adminUsers">일반회원관리</a></li>
+				        <li class="admin-in-list"><a href="/ieum/admin/adminHosManager">병원회원관리</a></li>
+				        <li class="admin-in-list"><a href="/ieum/admin/adminHospitals">병원관리</a></li>
+				        <li class="admin-in-list"><a href="/ieum/admin/hosRequestList">병원신청목록</a></li>
+				        <li class="admin-in-list"><a href="#">공지사항등록</a></li>
+				        <li class="admin-in-list"><a href="#">공지사항목록</a></li>
+				      </ul>
+				    </li>
+				  </ul>
+				</nav>
             </div>
         </div>
     </div>
 
-<%-- <div class="main-bar">
-    <div class="one-section">
-        <div class="circle-img">
-            <i class="fa-solid fa-users"></i>
-        </div>
-        <div class="count-div">
-            <span class="count-div-title">총 회원수</span>
-            <span class="count-div-num" id="totalMember">${sessionScope.totalMember}</span>
-        </div>
-    </div>
-    <div class="line"></div>
-    <div class="one-section">
-        <div class="circle-img">
-            <i class="fa-solid fa-user"></i>
-        </div>
-        <div class="count-div">
-            <span class="count-div-title">일반사용자</span>
-            <span class="count-div-num" id="totalUser">${sessionScope.totalUser}</span>
-        </div>
-    </div>
-    <div class="line"></div>
-    <div class="one-section">
-        <div class="circle-img">
-            <i class="fa-solid fa-user-doctor"></i>
-        </div>
-        <div class="count-div">
-            <span class="count-div-title">병원관리자</span>
-            <span class="count-div-num" id="totalManager">${sessionScope.totalManager}</span>
-        </div>
-    </div>
-    <div class="line"></div>
-    <div class="one-section">
-        <div class="circle-img">
-            <i class="fa-solid fa-hospital"></i>
-        </div>
-        <div class="count-div">
-            <span class="count-div-title">운영중인 병원</span>
-            <span class="count-div-num" id="activeHosCount">${sessionScope.totalActiveHos}</span>
-        </div>
-    </div>
-    <div class="line"></div>
-    <div class="one-section">
-        <div class="circle-img">
-            <i class="fa-solid fa-ban"></i>
-        </div>
-        <div class="count-div">
-            <span class="count-div-title">운영중지 병원</span>
-            <span class="count-div-num" id="inactiveHosCount">${sessionScope.totalInactiveHos}</span>
-        </div>
-    </div>
-</div> --%>
 
 </body>
 </html>

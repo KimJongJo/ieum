@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
  		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/profileInfo.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>

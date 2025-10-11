@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dto.FileDto;
 import dto.MemberDto;
 import dto.otherDto.NaverMemberDto;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 import service.social.NaverService;
 import service.social.NaverServiceImpl;
 
@@ -73,15 +76,21 @@ public class NaverLogin extends HttpServlet {
 			System.out.println("네이버 로그인중 오류 발생");
 		}
 		MemberDto member = naverService.emailCheck(naverDto.getEmail());
+		FileService fileService = new FileServiceImpl();		
+		FileDto fileDto = fileService.getFile(member.getFileNo());
 			
 		// member 객체가 있을때
 		if(naverDto.getMemberDto() != null) {
+			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+			session.setAttribute("profile", filePath);
 			session.setAttribute("hNo", naverDto.getMemberDto().getuNo());
 			response.sendRedirect(request.getContextPath() + "/index");
 		}else if(member != null) { // member 객체가 없지만 이미 기존 계정과 naver 소셜 계정을 병합한 계정인가? 
 			
 			// 만약에 이미 병합한 계정이라면
 			if(member.getSocialId() != null && member.getSocialId().equals(naverDto.getId())) {
+				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+				session.setAttribute("profile", filePath);
 				session.setAttribute("userType", member.getUserType());
 				session.setAttribute("uNo", member.getuNo());
 				response.sendRedirect(request.getContextPath() + "/index");

@@ -1,3 +1,7 @@
+*{
+	font-family: "Noto Sans KR", Helvetica;
+}
+
 .container {
 	width: 1280px;
 	margin: 0 auto; /* 화면 가운데 정렬 */
@@ -138,6 +142,16 @@
 	z-index: 0;
 }
 
+.middle-header .full-rect2 {
+	width: 100%;
+	height: 120px;
+	background-color: #F9D9FF;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 0;
+}
+
 .middle-header .group {
 	display: flex;
 	align-items: center;
@@ -174,14 +188,29 @@
 	background-color: #D4E5FF;
 }
 
+.middle-header .xlarge-rect2 {
+	width: 600px;
+	background-color: #E0AEF5;
+}
+
 .middle-header .large-rect {
 	width: 400px;
 	background-color: #92BEFF;
 }
 
+.middle-header .large-rect2 {
+	width: 400px;
+	background-color: #FF9CFF;
+}
+
 .middle-header .small-rect {
 	width: 200px;
 	background-color: #488EF6;
+}
+
+.middle-header .small-rect2 {
+	width: 200px;
+	background-color: #B56EC9;
 }
 
 .middle-header .small {
@@ -200,22 +229,139 @@
 	background-color: #D4E5FF;
 }
 
+.middle-header .xlarge-circle2 {
+	background-color: #E0AEF5;
+}
+
 .middle-header .large-circle {
 	background-color: #92BEFF;
+}
+
+.middle-header .large-circle2 {
+	background-color: #FF9CFF;
 }
 
 .middle-header .small-circle {
 	background-color: #488EF6;
 }
 
+.middle-header .small-circle2 {
+	background-color: #B56EC9;
+}
+
 .middle-header .xlarge-inner {
 	background-color: #EBF3FF;
+}
+
+.middle-header .xlarge-inner2 {
+	background-color: #F9D9FF;
 }
 
 .middle-header .large-inner {
 	background-color: #D4E5FF;
 }
 
+.middle-header .large-inner2 {
+	background-color: #E0AEF5;
+}
+
 .middle-header .small-inner {
 	background-color: #92BEFF;
 }
+
+.middle-header .small-inner2 {
+	background-color: #FF9CFF;
+}
+
+
+
+
+
+.main-van-menu:hover{
+	color: #4c7dec;
+}
+
+#main-nav .main-van-menu {
+	
+	font-size:18px;
+	margin-left:60px;
+	transition-duration:0.3s;
+}
+
+.main-van-menu2{
+	font-size:18px;
+	margin-left:60px;
+}
+ 
+.admin-nav-list-li {
+  position: relative;
+}
+
+/* 드롭다운 링크 */
+.admin-nav-list-li > a {
+  text-decoration: none;
+  padding: 8px;
+  display: block;
+}
+
+/* 기본 숨김 상태 */
+.snb {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #EBF3FF;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+
+  /* ✅ 세로정렬로 고정 */
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-left:41px;
+  
+  margin-top:5px;
+}
+
+/* 서브메뉴 항목 */
+.snb li a {
+  display: block;
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  white-space: nowrap;
+	transition-duration:0.3s;
+}
+
+.snb li a:hover {
+  background: #92BEFF;
+}
+
+/* 나타날 때 */
+.admin-nav-list-li:hover > .snb {
+  opacity: 1;
+  visibility: visible;      /* ✅ 보여줌 */
+  transform: translateY(0);
+}
+ 
+  .logo { 
+  font-weight:700; 
+  }
+  nav ul {
+     list-style: none;
+	  margin: 0;
+	  padding: 0;
+	  display: flex;     /* 상단 메뉴는 가로로 */
+	  gap: 12px;
+   }
+  nav a { 
+  color:black; text-decoration:none; padding:8px; display:inline-block; 
+  }
+  .hamburger { 
+  display:none; background:none; border:0; color:black; font-size:20px; 
+  }

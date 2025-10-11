@@ -5,21 +5,26 @@
 <title>Insert title here</title>
 </head>
 <body>
+    
     <!-- Header -->
     <div class="container">
         <div class="header">
             <div class="header-inner">
-                <div style="cursor:pointer;" onclick="location.href='/ieum/index'" class="logo">건강이음</div>
-                <div class="header-menu">
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/hospital/search'">병원조회/예약</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/exam'">자가진단</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/hosSignUp1'">병원등록신청</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/allComList'">커뮤니티</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/notice'">공지사항</span>
-                </div>
+                <a href="/ieum/index" style="display:flex; align-items:center;">
+                	<img src="/ieum/img/찐한로고.png" alt="" width="160px" />
+                </a>
+                
+                <nav id="main-nav" role="navigation" aria-label="주요">
+				  <ul>
+				    <li><a class="main-van-menu" href="/ieum/hospital/search">병원조회/예약</a></li>
+				    <li><a class="main-van-menu" href="/ieum/exam">자가진단</a></li>
+				    <li><a class="main-van-menu" href="/ieum/hosSignUp1">병원등록신청</a></li>
+				    <li><a class="main-van-menu" href="/ieum/allComList">커뮤니티</a></li>
+				    <li><a class="main-van-menu" href="/products">공지사항</a></li>
+				  </ul>
+				</nav>
             </div>
         </div>
     </div>
-    
 </body>
 </html>

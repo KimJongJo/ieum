@@ -92,8 +92,8 @@
 			                                    /
 			                                    <span>${res.time}</span>
 			                                </td>
-			                                <td><button value="${res.diaNo}" type="button" class="show-dia-btn">보기</button></td>
-	                                		<td><button value="${res.diaNo}" type="button" class="show-pInfo-btn" id="show-patient-info">보기</button></td>
+			                                <td class="btn-td"><button value="${res.diaNo}" type="button" class="show-dia-btn"><i class="fa-regular fa-clipboard"></i></button></td>
+	                                		<td class="btn-td"><button value="${res.diaNo}" type="button" class="show-pInfo-btn" id="show-patient-info"><i class="fa-regular fa-circle-user"></i></button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

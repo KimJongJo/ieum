@@ -44,7 +44,7 @@
             <div class="main-div">
                 <div class="img-div">
                     <a href="">
-                        <!-- <img src="..../img/건강이음누끼로고.png" alt="" width="200px" /> -->
+                        <img src="/ieum/img/logo.png" alt="" width="235px" />
                     </a>
                 </div>
                 <div class="hi-comment">

@@ -95,28 +95,52 @@
 	<c:if test="${pageName ne '/ieum/index' and sessionScope.userType ne 'ADMIN'}">
 
 		<!-- Middle Header -->
-		
-		<div class="middle-header">
-			<div class="full-rect"></div>
-			<div class="group xlarge">
-				<div class="outer-circle xlarge-circle">
-					<div class="inner-circle xlarge-inner"></div>
+		<c:if test="${sessionScope.userType == 'USER' || sessionScope.userType == NULL }">
+			<div class="middle-header">
+				<div class="full-rect"></div>
+				<div class="group xlarge">
+					<div class="outer-circle xlarge-circle">
+						<div class="inner-circle xlarge-inner"></div>
+					</div>
+					<div class="rectangle xlarge-rect"></div>
 				</div>
-				<div class="rectangle xlarge-rect"></div>
-			</div>
-			<div class="group large">
-				<div class="outer-circle large-circle">
-					<div class="inner-circle large-inner"></div>
+				<div class="group large">
+					<div class="outer-circle large-circle">
+						<div class="inner-circle large-inner"></div>
+					</div>
+					<div class="rectangle large-rect"></div>
 				</div>
-				<div class="rectangle large-rect"></div>
-			</div>
-			<div class="group small">
-				<div class="outer-circle small-circle">
-					<div class="inner-circle small-inner"></div>
+				<div class="group small">
+					<div class="outer-circle small-circle">
+						<div class="inner-circle small-inner"></div>
+					</div>
+					<div class="rectangle small-rect"></div>
 				</div>
-				<div class="rectangle small-rect"></div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${sessionScope.userType != 'USER' && sessionScope.userType != NULL }">
+			<div class="middle-header">
+				<div class="full-rect2"></div>
+				<div class="group xlarge">
+					<div class="outer-circle xlarge-circle2">
+						<div class="inner-circle xlarge-inner2"></div>
+					</div>
+					<div class="rectangle xlarge-rect2"></div>
+				</div>
+				<div class="group large">
+					<div class="outer-circle large-circle2">
+						<div class="inner-circle large-inner2"></div>
+					</div>
+					<div class="rectangle large-rect2"></div>
+				</div>
+				<div class="group small">
+					<div class="outer-circle small-circle2">
+						<div class="inner-circle small-inner2"></div>
+					</div>
+					<div class="rectangle small-rect2"></div>
+				</div>
+			</div>
+		</c:if>
 	</c:if>
 </body>
 </html>

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+	font-family: "Noto Sans KR", Helvetica;
+}
+
 body{
 	margin:0;
 }
