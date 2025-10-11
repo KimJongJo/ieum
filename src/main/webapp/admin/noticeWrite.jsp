@@ -13,6 +13,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -24,10 +25,10 @@
 <title>건강이음 - 공지사항 관리 작성</title>
 </head>
 <body>
-	<jsp:include page="/common/header/basicHeader.html" />
+	
 	<header>
 
-		<c:import url="/common/header/adminHeader.html" charEncoding="UTF-8" />
+		<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	</header>
 	<div class="main">
 		<div class="main-div">

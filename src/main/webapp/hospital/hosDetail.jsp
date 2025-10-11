@@ -373,14 +373,11 @@
 		</div>
 
 	</div>
-<<<<<<< HEAD
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
-=======
 	<!-- 로그인 여부 확인 -->
 	<script>
 	let uNo = parseInt("<%=session.getAttribute("uNo") != null ? session.getAttribute("uNo") : 0%>", 10);
 	</script>
->>>>>>> branch 'master' of https://github.com/devsolpark/kosta-ieum.git
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>
 	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>

@@ -36,7 +36,7 @@
 				        <li class="admin-in-list"><a href="/ieum/admin/adminHospitals">병원관리</a></li>
 				        <li class="admin-in-list"><a href="/ieum/admin/hosRequestList">병원신청목록</a></li>
 				        <li class="admin-in-list"><a href="#">공지사항등록</a></li>
-				        <li class="admin-in-list"><a href="#">공지사항목록</a></li>
+				        <li class="admin-in-list"><a href="/ieum/admin/notice?page=1">공지사항목록</a></li>
 				      </ul>
 				    </li>
 				  </ul>
