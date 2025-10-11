@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,74 +11,50 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=checklist" />
-<link rel="stylesheet" href="./css/examList.css" />
+<script src="https://kit.fontawesome.com/8d48045bdd.js"
+	crossorigin="anonymous"></script>
 <title>examNav</title>
 </head>
 <body>
-	<div class="sb">
-		<span class="sbcon">질환별 자가검진</span>
-	</div>
-	<div class="sb2">
+	<button class="sb" type="button" id="esb">
+		<span class="sbcon">질환별 자가검진 <i class="fa-solid fa-caret-down"></i>
+		</span>
+	</button>
+	<div class="sb2" id="esbTab">
 		<table class="nav">
 			<tr>
-				<a href="${contextPath }/exam/examques"><td class="en">강박장애</td></a>
+				<td class="en"><a href="${contextPath}/exam/examQues1.jsp">우울</a></td>
 			</tr>
 			<tr>
-				<td class="en">게임 생활습관</td>
+				<td class="en"><a href="${contextPath}/exam/examQues2.jsp">스트레스</a></td>
 			</tr>
 			<tr>
-				<td class="en">공황장애</td>
+				<td class="en"><a href="${contextPath}/exam/examQues3.jsp">삶의질</a></td>
 			</tr>
 			<tr>
-				<td class="en">노인 우울장애</td>
+				<td class="en"><a href="${contextPath}/exam/examQues4.jsp">조울증(성인)</a></td>
 			</tr>
 			<tr>
-				<td class="en">범 불안장애</td>
+				<td class="en"><a href="${contextPath}/exam/examQues5.jsp">조울증(청소년)</a></td>
 			</tr>
 			<tr>
-				<td class="en">스마트폰 생활습관</td>
+				<td class="en"><a href="${contextPath}/exam/examQues6.jsp">조기정신증</a></td>
 			</tr>
 			<tr>
-				<td class="en">아동용 ADHD</td>
+				<td class="en"><a href="${contextPath}/exam/examQues7.jsp">수면</a></td>
 			</tr>
 			<tr>
-				<td class="en">알코올 중독</td>
+				<td class="en"><a href="${contextPath}/exam/examQues8.jsp">알코올중독</a></td>
 			</tr>
 			<tr>
-				<td class="en">양극성장애</td>
+				<td class="en"><a href="${contextPath}/exam/examQues9.jsp">게임중독</a></td>
 			</tr>
 			<tr>
-				<td class="en">외상후 스트레스</td>
-			</tr>
-			<tr>
-				<td class="en">우울증</td>
-			</tr>
-			<tr>
-				<td class="en">인지장애(보호자)</td>
-			</tr>
-			<tr>
-				<td class="en">인지장애(치매)</td>
-			</tr>
-			<tr>
-				<td class="en">인터넷 생활습관</td>
-			</tr>
-			<tr>
-				<td class="en">자살</td>
-			</tr>
-			<tr>
-				<td class="en">정신장애</td>
-			</tr>
-			<tr>
-				<td class="en">조기정신증</td>
-			</tr>
-			<tr>
-				<td class="en">청소년자해</td>
-			</tr>
-			<tr>
-				<td class="en">청소년조울병(보호자)</td>
+				<td class="en"><a href="${contextPath}/exam/examQues10.jsp">외상후스트레스장애</a></td>
 			</tr>
 
 		</table>
 	</div>
+	<script src="${contextPath }/exam/js/examNav.js"></script>
 </body>
 </html>

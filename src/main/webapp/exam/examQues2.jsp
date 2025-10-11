@@ -280,6 +280,5 @@
 			</form>
 		</div>
 	</div>
-	<script src="./js/examQues.js"></script>
 </body>
 </html>

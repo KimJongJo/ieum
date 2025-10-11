@@ -39,33 +39,206 @@
 
 			<form action="${contextPath }/exam/score" method="post">
 				<div class="ques">
-					<span class="question">Q1. 게임을 자주 하지 않을때에도 게임에 대한 생각이 자꾸
-						떠오른다.</span>
+					<span class="question">Q1.여러분의 자녀가 평소와는 다른 아래의 모습을 1주일 또는 그
+						이상 보인 적이 있다면 '예' 에 체크 표시 합니다. </span>
 					<table class="quesTa">
 						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="5"> <span class="s1">매우그렇다</span></td>
+							<td class="score-ques"><span class="s1"> 1) 평소와 달리
+									기분이 너무 좋거나 흥분되어 보였다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="4"> <span class="s1">그렇다</span></td>
-						</tr>
-						<tr class="radio">
+								name="score1" value="2"> <span class="s1">예</span></td>
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="3"> <span class="s1">보통이다</span></td>
+								name="score1" value="1"> <span class="s1">아니오</span></td>
 						</tr>
-						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="2"> <span class="s1">그렇지 않다</span></td>
-						</tr>
-						<tr class="radio">
-							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">매우 그렇지
-									않다</span></td>
-						</tr>
-
-
 					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1">2) 평소와 달리
+									지나치게 과민해져 사람들과 싸우거나 말다툼을 했다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 3) 평소와 달리
+									무엇이든 할 수 있을 것 같은 자신감을 보였다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 4) 평소와 달리 잠을
+									적게 자려고 했다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1">5) 평소와 달리 머리
+									안의 생각이 빠르고 많아 보이고 생각을 차분하게 하지 못했다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 6) 평소와 달리 주위
+									자극에 쉽게 산만해졌다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 7) 평소와 달리 더욱
+									에너지가 넘쳤다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 8) 평소와 달리 더욱
+									활동적이었거나 더 많은 일을 하였다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 9) 평소와 달리
+									동시에 여러 명의 이성 친구와 교제했다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 10) 평소와 달리
+									성(性)에 대한 관심이 많았다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 11) 평소와 달리
+									위험하거나 무분별한 행동을 많이 했다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 12) 평소와 달리
+									돈을 지나치게 많이 썼다 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 13) 평소와 달리
+									음주를 하거나 안 좋은 약물을 먹거나 흡입했다 </span></td>
+						</tr>
+						<tr class="margin">
+							<td></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<span class="question"> Q2.만약 위의 자녀에 대한 질문 중에서 두 개 이상 '예' 라고
+						표시했다면 그런 모습은 동시에 있었습니까? </span>
+					<table class="quesTa">
+						<tr class="radio">
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="2"> <span class="s1">예</span></td>
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="1"> <span class="s1">아니오</span></td>
+						</tr>
+					</table>
+					<span class="question"> Q3.이러한 일들로 인해서 자녀에게 어느 정도의 문제가
+						발생했습니까? 다음 중 하나만 표시하십시오. </span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score-ques"><span class="s1"> 예를 들어, 학교문제,
+									성적저하, 가족과 친구 사이 문제, 법적 문제 등</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="3"> <span class="s1"> 심각한 문제
+							</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="2"> <span class="s1"> 중등도의 문제
+							</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="2"> <span class="s1">경미한 문제 </span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="1"> <span class="s1"> 문제없었다 </span></td>
+						</tr>
+					</table>
+
 				</div>
 
 				<div class="btn">
@@ -76,6 +249,5 @@
 			</form>
 		</div>
 	</div>
-	<script src="./js/examQues.js"></script>
 </body>
 </html>
