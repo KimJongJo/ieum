@@ -25,14 +25,7 @@
 				        data: $(this).serialize(), // form 안의 값 자동 직렬화
 				        dataType: 'json',
 				        success: function(res){
-				            if(res.success){
-
-				            		window.location.href="/ieum/index"; // 기본 페이지
-				            	}
-
-				            } else {
-				                alert(res.message);
-				            }
+				        	window.location.href="/ieum/index"; // 기본 페이지
 				        },
 				        error: function(){
 				            alert("서버 오류가 발생했습니다.");
@@ -47,7 +40,7 @@
             <div class="main-div">
                 <div class="img-div">
                     <a href="">
-                        <!-- <img src="..../img/건강이음누끼로고.png" alt="" width="200px" /> -->
+                        <img src="/ieum/img/logo.png" alt="" width="235px" />
                     </a>
                 </div>
                 <div class="hi-comment">

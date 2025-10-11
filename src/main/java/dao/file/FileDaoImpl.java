@@ -47,7 +47,7 @@ public class FileDaoImpl implements FileDao{
 			return session.selectOne("mapper.file.getFile",fileNo);
 		}
 	}
-	
+
 
 
 }

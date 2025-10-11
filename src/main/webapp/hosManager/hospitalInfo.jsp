@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
  		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/profileInfo.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -24,7 +24,7 @@
 
     </head>
     <body>
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <!-- 헤더 들어올 곳 -->
@@ -37,7 +37,7 @@
                         <!-- Main Content -->
 				        <form class="container-three">
 				        	<div class="hosImgDiv">
-								<img src="${pageContext.request.contextPath}/${hospital.filePath}${hospital.fileName}">
+								<img style="width:300px; height:200px;" src="${pageContext.request.contextPath}/${hospital.filePath}${hospital.fileName}">
 							</div>
 				            <div class="content">
 				                <span id="box3">병원명</span>

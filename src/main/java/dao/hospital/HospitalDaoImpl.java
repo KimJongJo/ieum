@@ -185,4 +185,16 @@ public class HospitalDaoImpl implements HospitalDao {
 			return sqlsession.selectOne("getHosNoByuNo", userNo);
 		}
 	}
+	@Override
+	public int getTotalActiveHos() {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("getTotalActiveHos");
+		}
+	}
+	@Override
+	public int getTotalInactiveHos() {
+		try(SqlSession sqlsession = sqlSessionFactory.openSession()) {		
+			return sqlsession.selectOne("getTotalInactiveHos");
+		}
+	}
 }

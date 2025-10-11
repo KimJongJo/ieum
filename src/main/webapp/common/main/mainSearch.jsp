@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/common/main/css/search.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -20,7 +21,7 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="/common/header/header.jsp" />
+		<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	</header>
 	<div class="search-container">
 		<div class="search-box">
@@ -88,10 +89,7 @@
 		</div>
 
 	</div>
-	<footer>
-		<%--         <jsp:include page="footer1.jsp"></jsp:include> --%>
-		<%--         <jsp:include page="footer2.jsp"></jsp:include> --%>
-	</footer>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </body>
 </html>

@@ -8,7 +8,7 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
         
@@ -27,11 +27,9 @@
 		<script src="./js/adminManagersModal.js"></script>
     </head>
     <body>
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
-                <!-- 헤더 들어올 곳 -->
-                <jsp:include page="../common/header/adminHeader.html"></jsp:include>
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
@@ -40,7 +38,7 @@
                         <div class="search-name">
                             <span class="search-name-span">병원 관리자 목록 조회</span>
                         </div>
-                        <form class="search-bar">
+                        <form class="admin-search-bar">
                             <input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
                             <button class="search-bar-icon" type="button" id="searchBtn">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -185,7 +183,7 @@
 				  	</c:if>
                         
                         <div class="modal-profile" id="modal-profile">
-                        <div class="profile">
+                        <div class="userProfile">
                             <div class="profile-header">
                                 <span>ID : <span id="userNo"></span></span>
                                 <i class="fa-solid fa-xmark"></i>

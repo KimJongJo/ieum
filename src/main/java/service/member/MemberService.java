@@ -59,5 +59,11 @@ public interface MemberService {
 
 	String profileDown(String id, String profile);
 
+	int getTotalUser();
+
+	int getTotalManager();
+
+	int getTotalMember();
+
 	
 }

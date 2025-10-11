@@ -9,10 +9,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=diagnosis" />
     <link rel="stylesheet" href="${contextPath }/exam/css/examResult.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
     <title>examResult</title>
 </head>
 <body>
-<div class="container">
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+<div class="body-div">
+<div class="exam-container">
         <div class="box">
             <div class="icon">
                 <span class="material-symbols-outlined">
@@ -41,5 +45,7 @@
             <a href="${contextPath }/hospital/search"><button type="button" class="blue" onclick="location.href='resContent.html'">예약하기</button></a>
         </div>
     </div>
+    </div>
+    <c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

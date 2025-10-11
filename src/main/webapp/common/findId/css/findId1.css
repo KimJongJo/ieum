@@ -1,3 +1,7 @@
+*{
+	font-family: "Noto Sans KR", Helvetica;
+}
+
 			.main {
 				min-width:1150px;
                 display: flex;

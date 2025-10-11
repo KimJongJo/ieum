@@ -489,7 +489,7 @@ margin: 0 10px 0 10px;
 </head>
 <body>
 
-    <c:import url="../common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
     <!-- Section Title -->
     <div id="section-title">

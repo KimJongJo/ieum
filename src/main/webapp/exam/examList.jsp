@@ -9,11 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=checklist" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
     <link rel="stylesheet" href="${contextPath}/exam/css/examQues.css" />
     <link rel="stylesheet" href="${contextPath}/css/header.css">
     <title>examlist</title>
 </head>
 <body>
+
 <jsp:include page="/common/header/header.jsp" />
 <div class="container1">
         <div class="left">

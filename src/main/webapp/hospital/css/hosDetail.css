@@ -5,6 +5,7 @@ body, form {
 	flex-direction: column;
 	font-family: "Noto Sans KR", Helvetica;
 	color: #000000;
+	margin:0;
 }
 
 a {
@@ -16,7 +17,7 @@ a {
 .container1 {
 	width: 1280px;
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: center;
 	flex-direction: column;
 }

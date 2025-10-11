@@ -2,7 +2,7 @@ $(document).ready(function() {
 	let todayDt = new Date();
 	let todayYear = todayDt.getFullYear();
 	let todayMonth = String(todayDt.getMonth() + 1).padStart(2, "0");
-	let todayDay = String(todayDt.getDate()).padStart(2, "0");
+	let todayDay = String(todayDt.getDate() + 1).padStart(2, "0");
 	let todayFormatDt = `${todayYear}-${todayMonth}-${todayDay}`;
 	
 	

@@ -284,4 +284,34 @@ public class MemberDaoImpl implements MemberDao {
 			return session.selectOne("mapper.member.selectMemberWithProfile", uNo);
 		}
 	}
+
+	@Override
+	public void updateManageProfile(MemberDto memberDto) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			session.update("mapper.member.updateManageProfile", memberDto);
+			session.commit();
+			
+		}
+	}
+
+	@Override
+	public int getTotalUser() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalUser");
+		}
+	}
+
+	@Override
+	public int getTotalManager() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalManager");
+		}
+	}
+
+	@Override
+	public int getTotalMember() {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("getTotalMember");
+		}
+	}
 }

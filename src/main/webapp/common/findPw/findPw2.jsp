@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/findPw/css/findPw2.css" />
     </head>
     <body>
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
         <div class="main">
             <div class="main-div">
                 <div>

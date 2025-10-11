@@ -165,6 +165,7 @@
 		AND u.u_no = (SELECT patient_id
 							FROM diagnosis_history
 							WHERE diagnosis_no = #{_parameter})
+		AND d.diagnosis_state = 'COMPLETED'
 		ORDER BY 1 DESC
 	</select>
 	
@@ -178,6 +179,7 @@
 		where u.u_no = (SELECT patient_id
 							FROM diagnosis_history
 							WHERE diagnosis_no = #{_parameter})
+		AND d.diagnosis_state = 'COMPLETED'
 		ORDER BY 1 DESC
 	</select>
 	
@@ -192,6 +194,7 @@
 		JOIN file f ON(f.file_no = m.file_no)
 		JOIN hospital h ON(m.h_no = h.h_no)
 		WHERE d.diagnosis_no = #{_parameter}
+		AND d.diagnosis_state = 'COMPLETED'
 		order by r.r_date desc
 	</select>
 	
@@ -205,6 +208,7 @@
 		JOIN file f ON(f.file_no = m.file_no)
 		JOIN hospital h ON(m.h_no = h.h_no)
 		WHERE u.u_no = #{uNo}
+		AND d.diagnosis_state = 'COMPLETED'
 		order by r.r_date desc
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
@@ -223,6 +227,7 @@
 	    JOIN hospital h ON m.h_no = h.h_no
 	    WHERE u.u_no = #{uNo}
 	      AND DATE(r.r_date) = #{date}
+	      AND d.diagnosis_state = 'COMPLETED'
 	    ORDER BY r.r_date DESC
 	    LIMIT #{offset}, #{limit}	    
 	</select>
@@ -236,6 +241,7 @@
 		JOIN file f ON(f.file_no = m.file_no)
 		JOIN hospital h ON(m.h_no = h.h_no)
 		WHERE u.u_no = #{uNo}
+		AND d.diagnosis_state = 'COMPLETED'
 	</select>
 	
 	<select id="getTotalCountByDate" parameterType="Map" resultType="Integer">
@@ -245,6 +251,7 @@
 	    JOIN reservation r ON d.r_no = r.r_no
 	    WHERE u.u_no = #{uNo}
       	AND DATE(r.r_date) = #{date}
+      	AND d.diagnosis_state = 'COMPLETED'
 	</select>
 	
 	<select id="selectAllDiaList" parameterType="Integer" resultType="Map">
@@ -255,6 +262,7 @@
 		JOIN hospital h ON(d.h_no = h.h_no)
 		JOIN member u ON(d.patient_id = u.u_no)
 		WHERE u.u_no = #{_parameter}
+		AND d.diagnosis_state = 'COMPLETED'
 	</select>
 	
 	<select id="selectDiaByNo" parameterType="Integer" resultType="shwoDiaInfo">
@@ -267,8 +275,8 @@
 		JOIN file f ON(f.file_no = m.file_no)
 		JOIN hospital h ON(m.h_no = h.h_no)
 		WHERE d.diagnosis_no = #{diaNo}
-	</select>	
-	
+		AND d.diagnosis_state = 'COMPLETED'
+	</select>
 	
 	<!-- 최근 진단 이력 1개 조회 -->
 	<select id="getLatestDiagnosisByUser" parameterType="int" resultType="shwoDiaInfo">

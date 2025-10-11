@@ -21,7 +21,7 @@
 <title>건강이음 - 공지사항관리 상세</title>
 </head>
 <body>
-	<jsp:include page="../common/header/adminHeader.html"></jsp:include>
+	<jsp:include page="../common/header/adminNavHeader.jsp"></jsp:include>
 	<div class="main">
 		<div class="main-div">
 			<div class="under-section">

@@ -42,4 +42,8 @@ public interface HospitalService {
 	void updateHosInfo(Map<String, Object> map);
 
 	String getHosNoByuNo(int userNo);
+
+	int getTotalActiveHos();
+
+	int getTotalInactiveHos();
 }

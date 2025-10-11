@@ -13,7 +13,7 @@ import javax.servlet.http.Part;
 
 import service.file.FileService;
 import service.file.FileServiceImpl;
-
+import dto.FileDto;
 import dto.MemberDto;
 import dto.MemberProfileDto;
 import service.myPage.ProfileInfoService;
@@ -74,55 +74,107 @@ public class ProfileInfoModify extends HttpServlet {
 	    request.setCharacterEncoding("utf-8");
 	    HttpSession session = request.getSession();
 	    Integer uNo = (Integer) session.getAttribute("uNo");
+	    String type = request.getParameter("type");
+	    if("user".equals(type)) {
+	    	
+	    	String nickName     = request.getParameter("nickName");
+	        String email        = request.getParameter("email");
+	        String id           = request.getParameter("id");
+	        String uTel         = request.getParameter("uTel");
+	        String uAddress     = request.getParameter("uAddress");
+	        String diaryPrivate = request.getParameter("diaryPrivate");
+	        Part proFile = request.getPart("profileFile");
+	        if (proFile == null) {
+	            System.out.println("❌ file 객체가 null 입니다. (폼 name 불일치 또는 enctype 누락 가능)");
+	        } else {
+	        	String fileName = proFile.getSubmittedFileName();
+	        	System.out.println("파일 크기: " + proFile.getSize());
+	        	System.out.println(fileName);
+	            System.out.println("✅ file 객체가 존재합니다.");
+	        }
+	        
+	        ProfileInfoService profileService = new ProfileInfoServiceImpl();
+	        
+	        
+	        
+	        try {
+	        	// 회원 기존 프로필 정보 조회
+	        	MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
+	        	
+	        	//2. 회원 기본 정보 수정
+	            MemberDto member = new MemberDto();            
+	            member.setuNo(uNo);
+	            member.setNickName(nickName);
+	            member.setEmail(email);
+	            member.setId(id);
+	            member.setuTel(uTel);
+	            member.setuAddress(uAddress);
+	            member.setDiaryPrivate("yes".equals(diaryPrivate));
+	            
+	            
+	            FileDto fileDto =  profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
+	            
+	            if(proFile.getSize() != 0) {
+	            	String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+	            	session.setAttribute("profile", filePath);
+	            }
+	            
+	           
+		     
+	            response.sendRedirect(request.getContextPath() + "/pInfo");
 
-        String nickName     = request.getParameter("nickName");
-        String email        = request.getParameter("email");
-        String id           = request.getParameter("id");
-        String uTel         = request.getParameter("uTel");
-        String uAddress     = request.getParameter("uAddress");
-        String diaryPrivate = request.getParameter("diaryPrivate");
-        Part proFile = request.getPart("profileFile");
-        if (proFile == null) {
-            System.out.println("❌ file 객체가 null 입니다. (폼 name 불일치 또는 enctype 누락 가능)");
-        } else {
-        	String fileName = proFile.getSubmittedFileName();
-        	System.out.println("파일 크기: " + proFile.getSize());
-        	System.out.println(fileName);
-            System.out.println("✅ file 객체가 존재합니다.");
-        }
-        
-        ProfileInfoService profileService = new ProfileInfoServiceImpl();
-        
-        
-        
-        try {
-        	// 회원 기존 프로필 정보 조회
-        	MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);
-        	
-        	//2. 회원 기본 정보 수정
-            MemberDto member = new MemberDto();            
-            member.setuNo(uNo);
-            member.setNickName(nickName);
-            member.setEmail(email);
-            member.setId(id);
-            member.setuTel(uTel);
-            member.setuAddress(uAddress);
-            member.setDiaryPrivate("yes".equals(diaryPrivate));
-            
-            
-            profileService.updateProfile(member, proFile);
-            
-            
-            
-           
-	     
-            response.sendRedirect(request.getContextPath() + "/pInfo");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            request.setAttribute("err", "회원 정보 수정 중 오류가 발생했습니다.");
+	            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+	        }
+	    	
+	    }else {
+	        String uTel         = request.getParameter("uTel");
+	        Integer stateCode     = Integer.parseInt(request.getParameter("stateCode"));
+	        String introduction = request.getParameter("introduction");
+	        Part proFile = request.getPart("profileFile");
+	        
+	        if (proFile == null) {
+	            System.out.println("❌ file 객체가 null 입니다. (폼 name 불일치 또는 enctype 누락 가능)");
+	        } else {
+	        	String fileName = proFile.getSubmittedFileName();
+	        }
+	        
+	        ProfileInfoService profileService = new ProfileInfoServiceImpl();
+	        
+	        try {
+	        	
+	        	//2. 회원 기본 정보 수정
+	            MemberDto member = new MemberDto();            
+	            member.setuNo(uNo);
+	            member.setuTel(uTel);
+	            member.setIntroduction(introduction);
+	            member.setStateCode(stateCode);
+	            
+	            FileDto fileDto = profileService.updateProfile(member, proFile, type, request.getServletContext().getRealPath("/"));
+	            
+	            if(proFile.getSize() != 0) {
+	            	String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+	            	session.setAttribute("profile", filePath);
+	            }
+	            
+	            
+	           
+		     
+	            response.sendRedirect(request.getContextPath() + "/pInfo");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("err", "회원 정보 수정 중 오류가 발생했습니다.");
-            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
-        }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            request.setAttribute("err", "회원 정보 수정 중 오류가 발생했습니다.");
+	            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+	        }
+	    	
+	        
+	    }
+	    
+	    
+        
 	}
 
 }

@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="${contextPath}/common/pagination/page.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
+
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 

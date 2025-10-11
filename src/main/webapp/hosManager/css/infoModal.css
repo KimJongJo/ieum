@@ -119,6 +119,7 @@
 			.modal-dia,
 			.modal-dia2,
 			.modal-dia3 {
+				z-index:999;
 			    display: none; /* 기본 숨김 */
 			    position: fixed; /* 화면 기준 */
 			    top: 0;          /* 왼쪽 위 고정 */

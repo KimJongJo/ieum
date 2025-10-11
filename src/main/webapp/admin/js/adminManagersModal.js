@@ -35,10 +35,9 @@ $(document).ready(function(){
 						$(".major-tr").html("");
 						role = "병원관리자";
 					}
-
                     $("#userName").text(object.username);
                     // 이미지 경로 변경
-					$("#userImg").attr("src", contextPath + "/" + object.imgFile);
+					$("#userImg").attr("src", contextPath + "/" + object.prifileImg);
 					$("#userNo").text(object.uNo);
 					$("#hosName").text(object.hNm);
                     $("#emailTd").text(object.email);

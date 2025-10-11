@@ -9,13 +9,27 @@
     <div class="container">
         <div class="header">
             <div class="header-inner">
-                <div style="cursor:pointer;" onclick="location.href='/ieum/index'" class="logo">건강이음</div>
-                <div class="header-menu">
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/hospital/search'">병원조회</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/hosManager/reservationToday'">병원관리</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/notice'">공지사항</span>
-                    <span style="cursor:pointer;" onclick="location.href='/ieum/pInfo'">마이페이지</span>
-                </div>
+                <a href="/ieum/index" style="display:flex; align-items:center;">
+                	<img src="/ieum/img/찐한로고.png" alt="" width="160px" />
+                </a>
+                <nav id="main-nav" role="navigation" aria-label="주요">
+				  <ul>
+				    <li><a class="main-van-menu" href="/ieum/hospital/search">병원조회</a></li>
+				    <li><a class="main-van-menu" href="/ieum/hosManager/hospitalInfo">병원관리</a></li>
+				    <li><a class="main-van-menu" href="/ieum/allComList">커뮤니티</a></li>
+				
+				    <li class="admin-nav-list-li">
+				      <a class="main-van-menu2" href="#">공지사항</a>
+				      <ul class="snb">
+				        <li class="admin-in-list"><a href="/ieum/admin/notice/write">공지사항등록</a></li>
+				        <li class="admin-in-list"><a href="/ieum/admin/notice?page=1">공지사항목록</a></li>
+				      </ul>
+				    </li>
+				    
+				    <li><a class="main-van-menu" href="/ieum/pInfo">마이페이지</a></li>
+				  </ul>
+				</nav>
+                
             </div>
         </div>
     </div>

@@ -11,10 +11,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfoModify.css" />
 <%-- <script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify.js"></script> --%>
 <!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-
+<c:if test="${userType != 'USER'}">
+	<script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify2.js"></script>
+</c:if>
+<c:if test="${userType == 'USER'}">
+	<script src="${pageContext.request.contextPath}/myPage/js/profileInfoModify.js"></script>
+</c:if>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-window.addEventListener('DOMContentLoaded', () => {
+/* window.addEventListener('DOMContentLoaded', () => {
     const uploadBtn = document.getElementById('uploadBtn');
     const profileInput = document.getElementById('profileInput');
 
@@ -64,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (manageMenu) {
         manageMenu.style.display = 'none'; // 메뉴 숨기기
     }
-});
+}); */
 
 </script>
 <script>
@@ -125,7 +130,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </head>
 <body>
 
-    <c:import url="/common/header/header.html" charEncoding="UTF-8"/>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
     <!-- Section Title -->
     <div id="section-title">
@@ -144,17 +149,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     <strong>*환영합니다*<br>최지성 회원님</strong>
                     <span>심원의방</span>
                 </div>
-                <div class="sidebar-body">
-                     <ul>
-					    <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>
-					    <a href="/ieum/myPage/reservation/list"><li><button type="button">예약 내역</button></li></a>
-						<a href="/ieum/myPage/diagnosisHistory"><li><button type="button">진단 이력</button></li></a>
-					    <a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
-					    <a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
-					    <a href="/ieum/myPage/diary?page=1"><li><button type="button">다이어리</button></li></a>
-						<a href="/ieum/hosFavorite"><li><button type="button">즐겨찾는 병원</button></li></a>
-					</ul>
-                </div>
+                <c:if test="${userType == 'USER'}">
+                	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
+                </c:if>	
             </div>
         </div>
 		
@@ -172,6 +169,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <span id="smaillModipy">(보다 나은 서비스 제공을 위해 고객님의 변경된 정보를 수정해주세요.)</span>
             <form action="${pageContext.request.contextPath}/pUpdate" method="post" enctype="multipart/form-data">
             <c:if test="${userType == 'USER'}">
+            <input type="hidden" name="type" value="user" />
             <div id="passwordModipy">
             	<!-- 기존 성명 아래에 추가 -->
 				<div class="form-row" style="align-items: center;">
@@ -251,23 +249,17 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
             </c:if>
             <c:if test="${userType != 'USER'}">
+            <input type="hidden" name="type" value="hosManager" />
             <div id="passwordModipy">
             	<!-- 기존 성명 아래에 추가 -->
 				<div class="form-row" style="align-items: center;">
 				    <label>프로필 사진</label>
 				    <div id="profile-upload-box">
-				        <div id="profile-preview">
-						    <c:choose>
-							    <c:when test="${not empty member and not empty member.fileName}">
-							        <img src="${pageContext.request.contextPath}/${member.filePath}/${member.fileName}" alt="프로필">
-							    </c:when>
-							    <c:otherwise>
-							        <img src="${pageContext.request.contextPath}/img/회원기본이미지.jpg" alt="기본 프로필">
-							    </c:otherwise>
-							</c:choose>
+				        <div id="profile-preview2">
+						    <img style="width:150px; height:200px;" src="${pageContext.request.contextPath}/${member.filePath}/${member.fileName}" alt="프로필">
 						</div>
-				        <input type="file" id="profileInput" name="profileFile" accept="image/*" style="display:none;">
-				        <button type="button" id="uploadBtn">이미지 선택</button>
+				        <input type="file" id="profileInput2" name="profileFile" accept="image/*" style="display:none;">
+				        <button type="button" id="uploadBtn2">이미지 선택</button>
 				    </div>
 				</div>
                 <div class="form-row">
@@ -279,7 +271,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 <input type="hidden" name="id" value="<c:out value='${member.id}'/>">
                 <div class="form-row">
                     <label>이메일 *</label>
-                    <input type="email" id="email" name="email" value="<c:out value='${member.email}'/>" placeholder="이메일">
+                    <input readonly type="email" id="email" name="email" value="<c:out value='${member.email}'/>" placeholder="이메일">
                 </div>
                 <div class="form-row">
                     <label>비밀번호</label>
@@ -303,13 +295,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 <div class="form-row1">
                     <label>활동 상태 *</label>
                     <div class="checkbox-group">
-                        <label><input type="radio" name="diaryPrivate" value="yes"
+                        <label><input type="radio" name="stateCode" value="1"
                         	${member.stateCode == 1 ? 'checked' : ''} > 정상</label>
-                        <label><input type="radio" name="diaryPrivate" value="no"
+                        <label><input type="radio" name="stateCode" value="4"
                         	${member.stateCode == 4 ? 'checked' : ''} > 휴직</label>
-                       	<label><input type="radio" name="diaryPrivate" value="no"
+                       	<label><input type="radio" name="stateCode" value="5"
                         	${member.stateCode == 5 ? 'checked' : ''}>퇴직</label>
                     </div>
+                </div>
+                
+                <div class="form-row">
+                    <label>소개글 *</label>
+                    <input type="text" id="introduction" name="introduction" value="<c:out value='${member.introduction}'/>" placeholder="소개글을 작성해주세요">
                 </div>
             </div>
             </c:if>

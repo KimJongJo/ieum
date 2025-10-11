@@ -16,6 +16,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/modal.css" />
 <script
@@ -26,8 +27,8 @@
 </head>
 
 <body>
-	<jsp:include page="/common/header/header.jsp" />
-	<div class="container1">
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	<div class="container">
 		<div class="hh">
 			<div class="hbt">
 				<div class="hos-category">
@@ -372,6 +373,7 @@
 		</div>
 
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 	<!-- 로그인 여부 확인 -->
 	<script>
 	let uNo = parseInt("<%=session.getAttribute("uNo") != null ? session.getAttribute("uNo") : 0%>", 10);

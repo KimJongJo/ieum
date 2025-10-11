@@ -1,4 +1,6 @@
-
+*{
+	font-family: "Noto Sans KR", Helvetica;
+}
 /* 네비 추가 메뉴 */
 .menu {
     width: 195px;
