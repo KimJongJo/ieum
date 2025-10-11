@@ -218,7 +218,10 @@ $(document).ready(function() {
 		);
 	});
 	// 캘린더
-	var calendar = new FullCalendar.Calendar(document.getElementById('fc'), {
+	let calendar;
+	const fc = document.getElementById('fc');
+	if (fc != null){
+	calendar = new FullCalendar.Calendar(fc, {
 		selectable: true,
 		headerToolbar: false,
 		initialView: 'dayGridMonth',
@@ -226,30 +229,26 @@ $(document).ready(function() {
 		events: function(fetchInfo, successCallback, failureCallback) {
 			// fetchInfo.start, fetchInfo.end -> FullCalendar가 보내는 시작/끝 날짜
 			const start = fetchInfo.startStr; // "2025-09-01"
-			const end = fetchInfo.endStr;     // "2025-09-30"
-			// 1. 다이어리 이벤트 가져오기
-			$.ajax({
-				url: '/ieum/myPage/diary/event',
-				type: 'GET',
-				data: { start: start, end: end },
-				success: function(res) {
-					successCallback(res);
-				},
-				error: function(e) {
-					console.log("캘린더 - 다이어리 조회 오류", e);
-					failureCallback(e);
-				}
-			});
-			// 2. 예약 이벤트 가져오기
+			const end = fetchInfo.endStr;     // "2025-09-30"			
+			// 다이어리,예약 데이터 가져오기
 			$.ajax({
 				url: '/ieum/myPage/reservation/event',
 				type: 'GET',
 				data: { start: start, end: end },
-				success: function(res) {
-					successCallback(res);
+				success: function(allEvents) {
+                const uniqueEvents = [];
+                const dates = new Set();
+                allEvents.forEach(ev => {
+                    if (!dates.has(ev.start)) {
+                        dates.add(ev.start);
+                        uniqueEvents.push(ev);
+                    }
+                });
+
+                successCallback(uniqueEvents);
 				},
 				error: function(e) {
-					console.log("캘린더 - 예약내역 조회 오류", e);
+					console.log("캘린더 조회 오류", e);
 					failureCallback(e);
 				}
 			});
@@ -281,4 +280,5 @@ $(document).ready(function() {
 		}
 	});
 	calendar.render();
+	}
 });

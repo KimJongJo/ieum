@@ -67,6 +67,8 @@ public class Notice extends HttpServlet {
 					resultMap.put("noticeList", noticeList);
 					resultMap.put("pageInfo", pageInfo);
 					resultMap.put("loginUNo", uNo);
+					resultMap.put("keyword", keyword);
+					resultMap.put("sort", sort);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;

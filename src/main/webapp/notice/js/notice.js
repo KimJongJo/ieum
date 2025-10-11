@@ -1,9 +1,9 @@
 function goOther(no) {
 	window.location.href = `/ieum/notice?nNo=${no}`
 }
-function renderList() {
+function renderList(page) {
 	const url = new URL(window.location.href);
-	url.searchParams.set('page', 1);
+	url.searchParams.set('page', page);
 	window.history.replaceState({}, '', url);
 	const sort = $('.notice-select').val();
 	const keyword = $("#searchInput").val().trim();
@@ -11,7 +11,7 @@ function renderList() {
 		url: "/ieum/notice",
 		type: "GET",
 		async: false,
-		data: { keyword: keyword, page: 1, sort: sort },
+		data: { keyword: keyword, page: page, sort: sort },
 		dataType: "json",
 		headers: { 'X-Requested-With': 'XMLHttpRequest' },
 		success: function(data) {
@@ -19,6 +19,9 @@ function renderList() {
 			const noticeTable = $("#noticeList");
 			const paginationDiv = $("#pagination");
 			const pageInfo = data.pageInfo;
+			$('.notice-select').val(data.sort || 'none');
+			$("#searchInput").val(data.keyword);
+			$("#noticeCnt").text(data.noticeList.length + data.topList.length);
 			noticeTable.empty(); // 기존 목록 제거
 			if (data.noticeList.length == 0 && data.topList.length == 0) {
 				noticeTable.hide();
@@ -29,22 +32,22 @@ function renderList() {
 				paginationDiv.empty(); // 기존 페이징 제거
 				let paginationHtml = "";
 				// 이전 버튼
-				if (pageInfo.curPage > 1) {
-					paginationHtml += `<button onclick="location.href='/ieum/notice?page=${pageInfo.curPage - 1}'">&lt;</button>`;
-				}
+			if (pageInfo.curPage > 1) {
+				paginationHtml += `<button onclick="renderList(${pageInfo.curPage - 1})">&lt;</button>`;
+			}
 
-				// 페이지 번호 버튼들
-				for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
-					if (pageNum <= pageInfo.allPage) {
-						const activeClass = pageNum === pageInfo.curPage ? "active" : "";
-						paginationHtml += `<button class="${activeClass}" onclick="location.href='/ieum/notice?page=${pageNum}'">${pageNum}</button>`;
-					}
+			// 페이지 번호 버튼들
+			for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
+				if (pageNum <= pageInfo.allPage) {
+					const activeClass = pageNum === pageInfo.curPage ? "active" : "";
+					paginationHtml += `<button class="${activeClass}" onclick="renderList(${pageNum})">${pageNum}</button>`;
 				}
+			}
 
-				// 다음 버튼
-				if (pageInfo.curPage < pageInfo.endPage) {
-					paginationHtml += `<button onclick="location.href='/ieum/notice?page=${pageInfo.curPage + 1}'">&gt;</button>`;
-				}
+			// 다음 버튼
+			if (pageInfo.curPage < pageInfo.endPage) {
+				paginationHtml += `<button onclick="renderList(${pageInfo.curPage + 1})">&gt;</button>`;
+			}
 				paginationDiv.append(paginationHtml);
 				noticeTable.show();
 				paginationDiv.show();
@@ -120,7 +123,7 @@ $(document).ready(function() {
 	$("#searchInput").on("keypress", function(e) {
 		if (e.which === 13) {
 			e.preventDefault();
-			renderList();
+			renderList(1);
 		}
 	});
 })

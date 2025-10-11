@@ -39,35 +39,387 @@
 
 			<form action="${contextPath }/exam/score" method="post">
 				<div class="ques">
-					 <span class="question">Q1. 게임을 자주 하지 않을때에도 게임에 대한 생각이 자꾸
-						떠오른다.</span>
+					 <span class="question">Q1. 평소에는 아무렇지도 않던 일들이 괴롭고 귀찮게 느껴졌다.</span>
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="5"> <span class="s1">매우그렇다</span></td>
+								name="score1" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="4"> <span class="s1">그렇다</span></td>
+								name="score1" value="2"> <span class="s1">가끔 (1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="3"> <span class="s1">보통이다</span></td>
+								name="score1" value="3"> <span class="s1">자주 (3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="2"> <span class="s1">그렇지 않다</span></td>
+								name="score1" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q2. 먹고 싶지 않았고 식욕이 없었다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">매우 그렇지
-									않다</span></td>
+								name="score2" value="2"> <span class="s1">가끔 (1-2일)</span></td>
 						</tr>
-
-
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					 <span class="question">Q3. 어느 누가 도와준다 하더라도, 나의 울적한 기분을 떨쳐버릴 수 없을 것 같았다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q4. 무슨 일을 하던 정신을 집중하기가 어려웠다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q5. 비교적 잘 지냈다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q6. 상당히 우울했다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q7. 모든 일들이 힘들게 느껴졌다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q8. 앞일이 암담하게 느껴졌다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q9. 지금까지의 내 인생은 실패작이라는 생각이 들었다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q10. 적어도 보통 사람들만큼의 능력은 있었다고 생각한다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q11. 잠을 설쳤다(잠을 잘 이루지 못했다).</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score11" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q12. 두려움을 느꼈다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score12" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q13. 평소에 비해 말수가 적었다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score13" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q14. 세상에 홀로 있는 듯한 외로움을 느꼈다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score14" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q15. 큰 불만 없이 생활했다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score15" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q16. 사람들이 나에게 차갑게 대하는 것 같았다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score16" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q17. 갑자기 울음이 나왔다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score17" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score17" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score17" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score17" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q18. 마음이 슬펐다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score18" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score18" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score18" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score18" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q19. 사람들이 나를 싫어하는 것 같았다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score19" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score19" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score19" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score19" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
+					</table>
+					<span class="question">Q20. 도무지 뭘 해 나갈 엄두가 나지 않았다.</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score20" value="1"> <span class="s1">극히 드물게(1일 이하)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score20" value="2"> <span class="s1">가끔 (1-2일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score20" value="3"> <span class="s1">자주 (3-4일)</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score20" value="4"> <span class="s1">거의 대부분 (5-7일)</span></td>
+						</tr>
 					</table>
 				</div>
-
 				<div class="btn">
 					<a href="${contextPath }/exam"><button type="button"
 							class="btn-rec-w">그만두기</button></a>

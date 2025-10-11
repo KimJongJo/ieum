@@ -40,32 +40,235 @@
 
 			<form action="${contextPath }/exam/score" method="post">
 				<div class="ques">
-					<span class="question">Q1. 게임을 자주 하지 않을때에도 게임에 대한 생각이 자꾸
-						떠오른다.</span>
+					<span class="question">Q1. 최근 1개월 동안, 예상치 못했던 일 때문에 당황했던 적이 얼마나 있었습니까?</span>
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="5"> <span class="s1">매우그렇다</span></td>
+								name="score1" value="1"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="4"> <span class="s1">그렇다</span></td>
+								name="score1" value="2"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="3"> <span class="s1">보통이다</span></td>
+								name="score1" value="3"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="2"> <span class="s1">그렇지 않다</span></td>
+								name="score1" value="4"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">매우 그렇지
-									않다</span></td>
+								name="score1" value="5"> <span class="s1">매우 자주 있었다</span></td>
 						</tr>
-
-
+					</table>
+					<span class="question">Q2. 최근 1개월 동안, 인생에서 중요한 일들을 조절할 수 없다는 느낌을 얼마나 경험하였습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score2" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q3. 최근 1개월 동안, 신경이 예민해지고 스트레스를 받고 있다는 느낌을 얼마나 경험하였습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score3" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q4. 최근 1개월 동안, 당신의 개인적 문제들을 다루는 데 있어서 얼마나 자주 자신감을 느꼈습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score4" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q5. 최근 1개월 동안, 일상의 일들이 당신의 생각대로 진행되고 있다는 느낌을 얼마나 경험하였습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score5" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q6. 최근 1개월 동안, 당신이 꼭 해야 하는 일을 처리할 수 없다고 생각한 적이 얼마나 있었습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score6" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q7. 최근 1개월 동안, 일상생활의 짜증을 얼마나 자주 잘 다스릴 수 있었습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score7" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q8. 최근 1개월 동안, 최상의 컨디션이라고 얼마나 자주 느끼셨습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score8" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q9. 최근 1개월 동안, 당신이 통제할 수 없는 일 때문에 화가 난 경험이 얼마나 있었습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score9" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
+					</table>
+					<span class="question">Q10. 최근 1개월 동안, 어려운 일들이 너무 많이 쌓여서 극복하지 못할 것 같은 느낌을 얼마나 자주 경험하셨습니까?</span>
+					<table class="quesTa">
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="1"> <span class="s1">전혀 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="2"> <span class="s1">거의 없었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="3"> <span class="s1">때때로 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="4"> <span class="s1">자주 있었다</span></td>
+						</tr>
+						<tr class="radio">
+							<td class="score"><input class="scores" type="radio"
+								name="score10" value="5"> <span class="s1">매우 자주 있었다</span></td>
+						</tr>
 					</table>
 				</div>
 

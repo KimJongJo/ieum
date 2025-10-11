@@ -46,8 +46,11 @@ public class Diary extends HttpServlet {
 		HttpSession session = request.getSession();
 	    Integer uNo = (Integer)session.getAttribute("uNo");
 	    if (uNo == null) {
-		    request.setAttribute("err", "잘못된 접근입니다. 로그인 후 이용해주세요");
-		    request.getRequestDispatcher("/myPage/myPageAlert.jsp").forward(request, response);
+		    request.setAttribute("loginErr", "로그인 후 이용해주세요");
+		    String pageName = request.getRequestURI(); // 현재 페이지 경로
+		    String queryString = request.getQueryString(); // 현재 페이지 queryString
+		    request.setAttribute("redirect", pageName +"?"+queryString);
+		    request.getRequestDispatcher("/common/errAlert.jsp").forward(request, response);
 		    return;
 		}
 		Integer dNo = (Integer) session.getAttribute("dNo");
@@ -67,7 +70,9 @@ public class Diary extends HttpServlet {
                     Gson gson = new Gson();
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("diaryList", diaryList);
-                    resultMap.put("pageInfo", pageInfo); 
+                    resultMap.put("pageInfo", pageInfo);
+                    resultMap.put("keyword", keyword);
+                    resultMap.put("sort", sort);
                     String result = gson.toJson(resultMap);
                     response.getWriter().write(result);
                     return;

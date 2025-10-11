@@ -43,8 +43,11 @@ public class HosFavorite extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");		
 		if (uNo == null) {
-		    request.setAttribute("loginErr", "잘못된 접근입니다. 로그인 후 이용해주세요");
-		    request.getRequestDispatcher("/myPage/myPageAlert.jsp").forward(request, response);
+			request.setAttribute("loginErr", "로그인 후 이용해주세요");
+		    String pageName = request.getRequestURI(); // 현재 페이지 경로
+		    String queryString = request.getQueryString(); // 현재 페이지 queryString
+		    request.setAttribute("redirect", pageName +"?"+queryString);
+		    request.getRequestDispatcher("/common/errAlert.jsp").forward(request, response);
 		    return;
 		}
 		request.getRequestDispatcher("/myPage/hosFavorite.jsp").forward(request, response);
