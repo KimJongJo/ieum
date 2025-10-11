@@ -27,9 +27,9 @@
 	    where file_no = #{fileNo}
 	</update>
 	
-<!-- 	<insert id="uploadFile" parameterType="file" useGeneratedKeys="true" keyProperty="fileNo">
+	<insert id="uploadFile" parameterType="file" useGeneratedKeys="true" keyProperty="fileNo">
 		insert into file (file_name, file_path, file_category) values (#{fileName}, #{filePath}, #{fileCategory})
-	</insert> -->
+	</insert>
 	
 	<!-- member-mapper.xml -->
 	<update id="updateProfileFile" parameterType="map">

@@ -77,10 +77,11 @@ public class NaverLogin extends HttpServlet {
 		}
 		MemberDto member = naverService.emailCheck(naverDto.getEmail());
 		FileService fileService = new FileServiceImpl();		
-		FileDto fileDto = fileService.getFile(member.getFileNo());
+		
 			
 		// member 객체가 있을때
 		if(naverDto.getMemberDto() != null) {
+			FileDto fileDto = fileService.getFile(member.getFileNo());
 			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
 			session.setAttribute("profile", filePath);
 			session.setAttribute("hNo", naverDto.getMemberDto().getuNo());
@@ -89,6 +90,7 @@ public class NaverLogin extends HttpServlet {
 			
 			// 만약에 이미 병합한 계정이라면
 			if(member.getSocialId() != null && member.getSocialId().equals(naverDto.getId())) {
+				FileDto fileDto = fileService.getFile(member.getFileNo());
 				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
 				session.setAttribute("profile", filePath);
 				session.setAttribute("userType", member.getUserType());
