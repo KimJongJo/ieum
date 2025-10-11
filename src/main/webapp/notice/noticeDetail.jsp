@@ -48,7 +48,7 @@
 
 		<!-- 첨부파일 -->
 		<c:if test="${notice.fileName != null }">
-			<div class="notice-attach">
+			<div class="notice-attach" onclick="window.open(`/ieum/notice/download?no=${notice.fileNo}`)">
 				첨부파일 <span>${notice.fileName}</span>
 			</div>
 		</c:if>

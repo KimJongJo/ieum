@@ -75,6 +75,8 @@ public class AdminNotice extends HttpServlet {
 					resultMap.put("noticeList", noticeList);
 					resultMap.put("loginUNo", uNo);
 					resultMap.put("pageInfo", pageInfo);
+					resultMap.put("keyword", keyword);
+					resultMap.put("sort", sort);
 					String result = gson.toJson(resultMap);
 					response.getWriter().write(result);
 					return;
