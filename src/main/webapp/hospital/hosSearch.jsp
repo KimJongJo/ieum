@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<jsp:include page="/common/header/header.html" />
+	<jsp:include page="/common/header/header.jsp" />
 
 	<div class="container">
 		<div class="filter">

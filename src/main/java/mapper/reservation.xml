@@ -89,10 +89,9 @@
 		resultType="resInfo">
 		select *
 		from reservation r
-		join hospital h
+		left join hospital h
 		using(h_no)
-		join
-		member m
+		left join member m
 		on (r.m_no = m.u_no)
 		where r_no=#{rNo}
 	</select>
@@ -108,15 +107,22 @@
 	<!-- 다가오는예약 리스트 -->
 	<select id="commingRes" parameterType="Integer"
 		resultType="resInfo">
-		select *
+		select * ,
+		<if test="_parameter != null">
+			if(fav.hos_no is not null, 1, 0) as favorite
+		</if>
+		<if test="_parameter == null">
+			0 as favorite
+		</if>
 		from reservation r
 		join hospital h
 		using(h_no)
-		join
-		member m
+		left join member m
 		on (r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
+		left join favorite fav
+		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
 		where r.u_no=#{uNo} and r.r_status='WAITING'
 		order by r.r_date ASC
 	</select>
@@ -125,11 +131,10 @@
 	<select id="recordResCnt" parameterType="map" resultType="Integer">
 		select count(*)
 		from reservation r
-		join hospital h
+		left join hospital h
 		using(h_no)
-		join member m
-		on
-		(r.m_no = m.u_no)
+		left join member m
+		on (r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
 		where
@@ -150,15 +155,22 @@
 
 	<!-- 지난예약 리스트 -->
 	<select id="recordRes" parameterType="map" resultType="resInfo">
-		select *
+		select *,
+		<if test="uNo != null">
+			if(fav.hos_no is not null, 1, 0) as favorite
+		</if>
+		<if test="uNo == null">
+			0 as favorite
+		</if>
 		from reservation r
-		join hospital h
+		left join hospital h
 		using(h_no)
-		join member m
-		on
-		(r.m_no = m.u_no)
+		left join member m
+		on(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
+		left join favorite fav
+		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
 		where
 		r.u_no=#{uNo} and r.r_status='COMPLETE'
 		<if test="sort != null and sort != ''">

@@ -199,10 +199,6 @@ a {
 	font-size: 13px;
 }
 
-.star {
-	font-size: 25px;
-	color: #d9d9d9;
-}
 
 .l2 {
 	height: 127px;
@@ -468,3 +464,28 @@ a {
 .page-div {
 	margin-top:30px;
 }
+
+.fav-btn{
+	cursor:default;
+}
+
+
+.fav-btn:active {
+    transform: none;
+    filter: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

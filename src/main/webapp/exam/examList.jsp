@@ -10,15 +10,17 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=checklist" />
     <link rel="stylesheet" href="${contextPath}/exam/css/examList.css" />
+    <link rel="stylesheet" href="${contextPath}/css/header.css">
     <title>examlist</title>
 </head>
 <body>
-<div class="container">
+<jsp:include page="/common/header/header.jsp" />
+<div class="container1">
         <div class="left">
         <jsp:include page="examnav.jsp"></jsp:include>
         </div>           
         <div class="right">
-            <div class="header">
+            <div class="examHeader">
                 <div class="icon">
                     <span class="material-symbols-outlined">
                         checklist
@@ -35,65 +37,65 @@
                 <table class="elc">
                     <tr>
                     <td>
-                     <a href="${contextPath}/exam/examques">
+                     <a href="${contextPath}/exam/examQues1.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">강박장애</span>
+                                <span class="e1">우울</span>
                             </div>                      
                      		</a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues2.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">게임 생활습관</span>
+                                <span class="e1">스트레스</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues3.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">공황장애</span>
+                                <span class="e1">삶의 질</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues4.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">노인 우울장애</span>
+                                <span class="e1">조울증(성인)</span>
                             </div>
                             </a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues5.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">범 불안장애</span>
+                                <span class="e1">조울증(청소년)</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues6.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">스마트폰 생활습관</span>
+                                <span class="e1">조기정신증</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues7.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">아동용 ADHD</span>
+                                <span class="e1">수면</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues8.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
                                 <span class="e1">알코올 중독</span>
@@ -103,94 +105,18 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues9.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">양극성장애</span>
+                                <span class="e1">게임중독</span>
                             </div>
                             </a>
                         </td>
                         <td>
-                        <a href="${contextPath }/exam/examques">
+                        <a href="${contextPath }/exam/examQues10.jsp">
                             <div class="sum">
                                 <img class="ci" src="" />
-                                <span class="e1">외상후 스트레스</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">우울증</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">인지장애(보호자)</span>
-                            </div>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">인지장애(치매)</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">인터넷 생활습관</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">자살</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">정신장애</span>
-                            </div>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">조기정신증</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">청소년자해</span>
-                            </div>
-                            </a>
-                        </td>
-                        <td>
-                        <a href="${contextPath }/exam/examques">
-                            <div class="sum">
-                                <img class="ci" src="" />
-                                <span class="e1">청소년조울병(보호자)</span>
+                                <span class="e1">외상 후 스트레스</span>
                             </div>
                             </a>
                         </td>

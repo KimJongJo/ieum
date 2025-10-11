@@ -13,7 +13,7 @@ a {
 }
 
 
-.container {
+.container1 {
 	width: 1280px;
 	display: flex;
 	align-items: center;
@@ -24,11 +24,10 @@ a {
 /* 병원정보 */
 .hh {
 	width: 1280px;
-	height: 103px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-top: 26px;
+	margin-top: 50px;
 }
 
 .hbt {
@@ -56,12 +55,19 @@ a {
 }
 
 .bt1 {
-	width: 25px;
-	height: 25px;
-	background-color: white;
-	border: none;
 	margin-left: 15px;
 	margin-top: 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #d9d9d9;
+    transition: color 0.2s ease;
+}
+
+.bt1:active {
+    transform: translateY(2px);
+    filter: brightness(90%);
 }
 
 .i {
@@ -120,7 +126,7 @@ a {
 }
 
 .hos-na {
-	font-weight: 600;
+	font-weight: 500;
 	font-size: 20px;
 	margin-bottom: 26px;
 }
@@ -412,7 +418,6 @@ a {
 
 .select-date {
 	display: flex;
-	margin-bottom: 20px;
 }
 
 .date-header {
@@ -422,12 +427,10 @@ a {
 
 .calendar {
 	width: 584px;
-	height: 650px;
 }
 
 .time-table {
 	width: 585px;
-	height: 557px;
 	padding-left: 30px;
 	margin-top: 55px;
 	box-sizing: border-box;
@@ -455,6 +458,7 @@ a {
 	align-items: center;
 	padding: 21px 34px 34px 34px;
 	box-sizing: border-box;
+	border-radius: 5px;
 }
 
 .h {

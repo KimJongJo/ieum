@@ -17,15 +17,17 @@
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/modal.css" />
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 <title>hosDe-res</title>
 </head>
 
 <body>
-	<jsp:include page="/common/header/header.html" />
-	<div class="container">
+	<jsp:include page="/common/header/header.jsp" />
+	<div class="container1">
 		<div class="hh">
 			<div class="hbt">
 				<div class="hos-category">
@@ -37,13 +39,14 @@
 					<c:out value="${hosDetail.hNm }" />
 				</div>
 			</div>
-			<div class="share" data-hno="${hosDetail.hNo }" >
-				<button type="button" class="fav-btn ${hosDetail.favorite ? 'active' : ''}">
+			<div class="share" data-hno="${hosDetail.hNo }">
+				<button type="button"
+					class="fav-btn ${hosDetail.favorite ? 'active' : ''}">
 					<div class="i">
 						<i class="fa${hosDetail.favorite ? 's' : 'r'} fa-star"></i>
 					</div>
 				</button>
-				<button type="button" class="bt1">
+				<button type="button" class="bt1" id="shareBtn">
 					<div class="i">
 						<i class="fa-regular fa-share-from-square"></i>
 					</div>
@@ -196,7 +199,35 @@
 					<span class="mtitle">위치/교통</span>
 				</div>
 				<div class="m2">
-					<div class="map-sec"></div>
+					<div class="map-sec" id="map"></div>
+					<!-- 카카오맵 -->
+					<script
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false"></script>
+					<script>
+						kakao.maps
+								.load(function() {
+									var lat = parseFloat('${hosDetail.hLocationY}');
+									var lng = parseFloat('${hosDetail.hLocationX}');
+
+									var container = document
+											.getElementById('map');
+									var options = {
+										center : new kakao.maps.LatLng(lat, lng),
+										level : 3
+									};
+
+									var map = new kakao.maps.Map(container,
+											options);
+
+									var markerPosition = new kakao.maps.LatLng(
+											lat, lng);
+									var marker = new kakao.maps.Marker({
+										position : markerPosition
+									});
+
+									marker.setMap(map);
+								});
+					</script>
 				</div>
 			</div>
 
@@ -210,8 +241,9 @@
 		</div>
 
 		<div class="tab2" id="tab2">
-			<form id="resform" action="${contextPath }/reservation/content" method="post">
-			<input type="hidden" name="action" value="doReservation">
+			<form id="resform" action="${contextPath }/reservation/content"
+				method="post">
+				<input type="hidden" name="action" value="doReservation">
 				<div class="doctor-section">
 					<div class="mtitle">상담예약</div>
 				</div>
@@ -219,7 +251,7 @@
 					<i class="fa-solid fa-user-doctor"></i> <span class="h">원하는
 						상담사를 선택해주세요</span>
 				</div>
-				
+
 				<div class="doctor-section">
 					<div class="mtitle">상담사</div>
 				</div>
@@ -249,71 +281,101 @@
 					</c:forEach>
 				</div>
 
-				<div class="mheader">
-					<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
-						시간을 선택해 주세요</span>
-				</div>
-
-				<div class="select-date">
-
-					<input type="hidden" id="selectedDate" name="rDate">
-					<div class="calendar">
-						<div class="date-header"></div>
-						<div id="fc"></div>
+				<div class="tab3" id="tab3">
+					<div class="mheader">
+						<i class="fa-solid fa-calendar-days"></i> <span class="h">날짜와
+							시간을 선택해 주세요</span>
 					</div>
 
-					<input type="hidden" id="selectedTime" name="rTime">
-					<input type="hidden" id="selectedDays" name="rDay">
-					<div class="time-table">
-						<label class="cnb"><input type="checkbox" name="chojin"
-							value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
-						<p class="day">오전</p>
+					<div class="select-date">
 
-						<button type="button" class="tb1" name="time" value="09:00">09:00</button>
-						<button type="button" class="tb1" name="time" value="09:30">09:30</button>
-						<button type="button" class="tb1" name="time" value="10:00">10:00</button>
-						<button type="button" class="tb1" name="time" value="10:30">10:30</button>
-						<button type="button" class="tb1" name="time" value="11:00">11:00</button>
-						<button type="button" class="tb1" name="time" value="11:30">11:30</button>
+						<input type="hidden" id="selectedDate" name="rDate">
+						<div class="calendar">
+							<div class="date-header"></div>
+							<div id="fc"></div>
+						</div>
 
-						<p class="day">오후</p>
+						<input type="hidden" id="selectedTime" name="rTime"> <input
+							type="hidden" id="selectedDays" name="rDay">
+						<div class="time-table">
+							<label class="cnb"><input type="checkbox" name="chojin"
+								value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
+							<p class="day">오전</p>
 
-						<button type="button" class="tb1" name="time" value="13:00">1:00</button>
-						<button type="button" class="tb1" name="time" value="13:30">1:30</button>
-						<button type="button" class="tb1" name="time" value="14:00">2:00</button>
-						<button type="button" class="tb1" name="time" value="14:30">2:30</button>
-						<button type="button" class="tb1" name="time" value="15:00">3:00</button>
-						<button type="button" class="tb1" name="time" value="15:30">3:30</button>
-						<button type="button" class="tb1" name="time" value="16:00">4:00</button>
-						<button type="button" class="tb1" name="time" value="16:30">4:30</button>
-						<button type="button" class="tb1" name="time" value="17:00">5:00</button>
-						<button type="button" class="tb1" name="time" value="17:30">5:30</button>
+							<button type="button" class="tb1" name="time" value="09:00">09:00</button>
+							<button type="button" class="tb1" name="time" value="09:30">09:30</button>
+							<button type="button" class="tb1" name="time" value="10:00">10:00</button>
+							<button type="button" class="tb1" name="time" value="10:30">10:30</button>
+							<button type="button" class="tb1" name="time" value="11:00">11:00</button>
+							<button type="button" class="tb1" name="time" value="11:30">11:30</button>
 
+							<p class="day">오후</p>
+
+							<button type="button" class="tb1" name="time" value="13:00">1:00</button>
+							<button type="button" class="tb1" name="time" value="13:30">1:30</button>
+							<button type="button" class="tb1" name="time" value="14:00">2:00</button>
+							<button type="button" class="tb1" name="time" value="14:30">2:30</button>
+							<button type="button" class="tb1" name="time" value="15:00">3:00</button>
+							<button type="button" class="tb1" name="time" value="15:30">3:30</button>
+							<button type="button" class="tb1" name="time" value="16:00">4:00</button>
+							<button type="button" class="tb1" name="time" value="16:30">4:30</button>
+							<button type="button" class="tb1" name="time" value="17:00">5:00</button>
+							<button type="button" class="tb1" name="time" value="17:30">5:30</button>
+
+						</div>
 					</div>
 				</div>
-
-				<div class="cont">
+				<div class="cont" id="rescont">
 					<div class="mhea">
 						<i class="fa-solid fa-pen-to-square"></i> <span class="h">어떤
 							주제의 상담이 필요하신가요?</span>
 					</div>
 					<input type="hidden" id="resContent" name="rContent">
 					<div class="b">
-						<textarea class="rc" id="rc"
-							placeholder="상담 주제에 대해 메모해보세요!" spellcheck="false"></textarea>
+						<textarea class="rc" id="rc" placeholder="상담 주제에 대해 메모해보세요!"
+							spellcheck="false"></textarea>
 					</div>
 				</div>
-			
 
-			<div class="btn">
-				<a href="${contextPath }/hospital/search">
-					<button type="button" class="btn-rec-w">그만두기</button>
-				</a>
-				<button type="submit" class="btn-long-b" id="resAnd">다음으로</button>
-			</div>
+
+				<div class="btn">
+					<a href="${contextPath }/hospital/search">
+						<button type="button" class="btn-rec-w" id="resEnd">그만두기</button>
+					</a>
+					<button type="submit" class="btn-long-b" id="resAnd">다음으로</button>
+				</div>
 			</form>
 		</div>
+
+		<!-- 예약 로그인 모달 -->
+		<div class="modal-main-div" id="modalResNeedLogin"
+			style="display: none;">
+			<div class="modal-div-over">
+				<div class="modal-header-div">
+					<span class="modal-header-div-span">알림</span>
+					<button type="button" class="x-button" id="xBtn">
+						<i class="fa-solid fa-x x-btn"></i>
+					</button>
+				</div>
+				<div class="modal-content-div">
+					<span class="modal-content-div-span">로그인 이후 이용 가능합니다.</span>
+				</div>
+				<div class="modal-div-under">
+					<div class="modal-btn-div">
+						<button type="button" class="modal-btn-left modal-btn"
+							id="modalClose">닫기</button>
+						<button type="button" class="modal-btn-right modal-btn"
+							id="modalGoLogin">로그인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
+	<!-- 로그인 여부 확인 -->
+	<script>
+	let uNo = parseInt("<%=session.getAttribute("uNo") != null ? session.getAttribute("uNo") : 0%>", 10);
+	</script>
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>
 	<script src="${contextPath}/hospital/js/favorite.js"></script>
 </body>
