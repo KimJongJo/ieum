@@ -41,7 +41,9 @@
 	<header>
 		<jsp:include page="/common/header/header.jsp" />
 	</header>
-
+	<div class="section-title">
+        <span>다이어리</span>
+    </div>
 	<div class="main-container">
 		<jsp:include page="/common/nav/userNav.html" />
 

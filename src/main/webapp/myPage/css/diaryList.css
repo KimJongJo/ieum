@@ -12,6 +12,17 @@ body {
 	color: #000000;
 }
 
+.section-title {
+	width: 800px;
+	font-size: 20px;
+	color: #333;
+	margin: 20px auto 0 auto;
+	font-weight: 700;
+	background-color: #fff;
+	display: flex;
+	justify-content: flex-start;
+}
+
 .main-container {
 	max-width: 1280px;
 	margin: 40px auto;
@@ -27,7 +38,6 @@ body {
 	margin-left: 30px;
 }
 
-
 /* 캘린더 헤더 */
 .fc-toolbar-chunk div {
 	display: flex;
@@ -35,7 +45,7 @@ body {
 	gap: 10px;
 }
 
-.fc .fc-toolbar.fc-header-toolbar{
+.fc .fc-toolbar.fc-header-toolbar {
 	margin-top: 4px;
 }
 
@@ -260,7 +270,8 @@ body {
 	margin-bottom: 20px;
 	border: 1px solid #eee;
 }
-.no-data{
+
+.no-data {
 	height: 360px;
 	display: flex;
 	flex-direction: column;
@@ -272,7 +283,8 @@ body {
 	font-size: 25px;
 	font-weight: 500;
 }
-.no-data .icon{
+
+.no-data .icon {
 	width: 40px;
 	height: 40px;
 	font-size: 40px;
