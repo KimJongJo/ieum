@@ -16,6 +16,8 @@ import service.allCommunity.AllCommunityService;
 import service.allCommunity.AllCommunityServiceImpl;
 import service.allCommunity.CommuEmpathyService;
 import service.allCommunity.CommuEmpathyServiceImpl;
+import service.allCommunity.CommunityService;
+import service.allCommunity.CommunityServiceImpl;
 import util.PageInfo;
 
 /**
@@ -39,7 +41,13 @@ public class AllCommunityList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
-		
+		// 댓글 수 업데이트
+	    CommunityService communityService = new CommunityServiceImpl();
+	    try {
+	        communityService.updateCommentCount();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 		
 		String spage = request.getParameter("page"); 
 		Integer page = 1; 
@@ -65,12 +73,7 @@ public class AllCommunityList extends HttpServlet {
 	        }
 		} catch (Exception e) {
 			e.printStackTrace();
-		}   
-		
-		
-		
-		
-		
+		}
 	    
 		request.getRequestDispatcher("allCommunity/allCommunityList.jsp").forward(request, response);
 	}

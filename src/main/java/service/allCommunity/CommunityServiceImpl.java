@@ -75,4 +75,10 @@ public class CommunityServiceImpl implements CommunityService{
 	public Integer getCommunityAuthorNo(int commuNo) throws Exception{
 		return communityDao.getCommunityAuthorNo(commuNo);
 	}
+
+	@Override
+	public void updateCommentCount() throws Exception {
+		 communityDao.updateCommentCount();
+		
+	}
 }

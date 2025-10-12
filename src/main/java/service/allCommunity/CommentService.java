@@ -11,4 +11,8 @@ public interface CommentService {
 	List<CommentDto> getCommentsByCommuNo(Integer commuNo) throws Exception; 
 	
 	CommentDto selectByNo(Integer commeNo) throws Exception;
+	
+	boolean reportComment(int commeNo) throws Exception;
+	
+	int getCommentWriter(int commeNo) throws Exception;
 }

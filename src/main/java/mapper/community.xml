@@ -202,4 +202,17 @@
 		select u_no from community where commu_no = #{commuNo}
 	</select>	
 	
+	
+	
+	
+	 <!-- 모든 게시글의 commu_comment 컬럼 업데이트 -->
+    <update id="updateCommentCount">
+        UPDATE community c
+        SET c.commu_comment = (
+            SELECT COUNT(*)
+            FROM comment cm
+            WHERE cm.commu_no = c.commu_no
+        )
+    </update>
+	
 </mapper>	

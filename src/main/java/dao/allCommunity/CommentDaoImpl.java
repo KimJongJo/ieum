@@ -79,4 +79,34 @@ public class CommentDaoImpl implements CommentDao{
 		
 	}
 
+	@Override
+	public void increaseReportCount(int commeNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession(true)) {
+			session.update("mapper.comment.increaseReportCount", commeNo);
+			session.commit();
+		}
+		
+	}
+
+	@Override
+	public int getReportCount(int commeNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.comment.getReportCount", commeNo);
+		}
+	}
+
+	@Override
+	public void deleteComment(int commeNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession(true)) {
+			session.delete("mapper.comment.deleteComment", commeNo);
+		}
+	}
+
+	@Override
+	public int getCommentWriter(int commeNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+            return session.selectOne("mapper.comment.getCommentWriter", commeNo);
+        }
+	}
+
 }

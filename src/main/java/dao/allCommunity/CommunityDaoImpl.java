@@ -70,4 +70,12 @@ public class CommunityDaoImpl implements CommunityDao{
 			return session.selectOne("mapper.community.getCommunityAuthorNo", commuNo);
 		}
 	}
+
+	@Override
+	public void updateCommentCount() throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession(true)) {
+            session.update("mapper.community.updateCommentCount");
+        }
+		
+	}
 }
