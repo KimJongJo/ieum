@@ -9,7 +9,7 @@ import dto.FileDto;
 public interface FileService {
 	Integer normalImg(FileDto file);
 
-	Integer uploadFile(Part file, String type) throws IOException;
+	Integer uploadFile(Part file, String type, String filePath) throws IOException;
 
 	Integer managerJoin(FileDto file);
 
