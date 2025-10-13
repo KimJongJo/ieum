@@ -206,7 +206,7 @@
 			</section>
 		</c:if>
 		<!-- 공지사항 -->
-		<c:if test="${not empty topNoticeList and not empty noticeList}">
+		<c:if test="${not empty topNoticeList or not empty noticeList}">
 			<section class="notice-secton">
 				<span class="section-title">공지사항 <a
 					href="${contextPath}/notice?page=1">
