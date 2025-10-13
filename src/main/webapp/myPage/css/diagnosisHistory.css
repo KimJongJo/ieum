@@ -181,16 +181,21 @@ align-items: center; /* 가로 중앙 정렬 */
     margin: 0 auto 0 auto;
 }
 
-/* 각 영역 */
 .box-item {
-    flex: 1; /* 영역을 균등 분할 */
-border-right: 1px solid #d9d9d9; /* 구분선 */
-display: flex; /* 안쪽 텍스트 정렬용 */
-align-items: center; /* 세로 가운데 */
-justify-content: center; /* 가로 가운데 */
-  white-space: nowrap;       /* 줄바꿈 금지 */
-  overflow: hidden;          /* 넘친 내용 숨기기 */
-  text-overflow: ellipsis;   /* ... 표시 */
+  flex: 1;
+  border-right: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ellipsis-text {
+  display: block;           /* 또는 inline-block */
+  width: 235px;              /* 부모 기준 너비 설정 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;       /* 가운데 정렬 유지 */
 }
 
 /* 마지막 영역은 오른쪽 선 제거 */
