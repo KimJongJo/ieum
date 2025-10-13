@@ -161,3 +161,7 @@ body {
 .keyword, .cnt {
 	color: #4287ef;
 }
+.no-data-section>div {
+	display: flex;
+	justify-content: center;
+}
