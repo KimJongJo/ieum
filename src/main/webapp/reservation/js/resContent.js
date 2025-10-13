@@ -8,22 +8,22 @@ $(document).ready(function() {
 		$("#actUser").slideToggle(400);
 
 	});
-	
+
 	//전화번호 입력 확인
-	$("#actTel").css("letter-spacing", "2px").on("input", function(){
+	$("#actTel").css("letter-spacing", "2px").on("input", function() {
 		const check = actTel($(this).val());
 		$(this).val(check);
-		
-		if(check.length === 13){
+
+		if (check.length === 13) {
 			$(".checkI").addClass("active");
-		}else{
+		} else {
 			$(".checkI").removeClass("active");
 		}
 	});
 
 
 	//전화번호 형식
-	function actTel (str) {
+	function actTel(str) {
 		str = str.replace(/[^0-9]/g, '');
 		var tmp = '';
 		if (str.length < 4) {
@@ -80,41 +80,48 @@ $(document).ready(function() {
 				console.error("예약 실패:", err);
 			});
 	});
-	
+
 	//content 수정
-	$("#modiBtn").on("click", function(){
-		
+	$("#modiBtn").on("click", function() {
+
 		$("#updateBtn").show();
 		$("#modiBtn").hide();
-		
+
 		$("#readContent").hide();
 		$("#modifyContent").show();
-		
-		
+
+
 	});
-	
-	
-	$("#updateBtn").on("click", function(){
-			const modCon = $("textarea[name='modContent']").vavl();
-			
-			const data = {
-				action: "modifyContent",
-				modCon: modCon
-			};
-			
-			$.post("/ieum/reservation/content", data)
-			.done(function(res){
-				if(res === "success"){
+
+
+	$("#updateBtn").on("click", function() {
+		const modCon = $("textarea[name='modContent']").val();
+
+		const data = {
+			action: "modifyContent",
+			modCon: modCon
+		};
+
+		$.post("/ieum/reservation/content", data)
+			.done(function(res) {
+				console.log(modCon);
+				if (res === "success") {
 					alert("변경되었습니다.");
 					location.reload();
+
+					$("#updateBtn").hide();
+					$("#modiBtn").show();
+
+					$("#readContent").show();
+					$("#modifyContent").hide();
 				}
-				
+
 			})
 			.fail(function(err) {
 				console.log(err);
 			});
-			
-		});
+
+	});
 
 
 });

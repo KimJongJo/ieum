@@ -59,6 +59,7 @@ public class ResContent extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		Integer hNo = (Integer) session.getAttribute("hNo");
+		String modCon = (String)session.getAttribute("modCon");
 		
 		String action = request.getParameter("action");
 
@@ -85,8 +86,15 @@ public class ResContent extends HttpServlet {
 				request.setAttribute("rTime", rTime);
 				request.setAttribute("rDay", rDay);
 				
-				rContent = rContent.replaceAll("\r\n", "<br>");
-				request.setAttribute("rContent", rContent);
+				if(modCon == null) {
+					request.setAttribute("rContent", rContent);
+				}else {
+					modCon = modCon.replaceAll("\r\n", "<br>");
+					rContent = modCon;
+					rContent = rContent.replaceAll("\r\n", "<br>");
+					request.setAttribute("rContent", rContent);
+					session.removeAttribute("modCon");
+				}
 				
 				request.getRequestDispatcher("/reservation/resContent.jsp").forward(request, response);
 				
@@ -121,9 +129,19 @@ public class ResContent extends HttpServlet {
 
 		}else if ("modifyContent".equals(action)) {
 			
-			String modCon = request.getParameter("modCon");
+			modCon = request.getParameter("modCon");
 			modCon = modCon.replaceAll("\r\n", "<br>");
-			request.setAttribute("rContent", modCon);
+			
+			System.out.println(modCon);
+			
+			try {
+				session.setAttribute("modCon", modCon);
+				response.getWriter().write("success");
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
 			
 		}
 

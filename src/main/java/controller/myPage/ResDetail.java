@@ -2,6 +2,10 @@ package controller.myPage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
@@ -11,7 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
+
 import dto.MemberDto;
+import dto.ReservationDto;
 import dto.otherDto.ReservationInfoDto;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
@@ -111,7 +121,37 @@ public class ResDetail extends HttpServlet {
 			
 			response.setStatus(HttpServletResponse.SC_OK);
 			
-		} 
+		} else if ("resUpdate".equals(action)) {
+			//예약 변경
+			Integer rNo = Integer.parseInt(request.getParameter("rNo"));
+			
+			ReservationService rService = new ReservationServiceImpl();
+
+			try {
+				ReservationDto resd = rService.selectRes(rNo);
+				Map<String, Object> resChage = new HashMap<>();
+				resChage.put("mNo",resd.getmNo());
+				resChage.put("rDate", resd.getrDate());
+				resChage.put("rTime", resd.getrTime());
+				resChage.put("rContent", resd.getrContent());
+
+				Gson gson = new GsonBuilder()
+						.registerTypeAdapter(LocalDate.class,
+								(JsonSerializer<LocalDate>) (src, typeOfSrc,
+										context) -> new JsonPrimitive(src.toString()))
+						.registerTypeAdapter(LocalTime.class, (JsonSerializer<LocalTime>) (src, typeOfSrc,
+								context) -> new JsonPrimitive(src.toString()))
+						.create();
+
+				String jsonStr = gson.toJson(resChage);
+				response.setContentType("application/json; charset=UTF-8");
+				response.getWriter().write(jsonStr);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			}
+		}
 		
 	}
 

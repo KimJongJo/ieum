@@ -12,9 +12,9 @@ const tab2 = $("#tab2");
 
 // 초기 상태 설정
 $(document).ready(() => {
-	$("#navl").addClass("active");
-	$("#tab1").addClass("active");
-	$("#tab2").removeClass("active");
+	$("#navr").addClass("active");
+	$("#tab2").addClass("active");
+	$("#tab1").removeClass("active");
 
 	// 왼쪽 탭 (상세정보)
 	navl.click(function() {

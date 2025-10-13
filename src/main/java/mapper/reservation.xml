@@ -47,22 +47,27 @@
 		r.m_no = #{_parameter}
 		and d.is_completed = 0
 	</select>
-	
-	
-	
+
+
+
 	<select id="resCountByManager" resultType="Integer">
 		select count(*)
-		FROM reservation r
+		FROM
+		reservation r
 		join member u using(u_no)
-		join diagnosis_history d using(r_no)
+		join diagnosis_history d
+		using(r_no)
 		where DATE(r_date) = CURDATE()
 		and d.is_completed = 0
 	</select>
-	
 
-	
-	<select id="todayReservationMyList" parameterType="Map" resultType="diaInfo">
-		select r.r_no, u.username as pNm, u.u_no as pNo, DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState, d.diagnosis_no as diaNo
+
+
+	<select id="todayReservationMyList" parameterType="Map"
+		resultType="diaInfo">
+		select r.r_no, u.username as pNm, u.u_no as pNo,
+		DATE_FORMAT(r.r_time, '%H:%i') AS time, d.diagnosis_state as diaState,
+		d.diagnosis_no as diaNo
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
@@ -118,37 +123,46 @@
 		join hospital h
 		using(h_no)
 		left join member m
-		on (r.m_no = m.u_no)
+		on
+		(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
-		left join favorite fav
+		left join
+		favorite fav
 		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
-		where r.u_no=#{uNo} and r.r_status='WAITING'
+		where
+		r.u_no=#{uNo} and r.r_status='WAITING'
 		order by r.r_date ASC
 	</select>
 
 	<!-- 지난예약 리스트 수 -->
-	<select id="recordResCnt" parameterType="map" resultType="Integer">
+	<select id="recordResCnt" parameterType="map"
+		resultType="Integer">
 		select count(*)
 		from reservation r
 		left join hospital h
 		using(h_no)
-		left join member m
+		left
+		join member m
 		on (r.m_no = m.u_no)
 		left join file f
-		on (m.file_no = f.file_no)
+		on (m.file_no =
+		f.file_no)
 		where
 		r.u_no=#{uNo} and r.r_status='COMPLETE'
 		<if test="sort != null and sort != ''">
 			and(
-			r.r_date BETWEEN DATE_SUB(CURDATE(), INTERVAL #{sort} MONTH) AND CURDATE()
+			r.r_date BETWEEN DATE_SUB(CURDATE(), INTERVAL #{sort}
+			MONTH) AND CURDATE()
 			)
 		</if>
 		<if test="keyword != null and keyword !=''">
 			and(
 			h.h_nm like concat('%', #{keyword}, '%')
-			or m.username like concat('%', #{keyword}, '%')
-			or r.r_date like concat('%', #{keyword}, '%')
+			or m.username
+			like concat('%', #{keyword}, '%')
+			or r.r_date like concat('%',
+			#{keyword}, '%')
 			)
 		</if>
 	</select>
@@ -169,20 +183,24 @@
 		on(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
-		left join favorite fav
+		left join
+		favorite fav
 		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
 		where
 		r.u_no=#{uNo} and r.r_status='COMPLETE'
 		<if test="sort != null and sort != ''">
 			and(
-			r.r_date BETWEEN DATE_SUB(CURDATE(), INTERVAL #{sort} MONTH) AND CURDATE()
+			r.r_date BETWEEN DATE_SUB(CURDATE(), INTERVAL #{sort}
+			MONTH) AND CURDATE()
 			)
 		</if>
 		<if test="keyword != null and keyword !=''">
 			and(
 			h.h_nm like concat('%', #{keyword}, '%')
-			or m.username like concat('%', #{keyword}, '%')
-			or r.r_date like concat('%', #{keyword}, '%')
+			or m.username
+			like concat('%', #{keyword}, '%')
+			or r.r_date like concat('%',
+			#{keyword}, '%')
 			)
 		</if>
 		order by r.r_date DESC
@@ -220,21 +238,25 @@
 		m.gender as gender, m.u_address as
 		uAddress, r.r_content as content
 		from reservation r
-		join member m on(r.u_no = m.u_no)
+		join member m
+		on(r.u_no = m.u_no)
 		where r.r_no = #{_parameter}
 	</select>
-	
-	<select id="resCountKeyword" parameterType="Map" resultType="Integer">
+
+	<select id="resCountKeyword" parameterType="Map"
+		resultType="Integer">
 		select count(*)
 		FROM reservation r
 		join member u using(u_no)
 		join diagnosis_history d using(r_no)
 		where DATE(r_date) = CURDATE()
-		and u.username like concat ('%', #{keyword}, '%')
+		and
+		u.username like concat ('%', #{keyword}, '%')
 		and r.m_no = #{uNo}
-		and d.is_completed = 0
+		and
+		d.is_completed = 0
 	</select>
-	
+
 
 	<!-- 병원관리자 - 키워드가 있는 오늘 예약 -->
 	<select id="todayReservationListByKeyword" parameterType="Map"
@@ -271,21 +293,38 @@
 		order by 4
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
-	
+
 	<!-- 예약취소(상태처리 변경) -->
 	<update id="resCancel" parameterType="Integer">
 		update reservation
-		set r_status = 'CANCLED'
+		set
+		r_status = 'CANCLED'
 		where r_no = #{rNo}
 	</update>
 
 
 	<!-- 저에용 -->
-	<select id="selectAllReservationList" parameterType="Integer" resultType="reservation">
-		select r.r_date, d.diagnosis_state from reservation r 
+	<select id="selectAllReservationList" parameterType="Integer"
+		resultType="reservation">
+		select r.r_date, d.diagnosis_state from reservation r
 		JOIN diagnosis_history d ON r.r_no = d.r_no
-		where u_no=#{uNo}  
+		where u_no=#{uNo}
 		AND d.diagnosis_state IS NOT NULL
 		AND d.diagnosis_state != 'COMPLETED'
 	</select>
+
+
+	<!-- 예약 변경 -->
+	<select id="selectRno" parameterType="Integer" resultType="reservation">
+		select *
+		from reservation
+		where r_no = #{rNo}
+	</select>
+
+	<delete id="deleteRno" parameterType="Integer">
+		delete from reservation
+		where r_no =#{rNo}
+	</delete>
+
+
 </mapper>	
