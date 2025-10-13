@@ -1,9 +1,7 @@
 body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	font-family: "Noto Sans KR", Helvetica;
 	color: #000000;
+	margin:0;
 }
 
 a {
@@ -11,11 +9,23 @@ a {
 	color: inherit;
 }
 
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .myPage {
 	width: 1280px;
-	display: flex;
-	justify-content: space-between;
-	margin-top: 60px;
+    margin: 20px auto 0 auto; /* 위 20px 띄우고 가운데 정렬 */
+    display: flex;
+    gap: 40px; /* 사이 간격 */
 }
 
 .container1 {
@@ -24,12 +34,10 @@ a {
     align-items: center;
     flex-direction: column;
     margin-bottom: 60px;
-    margin-top: 60px;
 }
 
 .rescom {
     width: 1022px;
-    height: 1476px;
     background-color: #F7FAFF;
     border-radius: 15px;
     padding: 80px 115px 130px 115px;
@@ -203,11 +211,12 @@ a {
 
 .counbox {
     width: 678px;
-    height: 110px;
+    min-height: 110px;
     background-color: white;
     border: 2px solid #d9d9d9;
     border-radius: 5px;
     margin-top: 20px;
+    height:auto;
     
     padding: 15px;
 	box-sizing: border-box;

@@ -84,6 +84,8 @@ public class ResContent extends HttpServlet {
 				request.setAttribute("rDate", rDate);
 				request.setAttribute("rTime", rTime);
 				request.setAttribute("rDay", rDay);
+				
+				rContent = rContent.replaceAll("\r\n", "<br>");
 				request.setAttribute("rContent", rContent);
 				
 				request.getRequestDispatcher("/reservation/resContent.jsp").forward(request, response);
@@ -117,6 +119,12 @@ public class ResContent extends HttpServlet {
 
 			}
 
+		}else if ("modifyContent".equals(action)) {
+			
+			String modCon = request.getParameter("modCon");
+			modCon = modCon.replaceAll("\r\n", "<br>");
+			request.setAttribute("rContent", modCon);
+			
 		}
 
 	}

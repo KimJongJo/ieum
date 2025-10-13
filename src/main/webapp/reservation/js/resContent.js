@@ -80,6 +80,41 @@ $(document).ready(function() {
 				console.error("예약 실패:", err);
 			});
 	});
+	
+	//content 수정
+	$("#modiBtn").on("click", function(){
+		
+		$("#updateBtn").show();
+		$("#modiBtn").hide();
+		
+		$("#readContent").hide();
+		$("#modifyContent").show();
+		
+		
+	});
+	
+	
+	$("#updateBtn").on("click", function(){
+			const modCon = $("textarea[name='modContent']").vavl();
+			
+			const data = {
+				action: "modifyContent",
+				modCon: modCon
+			};
+			
+			$.post("/ieum/reservation/content", data)
+			.done(function(res){
+				if(res === "success"){
+					alert("변경되었습니다.");
+					location.reload();
+				}
+				
+			})
+			.fail(function(err) {
+				console.log(err);
+			});
+			
+		});
 
 
 });

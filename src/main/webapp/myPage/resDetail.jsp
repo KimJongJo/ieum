@@ -11,27 +11,36 @@
 	rel="stylesheet">
 <script src="https://kit.fontawesome.com/8d48045bdd.js"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="${contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${contextPath }/myPage/css/resDetail.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>resDetail</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
+
+	<!-- Section Title -->
+	<div id="section-title">
+		<span>예약 내역</span>
+	</div>
+
 	<div class="myPage">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="container1">
-			<div class="rescom">
-			<div class="head-box">
-				<table class="t1">
-					<tr>
-						<td><div class="ticon">
-						<i class="fa-solid fa-circle-check"></i>
-						</div></td>
-						<td class="t1"><c:out value="${statusStr }" /></td>
-						<td class="tq">no.<c:out value="${rid.rNo }" /></td>
-					</tr>
-				</table>
+			<div class="rescom" data-rno="${rid.rNo }">
+				<div class="head-box">
+					<table class="t1">
+						<tr>
+							<td><div class="ticon">
+									<i class="fa-solid fa-circle-check"></i>
+								</div></td>
+							<td class="t1"><c:out value="${statusStr }" /></td>
+							<td class="tq">no.<c:out value="${rid.rNo }" /></td>
+						</tr>
+					</table>
 				</div>
 
 				<div class="white-box">
@@ -69,7 +78,7 @@
 						<div class="right">
 							<c:if test="${rid.rStatus eq 'WAITING' }">
 								<button class="btn-cir-w" type="button">예약변경</button>
-								<button class="btn-cir-w" type="button">예약취소</button>
+								<button class="btn-cir-w" type="button" id="cancelBtn">예약취소</button>
 							</c:if>
 						</div>
 					</div>
@@ -113,35 +122,37 @@
 						<span class="t2">오시는 길</span>
 						<div class="map-sec" id="map"></div>
 						<!-- 카카오맵 -->
-					<script
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false"></script>
-					<script>
-						kakao.maps.load(function() {
-									var lat = parseFloat('${rid.hLocationY}');
-									var lng = parseFloat('${rid.hLocationX}');
+						<script
+							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false"></script>
+						<script>
+							kakao.maps
+									.load(function() {
+										var lat = parseFloat('${rid.hLocationY}');
+										var lng = parseFloat('${rid.hLocationX}');
 
-									var container = document
-											.getElementById('map');
-									var options = {
-										center : new kakao.maps.LatLng(lat, lng),
-										level : 3
-									};
+										var container = document
+												.getElementById('map');
+										var options = {
+											center : new kakao.maps.LatLng(lat,
+													lng),
+											level : 3
+										};
 
-									var map = new kakao.maps.Map(container,
-											options);
+										var map = new kakao.maps.Map(container,
+												options);
 
-									var markerPosition = new kakao.maps.LatLng(
-											lat, lng);
-									var marker = new kakao.maps.Marker({
-										position : markerPosition
+										var markerPosition = new kakao.maps.LatLng(
+												lat, lng);
+										var marker = new kakao.maps.Marker({
+											position : markerPosition
+										});
+
+										marker.setMap(map);
 									});
-
-									marker.setMap(map);
-								});
-					</script>
+						</script>
 					</div>
 
-					<div class="hosinf">
+					<div class="hosinf" data-hno="${rid.hNo }">
 						<div class="left1">
 							<div class="hinfo">
 								<div class="detail">
@@ -191,7 +202,7 @@
 							</div>
 						</div>
 						<div class="right1">
-							<button class="btn-cir-w" type="button">
+							<button class="btn-cir-w" type="button" id="goHosdetail">
 								<div class="icon2">
 									<i class="fa-solid fa-square-h"></i>
 								</div>
@@ -208,7 +219,32 @@
 				<button type="button" class="btn-rec-w" onclick="history.back();">확인</button>
 			</div>
 		</div>
+		
+		<!-- 예약취소 모달 -->
+		<div class="modal-main-div" id="deleteRes" style="display: none;">
+			<div class="modal-div-over">
+				<div class="modal-header-div">
+					<span class="modal-header-div-span">알림</span>
+					<button type="button" class="x-button" id="xBtn">
+						<i class="fa-solid fa-x x-btn"></i>
+					</button>
+				</div>
+				<div class="modal-content-div">
+					<span class="modal-content-div-span">예약을 취소하시겠습니까?</span>
+				</div>
+				<div class="modal-div-under">
+					<div class="modal-btn-div">
+					<button type="button" class="modal-btn-right modal-btn"
+							id="modalCancelRes">취소하기</button>
+						<button type="button" class="modal-btn-left modal-btn"
+							id="modalKeepRes">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<script src="${contextPath }/myPage/js/resDetail.js"></script>
 </body>
 </html>
