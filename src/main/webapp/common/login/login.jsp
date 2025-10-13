@@ -24,8 +24,14 @@
 				        type: 'POST',
 				        data: $(this).serialize(), // form 안의 값 자동 직렬화
 				        dataType: 'json',
+				        xhrFields: { withCredentials: true }, // ← 세션 쿠키 포함
 				        success: function(res){
-				        	window.location.href="/ieum/index"; // 기본 페이지
+				        	if(res.success){
+				        		window.location.href="/ieum/index"; // 기본 페이지
+				        	}else{
+				        		alert(res.message);
+				        	}
+				        	
 				        },
 				        error: function(){
 				            alert("서버 오류가 발생했습니다.");
@@ -39,7 +45,7 @@
         <div class="main">
             <div class="main-div">
                 <div class="img-div">
-                    <a href="">
+                    <a href="/ieum/index">
                         <img src="/ieum/img/logo.png" alt="" width="235px" />
                     </a>
                 </div>

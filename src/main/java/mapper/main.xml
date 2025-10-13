@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="selectLoginInfo" resultType="mainUser">
-		SELECT m.nickname, m.file_no AS profileNo , f.file_path AS profilePath, f.file_name AS profileNm
+		SELECT m.nickname, m.file_no AS profileNo , f.file_path AS profilePath, f.file_name AS profileNm, m.username
 		FROM member m
 		LEFT JOIN file f USING(file_no)
 		WHERE m.u_no= #{value}

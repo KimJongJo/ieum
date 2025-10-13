@@ -5,16 +5,24 @@ public class MainUserDto {
 	Integer profileNo;
 	String profilePath;
 	String profileNm;
+	String username;
 	public MainUserDto() {
 
 	}
-	public MainUserDto(String nickname, Integer profileNo, String profilePath, String profileNm) {
+
+	
+	
+	public MainUserDto(String nickname, Integer profileNo, String profilePath, String profileNm, String username) {
 		super();
 		this.nickname = nickname;
 		this.profileNo = profileNo;
 		this.profilePath = profilePath;
 		this.profileNm = profileNm;
+		this.username = username;
 	}
+
+
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -39,11 +47,28 @@ public class MainUserDto {
 	public void setProfileNm(String profileNm) {
 		this.profileNm = profileNm;
 	}
+
+	
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "MainUserDto [nickname=" + nickname + ", profileNo=" + profileNo + ", profilePath=" + profilePath
-				+ ", profileNm=" + profileNm + "]";
+				+ ", profileNm=" + profileNm + ", username=" + username + "]";
 	}
+
 	
 	
 	

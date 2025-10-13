@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/common/main/css/search.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -21,7 +22,7 @@
 </head>
 <body>
 	<header>
-		<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+		<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	</header>
 	<div class="search-container">
 		<div class="search-box">
@@ -44,6 +45,14 @@
 						class="cnt">${allCnt}</span> 건
 				</div>
 			</div>
+<!-- 			<div class="no-data-section" style="display: none"> -->
+<!-- 				<div class="result-item"> -->
+<!-- 					<div class="icon"> -->
+<!-- 						<i class="fa-solid fa-circle-exclamation"></i> -->
+<!-- 					</div> -->
+<!-- 					<div>검색결과가 없습니다.</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<c:if test="${ not empty noticeList }">
 				<div class="notices-section">
 					<div class="section-subtitle">
@@ -52,8 +61,7 @@
 						건
 					</div>
 					<c:forEach var="notice" items="${noticeList}">
-						<div class="result-item"
-							onclick="goNoticeDetail(${notice.nNo})">
+						<div class="result-item" onclick="goNoticeDetail(${notice.nNo})">
 							<div class="result result-title">${notice.title}</div>
 							<div class="result result-content">${notice.content}</div>
 							<div class="result result-date">${notice.nCreated}</div>
@@ -61,7 +69,7 @@
 					</c:forEach>
 					<div class="button-wrapper">
 						<button class="btn-cir-b"
-							onclick="location.href='${contextPath}/notice?page=1'">더보기</button>
+							onclick="location.href='${contextPath}/notice?page=1&keyword=${keyword}'">더보기</button>
 					</div>
 				</div>
 			</c:if>
@@ -73,8 +81,7 @@
 						건
 					</div>
 					<c:forEach var="commu" items="${commuList}">
-						<div class="result-item"
-							onclick="goCommuDetail(${commu.commuNo})">
+						<div class="result-item" onclick="goCommuDetail(${commu.commuNo})">
 							<div class="result result-title">${commu.commuTitle }</div>
 							<div class="result result-content">${commu.commuContent }</div>
 							<div class="result result-date">${commu.commuCreated }</div>
@@ -87,9 +94,8 @@
 				</div>
 			</c:if>
 		</div>
-
 	</div>
-	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </body>
 </html>

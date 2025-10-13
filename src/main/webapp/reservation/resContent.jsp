@@ -17,19 +17,20 @@
 	href="${contextPath }/reservation/css/resContent.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/footer.css" />
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>resContent</title>
 </head>
 <body>
-	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<form id="actResForm">
-		<input type="hidden" id="mNo" value="${mNo}"> 
-		<input type="hidden" id="rDate" value="${rDate}">
-		<input type="hidden" id="rDay" value="${rDay}">
-		<input type="hidden" id="rTime" value="${rTime}">
-		<input type="hidden" id="rContent" value="${rContent}">
-		
+		<input type="hidden" id="mNo" value="${mNo}"> <input
+			type="hidden" id="rDate" value="${rDate}"> <input
+			type="hidden" id="rDay" value="${rDay}"> <input type="hidden"
+			id="rTime" value="${rTime}"> <input type="hidden"
+			id="rContent" value="${rContent}">
+
 		<div class="container1">
 			<div class="t2">아래 내용이 맞는지 확인해주세요</div>
 			<div class="h-box">
@@ -56,17 +57,25 @@
 				<div class="line"></div>
 			</div>
 
-			<div class="councon">
-				<div class="conbox">
-					<div class="c6">
-						<span class="t1">상담내용</span>
+				<div class="councon">
+					<div class="conbox">
+						<div class="c6">
+							<span class="t1">상담내용</span>
+						</div>
+						<button type="button" class="btn-cir-w" id="modiBtn">변경</button>
+						<button type="button" class="btn-cir-w" id="updateBtn"
+							style="display: none;">저장</button>
 					</div>
-					<button type="button" class="btn-cir-w">변경</button>
+
+					<div class="c1">
+						<!-- 읽기전용 -->
+						<div id="readContent">${rContent}</div>
+
+						<!-- 수정 -->
+						<textarea class="rc" id="modifyContent" name="modContent" spellcheck="false"
+							maxlength="200" style="display: none;">${rContent}</textarea>
+					</div>
 				</div>
-				<div class="c1">
-					<c:out value="${rContent}" />
-				</div>
-			</div>
 
 			<div class="act">
 				<div class="a1">
@@ -85,9 +94,12 @@
 								class="name-input" placeholder="상담자 본명">
 						</div>
 						<div class="af">
-							<span class="af2">연락처</span> <input type="tel" name="actTel" id="actTel"
-								class="tel-input" placeholder="숫자만 입력" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13">
-								<div class="checkI"><i class="fa-solid fa-circle-check"></i></div>
+							<span class="af2">연락처</span> <input type="tel" name="actTel"
+								id="actTel" class="tel-input" placeholder="숫자만 입력"
+								pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" maxlength="13">
+							<div class="checkI">
+								<i class="fa-solid fa-circle-check"></i>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -100,7 +112,7 @@
 			<button type="button" class="btn-long-b" id="resSubmit">다음단계</button>
 		</div>
 	</form>
-	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<script src="${contextPath }/reservation/js/resContent.js"></script>
 </body>
 </html>

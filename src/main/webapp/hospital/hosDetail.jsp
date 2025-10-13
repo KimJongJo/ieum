@@ -16,7 +16,7 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${contextPath}/hospital/css/hosDetail.css">
 <link rel="stylesheet" href="${contextPath}/css/header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/css/modal.css" />
 <script
@@ -28,7 +28,7 @@
 
 <body>
 <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
-	<div class="container">
+	<div class="container1">
 		<div class="hh">
 			<div class="hbt">
 				<div class="hos-category">
@@ -59,7 +59,7 @@
 
 				<div class="hinfoa">
 
-					<img src="${hosDetail.filePath }" class="file_no" />
+					<img src="${contextPath}/${hosDetail.filePath}${hosDetail.fileName}" class="file_no" />
 
 					<div class="hinfor">
 						<div class="hinfoh">
@@ -175,7 +175,7 @@
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
 					<div class="dal">
-						<img src="${doctorlist.filePath }" class="doc-prof" />
+						<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}" class="doc-prof" />
 						<div class="d1">
 							<div class="d2">
 								<p class="username">
@@ -260,7 +260,7 @@
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
 						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${doctorlist.filePath }" class="doc-prof"
+							<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}"  class="doc-prof"
 								onerror="this.onerror=null; this.src='';" />
 							<div class="d1">
 								<div class="d2">
@@ -333,8 +333,8 @@
 					</div>
 					<input type="hidden" id="resContent" name="rContent">
 					<div class="b">
-						<textarea class="rc" id="rc" placeholder="상담 주제에 대해 메모해보세요!"
-							spellcheck="false"></textarea>
+						<textarea class="rc" id="rc" placeholder="상담 주제에 대해 메모해보세요!(최대200자)"
+							spellcheck="false" maxlength="200"></textarea>
 					</div>
 				</div>
 

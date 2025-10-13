@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="${contextPath }/exam/css/examQues.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <title>examQues_수면</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="container1">
 		<div class="left">
 			<jsp:include page="examnav.jsp"></jsp:include>
@@ -25,7 +26,7 @@
 
 		<div class="right">
 			<div class="examHeader">
-				<div class="icon">
+				<div class="examicon">
 					<span class="material-symbols-outlined"> checklist </span>
 				</div>
 				<div class="text">
@@ -39,7 +40,7 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/score" method="post">
+			<form action="${contextPath }/exam/exam7" method="post">
 				<div class="ques">
 					<span class="question">Q1.최근 2주동안에 당신의 불면증의 심한 정도를 아래에
 						표시하십시오. </span>
@@ -48,78 +49,78 @@
 							<td class="often">1) 잠들기 어려움</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="5"> <span class="s1">매우심함</span></td>
+								name="score1" value="4"> <span class="s1">매우심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">심함</span></td>
+								name="score1" value="3"> <span class="s1">심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="3"> <span class="s1">중간</span></td>
+								name="score1" value="2"> <span class="s1">중간</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="2"> <span class="s1">약간 있음</span></td>
+								name="score1" value="1"> <span class="s1">약간 있음</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="1"> <span class="s1">전혀 없음</span></td>
+								name="score1" value="0"> <span class="s1">전혀 없음</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="often">2) 잠을 유지하기 어려움 (자주 깸)</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="5"> <span class="s1">매우심함</span></td>
+								name="score2" value="4"> <span class="s1">매우심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="4"> <span class="s1">심함</span></td>
+								name="score2" value="3"> <span class="s1">심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="3"> <span class="s1">중간</span></td>
+								name="score2" value="2"> <span class="s1">중간</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="2"> <span class="s1">약간 있음</span></td>
+								name="score2" value="1"> <span class="s1">약간 있음</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="1"> <span class="s1">전혀 없음</span></td>
+								name="score2" value="0"> <span class="s1">전혀 없음</span></td>
 						</tr>
 						<tr class="radio1">
 							<td class="often">3) 새벽에 너무 일찍 잠에서 깸</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="5"> <span class="s1">매우심함</span></td>
+								name="score3" value="4"> <span class="s1">매우심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="4"> <span class="s1">심함</span></td>
+								name="score3" value="3"> <span class="s1">심함</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="3"> <span class="s1">중간</span></td>
+								name="score3" value="2"> <span class="s1">중간</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="2"> <span class="s1">약간 있음</span></td>
+								name="score3" value="1"> <span class="s1">약간 있음</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score" value="1"> <span class="s1">전혀 없음</span></td>
+								name="score" value="0"> <span class="s1">전혀 없음</span></td>
 						</tr>
 					</table>
 					<span class="question">Q2.당신의 현재 수면 패턴에 얼마나 만족하십니까? </span>
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="5"> <span class="s1">매우 불만족</span></td>
+								name="score4" value="4"> <span class="s1">매우 불만족</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="4"> <span class="s1">불만족</span></td>
+								name="score4" value="3"> <span class="s1">불만족</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="3"> <span class="s1">중간</span></td>
+								name="score4" value="2"> <span class="s1">중간</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="2"> <span class="s1">만족함</span></td>
+								name="score4" value="1"> <span class="s1">만족함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="1"> <span class="s1">매우 만족함</span></td>
+								name="score4" value="0"> <span class="s1">매우 만족함</span></td>
 						</tr>
 					</table>
 					<span class="question">Q3.불면증으로 인한 삶의 질 손상 정도가 다른 사람들에게 어떻게
@@ -127,24 +128,24 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="5"> <span class="s1">매우 많이
+								name="score5" value="4"> <span class="s1">매우 많이
 									현저함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="4"> <span class="s1">많이 현저함</span></td>
+								name="score5" value="3"> <span class="s1">많이 현저함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="3"> <span class="s1">다소 현저함</span></td>
+								name="score5" value="2"> <span class="s1">다소 현저함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="2"> <span class="s1">조금 현저함</span></td>
+								name="score5" value="1"> <span class="s1">조금 현저함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="1"> <span class="s1">전혀 현저하지
+								name="score5" value="0"> <span class="s1">전혀 현저하지
 									않음</span></td>
 						</tr>
 					</table>
@@ -152,24 +153,24 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="5"> <span class="s1">매우 많이
+								name="score6" value="4"> <span class="s1">매우 많이
 									걱정함 </span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="4"> <span class="s1">많이 걱정함</span></td>
+								name="score6" value="3"> <span class="s1">많이 걱정함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="3"> <span class="s1">다소 걱정함</span></td>
+								name="score6" value="2"> <span class="s1">다소 걱정함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="2"> <span class="s1">조금 걱정함</span></td>
+								name="score6" value="1"> <span class="s1">조금 걱정함</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="1"> <span class="s1">전혀 걱정하지
+								name="score6" value="0"> <span class="s1">전혀 걱정하지
 									않음</span></td>
 						</tr>
 					</table>
@@ -178,30 +179,28 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="5"> <span class="s1">매우 많이
+								name="score7" value="4"> <span class="s1">매우 많이
 									방해됨 </span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="4"> <span class="s1">많이 방해됨</span></td>
+								name="score7" value="3"> <span class="s1">많이 방해됨</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="3"> <span class="s1">다소 방해됨</span></td>
+								name="score7" value="2"> <span class="s1">다소 방해됨</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="2"> <span class="s1">조금 방해됨</span></td>
+								name="score7" value="1"> <span class="s1">조금 방해됨</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="1"> <span class="s1">전혀 방해되지
+								name="score7" value="0"> <span class="s1">전혀 방해되지
 									않음</span></td>
 						</tr>
 					</table>
-
 				</div>
-
 				<div class="btn">
 					<a href="${contextPath }/exam"><button type="button"
 							class="btn-rec-w">그만두기</button></a>
@@ -210,5 +209,6 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>

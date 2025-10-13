@@ -88,16 +88,13 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<c:choose>
-									<c:when test="${not empty userInfo.profilePath}">
-										<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
-									</c:when>
-									<c:otherwise>
-										<img class="circle"
-											src="${contextPath}/img/userProfile/회원이미지.jpg">
-									</c:otherwise>
-								</c:choose>
-								<span class="btn-link">${userInfo.nickname}</span>
+								<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+								<c:if test="${sessionScope.userType == 'USER' }">
+									<span class="btn-link">${userInfo.nickname}</span>
+								</c:if>
+								<c:if test="${sessionScope.userType != 'USER' }">
+									<span class="btn-link">${userInfo.username}</span>
+								</c:if>
 							</div>
 							<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
 						</div>
@@ -121,7 +118,7 @@
 							<div class="login-content">
 								<c:forEach var="diag" items="${diagCateList}">
 									<div class="login-item"
-										onclick="location.href=`${contextPath}/exam/examques`">
+										onclick="location.href=`${contextPath}/exam/examQues${diag.examNo}.jsp`">
 										<img class="rectangle"
 											src="${contextPath}/${diag.examImgPath}/${diag.examImgNm}"></img>
 										<span>${diag.examCate}</span>
@@ -160,7 +157,7 @@
 							<div class="rectangle diagnosis">
 								<i class="fa-duotone fa-solid fa-user-check"></i>
 							</div>
-							<span>자가진단</span>
+							<span>자가검진</span>
 						</div>
 					</a> <a href="${contextPath}/allComList" class="btn-link">
 						<div class="service item">

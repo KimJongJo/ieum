@@ -7,7 +7,7 @@
 		<a href="/ieum/myPage/diagnosisHistory"><li><button type="button">진단 이력</button></li></a>
 		<a href="/ieum/myCom"><li><button type="button">나의 커뮤니티</button></li></a>
 		<a href="/ieum/black"><li><button type="button">차단 목록</button></li></a>
-		<a href="/ieum/calender"><li><button type="button">다이어리</button></li></a>
-		<li><button type="button">즐겨찾는 병원</button></li>
+		<a href="/ieum/myPage/diary?page=1"><li><button type="button">다이어리</button></li></a>
+		<a href="/ieum/hosFavorite"><li><button type="button">즐겨찾는 병원</button></li></a>
 	</ul>
 </div>
