@@ -79,9 +79,20 @@ public class CommunityDetail extends HttpServlet {
         BlackListService blackListService = new BlackListServiceImpl();
         CommentDto commentDto = new CommentDto();
         try {
-                	
+            
+        	// ✅ 세션에서 조회한 게시글 번호 Set 가져오기
+            Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
+            if (viewedPosts == null) {
+                viewedPosts = new HashSet<>();
+            }
+            if(!viewedPosts.contains(commuNo)) {
+                communityService.updateViews(commuNo);
+                viewedPosts.add(commuNo);
+                session.setAttribute("viewedPosts", viewedPosts); // ✅ 올바르게 수정
+            }
+        	
         	// 조회수 증가
-        	communityService.updateViews(commuNo);
+        	
         	//1. 커뮤글 조회
             CommunityDto communityDto = communityService.selectByNo(commuNo);
             request.setAttribute("community", communityDto);
