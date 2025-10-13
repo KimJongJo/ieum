@@ -98,6 +98,7 @@ public class GoogleLogin extends HttpServlet {
 			// 만약에 이미 병합한 계정이라면
 			if(member.getSocialId() != null && member.getSocialId().equals(googleDto.getId())) {
 				
+				
 				FileDto fileDto = fileService.getFile(member.getFileNo());
 				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
 				session.setAttribute("profile", filePath);
