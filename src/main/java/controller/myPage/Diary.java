@@ -81,6 +81,11 @@ public class Diary extends HttpServlet {
 				request.setAttribute("pageInfo", pageInfo);
 				Boolean hisYn = service.getHisYn(uNo);
 				request.setAttribute("recentHistory", hisYn);
+				
+				request.setAttribute("navPath", "/ieum/calender");
+				request.setAttribute("navPathName", "마이페이지");
+				request.setAttribute("navcurPage", "다이어리");
+				
 				request.getRequestDispatcher("/myPage/diaryList.jsp").forward(request, response);
 			// 수정 -> 상세
 			} else {
@@ -88,6 +93,11 @@ public class Diary extends HttpServlet {
 				request.setAttribute("diary", diary);
 				Boolean hisYn = service.getHisYn(uNo);
 				request.setAttribute("recentHistory", hisYn);
+				
+				request.setAttribute("navPath", "/ieum/calender");
+				request.setAttribute("navPathName", "마이페이지");
+				request.setAttribute("navcurPage", "다이어리");
+				
 				request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
@@ -114,6 +124,11 @@ public class Diary extends HttpServlet {
 			request.setAttribute("diary", diary);
 			Boolean hisYn = service.getHisYn(uNo);
 			request.setAttribute("recentHistory", hisYn);
+			
+			request.setAttribute("navPath", "/ieum/calender");
+			request.setAttribute("navPathName", "마이페이지");
+			request.setAttribute("navcurPage", "다이어리");
+			
 			request.getRequestDispatcher("/myPage/diaryDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -50,6 +50,11 @@ public class HosFavorite extends HttpServlet {
 		    request.getRequestDispatcher("/common/errAlert.jsp").forward(request, response);
 		    return;
 		}
+		
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navcurPage", "즐겨찾는병원");
+		
 		request.getRequestDispatcher("/myPage/hosFavorite.jsp").forward(request, response);
 	}
 

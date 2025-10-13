@@ -370,3 +370,47 @@
   	width:100%;
   	height:120px;
   }
+
+  
+  /* 중헤더 */
+  
+  .sub-header-div{
+  	height:120px;
+  	display:flex;
+  	justify-content:center;
+  }
+  
+  .sub-header-div-basic,
+  .sub-header-div-basic2{
+ 	height:120px;
+  	width:1920px;
+  	background-repeat: no-repeat;
+  	display:flex;
+  	flex-direction:column;
+  	justify-content:center;
+  	align-items:center;
+  }
+  
+  .sub-header-div-basic{
+  	background-image:url("../img/일반사용자중헤더.png");
+  }
+  
+  .sub-header-div-basic2{
+  	background-image:url("../img/관리자중헤더.png");
+  }
+  
+  .place-div a{
+  	font-size:16px;
+  	text-decoration-line:none;
+  	color:black;
+  }
+  
+    .place-div a:hover{
+  	text-decoration: underline;
+  }
+  
+  .place{
+  	font-size:23px;
+  	
+  }
+  

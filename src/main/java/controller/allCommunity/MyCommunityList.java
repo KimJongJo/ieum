@@ -126,6 +126,10 @@ public class MyCommunityList extends HttpServlet {
 		
 		
 		
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navcurPage", "내 커뮤니티");
+		
 		request.getRequestDispatcher("allCommunity/myCommunityList.jsp").forward(request, response);
 	}
 

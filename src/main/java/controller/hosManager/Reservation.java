@@ -53,6 +53,10 @@ public class Reservation extends HttpServlet {
         request.setAttribute("hosName", hosName);
 		request.setAttribute("resList", resList);
 		
+		request.setAttribute("navPath", "/ieum/hosManager/reservation");
+		request.setAttribute("navPathName", "예약관리");
+		request.setAttribute("navcurPage", "예약기록");
+		
 		request.getRequestDispatcher("/hosManager/reservation.jsp").forward(request, response);
 		
 	}

@@ -133,6 +133,10 @@ public class CommunityDetail extends HttpServlet {
             return;
         }
 
+		request.setAttribute("navPath", "/ieum/allComList");
+		request.setAttribute("navPathName", "커뮤니티");
+		request.setAttribute("navcurPage", "게시글 상세");
+        
         request.getRequestDispatcher("allCommunity/communityDetail.jsp").forward(request, response);
 	}
 

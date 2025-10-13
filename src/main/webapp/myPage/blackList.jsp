@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/blackList.css" />
+<script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <script src="${pageContext.request.contextPath}/myPage/css/blackList.js"></script>
 
 

@@ -34,7 +34,12 @@
 	<div class="main">
 		<div class="main-div">
 			<div class="under-section">
-				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
+				<c:if test="${sessionScope.userType == 'ADMIN'}">
+					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
+				</c:if>
+				<c:if test="${sessionScope.userType != 'ADMIN'}">
+					<jsp:include page="/common/nav/hosNav.html"></jsp:include>
+				</c:if>
 				<div class="info">
 					<div class="select-reservation">
 						<div class="notice-div">

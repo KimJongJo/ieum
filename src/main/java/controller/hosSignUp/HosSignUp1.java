@@ -30,6 +30,11 @@ public class HosSignUp1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/hosSignUp1");
+		request.setAttribute("navPathName", "병원등록신청");
+		request.setAttribute("navcurPage", "신청자 정보");
+		
 		request.getRequestDispatcher("/hosSignUp/hosSignUp1.jsp").forward(request, response);
 	}
 
