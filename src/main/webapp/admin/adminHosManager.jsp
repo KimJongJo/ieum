@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/adminNav.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/userState.css" />
         
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>

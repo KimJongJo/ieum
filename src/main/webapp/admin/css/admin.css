@@ -285,46 +285,7 @@ body{
 	align-items:center;
 }
 
-.active, .stop, .hide, .leave, .retired {
-	width: 80px;
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	cursor:pointer;
-	line-height: 30px;
-}
 
-.active {
-	border: 1px solid #00b087;
-	color: #00b087;
-	background-color: #a6e7d8;
-}
-
-.stop {
-	border: 1px solid #df0404;
-	color: #df0404;
-	background-color: #ffc5c5;
-}
-
-.hide {
-	border: 1px solid #df6e04;
-	color: #df6e04;
-	background-color: #ffdcc5;
-}
-
-.leave {
-	border: 1px solid #cd8bff;
-	color: #cd8bff;
-	background-color: #fbe5ff;
-}
-
-.retired {
-	border: 1px solid #888888;
-	color: #888888;
-	background-color: #d0d0d0;
-}
 
 .filter-span {
 	font-size: 14px;

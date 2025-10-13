@@ -66,32 +66,10 @@
 
 		<!-- Middle Header -->
 		<c:if test="${sessionScope.userType == 'USER' || sessionScope.userType == NULL }">
-			<div class="middle-header">
-				<div class="full-rect"></div>
-				<div class="group xlarge">
-					<div class="outer-circle xlarge-circle">
-						<div class="inner-circle xlarge-inner"></div>
-					</div>
-					<div class="rectangle xlarge-rect"></div>
-				</div>
-				<div class="group large">
-					<div class="outer-circle large-circle">
-						<div class="inner-circle large-inner"></div>
-					</div>
-					<div class="rectangle large-rect"></div>
-				</div>
-				<div class="group small">
-					<div class="outer-circle small-circle">
-						<div class="inner-circle small-inner"></div>
-					</div>
-					<div class="rectangle small-rect"></div>
-				</div>
-			</div>
+			<jsp:include page="/common/header/subHeaderBasic.jsp"></jsp:include>
 		</c:if>
 		<c:if test="${sessionScope.userType != 'USER' && sessionScope.userType != NULL }">
-			<div class="middle-header">
-				<img src="${pageContext.request.contextPath}/img/중헤더.png">
-			</div>
+			<jsp:include page="/common/header/subHeaderManager.jsp"></jsp:include>
 		</c:if>
 	</c:if>
 </body>

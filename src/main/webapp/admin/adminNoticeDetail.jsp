@@ -21,11 +21,16 @@
 <title>건강이음 - 공지사항관리 상세</title>
 </head>
 <body>
-	<jsp:include page="../common/header/adminNavHeader.jsp"></jsp:include>
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<div class="main">
 		<div class="main-div">
 			<div class="under-section">
-				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
+				<c:if test="${sessionScope.userType == 'ADMIN'}">
+					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
+				</c:if>
+				<c:if test="${sessionScope.userType != 'ADMIN'}">
+					<jsp:include page="/common/nav/hosNav.html"></jsp:include>
+				</c:if>
 				<div class="notice-container">
 					<!-- 제목 -->
 					<div class="notice-header">

@@ -30,6 +30,13 @@ public class ExamExam6 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/exam");
+		request.setAttribute("navPathName", "자가검진");
+		request.setAttribute("navPath2", "/ieum/exam/exam6");
+		request.setAttribute("navPathName2", "조기정신증");
+		request.setAttribute("navcurPage", "검진");
+		
 		request.getRequestDispatcher("/exam/examQues6.jsp").forward(request, response);
 	}
 

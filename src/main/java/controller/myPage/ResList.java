@@ -60,6 +60,10 @@ public class ResList extends HttpServlet {
 			Integer recResCnt = rService.recResListCnt(uNo, null, null);
 			request.setAttribute("recResCnt", recResCnt);
 			
+			request.setAttribute("navPath", "/ieum/calender");
+			request.setAttribute("navPathName", "마이페이지");
+			request.setAttribute("navcurPage", "예약");
+			
 			request.getRequestDispatcher("/myPage/resList.jsp").forward(request, response);
 
 		} catch (Exception e) {

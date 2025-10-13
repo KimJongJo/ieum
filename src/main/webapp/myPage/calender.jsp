@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender2.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/diagnosisHistory.css" />
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script> --%>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
@@ -1035,7 +1036,6 @@ $(document).on("click", "#check", function() {
 </head>
 <body>
 <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
-<img id="Heart1" src="${pageContext.request.contextPath}/img/중헤더2.png"/>
     <!-- ✅ 중헤더 바로 밑에 텍스트 -->
 	<div id="section-title">
 		<div>

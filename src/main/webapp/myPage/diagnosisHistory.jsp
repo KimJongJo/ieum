@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/profileInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/diagnosisHistory.css" />
-        <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
                 <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!-- FullCalendar Script -->

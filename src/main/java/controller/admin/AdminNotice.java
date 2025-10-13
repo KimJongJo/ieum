@@ -87,6 +87,11 @@ public class AdminNotice extends HttpServlet {
 				request.setAttribute("loginUNo", uNo);
 				String pageName = request.getRequestURI(); // 현재 페이지 경로
 				request.setAttribute("pageName", pageName);
+				
+				request.setAttribute("navPath", "/ieum/admin/notice?page=1");
+				request.setAttribute("navPathName", "공지사항");
+				request.setAttribute("navcurPage", "공지사항 목록");
+				
 				request.getRequestDispatcher("/admin/adminNoticeList.jsp").forward(request, response);
 				
 			} else {
@@ -102,6 +107,11 @@ public class AdminNotice extends HttpServlet {
 				request.setAttribute("next", next);
 				String pageName = request.getRequestURI(); // 현재 페이지 경로
 				request.setAttribute("pageName", pageName);
+				
+				request.setAttribute("navPath", "/ieum/admin/notice?page=1");
+				request.setAttribute("navPathName", "공지사항");
+				request.setAttribute("navcurPage", "공지사항 상세");
+				
 				request.getRequestDispatcher("/admin/adminNoticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {

@@ -74,6 +74,10 @@ public class AllCommunityList extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("navPath", "/ieum/allComList");
+		request.setAttribute("navPathName", "커뮤니티");
+		request.setAttribute("navcurPage", "게시글 목록");
 	    
 		request.getRequestDispatcher("allCommunity/allCommunityList.jsp").forward(request, response);
 	}

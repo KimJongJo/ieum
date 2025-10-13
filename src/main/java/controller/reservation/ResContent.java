@@ -43,6 +43,18 @@ public class ResContent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Integer hNo = (Integer) session.getAttribute("hNo");
+		
+		request.setAttribute("navPath", "/ieum/hospital/search");
+		request.setAttribute("navPathName", "병원조회");
+		request.setAttribute("navPath2", "/ieum/hospital/detail?hNo=" + hNo);
+		request.setAttribute("navPathName2", "병원상세");
+		request.setAttribute("navPath3", "/ieum/reservation/content");
+		request.setAttribute("navPathName3", "예약");
+		request.setAttribute("navcurPage", "예약정보");
+
 		request.getRequestDispatcher("/reservation/resContent.jsp").forward(request, response);
 	}
 
@@ -95,6 +107,14 @@ public class ResContent extends HttpServlet {
 					request.setAttribute("rContent", rContent);
 					session.removeAttribute("modCon");
 				}
+				
+				request.setAttribute("navPath", "/ieum/hospital/search");
+				request.setAttribute("navPathName", "병원조회");
+				request.setAttribute("navPath2", "/ieum/hospital/detail?hNo=" + hNo);
+				request.setAttribute("navPathName2", "병원상세");
+				request.setAttribute("navPath3", "/ieum/reservation/content");
+				request.setAttribute("navPathName3", "예약");
+				request.setAttribute("navcurPage", "예약정보");
 				
 				request.getRequestDispatcher("/reservation/resContent.jsp").forward(request, response);
 				

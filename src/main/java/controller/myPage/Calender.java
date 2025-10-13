@@ -81,6 +81,10 @@ public class Calender extends HttpServlet {
 	        request.setAttribute("errorMessage", "최근 커뮤니티를 불러오는 중 오류가 발생했습니다.");
 	    }
 
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navcurPage", "캘린더");
+		
 	    request.getRequestDispatcher("myPage/calender.jsp").forward(request, response);
 	}
 

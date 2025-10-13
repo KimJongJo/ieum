@@ -22,7 +22,10 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${contextPath}/admin/css/admin.css">
+	</c:if>
 <title>hosDe-res</title>
 </head>
 

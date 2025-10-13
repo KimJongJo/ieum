@@ -65,6 +65,16 @@ public class ResSummary extends HttpServlet {
 			request.setAttribute("actName", actName);
 			request.setAttribute("actTel", actTel);
 			
+			Integer hNo = resDetail.gethNo();
+			
+			request.setAttribute("navPath", "/ieum/hospital/search");
+			request.setAttribute("navPathName", "병원조회");
+			request.setAttribute("navPath2", "/ieum/hospital/detail?hNo=" + hNo);
+			request.setAttribute("navPathName2", "병원상세");
+			request.setAttribute("navPath3", "/ieum/reservation/content");
+			request.setAttribute("navPathName3", "예약");
+			request.setAttribute("navcurPage", "예약확정");
+			
 			request.getRequestDispatcher("/reservation/resSummary.jsp").forward(request, response);
 			
 		}catch (Exception e) {
