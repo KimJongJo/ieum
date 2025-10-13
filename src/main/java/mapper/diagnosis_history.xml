@@ -80,7 +80,7 @@
 		join reservation r on(d.r_no = r.r_no)
 		where d.doctor_id = #{uNo}
 		AND( DATE(r.r_date) &lt; CURDATE() or d.is_completed = 1)
-		order by 7 desc, 3 desc
+		order by r.r_date DESC, r.r_time
 		LIMIT #{pageSize} OFFSET #{offset}
 	</select>
 	

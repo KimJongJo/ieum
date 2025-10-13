@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import dto.FileDto;
 import dto.MemberDto;
 import dto.otherDto.GoogleMemberDto;
-import dto.otherDto.NaverMemberDto;
 import service.file.FileService;
 import service.file.FileServiceImpl;
 import service.social.GoogleService;

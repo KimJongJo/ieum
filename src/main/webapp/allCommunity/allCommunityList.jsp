@@ -8,10 +8,15 @@
 <meta charset="UTF-8">
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://kit.fontawesome.com/8d48045bdd.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/allCommunityList.css" />
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/admin/css/admin.css">
+	</c:if>
 <script src="${pageContext.request.contextPath}/allCommunity/js/allCommunityList.js"></script>
 <script type="text/javascript">
 window.addEventListener("pageshow", function(event) {
