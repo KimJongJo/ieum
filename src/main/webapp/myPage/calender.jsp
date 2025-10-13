@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender2.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/diagnosisHistory.css" />
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script> --%>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>

@@ -58,6 +58,11 @@ public class AdminNoticeWrite extends HttpServlet {
 			// 작성
 			if (nNo == null) {
 				setWriterAttribute(request, service, uNo);
+				
+				request.setAttribute("navPath", "/ieum/admin/notice?page=1");
+				request.setAttribute("navPathName", "공지사항");
+				request.setAttribute("navcurPage", "공지사항 등록");
+				
 				request.getRequestDispatcher("/admin/noticeWrite.jsp").forward(request, response);
 				return;
 			}
@@ -83,6 +88,11 @@ public class AdminNoticeWrite extends HttpServlet {
 			}
 			String pageName = request.getRequestURI(); // 현재 페이지 경로
 			request.setAttribute("pageName", pageName);
+			
+			request.setAttribute("navPath", "/ieum/admin/notice?page=1");
+			request.setAttribute("navPathName", "공지사항");
+			request.setAttribute("navcurPage", "공지사항 " + ((nNo == null) ? "작성" : "수정"));
+			
 			request.getRequestDispatcher("/admin/noticeWrite.jsp").forward(request, response);
 
 		} catch (Exception e) {
@@ -127,6 +137,9 @@ public class AdminNoticeWrite extends HttpServlet {
 				request.setAttribute("no", notice.getnNo());
 			}
 			request.setAttribute("msg", (nNo == null) ? "작성" : "수정");
+			
+			
+			
 			request.getRequestDispatcher("/admin/noticeAlert.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

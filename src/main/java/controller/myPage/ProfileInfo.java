@@ -37,10 +37,21 @@ public class ProfileInfo extends HttpServlet {
 		ProfileInfoService service = new ProfileInfoServiceImpl();
 		try {
 			MemberDto memberDto = service.selectProfileView(uNo);
+			System.out.println(memberDto.getUserType());
+			if(memberDto.getUserType().equals("USER")) {
+				request.setAttribute("navPath", "/ieum/calender");
+			}else {
+				request.setAttribute("navPath", "/ieum/pInfo");
+			}
+			request.setAttribute("navPathName", "마이페이지");
+			request.setAttribute("navcurPage", "내 정보");
+			
 			request.setAttribute("member", memberDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+
 		request.getRequestDispatcher("myPage/profileInfo.jsp").forward(request, response);
 	}
 

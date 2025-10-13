@@ -55,6 +55,10 @@ public class BlackList extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navcurPage", "차단목록");
+		
 		request.getRequestDispatcher("myPage/blackList.jsp").forward(request, response);
 	}
 

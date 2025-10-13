@@ -65,6 +65,10 @@ public class ReservationToday extends HttpServlet {
         request.setAttribute("today", formattedDate);
 		request.setAttribute("resList", resList);
 		
+		request.setAttribute("navPath", "/ieum/hosManager/reservationToday");
+		request.setAttribute("navPathName", "예약관리");
+		request.setAttribute("navcurPage", "오늘예약");
+		
 		request.getRequestDispatcher("/hosManager/reservationToday.jsp").forward(request, response);
 	}
 

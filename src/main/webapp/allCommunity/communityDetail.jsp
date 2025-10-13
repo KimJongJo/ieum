@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/communityDetail.css" />
+<script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/admin/css/admin.css">
+	</c:if>
 <%-- <script src="${pageContext.request.contextPath}/allCommunity/js/communityDetail.js"></script> --%>
 <style>
 body {

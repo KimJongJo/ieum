@@ -59,6 +59,10 @@ public class HosSignUp2 extends HttpServlet {
 		    e.printStackTrace();
 		}
 		
+		request.setAttribute("navPath", "/ieum/hosSignUp1");
+		request.setAttribute("navPathName", "병원등록신청");
+		request.setAttribute("navcurPage", "병원 정보");
+		
 		request.getRequestDispatcher("/hosSignUp/hosSignUp2.jsp").forward(request, response);
 	}
 

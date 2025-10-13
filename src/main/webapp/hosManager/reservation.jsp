@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/reservation.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/patientInfo.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/infoModal.css" />
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script>

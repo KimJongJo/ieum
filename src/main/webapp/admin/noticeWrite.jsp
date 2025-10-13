@@ -33,7 +33,13 @@
 	<div class="main">
 		<div class="main-div">
 			<div class="notice-under-section">
-				<jsp:include page="/common/nav/adminNav.html"></jsp:include>
+				<c:if test="${sessionScope.userType == 'ADMIN'}">
+					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
+				</c:if>
+				<c:if test="${sessionScope.userType != 'ADMIN'}">
+					<jsp:include page="/common/nav/hosNav.html"></jsp:include>
+				</c:if>
+				
 				<form method="post" id="noticeWriteForm"
 					enctype="multipart/form-data" action="/admin/notice/write">
 					<div class="info">

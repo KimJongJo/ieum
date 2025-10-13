@@ -43,6 +43,10 @@ public class HospitalInfo extends HttpServlet {
 		hospital.setFilePath(filePath);
 		request.setAttribute("hospital", hospital);
 		
+		request.setAttribute("navPath", "/ieum/hosManager/hospitalInfo");
+		request.setAttribute("navPathName", "병원관리");
+		request.setAttribute("navcurPage", "병원정보");
+		
 		request.getRequestDispatcher("/hosManager/hospitalInfo.jsp").forward(request, response);
 	}
 

@@ -108,6 +108,10 @@ public class CommunityDetailModify extends HttpServlet {
             return;
         }
 
+		request.setAttribute("navPath", "/ieum/allComList");
+		request.setAttribute("navPathName", "커뮤니티");
+		request.setAttribute("navcurPage", "게시글 수정");
+        
         request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
 	}
 

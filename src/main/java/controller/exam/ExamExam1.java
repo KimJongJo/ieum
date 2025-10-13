@@ -30,6 +30,13 @@ public class ExamExam1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/exam");
+		request.setAttribute("navPathName", "자가검진");
+		request.setAttribute("navPath2", "/ieum/exam/exam1");
+		request.setAttribute("navPathName2", "우울");
+		request.setAttribute("navcurPage", "검진");
+		
 		request.getRequestDispatcher("/exam/examQues1.jsp").forward(request, response);
 	}
 
@@ -92,6 +99,7 @@ public class ExamExam1 extends HttpServlet {
 			examNotice = examNotice.replaceAll("\r\n", "<br>");
 			examResult1 = examResult1.replaceAll("\r\n", "<br>");
 			examResult2 = examResult2.replaceAll("\r\n", "<br>");
+			
 			request.getRequestDispatcher("/exam/examResult.jsp").forward(request, response);
 
 		} catch (Exception e) {

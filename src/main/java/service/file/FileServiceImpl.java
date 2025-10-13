@@ -45,16 +45,16 @@ public class FileServiceImpl implements FileService {
          filePath = "img\\hosImg\\";
          fileDto = new FileDto(fileName, filePath, "hosProfile");
       } else if (type.equals("noticeFile")) { // 공지사항 파일이면
-         realFilePath = "file\\notice";
+         realFilePath += "file\\notice";
          filePath = "file\\notice\\";
          fileDto = new FileDto(fileName, filePath, "noticeFile");
+         System.out.println("fileDto"  +  fileDto);
       } else { // 사업자등록증파일이면
          realFilePath += "img\\hosRe";
          filePath = "img\\hosRe\\";
          fileDto = new FileDto(fileName, filePath, "hosRequestFile");
       }
       // 파일을 서버에 실제로 저장 (write)
-
       file.write(realFilePath + File.separator + fileName);
 
       Integer no = fileDao.uploadFile(fileDto);

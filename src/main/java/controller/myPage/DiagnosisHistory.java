@@ -66,6 +66,10 @@ public class DiagnosisHistory extends HttpServlet {
 	    request.setAttribute("totalCount", totalCount);
 	    request.setAttribute("hasMore", hasMore);
 	    
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navcurPage", "진단 기록");
+	    
 		request.getRequestDispatcher("/myPage/diagnosisHistory.jsp").forward(request, response);
 	}
 

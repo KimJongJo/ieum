@@ -79,6 +79,12 @@ public class HosDetail extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			request.setAttribute("navPath", "/ieum/hospital/search");
+			request.setAttribute("navPathName", "병원조회");
+			request.setAttribute("navPath2", "/ieum/hospital/detail?hNo=" + hNo);
+			request.setAttribute("navPathName2", "병원상세");
+			request.setAttribute("navcurPage", "병원정보");
 
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 

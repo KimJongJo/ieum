@@ -78,6 +78,11 @@ public class Notice extends HttpServlet {
 				request.setAttribute("noticeList", noticeList);
 				request.setAttribute("pageInfo", pageInfo);
 				request.setAttribute("loginUNo", uNo);
+				
+				request.setAttribute("navPath", "/ieum/notice?page=1");
+				request.setAttribute("navPathName", "공지사항");
+				request.setAttribute("navcurPage", "공지사항 목록");
+				
 				request.getRequestDispatcher("/notice/noticeList.jsp").forward(request, response);
 
 			} else {
@@ -91,6 +96,11 @@ public class Notice extends HttpServlet {
 				request.setAttribute("loginUNo", uNo);
 				request.setAttribute("prev", prev);
 				request.setAttribute("next", next);
+				
+				request.setAttribute("navPath", "/ieum/notice?page=1");
+				request.setAttribute("navPathName", "공지사항");
+				request.setAttribute("navcurPage", "공지사항 상세");
+				
 				request.getRequestDispatcher("/notice/noticeDetail.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
