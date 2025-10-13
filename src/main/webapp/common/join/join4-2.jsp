@@ -110,7 +110,7 @@
                                     <span class="i-span" id=birth-span><i class="fa-solid fa-check span-check" id="birth-i"></i></span>
                                 </div>
                                 <div class="input-div2 input">
-                                    <select name="year" id="joinYear" name="year" class="year date">
+                                    <select name="year" id="year" name="year" class="year date">
                                         <option value="none">년도</option>
                                     </select>
                                     <span class="text">년</span>

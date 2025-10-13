@@ -54,6 +54,18 @@ public class FileServiceImpl implements FileService {
          filePath = "img\\hosRe\\";
          fileDto = new FileDto(fileName, filePath, "hosRequestFile");
       }
+      
+      // ✅ 경로가 존재하지 않으면 폴더 생성
+      File dir = new File(realFilePath);
+      if (!dir.exists()) {
+          boolean created = dir.mkdirs(); // 상위 디렉토리까지 전부 생성
+          if (created) {
+              System.out.println("📁 디렉토리 생성 완료: " + realFilePath);
+          } else {
+              System.out.println("⚠️ 디렉토리 생성 실패: " + realFilePath);
+          }
+      }
+      
       // 파일을 서버에 실제로 저장 (write)
       file.write(realFilePath + File.separator + fileName);
 

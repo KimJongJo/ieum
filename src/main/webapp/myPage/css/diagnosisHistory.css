@@ -188,7 +188,9 @@ border-right: 1px solid #d9d9d9; /* 구분선 */
 display: flex; /* 안쪽 텍스트 정렬용 */
 align-items: center; /* 세로 가운데 */
 justify-content: center; /* 가로 가운데 */
-    font-size: 14px;
+  white-space: nowrap;       /* 줄바꿈 금지 */
+  overflow: hidden;          /* 넘친 내용 숨기기 */
+  text-overflow: ellipsis;   /* ... 표시 */
 }
 
 /* 마지막 영역은 오른쪽 선 제거 */
