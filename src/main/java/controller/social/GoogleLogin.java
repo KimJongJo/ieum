@@ -89,8 +89,6 @@ public class GoogleLogin extends HttpServlet {
 		if(googleDto.getMemberDto() != null) {
 			FileDto fileDto = fileService.getFile(googleDto.getMemberDto().getFileNo());
 			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
-			System.out.println(fileDto);
-			System.out.println(filePath);
 			session.setAttribute("profile", filePath);
 			session.setAttribute("userType", member.getUserType());
 			session.setAttribute("uNo", googleDto.getMemberDto().getuNo());
