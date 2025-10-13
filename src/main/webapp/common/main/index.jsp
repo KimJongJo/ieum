@@ -121,7 +121,7 @@
 							<div class="login-content">
 								<c:forEach var="diag" items="${diagCateList}">
 									<div class="login-item"
-										onclick="location.href=`${contextPath}/exam/examques`">
+										onclick="location.href=`${contextPath}/exam/examQues${diag.examNo}.jsp`">
 										<img class="rectangle"
 											src="${contextPath}/${diag.examImgPath}/${diag.examImgNm}"></img>
 										<span>${diag.examCate}</span>
@@ -160,7 +160,7 @@
 							<div class="rectangle diagnosis">
 								<i class="fa-duotone fa-solid fa-user-check"></i>
 							</div>
-							<span>자가진단</span>
+							<span>자가검진</span>
 						</div>
 					</a> <a href="${contextPath}/allComList" class="btn-link">
 						<div class="service item">
