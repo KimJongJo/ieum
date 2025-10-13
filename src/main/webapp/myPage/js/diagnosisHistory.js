@@ -211,7 +211,9 @@ function fetchDiagnosisList(date) {
                             <div class="box2">
                                 <div class="box-item">${item.rDate}</div>
                                 <div class="box-item">${item.diagnosisName}</div>
-                                <div class="box-item">${item.testSummary}</div>
+                                <div class="box-item">
+                                	 <span class="ellipsis-text">${item.testSummary}</span>
+                                </div>
                                 <div class="box-item">
                                     <button class="btn2" value="${item.diaNo}">진단 결과 보기</button>
                                 </div>
@@ -293,7 +295,9 @@ function fetchDiagnosisList(date) {
                             <div class="box2">
                                 <div class="box-item">${dia.rDate}</div>
                                 <div class="box-item">${dia.diagnosisName}</div>
-                                <div class="box-item">${dia.testSummary}</div>
+                                <div class="box-item">
+                                	 <span class="ellipsis-text">${dia.testSummary}</span>
+                                </div>
                                 <div class="box-item">
                                     <button class="btn2" value="${dia.diaNo}">진단 결과 보기</button>
                                 </div>
@@ -406,7 +410,9 @@ function fetchDiagnosisList(date) {
 	                            <div class="box2">
 	                                <div class="box-item">${object.rDate}</div>
 	                                <div class="box-item">${object.diagnosisName}</div>
-	                                <div class="box-item">${object.testSummary}</div>
+	                                <div class="box-item">
+	                                	 <span class="ellipsis-text">${object.testSummary}</span>
+	                                </div>
 	                                <div class="box-item">
 	                                    <button class="btn2" value="${object.diaNo}">진단 결과 보기</button>
 	                                </div>
