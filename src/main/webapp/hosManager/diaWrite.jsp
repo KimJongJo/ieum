@@ -48,25 +48,25 @@
         	</tr>
             <tr>
                 <td class="u-td u-th up">진단명</td>
-                <td class="u-td up"  style="width:100px;"><textarea id="dwriaName" class="area area0"></textarea></td>
+                <td class="u-td up"  style="width:100px;"><textarea maxlength=12 id="wrdiaName" class="area area0"></textarea></td>
                 <td class="u-td u-th up">증상</td>
-                <td colspan="3" id="area1" class="u-td "><textarea id="wrsym" class="area area1"></textarea></td>
+                <td colspan="3" id="area1" class="u-td "><textarea maxlength=76 id="wrsym" class="area area1"></textarea></td>
             </tr>
             <tr>
                 <td colspan="2" class="u-td u-th">검사 내용 및 결과</td>
-                    <td colspan="4" id="area2" class="u-td" colspan="2"><textarea id="wrsummary" class="area area2"></textarea></td>
+                    <td colspan="4" id="area2" class="u-td" colspan="2"><textarea maxlength=308 id="wrsummary" class="area area2"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">처치/수술내용</td>
-                    <td colspan="4" id="area3" class="u-td" colspan="2"><textarea id="wrtreatment" class="area area3"></textarea></td>
+                    <td colspan="4" id="area3" class="u-td" colspan="2"><textarea maxlength=220 id="wrtreatment" class="area area3"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">처방전</td>
-                    <td colspan="4" id="area4" class="u-td" colspan="2"><textarea id="wrpre" class="area area4"></textarea></td>
+                    <td colspan="4" id="area4" class="u-td" colspan="2"><textarea maxlength=132 id="wrpre" class="area area4"></textarea></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="u-td u-th">의사의 말</td>
-                    <td colspan="4" id="area5" class="u-td" colspan="2"><textarea id="wrdocComment" class="area area5"></textarea></td>
+                    <td colspan="4" id="area5" class="u-td" colspan="2"><textarea maxlength=176 id="wrdocComment" class="area area5"></textarea></td>
                 </tr>
             </table>
             <div id="btn-event">

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,8 +9,11 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join5.css" />
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
     </head>
     <body>
+    <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 		<div class="main">
 		    <div class="main-div">
 		        <div>
@@ -38,7 +42,7 @@
 		        </div>
 		    </div>
 		</div>
-		
+		<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 		<script src="${pageContext.request.contextPath}/common/join/js/alreadyEmail.js"></script>
     </body>
 </html>

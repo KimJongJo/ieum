@@ -111,7 +111,8 @@ public class AdminNoticeWrite extends HttpServlet {
 			Part filePart = request.getPart("file");
 			Integer fileNo = null;
 			if (filePart != null && filePart.getSize() > 0) {
-				fileNo = fService.uploadFile(filePart, "noticeFile");
+				String filePath = request.getServletContext().getRealPath("/");
+				fileNo = fService.uploadFile(filePart, "noticeFile", filePath);
 //				System.out.println("파일 업로드 완료, fileNo = " + fileNo);
 			}
 			// 작성

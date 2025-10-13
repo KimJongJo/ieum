@@ -75,9 +75,9 @@
 							</table>
 						</div>
 
-						<div class="right">
+						<div class="right" data-rno="${rid.rNo }" data-hno="${rid.hNo }">
 							<c:if test="${rid.rStatus eq 'WAITING' }">
-								<button class="btn-cir-w" type="button">예약변경</button>
+								<button class="btn-cir-w" type="button" id="updateBtn">예약변경</button>
 								<button class="btn-cir-w" type="button" id="cancelBtn">예약취소</button>
 							</c:if>
 						</div>
@@ -93,7 +93,7 @@
 								<span class="dname"> <c:out value="${rid.username }" />
 								</span>
 								<p class="intro">
-									<c:out value="${rid.introduction }" />
+									<c:out value="${rid.introduction }" default="믿음을 주는 상담사"/>
 								</p>
 							</div>
 							<span class="major"> <c:out value="${rid.major }" />

@@ -119,7 +119,6 @@ public class Login extends HttpServlet {
 				int totalManager = service.getTotalManager();
 				int totalActiveHos = hosService.getTotalActiveHos();
 				int totalInactiveHos = hosService.getTotalInactiveHos();
-				
 				session.setAttribute("totalMember", totalMember);
 				session.setAttribute("totalUser", totalUser);
 				session.setAttribute("totalManager", totalManager);
@@ -129,8 +128,10 @@ public class Login extends HttpServlet {
 			}
 			resDto = new ResponseDto(true, "로그인 성공");
 			
-			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장
+			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장			
 			session.setAttribute("userType", member.getUserType());
+			session.setAttribute("uNm", member.getUsername());
+			session.setAttribute("nickNm", member.getNickName());
 			
 			
 			Cookie idCookie;

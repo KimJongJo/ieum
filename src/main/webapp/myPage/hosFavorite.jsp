@@ -28,12 +28,14 @@
 </head>
 <body>
 	<header>
-		<jsp:include page="/common/header/header.html" />
+		<jsp:include page="/common/header/header.jsp" />
 	</header>
+	<div class="section-title">
+        <span>즐겨찾는 병원</span>
+    </div>
 	<div class="fav-container">
-		<jsp:include page="/common/nav/userNav.html" />
+		<jsp:include page="/common/nav/userNav.jsp" />
 		<div class="container">
-			<div class="fav1">즐겨찾기</div>
 			<div id="hospitalList">
 <%-- 				<c:when test="${not empty noticeList}"> --%>
 <%-- 					<c:forEach var="fav" items="${favList}"> --%>

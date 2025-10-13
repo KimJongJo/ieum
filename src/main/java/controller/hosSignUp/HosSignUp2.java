@@ -122,12 +122,11 @@ public class HosSignUp2 extends HttpServlet {
 		// 병원사진하고 사업자 등록증만 받으면 됨
 		Part hosImg = request.getPart("hosImgFile");
         Part hosReFile = request.getPart("hosFile");
-        
-
 		
 		FileService fileService = new FileServiceImpl();
-		Integer hosImgNo = fileService.uploadFile(hosImg, "hosImg");
-		Integer hosReFileNo = fileService.uploadFile(hosReFile, "hosRe");
+		String filePath = request.getServletContext().getRealPath("/");
+		Integer hosImgNo = fileService.uploadFile(hosImg, "hosImg", filePath);
+		Integer hosReFileNo = fileService.uploadFile(hosReFile, "hosRe", filePath);
 		
 		String[] addArr = add.split(" ");
 		

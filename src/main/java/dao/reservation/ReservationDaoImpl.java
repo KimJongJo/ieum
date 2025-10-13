@@ -169,6 +169,25 @@ public class ReservationDaoImpl implements ReservationDao {
 			session.commit();
 		}
 	}
+	
+	//예약선택
+	@Override
+	public ReservationDto selectRno(Integer rNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("selectRno", rNo);
+			
+		}
+	}
+	
+	//진짜 예약 취소
+	@Override
+	public void deleteRno(Integer rNo) throws Exception {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			session.selectOne("deleteRno", rNo);
+			session.commit();
+			
+		}
+	}
 
 }
 

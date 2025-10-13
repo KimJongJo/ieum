@@ -225,5 +225,15 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public void resCancel(Integer rNo) throws Exception {
 		resDao.resCancel(rNo);
+	}
+
+	@Override
+	public void updateRno(Integer rNo) throws Exception {
+		resDao.deleteRno(rNo);
+	}
+
+	@Override
+	public ReservationDto selectRes(Integer rNo) throws Exception {
+		return resDao.selectRno(rNo);
 	}	
 }

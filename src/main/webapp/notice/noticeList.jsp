@@ -15,6 +15,10 @@
 <link rel="stylesheet" href="${contextPath}/common/pagination/page.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
+	<c:if test="${userType == 'ADMIN'}">
+		<link rel="stylesheet" type="text/css"
+	href="${contextPath}/admin/css/admin.css">
+	</c:if>
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -50,9 +54,8 @@
 		</div>
 
 		<c:choose>
-			<c:when test="${not empty noticeList}">
+			<c:when test="${not empty noticeList or not empty topList}">
 				<div class="list-section" id="noticeList">
-
 					<c:forEach var="top" items="${topList}">
 						<a href="${contextPath}/notice?nNo=${top.nNo}">
 							<div class="notice-list">

@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void normalJoin(MemberDto member) {
 		
-		String filePath = "img";
+		String filePath = "img/";
 		FileDto file;
 		Integer fileNo;
 		// 일반회원
@@ -442,6 +442,7 @@ public class MemberServiceImpl implements MemberService {
 	// 회원 번호를 통해 회원 정보 가져오기
 	@Override
 	public MemberDto selectUserByNo(Integer uNo) {
+		
 		return memberDao.selectUserByNo(uNo);
 	}
 

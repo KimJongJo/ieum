@@ -20,7 +20,7 @@ a {
 }
 
 .i {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
 }
 
@@ -49,8 +49,8 @@ a {
 }
 
 .h-name {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 17px;
 }
 
 .ta1 {
@@ -94,7 +94,7 @@ a {
 
 .c1 {
     width: 717px;
-    min-height: 100px;
+    min-height: 130px;
     background-color: #F3F3F3;
     border-radius: 15px;
     height:auto;
@@ -111,9 +111,8 @@ a {
 }
 
 .rc {
-	width: 717px;
+	width: 687px;
 	height: 100px;
-	padding: 15px;
 	box-sizing: border-box;
 	border: none;
 	background: none;
@@ -189,7 +188,7 @@ a {
 .af2 {
 	width:55px;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
 
 }
 
