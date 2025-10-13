@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="${contextPath }/exam/css/examQues.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <title>examQues_알코올 의존</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="container1">
 		<div class="left">
 			<jsp:include page="examnav.jsp"></jsp:include>
@@ -25,7 +26,7 @@
 
 		<div class="right">
 			<div class="examHeader">
-				<div class="icon">
+				<div class="examicon">
 					<span class="material-symbols-outlined"> checklist </span>
 				</div>
 				<div class="text">
@@ -39,7 +40,7 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/score" method="post">
+			<form action="${contextPath }/exam/score5" method="post">
 				<div class="ques">
 					<span class="question">Q1.술을 얼마나 자주 마십니까?</span>
 					<table class="quesTa">
@@ -50,8 +51,8 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">1주일에 2 ~
-									3회</span></td>
+								name="score1" value="4"> <span class="s1">1주일에 2
+									~ 3회</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
@@ -264,8 +265,8 @@
 								name="score9" value="1"> <span class="s1">없었다</span></td>
 						</tr>
 					</table>
-					<span class="question">Q10.친척이나 친구, 또는 의사가 당신이 술 마시는 것을 걱정하거나
-						술끊기를 권유한 적이 있습니까? </span>
+					<span class="question">Q10.친척이나 친구, 또는 의사가 당신이 술 마시는 것을
+						걱정하거나 술끊기를 권유한 적이 있습니까? </span>
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
@@ -274,8 +275,8 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="3"> <span class="s1">있지만, 지난
-									1년간에는 없었다</span></td>
+								name="score10" value="3"> <span class="s1">있지만,
+									지난 1년간에는 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
@@ -293,5 +294,6 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>

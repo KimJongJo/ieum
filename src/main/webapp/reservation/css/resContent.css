@@ -94,12 +94,29 @@ a {
 
 .c1 {
     width: 717px;
-    height: 87px;
+    min-height: 100px;
     background-color: #F3F3F3;
     border-radius: 15px;
+    height:auto;
     
     padding: 15px;
 	box-sizing: border-box;
+	outline: none;
+	float: left;
+	font-family: "Noto Sans KR", Helvetica;
+	font-size: 15px;
+	line-height: 30px;
+	resize: none;
+	text-decoration:none;
+}
+
+.rc {
+	width: 717px;
+	height: 100px;
+	padding: 15px;
+	box-sizing: border-box;
+	border: none;
+	background: none;
 	outline: none;
 	float: left;
 	font-family: "Noto Sans KR", Helvetica;

@@ -1,9 +1,7 @@
 body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	font-family: "Noto Sans KR", Helvetica;
 	color: #000000;
+	margin:0;
 }
 
 a {
@@ -11,11 +9,23 @@ a {
 	color: inherit;
 }
 
+/* 섹션 타이틀 */
+#section-title {
+    width: 800px;
+    font-size: 20px;
+    color: #333;
+    margin: 20px auto 0 auto;
+    font-weight: 700;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .myPage {
 	width: 1280px;
-	display: flex;
-	justify-content: space-between;
-	margin-top: 60px;
+    margin: 20px auto 0 auto; /* 위 20px 띄우고 가운데 정렬 */
+    display: flex;
+    gap: 40px; /* 사이 간격 */
 }
 
 .container1 {
@@ -41,7 +51,7 @@ a {
 .move1 {
 	width: 50px;
 	height: 25px;
-	font-size: 25px;
+	font-size: 20px;
 	color: #4356B3;
 	cursor: pointer;
 	background-color: #F7FAFF;
@@ -73,27 +83,27 @@ a {
 
 .t1 {
 	font-weight: 600;
-	font-size: 19px;
+	font-size: 17px;
 	padding-left: 30px;
 }
 
 .t4 {
 	font-weight: 600;
-	font-size: 19px;
+	font-size: 17px;
 	padding-left: 35px;
 }
 
 .tq {
 	font-weight: 600;
 	color: #4356B3;
-	font-size: 19px;
+	font-size: 17px;
 	padding-left:10px;
 }
 
 .tq1 {
 	font-weight: 600;
 	color: #bbbbbb;
-	font-size: 19px;
+	font-size: 17px;
 	padding-left:10px;
 }
 
@@ -123,7 +133,7 @@ a {
 .list1 {
 	width:982px;
 	height: 205px;
-	padding: 20px 30px;
+	padding: 25px 30px;
 	box-sizing: border-box;
 	background-color: white;
 	border-radius: 15px;
@@ -155,9 +165,7 @@ a {
 }
 
 .t2 {
-	font-weight: 600;
-	font-size: 17px;
-	margin-left: 10px;
+	margin-left: 25px;
 }
 
 .icon2 {
@@ -208,12 +216,12 @@ a {
 }
 
 .hosIcon {
-	font-size: 27px;
+	font-size: 20px;
 	color: #4255b3;
 }
 
 .hosIcon2 {
-	font-size: 27px;
+	font-size: 20px;
 	color: #bbbbbb;
 }
 
@@ -225,13 +233,13 @@ a {
 
 .hname {
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 17px;
 }
 
 .dname {
 	font-weight: 500;
 	color: #4c4c4c;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 .coun {
@@ -290,24 +298,24 @@ a {
 .lbt3 {
 	font-weight: 600;
 	color: #4255b3;
-	font-size: 14px;
+	font-size: 12px;
 	margin-bottom: 4px;
 }
 
 .lbt1 {
 	font-weight: 600;
 	color: #6d6d6d;
-	font-size: 14px;
+	font-size: 12px;
 	margin-bottom: 4px;
 }
 
 .lbt2 {
-	font-size: 20px;
+	font-size: 17px;
 	color: #d9d9d9;
 }
 
 .lbt4 {
-	font-size: 20px;
+	font-size: 17px;
 	color: #4255b3;
 }
 
@@ -340,7 +348,7 @@ a {
 
 .t3 {
 	font-weight: 600;
-	font-size: 15px;
+	font-size: 14px;
 	margin-right: 23px;
 }
 
@@ -416,15 +424,12 @@ a {
 }
 
 .l3 {
-	width: 962px;
-	height: 25;
 	display: flex;
 	justify-content: space-between;
 	box-sizing: border-box;
 }
 
 .l4 {
-	width: 962px;
 	height: 109px;
 	display: flex;
 	justify-content: space-between;
@@ -432,14 +437,8 @@ a {
 	box-sizing: border-box;
 }
 
-.gray {
+.gray ,.gray1 {
 	font-weight: 600;
-	font-size: 17px;
-}
-
-.gray1 {
-	font-weight: 600;
-	color: #bbbbbb;
 	font-size: 17px;
 }
 

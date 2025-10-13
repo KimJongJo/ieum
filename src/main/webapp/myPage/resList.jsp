@@ -17,11 +17,18 @@
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath }/myPage/css/resList.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <title>resList</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
+	
+	<!-- Section Title -->
+    <div id="section-title">
+        <span>예약 내역</span>
+    </div>
+    
 	<div class="myPage">
 		<jsp:include page="/common/nav/userNav.html" />
 		<div class="container1">
@@ -204,17 +211,16 @@
 				</div>
 				<div class="modal-div-under">
 					<div class="modal-btn-div">
+					<button type="button" class="modal-btn-right modal-btn"
+							id="modalCancelRes">취소하기</button>
 						<button type="button" class="modal-btn-left modal-btn"
 							id="modalKeepRes">닫기</button>
-						<button type="button" class="modal-btn-right modal-btn"
-							id="modalCancelRes">취소하기</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<script src="${contextPath }/myPage/js/resList.js"></script>
 </body>
 </html>

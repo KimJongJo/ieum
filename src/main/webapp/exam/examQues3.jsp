@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="${contextPath }/exam/css/examQues.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <title>examQues_삶의 질</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="container1">
 		<div class="left">
 			<jsp:include page="examnav.jsp"></jsp:include>
@@ -25,7 +26,7 @@
 
 		<div class="right">
 			<div class="examHeader">
-				<div class="icon">
+				<div class="examicon">
 					<span class="material-symbols-outlined"> checklist </span>
 				</div>
 				<div class="text">
@@ -37,7 +38,7 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/score" method="post">
+			<form action="${contextPath }/exam/exam3" method="post">
 				<div class="ques">
 					<span class="question">Q1.운동능력</span>
 					<table class="quesTa">
@@ -53,8 +54,8 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">나는 종일 누워
-									있어야 한다 </span></td>
+								name="score1" value="4"> <span class="s1">나는 종일
+									누워 있어야 한다 </span></td>
 						</tr>
 					</table>
 
@@ -100,8 +101,8 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="1"> <span class="s1"> 나는 통증이나
-									불편감이 없다 </span></td>
+								name="score4" value="1"> <span class="s1"> 나는
+									통증이나 불편감이 없다 </span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
@@ -119,8 +120,8 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="1"> <span class="s1">나는 불안하거나
-									우울하지 않다 </span></td>
+								name="score5" value="1"> <span class="s1">나는
+									불안하거나 우울하지 않다 </span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
@@ -144,5 +145,6 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>

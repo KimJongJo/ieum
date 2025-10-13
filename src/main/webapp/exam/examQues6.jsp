@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="${contextPath }/exam/css/examQues.css" />
 <link rel="stylesheet" href="${contextPath}/css/header.css">
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${contextPath}/css/footer.css" />
 <title>examQues_조기정신증</title>
 </head>
 <body>
-	<jsp:include page="/common/header/header.jsp" />
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="container1">
 		<div class="left">
 			<jsp:include page="examnav.jsp"></jsp:include>
@@ -25,7 +26,7 @@
 
 		<div class="right">
 			<div class="examHeader">
-				<div class="icon">
+				<div class="examicon">
 					<span class="material-symbols-outlined"> checklist </span>
 				</div>
 				<div class="text">
@@ -37,40 +38,40 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/score" method="post">
+			<form action="${contextPath }/exam/exam6" method="post">
 				<div class="ques">
 					<span class="question">Q1.사람들이 당신에 대해 넌지시 말하거나, 숨겨진 의미로 어떤
 						말을 하는 것 같은 느낌이 든 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">거의항상</span></td>
+								name="score1" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="3"> <span class="s1">자주</span></td>
+								name="score1" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="2"> <span class="s1">가끔</span></td>
+								name="score1" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score1" value="1"> <span class="s1">없음</span></td>
+								name="score1" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="4"> <span class="s1">매우</span></td>
+								name="score2" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="3"> <span class="s1">상당히</span></td>
+								name="score2" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="2"> <span class="s1">조금</span></td>
+								name="score2" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score2" value="1"> <span class="s1">없음</span></td>
+								name="score2" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -78,34 +79,34 @@
 						적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="4"> <span class="s1">거의항상</span></td>
+								name="score3" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="3"> <span class="s1">자주</span></td>
+								name="score3" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="2"> <span class="s1">가끔</span></td>
+								name="score3" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score3" value="1"> <span class="s1">없음</span></td>
+								name="score3" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score4" value="4"> <span class="s1">매우</span></td>
+								name="score4" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score4" value="3"> <span class="s1">상당히</span></td>
+								name="score4" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score4" value="2"> <span class="s1">조금</span></td>
+								name="score4" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score4" value="1"> <span class="s1">없음</span></td>
+								name="score4" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -113,102 +114,102 @@
 						든 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score6" value="4"> <span class="s1">거의항상</span></td>
+								name="score6" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score6" value="3"> <span class="s1">자주</span></td>
+								name="score6" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score6" value="2"> <span class="s1">가끔</span></td>
+								name="score6" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score6" value="1"> <span class="s1">없음</span></td>
+								name="score6" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score7" value="4"> <span class="s1">매우</span></td>
+								name="score7" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score7" value="3"> <span class="s1">상당히</span></td>
+								name="score7" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score7" value="2"> <span class="s1">조금</span></td>
+								name="score7" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score7" value="1"> <span class="s1">없음</span></td>
+								name="score7" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
 					<span class="question">Q4.당신을 둘러싼 음모가 있는 것 같은 느낌이 든 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score8" value="4"> <span class="s1">거의항상</span></td>
+								name="score8" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score8" value="3"> <span class="s1">자주</span></td>
+								name="score8" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score8" value="2"> <span class="s1">가끔</span></td>
+								name="score8" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score8" value="1"> <span class="s1">없음</span></td>
+								name="score8" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score9" value="4"> <span class="s1">매우</span></td>
+								name="score9" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score9" value="3"> <span class="s1">상당히</span></td>
+								name="score9" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score9" value="2"> <span class="s1">조금</span></td>
+								name="score9" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score9" value="1"> <span class="s1">없음</span></td>
+								name="score9" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 					<span class="question">Q5.당신의 외모 때문에 사람들이 당신을 이상하게 쳐다보는 것 같은
 						느낌이 든 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score10" value="4"> <span class="s1">거의항상</span></td>
+								name="score10" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score10" value="3"> <span class="s1">자주</span></td>
+								name="score10" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score10" value="2"> <span class="s1">가끔</span></td>
+								name="score10" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score10" value="1"> <span class="s1">없음</span></td>
+								name="score10" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score11" value="4"> <span class="s1">매우</span></td>
+								name="score11" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score11" value="3"> <span class="s1">상당히</span></td>
+								name="score11" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score11" value="2"> <span class="s1">조금</span></td>
+								name="score11" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score11" value="1"> <span class="s1">없음</span></td>
+								name="score11" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -216,34 +217,34 @@
 						끼치는 것처럼 느껴질 때가 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score12" value="4"> <span class="s1">거의항상</span></td>
+								name="score12" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score12" value="3"> <span class="s1">자주</span></td>
+								name="score12" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score12" value="2"> <span class="s1">가끔</span></td>
+								name="score12" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score12" value="1"> <span class="s1">없음</span></td>
+								name="score12" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score13" value="4"> <span class="s1">매우</span></td>
+								name="score13" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score13" value="3"> <span class="s1">상당히</span></td>
+								name="score13" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score13" value="2"> <span class="s1">조금</span></td>
+								name="score13" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score13" value="1"> <span class="s1">없음</span></td>
+								name="score13" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -252,34 +253,34 @@
 						때가 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score14" value="4"> <span class="s1">거의항상</span></td>
+								name="score14" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score14" value="3"> <span class="s1">자주</span></td>
+								name="score14" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score14" value="2"> <span class="s1">가끔</span></td>
+								name="score14" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score14" value="1"> <span class="s1">없음</span></td>
+								name="score14" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score15" value="4"> <span class="s1">매우</span></td>
+								name="score15" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score15" value="3"> <span class="s1">상당히</span></td>
+								name="score15" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score15" value="2"> <span class="s1">조금</span></td>
+								name="score15" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score15" value="1"> <span class="s1">없음</span></td>
+								name="score15" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -288,34 +289,34 @@
 						있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score16" value="4"> <span class="s1">거의항상</span></td>
+								name="score16" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score16" value="3"> <span class="s1">자주</span></td>
+								name="score16" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score16" value="2"> <span class="s1">가끔</span></td>
+								name="score16" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score16" value="1"> <span class="s1">없음</span></td>
+								name="score16" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score17" value="4"> <span class="s1">매우</span></td>
+								name="score17" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score17" value="3"> <span class="s1">상당히</span></td>
+								name="score17" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score17" value="2"> <span class="s1">조금</span></td>
+								name="score17" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score17" value="1"> <span class="s1">없음</span></td>
+								name="score17" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -324,34 +325,34 @@
 						들을까 봐 걱정된 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score18" value="4"> <span class="s1">거의항상</span></td>
+								name="score18" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score18" value="3"> <span class="s1">자주</span></td>
+								name="score18" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score18" value="2"> <span class="s1">가끔</span></td>
+								name="score18" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score18" value="1"> <span class="s1">없음</span></td>
+								name="score18" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score19" value="4"> <span class="s1">매우</span></td>
+								name="score19" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score19" value="3"> <span class="s1">상당히</span></td>
+								name="score19" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score19" value="2"> <span class="s1">조금</span></td>
+								name="score19" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score19" value="1"> <span class="s1">없음</span></td>
+								name="score19" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -359,34 +360,34 @@
 					<span class="question">Q10.당신의 생각을 메아리처럼 들어본 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score20" value="4"> <span class="s1">거의항상</span></td>
+								name="score20" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score20" value="3"> <span class="s1">자주</span></td>
+								name="score20" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score20" value="2"> <span class="s1">가끔</span></td>
+								name="score20" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score20" value="1"> <span class="s1">없음</span></td>
+								name="score20" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score21" value="4"> <span class="s1">매우</span></td>
+								name="score21" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score21" value="3"> <span class="s1">상당히</span></td>
+								name="score21" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score21" value="2"> <span class="s1">조금</span></td>
+								name="score21" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score21" value="1"> <span class="s1">없음</span></td>
+								name="score21" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -394,34 +395,34 @@
 						있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score22" value="4"> <span class="s1">거의항상</span></td>
+								name="score22" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score22" value="3"> <span class="s1">자주</span></td>
+								name="score22" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score22" value="2"> <span class="s1">가끔</span></td>
+								name="score22" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score22" value="1"> <span class="s1">없음</span></td>
+								name="score22" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score23" value="4"> <span class="s1">매우</span></td>
+								name="score23" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score23" value="3"> <span class="s1">상당히</span></td>
+								name="score23" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score23" value="2"> <span class="s1">조금</span></td>
+								name="score23" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score23" value="1"> <span class="s1">없음</span></td>
+								name="score23" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -429,68 +430,68 @@
 						느껴질 때가 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score24" value="4"> <span class="s1">거의항상</span></td>
+								name="score24" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score24" value="3"> <span class="s1">자주</span></td>
+								name="score24" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score24" value="2"> <span class="s1">가끔</span></td>
+								name="score24" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score24" value="1"> <span class="s1">없음</span></td>
+								name="score24" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score25" value="4"> <span class="s1">매우</span></td>
+								name="score25" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score25" value="3"> <span class="s1">상당히</span></td>
+								name="score25" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score25" value="2"> <span class="s1">조금</span></td>
+								name="score25" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score25" value="1"> <span class="s1">없음</span></td>
+								name="score25" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
 					<span class="question">Q13.혼자 있을 때 어떤 음성을 들은 적이 있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score26" value="4"> <span class="s1">거의항상</span></td>
+								name="score26" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score26" value="3"> <span class="s1">자주</span></td>
+								name="score26" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score26" value="2"> <span class="s1">가끔</span></td>
+								name="score26" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score26" value="1"> <span class="s1">없음</span></td>
+								name="score26" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score27" value="4"> <span class="s1">매우</span></td>
+								name="score27" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score27" value="3"> <span class="s1">상당히</span></td>
+								name="score27" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score27" value="2"> <span class="s1">조금</span></td>
+								name="score27" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score27" value="1"> <span class="s1">없음</span></td>
+								name="score27" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -498,34 +499,34 @@
 						있습니까?</span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score28" value="4"> <span class="s1">거의항상</span></td>
+								name="score28" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score28" value="3"> <span class="s1">자주</span></td>
+								name="score28" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score28" value="2"> <span class="s1">가끔</span></td>
+								name="score28" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score28" value="1"> <span class="s1">없음</span></td>
+								name="score28" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score29" value="4"> <span class="s1">매우</span></td>
+								name="score29" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score29" value="3"> <span class="s1">상당히</span></td>
+								name="score29" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score29" value="2"> <span class="s1">조금</span></td>
+								name="score29" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score29" value="1"> <span class="s1">없음</span></td>
+								name="score29" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 
@@ -533,34 +534,34 @@
 						동물을 본 적이 있습니까? </span>
 					<table class="quesTa">
 						<tr class="radio1">
-							<td class="often">빈도</td>
+							<td class="often">1)빈도</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score30" value="4"> <span class="s1">거의항상</span></td>
+								name="score30" value="3"> <span class="s1">거의항상</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score30" value="3"> <span class="s1">자주</span></td>
+								name="score30" value="2"> <span class="s1">자주</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score30" value="2"> <span class="s1">가끔</span></td>
+								name="score30" value="1"> <span class="s1">가끔</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score30" value="1"> <span class="s1">없음</span></td>
+								name="score30" value="0"> <span class="s1">없음</span></td>
 						</tr>
 						<tr class="radio">
-							<td class="often">고통</td>
+							<td class="often">2)고통</td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score5" value="4"> <span class="s1">매우</span></td>
+								name="score5" value="3"> <span class="s1">매우</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score5" value="3"> <span class="s1">상당히</span></td>
+								name="score5" value="2"> <span class="s1">상당히</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score5" value="2"> <span class="s1">조금</span></td>
+								name="score5" value="1"> <span class="s1">조금</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score5" value="1"> <span class="s1">없음</span></td>
+								name="score5" value="0"> <span class="s1">없음</span></td>
 						</tr>
 					</table>
 				</div>
@@ -573,5 +574,6 @@
 			</form>
 		</div>
 	</div>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>

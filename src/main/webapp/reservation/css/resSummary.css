@@ -156,11 +156,12 @@ a {
 
 .counbox {
     width: 628px;
-    height: 120px;
+    min-height: 120px;
     background-color: #F3F3F3;
     border-radius: 5px;
     margin-top: 20px;
     margin-left: 18px;
+    height:auto;
     
     padding: 15px;
 	box-sizing: border-box;
