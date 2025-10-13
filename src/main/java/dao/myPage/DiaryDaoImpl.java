@@ -54,7 +54,7 @@ public class DiaryDaoImpl implements DiaryDao {
 	@Override
 	public DiaryDto update(DiaryDto diary) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			session.update("update", diary);
+			session.update("mapper.diary.update", diary);
 			session.commit();
 			return diary;
 		}
@@ -63,7 +63,7 @@ public class DiaryDaoImpl implements DiaryDao {
 	@Override
 	public void delete(Integer dNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			session.delete("delete", dNo);
+			session.delete("mapper.diary.delete", dNo);
 			session.commit();
 		}
 	}
