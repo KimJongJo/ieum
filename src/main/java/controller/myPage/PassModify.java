@@ -70,7 +70,7 @@ public class PassModify extends HttpServlet {
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("myPage/passModify.jsp").forward(request, response);
             } else {
-            	String securityPw = BCrypt.hashpw(currentId, BCrypt.gensalt());
+            	String securityPw = BCrypt.hashpw(newPass, BCrypt.gensalt());
                 // 비밀번호 변경
                 passModifyService.updatePassword(uNo, securityPw);
                 
@@ -78,11 +78,11 @@ public class PassModify extends HttpServlet {
                 MemberDto memberDto = profileService.selectProfileView(uNo);
                 request.getSession().setAttribute("member", memberDto);
 
-	             // 메시지를 세션에 저장 후 profileInfo.jsp로 리다이렉트
+	            // 메시지를 세션에 저장 후 profileInfo.jsp로 리다이렉트
 	                
-	                session.setAttribute("message", "비밀번호가 정상적으로 변경되었습니다.");
-	                response.sendRedirect(request.getContextPath() + "/pInfo");
-	                return; // redirect 후 코드 실행 방지
+	            session.setAttribute("message", "비밀번호가 정상적으로 변경되었습니다.");
+	            response.sendRedirect(request.getContextPath() + "/pInfo");
+	            return; // redirect 후 코드 실행 방지
             }
 
         } catch (Exception e) {

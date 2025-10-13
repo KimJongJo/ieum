@@ -201,11 +201,16 @@ body {
     align-items: center;        /* 세로 가운데 */
     justify-content: center;    /* 가로 가운데 */
     font-size: 14px;
+    
+    white-space: nowrap;       /* 한 줄로 유지 */
+    overflow: hidden;          /* 넘치는 부분 숨김 */
+    text-overflow: ellipsis;   /* ... 처리 */
 }
 
 /* 마지막 영역은 오른쪽 선 제거 */
 .box-item:last-child {
     border-right: none;
+    
 }
 #btn2 {
     width: 100px;
@@ -241,7 +246,7 @@ body {
     display: flex;          /* 가로 정렬 */
     justify-content: flex-start; /* 왼쪽 정렬 */
     gap: 20px;              /* 요소 사이 간격 */
-    margin: 20px auto 0 auto;
+    margin: 10px auto 10px auto;
     font-size: 12px;
     width: 940px;
 }
