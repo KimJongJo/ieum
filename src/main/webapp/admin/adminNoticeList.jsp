@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<c:choose>
-						<c:when test="${not empty noticeList}">
+						<c:when test="${not empty noticeList or not empty topList}">
 							<table class="notice-table" id="noticeList">
 								<tr>
 									<td class="n-t-th">번호</td>
