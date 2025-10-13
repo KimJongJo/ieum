@@ -24,6 +24,23 @@
                 text-align: center;
             }
             
+            .u-tt{
+            	border: 1px solid #a6a6a6;
+            	background-color: #4356b3;
+                color: white;
+                text-align: center;
+                padding: 0;
+                height:75px;
+            }
+            
+            .u-hold{
+            	width:100px;
+            }
+            
+            .u-hold2{
+            	width:90px;
+            }
+            
             .td-name{
             	border: none;
             	text-align: left;

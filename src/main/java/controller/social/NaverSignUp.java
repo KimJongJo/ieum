@@ -81,8 +81,12 @@ public class NaverSignUp extends HttpServlet {
 		String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
 		
 		Integer uNo = memberService.socialSignUp(member);
+		
+		MemberDto member1 = memberService.selectUserByNo(uNo);
+		
 		session.setAttribute("profile", filePath);
 		session.setAttribute("uNo", uNo);
+		session.setAttribute("userType", member1.getUserType());
 		
 		response.sendRedirect(request.getContextPath() + "/index");
 		

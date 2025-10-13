@@ -221,8 +221,8 @@ $(document).ready(function(){
                                 /
                                 <span>${item.time}</span>
                             </td>
-                            <td><button value="${item.diaNo}" type="button" class="show-dia-btn">보기</button></td>
-                    		<td><button value="${item.diaNo}" type="button" class="show-pInfo-btn">보기</button></td>
+                            <td class="btn-td"><button value="${item.diaNo}" type="button" class="show-dia-btn"><i class="fa-regular fa-clipboard"></i></button></td>
+                    		<td class="btn-td"><button value="${item.diaNo}" type="button" class="show-pInfo-btn"><i class="fa-regular fa-circle-user"></i></button></td>
 	                    </tr>
 	                `;
 	            });
