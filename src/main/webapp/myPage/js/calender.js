@@ -46,81 +46,15 @@ $(function() {
 
 });
 
-
-/* 최근 진단 이력 모달 */
-//동적 위임으로 버튼 클릭 시 모달 열기
-$(document).on("click", "#btn2", function() {
-	
-	$.ajax({
-		url:"/ieum/myPage/diagnosisHistory",
-		type:"POST",
-		data:{diaNo:$(this).val()},
-		dataType:"json",
-		success:function(res){
-			if(res.success){
-				var object = res.object;
-				// 비우기
-				$("#uNm").text("");
-				$("#gender").text("");
-				$("#birthDate").text("");
-				// 진단/진료상세
-				$("#diaName").text("");
-				$("#sym").text("");
-				$("#summary").text("");
-				$("#treatment").text("");
-				$("#pre").text("");
-				// 의사정보
-				$("#docImg").attr("src", "");
-				$("#mNm").text("");
-				$("#rDate").text("");
-				$("#major").text("");
-				$("#hNm").text("");
-				// 의사의말
-				$("#docComment").text("");
-				
-				
-				// 채우기
-				// 환자 정보
-				$("#uNm").text(object.uNm);
-				$("#gender").text(object.gender);
-				$("#birthDate").text(object.birthDate);
-				// 진단/진료상세
-				$("#diaName").text(object.diagnosisName);
-				$("#sym").text(object.sympotoms);
-				$("#summary").text(object.testSummary);
-				$("#treatment").text(object.treatment);
-				$("#pre").text(object.prescription);
-				// 의사정보
-				$("#docImg").attr("src", "/ieum/" + object.docFilePath + "/" + object.docFileName);
-				$("#mNm").text(object.mNm);
-				$("#rDate").text(object.rDate);
-				$("#major").text(object.major);
-				$("#hNm").text(object.hNm);
-				// 의사의말
-				$("#docComment").text(object.doctorComment);
-				
-				
-			}else{
-				console.log(res.message);
-			}
-		},
-		error:function(err){
-			console.log(err);
-		}
-	})
-	 $('#modal-div').css('display', 'flex');
-	
-    openModal();
-});
-//모달 확인 버튼 클릭 시 모달 닫기
-$(document).on("click", "#check", function() {
-    $("#modal-div").hide(); // 모달 숨김
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted || window.performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        window.location.reload();
+    }
 });
 
 
 
 
-/* 캘린더 부분 */
 //// 마우스 클릭 이벤트 리스너 추가
 $(document).ready(function() {
 	let todayDt = new Date();
@@ -246,12 +180,71 @@ $(document).ready(function() {
     $('.hide-if-user').hide();
 });
 
-
-
-/* 새로고침 */
-
-window.addEventListener("pageshow", function(event) {
-    if (event.persisted || window.performance.getEntriesByType("navigation")[0].type === "back_forward") {
-        window.location.reload();
-    }
+//동적 위임으로 버튼 클릭 시 모달 열기
+$(document).on("click", "#btn2", function() {
+	
+	$.ajax({
+		url:"/ieum/myPage/diagnosisHistory",
+		type:"POST",
+		data:{diaNo:$(this).val()},
+		dataType:"json",
+		success:function(res){
+			if(res.success){
+				var object = res.object;
+				// 비우기
+				$("#uNm").text("");
+				$("#gender").text("");
+				$("#birthDate").text("");
+				// 진단/진료상세
+				$("#diaName").text("");
+				$("#sym").text("");
+				$("#summary").text("");
+				$("#treatment").text("");
+				$("#pre").text("");
+				// 의사정보
+				$("#docImg").attr("src", "");
+				$("#mNm").text("");
+				$("#rDate").text("");
+				$("#major").text("");
+				$("#hNm").text("");
+				// 의사의말
+				$("#docComment").text("");
+				
+				
+				// 채우기
+				// 환자 정보
+				$("#uNm").text(object.uNm);
+				$("#gender").text(object.gender);
+				$("#birthDate").text(object.birthDate);
+				// 진단/진료상세
+				$("#diaName").text(object.diagnosisName);
+				$("#sym").text(object.sympotoms);
+				$("#summary").text(object.testSummary);
+				$("#treatment").text(object.treatment);
+				$("#pre").text(object.prescription);
+				// 의사정보
+				$("#docImg").attr("src", "/ieum/" + object.docFilePath + "/" + object.docFileName);
+				$("#mNm").text(object.mNm);
+				$("#rDate").text(object.rDate);
+				$("#major").text(object.major);
+				$("#hNm").text(object.hNm);
+				// 의사의말
+				$("#docComment").text(object.doctorComment);
+				
+				
+			}else{
+				console.log(res.message);
+			}
+		},
+		error:function(err){
+			console.log(err);
+		}
+	})
+	 $('#modal-div').css('display', 'flex');
+	
+    openModal();
+});
+//모달 확인 버튼 클릭 시 모달 닫기
+$(document).on("click", "#check", function() {
+    $("#modal-div").hide(); // 모달 숨김
 });

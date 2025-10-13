@@ -114,6 +114,7 @@ body {
 	    white-space: pre-wrap;    /* 줄바꿈과 공백 유지 */
 	    overflow: hidden;         /* 내부 내용 넘침 방지 */
 	    box-sizing: border-box;   /* padding 포함 너비 계산 */
+	    word-wrap: break-word;
 	}
 
     .comment-box {
@@ -339,4 +340,7 @@ body {
 .btn-container button:active {
     transform: translateY(1px);
 }
-	
+
+#content {
+    white-space: pre-wrap; /* 줄바꿈과 공백 유지 */
+}
