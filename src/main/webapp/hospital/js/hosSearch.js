@@ -91,10 +91,12 @@ $(document).ready(() => {
 					`);
 				} else {
 					data.hospitalDetailDto.forEach(h => {
+						
+						var imgPath = "/ieum/" + h.filePath + h.fileName
 						$("#hospitalList").append(`
                     <div class="list-box" data-hno="${h.hNo}" data-favorite="${h.favorite}">
 					<div class="right3">
-						<img class="hosf" src="${h.filePath}" />
+						<img class="hosf" src="${imgPath}" />
 						<div class="infodetail">
 							<div class="hos-category">${h.categoryName}</div>
 							<div class="hos-name">${h.hNm}</div>

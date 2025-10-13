@@ -59,7 +59,7 @@
 
 				<div class="hinfoa">
 
-					<img src="${hosDetail.filePath }" class="file_no" />
+					<img src="${contextPath}/${hosDetail.filePath}${hosDetail.fileName}" class="file_no" />
 
 					<div class="hinfor">
 						<div class="hinfoh">
@@ -175,7 +175,7 @@
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
 					<div class="dal">
-						<img src="${doctorlist.filePath }" class="doc-prof" />
+						<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}" class="doc-prof" />
 						<div class="d1">
 							<div class="d2">
 								<p class="username">
@@ -260,7 +260,7 @@
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
 						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${doctorlist.filePath }" class="doc-prof"
+							<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}"  class="doc-prof"
 								onerror="this.onerror=null; this.src='';" />
 							<div class="d1">
 								<div class="d2">

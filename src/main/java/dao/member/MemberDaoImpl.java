@@ -125,9 +125,9 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Integer kakaoSignUp(MemberDto member) {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			Integer uNo = session.insert("kakaoSignUp", member);
+			session.insert("kakaoSignUp", member);
 			session.commit();
-			return uNo;
+			return member.getuNo();
 		}
 
 	}

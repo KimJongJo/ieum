@@ -88,8 +88,10 @@ public class Login extends HttpServlet {
 		String result;
 		ResponseDto resDto;
 		if(userNo == 0) { // 존재하지 않을때
+			System.out.println("아이디가?");
 			resDto = new ResponseDto(false, "아이디가 존재하지 않습니다.");
 		}else if(userNo == -1) {
+			System.out.println("비밀번호가?");
 			resDto = new ResponseDto(false, "비밀번호가 틀립니다.");
 		}else {
 			// 로그인 성공시 세션에 정보를 저장, 아이디 저장을 체크했을때 쿠키생성
@@ -129,6 +131,8 @@ public class Login extends HttpServlet {
 			
 			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장
 			session.setAttribute("userType", member.getUserType());
+			
+			
 			Cookie idCookie;
 			if(rememberId != null) { // 만약 아이디 저장을 체크했을때
 				idCookie = new Cookie("rememberId", userId);
@@ -144,6 +148,8 @@ public class Login extends HttpServlet {
 		
 		
 		result = gson.toJson(resDto);
+		
+		System.out.println(result);
 		response.getWriter().write(result);
 		
 		
