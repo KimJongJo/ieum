@@ -200,11 +200,16 @@ body {
     align-items: center;        /* 세로 가운데 */
     justify-content: center;    /* 가로 가운데 */
     font-size: 14px;
+    
+    white-space: nowrap;       /* 한 줄로 유지 */
+    overflow: hidden;          /* 넘치는 부분 숨김 */
+    text-overflow: ellipsis;   /* ... 처리 */
 }
 
 /* 마지막 영역은 오른쪽 선 제거 */
 .box-item:last-child {
     border-right: none;
+    
 }
 #btn2 {
     width: 100px;
@@ -240,7 +245,7 @@ body {
     display: flex;          /* 가로 정렬 */
     justify-content: flex-start; /* 왼쪽 정렬 */
     gap: 20px;              /* 요소 사이 간격 */
-    margin: 20px auto 0 auto;
+    margin: 10px auto 10px auto;
     font-size: 12px;
     width: 940px;
 }
@@ -1035,7 +1040,6 @@ $(document).on("click", "#check", function() {
 </head>
 <body>
 <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
-<img id="Heart1" src="${pageContext.request.contextPath}/img/중헤더2.png"/>
     <!-- ✅ 중헤더 바로 밑에 텍스트 -->
 	<div id="section-title">
 		<div>
