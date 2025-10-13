@@ -22,5 +22,7 @@ public interface MyCommunityDao {
     //페이징
 	List<MyCommunityDto> selectMyList(Integer row) throws Exception;
 	Integer selectMyConut(Integer uNo) throws Exception;
+	
+	Integer selectLikedCount(Integer uNo) throws Exception;
     
 }

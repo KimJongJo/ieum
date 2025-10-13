@@ -66,13 +66,31 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-
+        
+        //추가됨
         String categoryNoStr = request.getParameter("categoryNo");
+//        String categoryNoStr = request.getParameter("categoryNo");
+//        if (categoryNoStr == null || categoryNoStr.isEmpty()) {
+//            request.setAttribute("err", "카테고리를 선택해주세요.");
+//            request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
+//            return;
+//        }
+        
+     // 카테고리 선택 여부 확인
         if (categoryNoStr == null || categoryNoStr.isEmpty()) {
             request.setAttribute("err", "카테고리를 선택해주세요.");
-            request.getRequestDispatcher("allCommunity/error.jsp").forward(request, response);
+            // 사용자가 작성한 값 유지
+            request.setAttribute("inputTitle", title);
+            request.setAttribute("inputContent", content);
+            try {
+                request.setAttribute("categoryList", categoryService.selectAll());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
             return;
         }
+        
 
         int categoryNo = Integer.parseInt(categoryNoStr);
         CommunityDto communityDto = new CommunityDto(uNo, title, content, categoryNo);

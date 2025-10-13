@@ -214,5 +214,14 @@
             WHERE cm.commu_no = c.commu_no
         )
     </update>
+    
+    
+    
+    <select id="selectLikedCount" parameterType="int" resultType="int">
+	    SELECT COUNT(*) 
+	    FROM commu_like cl
+	    JOIN community c ON cl.commu_no = c.commu_no
+	    WHERE cl.u_no = #{uNo}
+	</select>
 	
 </mapper>	

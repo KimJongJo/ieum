@@ -85,8 +85,10 @@ public class MyCommunityServiceImpl implements MyCommunityService{
 			param.put("row", (pageInfo.getCurPage() - 1) * 10); // <- 음수 제거
 		    param.put("uNo", uNo);
 		    
-		    Integer allPage = (int)Math.ceil((double)myCommunityDao.selectMyConut(uNo)/10); // 전체 페이지 수
-			// startPage : 1 ~ 10 => 1, 11 ~ 20 => 11
+		    Integer totalCount = myCommunityDao.selectLikedCount(uNo);
+//		    Integer allPage = (int)Math.ceil((double)myCommunityDao.selectMyConut(uNo)/10); // 전체 페이지 수
+		    Integer allPage = (int)Math.ceil((double)totalCount / 10);
+		    
 			Integer startPage = (pageInfo.getCurPage()-1)/10 * 10 + 1;
 			Integer endPage = startPage  +10 - 1;
 			if(endPage > allPage) endPage = allPage;

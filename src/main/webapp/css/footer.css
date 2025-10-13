@@ -1,4 +1,4 @@
-/* footer 고정 */
+	/* footer 고정 */
 #site-footer{
   width:100%;
   background:#d9d9d9;
@@ -6,13 +6,12 @@
   margin-top: 220px; /* footer 높이에 맞춰 조정 */
 }
 .footer-top{
-  max-width:1000px;
+  max-width:1050px;
   margin:0 auto;
   padding:20px 20px 10px;
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
-  flex-wrap:wrap;
   gap:20px;
 }
 .footer-links {
@@ -67,7 +66,7 @@
 	min-width:220px;
 	border-right:1px solid #bfbfbf;
 	padding-right:65px;
-	height:130px;
+	/* height:130px; */
 }
 .brand-link{
 	display:flex;

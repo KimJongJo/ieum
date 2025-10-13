@@ -9,16 +9,11 @@
 <title>건강이음</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/calender2.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/myPage/css/diagnosisHistory.css" />
 <%-- <script src="${pageContext.request.contextPath}/myPage/css/calender.js"></script> --%>
-<!-- <link
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
-	rel="stylesheet"> -->
-	
-	
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <style>
@@ -1040,7 +1035,7 @@ $(document).on("click", "#check", function() {
 </head>
 <body>
 <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
-
+<img id="Heart1" src="${pageContext.request.contextPath}/img/중헤더2.png"/>
     <!-- ✅ 중헤더 바로 밑에 텍스트 -->
 	<div id="section-title">
 		<div>
