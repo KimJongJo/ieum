@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletException;
@@ -57,9 +59,9 @@ public class HosDetail extends HttpServlet {
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		Integer hNo = Integer.parseInt(request.getParameter("hNo"));
 		session.setAttribute("hNo", hNo);
-		
+
 		Properties prop = new Properties();
-		
+
 		HospitalService hosService = new HospitalServiceImpl();
 		MemberService mService = new MemberServiceImpl();
 
@@ -68,16 +70,16 @@ public class HosDetail extends HttpServlet {
 			request.setAttribute("hosDetail", hosDetail);
 			List<HospitalDocDto> docList = mService.DoclistBy2(hNo);
 			request.setAttribute("docList", docList);
-			
+
 			try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/config.properties")) {
 				// 지도 위한 카카오 앱 키
 				prop.load(is);
 				String kakaoKey = prop.getProperty("kakao.api.key");
 				request.setAttribute("kakaoKey", kakaoKey);
-			}catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			request.getRequestDispatcher("/hospital/hosDetail.jsp").forward(request, response);
 
 		} catch (Exception e) {
@@ -94,9 +96,9 @@ public class HosDetail extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+
 		String action = request.getParameter("action");
-		
+
 		if ("getResDate".equals(action)) {
 			// 예약하기
 			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
@@ -105,24 +107,24 @@ public class HosDetail extends HttpServlet {
 
 			try {
 				List<ReservationDto> getTimeFromRes = rService.getTimeFromRes(mNo, rDate);
-				
+
 				Gson gson = new GsonBuilder()
-			            .registerTypeAdapter(LocalDate.class, 
-			                (JsonSerializer<LocalDate>) (src, typeOfSrc, context) -> new JsonPrimitive(src.toString()))
-			            .registerTypeAdapter(LocalTime.class, 
-			                (JsonSerializer<LocalTime>) (src, typeOfSrc, context) -> new JsonPrimitive(src.toString()))
-			            .create();
-				
+						.registerTypeAdapter(LocalDate.class,
+								(JsonSerializer<LocalDate>) (src, typeOfSrc,
+										context) -> new JsonPrimitive(src.toString()))
+						.registerTypeAdapter(LocalTime.class, (JsonSerializer<LocalTime>) (src, typeOfSrc,
+								context) -> new JsonPrimitive(src.toString()))
+						.create();
+
 				String jsonStr = gson.toJson(getTimeFromRes);
 				response.setContentType("application/json; charset=UTF-8");
 				response.getWriter().write(jsonStr);
-			
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-		}
+		} 
 
 	}
 

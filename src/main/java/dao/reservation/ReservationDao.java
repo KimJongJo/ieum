@@ -33,8 +33,8 @@ public interface ReservationDao {
 	Integer recordResCnt (Map<String, Object> recCnt) throws Exception;
 	void resCancel (Integer rNo) throws Exception;
 
-	
-
+	ReservationDto selectRno (Integer rNo) throws Exception;
+	void deleteRno (Integer rNo) throws Exception;
 	
 
 }
