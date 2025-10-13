@@ -10,8 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import dto.FileDto;
 import dto.MemberDto;
 import dto.otherDto.ResponseDto;
+import service.file.FileService;
+import service.file.FileServiceImpl;
 import service.member.MemberService;
 import service.member.MemberServiceImpl;
 
@@ -52,6 +55,12 @@ public class socialCheckPw extends HttpServlet {
 			try {
 				MemberDto memberDto = service.socialUpdate(email, id);
 				HttpSession session = request.getSession();
+				FileService fileService = new FileServiceImpl();
+				
+				FileDto fileDto = fileService.getFile(memberDto.getFileNo());
+				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+				
+				session.setAttribute("profile", filePath);
 				session.setAttribute("uNo", memberDto.getuNo());
 				result = gson.toJson(new ResponseDto(true, "계정 병합 완료"));
 			}catch(Exception e) {

@@ -34,25 +34,22 @@ public class FileServiceImpl implements FileService {
 
    // 병원 파일 업로드
    @Override
-   public Integer uploadFile(Part file, String type) throws IOException {
+   public Integer uploadFile(Part file, String type, String realFilePath) throws IOException {
 
       String fileName = file.getSubmittedFileName();
 
       String filePath;
       FileDto fileDto;
-      String realFilePath;
       if (type.equals("hosImg")) { // 병원 이미지 파일이면
-//         realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosImg";
-         realFilePath="C:\\testImg";
+         realFilePath += "img\\hosImg";
          filePath = "img\\hosImg\\";
          fileDto = new FileDto(fileName, filePath, "hosProfile");
       } else if (type.equals("noticeFile")) { // 공지사항 파일이면
-         realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\file\\notice";
+         realFilePath = "file\\notice";
          filePath = "file\\notice\\";
          fileDto = new FileDto(fileName, filePath, "noticeFile");
       } else { // 사업자등록증파일이면
-//         realFilePath = "C:\\Users\\KOSTA\\git\\kosta-ieum\\src\\main\\webapp\\img\\hosRe";
-         realFilePath="C:\\testImg";
+         realFilePath += "img\\hosRe";
          filePath = "img\\hosRe\\";
          fileDto = new FileDto(fileName, filePath, "hosRequestFile");
       }
