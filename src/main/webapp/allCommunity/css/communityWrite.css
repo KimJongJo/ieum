@@ -33,6 +33,11 @@ body {
         background-color: #E5E7ED;
     }
     
+    #content-write {
+	  text-indent: 0;
+	  padding-left: 10px; /* 필요한 경우만 */
+	}
+    
     .community-content {
         width: 1000px;
         height: 700px;

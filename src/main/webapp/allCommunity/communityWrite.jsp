@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,8 +147,7 @@ $(function () {
         </div>
         <div id="content-header">내용</div>
         <div>
-            <textarea id="content-write" name="content" placeholder="내용" maxlength="3000"><c:out value="${community.commuContent}" />
-            </textarea>
+            <textarea id="content-write" name="content" placeholder="내용" maxlength="3000">${fn:trim(community.commuContent)}</textarea>      
         </div>
     </div>
 

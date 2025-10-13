@@ -131,6 +131,7 @@ body {
 	    white-space: pre-wrap;    /* 줄바꿈과 공백 유지 */
 	    overflow: hidden;         /* 내부 내용 넘침 방지 */
 	    box-sizing: border-box;   /* padding 포함 너비 계산 */
+	    word-wrap: break-word;
 	}
 
     .comment-box {
@@ -356,7 +357,10 @@ body {
 .btn-container button:active {
     transform: translateY(1px);
 }
-	
+
+#content {
+    white-space: pre-wrap; /* 줄바꿈과 공백 유지 */
+}
 </style>
 <script>
 const contextPath = '${contextPath}'; // JS에서 사용할 contextPath
@@ -565,9 +569,7 @@ $('#blockCommentForm').submit(function(e){
             	<fmt:formatDate value="${community.commuCreated}" pattern="yyyy-MM-dd"/>
             </div>
         </div>
-        <div id="content">
-            <c:out value="${community.commuContent}" escapeXml="false"/>
-        </div>
+        <div id="content" style="white-space: pre-wrap; word-wrap: break-word; margin: 0;"><c:out value="${fn:trim(community.commuContent)}" escapeXml="false"/></div>
         <div class="actions">
         			<form action="${pageContext.request.contextPath}/comEmpathy" method="post">
 					  	<input type="hidden" name="commuNo" value="${community.commuNo}"/>				    
@@ -649,7 +651,7 @@ $('#blockCommentForm').submit(function(e){
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
         	<input type="hidden" name="commuNo" value="${community.commuNo}" />
             <div id="comment-name"><c:out value="${member.nickName}" default="익명"/></div>
-            <textarea id="comment-write" name="content"></textarea>
+            <textarea id="comment-write" name="content" maxlength="1000"></textarea>
             <div id="btn2">
                 <button id="btn2-registration">등록</button>
             </div>
