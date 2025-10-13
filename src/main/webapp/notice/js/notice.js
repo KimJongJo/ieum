@@ -32,22 +32,22 @@ function renderList(page) {
 				paginationDiv.empty(); // 기존 페이징 제거
 				let paginationHtml = "";
 				// 이전 버튼
-			if (pageInfo.curPage > 1) {
-				paginationHtml += `<button onclick="renderList(${pageInfo.curPage - 1})">&lt;</button>`;
-			}
-
-			// 페이지 번호 버튼들
-			for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
-				if (pageNum <= pageInfo.allPage) {
-					const activeClass = pageNum === pageInfo.curPage ? "active" : "";
-					paginationHtml += `<button class="${activeClass}" onclick="renderList(${pageNum})">${pageNum}</button>`;
+				if (pageInfo.curPage > 1) {
+					paginationHtml += `<button onclick="renderList(${pageInfo.curPage - 1})">&lt;</button>`;
 				}
-			}
 
-			// 다음 버튼
-			if (pageInfo.curPage < pageInfo.endPage) {
-				paginationHtml += `<button onclick="renderList(${pageInfo.curPage + 1})">&gt;</button>`;
-			}
+				// 페이지 번호 버튼들
+				for (let pageNum = pageInfo.startPage; pageNum <= pageInfo.endPage; pageNum++) {
+					if (pageNum <= pageInfo.allPage) {
+						const activeClass = pageNum === pageInfo.curPage ? "active" : "";
+						paginationHtml += `<button class="${activeClass}" onclick="renderList(${pageNum})">${pageNum}</button>`;
+					}
+				}
+
+				// 다음 버튼
+				if (pageInfo.curPage < pageInfo.endPage) {
+					paginationHtml += `<button onclick="renderList(${pageInfo.curPage + 1})">&gt;</button>`;
+				}
 				paginationDiv.append(paginationHtml);
 				noticeTable.show();
 				paginationDiv.show();
@@ -119,6 +119,14 @@ function renderList(page) {
 }
 
 $(document).ready(function() {
+	// URL에서 'keyword' 파라미터 값을 가져오기
+	const params = new URLSearchParams(window.location.search);
+	const keyword = params.get('keyword');
+	// keyword가 존재하면 검색창(input)에 입력
+	if (keyword) {
+		const searchInput = document.querySelector('#searchInput'); // 검색창 id에 맞게 변경
+		if (searchInput) $("#searchInput").val(decodeURIComponent(keyword));
+	}
 	// enter검색
 	$("#searchInput").on("keypress", function(e) {
 		if (e.which === 13) {
