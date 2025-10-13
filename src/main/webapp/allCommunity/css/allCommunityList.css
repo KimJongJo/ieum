@@ -208,12 +208,6 @@ body {
         font-weight: 500;
         font-size: 18px;
         color: #000;
-        
-        white-space: nowrap;      /* 한 줄로 만들기 */
-    overflow: hidden;         /* 넘친 텍스트 숨기기 */
-    text-overflow: ellipsis;  /* 말줄임표 표시 */
-    width: 100%;              /* 박스 영역 전체 차지 */
-    display: block;
     }
 
     .p {
