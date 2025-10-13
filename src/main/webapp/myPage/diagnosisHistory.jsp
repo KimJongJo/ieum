@@ -85,7 +85,9 @@
 	                                <div class=box2>
 	                                    <div class="box-item">${dia.rDate}</div>
 	                                    <div class="box-item">${dia.diagnosisName}</div>
-	                                    <div class="box-item">${dia.testSummary}</div>
+	                                    <div class="box-item">
+	                                    	 <span class="ellipsis-text">${dia.testSummary}</span>
+	                                    </div>
 	                                    <div class="box-item">
 	                                        <button class="btn2" value="${dia.diaNo}">진단 결과 보기</button>
 	                                    </div>

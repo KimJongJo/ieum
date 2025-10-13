@@ -27,7 +27,7 @@
 			<c:choose>
 				<c:when test="${uNo != null}">
 					<div class="header-profile">
-						<img src="${contextPath}/${sessionScope.profile}">
+						<img style="width: 25px; height:25px;" src="${contextPath}/${sessionScope.profile}">
 					</div>
 					<span class="login-txt" onclick="moveToUrl('/logout')">로그아웃</span>
 				</c:when>

@@ -99,58 +99,68 @@ public class Login extends HttpServlet {
 			
 			session = request.getSession();
 			MemberDto member = service.selectUserByNo(userNo);
-			// 로그인된 사용자의 사진을 세션에 저장하기
-			FileService fileService = new FileServiceImpl();
-			FileDto fileDto = fileService.getFile(member.getFileNo());
-			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
-			session.setAttribute("profile", filePath);
 			
-			
-			if(member.getUserType().equals("DOCTOR") || member.getUserType().equals("MANAGER")) {
-				HospitalService hosService = new HospitalServiceImpl();
-				String hNm = hosService.getHosNoByuNo(userNo);
-				session.setAttribute("hNm", hNm);
-			}else if(member.getUserType().equals("ADMIN")) {
+			// 활동정지된 회원일때 로그인 시키면 안됨
+			if(member.getStateCode() == 3) {
+				resDto = new ResponseDto(false, "활동정지된 계정입니다.");
+			}else {
 				
-				HospitalService hosService = new HospitalServiceImpl();
 				
-				int totalMember = service.getTotalMember();
-				int totalUser = service.getTotalUser();
-				int totalManager = service.getTotalManager();
-				int totalActiveHos = hosService.getTotalActiveHos();
-				int totalInactiveHos = hosService.getTotalInactiveHos();
-				session.setAttribute("totalMember", totalMember);
-				session.setAttribute("totalUser", totalUser);
-				session.setAttribute("totalManager", totalManager);
-				session.setAttribute("totalActiveHos", totalActiveHos);
-				session.setAttribute("totalInactiveHos", totalInactiveHos);
+				// 로그인된 사용자의 사진을 세션에 저장하기
+				FileService fileService = new FileServiceImpl();
+				FileDto fileDto = fileService.getFile(member.getFileNo());
+				String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+				session.setAttribute("profile", filePath);
+				
+				
+				if(member.getUserType().equals("DOCTOR") || member.getUserType().equals("MANAGER")) {
+					HospitalService hosService = new HospitalServiceImpl();
+					String hNm = hosService.getHosNoByuNo(userNo);
+					session.setAttribute("hNm", hNm);
+				}else if(member.getUserType().equals("ADMIN")) {
+					
+					HospitalService hosService = new HospitalServiceImpl();
+					
+					int totalMember = service.getTotalMember();
+					int totalUser = service.getTotalUser();
+					int totalManager = service.getTotalManager();
+					int totalActiveHos = hosService.getTotalActiveHos();
+					int totalInactiveHos = hosService.getTotalInactiveHos();
+					session.setAttribute("totalMember", totalMember);
+					session.setAttribute("totalUser", totalUser);
+					session.setAttribute("totalManager", totalManager);
+					session.setAttribute("totalActiveHos", totalActiveHos);
+					session.setAttribute("totalInactiveHos", totalInactiveHos);
+					
+				}
+				resDto = new ResponseDto(true, "로그인 성공");
+				
+				session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장			
+				session.setAttribute("userType", member.getUserType());
+				session.setAttribute("uNm", member.getUsername());
+				session.setAttribute("nickNm", member.getNickName());
+				
+				
+				Cookie idCookie;
+				if(rememberId != null) { // 만약 아이디 저장을 체크했을때
+					idCookie = new Cookie("rememberId", userId);
+					idCookie.setPath("/ieum/login"); // 로그인 페이지에서만 아이디 저장
+					idCookie.setMaxAge(60*60*24*7); // 7일
+				}else { // 다시 로그인할때 체크를 해제할 수 있으니 그땐 쿠키 삭제
+					idCookie = new Cookie("rememberId", "");
+				    idCookie.setPath("/ieum/login"); // 기존 쿠키와 같은 경로
+				    idCookie.setMaxAge(0);
+				}
+				response.addCookie(idCookie);
 				
 			}
-			resDto = new ResponseDto(true, "로그인 성공");
-			
-			session.setAttribute("uNo", userNo); // 세션에 회원 번호 저장			
-			session.setAttribute("userType", member.getUserType());
-			session.setAttribute("uNm", member.getUsername());
-			session.setAttribute("nickNm", member.getNickName());
 			
 			
-			Cookie idCookie;
-			if(rememberId != null) { // 만약 아이디 저장을 체크했을때
-				idCookie = new Cookie("rememberId", userId);
-				idCookie.setPath("/ieum/login"); // 로그인 페이지에서만 아이디 저장
-				idCookie.setMaxAge(60*60*24*7); // 7일
-			}else { // 다시 로그인할때 체크를 해제할 수 있으니 그땐 쿠키 삭제
-				idCookie = new Cookie("rememberId", "");
-			    idCookie.setPath("/ieum/login"); // 기존 쿠키와 같은 경로
-			    idCookie.setMaxAge(0);
-			}
-			response.addCookie(idCookie);
 		}
 		
 		
 		result = gson.toJson(resDto);
 		
-		System.out.println(result);
 		response.getWriter().write(result);
 		
 		
