@@ -50,10 +50,26 @@ public class MyCommunityList extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		System.out.println("uNo: " + uNo);
-		String spage = request.getParameter("page"); 
-		Integer page = 1; 
-		if(spage != null) page=Integer.parseInt(spage); 
-		PageInfo pageInfo = new PageInfo(page);
+		
+		// 내가 작성한 페이지
+		String spageCom = request.getParameter("comPage"); 
+		Integer pageCom = 1; 
+		if(spageCom != null) pageCom=Integer.parseInt(spageCom); 
+		PageInfo comPageInfo = new PageInfo(pageCom);
+		
+		
+		//댓글 페이지
+		String spageComment = request.getParameter("commentPage"); 
+		Integer pageComment = 1; 
+		if(spageCom != null) pageCom=Integer.parseInt(spageComment); 
+		PageInfo commentPageInfo = new PageInfo(pageComment);
+		
+		
+		// 공감한 게시물 페이지
+		String spageHeart = request.getParameter("heartPage");
+		Integer pageHeart = 1;
+		if(spageHeart != null) pageHeart = Integer.parseInt(spageHeart);
+		PageInfo heartPageInfo = new PageInfo(pageHeart);
 		
 		
 		
@@ -65,11 +81,11 @@ public class MyCommunityList extends HttpServlet {
 		CommentDto commentDto = new CommentDto();
 		CommunityDto communityDto = new CommunityDto();
 		try {
-			List<MyCommunityDto> myComList = service.listByPage(pageInfo, uNo);
+			List<MyCommunityDto> myComList = service.listByPage(comPageInfo, uNo);
 			
-			List<CommentWithMemberDto> myCommeList = commentWithMemberService.listByCommentPage(pageInfo, uNo);
+			List<CommentWithMemberDto> myCommeList = commentWithMemberService.listByCommentPage(commentPageInfo, uNo);
 			
-			List<MyCommunityDto> myEmpathy = service.listByLikePage(pageInfo, uNo);
+			List<MyCommunityDto> myEmpathy = service.listByLikePage(heartPageInfo, uNo);
 			
 			
 			
@@ -90,15 +106,15 @@ public class MyCommunityList extends HttpServlet {
 			
 			//작성한 게시판
 			request.setAttribute("myComList", myComList);
-			request.setAttribute("comPageInfo", pageInfo);
+			request.setAttribute("comPageInfo", comPageInfo);
 			
 			// 댓글 작성한곳
 			request.setAttribute("myCommeList", myCommeList);
-			request.setAttribute("commentPageInfo", pageInfo);
+			request.setAttribute("commentPageInfo", commentPageInfo);
 		
 			//좋아요 누른 게시판
 			request.setAttribute("myEmpathy", myEmpathy);
-			request.setAttribute("heartPageInfo", pageInfo);
+			request.setAttribute("heartPageInfo", heartPageInfo);
 			
 			
            

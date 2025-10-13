@@ -60,13 +60,20 @@ public class MyCommunityDaoImpl implements MyCommunityDao{
 	@Override
 	public List<MyCommunityDto> selectMyList(Integer row) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-		return session.selectList("mapper.community.selectMyList", row);
+			return session.selectList("mapper.community.selectMyList", row);
 		}
 	}
 	@Override
 	public Integer selectMyConut(Integer uNo) throws Exception {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-		return session.selectOne("mapper.community.selectMyCount", uNo);
+			return session.selectOne("mapper.community.selectMyCount", uNo);
+		}
+	}
+
+	@Override
+	public Integer selectLikedCount(Integer uNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.community.selectLikedCount", uNo);
 		}
 	}
 }

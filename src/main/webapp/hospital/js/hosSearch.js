@@ -168,7 +168,7 @@ $(document).ready(() => {
 
 	// 시/도 옵션 채우기
 	$.each(regionData, function(city, gungu) {
-		$("#city").append(`< option value = "${city}" > ${city}</option > `);
+		$("#city").append(`<option value="${city}"> ${city}</option >`);
 	});
 
 
@@ -182,7 +182,7 @@ $(document).ready(() => {
 		const gungus = regionData[city];
 		if (gungus && gungus.length > 0) {
 			$.each(gungus, function(index, gungu) {
-				$gungu.append(`< option value = "${gungu}" > ${gungu}</option > `);
+				$gungu.append(`<option value = "${gungu}"> ${gungu}</option> `);
 			});
 		}
 	});

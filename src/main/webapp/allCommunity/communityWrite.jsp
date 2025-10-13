@@ -71,10 +71,62 @@ $(function () {
     $('.hide-if-user').hide();
 
     /********** 작성 완료 모달 **********/
-    $('#btn-complete').click(function() {
+    /* $('#btn-complete').click(function() {
         $('#completeModal').show();
     });
 
+    $('#modalCloseComplete, #modalCancelComplete').click(function() {
+        $('#completeModal').hide();
+    }); */
+    
+    /********** 작성 완료 모달 **********/
+    /* $('#btn-complete').off('click').on('click', function(e) {
+	    var categoryNo = $('#categoryNo').val();
+	    if (!categoryNo || categoryNo === "") {
+	        alert('카테고리를 선택해주세요.');
+	        e.preventDefault();   // 폼 제출 방지
+	        return false;         // 모달 뜨는 거 방지
+	    }
+	    $('#completeModal').show();
+	}); */
+	
+	$('#btn-complete').off('click').on('click', function(e) {
+	    var categoryNo = $('#categoryNo').val();
+	    var title = $('#title').val().trim();
+	    var content = $('#content-write').val().trim();
+
+	    // 카테고리 체크
+	    if (!categoryNo || categoryNo === "") {
+	        alert('카테고리를 선택해주세요.');
+	        e.preventDefault();
+	        return false;
+	    }
+
+	    // 제목 체크
+	    if (!title || title.length === 0) {
+	        alert('제목을 입력해주세요.');
+	        e.preventDefault();
+	        return false;
+	    }
+
+	    // 내용 체크
+	    if (!content || content.length === 0) {
+	        alert('내용을 입력해주세요.');
+	        e.preventDefault();
+	        return false;
+	    }
+
+	    // 모두 통과하면 모달 표시
+	    $('#completeModal').show();
+	});
+	
+	
+
+    $('#modalOkComplete').click(function() {
+        $('#writeForm').submit();
+    });
+    
+    // 모달 닫기
     $('#modalCloseComplete, #modalCancelComplete').click(function() {
         $('#completeModal').hide();
     });
@@ -142,7 +194,7 @@ $(function () {
 
     <div class="community-content">
         <div id="title-write">
-            <input type="text" id="title" name="title" placeholder="제목" maxlength="1000"
+            <input type="text" id="title" name="title" placeholder="제목" maxlength="53"
             	value="<c:out value='${community.commuTitle}'/>">
         </div>
         <div id="content-header">내용</div>
@@ -177,7 +229,7 @@ $(function () {
             <div class="modal-div-under">
                 <div class="modal-btn-div">
                     <button type="button" class="modal-btn-left modal-btn" id="modalCancelComplete">취소</button>
-                    <button type="submit" class="modal-btn-right modal-btn" id="modalOkComplete">완료</button>
+                    <button type="button" class="modal-btn-right modal-btn" id="modalOkComplete">완료</button>
                 </div>
             </div>
         </div>
