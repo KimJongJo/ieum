@@ -25,5 +25,13 @@ public interface CommentDao {
 
     // community 테이블의 commu_comment 갱신
     void updateCommentCount(int commuNo, int count) throws Exception;
+    
+    //신고 횟수 증가
+    void increaseReportCount(int commeNo) throws Exception;
+    //신고 횟수 가져오기
+    int getReportCount(int commeNo) throws Exception;
+    //댓글 삭제
+    void deleteComment(int commeNo)throws Exception;
 
+	int getCommentWriter(int commeNo)throws Exception;
 }

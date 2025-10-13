@@ -37,6 +37,31 @@ public class CommentServiceImpl implements CommentService{
 	public CommentDto selectByNo(Integer commeNo) throws Exception {
 		
 		return commentDao.selectByNo(commeNo);
-	}	
+	}
 
+
+	@Override
+	public boolean reportComment(int commeNo) throws Exception {
+		// 1️⃣ 신고 횟수 +1
+        commentDao.increaseReportCount(commeNo);
+
+        // 2️⃣ 현재 신고 횟수 조회
+        int count = commentDao.getReportCount(commeNo);
+
+        // 3️⃣ 5회 이상이면 자동 삭제
+        if (count >= 5) {
+            commentDao.deleteComment(commeNo);
+            return true; // true = 삭제됨
+        }
+
+        return false; // false = 아직 삭제 안 됨
+	}	
+	
+	
+	@Override
+    public int getCommentWriter(int commeNo) throws Exception {
+        return commentDao.getCommentWriter(commeNo);
+    }
+	
+	
 }

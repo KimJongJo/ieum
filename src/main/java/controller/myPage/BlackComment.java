@@ -57,6 +57,10 @@ public class BlackComment extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+        
+        if (uNo.equals(blockedNo)) {
+            return;
+        }
 
         boolean success = false;
         try {

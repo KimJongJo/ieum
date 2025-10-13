@@ -79,4 +79,34 @@
 		from comment c
 		join comme_like cl on c.comme_no = cl.comme_no;
 	</select>
+	
+	
+	
+	<!-- 신고 횟수 1 증가 -->
+    <update id="increaseReportCount" parameterType="int">
+        UPDATE comment
+        SET com_declaration = com_declaration + 1
+        WHERE comme_no = #{commeNo}
+    </update>
+
+    <!-- 신고 횟수 확인 -->
+    <select id="getReportCount" parameterType="int" resultType="int">
+        SELECT com_declaration
+        FROM comment
+        WHERE comme_no = #{commeNo}
+    </select>
+
+    <!-- 신고 5회 이상 시 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment
+        WHERE comme_no = #{commeNo}
+    </delete>
+    
+    <!-- 댓글 작성자 uNo 조회 -->
+    <select id="getCommentWriter" parameterType="int" resultType="int">
+        SELECT u_no
+        FROM comment
+        WHERE comme_no = #{commeNo}
+    </select>
+	
 </mapper>

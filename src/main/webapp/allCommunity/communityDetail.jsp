@@ -446,14 +446,39 @@ $(function () {
 });
     
     
-    /* 신고 모달 */
-    $(document).on('click', '.userMenu .menu-item1:contains("신고하기")', function (e) {
-        e.preventDefault();
-        $('#blockReportModal').show();
+// 신고하기 메뉴 클릭 시
+   $(document).on('click', '.userMenu .menu-item1:contains("신고하기")', function (e) {
+       e.preventDefault();
+       var commentBox = $(this).closest('.comment-box');
+       var commeNo = commentBox.attr('data-comme-no'); // 댓글 번호 가져오기
+       
+       // hidden input에 값 설정
+       $('#reportCommeNo').val(commeNo);
+
+       $('#blockReportModal').show();
+   });
+   
+// 신고하기 모달 AJAX 처리
+   $('#reportForm').submit(function(e){
+    e.preventDefault(); // 기본 submit 막기
+    var form = $(this);
+    var commeNo = $('#reportCommeNo').val();
+
+    $.post(form.attr('action'), { commeNo: commeNo }, function(data){
+        alert(data.message); // 서버에서 받은 메시지 출력
+        if(data.success){
+            $('#blockReportModal').hide();  // 성공하면 모달 닫기
+        }
+    }, "json")
+    .fail(function(){
+        alert("서버 오류 발생");
     });
-    $('#modalClosereportBlock, #modalCancelreportBlock, #modalOkreportBlock').click(function() {
-        $('#blockReportModal').hide();
-    });
+});
+   
+   
+   $('#modalClosereportBlock, #modalCancelreportBlock').click(function() {
+	    $('#blockReportModal').hide();
+	});
 	
     
     /* 댓글 차단 모달 */
@@ -487,7 +512,7 @@ $('#blockCommentForm').submit(function(e){
              // 페이지 자동 새로고침
              location.reload();  
          } else {
-             alert("댓글 차단 실패");
+             alert("응 차단못해~ 나가!!");
          }
      })
      .fail(function(){
@@ -670,7 +695,12 @@ $('#blockCommentForm').submit(function(e){
 	        <div class="modal-div-under">
 	            <div class="modal-btn-div">
 	                <button type="button" class="modal-btn-left modal-btn" id="modalCancelreportBlock">취소</button>
-	                <button type="button" class="modal-btn-right modal-btn" id="modalOkreportBlock">신고</button>
+	                <!-- <button type="button" class="modal-btn-right modal-btn" id="modalOkreportBlock">신고</button> -->
+	                <!-- ✅ 신고 form 추가 -->
+                <form id="reportForm" action="${pageContext.request.contextPath}/declaration" method="post" style="display:inline;">
+                    <input type="hidden" name="commeNo" id="reportCommeNo" />
+                    <button type="submit" class="modal-btn-right modal-btn" id="modalOkreportBlock">신고</button>
+                </form>
 	            </div>
 	        </div>
 	    </div>

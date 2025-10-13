@@ -109,6 +109,9 @@ public class CommunityDetail extends HttpServlet {
             request.setAttribute("comments", commentList);
             request.setAttribute("blockedList", blockedSet); // JSP에서 참조 가능하도록 설정
             
+            communityDto.setCommuComment(commentList.size());
+            request.setAttribute("community", communityDto);
+            
             //8.공감 유지
             boolean likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
             communityDto.setLikedByUser(likedByUser);
