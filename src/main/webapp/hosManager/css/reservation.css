@@ -115,11 +115,13 @@ body{
             	color:white;
             }
             
-            
-            
-            
-
-           
+           .view-more img {
+			  transition: transform 0.2s ease; /* 부드럽게 회전 */
+			}
+			
+			.view-more img.rotated {
+			  transform: rotate(180deg); /* 회전 상태 */
+			}
 
             
             
