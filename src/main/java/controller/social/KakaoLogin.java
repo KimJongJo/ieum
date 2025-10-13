@@ -88,6 +88,8 @@ public class KakaoLogin extends HttpServlet {
 				session.setAttribute("profile", filePath);
 				session.setAttribute("userType", kakaoDto.getMemberDto().getUserType());
 				session.setAttribute("uNo", kakaoDto.getMemberDto().getuNo());
+				session.setAttribute("uNm", kakaoDto.getMemberDto().getUsername());
+				session.setAttribute("nickNm", kakaoDto.getMemberDto().getNickName());
 				response.sendRedirect(request.getContextPath() + "/index");
 			}else {
 				session.setAttribute("kakaoDto",kakaoDto);

@@ -50,17 +50,21 @@ $(document).ready(function() {
 		// 클릭한 탭에 active 추가
 		$(this).addClass("active");
 		const tabText = $(this).text().trim();
-//		$(".no-data-section").hide();
 		$(".notices-section").show();
 		$(".community-section").show();
+		const allCnt = $("#all-cnt").text();
+		const noticeCnt = $("#notice-cnt").text();
+		const commuCnt = $("#commu-cnt").text();
+		
+		if (tabText == "통합검색"){
+			$(".no-data-section").show();
+		}
 		if (tabText == "공지사항") {
-			$("#all-cnt").text($("#notice-cnt").text() || '0');
 			$(".community-section").hide();
 		}
 		if (tabText == "커뮤니티") {
-			$("#all-cnt").text($("#commu-cnt").text() || '0');
 			$(".notices-section").hide();
 		}
-//		if ($("#all-cnt").text() == '0') $(".no-data-section").show();
+		
 	});
 });

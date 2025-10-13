@@ -113,7 +113,7 @@ function showPopup(info) {
                             <div class="map-text bold">진료안내</div>
                             <div class="map-text">월요일~금요일 : 오전9시~오후6시</div>
                             <div class="map-text">점심시간 : 12시~오후1시</div>
-                            <div class="map-text red">${hospital.holidayInfo || ""}</div>
+                            <div class="map-text red">${hospital.holidayInfo || ""}요일: 휴무</div>
                         </div>
                     </div>
                 </div>

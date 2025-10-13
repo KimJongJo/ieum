@@ -50,9 +50,8 @@
 		</div>
 
 		<c:choose>
-			<c:when test="${not empty noticeList}">
+			<c:when test="${not empty noticeList or not empty topList}">
 				<div class="list-section" id="noticeList">
-
 					<c:forEach var="top" items="${topList}">
 						<a href="${contextPath}/notice?nNo=${top.nNo}">
 							<div class="notice-list">

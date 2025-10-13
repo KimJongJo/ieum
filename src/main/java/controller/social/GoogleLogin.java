@@ -104,6 +104,8 @@ public class GoogleLogin extends HttpServlet {
 				session.setAttribute("profile", filePath);
 				session.setAttribute("userType", member.getUserType());
 				session.setAttribute("uNo", member.getuNo());
+				session.setAttribute("uNm", member.getUsername());
+				session.setAttribute("nickNm", member.getNickName());
 				response.sendRedirect(request.getContextPath() + "/index");
 			}else { // 아니라면 병합을 묻는 페이지로 이동
 				session.setAttribute("googleDto", googleDto);
