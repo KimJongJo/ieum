@@ -45,7 +45,7 @@
         <span>다이어리</span>
     </div>
 	<div class="main-container">
-		<jsp:include page="/common/nav/userNav.jsp" />
+		<jsp:include page="/common/nav/nav.jsp" />
 
 		<div class="diary-container">
 
