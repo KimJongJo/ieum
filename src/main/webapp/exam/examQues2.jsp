@@ -46,23 +46,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score1" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score1" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score1" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score1" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="5"> <span class="s1">매우 자주
+								name="score1" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -71,23 +71,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score2" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score2" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score2" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score2" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="5"> <span class="s1">매우 자주
+								name="score2" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -96,23 +96,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score3" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score3" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score3" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score3" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="5"> <span class="s1">매우 자주
+								name="score3" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -121,23 +121,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score4" value="4"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score4" value="3"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score4" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score4" value="1"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="5"> <span class="s1">매우 자주
+								name="score4" value="0"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -146,23 +146,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score5" value="4"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score5" value="3"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score5" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score5" value="1"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="5"> <span class="s1">매우 자주
+								name="score5" value="0"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -171,23 +171,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score6" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score6" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score6" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score6" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="5"> <span class="s1">매우 자주
+								name="score6" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -196,23 +196,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score7" value="4"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score7" value="3"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score7" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score7" value="1"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="5"> <span class="s1">매우 자주
+								name="score7" value="0"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -221,23 +221,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score8" value="4"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score8" value="3"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score8" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score8" value="1"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="5"> <span class="s1">매우 자주
+								name="score8" value="0"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -246,23 +246,23 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score9" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score9" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="3"> <span class="s1">때때로 있었다</span></td>
+								name="score9" value="2"> <span class="s1">때때로 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score9" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="5"> <span class="s1">매우 자주
+								name="score9" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>
@@ -271,24 +271,24 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="1"> <span class="s1">전혀 없었다</span></td>
+								name="score10" value="0"> <span class="s1">전혀 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="2"> <span class="s1">거의 없었다</span></td>
+								name="score10" value="1"> <span class="s1">거의 없었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="3"> <span class="s1">때때로
+								name="score10" value="2"> <span class="s1">때때로
 									있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="4"> <span class="s1">자주 있었다</span></td>
+								name="score10" value="3"> <span class="s1">자주 있었다</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="5"> <span class="s1">매우 자주
+								name="score10" value="4"> <span class="s1">매우 자주
 									있었다</span></td>
 						</tr>
 					</table>

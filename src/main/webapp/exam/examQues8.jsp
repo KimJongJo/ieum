@@ -40,7 +40,7 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/score5" method="post">
+			<form action="${contextPath }/exam/exam8" method="post">
 				<div class="ques">
 					<span class="question">Q1.술을 얼마나 자주 마십니까?</span>
 					<table class="quesTa">

@@ -221,14 +221,15 @@ public class ReservationServiceImpl implements ReservationService {
 		return resDao.recordResCnt(recCnt);
 	}
 
-	//예약취소
+	//예약"cancel"
 	@Override
 	public void resCancel(Integer rNo) throws Exception {
 		resDao.resCancel(rNo);
 	}
-
+	
+	//진짜 예약취소
 	@Override
-	public void updateRno(Integer rNo) throws Exception {
+	public void deleteRno(Integer rNo) throws Exception {
 		resDao.deleteRno(rNo);
 	}
 

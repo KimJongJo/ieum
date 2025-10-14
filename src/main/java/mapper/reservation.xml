@@ -98,6 +98,8 @@
 		using(h_no)
 		left join member m
 		on (r.m_no = m.u_no)
+		left join file f
+		on(m.file_no = f.file_no)
 		where r_no=#{rNo}
 	</select>
 

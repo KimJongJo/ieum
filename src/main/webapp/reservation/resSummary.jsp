@@ -44,7 +44,7 @@
 
 
 			<div class="docbox">
-				<img class="docprof" src="${resDetail.filePath }" />
+				<img class="docprof" src="${contextPath }/${resDetail.filePath }/${resDetail.fileName}" onerror="this.onerror=null; this.src='';" />
 
 				<div class="info">
 					<div class="doci">
@@ -71,7 +71,7 @@
 			<div class="councon">
 				<span class="t2">상담내용</span>
 				<div class="counbox">
-					<c:out value="${resDetail.rContent }" />
+					${resDetail.rContent }
 				</div>
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 			<a href="${contextPath }/index"><button type="button"
 					class="btn-rec-w">홈으로</button></a> <a
 				href="${contextPath }/myPage/reservation/list"><button
-					type="button" class="btn-rec-b">예약확인</button></a>
+					type="button" class="btn-long-b">예약확인</button></a>
 		</div>
 	</div>
 

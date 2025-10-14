@@ -112,7 +112,8 @@ a {
 
 .rc {
 	width: 687px;
-	height: 100px;
+	min-height: 100px;
+	height:auto;
 	box-sizing: border-box;
 	border: none;
 	background: none;

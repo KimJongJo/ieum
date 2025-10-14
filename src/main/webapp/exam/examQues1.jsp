@@ -44,22 +44,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="1"> <span class="s1">극히
+								name="score1" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="2"> <span class="s1">가끔
+								name="score1" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="3"> <span class="s1">자주
+								name="score1" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score1" value="4"> <span class="s1">거의 대부분
+								name="score1" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -67,22 +67,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="1"> <span class="s1">극히
+								name="score2" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="2"> <span class="s1">가끔
+								name="score2" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="3"> <span class="s1">자주
+								name="score2" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score2" value="4"> <span class="s1">거의 대부분
+								name="score2" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -91,22 +91,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="1"> <span class="s1">극히
+								name="score3" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="2"> <span class="s1">가끔
+								name="score3" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="3"> <span class="s1">자주
+								name="score3" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score3" value="4"> <span class="s1">거의 대부분
+								name="score3" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -114,22 +114,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="1"> <span class="s1">극히
+								name="score4" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="2"> <span class="s1">가끔
+								name="score4" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="3"> <span class="s1">자주
+								name="score4" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score4" value="4"> <span class="s1">거의 대부분
+								name="score4" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -137,7 +137,7 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="1"> <span class="s1">극히
+								name="score5" value="3"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
@@ -147,12 +147,12 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="3"> <span class="s1">자주
+								name="score5" value="1"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score5" value="4"> <span class="s1">거의 대부분
+								name="score5" value="0"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -160,22 +160,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="1"> <span class="s1">극히
+								name="score6" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="2"> <span class="s1">가끔
+								name="score6" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="3"> <span class="s1">자주
+								name="score6" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score6" value="4"> <span class="s1">거의 대부분
+								name="score6" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -183,22 +183,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="1"> <span class="s1">극히
+								name="score7" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="2"> <span class="s1">가끔
+								name="score7" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="3"> <span class="s1">자주
+								name="score7" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score7" value="4"> <span class="s1">거의 대부분
+								name="score7" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -206,22 +206,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="1"> <span class="s1">극히
+								name="score8" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="2"> <span class="s1">가끔
+								name="score8" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="3"> <span class="s1">자주
+								name="score8" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score8" value="4"> <span class="s1">거의 대부분
+								name="score8" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -229,22 +229,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="1"> <span class="s1">극히
+								name="score9" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="2"> <span class="s1">가끔
+								name="score9" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="3"> <span class="s1">자주
+								name="score9" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score9" value="4"> <span class="s1">거의 대부분
+								name="score9" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -252,7 +252,7 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="1"> <span class="s1">극히
+								name="score10" value="3"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
@@ -262,12 +262,12 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="3"> <span class="s1">자주
+								name="score10" value="1"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score10" value="4"> <span class="s1">거의 대부분
+								name="score10" value="0"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -275,22 +275,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score11" value="1"> <span class="s1">극히
+								name="score11" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score11" value="2"> <span class="s1">가끔
+								name="score11" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score11" value="3"> <span class="s1">자주
+								name="score11" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score11" value="4"> <span class="s1">거의 대부분
+								name="score11" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -298,22 +298,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score12" value="1"> <span class="s1">극히
+								name="score12" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score12" value="2"> <span class="s1">가끔
+								name="score12" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score12" value="3"> <span class="s1">자주
+								name="score12" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score12" value="4"> <span class="s1">거의 대부분
+								name="score12" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -321,22 +321,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score13" value="1"> <span class="s1">극히
+								name="score13" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score13" value="2"> <span class="s1">가끔
+								name="score13" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score13" value="3"> <span class="s1">자주
+								name="score13" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score13" value="4"> <span class="s1">거의 대부분
+								name="score13" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -344,22 +344,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score14" value="1"> <span class="s1">극히
+								name="score14" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score14" value="2"> <span class="s1">가끔
+								name="score14" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score14" value="3"> <span class="s1">자주
+								name="score14" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score14" value="4"> <span class="s1">거의 대부분
+								name="score14" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -367,7 +367,7 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score15" value="1"> <span class="s1">극히
+								name="score15" value="3"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
@@ -377,12 +377,12 @@
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score15" value="3"> <span class="s1">자주
+								name="score15" value="1"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score15" value="4"> <span class="s1">거의 대부분
+								name="score15" value="0"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -390,22 +390,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score16" value="1"> <span class="s1">극히
+								name="score16" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score16" value="2"> <span class="s1">가끔
+								name="score16" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score16" value="3"> <span class="s1">자주
+								name="score16" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score16" value="4"> <span class="s1">거의 대부분
+								name="score16" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -413,22 +413,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score17" value="1"> <span class="s1">극히
+								name="score17" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score17" value="2"> <span class="s1">가끔
+								name="score17" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score17" value="3"> <span class="s1">자주
+								name="score17" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score17" value="4"> <span class="s1">거의 대부분
+								name="score17" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -436,22 +436,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score18" value="1"> <span class="s1">극히
+								name="score18" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score18" value="2"> <span class="s1">가끔
+								name="score18" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score18" value="3"> <span class="s1">자주
+								name="score18" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score18" value="4"> <span class="s1">거의 대부분
+								name="score18" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -459,22 +459,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score19" value="1"> <span class="s1">극히
+								name="score19" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score19" value="2"> <span class="s1">가끔
+								name="score19" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score19" value="3"> <span class="s1">자주
+								name="score19" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score19" value="4"> <span class="s1">거의 대부분
+								name="score19" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>
@@ -482,22 +482,22 @@
 					<table class="quesTa">
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score20" value="1"> <span class="s1">극히
+								name="score20" value="0"> <span class="s1">극히
 									드물게(1일 이하)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score20" value="2"> <span class="s1">가끔
+								name="score20" value="1"> <span class="s1">가끔
 									(1-2일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score20" value="3"> <span class="s1">자주
+								name="score20" value="2"> <span class="s1">자주
 									(3-4일)</span></td>
 						</tr>
 						<tr class="radio">
 							<td class="score"><input class="scores" type="radio"
-								name="score20" value="4"> <span class="s1">거의 대부분
+								name="score20" value="3"> <span class="s1">거의 대부분
 									(5-7일)</span></td>
 						</tr>
 					</table>

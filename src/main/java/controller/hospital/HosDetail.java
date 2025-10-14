@@ -124,7 +124,34 @@ public class HosDetail extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} 
+		} else if ("activeRes".equals(action)) {
+			//예약 변경
+			Integer mNo = Integer.parseInt(request.getParameter("mNo"));
+			String rDate = request.getParameter("rDate");
+			String rTime = request.getParameter("rTime");
+			String rContent = request.getParameter("rContent");
+			
+			ReservationService rService = new ReservationServiceImpl();
+
+			try {
+				List<ReservationDto> getTimeFromRes = rService.getTimeFromRes(mNo, rDate);
+
+				Gson gson = new GsonBuilder()
+						.registerTypeAdapter(LocalDate.class,
+								(JsonSerializer<LocalDate>) (src, typeOfSrc,
+										context) -> new JsonPrimitive(src.toString()))
+						.registerTypeAdapter(LocalTime.class, (JsonSerializer<LocalTime>) (src, typeOfSrc,
+								context) -> new JsonPrimitive(src.toString()))
+						.create();
+
+				String jsonStr = gson.toJson(getTimeFromRes);
+				response.setContentType("application/json; charset=UTF-8");
+				response.getWriter().write(jsonStr);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 

@@ -27,5 +27,5 @@ public interface ReservationService {
 	void resCancel (Integer rNo) throws Exception;
 	
 	ReservationDto selectRes (Integer rNo) throws Exception;
-	void updateRno (Integer rNo)throws Exception;
+	void deleteRno (Integer rNo)throws Exception;
 }

@@ -42,8 +42,8 @@ public class ExamExam2 extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 
-		Integer eNo = 4;
-		String examName = "조울증(성인)";
+		Integer eNo = 2;
+		String examName = "스트레스";
 		String examResult1;
 		String examResult2;
 		String examSign;
@@ -67,20 +67,13 @@ public class ExamExam2 extends HttpServlet {
 				}
 			}
 
-			if (total < 7) {
-				examSign = "정상";
-				examResult1 = "유의한 수준의 조울증(양극성장애)을 시사하지 않습니다.";
-				examResult2 = "귀하는 일상생활에서 종종 조울증의 증상을 경험하나 정상범위에 속하고 있습니다." + "\r\n"
-						+ "평소 정기적인 검진과 관리를 통해 조울증을 예방하고 건강한 삶을 유지하시기 바랍니다.";
+			
+				examSign = "";
+				examResult1 = "귀하께서 느끼는 스트레스가 높다면, 다른 정신건강 자가검진도 함께 해보시는 것을 권유드립니다.";
+				examResult2 = "스트레스가 심해지면, 우울증상과 불안증상과 같은 정신건강의 어려움을 경험하게 되고, 뿐만 아니라 불면, 답답함, 소화불량 등과 같은 신체적 건강에도 불편함을 느끼게 되어 평소에 비해 일상생활 기능이 저하 될 수 있으므로 주의가 필요합니다.";
 
-			} else {
-				examSign = "위험";
-				examResult1 = "높은 수준의 조울증상(감정변화, 활동성, 에너지, 자신감 등 조증)이 시사됩니다.";
-				examResult2 = "이러한 높은 수준의 조울증상은 흔히 신체적, 심리적 대처자원을 저하시키며 개인의 일상생활을 어렵게 만들기도 합니다." + "\r\n"
-						+ "가까운 지역센터나 전문기관을 방문하여 보다 상세한 평가와 도움을 받아보시기 바랍니다.";
-
-			}
-
+			
+		
 			request.setAttribute("eNo", eNo);
 			request.setAttribute("examName", examName);
 			request.setAttribute("examNotice", examNotice);
