@@ -41,7 +41,7 @@
                         </div>
                         <form class="admin-search-bar">
                             <input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
-                            <button class="s	earch-bar-icon" type="button" id="searchBtn">
+                            <button class="search-bar-icon" type="button" id="searchBtn">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
 

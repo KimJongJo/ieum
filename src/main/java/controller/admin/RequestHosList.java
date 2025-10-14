@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import dto.HospitalDto;
 import dto.otherDto.HospitalPageResponseDto;
 import dto.otherDto.ResponseDto;
 import service.hospital.HospitalService;
@@ -38,14 +39,10 @@ public class RequestHosList extends HttpServlet {
 		
 		String keyword = request.getParameter("keyword"); // 검색어 가져오기
 		String filter = request.getParameter("filter"); // 정렬 조건 가져오기
-		int requestPage = 1;
-		String page = request.getParameter("page");
-		if (page != null && !page.isEmpty()) {
-		    System.out.println("??");
-		}
+		Integer requestPage = Integer.parseInt(request.getParameter("page"));
 
 		HospitalService service = new HospitalServiceImpl();
-		HospitalPageResponseDto pageDto;
+		HospitalPageResponseDto<HospitalDto> pageDto;
 
 		if(keyword != null && !keyword.isEmpty()) {
 		    // 검색어가 있으면 검색용 메서드 호출

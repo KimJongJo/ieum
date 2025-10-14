@@ -60,8 +60,8 @@
 				            </div>
 				           
 				           <div class="update_hos_btn">
-				           	<button type="button" id="modifyHosInfo">수정</button>
-				           	<button class="firsthide" id="saveHosInfo" value="${hospital.hNo}">저장</button>
+				           	<button class="hosInfo-update-btn" type="button" id="modifyHosInfo">수정하기</button>
+				           	<button class="firsthide" id="saveHosInfo" value="${hospital.hNo}">저장하기</button>
 				           </div>
 				        </form>
                         
