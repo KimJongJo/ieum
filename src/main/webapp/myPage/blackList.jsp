@@ -37,8 +37,8 @@
                        건강이음<br>마이페이지
                    </div>
                    <div class="welcome">
-                       <strong>*환영합니다*<br>${ uNm } 회원님
-                  </strong> <span>${nickNm }</span>
+                       <strong>*환영합니다*<br>${ uNm } 회원님</strong> 
+                       <span>${nickNm }</span>
                    </div>
                     <c:if test="${userType == 'USER'}">
                       <jsp:include page="/myPage/myPageNav.jsp"></jsp:include>

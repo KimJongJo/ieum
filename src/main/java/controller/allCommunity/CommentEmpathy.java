@@ -1,12 +1,15 @@
 package controller.allCommunity;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import service.allCommunity.CommentEmpathyService;
 import service.allCommunity.CommentEmpathyServiceImpl;
@@ -29,6 +32,7 @@ public class CommentEmpathy extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");  // 추가
@@ -36,12 +40,14 @@ public class CommentEmpathy extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		
-		if (uNo == null) {
-            // 로그인 안 했을 경우
-            response.sendRedirect("login.jsp");
-            return;
-        }
 		
+		JSONObject json = new JSONObject();
+		// ✅ 로그인 체크
+		if (uNo == null) {
+			json.put("error", "로그인 후 공감할 수 있습니다.");
+			response.getWriter().write(json.toJSONString());
+			return;
+		}
 		
 		
 		String commeNoStr = request.getParameter("commeNo");
@@ -69,8 +75,9 @@ public class CommentEmpathy extends HttpServlet {
 			 
 			 
 			 // JSON 반환
-	         response.setContentType("application/json;charset=UTF-8");
-	         response.getWriter().write("{\"newCount\": " + newCount + ", \"liked\": " + liked + "}");
+			 json.put("newCount", newCount);
+			 json.put("liked", liked);
+			 response.getWriter().write(json.toJSONString());
 		} catch (Exception e) {
 			e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
