@@ -70,8 +70,15 @@
 	            </div>
 	            
 	            <div class="right-button">
-	                <a href="write"><button id="write">작성하기</button></a>
-	            </div>
+				    <c:choose>
+				        <c:when test="${not empty sessionScope.uNo}">
+				            <a href="write"><button id="write">작성하기</button></a>
+				        </c:when>
+				        <c:otherwise>
+				            <button id="write" onclick="alert('로그인 후 작성할 수 있습니다.')">작성하기</button>
+				        </c:otherwise>
+				    </c:choose>
+				</div>
 	        </div>
 	            <!-- ✅ 게시글 2열 컨테이너 추가 -->
     	<div class="community-grid">
