@@ -178,7 +178,7 @@
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
 					<div class="dal">
-						<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}" class="doc-prof" />
+						<img src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}" class="doc-prof" />
 						<div class="d1">
 							<div class="d2">
 								<p class="username">
@@ -263,7 +263,7 @@
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
 						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${contextPath}/${doctorlist.filePath}${doctorlist.fileName}"  class="doc-prof"
+							<img src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}"  class="doc-prof"
 								onerror="this.onerror=null; this.src='';" />
 							<div class="d1">
 								<div class="d2">
@@ -291,7 +291,7 @@
 							시간을 선택해 주세요</span>
 					</div>
 
-					<div class="select-date">
+					<div class="select-date" data-rtime="${rTime }" data-rdate="${rDate }">
 
 						<input type="hidden" id="selectedDate" name="rDate">
 						<div class="calendar">
@@ -301,7 +301,7 @@
 
 						<input type="hidden" id="selectedTime" name="rTime"> <input
 							type="hidden" id="selectedDays" name="rDay">
-						<div class="time-table">
+						<div class="time-table" >
 							<label class="cnb"><input type="checkbox" name="chojin"
 								value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
 							<p class="day">오전</p>
@@ -329,7 +329,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="cont" id="rescont">
+				<div class="cont" id="rescont" data-rcontent="${rContent }">
 					<div class="mhea">
 						<i class="fa-solid fa-pen-to-square"></i> <span class="h">어떤
 							주제의 상담이 필요하신가요?</span>

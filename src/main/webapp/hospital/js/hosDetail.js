@@ -12,6 +12,65 @@ const tab2 = $("#tab2");
 
 // 초기 상태 설정
 $(document).ready(() => {
+
+	const resDataUpdate = JSON.parse(localStorage.getItem("resData"));
+
+	if (resDataUpdate != null) {
+		$("#nav2").addClass("active");
+		$("#tab2").addClass("active");
+		$("#tab1").removeClass("active");
+		$("#nav1").removeClass("active");
+
+		console.log("왜");
+
+		const dataStr = localStorage.getItem("resData");
+		if (!dataStr) return; // 이전 데이터 없으면 그냥 종료
+
+		console.log("안되잖아");
+
+		const data = JSON.parse(dataStr);
+		const mNo = data.mNo;
+		console.log(">>>>", mNo)
+		const rDate = data.rDate;
+		const rTime = data.rTime;
+
+		//의사 선택
+		$(".docter-box").each(function() {
+			if ($(".dall").data("mno") == mNo) {
+				$(this).addClass("active");
+				selectedMno = mNo;
+			}
+		});
+
+		showCalendar();
+
+		//날짜 선택
+		$("#tab3").each(function() {
+			if ($(".select-date").data("rdate") == rDate) {
+				$(this).addClass("active");
+				selectedDate = rDate;
+			}
+		});
+
+		$("#selectedDate").val(rDate);
+		selectedMno = mNo;
+		selectedDate = rDate;
+		sendDateToServer(selectedMno, selectedDate);
+
+		//시간 선택
+		$("#tab3").each(function() {
+			if ($(".select-date").data("rtime") == rTime) {
+				$(".tb1").addClass("active");
+			}
+		});
+
+		//모든 데이터 반영 후 삭제 (일회성)
+		localStorage.removeItem("resData");
+
+	}
+
+
+	//기본 초기화
 	$("#navl").addClass("active");
 	$("#tab1").addClass("active");
 	$("#tab2").removeClass("active");
@@ -100,14 +159,16 @@ $(document).ready(() => {
 
 
 	//의사 선택 + 날짜 선택 보내기
-	function sendDateToServer(mNo, rDate) {
+	function sendDateToServer(mNo, rDate, callback) {
+		console.log(">>>", mNo);
 		$.post("/ieum/hospital/detail", {
 			mNo: mNo,
 			rDate: rDate,
 			action: "getResDate"
 		})
 			.done(function(result) {
-				showTime(result,rDate);
+				showTime(result, rDate);
+				if (callback) callback();
 
 			})
 			.fail(function(err) {
@@ -143,7 +204,7 @@ $(document).ready(() => {
 				const [btnHours, btnMinutes] = btnTime.split(":").map(Number);
 				isPast =
 					btnHours < currentHours ||
-					(btnHours === currentHours && btnMinutes <= currentMinutes);
+					(btnHours === currentHours && btnMinutes < (currentMinutes + 20));
 			}
 
 			// 비활성화 조건: 예약되었거나 (오늘 & 지난시간)
@@ -202,8 +263,8 @@ $(document).ready(() => {
 		$("#resform").submit();
 	}
 
-	$("#resAnd").off("click").on("click", function() {
-		doReservation();
+	$("#resAnd").off("click").on("click", function(e) {
+		doReservation(e);
 	});
 
 

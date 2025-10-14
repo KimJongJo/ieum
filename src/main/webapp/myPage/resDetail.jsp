@@ -66,13 +66,15 @@
 								</c:if>
 							</div>
 
-							<table class="date">
-								<tr>
-									<td class="t71"><c:out value="${rid.rDate }" /></td>
-									<td class="t71"><c:out value="${rid.rDay }" /></td>
-									<td class="t71"><c:out value="${rid.rTime }" /></td>
-								</tr>
-							</table>
+							<div class="timeTable">
+								<table class="date">
+									<tr>
+										<td class="t71"><c:out value="${rid.rDate }" /></td>
+										<td class="t71"><c:out value="${rid.rDay }" /></td>
+										<td class="t71"><c:out value="${rid.rTime }" /></td>
+									</tr>
+								</table>
+							</div>
 						</div>
 
 						<div class="right" data-rno="${rid.rNo }" data-hno="${rid.hNo }">
@@ -85,15 +87,17 @@
 
 					<div class="line"></div>
 
-					<div class="docbox">
-						<img class="docprof" src="" />
+					<div class="docbox" >
+						<img class="docprof"
+							src="${contextPath }/${rid.filePath }/${rid.fileName}"
+							onerror="this.onerror=null; this.src='';" />
 
 						<div class="info">
 							<div class="doci">
 								<span class="dname"> <c:out value="${rid.username }" />
 								</span>
 								<p class="intro">
-									<c:out value="${rid.introduction }" default="믿음을 주는 상담사"/>
+									<c:out value="${rid.introduction }" default="믿음을 주는 상담사" />
 								</p>
 							</div>
 							<span class="major"> <c:out value="${rid.major }" />
@@ -113,7 +117,7 @@
 					<div class="councon">
 						<span class="t2">상담내용</span>
 						<div class="counbox">
-							<c:out value="${rid.rContent }" />
+							${rid.rContent }
 						</div>
 					</div>
 
@@ -219,7 +223,7 @@
 				<button type="button" class="btn-rec-w" onclick="history.back();">확인</button>
 			</div>
 		</div>
-		
+
 		<!-- 예약취소 모달 -->
 		<div class="modal-main-div" id="deleteRes" style="display: none;">
 			<div class="modal-div-over">
@@ -234,7 +238,7 @@
 				</div>
 				<div class="modal-div-under">
 					<div class="modal-btn-div">
-					<button type="button" class="modal-btn-right modal-btn"
+						<button type="button" class="modal-btn-right modal-btn"
 							id="modalCancelRes">취소하기</button>
 						<button type="button" class="modal-btn-left modal-btn"
 							id="modalKeepRes">닫기</button>
@@ -242,7 +246,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<script src="${contextPath }/myPage/js/resDetail.js"></script>

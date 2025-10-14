@@ -57,28 +57,40 @@ $("#updateBtn").off("click").on("click", function() {
 	console.log(rNo);
 	console.log(hNo);
 
-	$.post("/ieum/reservation/detail",
-		{
-			rNo: rNo,
-			action: "resUpdate"
-		})
-		.done(function() {
-			
-			$.post("/ieum/hospital/detail",
-			{
+$.ajax({
+		url: "/ieum/myPage/reservation/detail",
+		type: "POST",
+		async: false,
+		data: { rNo: rNo,
+			action: "resUpdate" },
+		dataType: "json",
+		success: function(data) {
+			$.ajax({
+				url:"/ieum/hospital/detail",
+				type:"POST",
+				data: {
+					hNo: hNo,
+					mNo: data.mNo,
+					rDate: data.rDate,
+					rTime: data.rTime,
+					rContent: data.rContent,
+					action:"activeRes"
+				},
+				dataType: "json",
+				success: function(data){
+					localStorage.setItem("resData", JSON.stringify(data));
+					window.location.href = "/ieum/hospital/detail?hNo="+hNo;
+				}
 				
-			})
-			
-			window.location.href = "/ieum/hospital/detail?hNo=" + hNo
-		})
-		.fail(function() {
-			alert("예약변경 실패");
-		});
+			});
+		},
+		error: function(error) {
+			console.error("검색 실패:", error);
+			alert("검색 중 오류가 발생했습니다.");
+		}
+	});
 
 });
-
-
-
 
 
 

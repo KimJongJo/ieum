@@ -43,7 +43,7 @@ public class ResCancel extends HttpServlet {
 		ReservationService rService = new ReservationServiceImpl();
 		
 		try {
-			rService.resCancel(rNo);
+			rService.deleteRno(rNo);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
