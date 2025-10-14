@@ -37,7 +37,7 @@
 					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
 				</c:if>
 				<c:if test="${sessionScope.userType != 'ADMIN'}">
-					<jsp:include page="/common/nav/hosNav.html"></jsp:include>
+					<jsp:include page="/common/nav/hosNav.jsp"></jsp:include>
 				</c:if>
 				
 				<form method="post" id="noticeWriteForm"

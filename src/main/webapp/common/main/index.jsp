@@ -96,7 +96,12 @@
 									<span class="btn-link">${userInfo.username}</span>
 								</c:if>
 							</div>
-							<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
+							<c:if test="${userType == 'USER'}">
+								<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
+							</c:if>
+							<c:if test="${userType == 'DOCTOR' || userType == 'MANAGER'}">
+								<a href="${contextPath}/calender" class="btn-link">마이페이지</a>
+							</c:if>
 						</div>
 						<div class="login-body fc" id="fc"></div>
 					</c:when>

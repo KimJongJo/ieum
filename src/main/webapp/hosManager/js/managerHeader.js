@@ -1,4 +1,4 @@
-// 네비 추가 메뉴
+/*// 네비 추가 메뉴
 const menu = document.querySelector(".more-nav");
 const menu2 = document.querySelector(".more-nav2");
 const subBar = document.querySelector(".menu>.sub");
@@ -29,3 +29,4 @@ function show_sub2() {
 
 menu.addEventListener("click", show_sub);
 menu2.addEventListener("click", show_sub2);
+*/
