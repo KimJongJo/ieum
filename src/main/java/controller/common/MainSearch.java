@@ -58,7 +58,11 @@ public class MainSearch extends HttpServlet {
 
 			request.setAttribute("allCnt", searchNoticeCnt + searchCommuCnt);
 			request.setAttribute("keyword", keyword);
-			request.setAttribute("tab", tab);
+			request.setAttribute("tab", tab);			
+			
+			request.setAttribute("navPath", "/ieum/search");
+			request.setAttribute("navPathName", "메인");
+			request.setAttribute("navcurPage", "검색결과");
 			request.getRequestDispatcher("common/main/mainSearch.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
