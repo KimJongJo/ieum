@@ -580,5 +580,6 @@
 			</form>
 		</div>
 	</div>
+	<script src="${contextPath}/exam/js/examCheck.js"></script>
 </body>
 </html>
