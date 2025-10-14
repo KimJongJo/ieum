@@ -17,5 +17,8 @@ public interface BlackListDao {
 
 	List<BlackWithMemberDto> selectBlackWithMember(Integer uNo) throws Exception;
 	
-	  int deleteBlack(Map<String, Integer> map) throws Exception;
+	int deleteBlack(Map<String, Integer> map) throws Exception;
+	  
+	List<BlackWithMemberDto> selectBlackList(Integer row) throws Exception;
+	Integer selectBlackCount(Integer uNo) throws Exception;
 }

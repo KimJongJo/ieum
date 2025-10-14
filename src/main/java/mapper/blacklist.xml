@@ -30,6 +30,23 @@
 	    DELETE FROM black_list
 	    WHERE u_no = #{uNo} AND blocked_no = #{blockedNo}
 	</delete>
+	
+	
+	
+	<select id="selectBlackList" resultType="blackMember" parameterType="map">
+		SELECT m.nickname, m.email, b.black_created, b.u_no, b.blocked_no
+        FROM black_list b
+        JOIN member m
+            ON b.blocked_no = m.u_no
+        WHERE b.u_no = #{uNo}
+		LIMIT #{row}, 20
+	</select>
+	
+	<select id="selectBlackCount" resultType="Integer">
+		select count(*)
+	    from black_list
+	    where u_no = #{uNo}
+	</select>
     
 </mapper> 		
 

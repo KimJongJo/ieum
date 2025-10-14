@@ -140,7 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <!-- Main -->
     <div class="main-container">
         <!-- Sidebar -->
-        <div class="container-two">
+        <%-- <div class="container-two">
             <div class="sidebar">
                 <div class="sidebar-header">
                     건강이음<br>마이페이지
@@ -153,8 +153,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
                 </c:if>	
             </div>
-        </div>
-		
+        </div> --%>
+		<jsp:include page="/common/nav/nav.jsp" />
         <!-- Main Content -->
         <div class="container-three">
             <div id="text-box">

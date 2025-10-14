@@ -64,7 +64,6 @@ $(document).ready(function() {
 	            </div>
 	        </div>
         </c:if>
-
         <!-- Main Content -->
         <div class="container-three">
 	        <c:choose>

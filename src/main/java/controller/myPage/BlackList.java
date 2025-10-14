@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import dto.BlackWithMemberDto;
 import service.myPage.BlackListService;
 import service.myPage.BlackListServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class BlackList
@@ -40,8 +41,18 @@ public class BlackList extends HttpServlet {
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		BlackListService service = new BlackListServiceImpl();
 		
+		String spage = request.getParameter("page"); 
+		Integer page = 1; 
+		if(spage != null) page=Integer.parseInt(spage); 
+		PageInfo pageInfo = new PageInfo(page);
+		
+		
+		
+		
 		try {
-			List<BlackWithMemberDto> blackMember = service.getBlackWithMember(uNo);
+			List<BlackWithMemberDto> blackMember = service.listByPage(pageInfo, uNo);
+			
+			
 			// 중복 제거 (nickname 기준)
 			Map<String, BlackWithMemberDto> uniqueMap = new LinkedHashMap<>();
 			for(BlackWithMemberDto b : blackMember) {
@@ -50,6 +61,7 @@ public class BlackList extends HttpServlet {
 			List<BlackWithMemberDto> uniqueBlackMember = new ArrayList<>(uniqueMap.values());
 			
 			request.setAttribute("blackMember", uniqueBlackMember);
+			request.setAttribute("pageInfo", pageInfo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
