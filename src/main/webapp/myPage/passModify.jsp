@@ -30,7 +30,7 @@ $(document).ready(function() {
     <!-- Main -->
     <div class="main-container">
         <!-- Sidebar -->
-        <div class="container-two">
+        <%-- <div class="container-two">
             <div class="sidebar">
                 <div class="sidebar-header">
                     건강이음<br>마이페이지
@@ -44,7 +44,8 @@ $(document).ready(function() {
                 </c:if>	
 
             </div>
-        </div>
+        </div> --%>
+        <jsp:include page="/common/nav/nav.jsp" />
 
         <!-- Main Content -->
         <div class="container-three">

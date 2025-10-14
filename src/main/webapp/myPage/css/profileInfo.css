@@ -150,10 +150,10 @@ body {
 /* content 그리드 스타일 */
 .content {
     display: grid;
-    grid-template-columns: 200px 825px;  /* 2열 */
+    grid-template-columns: 200px 850px;  /* 2열 */
     grid-auto-rows: 48px;                /* 각 행 높이 */
     gap: 0;
-    width: 925px;
+    width: 1045px;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     overflow: hidden;
