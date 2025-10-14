@@ -37,7 +37,6 @@ public class ProfileInfo extends HttpServlet {
 		ProfileInfoService service = new ProfileInfoServiceImpl();
 		try {
 			MemberDto memberDto = service.selectProfileView(uNo);
-			System.out.println(memberDto.getUserType());
 			if(memberDto.getUserType().equals("USER")) {
 				request.setAttribute("navPath", "/ieum/calender");
 			}else {

@@ -23,7 +23,7 @@
 
 	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
-	<div class="container">
+	<div class="hos-container">
 		<div class="filter">
 			<div class="search-bar">
 				<div class="mt">검색</div>

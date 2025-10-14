@@ -5,6 +5,7 @@
     }
 
     body {
+    min-width:1500px;
       font-family: "Noto Sans KR", sans-serif;
       background-color: #fff;
       color: #000000;

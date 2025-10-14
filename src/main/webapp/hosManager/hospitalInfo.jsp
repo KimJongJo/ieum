@@ -8,7 +8,6 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
  		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
@@ -16,7 +15,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/profileInfo.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
+		<script src="https://kit.fontawesome.com/8d48045bdd.js"
+	crossorigin="anonymous"></script>
 
     <script>
         const context = "${pageContext.request.contextPath}";
@@ -31,7 +31,12 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="managerHeader.html"></jsp:include>
+                    <c:if test="${sessionScope.userType == 'ADMIN'}">
+						<jsp:include page="/common/nav/adminNav.html"></jsp:include>
+					</c:if>
+					<c:if test="${sessionScope.userType != 'ADMIN'}">
+						<jsp:include page="/common/nav/hosNav.jsp"></jsp:include>
+					</c:if>
                     <div class="info">
                        
                         <!-- Main Content -->

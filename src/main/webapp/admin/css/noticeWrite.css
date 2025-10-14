@@ -13,15 +13,22 @@ body {
 }
 
 .main {
-	min-width: 1600px;
+	min-width: 1500px;
+}
+
+.main-div{
+	background-color: #f7faff;
+	display:flex;
+	justify-content:center;
+	align-items:center;
 }
 
 .notice-under-section {
+	width:1425px;
 	padding-top: 35px;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	background-color: #f7faff;
 }
 
 .info {
