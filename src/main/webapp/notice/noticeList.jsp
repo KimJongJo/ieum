@@ -15,10 +15,10 @@
 <link rel="stylesheet" href="${contextPath}/common/pagination/page.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
-	<c:if test="${userType == 'ADMIN'}">
-		<link rel="stylesheet" type="text/css"
-	href="${contextPath}/admin/css/admin.css">
-	</c:if>
+<c:if test="${userType == 'ADMIN'}">
+	<link rel="stylesheet" type="text/css"
+		href="${contextPath}/admin/css/admin.css">
+</c:if>
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -27,13 +27,10 @@
 <script src="${contextPath}/notice/js/notice.js"></script>
 </head>
 <body>
-	<header>
-		<jsp:include page="/common/header/header.jsp"></jsp:include>
-	</header>
-
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 	<div class="notice-container">
 		<div class="notice-header">
-			<div class="notice-cnt" >
+			<div class="notice-cnt">
 				전체 건수<span id="noticeCnt">${cnt}</span>건
 			</div>
 			<div class="button-wrapper">
@@ -133,8 +130,7 @@
 				<div class="pagination" id="pagination">
 					<!-- 이전 버튼 -->
 					<c:if test="${pageInfo.curPage > 1}">
-						<button
-							onclick="renderList(${pageInfo.curPage-1})">&lt;</button>
+						<button onclick="renderList(${pageInfo.curPage-1})">&lt;</button>
 					</c:if>
 
 					<!-- 페이지 번호 반복 -->
@@ -142,17 +138,14 @@
 						end="${pageInfo.endPage}">
 						<c:if test="${pageNum <= pageInfo.allPage}">
 							<button class="${pageNum == pageInfo.curPage ? 'active' : ''}"
-								onclick="renderList(${pageNum})">
-								${pageNum}</button>
+								onclick="renderList(${pageNum})">${pageNum}</button>
 						</c:if>
 					</c:forEach>
 
 					<!-- 다음 버튼 -->
 					<c:if test="${pageInfo.curPage < pageInfo.endPage}">
 
-						<button
-							onclick="renderList(${pageInfo.curPage+1})">
-							&gt;</button>
+						<button onclick="renderList(${pageInfo.curPage+1})">&gt;</button>
 					</c:if>
 				</div>
 			</div>
