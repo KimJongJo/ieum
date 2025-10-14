@@ -7,30 +7,33 @@ const btnRight = document.querySelector("#moveRight");
 
 let currentIndex = 0;
 
-// 카드 폭 계산
-const cardWidth = cards[0].offsetWidth;
-const visibleCount = Math.floor(container.clientWidth / cardWidth);
-const maxIndex = Math.max(0, cards.length - visibleCount);
+if (cards.length) {
+	// 카드 폭 계산
+	const cardWidth = cards[0].offsetWidth;
+	const visibleCount = Math.floor(container.clientWidth / cardWidth);
+	const maxIndex = Math.max(0, cards.length - visibleCount);
 
-// 버튼 상태 업데이트
-function updateButtons() {
-	btnLeft.disabled = currentIndex === 0;
-	btnRight.disabled = currentIndex >= maxIndex;
-}
+	// 버튼 상태 업데이트
+	function updateButtons() {
+		btnLeft.disabled = currentIndex === 0;
+		btnRight.disabled = currentIndex >= maxIndex;
+	}
 
-// 스크롤 이동
-function scrollToIndex(i) {
-	currentIndex = Math.max(0, Math.min(maxIndex, i));
-	container.scrollTo({ left: cardWidth * currentIndex, behavior: "smooth" });
+	// 스크롤 이동
+	function scrollToIndex(i) {
+		currentIndex = Math.max(0, Math.min(maxIndex, i));
+		container.scrollTo({ left: cardWidth * currentIndex, behavior: "smooth" });
+		updateButtons();
+	}
+
+	// 버튼 클릭 이벤트
+	btnLeft.addEventListener("click", () => scrollToIndex(currentIndex - 1));
+	btnRight.addEventListener("click", () => scrollToIndex(currentIndex + 1));
+
+	// 초기 상태
 	updateButtons();
+
 }
-
-// 버튼 클릭 이벤트
-btnLeft.addEventListener("click", () => scrollToIndex(currentIndex - 1));
-btnRight.addEventListener("click", () => scrollToIndex(currentIndex + 1));
-
-// 초기 상태
-updateButtons();
 
 
 
@@ -69,6 +72,11 @@ $(document).ready(function() {
 		if (e.which === 13) {
 			loadRecListPage(1);
 		}
+	});
+	
+	//예약하러가기 버튼
+	$("#gotoRes").on("click", function() {
+		window.location.href = "/ieum/hospital/search";
 	});
 
 
@@ -114,7 +122,7 @@ $(document).ready(function() {
 								<span class="t2">지난 예약이 없습니다.</span>
 							</div>
 							<div>
-								<button class="btn-cir-w">예약하러 가기</button>
+								<button class="btn-cir-w" id="gotoRes">예약하러 가기</button>
 							</div>
 						</div>
 		
@@ -182,7 +190,9 @@ $(document).ready(function() {
 		pagination.attr("data-total", pageData.allPage);
 
 		//이전
-		pagination.append(`<button class="page previous" type="button"><i class="fa-solid fa-angle-left"></i></button>`)
+		if(pageData.curPage){
+			pagination.append(`<button class="page previous" type="button"><i class="fa-solid fa-angle-left"></i></button>`)
+		}
 
 		//페이지번호				
 		for (let i = pageData.startPage; i <= pageData.endPage; i++) {
@@ -190,15 +200,21 @@ $(document).ready(function() {
 				pagination.append(`
 				<button value="${i}" class="cur-page" type="button">${i}</button>
 				`)
+				$(".cur-page").addClass("active");
 			} else {
 				pagination.append(`
 				<button value="${i}" class="move-page" type="button">${i}</button>
 			`)
 			}
+			
 		}
 
 		//다음
-		pagination.append(`<button class="page next-page" type="button"><i class="fa-solid fa-angle-right"></i></button>`)
+		if(pageData.curPage){
+			pagination.append(`<button class="page next-page" type="button"><i class="fa-solid fa-angle-right"></i></button>`)
+		}
+		
+		
 	}
 
 
@@ -258,7 +274,7 @@ $(document).ready(function() {
 				hNo: hNo
 			})
 			.done(function() {
-				window.location.href = "/ieum/hospital/detail?hNo=" +hNo;
+				window.location.href = "/ieum/hospital/detail?hNo=" + hNo;
 			})
 			.fail(function(err) {
 				console.error("병원 선택 POST 실패:", err);

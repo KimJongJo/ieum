@@ -168,7 +168,7 @@ public class ReservationServiceImpl implements ReservationService {
 	//지난 예약
 	@Override
 	public List<ReservationInfoDto> recResList(Integer uNo, String keyword, PageInfo page, String sort) throws Exception {
-		final int pageSize = 5; // 페이지 당 글 수
+		final int pageSize = 3; // 페이지 당 글 수
 		final int pageGroup = 10;	// 페이지 그룹 수 (페이징 버튼 갯수)	
 		
 		Map<String, Object> recCnt = new HashMap<>();
