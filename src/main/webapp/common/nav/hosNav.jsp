@@ -10,14 +10,16 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 .first-block {
-	width: 195px;
-	height: 115px;
-	background-color: #4356b3;
-	border-radius: 5px 5px 0 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    width: 195px;
+    height: 115px;
+    background-color: #4a64d6;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size:18px;
+    font-weight:bold;
 }
 
 .first-block-span {
@@ -134,6 +136,11 @@
 						<ul class="sub">
 							<li><a href="/ieum/hosManager/reservationToday">오늘예약</a></li>
 							<li><a href="/ieum/hosManager/reservation">예약/진단기록</a></li>
+						</ul>
+						<button type="button" class="button more-nav">공지사항 관리</button>
+						<ul class="sub">
+							<li><a href="/ieum/admin/notice/write">공지사항등록</a></li>
+							<li><a href="/ieum/admin/notice?page=1">공지사항목록</a></li>
 						</ul>
 					</c:when>
 					<c:otherwise>

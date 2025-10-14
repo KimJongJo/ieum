@@ -13,17 +13,25 @@ body {
 }
 
 .notice-container {
-	max-width: 1128px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	min-width: 1500px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
 /* 헤더 부분 */
 .notice-header {
+	width:1088px;
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
 	justify-content: space-between;
+}
+
+.list-section{
+	width:1088px;
 }
 
 .notice-cnt {
@@ -49,6 +57,7 @@ body {
 }
 
 .no-data{
+	width:1088px;
 	height: 360px;
 	display: flex;
 	flex-direction: column;

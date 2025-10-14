@@ -23,10 +23,10 @@
 
 	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
-	<div class="container">
+	<div class="hos-container">
 		<div class="filter">
 			<div class="search-bar">
-				<div class="mt">검색</div>
+				<div class="mt"></div>
 				<form class="search-box" name="keyword" method="post">
 					<input id="keyword" class="search-txt" name=""
 						placeholder="병원명으로 검색">

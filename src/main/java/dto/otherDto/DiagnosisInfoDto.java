@@ -58,16 +58,14 @@ public class DiagnosisInfoDto {
 		this.diaName = diaName;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "DiagnosisInfoDto [rNo=" + rNo + ", pNm=" + pNm + ", pNo=" + pNo + ", time=" + time + ", diaState="
-				+ diaState + ", diaNo=" + diaNo + ", getrNo()=" + getrNo() + ", getpNm()=" + getpNm() + ", getpNo()="
-				+ getpNo() + ", getTime()=" + getTime() + ", getDiaState()=" + getDiaState() + ", getDiaNo()="
-				+ getDiaNo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ diaState + ", diaNo=" + diaNo + ", mNm=" + mNm + ", date=" + date + ", diaName=" + diaName + "]";
 	}
-
-
 
 	public String getmNm() {
 		return mNm;

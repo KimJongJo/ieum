@@ -50,4 +50,18 @@ public class BlackListDaoImpl implements BlackListDao{
         }
     }
 
+	@Override
+	public List<BlackWithMemberDto> selectBlackList(Integer row) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList("mapper.blacklist.selectBlackList", row);
+		}
+	}
+
+	@Override
+	public Integer selectBlackCount(Integer uNo) throws Exception {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne("mapper.blacklist.selectBlackCount", uNo);
+		}
+	}
+
 }

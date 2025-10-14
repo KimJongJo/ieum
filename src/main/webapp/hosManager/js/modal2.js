@@ -119,8 +119,12 @@ $(document).ready(function() {
 							diaryList.forEach(item => {
 								rows += `
 								<tr>
-	                        		<td class="dia-table-td dia-table-td2">${item.formatdCreated}</td>
-	                        		<td class="dia-table-td dia-table-td2"><i class="fa-regular fa-face-${item.mood}"></i></td>
+	                        		<td class="dia-table-td dia-table-td2">
+	                        			<div class="dia-diary-height">${item.formatdCreated}</div>
+	                        		</td>
+	                        		<td class="dia-table-td dia-table-td2">
+	                        			<div class="dia-diary-height"><i class="fa-regular fa-face-${item.mood} i-height"></i></div>
+                        			</td>
 	                        		<td class="dia-table-td">
 	                    			<div class="dia-name-div">
 	                					<div class="patient-comment-div">

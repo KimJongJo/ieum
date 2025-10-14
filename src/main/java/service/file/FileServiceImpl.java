@@ -76,7 +76,6 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public FileDto getFile(Integer fileNo) {
 		FileDto dto = fileDao.getFile(fileNo);
-		System.out.println(dto);
 		return fileDao.getFile(fileNo);
 	}
 

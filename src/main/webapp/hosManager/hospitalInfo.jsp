@@ -8,7 +8,6 @@
         <title>Document</title>
         <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/manager.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/managerHeader.css" />
  		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
@@ -16,7 +15,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/hosManager/css/profileInfo.css" />
         <!-- jquery -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		
+		<script src="https://kit.fontawesome.com/8d48045bdd.js"
+	crossorigin="anonymous"></script>
 
     <script>
         const context = "${pageContext.request.contextPath}";

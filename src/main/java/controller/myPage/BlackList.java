@@ -16,13 +16,14 @@ import javax.servlet.http.HttpSession;
 import dto.BlackWithMemberDto;
 import service.myPage.BlackListService;
 import service.myPage.BlackListServiceImpl;
+import util.PageInfo;
 
 /**
  * Servlet implementation class BlackList
  */
 @WebServlet("/black")
 public class BlackList extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,47 +33,58 @@ public class BlackList extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Integer uNo = (Integer) session.getAttribute("uNo");
-		BlackListService service = new BlackListServiceImpl();
-		
-		try {
-			List<BlackWithMemberDto> blackMember = service.getBlackWithMember(uNo);
-			// 중복 제거 (nickname 기준)
-			Map<String, BlackWithMemberDto> uniqueMap = new LinkedHashMap<>();
-			for(BlackWithMemberDto b : blackMember) {
-			    uniqueMap.put(b.getNickname(), b); // key가 중복되면 나중 값이 덮어짐
-			}
-			List<BlackWithMemberDto> uniqueBlackMember = new ArrayList<>(uniqueMap.values());
-			
-			request.setAttribute("blackMember", uniqueBlackMember);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("navPath", "/ieum/calender");
-		request.setAttribute("navPathName", "마이페이지");
-		request.setAttribute("navcurPage", "차단목록");
-		
-		request.getRequestDispatcher("myPage/blackList.jsp").forward(request, response);
-	}
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      HttpSession session = request.getSession();
+      Integer uNo = (Integer) session.getAttribute("uNo");
+      BlackListService service = new BlackListServiceImpl();
+      
+      String spage = request.getParameter("page"); 
+      Integer page = 1; 
+      if(spage != null) page=Integer.parseInt(spage); 
+      PageInfo pageInfo = new PageInfo(page);
+      
+      
+      
+      
+      try {
+         List<BlackWithMemberDto> blackMember = service.listByPage(pageInfo, uNo);
+         
+         
+         // 중복 제거 (nickname 기준)
+         Map<String, BlackWithMemberDto> uniqueMap = new LinkedHashMap<>();
+         for(BlackWithMemberDto b : blackMember) {
+             uniqueMap.put(b.getNickname(), b); // key가 중복되면 나중 값이 덮어짐
+         }
+         List<BlackWithMemberDto> uniqueBlackMember = new ArrayList<>(uniqueMap.values());
+         
+         request.setAttribute("blackMember", uniqueBlackMember);
+         request.setAttribute("pageInfo", pageInfo);
+      } catch (Exception e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
+      
+      request.setAttribute("navPath", "/ieum/calender");
+      request.setAttribute("navPathName", "마이페이지");
+      request.setAttribute("navcurPage", "차단목록");
+      
+      request.getRequestDispatcher("myPage/blackList.jsp").forward(request, response);
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Integer uNo = (Integer) session.getAttribute("uNo");
-		
-		
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      HttpSession session = request.getSession();
+      Integer uNo = (Integer) session.getAttribute("uNo");
+      
+      
         String blockedNoStr = request.getParameter("blockedNo");
         
-	    BlackListService blackListService = new BlackListServiceImpl();
+       BlackListService blackListService = new BlackListServiceImpl();
 
         // POST 요청에서 차단 해제할 사용자 번호
         if (blockedNoStr == null || blockedNoStr.isEmpty()) {
@@ -99,6 +111,6 @@ public class BlackList extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/black?error=exception");
         }
 
-	}
+   }
 
 }

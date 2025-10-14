@@ -31,20 +31,20 @@
         <!-- Sidebar -->
         <div class="container-two">
             <!-- Sidebar -->
-	        <div class="container-two">
-	            <div class="sidebar">
-	                <div class="sidebar-header">
-	                    건강이음<br>마이페이지
-	                </div>
-	                <div class="welcome">
-	                    <strong>*환영합니다*<br>최지성 회원님</strong>
-	                    <span>심원의방</span>
-	                </div>
+           <div class="container-two">
+               <div class="sidebar">
+                   <div class="sidebar-header">
+                       건강이음<br>마이페이지
+                   </div>
+                   <div class="welcome">
+                       <strong>*환영합니다*<br>최지성 회원님</strong>
+                       <span>심원의방</span>
+                   </div>
                     <c:if test="${userType == 'USER'}">
-	                	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
-	                </c:if>
-	            </div>
-	        </div>
+                      <jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
+                   </c:if>
+               </div>
+           </div>
         </div>
         
 
@@ -54,30 +54,57 @@
         
             <!-- 닉네임 -->
             <div class="text-wrapper-1">
-            	<c:out value="${blackMember.nickname}" default="성명"/>
+               <c:out value="${blackMember.nickname}" default="성명"/>
             </div>
 
             <!-- 이메일 + 버튼 같은 줄 -->
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="text-wrapper-2">
-                	<c:out value="${blackMember.email}" default="이메일"/>
+                   <c:out value="${blackMember.email}" default="이메일"/>
                 </div>
                <!-- form POST 방식 -->
-	            <form action="${pageContext.request.contextPath}/black" method="post">
-				    <input type="hidden" name="blockedNo" value="${blackMember.blockedNo}"/>
-				    <button type="submit" class="unblock-btn">차단 해제</button>
-				</form>
+               <form action="${pageContext.request.contextPath}/black" method="post">
+                <input type="hidden" name="blockedNo" value="${blackMember.blockedNo}"/>
+                <button type="submit" class="unblock-btn">차단 해제</button>
+            </form>
             </div>
 
             <!-- 업로드 날짜 -->
             <div class="text-wrapper-3">
-            	<c:out value="${blackMember.blackCreated}" default="차단닐짜"/>
+               <c:out value="${blackMember.blackCreated}" default="차단닐짜"/>
             </div>
         
         </div>
-		</c:forEach>
+      </c:forEach>
     </div>
-    
+    <div id="paging" style="text-align:center; margin:40px 0;">
+	<c:choose>
+		<c:when test="${pageInfo.curPage>1 }">
+			<a href="${pageContext.request.contextPath}/black?page=${pageInfo.curPage-1}">
+			<img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+			</a>
+		</c:when>
+		<c:otherwise>
+			<a><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/></a>
+		</c:otherwise>
+	</c:choose>
+
+	<c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" var="page">
+		<a href="${pageContext.request.contextPath}/black?page=${page}" class="${pageInfo.curPage == page? 'select' : 'btn'}">${page}</a>	
+	</c:forEach>
+		<c:choose>
+		<c:when test="${pageInfo.curPage<pageInfo.allPage }">
+			<a href="${pageContext.request.contextPath}/black?page=${pageInfo.curPage+1}">
+			<img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+			</a>
+		</c:when>
+		<c:otherwise>
+			<a>
+			<img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+			</a>
+		</c:otherwise>
+	</c:choose>
+</div>
     <!-- 차단헤제 모달 -->
     <div class="modal-main-div" id="completeModalBlack" style="display:none;">
         <div class="modal-div-over">

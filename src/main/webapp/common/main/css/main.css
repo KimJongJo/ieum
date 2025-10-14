@@ -13,9 +13,12 @@ body {
 }
 
 .main-container {
-	max-width: 1280px;
+	min-width:1500px;
 	margin: 0 auto;
 	background-color: #fff;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
 }
 
 .secton-title, .section-title {
@@ -113,6 +116,7 @@ body {
 
 /* ---------------------- 병원추천 + 자가진단 ---------------------- */
 .hospital-login-group {
+	width:1280px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -396,6 +400,9 @@ body {
 }
 
 .commu-item {
+	white-space: nowrap;        /* 줄바꿈 X */
+  	overflow: hidden;           /* 넘친 부분 숨김 */
+  	text-overflow: ellipsis;
 	cursor: pointer;
 	flex: 1;
 	border: 2px solid #d9d9d9;

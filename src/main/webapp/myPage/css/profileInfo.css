@@ -1,5 +1,6 @@
 /* 전체 레이아웃 */
 body {
+	min-width:1500px;
     margin: 0;
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
@@ -63,6 +64,15 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
+
+/* 관리자용 사이드바 */
+.sidebar2 {
+    width: 195px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .sidebar-header {
     background-color: #4a64d6;
     color: white;
@@ -150,10 +160,10 @@ body {
 /* content 그리드 스타일 */
 .content {
     display: grid;
-    grid-template-columns: 200px 825px;  /* 2열 */
+    grid-template-columns: 200px 850px;  /* 2열 */
     grid-auto-rows: 48px;                /* 각 행 높이 */
     gap: 0;
-    width: 925px;
+    width: 1045px;
     border: 1px solid #d9d9d9;
     border-radius: 8px;
     overflow: hidden;

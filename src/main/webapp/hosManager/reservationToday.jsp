@@ -46,7 +46,9 @@
 <%-- 					    		<jsp:include page="managerHeader.html"></jsp:include> --%>
 <%-- 					    	</c:otherwise> --%>
 <%-- 					    </c:choose> --%>
-						<jsp:include page="../common/nav/nav.jsp"></jsp:include>                    
+						<jsp:include page="../common/nav/nav.jsp"></jsp:include>                 
+                    
+
                     <div class="info">
                         <div class="search-name">
                             <span class="hos-name">${hosName}</span>

@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -174,7 +174,7 @@
 		</div>
 	</div>
 
-	<!-- 	<script src="./managerHeader.js"></script> -->
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
 
 </body>
 </html>

@@ -42,9 +42,10 @@
 				<div class="line"></div>
 			</div>
 
-
 			<div class="docbox">
-				<img class="docprof" src="${contextPath }/${resDetail.filePath }/${resDetail.fileName}" onerror="this.onerror=null; this.src='';" />
+			<div class="docprof">
+				<img class="image-thumbnail" src="${contextPath }/${resDetail.filePath }/${resDetail.fileName}" onerror="this.onerror=null; this.src='';" />
+				</div>
 
 				<div class="info">
 					<div class="doci">
