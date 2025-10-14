@@ -88,9 +88,10 @@
 					<div class="line"></div>
 
 					<div class="docbox" >
-						<img class="docprof"
+					<div class="docprof">
+						<img class="image-thumbnail"
 							src="${contextPath }/${rid.filePath }/${rid.fileName}"
-							onerror="this.onerror=null; this.src='';" />
+							onerror="this.onerror=null; this.src='';" /></div>
 
 						<div class="info">
 							<div class="doci">

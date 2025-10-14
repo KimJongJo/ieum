@@ -109,6 +109,7 @@ a {
 	margin-right: 49px;
 	border-radius: 5px;
 	margin-left: 69px;
+	overflow:hidden;
 }
 
 .hinfor {
@@ -325,11 +326,12 @@ a {
 
 .doc-prof {
 	background-color: #eeeeee;
-	width: 147px;
+	width: 160px;
 	height: 204px;
 	margin-right: 18px;
 	flex-shrink: 0;
 	border-radius: 5px;
+	overflow:hidden;
 }
 
 .d1 {
