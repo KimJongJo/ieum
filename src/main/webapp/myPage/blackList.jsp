@@ -78,6 +78,36 @@
       </c:forEach>
     </div>
     
+    
+    <div id="paging" style="text-align:center; margin:40px 0;">
+   <c:choose>
+      <c:when test="${pageInfo.curPage>1 }">
+         <a href="${contextPath}/black?page=${pageInfo.curPage-1}">
+         <img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/>
+         </a>
+      </c:when>
+      <c:otherwise>
+         <a><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" width="20" height="20"/></a>
+      </c:otherwise>
+   </c:choose>
+
+   <c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" step="1" var="page">
+      <a href="${contextPath}/black?page=${page}" class="${pageInfo.curPage == page? 'select' : 'btn'}">${page}</a>   
+   </c:forEach>
+      <c:choose>
+      <c:when test="${pageInfo.curPage<pageInfo.allPage }">
+         <a href="${contextPath}/black?page=${pageInfo.curPage+1}">
+         <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+         </a>
+      </c:when>
+      <c:otherwise>
+         <a>
+         <img id="arrow" src="${pageContext.request.contextPath}/img/입체오른쪽화살표.png" width="20" height="20"/>
+         </a>
+      </c:otherwise>
+   </c:choose>
+</div>
+    
     <!-- 차단헤제 모달 -->
     <div class="modal-main-div" id="completeModalBlack" style="display:none;">
         <div class="modal-div-over">

@@ -62,7 +62,7 @@
 
 				<div class="hinfoa">
 
-					<img src="${contextPath}/${hosDetail.filePath}${hosDetail.fileName}" class="file_no" />
+					<img src="${contextPath}/${hosDetail.filePath}/${hosDetail.fileName}" class="file_no" />
 
 					<div class="hinfor">
 						<div class="hinfoh">
