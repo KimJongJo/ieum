@@ -91,8 +91,7 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<img class="circle"
-									src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+								<img class="circle" src="${contextPath}/${profile}">
 								<c:if test="${sessionScope.userType == 'USER' }">
 									<span class="btn-link">${userInfo.nickname}</span>
 								</c:if>

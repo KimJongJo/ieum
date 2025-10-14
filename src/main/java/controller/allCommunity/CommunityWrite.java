@@ -74,12 +74,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         
         //추가됨
         String categoryNoStr = request.getParameter("categoryNo");
-//        String categoryNoStr = request.getParameter("categoryNo");
-//        if (categoryNoStr == null || categoryNoStr.isEmpty()) {
-//            request.setAttribute("err", "카테고리를 선택해주세요.");
-//            request.getRequestDispatcher("allCommunity/communityWrite.jsp").forward(request, response);
-//            return;
-//        }
         
      // 카테고리 선택 여부 확인
         if (categoryNoStr == null || categoryNoStr.isEmpty()) {

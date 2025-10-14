@@ -32,6 +32,10 @@ public class Join2 extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("userType", userType);
 		
+		request.setAttribute("navPath", "/ieum/join1");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "약관동의");
+		
 		request.getRequestDispatcher("/common/join/join2.jsp").forward(request, response);
 	}
 

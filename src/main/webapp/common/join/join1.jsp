@@ -6,10 +6,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/common/join/css/join1.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
     </head>
     <body>
     	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>

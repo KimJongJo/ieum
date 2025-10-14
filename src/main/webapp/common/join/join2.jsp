@@ -10,8 +10,8 @@
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
-        <script src="https://kit.fontawesome.com/b5ec955390.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://kit.fontawesome.com/8d48045bdd.js"></script>
     </head>
     <body>
     <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
