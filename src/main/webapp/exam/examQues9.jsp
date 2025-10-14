@@ -39,7 +39,7 @@
 				</div>
 			</div>
 
-			<form action="${contextPath }/exam/exam9" method="post">
+			<form id="examForm" action="${contextPath }/exam/exam9" method="post">
 				<div class="ques">
 					<span class="question">Q1. 이전에 했던 인터넷게임에 대해 계속 생각하거나, 인터넷게임을
 						할 생각에 몰두했다.</span>
