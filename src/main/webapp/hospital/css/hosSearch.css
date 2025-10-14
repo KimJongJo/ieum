@@ -19,6 +19,7 @@ a {
     width: 1280px;
     display: flex;
     align-items: flex-start;
+    margin-top:10px;
 }
 
 /* 필터 공통 */
