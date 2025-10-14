@@ -9,12 +9,13 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/common/main/css/main.css">
-	
-	<c:if test="${userType == 'ADMIN'}">
-		<link rel="stylesheet" type="text/css"
-	href="${contextPath}/admin/css/admin.css">
-	</c:if>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
+
+<c:if test="${userType == 'ADMIN'}">
+	<link rel="stylesheet" type="text/css"
+		href="${contextPath}/admin/css/admin.css">
+</c:if>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
@@ -68,8 +69,10 @@
 				<div class="hospital-list">
 					<c:forEach var="hospital" items="${hosList}">
 						<div class="hospital-item" onclick="goHosDetail(${hospital.hNo})">
-							<img class="hospital-img"
-								src="${contextPath}/${hospital.hosImgPath}/${hospital.hosImgNm}">
+							<div class="hospital-img-box">
+								<img class="hospital-img"
+									src="${contextPath}/${hospital.hosImgPath}/${hospital.hosImgNm}">
+							</div>
 							<span class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
 						</div>
 					</c:forEach>
@@ -88,7 +91,8 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+								<img class="circle"
+									src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
 								<c:if test="${sessionScope.userType == 'USER' }">
 									<span class="btn-link">${userInfo.nickname}</span>
 								</c:if>
@@ -121,14 +125,50 @@
 								</div>
 							</a>
 							<div class="login-content">
-								<c:forEach var="diag" items="${diagCateList}">
+								<div class="row-item">
 									<div class="login-item"
-										onclick="location.href=`${contextPath}/exam/examQues${diag.examNo}.jsp`">
-										<img class="rectangle"
-											src="${contextPath}/${diag.examImgPath}/${diag.examImgNm}"></img>
-										<span>${diag.examCate}</span>
+										onclick="location.href=`${contextPath}/exam/exam1`">
+										<img class="rectangle" src="/ieum/img/exam1_3.png"></img> <span>우울</span>
 									</div>
-								</c:forEach>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam2`">
+										<img class="rectangle" src="/ieum/img/exam2_3.png"></img> <span>스트레스</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam3`">
+										<img class="rectangle" src="/ieum/img/exam3_3.png"></img> <span>ADHD</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam4`">
+										<img class="rectangle" src="/ieum/img/exam4_3.png"></img> <span>조울증(성인)</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam5`">
+										<img class="rectangle" src="/ieum/img/exam5_3.png"></img> <span>조울증(청소년)</span>
+									</div>
+								</div>
+								<div class="row-item">
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam6`">
+										<img class="rectangle" src="/ieum/img/exam6_3.png"></img> <span>조기정신증</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam7`">
+										<img class="rectangle" src="/ieum/img/exam7_3.png"></img> <span>수면</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam8`">
+										<img class="rectangle" src="/ieum/img/exam8_3.png"></img> <span>알코올 중독</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam9`">
+										<img class="rectangle" src="/ieum/img/exam9_3.png"></img> <span>게임 중독</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam10`">
+										<img class="rectangle" src="/ieum/img/exam10_3.png"></img> <span>PTSD</span>
+									</div>
+								</div>
 							</div>
 						</div>
 					</c:otherwise>
@@ -267,6 +307,6 @@
 		<!-- 지도 영역 -->
 		<div class="map-right" id="map"></div>
 	</section>
-	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>

@@ -30,7 +30,7 @@
     </div>
     
 	<div class="myPage">
-		<jsp:include page="/common/nav/userNav.html" />
+		<jsp:include page="/common/nav/nav.jsp" />
 		<div class="container1">
 			<div class="comres">
 				<div class="comhead">

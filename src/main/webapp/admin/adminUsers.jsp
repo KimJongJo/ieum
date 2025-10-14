@@ -33,14 +33,15 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="../common/nav/adminNav.html"></jsp:include>
+<%--                     <jsp:include page="../common/nav/adminNav.html"></jsp:include> --%>
+					<jsp:include page="../common/nav/nav.jsp"></jsp:include>
                     <div class="info">
                         <div class="search-name">
                             <span class="search-name-span">일반 사용자 목록 조회</span>
                         </div>
                         <form class="admin-search-bar">
                             <input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
-                            <button class="search-bar-icon" type="button" id="searchBtn">
+                            <button class="s	earch-bar-icon" type="button" id="searchBtn">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
 

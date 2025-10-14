@@ -31,12 +31,12 @@ body {
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
+	gap: 40px;
 }
 
 .diary-container {
 	width: 1128px;
 	margin: 0 auto;
-	margin-left: 30px;
 }
 
 /* 캘린더 헤더 */
