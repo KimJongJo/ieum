@@ -33,6 +33,10 @@ public class FindId2 extends HttpServlet {
 		String userType =  request.getParameter("userType");
 		session.setAttribute("userType", userType);
 		
+		request.setAttribute("navPath", "/ieum/findId1");
+		request.setAttribute("navPathName", "아이디 찾기");
+		request.setAttribute("navcurPage", "본인인증");
+		
 		request.getRequestDispatcher("/common/findId/findId2.jsp").forward(request, response);;
 	}
 

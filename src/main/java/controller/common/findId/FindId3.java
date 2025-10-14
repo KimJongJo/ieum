@@ -39,6 +39,10 @@ public class FindId3 extends HttpServlet {
 		Map<String, Object> userMap = service.findId(email);
 		request.setAttribute("userMap", userMap);
 		
+		request.setAttribute("navPath", "/ieum/findId1");
+		request.setAttribute("navPathName", "아이디 찾기");
+		request.setAttribute("navcurPage", "아이디 확인");
+		
 		session.removeAttribute("userType");
 		
 		request.getRequestDispatcher("/common/findId/findId3.jsp").forward(request, response);

@@ -28,6 +28,10 @@ public class Join1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("navPath", "/ieum/join1");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "회원 유형");
+		
 		request.getRequestDispatcher("/common/join/join1.jsp").forward(request, response);
 	}
 

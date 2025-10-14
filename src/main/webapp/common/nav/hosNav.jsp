@@ -113,7 +113,7 @@
 	<div class="main-nav">
 		<div class="first-block">
 			<img src="../image/건강이음.png" width="120px" alt="" /> <span
-				class="first-block-span">${navPathName}</span>
+				class="first-block-span">건강이음 <br>${ navPathName }</span>
 		</div>
 		<div class="second-block">
 			<span class="second-block-first">환영합니다</span>
@@ -147,7 +147,7 @@
 						<button onclick="location.href='/ieum/hosManager/hospitalInfo'"
 							type="button" class="button">병원 관리</button>
 
-						<button type="button" class="button more-nav">공지사항 관리</button>
+						<button type="button" class="button more-nav">공지사항</button>
 						<ul class="sub">
 							<li><a href="/ieum/admin/notice/write">공지사항등록</a></li>
 							<li><a href="/ieum/admin/notice?page=1">공지사항목록</a></li>

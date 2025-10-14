@@ -34,20 +34,7 @@
     </div>
     
                   <div class="main-container">
-                    <div class="container-two">
-			            <div class="sidebar">
-			                <div class="sidebar-header">
-			                    건강이음<br>마이페이지
-			                </div>
-			                <div class="welcome">
-			                    <strong>*환영합니다*<br>최지성 회원님</strong>
-			                    <span>심원의방</span>
-			                </div>
-                            <c:if test="${userType == 'USER'}">
-			                	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
-			                </c:if>	
-			            </div>
-			        </div>
+                   	<jsp:include page="/common/nav/nav.jsp"></jsp:include>
                     <div class="info">
                         <div class="info-div">
                             <span class="info-span">진료 기록 조회</span>

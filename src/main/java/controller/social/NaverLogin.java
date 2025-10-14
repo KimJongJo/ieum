@@ -82,7 +82,7 @@ public class NaverLogin extends HttpServlet {
 		// member 객체가 있을때
 		if(naverDto.getMemberDto() != null) {
 			FileDto fileDto = fileService.getFile(member.getFileNo());
-			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
+			String filePath = fileDto.getFilePath() + fileDto.getFileName();
 			session.setAttribute("profile", filePath);
 			session.setAttribute("hNo", naverDto.getMemberDto().getuNo());
 			response.sendRedirect(request.getContextPath() + "/index");
@@ -113,14 +113,6 @@ public class NaverLogin extends HttpServlet {
 		
 		
 		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -33,6 +33,9 @@ public class Join3 extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("diaryPrivate", diaryPrivate);
 		
+		request.setAttribute("navPath", "/ieum/join1");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "본인인증");
 		
 		request.getRequestDispatcher("/common/join/join3.jsp").forward(request, response);
 	}
