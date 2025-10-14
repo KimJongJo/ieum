@@ -13,10 +13,13 @@ body {
 }
 
 .notice-container {
-	max-width: 1128px;
+	min-width: 1500px;
 	margin: 0 auto;
 	/* padding: 20px; */
 	margin-top: 20px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
 }
 
 /* 제목 영역 */
@@ -24,11 +27,12 @@ body {
 	background: #004aad;
 	color: #fff;
 	height: 80px;
-	padding: 14px 20px;
+	width: 1128px; padding : 14px 20px;
 	font-size: 18px;
 	font-weight: 600;
 	display: flex;
 	align-items: center;
+	padding: 14px 20px;
 }
 
 .notice-header .tag {
@@ -43,13 +47,14 @@ body {
 }
 
 .notice-info {
-	border-bottom: 1px solid #e0e0e0;
+	width: 1128px; border-bottom : 1px solid #e0e0e0;
 	padding: 12px 20px;
 	font-size: 13px;
 	color: #444;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 200px;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .notice-info>div:nth-child(1) {
@@ -71,13 +76,14 @@ body {
 
 /* 첨부파일 */
 .notice-attach {
-	cursor: pointer;	
+	width: 1128px; cursor : pointer;
 	border-bottom: 1px solid #e0e0e0;
 	padding: 12px 20px;
 	font-size: 13px;
 	color: #333;
 	display: flex;
 	flex-direction: column;
+	cursor: pointer;
 }
 
 .notice-attach span {
@@ -87,17 +93,19 @@ body {
 
 /* 본문 */
 .notice-content {
-	padding: 20px;
+	width: 1128px; padding : 20px;
 	font-size: 14px;
 	line-height: 1.6;
 	color: #333;
 	min-height: 250px;
-/* 	height: 1000px; */
+	/* 	height: 1000px; */
 	resize: none;
+	padding: 20px;
 }
 
 /* 이전글, 다음글 */
 .notice-nav {
+	width:1128px;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
@@ -115,6 +123,7 @@ body {
 
 /* 버튼 */
 .notice-footer {
+	width:1128px;
 	text-align: right;
 	padding: 14px 20px;
 }

@@ -3,12 +3,12 @@
 }
 
 .container {
-	width: 1280px;
+	min-width:1500px;
 	margin: 0 auto; /* 화면 가운데 정렬 */
 }
 
 .login-inner {
-	/* width: 1280px; */
+	min-width:1500px;
 	width:100%;
 	height: 30px;
 	justify-content: center;
@@ -62,7 +62,7 @@
 	align-items: center;
 	width: 100%;
 	max-width: 1280px;
-	/* margin: 15px auto 0 auto; */
+	margin:0 auto;
 }
 /* 숨기고 싶은 메뉴 */
 /* .header .menu span.hidden {
@@ -282,13 +282,14 @@
 }
 
 #main-nav .main-van-menu {
-	
+	font-weight:500;
 	font-size:18px;
 	margin-left:60px;
 	transition-duration:0.3s;
 }
 
 .main-van-menu2{
+	font-weight:500;
 	font-size:18px;
 	margin-left:60px;
 }
@@ -310,7 +311,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: #EBF3FF;
+  background: white;
   padding: 0;
   margin: 0;
   z-index: 10;
@@ -375,6 +376,7 @@
   /* 중헤더 */
   
   .sub-header-div{
+  	min-width:1500px;
   	height:120px;
   	display:flex;
   	justify-content:center;
@@ -411,6 +413,6 @@
   
   .place{
   	font-size:23px;
-  	
+  	font-weight:600;
   }
   

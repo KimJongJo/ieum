@@ -70,7 +70,7 @@
 	<select id="selectProfileInfo" parameterType="int"
 		resultType="member">
 		select username, nickname, id, u_address, email,
-		birth_date, gender, diary_private, u_tel, state_code, user_type
+		birth_date, gender, diary_private, u_tel, state_code, user_type, introduction
 		from member
 		where u_no = #{uNo}
 	</select>

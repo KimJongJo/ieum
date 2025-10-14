@@ -8,6 +8,10 @@ body, form {
 	margin:0;
 }
 
+body{
+	min-width:1500px;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
