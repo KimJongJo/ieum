@@ -34,7 +34,7 @@
         <span>즐겨찾는 병원</span>
     </div>
 	<div class="fav-container">
-		<jsp:include page="/common/nav/userNav.jsp" />
+		<jsp:include page="/common/nav/nav.jsp" />
 		<div class="container">
 			<div id="hospitalList">
 <%-- 				<c:when test="${not empty noticeList}"> --%>
