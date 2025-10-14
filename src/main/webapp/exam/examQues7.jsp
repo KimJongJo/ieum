@@ -97,7 +97,7 @@
 								name="score3" value="1"> <span class="s1">약간 있음</span></td>
 
 							<td class="score2"><input class="scores" type="radio"
-								name="score" value="0"> <span class="s1">전혀 없음</span></td>
+								name="score3" value="0"> <span class="s1">전혀 없음</span></td>
 						</tr>
 					</table>
 					<span class="question">Q2.당신의 현재 수면 패턴에 얼마나 만족하십니까? </span>
@@ -210,5 +210,6 @@
 		</div>
 	</div>
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
+	<script src="${contextPath}/exam/js/exam7Check.js"></script>
 </body>
 </html>
