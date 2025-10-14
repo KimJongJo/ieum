@@ -52,6 +52,7 @@ public class ProfileInfoModify extends HttpServlet {
         try {
         	//회원 정보 조회
         	MemberProfileDto member = profileService.selectMemberWithProFileImg(uNo);
+        	System.out.println(member);
             request.setAttribute("member", member);
             
 //            MemberProfileDto memberProfileDto = profileService.selectMemberWithProfile(uNo);

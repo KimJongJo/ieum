@@ -575,6 +575,5 @@
 		</div>
 	</div>
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
-	<script src="${contextPath}/exam/js/exam6Check.js"></script>
 </body>
 </html>

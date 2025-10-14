@@ -295,6 +295,5 @@
 		</div>
 	</div>
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
-	<script src="${contextPath}/exam/js/examCheck.js"></script>
 </body>
 </html>
