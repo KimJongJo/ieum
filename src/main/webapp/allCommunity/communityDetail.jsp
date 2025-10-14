@@ -163,20 +163,25 @@ $(function () {
    
 // 신고하기 모달 AJAX 처리
    $('#reportForm').submit(function(e){
-    e.preventDefault(); // 기본 submit 막기
-    var form = $(this);
-    var commeNo = $('#reportCommeNo').val();
+       e.preventDefault(); // 기본 submit 막기
+       var form = $(this);
+       var commeNo = $('#reportCommeNo').val();
 
-    $.post(form.attr('action'), { commeNo: commeNo }, function(data){
-        alert(data.message); // 서버에서 받은 메시지 출력
-        if(data.success){
-            $('#blockReportModal').hide();  // 성공하면 모달 닫기
-        }
-    }, "json")
-    .fail(function(){
-        alert("서버 오류 발생");
-    });
-});
+       $.post(form.attr('action'), { commeNo: commeNo }, function(data){
+           alert(data.message); // 서버에서 받은 메시지 출력
+           if(data.success){
+               $('#blockReportModal').hide();  // 성공하면 모달 닫기
+
+               // ✅ 신고 메뉴 비활성화
+               $('.comment-box[data-comme-no="' + commeNo + '"] .menu-item1')
+                   .addClass('disabled')  // CSS로 회색 처리 가능
+                   .off('click');          // 클릭 이벤트 제거
+           }
+       }, "json")
+       .fail(function(){
+           alert("서버 오류 발생");
+       });
+   });
    
    
    $('#modalClosereportBlock, #modalCancelreportBlock').click(function() {
