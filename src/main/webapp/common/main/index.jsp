@@ -120,14 +120,46 @@
 								</div>
 							</a>
 							<div class="login-content">
-								<c:forEach var="diag" items="${diagCateList}">
 									<div class="login-item"
-										onclick="location.href=`${contextPath}/exam/examQues${diag.examNo}.jsp`">
-										<img class="rectangle"
-											src="${contextPath}/${diag.examImgPath}/${diag.examImgNm}"></img>
-										<span>${diag.examCate}</span>
+										onclick="location.href=`${contextPath}/exam/exam1`">
+										<img class="rectangle" src=""></img> <span>우울</span>
 									</div>
-								</c:forEach>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam2`">
+										<img class="rectangle" src=""></img> <span>스트레스</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam3`">
+										<img class="rectangle" src=""></img> <span>ADHD</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam4`">
+										<img class="rectangle" src=""></img> <span>조울증(성인)</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam5`">
+										<img class="rectangle" src=""></img> <span>조울증(청소년)</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam6`">
+										<img class="rectangle" src=""></img> <span>조기정신증</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam7`">
+										<img class="rectangle" src=""></img> <span>수면</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam8`">
+										<img class="rectangle" src=""></img> <span>알코올 중독</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam9`">
+										<img class="rectangle" src=""></img> <span>알코올 중독</span>
+									</div>
+									<div class="login-item"
+										onclick="location.href=`${contextPath}/exam/exam10`">
+										<img class="rectangle" src=""></img> <span>PTSD</span>
+									</div>
 							</div>
 						</div>
 					</c:otherwise>
