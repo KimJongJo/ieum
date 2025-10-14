@@ -29,7 +29,7 @@
 				<td class="en"><a href="${contextPath}/exam/examQues2.jsp">스트레스</a></td>
 			</tr>
 			<tr>
-				<td class="en"><a href="${contextPath}/exam/examQues3.jsp">삶의질</a></td>
+				<td class="en"><a href="${contextPath}/exam/examQues3.jsp">아동용ADHD</a></td>
 			</tr>
 			<tr>
 				<td class="en"><a href="${contextPath}/exam/examQues4.jsp">조울증(성인)</a></td>
