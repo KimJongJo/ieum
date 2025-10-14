@@ -79,8 +79,12 @@
                                       <div class="p-info-dia-div">
                                         <table class="dia-table2" id="diary-table">
                                         	<tr>
-                                        		<td class="dia-table-td dia-table-td2"></td>
-                                        		<td class="dia-table-td dia-table-td2"><i class="fa-regular fa-face-smile"></i></td>
+                                        		<td class="dia-table-td dia-table-td2"><div class="dia-diary-height"></div></td>
+                                        		<td class="dia-table-td dia-table-td2">
+                                        			<div class="dia-diary-height">
+                                        				<i class="fa-regular fa-face-smile i-height"></i>
+                                        			</div>
+                                        		</td>
                                         		<td class="dia-table-td">
                                         			<div class="dia-name-div">
                                        					<div class="patient-comment-div">

@@ -61,7 +61,7 @@
 .dia-name-div {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .patient-comment-content {
@@ -73,7 +73,19 @@
 	height: 35px;
 }
 
+.dia-diary-height{
+	display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.i-height{
+	margin-top:12px;
+}
+
 .view-more {
+	margin-top:8px;
 	background-color: transparent;
 	border: none;
 	transition-duration: 0.2s;
