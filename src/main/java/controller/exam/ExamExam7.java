@@ -105,6 +105,12 @@ public class ExamExam7 extends HttpServlet {
 			request.setAttribute("examResult2", examResult2);
 			request.setAttribute("examSign", examSign);
 			request.setAttribute("total", total);
+			
+			request.setAttribute("navPath", "/ieum/exam");
+			request.setAttribute("navPathName", "자가검진");
+			request.setAttribute("navPath2", "/ieum/exam/exam7");
+			request.setAttribute("navPathName2", "수면");
+			request.setAttribute("navcurPage", "검진결과");
 
 			examNotice = examNotice.replaceAll("\r\n", "<br>");
 			examResult1 = examResult1.replaceAll("\r\n", "<br>");

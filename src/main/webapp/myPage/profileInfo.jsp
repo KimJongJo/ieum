@@ -33,23 +33,37 @@ $(document).ready(function() {
     <!-- Main -->
     <div class="main-container">
         <!-- Sidebar -->
-        <%-- <div class="container-two">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    건강이음<br>마이페이지
-                </div>
-                <div class="welcome">
-                    <strong>*환영합니다*<br>최지성 회원님</strong>
-                    <span>심원의방</span>
-                </div>
-                
-                <c:if test="${userType == 'USER'}">
-                	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
-                </c:if>
-                
-            </div>
-        </div> --%>
-		<jsp:include page="/common/nav/nav.jsp" />
+        <c:if test="${userType == 'USER'}">
+        	<div class="container-two">
+	            <div class="sidebar">
+	                <div class="sidebar-header">
+	                    건강이음<br>마이페이지
+	                </div>
+	                <div class="welcome">
+	                    <strong>*환영합니다*<br>${ uNm } 회원님
+						</strong> <span>${nickNm }</span>
+	                </div>
+	                
+	               	<jsp:include page="/myPage/myPageNav.jsp"></jsp:include>
+	                
+	            </div>
+	        </div>
+        </c:if>
+        
+        <c:if test="${userType != 'USER'}">
+        	<div class="container-two2">
+	            <div class="sidebar2">
+	                <div class="sidebar-header">
+	                    건강이음<br>마이페이지
+	                </div>
+	                <div class="welcome">
+	                    <strong>*환영합니다*<br>${ uNm } 회원님
+						</strong> <span>${nickNm }</span>
+	                </div>
+	                
+	            </div>
+	        </div>
+        </c:if>
         <!-- Main Content -->
         <div class="container-three">
 	        <c:choose>

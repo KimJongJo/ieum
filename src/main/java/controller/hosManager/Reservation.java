@@ -50,6 +50,7 @@ public class Reservation extends HttpServlet {
 		
 		String hosName = hosService.getHosName(uNo);
 		ResPageResponseDto resList = diaService.myDianosisList(uNo, curPage, "");
+		System.out.println(resList);
         request.setAttribute("hosName", hosName);
 		request.setAttribute("resList", resList);
 		
