@@ -50,7 +50,7 @@ public class ExamExam9 extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		Integer eNo = 9;
-		String examName = "알코올중독";
+		String examName = "게임 중독";
 		String examResult1;
 		String examResult2;
 		String examSign;

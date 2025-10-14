@@ -50,7 +50,7 @@ public class ExamExam3 extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 
 		Integer eNo = 4;
-		String examName = "조울증(성인)";
+		String examName = "아동용 ADHD";
 		String examResult1;
 		String examResult2;
 		String examSign;
