@@ -22,15 +22,15 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-	<c:if test="${userType == 'ADMIN'}">
-		<link rel="stylesheet" type="text/css"
-	href="${contextPath}/admin/css/admin.css">
-	</c:if>
+<c:if test="${userType == 'ADMIN'}">
+	<link rel="stylesheet" type="text/css"
+		href="${contextPath}/admin/css/admin.css">
+</c:if>
 <title>hosDe-res</title>
 </head>
 
 <body>
-<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="container1">
 		<div class="hh">
 			<div class="hbt">
@@ -61,9 +61,11 @@
 			<form class="hos-box1" action="" method="get">
 
 				<div class="hinfoa">
-
-					<img src="${contextPath}/${hosDetail.filePath}/${hosDetail.fileName}" class="file_no" />
-
+					<div class="file_no">
+						<img
+							src="${contextPath}/${hosDetail.filePath}/${hosDetail.fileName}"
+							class="image-thumbnail" />
+					</div>
 					<div class="hinfor">
 						<div class="hinfoh">
 							<div class="hos-cate">
@@ -178,7 +180,11 @@
 			<div class="doctor-box">
 				<c:forEach var="doctorlist" items="${docList}">
 					<div class="dal">
-						<img src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}" class="doc-prof" />
+						<div class="doc-prof">
+							<img
+								src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}"
+								class="image-thumbnail" />
+						</div>
 						<div class="d1">
 							<div class="d2">
 								<p class="username">
@@ -263,8 +269,9 @@
 				<div class="doctor-box">
 					<c:forEach var="doctorlist" items="${docList}">
 						<button class="dall" type="button" data-mno="${doctorlist.uNo}">
-							<img src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}"  class="doc-prof"
-								onerror="this.onerror=null; this.src='';" />
+							<div class="doc-prof"><img
+								src="${contextPath}/${doctorlist.filePath}/${doctorlist.fileName}"
+								class="image-thumbnail" onerror="this.onerror=null; this.src='';" /></div>
 							<div class="d1">
 								<div class="d2">
 									<p class="username">
@@ -291,7 +298,8 @@
 							시간을 선택해 주세요</span>
 					</div>
 
-					<div class="select-date" data-rtime="${rTime }" data-rdate="${rDate }">
+					<div class="select-date" data-rtime="${rTime }"
+						data-rdate="${rDate }">
 
 						<input type="hidden" id="selectedDate" name="rDate">
 						<div class="calendar">
@@ -301,7 +309,7 @@
 
 						<input type="hidden" id="selectedTime" name="rTime"> <input
 							type="hidden" id="selectedDays" name="rDay">
-						<div class="time-table" >
+						<div class="time-table">
 							<label class="cnb"><input type="checkbox" name="chojin"
 								value="true" /> <span>이 병원에서 초진일 경우 체크</span> </label>
 							<p class="day">오전</p>
@@ -336,8 +344,9 @@
 					</div>
 					<input type="hidden" id="resContent" name="rContent">
 					<div class="b">
-						<textarea class="rc" id="rc" placeholder="상담 주제에 대해 메모해보세요!(최대200자)"
-							spellcheck="false" maxlength="200"></textarea>
+						<textarea class="rc" id="rc"
+							placeholder="상담 주제에 대해 메모해보세요!(최대200자)" spellcheck="false"
+							maxlength="200"></textarea>
 					</div>
 				</div>
 
@@ -376,10 +385,10 @@
 		</div>
 
 	</div>
-	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<!-- 로그인 여부 확인 -->
 	<script>
-	let uNo = parseInt("<%=session.getAttribute("uNo") != null ? session.getAttribute("uNo") : 0%>", 10);
+	let uNo = parseInt("<%=session.getAttribute("uNo") != null ? session.getAttribute("uNo") : 0%>",10);
 	</script>
 	<script src="${contextPath}/hospital/js/hosDetail.js"></script>
 	<script src="${contextPath}/hospital/js/favorite.js"></script>

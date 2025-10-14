@@ -31,12 +31,8 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <c:if test="${sessionScope.userType == 'ADMIN'}">
-						<jsp:include page="/common/nav/adminNav.html"></jsp:include>
-					</c:if>
-					<c:if test="${sessionScope.userType != 'ADMIN'}">
-						<jsp:include page="/common/nav/hosNav.jsp"></jsp:include>
-					</c:if>
+<%--                     <jsp:include page="managerHeader.html"></jsp:include> --%>
+                      <jsp:include page="../common/nav/nav.jsp"></jsp:include>
                     <div class="info">
                        
                         <!-- Main Content -->

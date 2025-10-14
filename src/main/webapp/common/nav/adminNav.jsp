@@ -111,7 +111,7 @@
 	<div class="main-nav">
 		<div class="first-block">
 			<img src="../image/건강이음.png" width="120px" alt="" /> <span
-				class="first-block-span">마이페이지</span>
+				class="first-block-span">건강이음</span>
 		</div>
 		<div class="second-block">
 			<span class="second-block-first">환영합니다</span> 
@@ -124,12 +124,14 @@
 			<div class="menu">
 				<button type="button" class="button more-nav">회원 관리</button>
 				<ul class="sub">
-					<li><a href="/ieum/admin/adminUsers">일반회원</a></li>
-					<li><a href="/ieum/admin/adminHosManager">병원관리자</a></li>
+					<li><a href="/ieum/admin/adminUsers">일반회원 관리</a></li>
+					<li><a href="/ieum/admin/adminHosManager">병원관리자 관리</a></li>
 				</ul>
+				<button onclick="location.href='/ieum/admin/adminHospitals'"
+					type="button" class="button">병원 관리</button>
 				<button onclick="location.href='/ieum/admin/hosRequestList'"
-					type="button" class="button">병원등록신청</button>
-				<button type="button" class="button more-nav2">공지사항 관리</button>
+					type="button" class="button">병원신청목록</button>
+				<button type="button" class="button more-nav2">공지사항</button>
 				<ul class="sub2">
 					<li><a href="/ieum/admin/notice/write">공지사항등록</a></li>
 					<li><a href="/ieum/admin/notice?page=1">공지사항목록</a></li>

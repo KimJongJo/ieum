@@ -39,12 +39,15 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-   				<c:if test="${sessionScope.userType == 'ADMIN'}">
-					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
-				</c:if>
-				<c:if test="${sessionScope.userType != 'ADMIN'}">
-					<jsp:include page="/common/nav/hosNav.jsp"></jsp:include>
-				</c:if>
+<%--                     <c:choose> --%>
+<%-- 				    	<c:when test="${userType =='DOCTOR'}"> --%>
+<%-- 				    		<jsp:include page="doctorHeader.html"></jsp:include> --%>
+<%-- 				    	</c:when> --%>
+<%-- 				    	<c:otherwise> --%>
+<%-- 				    		<jsp:include page="managerHeader.html"></jsp:include> --%>
+<%-- 				    	</c:otherwise> --%>
+<%-- 				    </c:choose> --%>
+					<jsp:include page="../common/nav/nav.jsp"></jsp:include>
                     <div class="info">
                         <div class="search-name">
                             <span class="hos-name">${hosName}</span>
