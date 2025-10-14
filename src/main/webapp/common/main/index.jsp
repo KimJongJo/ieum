@@ -9,12 +9,13 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/common/main/css/main.css">
-	
-	<c:if test="${userType == 'ADMIN'}">
-		<link rel="stylesheet" type="text/css"
-	href="${contextPath}/admin/css/admin.css">
-	</c:if>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
+
+<c:if test="${userType == 'ADMIN'}">
+	<link rel="stylesheet" type="text/css"
+		href="${contextPath}/admin/css/admin.css">
+</c:if>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script
@@ -68,8 +69,10 @@
 				<div class="hospital-list">
 					<c:forEach var="hospital" items="${hosList}">
 						<div class="hospital-item" onclick="goHosDetail(${hospital.hNo})">
-							<img class="hospital-img"
-								src="${contextPath}/${hospital.hosImgPath}/${hospital.hosImgNm}">
+							<div class="hospital-img-box">
+								<img class="hospital-img"
+									src="${contextPath}/${hospital.hosImgPath}/${hospital.hosImgNm}">
+							</div>
 							<span class="hospital-name">${hospital.hNm}</span> <span>${hospital.hAddress}</span>
 						</div>
 					</c:forEach>
@@ -88,7 +91,8 @@
 						<!-- 로그인 후 -->
 						<div class="login-header after">
 							<div class="profile">
-								<img class="circle" src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
+								<img class="circle"
+									src="${contextPath}/${userInfo.profilePath}/${userInfo.profileNm}">
 								<c:if test="${sessionScope.userType == 'USER' }">
 									<span class="btn-link">${userInfo.nickname}</span>
 								</c:if>
@@ -262,6 +266,6 @@
 		<!-- 지도 영역 -->
 		<div class="map-right" id="map"></div>
 	</section>
-	<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 </body>
 </html>
