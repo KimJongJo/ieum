@@ -30,8 +30,7 @@ body {
 
 /* ---------------------- 배너 ---------------------- */
 .banner-section {
-	width: 100%;
-	max-width: 1920px;
+	min-width: 1920px;
 	height: 339px;
 	background: url("../../../img/banner.png") no-repeat center/cover;
 	position: relative;
@@ -103,7 +102,7 @@ body {
 }
 
 .basic-btn {
-	border: 2px solid #334186;
+	border: 3px solid #334186;
 	color: #334186;
 	margin-left: 315px;
 }
@@ -112,6 +111,11 @@ body {
 	background: #334186;
 	color: #fff;
 	margin-left: 505px;
+}
+.basic-btn:active,
+.primary-btn:active {
+    transform: translateY(2px);
+    filter: brightness(90%);
 }
 
 /* ---------------------- 병원추천 + 자가진단 ---------------------- */
