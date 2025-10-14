@@ -22,15 +22,10 @@
 </head>
 <body>
 	<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
-	<div class="main">
+	<div class="main"> 	
 		<div class="main-div">
 			<div class="under-section">
-				<c:if test="${sessionScope.userType == 'ADMIN'}">
-					<jsp:include page="/common/nav/adminNav.html"></jsp:include>
-				</c:if>
-				<c:if test="${sessionScope.userType != 'ADMIN'}">
-					<jsp:include page="/common/nav/hosNav.html"></jsp:include>
-				</c:if>
+				<jsp:include page="../common/nav/nav.jsp"></jsp:include>
 				<div class="notice-container">
 					<!-- 제목 -->
 					<div class="notice-header">

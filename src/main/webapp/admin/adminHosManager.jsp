@@ -34,7 +34,8 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="../common/nav/adminNav.html"></jsp:include>
+<%--                     <jsp:include page="../common/nav/adminNav.html"></jsp:include> --%>
+                    <jsp:include page="../common/nav/nav.jsp"></jsp:include>
                     <div class="info2">
                         <div class="search-name">
                             <span class="search-name-span">병원 관리자 목록 조회</span>

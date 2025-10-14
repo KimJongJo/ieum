@@ -31,7 +31,8 @@
                 <!-- 아래 -->
                 <div class="under-section">
                     <!-- 네비 들어올 곳 -->
-                    <jsp:include page="managerHeader.html"></jsp:include>
+<%--                     <jsp:include page="managerHeader.html"></jsp:include> --%>
+                      <jsp:include page="../common/nav/nav.jsp"></jsp:include>
                     <div class="info">
                        
                         <!-- Main Content -->

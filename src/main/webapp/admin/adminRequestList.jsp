@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +11,25 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./css/admin.css" />
 <link rel="stylesheet" href="./css/adminNav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    // HTML 페이지에서 선언, JSP에서 EL 치환됨
-    const contextPath = "${pageContext.request.contextPath}";
-    let curPage = ${listDto.curPage};
-    let allPage = ${listDto.allPage};
-    let curKeyword = ""; // 현재 검색어
-    let filter = "none"; // 정렬 기준 초기값
+	// HTML 페이지에서 선언, JSP에서 EL 치환됨
+	const contextPath = "${pageContext.request.contextPath}";
+	let curPage = $
+	{
+		listDto.curPage
+	};
+	let allPage = $
+	{
+		listDto.allPage
+	};
+	let curKeyword = ""; // 현재 검색어
+	let filter = "none"; // 정렬 기준 초기값
 </script>
 <script src="./js/hosDetailModal.js"></script>
 
@@ -29,24 +37,27 @@
 
 </head>
 <body>
-<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
+	<c:import url="/common/header/header.jsp" charEncoding="UTF-8" />
 	<div class="main">
 		<div class="main-div">
 			<!-- 아래 -->
 			<div class="under-section">
 				<!-- 네비 들어올 곳 -->
-				<jsp:include page="../common/nav/adminNav.html"></jsp:include>
+				<%-- 				<jsp:include page="../common/nav/adminNav.html"></jsp:include> --%>
+				<jsp:include page="../common/nav/nav.jsp"></jsp:include>
 				<div class="info">
 					<div class="search-name">
 						<span class="search-name-span">병원 신청 목록</span>
 					</div>
 					<div class="admin-search-bar">
-						<input type="text" placeholder="검색" class="search-bar-input" id="searchKeyword"/>
+						<input type="text" placeholder="검색" class="search-bar-input"
+							id="searchKeyword" />
 						<button class="search-bar-icon" type="button" id="searchBtn">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
 
-						<select name="selectFilter" id="selectFilter" class="search-select">
+						<select name="selectFilter" id="selectFilter"
+							class="search-select">
 							<option value="none">정렬</option>
 							<option value="h_nm">병원명</option>
 							<option value="created_young">신청일(최신순)</option>
@@ -56,39 +67,39 @@
 					<div class="table-div">
 						<table class="table" id="tableSetting">
 							<thead>
-							<tr>
-								<th style="width: 70px">신청번호</th>
-								<th style="width: 255px">병원명</th>
-								<th>주소</th>
-								<th style="width: 150px">병원 전화번호</th>
-								<th style="width: 100px">신청일</th>
-								<th style="width: 100px">확인</th>
-							</tr>
+								<tr>
+									<th style="width: 70px">신청번호</th>
+									<th style="width: 255px">병원명</th>
+									<th>주소</th>
+									<th style="width: 150px">병원 전화번호</th>
+									<th style="width: 100px">신청일</th>
+									<th style="width: 100px">확인</th>
+								</tr>
 							</thead>
 							<tbody>
-							<c:choose>
-								<c:when test="${empty listDto.list}">
-									<tr>
-										<td colspan="6">현재 신청등록된 병원이 존재하지 않습니다.</td>
-									</tr>
-								</c:when>
-							<c:otherwise>
-								<c:forEach var="hos" items="${listDto.list}">
-									<tr>
-										<td>${hos.hNo}</td>
-										<td>${hos.hNm}</td>
-										<td>${hos.hAddress}</td>
-										<td>${hos.hTel}</td>
-										<td>${hos.hCreated}</td>
-										<td>
-											<button value="${hos.hNo}" class="info-btn">정보</button>
-										</td>
-									</tr>
-								</c:forEach>
-							</c:otherwise>
-							</c:choose>
+								<c:choose>
+									<c:when test="${empty listDto.list}">
+										<tr>
+											<td colspan="6">현재 신청등록된 병원이 존재하지 않습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="hos" items="${listDto.list}">
+											<tr>
+												<td>${hos.hNo}</td>
+												<td>${hos.hNm}</td>
+												<td>${hos.hAddress}</td>
+												<td>${hos.hTel}</td>
+												<td>${hos.hCreated}</td>
+												<td>
+													<button value="${hos.hNo}" class="info-btn">정보</button>
+												</td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
-								
+
 						</table>
 					</div>
 					<c:if test="${not empty listDto.list}">
@@ -97,22 +108,23 @@
 								<i class="fa-solid fa-angle-left"></i>
 							</button>
 							<!-- 페이지 번호 반복 -->
-							    <c:forEach var="i" begin="${listDto.startPage}" end="${listDto.endPage}">
-							        <c:choose>
-							            <c:when test="${i == listDto.curPage}">
-							                <button value="${i}" class="cur-page" type="button">${i}</button>
-							            </c:when>
-							            <c:otherwise>
-							                <button value="${i}" class="page move-page" type="button">${i}</button>
-							            </c:otherwise>
-							        </c:choose>
-							    </c:forEach>
-						  
+							<c:forEach var="i" begin="${listDto.startPage}"
+								end="${listDto.endPage}">
+								<c:choose>
+									<c:when test="${i == listDto.curPage}">
+										<button value="${i}" class="cur-page" type="button">${i}</button>
+									</c:when>
+									<c:otherwise>
+										<button value="${i}" class="page move-page" type="button">${i}</button>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+
 							<button class="page next-page" type="button">
 								<i class="fa-solid fa-angle-right"></i>
 							</button>
 						</div>
-				  	</c:if>
+					</c:if>
 					<div class="modal-hospital-detail" id="modal-hospital-detail">
 						<div class="hospital">
 							<div class="hospital-header">
@@ -166,9 +178,9 @@
 			</div>
 		</div>
 	</div>
-<c:import url="/common/footer/footer.html" charEncoding="UTF-8"/>
+	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<!-- 		<script src="adminNav.js"></script>
         <script src="adminModal.js"></script> -->
-        
+
 </body>
 </html>
