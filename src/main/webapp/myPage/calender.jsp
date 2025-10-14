@@ -214,7 +214,7 @@ body {
 }
 #btn2 {
     width: 100px;
-    height: 30px;
+    height: 25px;
     border: 1px solid #888;
     background-color: #E5E7ED;
     color: black;
