@@ -26,6 +26,11 @@ public class FindPw2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/findPw1");
+		request.setAttribute("navPathName", "비밀번호 찾기");
+		request.setAttribute("navcurPage", "변경 완료");
+		
 		request.getRequestDispatcher("/common/findPw/findPw2.jsp").forward(request, response);
 	}
 

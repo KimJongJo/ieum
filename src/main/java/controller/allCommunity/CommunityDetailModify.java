@@ -40,12 +40,17 @@ public class CommunityDetailModify extends HttpServlet {
 		HttpSession session = request.getSession();
         Integer uNo = (Integer) session.getAttribute("uNo");
 
+     // 로그인 안 했을 경우
         if (uNo == null) {
-            // 로그인 안 했을 경우
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('넌 수정할 수 없다 돌아가라');");
+            out.println("history.back();"); // 이전 페이지로 돌아가기
+            out.println("</script>");
+            out.close();
             return;
         }
-		
 		
 		
 		String noStr = request.getParameter("no");

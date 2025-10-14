@@ -63,7 +63,7 @@
 				<div class="hinfoa">
 					<div class="file_no">
 						<img
-							src="${contextPath}/${hosDetail.filePath}${hosDetail.fileName}"
+							src="${contextPath}/${hosDetail.filePath}/${hosDetail.fileName}"
 							class="image-thumbnail" />
 					</div>
 					<div class="hinfor">

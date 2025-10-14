@@ -205,5 +205,17 @@ $(function () {
         window.location.href = "${pageContext.request.contextPath}/myCom"; 
     });
     
+    
+        const writeBtn = document.getElementById('write');
+    writeBtn.addEventListener('click', function() {
+        //세션에서 uNo 확인
+        var uNo = '<%= session.getAttribute("uNo") != null ? "Y" : "" %>';
+        if(uNo === "Y") {
+            // 로그인되어 있으면 이동
+            window.location.href = "write";
+        } else {
+            alert("로그인 후 작성할 수 있습니다.");
+        }
+    });
 
 });

@@ -536,7 +536,7 @@ $(document).ready(function() {
 				text: "작성",
 				click: function() {
 					const contextPath = document.location.pathname.split('/');
-					location.href = `${contextPath[0]}/${contextPath[1]}/myPage/diary/write`;
+					location.href = `${pageContext.request.contextPath}/myPage/diary?page=1`;
 				},
 			},
 		},

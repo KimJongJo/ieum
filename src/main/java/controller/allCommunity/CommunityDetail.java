@@ -79,6 +79,12 @@ public class CommunityDetail extends HttpServlet {
         BlackListService blackListService = new BlackListServiceImpl();
         CommentDto commentDto = new CommentDto();
         try {
+        	
+        	MemberDto loginUserDto = null;
+        	if (uNo != null) {
+        	    loginUserDto = memberService.selectUserByNo(uNo);  // uNo로 MemberDto 조회
+        	}
+        	request.setAttribute("loginUser", loginUserDto);  // JSP에서 사용
             
         	// ✅ 세션에서 조회한 게시글 번호 Set 가져오기
             Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
@@ -112,9 +118,15 @@ public class CommunityDetail extends HttpServlet {
 
          // 로그인 사용자가 차단한 사용자 목록 가져오기
             
-            List<Integer> blockedUsers = blackListService.getBlockedUsers(uNo);
-            Set<Integer> blockedSet = blockedUsers != null ? new HashSet<>(blockedUsers) : new HashSet<>();
-
+//            List<Integer> blockedUsers = blackListService.getBlockedUsers(uNo);
+//            Set<Integer> blockedSet = blockedUsers != null ? new HashSet<>(blockedUsers) : new HashSet<>();
+            Set<Integer> blockedSet = new HashSet<>();
+            if (uNo != null) {
+                List<Integer> blockedUsers = blackListService.getBlockedUsers(uNo);
+                if (blockedUsers != null) blockedSet.addAll(blockedUsers);
+            }
+            
+            
             // 댓글 필터링: 댓글 작성자가 차단 대상이면 제거
             commentList.removeIf(comment -> blockedSet.contains(comment.getuNo()));
             request.setAttribute("comments", commentList);
@@ -124,14 +136,22 @@ public class CommunityDetail extends HttpServlet {
             request.setAttribute("community", communityDto);
             
             //8.공감 유지
-            boolean likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
+            boolean likedByUser = false;
+            if (uNo != null) {
+                likedByUser = commuEmpathyService.checkEmpathy(uNo, commuNo);
+            }
             communityDto.setLikedByUser(likedByUser);
             request.setAttribute("community", communityDto);
 
             //9 공감 유지
+         // ✅ 댓글 공감 상태 체크 (로그인한 사용자만)
             for (CommentDto comment : commentList) {
-                boolean likedByUserCom = commentEmpathyService.checkEmpathy(uNo, comment.getCommeNo());
-                comment.setLikedByUserCom(likedByUserCom); // DTO에 필드 있어야 함
+                if (uNo != null) {
+                    boolean likedByUserCom = commentEmpathyService.checkEmpathy(uNo, comment.getCommeNo());
+                    comment.setLikedByUserCom(likedByUserCom);
+                } else {
+                    comment.setLikedByUserCom(false);
+                }
             }
             request.setAttribute("comment", commentList);
             
@@ -162,10 +182,15 @@ public class CommunityDetail extends HttpServlet {
 		HttpSession session = request.getSession();
 		Integer uNo = (Integer) session.getAttribute("uNo");
 		
+		
 		if (uNo == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-            return;
-        }
+		    response.setContentType("text/html; charset=UTF-8");
+		    response.getWriter().println("<script>");
+		    response.getWriter().println("alert('로그인 후 댓글을 등록할 수 있습니다.');");
+		    response.getWriter().println("history.back();");
+		    response.getWriter().println("</script>");
+		    return;
+		}
 		
 		//게시글 번호 확인
 		String commuNoStr = request.getParameter("commuNo");

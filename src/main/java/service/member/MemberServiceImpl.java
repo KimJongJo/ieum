@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void normalJoin(MemberDto member) {
 		
-		String filePath = "img/";
+		String filePath = "img";
 		FileDto file;
 		Integer fileNo;
 		// 일반회원

@@ -35,7 +35,7 @@ $(function () {
     });
     
 
-    // 게시글 하트 색 변경
+    /* // 게시글 하트 색 변경
     $(function() {
         $('.actions form').submit(function(e){
             e.preventDefault(); // 새로고침 막기
@@ -75,7 +75,52 @@ $(function () {
 	            heartSpan.html('<img class="heart1-img" src="' + '${pageContext.request.contextPath}/img/횐색하트.png' + '" width="15" height="15"/>');
 	        }
 	    }, "json");
+	}); */
+	
+	 // 게시글 공감
+    $('.actions form').submit(function(e){
+        e.preventDefault();
+        let form = $(this);
+        let commuNo = form.find('input[name="commuNo"]').val();
+        let countSpan = form.find('.action-count');
+        let heartSpan = form.find('.heart');
+
+        $.post(form.attr('action'), {commuNo: commuNo}, function(data){
+            if(data.error){
+                alert(data.error); // ✅ 로그인 안내 alert
+                return;
+            }
+            countSpan.text(data.newCount);
+            if (data.liked) {
+                heartSpan.html('<img src="' + contextPath + '/img/빨간하트.png" width="15" height="15"/>');
+            } else {
+                heartSpan.html('<img src="' + contextPath + '/img/횐색하트.png" width="15" height="15"/>');
+            }
+        }, "json");
+    });
+
+	// 댓글 공감
+	$('.comment-action-item').click(function(e){
+	    e.preventDefault();
+	    let form = $(this).closest('form');
+	    let commeNo = form.find('input[name="commeNo"]').val();
+	    let countSpan = form.find('.comment-action-count');
+	    let heartSpan = form.find('.heart1');
+
+	    $.post(form.attr('action'), {commeNo: commeNo}, function(data){
+	        if(data.error){
+	            alert(data.error); // ✅ 비로그인 안내
+	            return;
+	        }
+	        countSpan.text(data.newCount);
+	        if (data.liked) {
+	            heartSpan.html('<img class="heart1-img" src="' + contextPath + '/img/빨간하트.png" width="15" height="15"/>');
+	        } else {
+	            heartSpan.html('<img class="heart1-img" src="' + contextPath + '/img/횐색하트.png" width="15" height="15"/>');
+	        }
+	    }, "json");
 	});
+	
 
     /* 삭제 버튼 클릭 → 모달 표시 */
     $(document).on('click', '#btn-delete', function(e) {
@@ -118,20 +163,25 @@ $(function () {
    
 // 신고하기 모달 AJAX 처리
    $('#reportForm').submit(function(e){
-    e.preventDefault(); // 기본 submit 막기
-    var form = $(this);
-    var commeNo = $('#reportCommeNo').val();
+       e.preventDefault(); // 기본 submit 막기
+       var form = $(this);
+       var commeNo = $('#reportCommeNo').val();
 
-    $.post(form.attr('action'), { commeNo: commeNo }, function(data){
-        alert(data.message); // 서버에서 받은 메시지 출력
-        if(data.success){
-            $('#blockReportModal').hide();  // 성공하면 모달 닫기
-        }
-    }, "json")
-    .fail(function(){
-        alert("서버 오류 발생");
-    });
-});
+       $.post(form.attr('action'), { commeNo: commeNo }, function(data){
+           alert(data.message); // 서버에서 받은 메시지 출력
+           if(data.success){
+               $('#blockReportModal').hide();  // 성공하면 모달 닫기
+
+               // ✅ 신고 메뉴 비활성화
+               $('.comment-box[data-comme-no="' + commeNo + '"] .menu-item1')
+                   .addClass('disabled')  // CSS로 회색 처리 가능
+                   .off('click');          // 클릭 이벤트 제거
+           }
+       }, "json")
+       .fail(function(){
+           alert("서버 오류 발생");
+       });
+   });
    
    
    $('#modalClosereportBlock, #modalCancelreportBlock').click(function() {
@@ -302,7 +352,18 @@ $('#blockCommentForm').submit(function(e){
         <div id="comment-write-box">
         <form id="comDetail" action="${pageContext.request.contextPath}/comDetail" method="post">
         	<input type="hidden" name="commuNo" value="${community.commuNo}" />
-            <div id="comment-name"><c:out value="${member.nickName}" default="익명"/></div>
+             <!-- 로그인한 사용자 닉네임 표시만, 전송하지 않음 -->
+              <input type="hidden" name="uNo" value="${member.uNo}" />
+        	<div id="comment-name">
+			    <c:choose>
+			        <c:when test="${not empty loginUser}">
+			            <c:out value="${loginUser.nickName}" />
+			        </c:when>
+			        <c:otherwise>
+			            익명
+			        </c:otherwise>
+			    </c:choose>
+			</div>
             <textarea id="comment-write" name="content" maxlength="1000"></textarea>
             <div id="btn2">
                 <button id="btn2-registration">등록</button>
