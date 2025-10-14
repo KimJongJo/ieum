@@ -128,45 +128,45 @@
 								<div class="row-item">
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam1`">
-										<img class="rectangle" src="/ieum/img/exam1_3.png"></img> <span>우울</span>
+										<img class="rectangle" src="/ieum/img/exam_1_3.png"></img> <span>우울</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam2`">
-										<img class="rectangle" src="/ieum/img/exam2_3.png"></img> <span>스트레스</span>
+										<img class="rectangle" src="/ieum/img/exam_2_3.png"></img> <span>스트레스</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam3`">
-										<img class="rectangle" src="/ieum/img/exam3_3.png"></img> <span>ADHD</span>
+										<img class="rectangle" src="/ieum/img/exam_3_3.png"></img> <span>ADHD</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam4`">
-										<img class="rectangle" src="/ieum/img/exam4_3.png"></img> <span>조울증(성인)</span>
+										<img class="rectangle" src="/ieum/img/exam_4_3.png"></img> <span>조울증(성인)</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam5`">
-										<img class="rectangle" src="/ieum/img/exam5_3.png"></img> <span>조울증(청소년)</span>
+										<img class="rectangle" src="/ieum/img/exam_5_3.png"></img> <span>조울증(청소년)</span>
 									</div>
 								</div>
 								<div class="row-item">
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam6`">
-										<img class="rectangle" src="/ieum/img/exam6_3.png"></img> <span>조기정신증</span>
+										<img class="rectangle" src="/ieum/img/exam_6_3.png"></img> <span>조기정신증</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam7`">
-										<img class="rectangle" src="/ieum/img/exam7_3.png"></img> <span>수면</span>
+										<img class="rectangle" src="/ieum/img/exam_7_3.png"></img> <span>수면</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam8`">
-										<img class="rectangle" src="/ieum/img/exam8_3.png"></img> <span>알코올 중독</span>
+										<img class="rectangle" src="/ieum/img/exam_8_3.png"></img> <span>알코올 중독</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam9`">
-										<img class="rectangle" src="/ieum/img/exam9_3.png"></img> <span>게임 중독</span>
+										<img class="rectangle" src="/ieum/img/exam_9_3.png"></img> <span>게임 중독</span>
 									</div>
 									<div class="login-item"
 										onclick="location.href=`${contextPath}/exam/exam10`">
-										<img class="rectangle" src="/ieum/img/exam10_3.png"></img> <span>PTSD</span>
+										<img class="rectangle" src="/ieum/img/exam_10_3.png"></img> <span>PTSD</span>
 									</div>
 								</div>
 							</div>
