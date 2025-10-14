@@ -38,7 +38,11 @@ public class RequestHosList extends HttpServlet {
 		
 		String keyword = request.getParameter("keyword"); // 검색어 가져오기
 		String filter = request.getParameter("filter"); // 정렬 조건 가져오기
-		int requestPage = Integer.parseInt(request.getParameter("page"));
+		int requestPage = 1;
+		String page = request.getParameter("page");
+		if (page != null && !page.isEmpty()) {
+		    System.out.println("??");
+		}
 
 		HospitalService service = new HospitalServiceImpl();
 		HospitalPageResponseDto pageDto;

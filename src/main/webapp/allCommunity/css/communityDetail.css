@@ -345,3 +345,10 @@ body {
 #content {
     white-space: pre-wrap; /* 줄바꿈과 공백 유지 */
 }
+
+.menu-item1.disabled {
+    pointer-events: none;  /* 클릭 막기 */
+    opacity: 0.5;          /* 회색 처리 */
+    cursor: default;
+}
+
