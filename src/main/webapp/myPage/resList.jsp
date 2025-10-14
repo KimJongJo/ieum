@@ -117,12 +117,12 @@
 															<i class="fa-solid fa-rectangle-xmark"></i>
 														</div>
 													</button>
-													<button class="lbt" type="button">
-														<span class="lbt1">예약변경</span>
+													<a href="${contextPath }/calender"><button class="lbt" type="button">
+														<span class="lbt1">일정확인</span>
 														<div class="lbt2">
 															<i class="fa-solid fa-pen-to-square"></i>
 														</div>
-													</button>
+													</button></a>
 													<button class="lbtb" type="button" id="comResdetail">
 														<span class="lbt3">예약확인</span>
 														<div class="lbt4">

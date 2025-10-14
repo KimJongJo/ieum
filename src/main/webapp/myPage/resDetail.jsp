@@ -24,11 +24,11 @@
 
 	<!-- Section Title -->
 	<div id="section-title">
-		<span>예약 내역</span>
+		<span>예약 상세</span>
 	</div>
 
 	<div class="myPage">
-		<jsp:include page="/common/nav/userNav.html" />
+		<jsp:include page="/common/nav/nav.jsp" />
 		<div class="container1">
 			<div class="rescom" data-rno="${rid.rNo }">
 				<div class="head-box">
@@ -79,7 +79,7 @@
 
 						<div class="right" data-rno="${rid.rNo }" data-hno="${rid.hNo }">
 							<c:if test="${rid.rStatus eq 'WAITING' }">
-								<button class="btn-cir-w" type="button" id="updateBtn">예약변경</button>
+								<!-- <button class="btn-cir-w" type="button" id="updateBtn">예약변경</button> -->
 								<button class="btn-cir-w" type="button" id="cancelBtn">예약취소</button>
 							</c:if>
 						</div>
@@ -221,7 +221,7 @@
 
 			</div>
 			<div class="btn">
-				<button type="button" class="btn-rec-w" onclick="history.back();">확인</button>
+				<a href="${contextPath }/myPage/reservation/list"><button type="button" class="btn-long-w">확인</button></a>
 			</div>
 		</div>
 

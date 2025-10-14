@@ -42,8 +42,8 @@ public class HosSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
 		request.setAttribute("navPath", "/ieum/hospital/search");
-		request.setAttribute("navPathName", "병원조회");
-		request.setAttribute("navcurPage", "병원목록");
+		request.setAttribute("navPathName", "병원 조회");
+		request.setAttribute("navcurPage", "병원 목록");
     	
     	request.getRequestDispatcher("/hospital/hosSearch.jsp").forward(request, response);
     }

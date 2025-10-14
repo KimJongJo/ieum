@@ -29,6 +29,13 @@ public class ResCancel extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/calender");
+		request.setAttribute("navPathName", "마이페이지");
+		request.setAttribute("navPath2", "/ieum/myPage/reservation/list");
+		request.setAttribute("navPathName2", "예약내역");
+		request.setAttribute("navcurPage", "예약 취소");
+		
 		request.getRequestDispatcher("/myPage/resCancel.jsp").forward(request, response);
 	}
 

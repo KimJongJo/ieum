@@ -104,7 +104,7 @@
 											<td class="icon"><i class="fa-solid fa-clock"></i></td>
 											<td>
 												<p class="etc">
-													<c:out value="${hosDetail.holidayInfo }" />
+													<c:out value="${hosDetail.holidayInfo }" />요일 휴무
 												</p>
 											</td>
 										</tr>

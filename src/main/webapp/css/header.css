@@ -402,8 +402,9 @@
   	background-image:url("../img/관리자중헤더.png");
   }
   
-  .place-div a{
-  	font-size:16px;
+  .place-div a,
+  .fa-angle-right{
+  	font-size:15px;
   	text-decoration-line:none;
   	color:black;
   }

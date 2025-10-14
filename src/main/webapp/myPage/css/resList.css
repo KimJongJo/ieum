@@ -15,7 +15,7 @@ a {
     width: 800px;
     font-size: 20px;
     color: #333;
-    margin: 20px auto 0 auto;
+    margin: 30px auto 0 auto;
     font-weight: 700;
     background-color: #fff;
     display: flex;
@@ -167,6 +167,7 @@ a {
 }
 
 .t2 {
+	font-weight:500;
 	margin-left: 25px;
 }
 

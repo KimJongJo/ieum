@@ -94,6 +94,12 @@ public class ResDetail extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			request.setAttribute("navPath", "/ieum/calender");
+			request.setAttribute("navPathName", "마이페이지");
+			request.setAttribute("navPath2", "/ieum/myPage/reservation/list");
+			request.setAttribute("navPathName2", "예약내역");
+			request.setAttribute("navcurPage", "예약 상세");
+			
 			request.getRequestDispatcher("/myPage/resDetail.jsp").forward(request, response);
 			
 		}catch(Exception e) {
