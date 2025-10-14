@@ -144,7 +144,7 @@
 										<span class="t2">다가오는 예약이 없습니다.</span>
 									</div>
 									<div>
-										<button class="btn-cir-w">예약하러 가기</button>
+										<button class="btn-cir-w" id="gotoRes">예약하러 가기</button>
 									</div>
 								</div>
 							</c:otherwise>

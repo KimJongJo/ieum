@@ -401,7 +401,7 @@ a {
 }
 
 .list2 {
-	width: 1022px;
+	width: 1045px;
 	height: 205px;
 	border: 2px solid #d9d9d9;
 	border-radius: 15px;
@@ -476,11 +476,31 @@ a {
     filter: none;
 }
 
+.page.next-page,
+.page.previous,
+.move-page {
+	outline: none;
+	cursor: pointer;
+	background-color: inherit ;
+	border:none;
+		
+}
+
+.cur-page{
+	background: #a6c8ff;
+	border:none;
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+	color: #000;
+	font-weight: bold;
+	cursor:pointer;
+}
 
 
-
-
-
+#recResList-container {
+	height:680px;
+}
 
 
 
