@@ -37,6 +37,7 @@ public class NoticeDaoImpl implements NoticeDao {
          params.put("keyword", keyword);
          params.put("isPinned", isPinned);
          return session.selectOne("selectNoticeCnt", params);
+         
       }
    }
 

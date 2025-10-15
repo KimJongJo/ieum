@@ -90,7 +90,7 @@ public List<NoticeDto> getList(Integer uNo, String keyword, String sort, PageInf
 	int topCnt = noticeDao.cnt(uNo, keyword, 1);
     int totalCount = noticeDao.cnt(uNo, keyword, 0); // 전체 글 개수
     final int PAGE_SIZE = 8 - topCnt;      // 페이지 당 글 수
-    final int PAGE_GROUP = 8 - topCnt;     // 페이지 그룹 수 (페이징 버튼 갯수)
+    final int PAGE_GROUP = 10;     // 페이지 그룹 수 (페이징 버튼 갯수)
     int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE); // 총 페이지 수
     if (totalPage == 0)
 			totalPage = 1; // 최소 1페이지 유지
