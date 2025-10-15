@@ -164,7 +164,7 @@ $(document).ready(function() {
 												<td class="line"></td>
 												<td class="dname">
 												${rec.username}<span>상담사</span></td>
-												<td class="coun">첫번째 상담</td>
+												<td class="coun">${rec.diagnosisName}</td>
 											</tr>
 										</table>
 									</div>

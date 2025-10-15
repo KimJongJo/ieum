@@ -341,7 +341,6 @@ a {
 }
 
 .loadmore {
-	width: 931px;
 	display: flex;
 	align-items: center;
 	justify-content:center;
@@ -349,7 +348,13 @@ a {
 }
 
 
-
+.btn-gap {
+	width: 931px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	gap:10px;
+}
 
 
 

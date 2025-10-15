@@ -295,4 +295,8 @@
 	    ORDER BY d.diagnosis_no DESC
 	    LIMIT 1
 	</select>
+	
+	<select id="getResNo" parameterType="Integer" resultType="Integer">
+		select r_no from diagnosis_history where diagnosis_no = #{dNo}
+	</select>
 </mapper>	

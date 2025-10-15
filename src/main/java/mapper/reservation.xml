@@ -129,6 +129,8 @@
 		(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
+		left join diagnosis_history dh
+		on(dh.r_no = r.r_no)
 		left join
 		favorite fav
 		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
@@ -185,6 +187,8 @@
 		on(r.m_no = m.u_no)
 		left join file f
 		on (m.file_no = f.file_no)
+		left join diagnosis_history dh
+		on(dh.r_no = r.r_no)
 		left join
 		favorite fav
 		on(fav.hos_no = h.h_no) and fav.u_no = #{uNo}
@@ -327,6 +331,11 @@
 		delete from reservation
 		where r_no =#{rNo}
 	</delete>
+	
+	<update id="resCompleted" parameterType="Integer">
+		update reservation set r_status = 'COMPLETE'
+		where r_no = #{rNo}
+	</update>
 
 
 </mapper>	

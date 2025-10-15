@@ -55,6 +55,8 @@ public class ReservationInfoDto {
 	long dDay; //디데이
 	boolean favorite;
 	
+	String diagnosisName; // 진단명
+	
 	public long getdDay() {
 		LocalDate today = LocalDate.now();
 		return ChronoUnit.DAYS.between(today, rDate);
@@ -68,13 +70,33 @@ public class ReservationInfoDto {
 
 	
 
+	
+
+
+	@Override
+	public String toString() {
+		return "ReservationInfoDto [rNo=" + rNo + ", uNo=" + uNo + ", hNo=" + hNo + ", mNo=" + mNo + ", rDate=" + rDate
+				+ ", rTime=" + rTime + ", rContent=" + rContent + ", actName=" + actName + ", actTel=" + actTel
+				+ ", rStatus=" + rStatus + ", rDay=" + rDay + ", hNm=" + hNm + ", categoryNo=" + categoryNo
+				+ ", hAddress=" + hAddress + ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX
+				+ ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink="
+				+ hLink + ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city="
+				+ city + ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + ", newsTitle="
+				+ newsTitle + ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", username="
+				+ username + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", userType=" + userType
+				+ ", major=" + major + ", introduction=" + introduction + ", stateCode=" + stateCode + ", fileNo="
+				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", dDay=" + dDay + ", favorite="
+				+ favorite + ", diagnosisName=" + diagnosisName + "]";
+	}
+
+
 	public ReservationInfoDto(Integer rNo, Integer uNo, Integer hNo, Integer mNo, LocalDate rDate, LocalTime rTime,
 			String rContent, String actName, String actTel, String rStatus, String rDay, String hNm, Integer categoryNo,
 			String hAddress, String hLocationY, String hLocationX, String transferInfo, String holidayInfo, String hTel,
 			String hLink, Integer hosImgFileNo, String status, String hCode, String city, String gungu, String services,
 			boolean silson, String newsTitle, String newsContent, String categoryName, String username, String gender,
 			String uTel, String email, String userType, String major, String introduction, Integer stateCode,
-			Integer fileNo, String fileName, String filePath, long dDay, boolean favorite) {
+			Integer fileNo, String fileName, String filePath, long dDay, boolean favorite, String diagnosisName) {
 		super();
 		this.rNo = rNo;
 		this.uNo = uNo;
@@ -119,23 +141,7 @@ public class ReservationInfoDto {
 		this.filePath = filePath;
 		this.dDay = dDay;
 		this.favorite = favorite;
-	}
-
-
-	@Override
-	public String toString() {
-		return "ReservationInfoDto [rNo=" + rNo + ", uNo=" + uNo + ", hNo=" + hNo + ", mNo=" + mNo + ", rDate=" + rDate
-				+ ", rTime=" + rTime + ", rContent=" + rContent + ", actName=" + actName + ", actTel=" + actTel
-				+ ", rStatus=" + rStatus + ", rDay=" + rDay + ", hNm=" + hNm + ", categoryNo=" + categoryNo
-				+ ", hAddress=" + hAddress + ", hLocationY=" + hLocationY + ", hLocationX=" + hLocationX
-				+ ", transferInfo=" + transferInfo + ", holidayInfo=" + holidayInfo + ", hTel=" + hTel + ", hLink="
-				+ hLink + ", hosImgFileNo=" + hosImgFileNo + ", status=" + status + ", hCode=" + hCode + ", city="
-				+ city + ", gungu=" + gungu + ", services=" + services + ", silson=" + silson + ", newsTitle="
-				+ newsTitle + ", newsContent=" + newsContent + ", categoryName=" + categoryName + ", username="
-				+ username + ", gender=" + gender + ", uTel=" + uTel + ", email=" + email + ", userType=" + userType
-				+ ", major=" + major + ", introduction=" + introduction + ", stateCode=" + stateCode + ", fileNo="
-				+ fileNo + ", fileName=" + fileName + ", filePath=" + filePath + ", dDay=" + dDay + ", favorite="
-				+ favorite + "]";
+		this.diagnosisName = diagnosisName;
 	}
 
 
@@ -561,6 +567,16 @@ public class ReservationInfoDto {
 
 	public void setFavorite(boolean favorite) {
 		this.favorite = favorite;
+	}
+
+
+	public String getDiagnosisName() {
+		return diagnosisName;
+	}
+
+
+	public void setDiagnosisName(String diagnosisName) {
+		this.diagnosisName = diagnosisName;
 	}
 
 	

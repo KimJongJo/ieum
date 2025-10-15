@@ -28,4 +28,5 @@ public interface ReservationService {
 	
 	ReservationDto selectRes (Integer rNo) throws Exception;
 	void deleteRno (Integer rNo)throws Exception;
+	void resCompleted(Integer rNo);
 }
