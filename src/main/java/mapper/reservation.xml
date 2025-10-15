@@ -331,6 +331,11 @@
 		delete from reservation
 		where r_no =#{rNo}
 	</delete>
+	
+	<update id="resCompleted" parameterType="Integer">
+		update reservation set r_status = 'COMPLETE'
+		where r_no = #{rNo}
+	</update>
 
 
 </mapper>	

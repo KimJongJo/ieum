@@ -200,6 +200,13 @@ public class DiagnosisDaoImpl implements DiagnosisDao {
 			return session.selectOne("mapper.diagnosis_history.getLatestDiagnosisByUser", uNo);
 		}
 	}
+
+	@Override
+	public Integer getResNo(Integer dNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			return session.selectOne("getResNo", dNo);
+		}
+	}
 	
 	
 }

@@ -236,5 +236,11 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public ReservationDto selectRes(Integer rNo) throws Exception {
 		return resDao.selectRno(rNo);
+	}
+
+	@Override
+	public void resCompleted(Integer rNo) {
+		resDao.resCompleted(rNo);
+		
 	}	
 }

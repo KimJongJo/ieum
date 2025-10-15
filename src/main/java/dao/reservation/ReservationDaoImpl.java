@@ -189,6 +189,15 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 	}
 
+	@Override
+	public void resCompleted(Integer rNo) {
+		try(SqlSession session = sqlSessionFactory.openSession()){
+			session.update("resCompleted", rNo);
+			session.commit();
+			
+		}
+	}
+
 }
 
 

@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 import dto.otherDto.ResponseDto;
 import service.diagnosis.DiagnosisService;
 import service.diagnosis.DiagnosisServiceImpl;
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
 
 /**
  * Servlet implementation class DiaCompleted
@@ -35,9 +37,13 @@ public class DiaCompleted extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		Integer dNo = Integer.parseInt(request.getParameter("dNo"));
-		
 		DiagnosisService service = new DiagnosisServiceImpl();
+		ReservationService resService = new ReservationServiceImpl();
+		
+		Integer rNo = service.getResNo(dNo);
+		
 		service.diaCompleted(dNo);
+		resService.resCompleted(rNo);
 		
 		Gson gson = new Gson();
 		String result = gson.toJson(new ResponseDto(true, "진료 완료"));
