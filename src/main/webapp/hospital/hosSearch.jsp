@@ -160,8 +160,10 @@
 				</table>
 			</div>
 			<div id="hospitalList"></div>
-			<div id="loadMore"></div>
+			<div class="btn-gap">
 			<div id="goTop"></div>
+			<div id="loadMore"></div>
+			</div>
 
 		</div>
 	</div>

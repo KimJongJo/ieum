@@ -106,7 +106,7 @@
 															<td class="line"></td>
 															<td class="dname"><c:out
 																	value="${comResList.username }" /> <span>상담사</span></td>
-															<td class="coun">첫번째 상담</td>
+															<td class="coun"></td>
 														</tr>
 													</table>
 												</div>
