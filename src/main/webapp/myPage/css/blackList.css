@@ -21,16 +21,7 @@ body {
     }
 
 
-    /* ✅ 메인 영역 - 1280px 중앙 고정 */
-    .main-container {
-        width: 1280px;
-        margin: 20px auto 0 auto; 
-        display: flex;
-        gap: 40px;
-        align-items: flex-start; /* 높이 정렬 */
-        grid-template-columns: repeat(2, 1fr); /* 2열 */
-    }
-
+    
     /* 사이드바 */
 .sidebar {
     width: 195px;
@@ -97,27 +88,48 @@ body {
     transform: translateY(2px);
     filter: brightness(90%);
 }
+/* ✅ 메인 영역 - 1280px 중앙 고정 */
+    .main-container {
+    width: 1280px;
+    margin: 20px auto 0 auto; 
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* 높이 정렬 */
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+    grid-template-rows: repeat(10, auto);  /* ✅ 10행 */
 
-    
+    /* ✅ 추가된 부분 */
+    flex-wrap: wrap; /* 여러 줄로 자동 줄바꿈 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
 
-    .boxes {
-        display: flex;
-        gap: 20px; /* 두 박스 사이 간격 */
-    }
+/* ✅ 오른쪽 컨텐츠: 2열 10행 */
+.blacklist-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(10, auto);
+    gap: 20px 20px; /* 행/열 간격 */
+}
+    #paging {
+	    grid-column: 1 / -1; /* ✅ 2열 전체 폭 사용 */
+	    text-align: center;
+	    margin-top: 40px;
+	    margin-bottom: 40px;
+	}
 
-    .boxes {
-        position: relative;
-        width: 100%;
-        max-width: 500px;
-        background-color: #F6F8FE;
-        border-radius: 15px;
-        border: 2px solid #d9d9d9;
-        padding: 15px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+   .boxes {
+    position: relative;
+    max-width: 510px;
+    background-color: #F6F8FE;
+    border-radius: 15px;
+    border: 2px solid #d9d9d9;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    column-gap: 25px;
+}
 
     /* 닉네임 */
     .text-wrapper-1 {

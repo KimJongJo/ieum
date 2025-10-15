@@ -6,7 +6,7 @@
   margin-top: 220px; /* footer 높이에 맞춰 조정 */
 }
 .footer-top{
-  max-width:1050px;
+  max-width:1060px;
   margin:0 auto;
   padding:20px 20px 10px;
   display:flex;
@@ -65,7 +65,7 @@
 .footer-brand{
 	min-width:220px;
 	border-right:1px solid #bfbfbf;
-	padding-right:65px;
+	padding-right:80px;
 	/* height:130px; */
 }
 .brand-link{

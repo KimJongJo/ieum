@@ -228,7 +228,7 @@ body {
 	#comment-write-box form {
 	    display: flex;
 	    align-items: center;
-	    gap: 40px;
+	    gap: 30px;
 	    width: 100%;
 	    box-sizing: border-box;
 	}
@@ -239,6 +239,9 @@ body {
         align-items: center; /* 텍스트 세로 가운데 */
         height: 100%; /* 부모 높이에 맞춤 */
         margin-left: 20px;
+          width: 80px;               /* 닉네임 고정 폭 (필요에 따라 조정) */
+          white-space: normal;       /* 줄바꿈 허용 */
+    word-break: break-word;    /* 단어가 길면 강제 줄바꿈 */
     }
     
 
