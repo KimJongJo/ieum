@@ -62,7 +62,7 @@ public class ResList extends HttpServlet {
 			
 			request.setAttribute("navPath", "/ieum/calender");
 			request.setAttribute("navPathName", "마이페이지");
-			request.setAttribute("navcurPage", "예약");
+			request.setAttribute("navcurPage", "예약 내역");
 			
 			request.getRequestDispatcher("/myPage/resList.jsp").forward(request, response);
 
