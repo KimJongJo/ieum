@@ -116,14 +116,14 @@
 		h_address, h_location_y, h_location_x, holiday_info, h_tel,
 		hos_img_file_no, hos_re_file_no,
 		hos_re_no, h_created, status, city,
-		gungu, category_no, services, silson)
+		gungu, category_no, services, silson, h_updated)
 		values (#{hNm}, #{hAddress},
 		#{hLocationY}, #{hLocationX}, #{holidayInfo},
 		#{hTel}, #{hosImgFileNo},
 		#{hosReFileNo},
 		#{hosReNo}, NOW(), 'WAITING',
 		#{city}, #{gungu},
-		#{categoryNo}, #{services}, #{silson})
+		#{categoryNo}, #{services}, #{silson}, NOW())
 	</insert>
 
 	<select id="hosWaitcount" resultType="Integer">
