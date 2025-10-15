@@ -23,6 +23,17 @@ public class HospitalPageResponseDto<T> {
 		this.endPage = endPage;
 		this.totalCount = totalCount;
 	}
+	
+	
+
+
+	@Override
+	public String toString() {
+		return "HospitalPageResponseDto [list=" + list + ", curPage=" + curPage + ", allPage=" + allPage
+				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalCount=" + totalCount + "]";
+	}
+
+
 
 
 	public List<T> getList() {

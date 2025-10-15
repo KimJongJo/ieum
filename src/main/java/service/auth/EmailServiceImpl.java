@@ -146,6 +146,8 @@ public class EmailServiceImpl implements EmailService {
         });
         
         try {
+        	System.out.println(email);
+        	
         	Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(smtpUser));
             message.setRecipients(
@@ -157,6 +159,7 @@ public class EmailServiceImpl implements EmailService {
             Transport.send(message);
 
             System.out.println("메일 전송 성공!");
+            
             
 
         } catch (MessagingException e) {

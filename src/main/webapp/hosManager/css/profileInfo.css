@@ -264,3 +264,15 @@ body {
 	width:677px;
 	resize: none;
 }
+.hosInfo-update-btn, .firsthide{
+    padding: 5px 14px;
+    background-color: #366FC6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hosInfo-update-btn:hover, .firsthide:hover{
+	background-color: #2750a5;
+}

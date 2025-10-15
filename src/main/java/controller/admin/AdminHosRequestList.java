@@ -41,7 +41,7 @@ public class AdminHosRequestList extends HttpServlet {
 		// 기본적으로 보여줄 화면
 		
 		HospitalService service = new HospitalServiceImpl();
-		HospitalPageResponseDto pageDto = service.hosWaitList(curPage, filter);
+		HospitalPageResponseDto<HospitalDto> pageDto = service.hosWaitList(curPage, filter);
 		request.setAttribute("listDto", pageDto);
 		
 		

@@ -17,21 +17,7 @@
 	href="${pageContext.request.contextPath}/css/adminIndexFooter.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	// HTML 페이지에서 선언, JSP에서 EL 치환됨
-	const contextPath = "${pageContext.request.contextPath}";
-	let curPage = $
-	{
-		listDto.curPage
-	};
-	let allPage = $
-	{
-		listDto.allPage
-	};
-	let curKeyword = ""; // 현재 검색어
-	let filter = "none"; // 정렬 기준 초기값
-</script>
-<script src="./js/hosDetailModal.js"></script>
+
 
 
 
@@ -181,6 +167,16 @@
 	<c:import url="/common/footer/footer.html" charEncoding="UTF-8" />
 	<!-- 		<script src="adminNav.js"></script>
         <script src="adminModal.js"></script> -->
+        
 
+<script>
+	// HTML 페이지에서 선언, JSP에서 EL 치환됨
+	const contextPath = "${pageContext.request.contextPath}";
+	let curPage = ${listDto.curPage};
+	let allPage = ${listDto.allPage};
+	let curKeyword = ""; // 현재 검색어
+	let filter = "none"; // 정렬 기준 초기값
+</script>
+<script src="./js/hosDetailModal.js"></script>
 </body>
 </html>

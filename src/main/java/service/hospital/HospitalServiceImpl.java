@@ -58,7 +58,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 	// 병원 등록 신청중인 병원 리스트 조회
 	@Override
-	public HospitalPageResponseDto hosWaitList(int curPage, String filter) {
+	public HospitalPageResponseDto<HospitalDto> hosWaitList(int curPage, String filter) {
 
 		String sort;
 		// 신청일(최신순)일 경우
@@ -98,7 +98,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 		List<HospitalDto> list = hosDao.selectWaitHos(page);
 		// 데이터 + 페이지 정보 같이 반환
-		return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+		return new HospitalPageResponseDto<HospitalDto>(list, curPage, allPage, startPage, endPage, hosCount);
 	}
 
 	// 병원 승인
@@ -118,7 +118,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 	// 검색해서 가져오는 병원 등록 리스트
 	@Override
-	public HospitalPageResponseDto hosWaitListByKeyword(int curPage, String keyword, String filter) {
+	public HospitalPageResponseDto<HospitalDto> hosWaitListByKeyword(int curPage, String keyword, String filter) {
 
 		String sort;
 		// 신청일(최신순)일 경우
@@ -159,7 +159,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 		List<HospitalDto> list = hosDao.selectWaitHosByKeyword(page);
 
-		return new HospitalPageResponseDto(list, curPage, allPage, startPage, endPage, hosCount);
+		return new HospitalPageResponseDto<HospitalDto>(list, curPage, allPage, startPage, endPage, hosCount);
 	}
 
 	// 병원 디테일정보 가져오기
