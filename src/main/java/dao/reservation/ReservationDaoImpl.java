@@ -165,7 +165,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void resCancel(Integer rNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			session.selectOne("resCancel", rNo);
+			session.update("resCancel", rNo);
 			session.commit();
 		}
 	}
@@ -183,7 +183,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void deleteRno(Integer rNo) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()){
-			session.selectOne("deleteRno", rNo);
+			session.delete("deleteRno", rNo);
 			session.commit();
 			
 		}
