@@ -18,6 +18,8 @@ import service.member.MemberService;
 import service.member.MemberServiceImpl;
 import service.myPage.DiaryService;
 import service.myPage.DiaryServiceImpl;
+import service.reservation.ReservationService;
+import service.reservation.ReservationServiceImpl;
 
 public class DiagnosisServiceImpl implements DiagnosisService {
 	
@@ -52,6 +54,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	// 진료 완료
 	@Override
 	public void diaCompleted(Integer dNo) {
+		// 진단서 작성 완료
 		diaDao.diaCompleted(dNo);
 		
 	}
@@ -251,5 +254,10 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	@Override
 	public ShowDIaListToUser getLatestDiagnosis(int uNo) throws Exception{
 		return diaDao.selectLatestDiagnosisByUser(uNo);
+	}
+
+	@Override
+	public Integer getResNo(Integer dNo) {
+		return diaDao.getResNo(dNo);
 	}
 }
