@@ -38,7 +38,7 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 			Map<String, Object> param = new HashMap<>();
 	        param.put("category", category);
-			return session.selectOne("mapper.community.selectCount");
+			return session.selectOne("mapper.community.selectCount", param);
 		}
 	}
 

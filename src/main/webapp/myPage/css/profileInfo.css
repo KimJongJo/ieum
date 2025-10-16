@@ -37,7 +37,7 @@ body {
 /* 버튼: 내가 직접 위치 지정 가능 */
 #btn-update {
     padding: 5px 14px;
-    background-color: #366FC6;
+    background-color: #4a64d6;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -178,7 +178,7 @@ body {
 
 /* 홀수 열(회색 블록)에도 구분선 추가 */
 .content span:nth-child(odd) {
-    background-color: #F7FAFF;
+    background-color: #F7F8FF;
     font-weight: 700;
     border-bottom: 1px solid #ccc; /* 선 추가 */
     box-sizing: border-box;

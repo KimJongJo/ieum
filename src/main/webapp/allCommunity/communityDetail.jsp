@@ -293,7 +293,7 @@ $('#blockCommentForm').submit(function(e){
 				        💬 <span class="action-count"><c:out value="${community.commuComment}" /></span>
 				    </span>
 				    <span class="action-item">
-				        🔗 <span class="action-count"><c:out value="${community.commuViews}" /></span>
+				        <img id="Heart1" src="${pageContext.request.contextPath}/img/조회수.png" alt="좋아요" width="15" height="15"/> <span class="action-count"><c:out value="${community.commuViews}" /></span>
 				    </span>
 				</div>
         <div id="san"></div>

@@ -252,6 +252,7 @@ body {
         resize: vertical;    /* 세로 방향으로만 크기 조절 가능 */
         padding: 10px;
         box-sizing: border-box;
+        resize: none; /* 사용자가 크기를 조절할 수 없게 함 */
     }
 
     #btn2 {
