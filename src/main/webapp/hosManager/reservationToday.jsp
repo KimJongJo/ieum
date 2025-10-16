@@ -110,9 +110,9 @@
 								<i class="fa-solid fa-angle-left"></i>
 							</button>
 							<!-- 페이지 번호 반복 -->
-							    <c:forEach var="i" begin="${pageMap.startPage}" end="${pageMap.endPage}">
+							    <c:forEach var="i" begin="${resList.startPage}" end="${resList.endPage}">
 							        <c:choose>
-							            <c:when test="${i == pageMap.curPage}">
+							            <c:when test="${i == resList.curPage}">
 							                <button value="${i}" class="cur-page" type="button">${i}</button>
 							            </c:when>
 							            <c:otherwise>
