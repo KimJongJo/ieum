@@ -10,6 +10,11 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/notice/css/noticeDetail.css">
+	
+	<c:if test="${userType == 'ADMIN'}">
+	<link rel="stylesheet" type="text/css"
+		href="${contextPath}/admin/css/admin.css">
+</c:if>
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <!-- jquery -->
