@@ -44,6 +44,10 @@ public class DiaryUpdate extends HttpServlet {
 				request.setAttribute("diary", diary);
 				Boolean hisYn = service.getHisYn(uNo);
 				request.setAttribute("recentHistory", hisYn);
+				
+				request.setAttribute("navPath", "/ieum/calender");
+				request.setAttribute("navPathName", "마이페이지");
+				request.setAttribute("navcurPage", "다이어리 수정");
 				request.getRequestDispatcher("/myPage/diaryUpdate.jsp").forward(request, response);
 			} else {
 				String content = request.getParameter("content");
