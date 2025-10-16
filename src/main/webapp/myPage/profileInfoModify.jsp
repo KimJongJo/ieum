@@ -223,7 +223,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				        <!-- 두 번째 줄: 주소 + 상세주소 -->
 				        <div style="display: flex;">
 				            <input type="text" id="address" name="uAddress" value="<c:out value='${member.uAddress}'/>" placeholder="주소" readonly style="width: 250px;">
-				            <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 200px;">
+				           <!--  <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" style="width: 200px;"> -->
 				        </div>
 				    </div>
 				</div>
