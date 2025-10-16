@@ -1056,9 +1056,9 @@ $(document).on("click", "#check", function() {
                     건강이음<br>마이페이지
                 </div>
                 <div class="welcome">
-                    <strong>*환영합니다*<br>최지성 회원님</strong>
-                    <span>심원의방</span>
-                </div>
+	                <strong>*환영합니다*<br>${ uNm } 회원님
+					</strong> <span>${nickNm }</span>
+	            </div>
                 <div class="sidebar-body">
                      <ul>
 					    <a href="/ieum/pInfo"><li><button type="button">나의 기본 정보</button></li></a>

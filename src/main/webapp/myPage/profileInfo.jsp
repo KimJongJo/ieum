@@ -36,11 +36,9 @@ $(document).ready(function() {
         <c:if test="${userType == 'USER'}">
         	<div class="container-two">
 	            <div class="sidebar">
-					<a href="/ieum/calender">
 	                <div class="sidebar-header">
 	                    건강이음<br>마이페이지
 	                </div>
-	                </a>
 	                <div class="welcome">
 	                    <strong>*환영합니다*<br>${ uNm } 회원님
 						</strong> <span>${nickNm }</span>
@@ -55,7 +53,7 @@ $(document).ready(function() {
         <c:if test="${userType != 'USER'}">
         	<div class="container-two2">
 	            <div class="sidebar2">
-	                <div class="sidebar-header">
+	                <div class="sidebar-header" >
 	                    건강이음<br>마이페이지
 	                </div>
 	                <div class="welcome">
