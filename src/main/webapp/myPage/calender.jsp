@@ -40,7 +40,7 @@ body {
 /* ✅ 메인 영역 - 1280px 중앙 고정 */
 .main-container {
     width: 1280px;
-    margin: 20px auto 0 auto; /* 위 60px 띄우고 가운데 정렬 */
+    margin: 30px auto 0 auto; /* 위 60px 띄우고 가운데 정렬 */
     display: flex;
     gap: 40px; /* 사이 간격 */
 }
