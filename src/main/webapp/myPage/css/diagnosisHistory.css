@@ -31,6 +31,10 @@ body{
     align-items: flex-start;
 }
 
+.space{
+	white-space: pre-wrap;
+}
+
 .first-block {
     width: 195px;
     height: 115px;
