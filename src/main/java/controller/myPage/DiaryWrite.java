@@ -53,6 +53,10 @@ public class DiaryWrite extends HttpServlet {
 			request.setAttribute("nowDt", formattedNow);
 			Boolean hisYn = service.getHisYn(uNo);
 			request.setAttribute("recentHistory", hisYn);
+			
+			request.setAttribute("navPath", "/ieum/calender");
+			request.setAttribute("navPathName", "마이페이지");
+			request.setAttribute("navcurPage", "다이어리 작성");
 			request.getRequestDispatcher("/myPage/diaryWrite.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
