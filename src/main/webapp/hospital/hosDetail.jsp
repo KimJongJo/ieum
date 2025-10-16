@@ -151,7 +151,7 @@
 				<button class="navl active" data-target="hosdetail">
 					<span>상세정보</span>
 				</button>
-				<button class="navr" data-target="reservation">
+				<button class="navr" data-target="reservation" data-label="${userType}">
 					<span>예약하기</span>
 				</button>
 			</div>
