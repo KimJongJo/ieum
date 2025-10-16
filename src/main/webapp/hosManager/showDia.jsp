@@ -49,23 +49,23 @@
                 <td class="up u-hold u-tt">진단명</td>
                 <td class="u-td up u-hold2"><div id="diaName" class="diaName"></div></td>
                 <td class="u-tt up u-hold">증상</td>
-                <td colspan="3" id="area1" class="u-td "><div id="sym"  class="sym"></div></td>
+                <td colspan="3" id="area1" class="u-td2"><div id="sym"  class="sym"></div></td>
             </tr>
             <tr>
                 <td colspan="2" class="u-td u-th" style="height: 185px">검사 내용 및 결과</td>
-                 <td colspan="4" id="area2" class="u-td" colspan="2"><div class="area2" id="summary"></div></td>
+                 <td colspan="4" id="area2" class="u-td2" colspan="2"><div class="area2" id="summary"></div></td>
              </tr>
              <tr>
                  <td colspan="2" class="u-td u-th">처치/수술내용</td>
-                 <td colspan="4" id="area3" class="u-td" colspan="2"><div class="area3" id="treatment"></div></td>
+                 <td colspan="4" id="area3" class="u-td2" colspan="2"><div class="area3" id="treatment"></div></td>
              </tr>
              <tr>
                  <td colspan="2" class="u-td u-th">처방전</td>
-                 <td colspan="4" id="area4" class="u-td" colspan="2"><div class="area4" id="pre"></div></td>
+                 <td colspan="4" id="area4" class="u-td2" colspan="2"><div class="area4" id="pre"></div></td>
              </tr>
              <tr>
                  <td colspan="2" class="u-td u-th">의사의 말</td>
-                 <td colspan="4" id="area5" class="u-td" colspan="2"><div class="area5" id="docComm"></div></td>
+                 <td colspan="4" id="area5" class="u-td2" colspan="2"><div class="area5" id="docComm"></div></td>
              </tr>
          </table>
      </div>
