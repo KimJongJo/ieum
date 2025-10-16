@@ -77,11 +77,17 @@ body {
 
 
 .notice-img {
-	width: 136px;
+	width: 150px;
 	height: 108px;
 	flex-shrink: 0;
 	border: 1px solid #f0f0f0;
-	background-color: #eaeaea;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.notice-img img{
+	width: 136px;
 }
 
 .notice-item {
