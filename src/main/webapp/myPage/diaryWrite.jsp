@@ -21,9 +21,7 @@
 <script src="${contextPath}/myPage/js/diaryWrite.js"></script>
 </head>
 <body>
-	<header>
-		<jsp:include page="/common/header/header.html" />
-	</header>
+<c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
 	<div class="main-container">
 		<jsp:include page="/common/nav/userNav.html" />
