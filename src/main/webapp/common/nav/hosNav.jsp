@@ -12,7 +12,7 @@
 .first-block {
     width: 195px;
     height: 115px;
-    background-color: #4a64d6;
+    background-color: #4356b3;
     border-radius: 5px 5px 0 0;
     display: flex;
     flex-direction: column;

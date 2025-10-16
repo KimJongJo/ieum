@@ -37,6 +37,11 @@ public class GoogleSignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/social/googleSignUp");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "구글 회원가입");
+		
 		request.getRequestDispatcher("/common/join/joinGoogle.jsp").forward(request, response);
 	}
 	
