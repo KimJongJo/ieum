@@ -35,8 +35,7 @@ a {
 .ci {
    width: 190px;
    height: 190px;
-   border-radius: 100px;
-   background-color: #F7FAFF;
+   background-color: #F7F8FF;
    border-radius: 15px;
    overflow:hidden;
 }
@@ -65,7 +64,7 @@ a {
 .sb {
    width: 195px;
    height: 81px;
-   background-color: #4356B3;
+   background-color: #4a64d6;
    border:none;
    border-radius: 5px;
    display: flex;
@@ -131,7 +130,7 @@ a {
 .examicon {
    width: 60px;
    height: 120px;
-   background-color: #F7FAFF;
+   background-color: #F7F8FF;
    border-radius: 50px;
    margin-right: 30px;
    display: flex;

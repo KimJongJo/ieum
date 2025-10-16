@@ -19,6 +19,7 @@ body {
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
+	gap: 40px;
 }
 
 .fav-container .container {
@@ -118,4 +119,12 @@ body {
 .t1 {
     font-weight: 600;
     font-size: 16pt;
+}
+
+.btn-gap {
+	width: 931px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	gap:10px;
 }

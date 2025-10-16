@@ -57,15 +57,17 @@ function renderList(page) {
 					const ext = top.fileName ? top.fileName.split('.').pop().toLowerCase() : '';
 
 					// 이미지 경로 설정
-					const imgSrc = (ext === 'jpg' || ext === 'jpeg' || ext === 'png')
-						? `/ieum/${top.filePath}/${top.fileName}`
-						: `/ieum/img/noticeDefault.png`;
-
+					const imgSrc =`/ieum/${top.filePath}/${top.fileName}`;
+					const imgHtml = (ext === 'jpg' || ext === 'jpeg' || ext === 'png') ?
+					`<img class="notice-img" src="${imgSrc}">` : `<div class="notice-img">
+											<img src="/ieum/img/찐한로고.png" alt="공지사항 기본 이미지">
+										</div>`
+					
 					// HTML 생성
 					const html = `
     <a href="/ieum/notice?nNo=${top.nNo}">
       <div class="notice-list">
-        <img class="notice-img" src="${imgSrc}">
+        ${imgHtml}
         <div class="notice-item">
           <div class="notice-title-row">
             <span class="notice-title">${top.title}</span>
@@ -86,15 +88,17 @@ function renderList(page) {
 					const ext = notice.fileName ? notice.fileName.split('.').pop().toLowerCase() : '';
 
 					// 이미지 경로 설정
-					const imgSrc = (ext === 'jpg' || ext === 'jpeg' || ext === 'png')
-						? `/ieum/${notice.filePath}/${notice.fileName}`
-						: `/ieum/img/noticeDefault.png`;
+					const imgSrc =`/ieum/${notice.filePath}/${notice.fileName}`;
+					const imgHtml = (ext === 'jpg' || ext === 'jpeg' || ext === 'png') ?
+					`<img class="notice-img" src="${imgSrc}">` : `<div class="notice-img">
+											<img src="/ieum/img/찐한로고.png" alt="공지사항 기본 이미지">
+										</div>`
 
 					// HTML 생성
 					const html = `
     <a href="/ieum/notice?nNo=${notice.nNo}">
       <div class="notice-list">
-        <img class="notice-img" src="${imgSrc}">
+        ${imgHtml}
         <div class="notice-item">
           <div class="notice-title-row">
             <span class="notice-title">${notice.title}</span>

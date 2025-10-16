@@ -221,6 +221,7 @@ $('#blockCommentForm').submit(function(e){
              location.reload();  
          } else {
              alert("자신의 댓글은 차단 할 수 없습니다.");
+
          }
      })
      .fail(function(){

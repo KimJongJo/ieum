@@ -50,7 +50,7 @@
 		                <td class="u-tt up u-hold">진단명</td>
 		                <td class="u-td up u-hold2" id="dia2diaName">2241</td>
 		                <td class="u-tt up u-hold">증상</td>
-		                <td colspan="3" id="area1" class="u-td2 "><div id="dia2sym"></div></td>
+		                <td colspan="3" id="area1" class="u-td2 "><div class="sym" id="dia2sym"></div></td>
 		            </tr>
 		            <tr>
 		                <td colspan="2" class="u-td u-th" style="height: 185px">검사 내용 및 결과</td>
