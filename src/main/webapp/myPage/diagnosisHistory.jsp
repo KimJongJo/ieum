@@ -126,15 +126,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="th diagnosis-th" style="height: 200px">주요검사 결과 요약</td>
-                                                <td class="diagnosis-td" id="summary"></td>
+                                                <td class="diagnosis-td space" id="summary"></td>
                                             </tr>
                                             <tr>
                                                 <td class="th diagnosis-th" style="height: 165px">처치/수술내용</td>
-                                                <td class="diagnosis-td" id="treatment"></td>
+                                                <td class="diagnosis-td space" id="treatment"></td>
                                             </tr>
                                             <tr>
                                                 <td class="th diagnosis-th diagnosis-left-down">처방전</td>
-                                                <td class="diagnosis-td diagnosis-right-down" id="pre"></td>
+                                                <td class="diagnosis-td space diagnosis-right-down" id="pre"></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -166,7 +166,7 @@
                                         <table class="comment-table">
                                             <tr>
                                                 <td class="th comment-th" style="width: 180px">내용</td>
-                                                <td class="comment-td" id="docComment"></td>
+                                                <td class="comment-td space" id="docComment"></td>
                                             </tr>
                                         </table>
                                     </div>
