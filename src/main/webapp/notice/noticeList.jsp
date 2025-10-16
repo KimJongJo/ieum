@@ -64,8 +64,9 @@
 											src="${contextPath}/${top.filePath}/${top.fileName}">
 									</c:when>
 									<c:otherwise>
-										<img class="notice-img"
-											src="${contextPath}/img/noticeDefault.png">
+										<div class="notice-img">
+											<img src="/ieum/img/찐한로고.png" alt="공지사항 기본 이미지">
+										</div>
 									</c:otherwise>
 								</c:choose>
 								<div class="notice-item">
@@ -91,8 +92,9 @@
 											src="${contextPath}/${notice.filePath}/${notice.fileName}">
 									</c:when>
 									<c:otherwise>
-										<img class="notice-img"
-											src="${contextPath}/img/noticeDefault.png">
+										<div class="notice-img">
+											<img src="/ieum/img/찐한로고.png" alt="공지사항 기본 이미지">
+										</div>
 									</c:otherwise>
 								</c:choose>
 								<div class="notice-item">
