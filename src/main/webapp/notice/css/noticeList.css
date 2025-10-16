@@ -11,6 +11,9 @@ body {
 	background-color: #fff;
 	color: #000000;
 }
+a{
+	text-decoration: none;
+}
 
 .notice-container {
 	display:flex;

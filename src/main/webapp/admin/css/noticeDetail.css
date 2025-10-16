@@ -22,14 +22,14 @@
 /* 	height: 815px; */
 	justify-content: center;
 	align-items: flex-start;
-	background-color: #f7faff;
+	background-color: #ffff;
 }
 
 /* 제목 영역 */
 .notice-header {
-	background: #004aad;
+	background: #4356b3;
 	color: #fff;
-	height: 80px;
+	height: 90px;
 	padding: 14px 20px;
 	font-size: 18px;
 	font-weight: 600;
@@ -39,7 +39,7 @@
 
 .notice-header .tag {
 	display: inline-block;
-	background: #2d64e6;
+	background: #488EF6;
 	color: #fff;
 	font-size: 13px;
 	font-weight: 600;
