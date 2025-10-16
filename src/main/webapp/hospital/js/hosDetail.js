@@ -83,16 +83,29 @@ $(document).ready(() => {
 		tab2.removeClass("active");
 
 	});
+	
+	function checkUserType() {
+		let userType = $('.navr').data('label');
+      if(userType != "USER"){
+         alert("사용자 이외 계정은 예약 권한이 불가능합니다.");
+         return;
+      }
+		
+	}
 
 	//하단 버튼 (예약하기)
 	$(document).on('click', '#resbtn', function() {
-		resLogin(uNo)
+		if (resLogin(uNo)) {
+			checkUserType();
+		}	
 		activeReservation();
 	});
 
 	// 오른쪽 탭 (예약하기)
 	navr.click(function() {
-		resLogin(uNo)
+		if (resLogin(uNo)) {
+			checkUserType();
+		}		
 		navr.addClass("active");
 		navl.removeClass("active");
 		tab2.addClass("active");
@@ -160,7 +173,6 @@ $(document).ready(() => {
 
 	//의사 선택 + 날짜 선택 보내기
 	function sendDateToServer(mNo, rDate, callback) {
-		console.log(">>>", mNo);
 		$.post("/ieum/hospital/detail", {
 			mNo: mNo,
 			rDate: rDate,
@@ -411,11 +423,13 @@ $(document).ready(() => {
 
 	//로그인 모달
 	function resLogin(uNo) {
-
+		let res = true;
 		if (!uNo || uNo === 0) {
 			//예약 로그인 모달
-			$("#modalResNeedLogin").show();
+			res = false;
+			$("#modalResNeedLogin").show();			
 		}
+		
 
 		//모달 닫기
 		$("#xBtn, #modalClose").off("click").on("click", function() {
@@ -430,7 +444,7 @@ $(document).ready(() => {
 			// 로그인 페이지로 이동, redirect 파라미터로 현재 페이지 전달
 			window.location.href = "/ieum/login?redirect=" + encodeURIComponent(currentUrl);
 		});
-
+		return res;
 	}
 
 	//url 버튼
