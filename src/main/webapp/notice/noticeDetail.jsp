@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${contextPath}/notice/css/noticeDetail.css">
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <!-- jquery -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- fontawesome -->
@@ -77,5 +78,6 @@
 			</div>
 		</div>
 	</div>
+	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>

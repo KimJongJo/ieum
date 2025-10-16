@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="${contextPath}/common/pagination/page.css" />
 <link rel="stylesheet" href="${contextPath}/common/button/button.css" />
 <link rel="stylesheet" href="${contextPath}/common/searchBox/search.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <c:if test="${userType == 'ADMIN'}">
 	<link rel="stylesheet" type="text/css"
 		href="${contextPath}/admin/css/admin.css">
@@ -154,5 +155,6 @@
 		</c:if>
 	</div>
 	</div>
+	<c:import url="../common/footer/footer.html" charEncoding="UTF-8"/>
 </body>
 </html>
