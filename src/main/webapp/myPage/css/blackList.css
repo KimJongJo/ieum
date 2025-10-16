@@ -1,7 +1,7 @@
 /* 전체 레이아웃 */
 body {
-   min-width:1500px;
-
+    min-width:1500px;
+	font-family: "Noto Sans KR", Helvetica;
     margin: 0;
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
