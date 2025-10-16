@@ -23,17 +23,21 @@ public class AllCommunityDaoImpl implements AllCommunityDao{
 	}
 	// 페이징
 	@Override
-	public List<AllCommunityDto> selectList(Integer row) throws Exception {
+	public List<AllCommunityDto> selectList(Integer row, String sort, String category) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 	        Map<String, Object> param = new HashMap<>();
 	        param.put("row", row);
+	        param.put("sort", sort);
+	        param.put("category", category);
 	        return session.selectList("mapper.community.selectList", param);
 	    }
 	}
 	//페이징
 	@Override
-	public Integer selectCount() throws Exception {
+	public Integer selectCount(String category) throws Exception {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
+			Map<String, Object> param = new HashMap<>();
+	        param.put("category", category);
 			return session.selectOne("mapper.community.selectCount");
 		}
 	}

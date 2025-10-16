@@ -137,7 +137,13 @@
         FROM community c
         INNER JOIN commu_category cg ON c.category_no = cg.category_no
         INNER JOIN member m ON c.u_no = m.u_no
-            <choose>
+        
+        <where>
+        <if test="category != null and category != 'all'">
+            AND cg.category_name = #{category}
+        </if>
+    </where>
+     <choose>
         <when test="sort == 'latest'">
             ORDER BY c.commu_no DESC
         </when>
@@ -157,6 +163,12 @@
 	<select id="selectCount" resultType="Integer">
 		select count(*)
 	    from community
+	    INNER JOIN commu_category cg ON c.category_no = cg.category_no
+    <where>
+        <if test="category != null and category != 'all'">
+            AND cg.category_name = #{category}
+        </if>
+    </where>
 	</select>
 	<!-- 페이징 처리할 쿼리 (10개 가져오기)-->
 	<select id="selectMyList" parameterType="map" resultType="myCommunity">

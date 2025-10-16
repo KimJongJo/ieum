@@ -57,14 +57,18 @@ public class AllCommunityList extends HttpServlet {
 		//2줄 추가됨
 		String sort = request.getParameter("sort"); // 최신, 공감, 조회
         if(sort == null) sort = "latest"; // 기본값 최신순
+        
+        String category = request.getParameter("category");
+        if (category == null) category = "all"; // 기본값
 		
 		AllCommunityService service = new AllCommunityServiceImpl();
 		CommuEmpathyService commuEmpathyService = new CommuEmpathyServiceImpl();
 		try {
-			List<AllCommunityDto> allComList = service.listByPage(pageInfo, sort);
+			List<AllCommunityDto> allComList = service.listByPage(pageInfo, sort, category);
 			request.setAttribute("allComList", allComList); 
 			request.setAttribute("pageInfo", pageInfo);
 			request.setAttribute("sort", sort);// 추가됨
+			request.setAttribute("category", category);
 			
 			// 게시물 좋아요 여부 세팅
 	        for(AllCommunityDto community : allComList) {
