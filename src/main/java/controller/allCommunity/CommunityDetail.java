@@ -200,12 +200,15 @@ public class CommunityDetail extends HttpServlet {
 	        return;
 	    }
 		// 댓글 내용 확인
-		String content = request.getParameter("content");
+		String content = request.getParameter("content");		
 		if (content == null || content.trim().isEmpty()) {
-	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "댓글 내용이 필요합니다.");
-	        return;
-	    }
-		
+		    response.setContentType("text/html; charset=UTF-8");
+		    response.getWriter().println("<script>");
+		    response.getWriter().println("alert('댓글 내용이 필요합니다.');");
+		    response.getWriter().println("history.back();");
+		    response.getWriter().println("</script>");
+		    return;
+		}
 		
 		int commuNo = 0;
 		try {
