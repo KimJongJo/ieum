@@ -70,11 +70,15 @@ public class AllCommunityList extends HttpServlet {
 			request.setAttribute("sort", sort);// 추가됨
 			request.setAttribute("category", category);
 			
-			// 게시물 좋아요 여부 세팅
-	        for(AllCommunityDto community : allComList) {
-	            boolean liked = commuEmpathyService.checkEmpathy(uNo, community.getCommuNo());
-	            community.setLikedByUserCom(liked);
-	        }
+			
+			
+			// ✅ 로그인 상태일 때만 좋아요 여부 체크
+            if (uNo != null) {
+                for (AllCommunityDto community : allComList) {
+                    boolean liked = commuEmpathyService.checkEmpathy(uNo, community.getCommuNo());
+                    community.setLikedByUserCom(liked);
+                }
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

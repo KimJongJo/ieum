@@ -318,6 +318,14 @@ body {
 	    transform: translateY(2px);
 	    filter: brightness(90%);
 	}
+	
+	a button {
+    text-decoration: none; /* 혹시 버튼 텍스트에 밑줄 생기는 경우 */
+}
+
+a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
 
     /* 마우스 올렸을 때 */
     #latest:hover, #empathy:hover, #by-view:hover, #write:hover {
