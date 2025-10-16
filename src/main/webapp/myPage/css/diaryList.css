@@ -90,6 +90,14 @@ body {
 .fc .fc-write-button:hover {
 	background-color: #B7B7B7;
 }
+.fc-event-title-container{
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.fc-event-title-container:hover{
+	background-color:#4a64d6;
+}
 
 /* 검색창 */
 .notice-search {
@@ -298,7 +306,7 @@ body {
 }
 
 .diary-list th {
-	background-color: #f8f8f8;
+	background-color: #F1F1F1;
 	font-weight: bold;
 }
 
