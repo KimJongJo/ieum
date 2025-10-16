@@ -28,7 +28,7 @@ a {
 	height: 175px;
 	width: 1110px;
 	border-radius: 15px;
-	background-color: #f7faff;
+	background-color: #F7F8FF;
 }
 
 .chapter {
@@ -47,7 +47,7 @@ a {
 }
 
 .yes {
-	background-color: #334186;
+	background-color: #4356b3;
 	color: white;
 }
 
@@ -109,7 +109,7 @@ a {
 	width: 222px;
 	height: 55px;
 	border-radius: 15px 0 0 0;
-	background-color: #f7faff;
+	background-color: #F7F8FF;
 	display: flex;
 	align-items: center;
 }
@@ -148,7 +148,7 @@ a {
 
 .span-div2, .span-div2-pw {
 	width: 222px;
-	background-color: #f7faff;
+	background-color: #F7F8FF;
 	display: flex;
 	align-items: center;
 }

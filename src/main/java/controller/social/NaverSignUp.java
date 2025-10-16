@@ -42,6 +42,11 @@ public class NaverSignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/social/naverSignUp");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "네이버 회원가입");
+		
 		request.getRequestDispatcher("/common/join/joinNaver.jsp").forward(request, response);
 	}
 	

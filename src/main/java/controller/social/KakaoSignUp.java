@@ -37,6 +37,11 @@ public class KakaoSignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("navPath", "/ieum/social/kakaoSignUp");
+		request.setAttribute("navPathName", "회원가입");
+		request.setAttribute("navcurPage", "카카오 회원가입");
+		
 		request.getRequestDispatcher("/common/join/joinKakao.jsp").forward(request, response);
 	}
 	

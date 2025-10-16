@@ -76,7 +76,7 @@
 	                                    	 <span class="ellipsis-text">${dia.testSummary}</span>
 	                                    </div>
 	                                    <div class="box-item">
-	                                        <button class="btn2" value="${dia.diaNo}">진단 결과 보기</button>
+	                                        <button class="btn2 btn-rec-w" value="${dia.diaNo}">진단 결과 보기</button>
 	                                    </div>
 	                                </div>
 	                                <div class="doc-comment">

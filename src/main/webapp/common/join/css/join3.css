@@ -22,7 +22,7 @@
                 height: 175px;
                 width: 1110px;
                 border-radius: 15px;
-                background-color: #f7faff;
+                background-color: #F7F8FF;
             }
 
             .chapter {
@@ -41,7 +41,7 @@
             }
 
             .yes {
-                background-color: #334186;
+                background-color: #4356b3;
                 color: white;
             }
 
@@ -118,7 +118,7 @@
             .check_list_first {
                 width: 1110px;
                 height: 145px;
-                background-color: #f7faff;
+                background-color: #F7F8FF;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;

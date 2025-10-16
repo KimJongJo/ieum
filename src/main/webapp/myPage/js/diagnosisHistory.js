@@ -215,7 +215,7 @@ function fetchDiagnosisList(date) {
                                 	 <span class="ellipsis-text">${item.testSummary}</span>
                                 </div>
                                 <div class="box-item">
-                                    <button class="btn2" value="${item.diaNo}">진단 결과 보기</button>
+                                    <button class="btn2 btn-rec-w" value="${item.diaNo}">진단 결과 보기</button>
                                 </div>
                             </div>
                             <div class="doc-comment">${item.doctorComment}</div>
@@ -299,7 +299,7 @@ function fetchDiagnosisList(date) {
                                 	 <span class="ellipsis-text">${dia.testSummary}</span>
                                 </div>
                                 <div class="box-item">
-                                    <button class="btn2" value="${dia.diaNo}">진단 결과 보기</button>
+                                    <button class="btn2 btn-rec-w" value="${dia.diaNo}">진단 결과 보기</button>
                                 </div>
                             </div>
                             <div class="doc-comment">${dia.doctorComment}</div>
@@ -414,7 +414,7 @@ function fetchDiagnosisList(date) {
 	                                	 <span class="ellipsis-text">${object.testSummary}</span>
 	                                </div>
 	                                <div class="box-item">
-	                                    <button class="btn2" value="${object.diaNo}">진단 결과 보기</button>
+	                                    <button class="btn2 btn-rec-w" value="${object.diaNo}">진단 결과 보기</button>
 	                                </div>
 	                            </div>
 	                            <div class="doc-comment">${object.doctorComment}</div>
