@@ -160,9 +160,9 @@
         LIMIT #{row}, 20
 	</select>	
 	<!-- 커뮤니티 저장된것 다 가져오기 (갯수 파악함)-->
-	<select id="selectCount" resultType="Integer">
+	<select id="selectCount" parameterType="map" resultType="Integer">
 		select count(*)
-	    from community
+	    from community c
 	    INNER JOIN commu_category cg ON c.category_no = cg.category_no
     <where>
         <if test="category != null and category != 'all'">
