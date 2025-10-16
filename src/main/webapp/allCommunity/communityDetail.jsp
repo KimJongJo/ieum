@@ -220,7 +220,7 @@ $('#blockCommentForm').submit(function(e){
              // 페이지 자동 새로고침
              location.reload();  
          } else {
-             alert("응 차단못해~ 나가!!");
+             alert("자신의 댓글은 차단할 수 없습니다");
          }
      })
      .fail(function(){
