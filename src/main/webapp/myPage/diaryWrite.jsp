@@ -24,7 +24,7 @@
 <c:import url="/common/header/header.jsp" charEncoding="UTF-8"/>
 
 	<div class="main-container">
-		<jsp:include page="/common/nav/userNav.html" />
+		<jsp:include page="/common/nav/nav.jsp" />
 		<div class="diary-container">
 			<form method="post">
 				<div class="btn-right">
