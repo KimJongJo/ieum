@@ -138,7 +138,7 @@ $(function () {
              window.location.href = "${pageContext.request.contextPath}/myCom";
          })
          .fail(function() {
-             alert("당신 게시글 아니잖아 저리가");
+             alert("다른 사용자의 게시물은 삭제 할 수 없습니다.");
          });
     });
 
@@ -220,7 +220,8 @@ $('#blockCommentForm').submit(function(e){
              // 페이지 자동 새로고침
              location.reload();  
          } else {
-             alert("자신의 댓글은 차단할 수 없습니다");
+             alert("자신의 댓글은 차단 할 수 없습니다.");
+
          }
      })
      .fail(function(){
@@ -293,7 +294,7 @@ $('#blockCommentForm').submit(function(e){
 				        💬 <span class="action-count"><c:out value="${community.commuComment}" /></span>
 				    </span>
 				    <span class="action-item">
-				        🔗 <span class="action-count"><c:out value="${community.commuViews}" /></span>
+				        <img id="Heart1" src="${pageContext.request.contextPath}/img/조회수.png" alt="좋아요" width="15" height="15"/> <span class="action-count"><c:out value="${community.commuViews}" /></span>
 				    </span>
 				</div>
         <div id="san"></div>

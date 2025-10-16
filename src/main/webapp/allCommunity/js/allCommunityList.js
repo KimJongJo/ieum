@@ -4,8 +4,12 @@ window.addEventListener("pageshow", function(event) {
     }
 });
 
-
-
+// 카테고리 필터
+function filterCategory(categoryName) {
+    const sort = new URLSearchParams(window.location.search).get("sort") || "latest"; // 현재 sort 유지
+    const page = 1; // 카테고리 변경 시 항상 첫 페이지로
+    window.location.href = `${contextPath}/allComList?page=${page}&category=${encodeURIComponent(categoryName)}&sort=${sort}`;
+}
 
 $(function () {
 	const $grid = $('.community-grid'); // 공통으로 선언
@@ -57,20 +61,21 @@ $(function () {
     });
 
     // ✅ 카테고리 필터
-	$('.category-list input[type="radio"]').on('change', function () {
-	    const selectedCategory = $(this).next('label').text().trim(); // 라벨 텍스트로 카테고리 가져오기
-	
-	    $('.right-container .boxes').each(function () {
-	        const boxCategory = $(this).find('.text-wrapper-2').text().trim();
-	
-	        // "모든 사연"이면 전체 표시, 아니면 일치하는 카테고리만 표시
-	        if (selectedCategory === "모든 사연" || boxCategory === selectedCategory) {
-	            $(this).show(); // display:flex; 대신 show() 사용 (기본 display 유지)
-	        } else {
-	            $(this).hide();
-	        }
-	    });
-	});
+/*$('.category-list input[type="radio"]').on('change', function () {
+    const selectedCategory = $(this).next('label').text().trim(); // 라벨 텍스트로 카테고리 가져오기
+
+    $('.right-container .boxes').each(function () {
+        const boxCategory = $(this).find('.text-wrapper-2').text().trim();
+
+        // "모든 사연"이면 전체 표시, 아니면 일치하는 카테고리만 표시
+        if (selectedCategory === "모든 사연" || boxCategory === selectedCategory) {
+            $(this).show(); // display:flex; 대신 show() 사용 (기본 display 유지)
+        } else {
+            $(this).hide();
+        }
+    });
+});*/
+
     // ✅ '관리 메뉴' 숨기기
     $('.menu span:nth-child(5)').hide();
 });
@@ -106,3 +111,4 @@ $(function() {
 $(document).ready(function() {
     $('.hide-if-user').hide();
 });
+

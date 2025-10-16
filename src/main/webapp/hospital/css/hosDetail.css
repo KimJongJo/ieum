@@ -256,7 +256,7 @@ a {
 	width: 1169px;
 	height: 87px;
 	padding: 17px;
-	background-color: #F7FAFF;
+	background-color: #F7F8FF;
 	border-radius: 15px;
 	box-sizing: border-box;
 }
@@ -415,7 +415,7 @@ a {
 .mheader {
 	width: 1169px;
 	height: 55px;
-	background-color: #F7FAFF;
+	background-color: #F7F8FF;
 	border-radius: 5px;
 	display: flex;
 	align-items: center;
@@ -459,7 +459,7 @@ a {
 .cont {
 	width: 1169px;
 	height: 255px;
-	background-color: #F7FAFF;
+	background-color: #F7F8FF;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

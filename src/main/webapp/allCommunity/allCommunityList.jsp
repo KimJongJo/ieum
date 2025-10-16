@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modal.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/allCommunity/css/allCommunityList.css" />
+<script>
+    const contextPath = "${pageContext.request.contextPath}";
+</script>
 	<c:if test="${userType == 'ADMIN'}">
 		<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/admin/css/admin.css">
@@ -33,26 +36,26 @@
         <div class="category-box">
         <div class="category-title">카테고리</div>
         <ul class="category-list">
-            <li><input type="radio" name="category" id="all"><label for="all">모든 사연</label></li>
-            <li><input type="radio" name="category" id="baby"><label for="baby">육아/출산</label></li>
-            <li><input type="radio" name="category" id="finance"><label for="finance">금전/사업</label></li>
-            <li><input type="radio" name="category" id="lgbt"><label for="lgbt">LGBT</label></li>
-            <li><input type="radio" name="category" id="child"><label for="child">자아/성격</label></li>
-            <li><input type="radio" name="category" id="love"><label for="love">연애</label></li>
-            <li><input type="radio" name="category" id="divorce"><label for="divorce">이별/이혼</label></li>
-            <li><input type="radio" name="category" id="crime"><label for="crime">성범죄</label></li>
-            <li><input type="radio" name="category" id="pets"><label for="pets">펫로스</label></li>
-            <li><input type="radio" name="category" id="study"><label for="study">학업/고시</label></li>
-            <li><input type="radio" name="category" id="sex"><label for="sex">성생활</label></li>
-            <li><input type="radio" name="category" id="social"><label for="social">대인관계/따돌림</label></li>
-            <li><input type="radio" name="category" id="appearance"><label for="appearance">외모</label></li>
-            <li><input type="radio" name="category" id="health"><label for="health">신체건강</label></li>
-            <li><input type="radio" name="category" id="mental"><label for="mental">정신건강</label></li>
-            <li><input type="radio" name="category" id="family"><label for="family">가족</label></li>
-            <li><input type="radio" name="category" id="job"><label for="job">취업/진로</label></li>
-            <li><input type="radio" name="category" id="marriage"><label for="marriage">부부관계</label></li>
-            <li><input type="radio" name="category" id="work"><label for="work">직장</label></li>
-            <li><input type="radio" name="category" id="etc"><label for="etc">기타</label></li>
+            <li><input type="radio" name="category" id="all" onclick="filterCategory('all')" ${category == 'all' ? 'checked' : ''}><label for="all">모든 사연</label></li>
+            <li><input type="radio" name="category" id="baby" onclick="filterCategory('육아/출산')" ${category == '육아/출산' ? 'checked' : ''}><label for="baby">육아/출산</label></li>
+            <li><input type="radio" name="category" id="finance" onclick="filterCategory('금전/사업')" ${category == '금전/사업' ? 'checked' : ''}><label for="finance">금전/사업</label></li>
+            <li><input type="radio" name="category" id="lgbt" onclick="filterCategory('LGBT')" ${category == 'LGBT' ? 'checked' : ''}><label for="lgbt">LGBT</label></li>
+            <li><input type="radio" name="category" id="child" onclick="filterCategory('자아/성격')" ${category == '자아/성격' ? 'checked' : ''}><label for="child">자아/성격</label></li>
+            <li><input type="radio" name="category" id="love" onclick="filterCategory('연애')" ${category == 'all' ? '연애' : ''}><label for="love">연애</label></li>
+            <li><input type="radio" name="category" id="divorce" onclick="filterCategory('이별/이혼')" ${category == '이별/이혼' ? 'checked' : ''}><label for="divorce">이별/이혼</label></li>
+            <li><input type="radio" name="category" id="crime" onclick="filterCategory('성범죄')" ${category == '성범죄' ? 'checked' : ''}><label for="crime">성범죄</label></li>
+            <li><input type="radio" name="category" id="pets" onclick="filterCategory('펫로스')" ${category == '펫로스' ? 'checked' : ''}><label for="pets">펫로스</label></li>
+            <li><input type="radio" name="category" id="study" onclick="filterCategory('학업/고시')" ${category == '학업/고시' ? 'checked' : ''}><label for="study">학업/고시</label></li>
+            <li><input type="radio" name="category" id="sex" onclick="filterCategory('성생활')" ${category == '성생활' ? 'checked' : ''}><label for="sex">성생활</label></li>
+            <li><input type="radio" name="category" id="social" onclick="filterCategory('대인관계/따돌림')" ${category == '대인관계/따돌림' ? 'checked' : ''}><label for="social">대인관계/따돌림</label></li>
+            <li><input type="radio" name="category" id="appearance" onclick="filterCategory('외모')" ${category == '외모' ? 'checked' : ''}><label for="appearance">외모</label></li>
+            <li><input type="radio" name="category" id="health" onclick="filterCategory('신체건강')" ${category == '신체건강' ? 'checked' : ''}><label for="health">신체건강</label></li>
+            <li><input type="radio" name="category" id="mental" onclick="filterCategory('정신건강')" ${category == '정신건강' ? 'checked' : ''}><label for="mental">정신건강</label></li>
+            <li><input type="radio" name="category" id="family" onclick="filterCategory('가족')" ${category == '가족' ? 'checked' : ''}><label for="family">가족</label></li>
+            <li><input type="radio" name="category" id="job" onclick="filterCategory('취업/진로')" ${category == '취업/진로' ? 'checked' : ''}><label for="job">취업/진로</label></li>
+            <li><input type="radio" name="category" id="marriage" onclick="filterCategory('부부관계')" ${category == '부부관계' ? 'checked' : ''}><label for="marriage">부부관계</label></li>
+            <li><input type="radio" name="category" id="work" onclick="filterCategory('직장')" ${category == '직장' ? 'checked' : ''}><label for="work">직장</label></li>
+            <li><input type="radio" name="category" id="etc" onclick="filterCategory('기타')" ${category == '기타' ? 'checked' : ''}><label for="etc">기타</label></li>
         </ul>
         </div>
 
@@ -136,7 +139,7 @@
 					            💬 <span class="action-count"><c:out value="${allComList.commuComment}" /></span>
 					        </span>
 					        <span class="action-item">
-					            🔗 <span class="action-count"><c:out value="${allComList.commuViews}" /></span>
+					            <img id="Heart1" src="${pageContext.request.contextPath}/img/조회수.png" alt="좋아요" width="15" height="15"/> <span class="action-count"><c:out value="${allComList.commuViews}" /></span>
 					        </span>
 					    </div>
 					</div>
@@ -148,6 +151,7 @@
 		    
 		    </div>
 		    <div id="paging" style="text-align:center; margin:40px 0;">
+
 				<c:choose>
 					<c:when test="${pageInfo.curPage>1 }">
 						<a href="${pageContext.request.contextPath}/allComList?page=${pageInfo.curPage-1}"><img id="arrow" src="${pageContext.request.contextPath}/img/입체왼쪽화살표.png" alt="좋아요" width="20" height="20"/></a>
