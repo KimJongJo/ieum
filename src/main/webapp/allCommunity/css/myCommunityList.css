@@ -35,6 +35,11 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
+
+a {
+	text-decoration-line:none;	
+}
+
 .sidebar-header {
     background-color: #4a64d6;
     color: white;
