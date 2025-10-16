@@ -386,7 +386,7 @@
   .sub-header-div-basic,
   .sub-header-div-basic2{
  	height:120px;
-  	width:1920px;
+  	min-width:1905px;
   	background-repeat: no-repeat;
   	display:flex;
   	flex-direction:column;
