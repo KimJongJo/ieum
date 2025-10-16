@@ -28,12 +28,14 @@
         <!-- Sidebar -->
         <div class="container-two">
             <div class="sidebar">
+            	<a href="/ieum/calender">
                 <div class="sidebar-header">
                     건강이음<br>마이페이지
                 </div>
+                </a>
                 <div class="welcome">
-                    <strong>*환영합니다*<br>최지성 회원님</strong>
-                    <span>심원의방</span>
+                    <strong>*환영합니다*<br>${ uNm } 회원님
+                  </strong> <span>${nickNm }</span>
                 </div>
                 <div class="sidebar-body">
                      <ul>
