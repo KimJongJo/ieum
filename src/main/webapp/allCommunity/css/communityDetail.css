@@ -89,10 +89,10 @@ body {
     #nickANDdate {
         width: 980px;
         height: 40px; /* 높이를 충분히 줍니다 */
-        background-color: #E5E7ED;
+        background-color: #f8f8f8;
         display: flex;
         align-items: center;       /* 세로 가운데 정렬 */
-        border: 2px solid #E5E7ED;
+        border: 2px solid #f8f8f8;
         padding: 0 10px;           /* 좌우 여백 */
         gap: 20px;                  /* 닉네임과 날짜 간 간격 */
     }
@@ -214,8 +214,8 @@ body {
     #comment-write-box {
         width: 998px;
         height: 180px;
-        border: 1px solid #E5E7ED;
-        background-color: #E5E7ED;
+        border: 1px solid #f8f8f8;
+        background-color: #f8f8f8;
         margin: 10px auto; /* 상하 10px, 좌우 중앙 정렬 */
         display: flex;
         align-items: center; /* 세로 가운데 정렬 */
@@ -257,14 +257,31 @@ body {
 
     #btn2 {
         display: flex;
-        align-items: center; /* 버튼 세로 가운데 */
+        align-items: center;
+    	color: white;
     }
 
     #btn2 button {
         height: 50px;
         padding: 0 20px;
         cursor: pointer;
+        border-radius: 15px;
+        background-color: #488EF6;
+        
     }
+    #btn2-registration{
+    	color: white;
+    	border: 1px solid #488EF6;
+    	cursor: pointer;
+    	transition: all 0.2s ease;
+    }
+    #btn2-registration:hover {
+	    transform: translateY(-2px);
+	}
+    #btn2-registration:active {
+	    transform: translateY(1px);
+	}
+    
     .actions {
 	    bottom: 10px;
 	    right: 15px;
