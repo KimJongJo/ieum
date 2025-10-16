@@ -81,8 +81,8 @@ public class NaverLogin extends HttpServlet {
 			
 		// member 객체가 있을때
 		if(naverDto.getMemberDto() != null) {
-			FileDto fileDto = fileService.getFile(member.getFileNo());
-			String filePath = fileDto.getFilePath() + fileDto.getFileName();
+			FileDto fileDto = fileService.getFile(naverDto.getMemberDto().getFileNo());
+			String filePath = fileDto.getFilePath() + "/" + fileDto.getFileName();
 			session.setAttribute("profile", filePath);
 			session.setAttribute("hNo", naverDto.getMemberDto().getuNo());
 			response.sendRedirect(request.getContextPath() + "/index");

@@ -78,7 +78,7 @@ body{
 .under-section {
 	min-width:1250px;
 	padding-top: 35px;
-	background-color: #f7faff;
+	background-color: #F7F8FF;
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
@@ -199,7 +199,7 @@ body{
 .search-bar-input {
 	width: 170px;
 	height: 40px;
-	background-color: #f9fbff;
+	background-color: #F7F8FF;
 	border: none;
 	border-radius: 5px;
 	outline: none;
@@ -211,7 +211,7 @@ body{
 .search-bar-icon {
 	width: 40px;
 	height: 40px;
-	background-color: #f9fbff;
+	background-color: #F7F8FF;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -227,7 +227,7 @@ body{
 	border: none;
 	height: 40px;
 	width: 155px;
-	background-color: #f9fbff;
+	background-color: #F7F8FF;
 }
 
 .filter-div {
