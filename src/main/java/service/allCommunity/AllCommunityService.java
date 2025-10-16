@@ -8,7 +8,7 @@ import util.PageInfo;
 public interface AllCommunityService {
 	List<AllCommunityDto> getAllCommunity();
 
-	List<AllCommunityDto> listByPage(PageInfo pageInfo , String sort) throws Exception;
+	List<AllCommunityDto> listByPage(PageInfo pageInfo , String sort, String category) throws Exception;
 	
 //	pes
 	Integer getSearchCnt(String keyword) throws Exception;

@@ -57,18 +57,20 @@ $(function () {
     });
 
     // ✅ 카테고리 필터
-    $('.category-list input[type="radio"]').on('change', function () {
-        const selectedCategory = $(this).next().text().trim();
-        $('.right-container .boxes').each(function () {
-            const boxCategory = $(this).find('.text-wrapper-2').text().trim();
-            if (selectedCategory === "모든 사연" || boxCategory === selectedCategory) {
-                $(this).css('display', 'flex');
-            } else {
-                $(this).css('display', 'none');
-            }
-        });
-    });
-
+	$('.category-list input[type="radio"]').on('change', function () {
+	    const selectedCategory = $(this).next('label').text().trim(); // 라벨 텍스트로 카테고리 가져오기
+	
+	    $('.right-container .boxes').each(function () {
+	        const boxCategory = $(this).find('.text-wrapper-2').text().trim();
+	
+	        // "모든 사연"이면 전체 표시, 아니면 일치하는 카테고리만 표시
+	        if (selectedCategory === "모든 사연" || boxCategory === selectedCategory) {
+	            $(this).show(); // display:flex; 대신 show() 사용 (기본 display 유지)
+	        } else {
+	            $(this).hide();
+	        }
+	    });
+	});
     // ✅ '관리 메뉴' 숨기기
     $('.menu span:nth-child(5)').hide();
 });

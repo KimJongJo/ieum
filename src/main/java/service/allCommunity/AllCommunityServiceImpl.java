@@ -29,7 +29,7 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	}
 
 	@Override
-	public List<AllCommunityDto> listByPage(PageInfo pageInfo , String sort) throws Exception {// String sort 추가도
+	public List<AllCommunityDto> listByPage(PageInfo pageInfo , String sort, String category) throws Exception {// String sort 추가도
 	    try (SqlSession session = sqlSessionFactory.openSession()) {
 
 	        // 1️⃣ 현재 페이지
@@ -39,7 +39,7 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	        int row = (curPage - 1) * 20;
 
 	        // 3️⃣ 전체 페이지 수 계산
-	        int totalCount = allCommunityDao.selectCount();
+	        int totalCount = allCommunityDao.selectCount(category);
 	        int allPage = (int) Math.ceil((double) totalCount / 20); // 한 페이지 20개 기준
 
 	        // 4️⃣ 페이지 블록 계산 (한 블록에 10페이지)
@@ -57,6 +57,7 @@ public class AllCommunityServiceImpl implements AllCommunityService{
 	        Map<String, Object> param = new HashMap<>();
 	        param.put("row", row);
 	        param.put("sort", sort); // ✅ 정렬 기준 추가 // 추가됨
+	        param.put("category", category);
 	        return session.selectList("mapper.community.selectList", param);
 	    }
 		
