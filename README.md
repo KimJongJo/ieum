@@ -51,25 +51,45 @@ Table
 ## 회원/비회원
 ### 로그인(소셜로그인)/회원가입
 <img width="1586" height="819" alt="로그인" src="https://github.com/user-attachments/assets/f0fab992-977f-4ac8-a33a-13759224d81d" />
+아이디와 비밀번호를 통해 로그인을 진행합니다. <br>
+소셜로그인을 사용한 로그인도 가능합니다. <br>
 
+<hr>
 
 <img width="1265" height="864" alt="회원가입1" src="https://github.com/user-attachments/assets/8770c050-788a-40d3-931e-b7a451893876" />
 <img width="1264" height="826" alt="회원가입2" src="https://github.com/user-attachments/assets/04160dce-ce41-4a64-b544-cb21eef0d67f" />
 <img width="1265" height="826" alt="회원가입3" src="https://github.com/user-attachments/assets/1a49ebbb-7a47-42a0-8b2f-3cede235ecbb" />
 <img width="1263" height="825" alt="회원가입4" src="https://github.com/user-attachments/assets/2f2b09a1-e48e-4549-b631-540bfbaf0ed5" />
 <img width="1266" height="503" alt="회원가입5" src="https://github.com/user-attachments/assets/1cdcc892-fd5a-4eaf-958b-dfacbfb27bed" />
+회원가입시 한 계정당 하나의 이메일만을 사용할 수 있으며 이미 존재하는 이메일일 경우 회원가입이 진행되지 않습니다. <br>
 
+<hr>
 
 ### 아이디/비밀번호 찾기
 <img width="1521" height="823" alt="비밀번호 찾기" src="https://github.com/user-attachments/assets/0e2b5d10-eb31-41a0-9a95-d9f690d26f0d" />
+아이디와 이메일을 입력한 뒤 DB에서 존재하는 계정인지 확인을 한 다음, 이메일 인증이 진행됩니다. <br>
+인증이 된 사용자라면 아래 새 비밀번호를 설정할 수 있도록 추가 요소를 나타냅니다. <br>
+
+<hr>
 
 ### 병원등록신청
 <img width="1267" height="588" alt="병원등록신청1" src="https://github.com/user-attachments/assets/d1fe5490-975c-4036-b7fb-56da195e7071" />
 <img width="1267" height="821" alt="병원등록신청2" src="https://github.com/user-attachments/assets/38de550a-e0b0-4425-aa42-0a9c2dcfada2" />
 <img width="1263" height="618" alt="병원등록신청3" src="https://github.com/user-attachments/assets/334430f4-7e0e-41b7-9d89-5a7ccbe4522b" />
 
+병원을 등록할때 신청자에 대한 정보를 작성한 다음 <br>
+등록할 병원에 정보를 입력합니다. <br>
+병원 사진에는 이미지 파일, 아래 사업자등록증에는 PDF 파일만을 허용합니다.<br>
+
+<hr>
+
 ### 마이페이지-진단이력
-<img width="1423" height="796" alt="진단이력" src="https://github.com/user-attachments/assets/3a6bbee6-4b8b-42d0-b476-0e633e5a647e" />
+<img width="1369" height="839" alt="진단이력" src="https://github.com/user-attachments/assets/710b642c-cac0-42bb-a79b-4cee6d8ff75d" />
+<img width="1471" height="848" alt="진단이력상세" src="https://github.com/user-attachments/assets/045a13e4-0d9e-4aaf-8001-65dfe9f67a8a" />
+
+과거 진행했던 진료를 캘린더에 표시하며, 클릭할 경우 아래 진단 요약을 볼 수 있으며 <br>
+진단 기록을 상세하게 볼 수 있습니다.<br>
+
 
 <hr>
 
@@ -77,30 +97,49 @@ Table
 ### 오늘예약
 <img width="1517" height="684" alt="오늘예약" src="https://github.com/user-attachments/assets/55885bfd-d00c-4558-8069-f7bd6ea1c105" />
 
+의사는 오늘 예약된 환자들의 정보를 확인합니다.<br>
+과거 환자가 진료받았던 모든 의사들의 진단 기록들을 확인할 수 있으며, 환자가 동의한 경우 다이어리를 통한 환자의 기록일지를 확인하여 더 자세한 상태를 파악할 수 있습니다.<br>
+진료중/진료가 끝나고 진단서를 작성하여 진료 완료처리를 하면 과거 진단 기록에 저장됩니다.<br>
+
+<hr>
+
 ### 예약기록
 <img width="1424" height="745" alt="예약기록" src="https://github.com/user-attachments/assets/ca574884-f2dd-4818-b6b8-4c90105ff283" />
+예약기록에서는 자신이 작성한 기록들만 조회가 가능하며, 다른 의사가 작성한 진료는 확인할 수 없습니다.<br>
+
+<hr>
 
 ### 진단서 관리
 <img width="1554" height="844" alt="진단서관리" src="https://github.com/user-attachments/assets/0917f470-ad00-44c2-b6a3-7e7e268636de" />
+환자정보, 상담내용, 진단기록, 다이어리를 확인할 수 있습니다.<br>
+
 
 <hr>
 
 ## 병원관리자
 ### 병원정보수정
 <img width="1515" height="784" alt="병원정보수정" src="https://github.com/user-attachments/assets/5ec426c0-a626-45d9-9071-2f245c56402b" />
+처음 병원이 등록이 될 때, 병원에 대한 상세 정보가 들어있지 않아 병원 관리자의 수정을 통해 병원의 정보를 업데이트 해줘야 합니다.<br>
+병원 관리자는 자신이 속한 병원의 정보를 수정할 수 있습니다.<br>
+
 
 <hr>
 
 ## 사이트관리자
 ### 회원/병원관리
 <img width="1237" height="808" alt="회원관리" src="https://github.com/user-attachments/assets/8f0a7866-eeb7-42d2-bed2-850a6f827f2b" />
+사이트 관리자는 회원의 상태를 변경할 수 있으며, 활동정지 처리로 상태를 저장한다면, 회원은 로그인이 불가능합니다.<br>
 <img width="1176" height="805" alt="의사관리" src="https://github.com/user-attachments/assets/f0334f3b-0723-4517-8f71-abc554d08bb1" />
 <img width="1186" height="811" alt="병원관리" src="https://github.com/user-attachments/assets/c9f61018-18d4-457f-bf3d-0ed416071114" />
 
+<hr>
+
 ### 병원등록신청목록
 <img width="1155" height="810" alt="병원등록신청" src="https://github.com/user-attachments/assets/de6cce9c-0cf0-4e1d-9a50-5bbf357be9e2" />
+사이트 관리자는 신청된 병원의 정보와, 신청자의 정보를 확인할 수 있으며, 사업자 등록증, 등록 번호, 병원 주소를 통해 실제 병원의 위치와, 사업자 등록 정보를 확인하여 승인 및 거부를 합니다.<br>
+승인처리할 경우 바로 병원 조회가 가능합니다.<br>
 
-
+<hr>
 
 
 
