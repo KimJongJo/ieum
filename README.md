@@ -54,6 +54,16 @@ Table
 아이디와 비밀번호를 통해 로그인을 진행합니다. <br>
 소셜로그인을 사용한 로그인도 가능합니다. <br>
 
+### 계정 병합
+<img width="1048" height="359" alt="계정병합" src="https://github.com/user-attachments/assets/fba9e67d-58dc-4950-85dd-1021e57774a2" />
+소셜로그인을 진행할때, 이미 사용중인 이메일일 경우 계정을 병합할 수 있는 선택창을 보여줍니다.<br>
+병합할 일반 계정의 비밀번호를 입력해서 일치할 경우 계정을 병합하여 일반 로그인과, 소셜 로그인을 가능하게 합니다<br>
+<br>
+<img width="1198" height="691" alt="병합시회원가입" src="https://github.com/user-attachments/assets/ed1fdb36-5468-4cdb-9e45-205262a09170" />
+
+만약 병합하지 않을 경우 다른 이메일을 통한 추가 정보 입력을 해야합니다.<br>
+
+
 <hr>
 
 <img width="1265" height="864" alt="회원가입1" src="https://github.com/user-attachments/assets/8770c050-788a-40d3-931e-b7a451893876" />
