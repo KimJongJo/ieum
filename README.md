@@ -18,7 +18,7 @@ Kakao Map, Login(Kakao, Google, Naver), FullCalendar.js를 사용했습니다.
 사이트관리자 - 회원/병원 관리, 병원 신청 관리
 
 인원 : 4명
-프로젝트 기간 : 2024/09/22 ~ 2024/10/17
+프로젝트 기간 : 2025/08 ~ 2025/10
 맡은 역할 : 로그인, 회원가입, 아이디/비밀번호 찾기, 사이트관리자(회원관리, 병원관리, 병원신청목록), 병원관리자(대기열 관리, 진단서 관리)
 ```
 
@@ -28,25 +28,18 @@ Table
 <img width="2290" height="1214" alt="image" src="https://github.com/user-attachments/assets/7a1269e4-0840-4bcb-8cba-ff52f8b48843" />
 
 
-<details>
-<summary>
-개발 환경
-</summary>
+## 🛠 개발 환경 (Environment)
 
-  
 | Environment | Detail |
 | --- | --- |
 | 환경 | Windows |
-| 언어 | Java, Javascript, HTML5, CSS3, JavaScript, jQuery, MySQL |
-| 프레임워크 / 라이브러리|  FullCalendar.js |
-| 데이터베이스 | Mybatis | 
+| 언어 | Java, JavaScript, HTML5, CSS3, jQuery, MySQL |
+| 프레임워크 / 라이브러리 | FullCalendar.js |
+| 데이터베이스 | Mybatis |
 | 툴 | eclipse, HeidiSQL, Postman |
 | WAS | Apache Tomcat 9.0 |
 | API | Kakao Map, Login(Kakao, Google, Naver) |
 | 협업 | Github, Notion, ERD Cloud, Draw.io, Figma |
-
-  
-</details>
 
 ## 회원/비회원
 ### 로그인(소셜로그인)/회원가입
