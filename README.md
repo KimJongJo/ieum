@@ -30,7 +30,7 @@ Table
 
 ## 🛠 개발 환경 (Environment)
 
-| Environment | Detail |
+| 구분 | 상세 내용 (Detail) |
 | --- | --- |
 | 환경 | Windows |
 | 언어 | Java, JavaScript, HTML5, CSS3, jQuery, MySQL |
